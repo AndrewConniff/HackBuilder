@@ -64,11 +64,11 @@ tools:
 
 **Step 4** of the workflow: `requirements → architect → bicep → [development] → [deploy] → demoguide`
 
-Deploys validated Bicep templates to Azure using `azd up`. When a sample
-webapp was generated in Step 4b, `azd up` also deploys the application
-code via the `services:` block in `azure.yaml`. Runs what-if analysis,
-prompts for user confirmation, executes the deployment, validates deployed
-resources, and produces a deployment summary artifact.
+Deploys coach and participant packages to Azure using `azd up`. When a sample
+webapp was generated, each package's `azd up` also deploys application code via
+the `services:` block in `azure.yaml`. Runs package-specific what-if analysis,
+prompts for user confirmation, deploys each package to its own resource group,
+validates deployed resources, and produces deployment summaries.
 
 > [!CAUTION]
 > **HARD RULE — DEPLOYMENT MUST ALWAYS BE ATTEMPTED**
@@ -128,15 +128,45 @@ resources, and produces a deployment summary artifact.
 
 ## Prerequisites Check
 
-Before starting, validate these artifacts exist in `generated-scenarios/{project}/`:
+Before starting, validate the package artifacts exist in
+`generated-scenarios/{project}/`:
 
 | Artifact                | Required | Purpose                                    |
 | ----------------------- | -------- | ------------------------------------------ |
-| `infra/main.bicep`      | Yes      | Entry point for deployment                 |
-| `infra/main.bicepparam` | Yes      | Parameter values                           |
-| `azure.yaml`            | Yes      | AZD project configuration                  |
+| `packages/coach/infra/main.bicep`       | Yes | Complete coach entry point                |
+| `packages/participant/infra/main.bicep` | Yes | Supporting-resource entry point            |
+| Both package `azure.yaml` files          | Yes | Package-specific AZD configurations        |
+| Both package READMEs                     | Yes | Distinct environments and resource groups  |
 
-If `main.bicep` is missing, STOP and request handoff to the Bicep agent.
+If either package entry point is missing, STOP and request handoff to the
+HackCreator Agent.
+
+## Package Deployment Mode (Mandatory for Foundry Hacks)
+
+When `packages/coach/` and `packages/participant/` exist, deploy those packages
+instead of the root scenario. Read both package READMEs and
+`08-hack-package-contract.md` to obtain the assigned azd environment names and
+resource groups. Stop and request a HackCreator correction if either value is
+missing or if the two resource group names are equal.
+
+1. Build, lint, and run what-if separately for `packages/coach/infra/main.bicep`
+   and `packages/participant/infra/main.bicep` against their respective groups.
+2. After one user confirmation, run `azd up --no-prompt` from
+   `packages/coach/`, then from `packages/participant/`, after setting each
+   package's documented azd environment.
+3. Validate all expected coach resources, including the Foundry account,
+   project, model deployment, and agent where applicable.
+4. Validate all expected participant supporting resources, then use
+   `az resource list --resource-group {participant-rg}` to confirm that no
+   resource type starts with `Microsoft.CognitiveServices`,
+   `Microsoft.MachineLearningServices`, or `Microsoft.AI`.
+5. Write separate coach and participant deployment results, including resource
+   group names, to the deployment summary. The DemoGuide uses only the coach
+   result because it demonstrates the fully built solution.
+
+For a package deployment failure, do not deploy the other package into the
+failed package's resource group. Follow the existing user-decision handling for
+the affected package and clearly identify which package is blocked.
 
 ## Workflow
 

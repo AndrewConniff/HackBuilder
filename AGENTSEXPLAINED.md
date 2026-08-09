@@ -7,7 +7,8 @@ extend or modify them.
 
 ## The Four Building Blocks
 
-```
+```text
+
 ┌──────────────────────────────────────────────────────────────────┐
 │                         USER PROMPT                              │
 │  "Build me an Azure demo with App Service and Key Vault..."     │

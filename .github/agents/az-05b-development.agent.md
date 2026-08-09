@@ -108,6 +108,11 @@ Azure App Service, Container Apps, ACI, or AKS — never on VM-only scenarios.
 4. **Industry-Aware**: Generate domain models and seed data matching the project's business industry
 5. **Container-Ready**: For container targets, include a multi-stage `Dockerfile`
 6. **azd-Integrated**: Wire the app as a service in `azure.yaml` so `azd deploy` picks it up
+7. **Foundry-Integrated**: For Foundry hack scenarios, implement the coach
+  application's interaction with the designed Foundry agent using managed
+  identity or `DefaultAzureCredential`. The participant package must retain
+  only documented configuration placeholders until participants complete the
+  Foundry challenges.
 
 ## DO / DON'T
 
@@ -145,6 +150,7 @@ Before starting, validate these artifacts exist in `generated-scenarios/{project
 | `02-architecture-assessment.md` | Yes      | Compute target and service selection          |
 | `infra/main.bicep`              | Yes      | Infrastructure templates (for service wiring) |
 | `azure.yaml`                    | Yes      | AZD project configuration                     |
+| `08-hack-package-contract.md`   | Yes for Foundry hacks | Coach/participant integration boundary |
 
 ## Workflow
 
@@ -154,7 +160,11 @@ Before starting, validate these artifacts exist in `generated-scenarios/{project
 2. Read `02-architecture-assessment.md` — identify **compute target** (App Service, Container Apps, ACI, AKS, or VM) and **data endpoints**; note the App Service or container resource names
 3. If VM-only → SKIP with message and return
 4. Scan `infra/` to confirm resource names and connection point details
-5. Classify the **data strategy**:
+5. For Foundry hacks, read `08-hack-package-contract.md` and identify the
+  coach agent endpoint, identity/RBAC requirements, and the participant-safe
+  configuration placeholders. Do not hardcode endpoints, keys, or deployment
+  outputs in source code.
+6. Classify the **data strategy**:
 
 | Architecture Includes   | Data Strategy           | SDK / NuGet Package                                        |
 | ----------------------- | ----------------------- | ---------------------------------------------------------- |
@@ -297,6 +307,9 @@ If the build fails, fix issues before proceeding.
 - [ ] Razor pages display entity lists and details
 - [ ] Dockerfile generated (container targets only)
 - [ ] `azure.yaml` updated with service definition
+- [ ] For Foundry hacks, coach app calls the designed Foundry agent through
+  credential-based configuration and participant code contains only safe,
+  documented Foundry placeholders
 - [ ] `dotnet build` passes without errors
 - [ ] README.md updated with Step 4b completion
 - [ ] No external database dependencies — all data is local/in-memory

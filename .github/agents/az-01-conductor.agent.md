@@ -13,6 +13,7 @@ agents:
     "az-05b-Development",
     "az-06-Deploy",
     "az-07-DemoGuide",
+    "HackCreator Agent",
     "az-08-Contribute",
   ]
 tools:
@@ -121,13 +122,15 @@ Conductor for the Azure demo builder workflow.
 ## The Workflow
 
 ```text
-Step 1: Requirements    →  01-requirements.md
-Step 2: Architecture    →  02-architecture-assessment.md
-Step 3: Bicep           →  infra/ + azure.yaml + 04-runtime-diagram.png
-Step 3b: Development    →  src/ + azure.yaml (services block) (conditional)
-Step 4: Deploy          →  README.md
-Step 5: Demo Guide      →  demoguide/demoguide.md
-Step 6: Contribute      →  standalone repo + scenarios/registry.json PR (user-invoked)
+Step 1: Requirements    → 01-requirements.md
+Step 1b: Hack plan      → 08-hack-package-contract.md
+Step 2: Architecture    → 02-architecture-assessment.md
+Step 3: Bicep           → infra/ + azure.yaml + 04-runtime-diagram.png
+Step 3b: Development    → src/ + azure.yaml (services block) (conditional)
+Step 4: Hack packages   → packages/coach/ + packages/participant/
+Step 5: Deploy packages → deployed coach + participant environments
+Step 6: Demo Guide      → demoguide/demoguide.md
+Step 7: Contribute      → standalone repo + scenarios/registry.json PR (user-invoked)
 ```
 
 > **Step 3b** is conditional. During Step 1, ask the user:
@@ -143,6 +146,21 @@ Step 6: Contribute      →  standalone repo + scenarios/registry.json PR (user-
 ```text
 📋 REQUIREMENTS COMPLETE
 Artifact: generated-scenarios/{project}/01-requirements.md
+✅ Next: Architecture Assessment (Step 2)
+➡️ Continue automatically to Architecture Assessment (Step 2)
+```
+
+### Checkpoint 1b: Hack package plan
+
+Before Architecture starts, delegate to **HackCreator Agent** in `plan` mode.
+It creates `08-hack-package-contract.md`, which records the complete coach
+package and the participant package's intentional Foundry gap. Architect and
+Bicep must read this contract so the coach build includes the Foundry resources
+and the participant package can preserve every supporting resource.
+
+```text
+🏟️ HACK PACKAGE PLAN COMPLETE
+Artifact: generated-scenarios/{project}/08-hack-package-contract.md
 ✅ Next: Architecture Assessment (Step 2)
 ➡️ Continue automatically to Architecture Assessment (Step 2)
 ```
@@ -163,9 +181,9 @@ Artifact: generated-scenarios/{project}/02-architecture-assessment.md
 Templates: generated-scenarios/{project}/infra/
 Diagram:   generated-scenarios/{project}/04-runtime-diagram.png
 AZD config: generated-scenarios/{project}/azure.yaml
-✅ Next: Development (Step 3b) or Deploy (Step 4)
+✅ Next: Development (Step 3b) or Hack packages (Step 4)
 ➡️ If sample webapp requested: continue to Development (Step 3b)
-➡️ If no webapp requested or VM-only: skip to Deploy (Step 4)
+➡️ If no webapp requested or VM-only: skip to Hack packages (Step 4)
 ```
 
 ### Checkpoint 3b: After Development (Conditional)
@@ -174,21 +192,24 @@ AZD config: generated-scenarios/{project}/azure.yaml
 🧑‍💻 DEVELOPMENT COMPLETE
 Source: generated-scenarios/{project}/src/{ProjectName}.Web/
 azd wiring: generated-scenarios/{project}/azure.yaml (services block added)
-✅ Next: Deploy (Step 4)
-➡️ Continue automatically to Deploy (Step 4)
+✅ Next: Hack packages (Step 4)
+➡️ Continue automatically to Hack packages (Step 4)
 ```
 
-### Checkpoint 4: After Deploy
+### Checkpoint 4: After Hack packages
 
 ```text
-🚀 DEPLOYMENT COMPLETE
-README: generated-scenarios/{project}/README.md
-✅ Next: Demo Guide (Step 5)
-➡️ Continue automatically to Demo Guide (Step 5)
+🏟️ HACK PACKAGES READY FOR DEPLOYMENT
+Coach:       generated-scenarios/{project}/packages/coach/ → dedicated coach resource group
+Participant: generated-scenarios/{project}/packages/participant/ → dedicated participant resource group
+✅ Coach contains the complete Foundry solution
+✅ Participant retains supporting resources and omits all Foundry resources
+✅ Next: Deploy packages (Step 5)
+➡️ Continue automatically to Deploy packages (Step 5)
 ```
 
 > [!CAUTION]
-> **If the Deploy agent reports a failure or was unable to run `azd up`:**
+> **If the Deploy agent reports a package failure or was unable to run `azd up`:**
 > Do NOT auto-advance to DemoGuide. Instead, present the failure summary
 > to the user and ask how to proceed. Options:
 >
@@ -197,10 +218,22 @@ README: generated-scenarios/{project}/README.md
 > 3. Skip deployment and continue to Demo Guide (user’s explicit choice)
 > 4. Abort workflow
 >
-> Only proceed to Step 6 if deployment succeeded OR the user explicitly
+> Only proceed to Step 6 if both package deployments succeeded OR the user explicitly
 > chooses to continue without deployment.
 
-### Checkpoint 5: After Demo Guide (VERIFICATION GATE)
+### Checkpoint 5: After Deploy packages
+
+```text
+🚀 PACKAGE DEPLOYMENTS COMPLETE
+Coach:       deployed to its dedicated coach resource group
+Participant: deployed to its dedicated participant resource group
+✅ Coach Foundry resources and agent health validated
+✅ Participant supporting resources validated; no Foundry resource exists
+✅ Next: Demo Guide (Step 6)
+➡️ Continue automatically to Demo Guide (Step 6)
+```
+
+### Checkpoint 6: After Demo Guide (VERIFICATION GATE)
 
 > [!CAUTION]
 > **MANDATORY — Verify Playwright screenshots exist before marking complete.**
@@ -217,19 +250,20 @@ README: generated-scenarios/{project}/README.md
 Artifact: generated-scenarios/{project}/demoguide/demoguide.md
 Screenshots: generated-scenarios/{project}/demoguide/images/*.png (MANDATORY)
 ✅ Playwright screenshots captured or fallback documented
-➡️ Continue to Contribution offer (Checkpoint 6)
+➡️ Continue to Contribution offer (Checkpoint 7)
 ```
 
-### Checkpoint 6: Contribution Offer (USER CHOICE)
+### Checkpoint 7: Contribution Offer (USER CHOICE)
 
-After the DemoGuide step is verified (Steps 1–5 complete), offer the contributor
-the option to submit their scenario to the upstream project:
+After the HackCreator package step is verified (Steps 1–6 complete), offer the
+contributor the option to submit their scenario to the upstream project:
 
 ```text
 🎉 WORKFLOW COMPLETE
 Scenario: generated-scenarios/{project}/
 
-Production artifacts: infra/, azure.yaml, README.md, demoguide/, 04-runtime-diagram.png
+Production artifacts: infra/, azure.yaml, README.md, demoguide/, 04-runtime-diagram.png,
+                      packages/coach/, packages/participant/
                       + src/ (if webapp was generated)
 
 Would you like to contribute this scenario to the project?
@@ -251,12 +285,14 @@ Use `#runSubagent` for each workflow step:
 | Step | Agent        | Key Prompt                                                                                                                                                                                                            |
 | ---- | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 1    | Requirements | Parse the user's scenario description, extract requirements through all phases, then generate 01-requirements.md                                                                                                      |
+| 1b   | HackCreator Agent | Read the requirements and create `08-hack-package-contract.md` in `plan` mode.                                                                                                                                    |
 | 2    | Architect    | Create architecture assessment for requirements in 01-requirements.md                                                                                                                                                 |
 | 3    | Bicep        | Run governance discovery, generate Bicep templates and 04-runtime-diagram.png, validate per 02-architecture-assessment.md                                                                                             |
 | 3b   | Development  | Scaffold .NET 10 sample webapp with {industry} seed data, wire into azure.yaml, validate build. **Skip if VM-only or user declined.**                                                                                 |
-| 4    | Deploy       | Run what-if analysis, prompt user, deploy to Azure with `azd up`, generate README.md. **MUST attempt actual deployment. On failure, report back so the Conductor can prompt the user for a decision.**                |
-| 5    | DemoGuide    | Generate audience-aware demo runbook with **Playwright screenshots** of deployed resources. **VERIFY screenshots exist in `demoguide/images/` before marking complete.**                                              |
-| 6    | Contribute   | Validate artifacts, fork repo, create branch, commit scenario, open draft PR, optionally create tracking issue. **User must explicitly opt in — never auto-trigger.**                                                  |
+| 4    | HackCreator Agent | Create and validate `packages/coach/` and `packages/participant/` in `package` mode. Assign distinct coach and participant azd environments and resource groups. The participant IaC excludes Foundry and includes five challenge files. |
+| 5    | Deploy       | Run package-specific what-if analysis, prompt user, deploy both packages with `azd up` to distinct resource groups, and validate the coach Foundry solution plus the participant Foundry exclusion. **MUST attempt both deployments.** |
+| 6    | DemoGuide    | Generate an audience-aware coach-solution runbook with **Playwright screenshots** from the coach resource group. **VERIFY screenshots exist in `demoguide/images/` before marking complete.** |
+| 7    | Contribute   | Validate artifacts, fork repo, create branch, commit scenario, open draft PR, optionally create tracking issue. **User must explicitly opt in — never auto-trigger.**                                                  |
 
 ## Starting a New Project
 
@@ -267,7 +303,8 @@ Use `#runSubagent` for each workflow step:
 
 2. Create `generated-scenarios/{project-name}/`
 3. Delegate to Requirements agent for Step 1
-4. Continue through workflow automatically
+4. Delegate to HackCreator Agent in `plan` mode for Step 1b
+5. Continue through workflow automatically
 
 ## Resuming a Project
 
@@ -280,6 +317,7 @@ Use `#runSubagent` for each workflow step:
 | Step | Artifact                          | Check                                            |
 | ---- | --------------------------------- | ------------------------------------------------ |
 | 1    | `01-requirements.md`              | Exists?                                          |
+| 1b   | `08-hack-package-contract.md`     | Exists?                                          |
 | 2    | `02-architecture-assessment.md`   | Exists?                                          |
 | 3    | `infra/main.bicep`                | Templates valid?                                 |
 | 3    | `azure.yaml`                      | Exists?                                          |
@@ -288,7 +326,9 @@ Use `#runSubagent` for each workflow step:
 | 4    | `README.md`                       | Exists?                                          |
 | 5    | `demoguide/demoguide.md`          | Required                                         |
 | 5    | `demoguide/images/*.png`          | **MANDATORY** — screenshots captured or fallback |
-| 6    | Draft PR on upstream              | User opted in?                                   |
+| 6    | `packages/coach/`                 | Deployable coach package exists?                 |
+| 6    | `packages/participant/challenges/`| Five challenge files exist?                      |
+| 7    | Draft PR on upstream              | User opted in?                                   |
 
 ## Model Selection
 

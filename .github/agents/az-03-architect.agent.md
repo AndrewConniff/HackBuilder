@@ -70,8 +70,9 @@ tools:
 > Your **first action** MUST be to verify `01-requirements.md` exists and contains
 > the information below. Do NOT read skills or templates before this step.
 
-Validate `01-requirements.md` exists in `generated-scenarios/{project}/`.
-If missing, STOP and request handoff to Requirements agent.
+Validate `01-requirements.md` and `08-hack-package-contract.md` exist in
+`generated-scenarios/{project}/`. If either is missing, STOP and request the
+appropriate Requirements or HackCreator Agent handoff.
 
 Verify these are documented — **auto-default if missing**:
 
@@ -116,7 +117,9 @@ Verify these are documented — **auto-default if missing**:
 
 ### Steps
 
-1. **Read requirements** — Parse `01-requirements.md` for scope, services, and scale
+1. **Read requirements and package contract** — Parse `01-requirements.md` and
+  `08-hack-package-contract.md` for scope, services, scale, the complete coach
+  implementation, and the participant package's intentional Foundry gap
 2. **Search docs** — Query Microsoft docs for each Azure service and architecture pattern
 3. **Assess trade-offs** — Evaluate service options, identify primary concerns
 4. **Select SKUs** — Choose resource SKUs and tiers appropriate for demo/PoC
@@ -164,6 +167,7 @@ Include attribution header from the template file (do not hardcode).
 - [ ] H2 headings match azure-artifacts templates exactly
 - [ ] Region selection justified (default: swedencentral)
 - [ ] AVM modules recommended where available
+- [ ] Coach Foundry resources and participant supporting-resource boundary align with `08-hack-package-contract.md`
 - [ ] Trade-offs explicitly documented
 - [ ] Handoff summary presented before automatic delegation
 - [ ] File saved to `generated-scenarios/{project}/`

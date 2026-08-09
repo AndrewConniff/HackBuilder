@@ -140,6 +140,9 @@ Read for context:
 
 - `02-architecture-assessment.md` — resource list, SKU recommendations, architecture decisions
 - `01-requirements.md` — compliance requirements and constraints (if available)
+- `08-hack-package-contract.md` — required Foundry and supporting resources for the
+  complete coach implementation, plus the Foundry resources to omit from the
+  participant package
 
 ## Workflow
 
@@ -356,3 +359,4 @@ module networking 'modules/networking.bicep' = { ... }
 - [ ] `04-runtime-diagram.png` exists on disk
 - [ ] `04-runtime-diagram.py` has been deleted
 - [ ] `azure.yaml` exists with `infra.path: ./infra`
+- [ ] Coach implementation includes the contract's Foundry and supporting resources so HackCreator can derive the participant package safely

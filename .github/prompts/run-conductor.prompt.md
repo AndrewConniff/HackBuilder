@@ -20,9 +20,10 @@ between each step.
 
 ## Mission
 
-Guide a project from business description through validated Bicep
-templates using the full agent pipeline: Requirements → Architect →
-Design → Bicep → Development (conditional) → Deploy → Demo Guide.
+Guide a project from business description through a fully working coach Foundry
+solution and a participant hack package using the full agent pipeline:
+Requirements → Hack plan → Architect → Design → Bicep → Development
+(conditional) → Hack packages → Deploy both packages → Demo Guide.
 All steps are required to have a successful project and do the handover to the user. After the final handoff, prompt the user to confirm the project run is complete.
 
 ## Scope & Preconditions
@@ -31,6 +32,12 @@ All steps are required to have a successful project and do the handover to the u
 - All artifacts are saved to `generated-scenarios/${input:projectName}/`
 - Bicep templates are saved to `generated-scenarios/${input:projectName}/infra/` and should support `azd provision`
 - Each step produces artifacts that feed the next step
+- The workflow always produces two packages in `generated-scenarios/${input:projectName}/packages/`:
+  - `coach/` contains the full Azure demo, including Azure AI Foundry resources, and is deployable for technology review before the hack
+  - `participant/` retains the supporting Azure resources but excludes Azure AI Foundry resources; it contains the five challenge files that guide teams to build those resources themselves
+- The packages use separate azd environments and separate resource groups. The
+  coach resource group contains the complete Foundry solution; the participant
+  resource group contains supporting Azure resources only.
 - Proceed through workflow steps automatically unless the user explicitly pauses
 
 ## Inputs
@@ -48,6 +55,16 @@ Delegate to **Requirements** agent with the project description.
 Wait for `01-requirements.md` to be generated.
 
 Automatically continue to Step 2 after requirements generation.
+
+### Step 1b: Hack package plan
+
+Delegate to **HackCreator Agent** in `plan` mode. It turns the scenario into a
+two-package contract before architecture and Bicep work begin. The contract
+ensures the coach package includes all required Foundry and supporting resources,
+while the participant package can safely omit Foundry and teach its construction
+through challenges.
+
+Automatically continue to Step 2 after `08-hack-package-contract.md` is generated.
 
 ### Step 2: Architecture Assessment
 
@@ -86,19 +103,31 @@ Skip this step if:
 
 Automatically continue to Step 5 (Deploy).
 
-### Step 5: Deploy
+### Step 5: Build hack packages
 
-Delegate to **Deploy** agent. Run what-if analysis, prompt the user for
-Azure credentials and confirmation, then execute the deployment. Generate
-`06-deployment-summary.md` with deployed resource details.
+Delegate to **HackCreator Agent** in `package` mode before deployment. It must
+create `coach/` and `participant/`, assign distinct azd environment and
+resource-group names, and verify that participant IaC omits every Foundry
+resource, output, dependency, and Foundry-specific role assignment.
 
-Automatically continue to Step 6 (Demo Guide).
+### Step 6: Deploy both packages
 
-### Step 6: Demo Guide
+Delegate to **Deploy** agent. Run a what-if analysis for each package, prompt
+the user for Azure credentials and one confirmation, then deploy coach and
+participant packages with `azd up` to their dedicated resource groups. Validate
+the coach agent and Foundry resources, and validate that no Foundry resource is
+present in the participant group. Generate package deployment summaries.
+
+Automatically continue to Step 7 (Demo Guide).
+
+### Step 7: Demo Guide
 
 Generate **demo step-by-step instructions guide**.
 
 With this final step completed successfully, **after** running the validation, **prompt** the user in chat to **confirm** the project run is complete.
+
+After this step, hand the two deployed package paths and their distinct resource
+groups to the user, then prompt for project-run confirmation.
 
 ## Output Expectations
 
@@ -118,6 +147,8 @@ generated-scenarios/{projectName}/
 ├── 07-webapp-summary.md          (conditional — if sample webapp requested)
 ├── /demoguide/demoguide.md
 ├── /demoguide/images/*.png
+├── /packages/coach/               # Complete, deployable coach technology review package
+├── /packages/participant/         # Supporting resources + Foundry challenge materials
 └── README.md
 
 generated-scenarios/{projectName}/infra/
@@ -137,4 +168,7 @@ Before completing each step, verify:
 - [ ] No stale references to previous steps
 - [ ] Workflow progressed through automatic handoffs
 - [ ] All validation commands pass before proceeding
+- [ ] Coach and participant packages exist with the documented Foundry boundary
+- [ ] Coach and participant deployments use distinct resource groups
+- [ ] Coach Foundry resources are running and participant deployment has no Foundry resource
 - [ ] Prompted the user to confirm the project run is complete at the end
