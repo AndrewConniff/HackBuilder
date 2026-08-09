@@ -24,11 +24,11 @@ This scenario is identical in every challenge file.>
 | Block | Time | What you're doing |
 |---|---|---|
 | Kickoff | 10 min | Scenario, rules, team setup |
-| Challenge 0 — Setup & Deploy | 25 min | Foundry project + model deployment |
-| Challenge 1 — Build the Agent | 35 min | Instructions, persona, reasoning |
-| Challenge 2 — Ground It | 35 min | Knowledge source + citations |
-| Challenge 3 — Give It Tools | 35 min | MCP or OpenAPI action |
-| Challenge 4 — Harden & Demo | 30 min | Eval, safety, demo script |
+| Challenge 0 — Secure Foundation | 25 min | Project, model, access, and baseline test |
+| Challenge 1 — Build the MVP | 35 min | First end-to-end agent response |
+| Challenge 2 — Ground It | 35 min | Add one knowledge source + citations |
+| Challenge 3 — Give It Tools | 35 min | Add one authenticated action |
+| Challenge 4 — Harden & Demo | 30 min | Eval, least privilege, tracing, and demo |
 | Wrap-up | 20 min | Demos and judging |
 | **Total** | **180 min** | |
 
@@ -52,11 +52,21 @@ This scenario is identical in every challenge file.>
 
 | # | Challenge | Time | You'll finish with |
 |---|---|---|---|
-| 0 | [Setup & Deploy](challenges/challenge-00-setup.md) | 25 min | A Foundry project + deployed model |
-| 1 | [Build the Agent](challenges/challenge-01-build-the-agent.md) | 35 min | An agent that reasons through the task |
+| 0 | [Secure Foundation](challenges/challenge-00-setup.md) | 25 min | Project, model, access, and baseline test |
+| 1 | [Build the MVP](challenges/challenge-01-build-the-agent.md) | 35 min | A minimal agent that answers end to end |
 | 2 | [Ground It](challenges/challenge-02-ground-it.md) | 35 min | Answers grounded in your data, with citations |
-| 3 | [Give It Tools](challenges/challenge-03-give-it-tools.md) | 35 min | An agent that takes a real action |
-| 4 | [Harden & Demo](challenges/challenge-04-harden-and-demo.md) | 30 min | Evals, safety, and a 3-minute demo |
+| 3 | [Give It Tools](challenges/challenge-03-give-it-tools.md) | 35 min | One authenticated real-world action |
+| 4 | [Harden & Demo](challenges/challenge-04-harden-and-demo.md) | 30 min | Evals, security checks, and a 3-minute demo |
+
+## 🧱 Build progression
+
+| Stage | Add only | Preserve from earlier stages |
+|---|---|---|
+| Foundation | Required resources, access, and one model test | A repeatable starting checkpoint |
+| MVP | Minimal instructions and one end-to-end response | Foundation access and model test |
+| Grounded | One knowledge source with citations | The ungrounded MVP still responds |
+| Action-enabled | One tool using identity or a managed connection | MVP and grounding behavior |
+| Hardened | Evals, tracing, least privilege, and negative tests | Every earlier success check |
 
 ## 🏆 Judging
 
@@ -77,7 +87,7 @@ See [resources.md](resources.md).
 
 ## B. Per-challenge file — `challenge-NN-<slug>.md`
 
-```markdown
+````markdown
 # 🧠 Challenge 02 — Ground Your Agent
 
 > ⏱️ **35 minutes** · Challenge 2 of 5 · Difficulty: ●●○ · Path: Low-code + Code-first
@@ -92,6 +102,14 @@ your own documents, and show where the answer came from.**
 ## 💡 Why this matters
 
 <2 sentences max. The real-world reason grounding beats a bigger prompt.>
+
+## 🧱 Build on what works
+
+**Starting checkpoint:** <The observable result learners already have.>
+
+**Smallest useful increment:** <The one new capability added in this challenge.>
+
+**Keep working:** <The earlier success check that must still pass.>
 
 ## 🧭 Choose your path
 
@@ -122,6 +140,7 @@ your own documents, and show where the answer came from.**
 - [ ] <Observable, checkable in under 60 seconds>
 - [ ] <Observable>
 - [ ] <Observable — include one negative test, e.g. graceful "I don't know">
+- [ ] <Regression check proving the previous challenge still works>
 
 ## 💬 Stuck?
 
@@ -137,24 +156,45 @@ your own documents, and show where the answer came from.**
 
 <If this challenge fails, what the team does so Challenge 3 still works.
 Every challenge needs this — no team gets stranded.>
-```
+````
 
 ---
 
 ## C. Fill rules
 
 | Placeholder | Source |
-|---|---|
+| --- | --- |
 | Hack name | From the user's input topic; 2–4 words, arena-flavored |
 | Scenario | Derived from the input; never swapped between challenges |
 | Industry/brand specifics | From the input only — never invented |
 | Data source | From the input; if absent, use the synthetic-data fallback |
 | Model names | Only models confirmed available in Foundry; else `[verify model availability]` |
 | Links | Only approved domains (see style guide §11) |
+| Progression | One working increment per challenge; never rebuild from scratch |
 
 ## D. Synthetic-data fallback (use when the input names no data source)
 
 > [!TIP]
 > No dataset for this scenario? Generate one — a short Word doc or spreadsheet
-> of <domain> content via Copilot — and attach it to your agent with File Search.
+> of {domain} content via Copilot — and attach it to your agent with File Search.
 > Web grounding via a search tool is a valid alternative.
+
+## E. Required build order
+
+1. Challenge 0 creates only the required foundation and proves model access.
+   It establishes RBAC, identity, and secret-safety prerequisites; these are
+   never postponed to the final challenge.
+2. Challenge 1 produces a minimal viable agent in the first half of the timebox.
+   Learners improve instructions only after one end-to-end response succeeds.
+3. Challenge 2 adds one grounding source to the working MVP and verifies a
+   citation without breaking the original response path.
+4. Challenge 3 adds one useful action. Authentication uses agent identity,
+   managed identity, `DefaultAzureCredential`, or a managed connection, never
+   a pasted key.
+5. Challenge 4 adds tracing, repeatable evaluation, safety tests, least-privilege
+   review, and the demo. It hardens the accumulated solution rather than
+   introducing a new architecture.
+
+Every fallback must preserve the previous checkpoint and provide the minimum
+artifact needed to continue. Every challenge must include a regression check
+for at least one earlier capability.

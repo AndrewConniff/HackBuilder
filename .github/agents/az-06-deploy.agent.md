@@ -137,9 +137,14 @@ Before starting, validate the package artifacts exist in
 | `packages/participant/infra/main.bicep` | Yes | Supporting-resource entry point            |
 | Both package `azure.yaml` files          | Yes | Package-specific AZD configurations        |
 | Both package READMEs                     | Yes | Distinct environments and resource groups  |
+| `packages/hack/README.md`                | Yes | Public hacker entry point                  |
+| `packages/hack/challenges/`              | Yes | Five canonical challenge files             |
+| `packages/coach-guide/deployment-guide.md` | Yes | Coach deployment instructions            |
+| `packages/coach-guide/challenges/`       | Yes | Exact copies of canonical challenges       |
 
-If either package entry point is missing, STOP and request handoff to the
-HackCreator Agent.
+If any file set is missing or coach challenge copies differ from the hacker
+files, STOP and request handoff to the HackCreator Agent. Deploy only the coach
+and participant projects; `hack/` and `coach-guide/` are documentation sets.
 
 ## Package Deployment Mode (Mandatory for Foundry Hacks)
 

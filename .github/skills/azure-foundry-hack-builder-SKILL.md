@@ -20,43 +20,67 @@ Turn any input (a scenario, an industry, a customer ask, a product theme) into a
 complete set of Azure AI Foundry hack challenges. **Every hack this skill
 produces is an Azure AI Foundry agent-building hack that fits in 3 hours.**
 
-When this skill is used by the Azure Demo Builder, the scenario has two
+When this skill is used by the Azure Demo Builder, the scenario has four
 deliverables that share one design:
 
 - A **coach solution** that fully implements the agent in Azure AI Foundry,
    including its Foundry resources and every supporting Azure resource.
-- A **participant hack package** that deploys the same non-Foundry supporting
-   resources but intentionally omits every Foundry resource. Its challenges
-   teach participants to build that remaining Foundry solution themselves.
+- A **participant project** that deploys the same non-Foundry supporting
+   resources but intentionally omits every Foundry resource.
+- A **hacker file set** that is safe for a public GitHub repository and teaches
+   participants to build the omitted Foundry solution.
+- A **coach guide** that explains the complete solution and deployment process
+   and includes an exact copy of the hacker challenges.
 
-The two packages must use separate azd environments and separate resource
-groups. A participant deployment must never target, reuse, or modify the
-coach resource group.
+The two deployable projects must use separate azd environments and separate
+resource groups. A participant deployment must never target, reuse, or modify
+the coach resource group. The documentation sets are not deployed by `azd`.
 
 ## Fixed constraints (never negotiate these)
 
-| Constraint | Value |
-|---|---|
-| Platform | Microsoft Foundry / Azure AI Foundry only (portal + Foundry SDK) |
-| Theme | Building AI **agents** — not apps, not fine-tuning, not data engineering |
-| Total length | 3 hours (180 min) |
-| Structure | 10 min kickoff + 150 min build across challenges + 20 min wrap/demo |
-| Challenge count | 4–5 challenges, each 25–40 min |
-| Audience | Mixed skill — every challenge has a low-code path and a code-first path |
+| Constraint      | Value                                                                       |
+| --------------- | --------------------------------------------------------------------------- |
+| Platform        | Microsoft Foundry / Azure AI Foundry only (portal + Foundry SDK)            |
+| Theme           | Building AI **agents** - not apps, fine-tuning, or data engineering         |
+| Total length    | 3 hours (180 min)                                                           |
+| Structure       | 10 min kickoff + 150 min build across challenges + 20 min wrap/demo         |
+| Challenge count | 4-5 challenges, each 25-40 min                                              |
+| Audience        | Mixed skill - every challenge has a low-code and a code-first path          |
 
 ## Time budget (default — adjust only if the user overrides)
 
-| Block | Minutes | Content |
-|---|---|---|
-| Challenge 0 – Setup & Deploy | 25 | Foundry project, model deployment, playground |
-| Challenge 1 – Build the Agent | 35 | Instructions, persona, reasoning pattern |
-| Challenge 2 – Ground It | 35 | File Search / Bing / knowledge source |
-| Challenge 3 – Give It Tools | 35 | MCP server or OpenAPI action |
-| Challenge 4 – Harden & Demo | 30 | Eval, safety, tracing, demo script |
-| Wrap-up | 20 | Demos + judging |
+| Block                           | Minutes | Content                                       |
+| ------------------------------- | ------- | --------------------------------------------- |
+| Challenge 0 - Secure Foundation | 25      | Project, model, identity, and baseline test   |
+| Challenge 1 - Build the MVP     | 35      | First end-to-end agent response               |
+| Challenge 2 - Ground It         | 35      | Add one knowledge source and citations        |
+| Challenge 3 - Give It Tools     | 35      | Add one authenticated action                  |
+| Challenge 4 - Harden & Demo     | 30      | Eval, least privilege, tracing, and demo      |
+| Wrap-up                         | 20      | Demos + judging                               |
 
 Rule: the sum of all challenge minutes must equal 150. State the running total
 at the top of the generated hack.
+
+## Progressive build contract
+
+Challenges must extend one continuously working solution in dependency order:
+
+1. **Secure foundation:** Deploy only required resources, establish access with
+   RBAC and identity, and prove one model request. Never teach pasted keys as a
+   temporary shortcut.
+2. **Minimal viable agent:** Produce one end-to-end prompt-agent response in the
+   first half of Challenge 1. Improve instructions only after that checkpoint.
+3. **Grounded increment:** Add one knowledge source and citations while keeping
+   the original MVP response path working.
+4. **Action increment:** Add one useful tool with agent identity, managed
+   identity, `DefaultAzureCredential`, or a managed connection.
+5. **Hardening increment:** Add tracing, evaluation, safety tests,
+   least-privilege review, and the demo without changing the architecture.
+
+Every challenge states its starting checkpoint, adds one smallest useful
+increment, and retests at least one earlier success criterion. Its fallback
+preserves the last working checkpoint and supplies only what the next challenge
+requires.
 
 ## Workflow
 
@@ -72,26 +96,35 @@ at the top of the generated hack.
    participant package. If a resource is not applicable, state why.
 4. **Map to the time budget.** Assign the extracted specifics into Challenges
    0–4. If the input has no data source, use the synthetic-data fallback.
-5. **Write each challenge** using `reference/challenge-template.md` verbatim as
-   the section order.
-6. **Apply the style rules** in `reference/style-guide.md` — headings, emoji
-   set, tables, callouts, code fences, link style.
-7. **Emit files** — one `README.md` for the hack, one `challenge-NN-<slug>.md`
-   per challenge, plus `resources.md`.
+5. **Write each challenge** using
+   `.github/PULL_REQUEST_TEMPLATE/challenge-template.md` verbatim as the
+   section order.
+6. **Apply the style rules** in
+   `.github/instructions/hack-authoring-instructions.md`.
+7. **Emit four file sets** under `packages/`: `coach/`, `participant/`,
+   `hack/`, and `coach-guide/`.
 8. **Self-check** against the checklist below before delivering.
 
 ## Output file layout
 
-```
-<hack-name>/
-├─ README.md                  # Arena page: scenario, schedule, prereqs, judging
-├─ challenges/
-│  ├─ challenge-00-setup.md
-│  ├─ challenge-01-build-the-agent.md
-│  ├─ challenge-02-ground-it.md
-│  ├─ challenge-03-give-it-tools.md
-│  └─ challenge-04-harden-and-demo.md
-└─ resources.md               # Links, FAQ, help
+```text
+packages/
+├─ coach/                     # Complete deployable solution
+├─ participant/               # Deployable non-Foundry starter
+├─ hack/                      # Public GitHub-ready participant content
+│  ├─ README.md
+│  ├─ challenges/
+│  │  ├─ challenge-00-setup.md
+│  │  ├─ challenge-01-build-the-agent.md
+│  │  ├─ challenge-02-ground-it.md
+│  │  ├─ challenge-03-give-it-tools.md
+│  │  └─ challenge-04-harden-and-demo.md
+│  └─ resources.md
+└─ coach-guide/               # Private coach documentation
+   ├─ README.md
+   ├─ solution-overview.md
+   ├─ deployment-guide.md
+   └─ challenges/             # Exact copies of hack/challenges
 ```
 
 ## Hard rules
@@ -104,6 +137,12 @@ at the top of the generated hack.
   every code sample.
 - **Every challenge is independently gradable** — a team that fails Challenge 2
   can still attempt Challenge 3 with a documented fallback.
+- **Build an MVP before extensions** — Challenge 1 must produce a useful
+   end-to-end response before grounding, tools, evaluation, or polish.
+- **Security is progressive, not postponed** — identity, RBAC, and secret safety
+   are foundation requirements; Challenge 4 verifies and tightens them.
+- **Add one capability at a time** — grounding and tools extend the working MVP
+   and each challenge includes a regression check.
 - **No challenge exceeds 40 minutes.** If a challenge needs more, split it.
 - Code snippets stay under ~15 lines. Longer code belongs in the starter kit,
   not the challenge text.
@@ -116,8 +155,16 @@ at the top of the generated hack.
    not only a challenge design
 - [ ] The participant package retains every required non-Foundry resource and
    omits every Foundry resource, dependency, output, and role assignment
+- [ ] Hacker file set contains no coach answers, secrets, environment state,
+   tenant details, subscription IDs, deployed endpoints, or local paths
+- [ ] Coach guide documents the complete solution and deployment process
+- [ ] Coach guide challenge files exactly match the canonical hacker files
 - [ ] Challenge 0 states that participants deploy the supporting package to a
    dedicated participant resource group before creating Foundry resources
+- [ ] Challenge 0 proves model access with identity and RBAC but no pasted keys
+- [ ] Challenge 1 reaches a minimal viable end-to-end response before refinement
+- [ ] Challenges 2-4 each preserve and retest an earlier working capability
+- [ ] Challenge 4 hardens the accumulated solution instead of redesigning it
 - [ ] Coach and participant deployment instructions use distinct azd
    environment names and distinct resource groups
 - [ ] Each challenge has: time badge, goal, why-it-matters, steps, success
@@ -130,5 +177,7 @@ at the top of the generated hack.
 
 ## References
 
-- `reference/style-guide.md` — UI, text style, layout, tone
-- `reference/challenge-template.md` — the exact markdown skeleton to fill
+- `.github/instructions/hack-authoring-instructions.md` — authoring style and
+   public-content rules
+- `.github/PULL_REQUEST_TEMPLATE/challenge-template.md` — exact markdown
+   skeleton to fill

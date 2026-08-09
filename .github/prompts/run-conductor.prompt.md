@@ -20,8 +20,8 @@ between each step.
 
 ## Mission
 
-Guide a project from business description through a fully working coach Foundry
-solution and a participant hack package using the full agent pipeline:
+Guide a project from business description through two deployable Azure projects,
+a public hacker file set, and a private coach guide using the full agent pipeline:
 Requirements → Hack plan → Architect → Design → Bicep → Development
 (conditional) → Hack packages → Deploy both packages → Demo Guide.
 All steps are required to have a successful project and do the handover to the user. After the final handoff, prompt the user to confirm the project run is complete.
@@ -32,9 +32,12 @@ All steps are required to have a successful project and do the handover to the u
 - All artifacts are saved to `generated-scenarios/${input:projectName}/`
 - Bicep templates are saved to `generated-scenarios/${input:projectName}/infra/` and should support `azd provision`
 - Each step produces artifacts that feed the next step
-- The workflow always produces two packages in `generated-scenarios/${input:projectName}/packages/`:
-  - `coach/` contains the full Azure demo, including Azure AI Foundry resources, and is deployable for technology review before the hack
-  - `participant/` retains the supporting Azure resources but excludes Azure AI Foundry resources; it contains the five challenge files that guide teams to build those resources themselves
+- The workflow always produces four file sets under
+  `generated-scenarios/${input:projectName}/packages/`:
+  - `coach/` is the full deployable solution, including Azure AI Foundry resources
+  - `participant/` is the deployable starter with supporting resources and no Foundry resources
+  - `hack/` is public GitHub-ready participant content with five challenges
+  - `coach-guide/` explains the full solution and deployment and contains exact challenge copies
 - The packages use separate azd environments and separate resource groups. The
   coach resource group contains the complete Foundry solution; the participant
   resource group contains supporting Azure resources only.
@@ -59,10 +62,9 @@ Automatically continue to Step 2 after requirements generation.
 ### Step 1b: Hack package plan
 
 Delegate to **HackCreator Agent** in `plan` mode. It turns the scenario into a
-two-package contract before architecture and Bicep work begin. The contract
-ensures the coach package includes all required Foundry and supporting resources,
-while the participant package can safely omit Foundry and teach its construction
-through challenges.
+four-output contract before architecture and Bicep work begin. The contract
+defines two deployable projects, public hacker content, and private coach
+guidance before implementation starts.
 
 Automatically continue to Step 2 after `08-hack-package-contract.md` is generated.
 
@@ -106,9 +108,10 @@ Automatically continue to Step 5 (Deploy).
 ### Step 5: Build hack packages
 
 Delegate to **HackCreator Agent** in `package` mode before deployment. It must
-create `coach/` and `participant/`, assign distinct azd environment and
-resource-group names, and verify that participant IaC omits every Foundry
-resource, output, dependency, and Foundry-specific role assignment.
+create `coach/`, `participant/`, `hack/`, and `coach-guide/`. It assigns distinct
+azd environment and resource-group names to the two projects, verifies the
+participant Foundry exclusion, scans hacker files for public-repository safety,
+and confirms the coach challenge copies match the hacker files exactly.
 
 ### Step 6: Deploy both packages
 
@@ -148,7 +151,9 @@ generated-scenarios/{projectName}/
 ├── /demoguide/demoguide.md
 ├── /demoguide/images/*.png
 ├── /packages/coach/               # Complete, deployable coach technology review package
-├── /packages/participant/         # Supporting resources + Foundry challenge materials
+├── /packages/participant/         # Deployable supporting resources without Foundry
+├── /packages/hack/                # Public GitHub-ready challenge materials
+├── /packages/coach-guide/         # Private coach solution, deployment, and challenge copy
 └── README.md
 
 generated-scenarios/{projectName}/infra/
@@ -168,7 +173,9 @@ Before completing each step, verify:
 - [ ] No stale references to previous steps
 - [ ] Workflow progressed through automatic handoffs
 - [ ] All validation commands pass before proceeding
-- [ ] Coach and participant packages exist with the documented Foundry boundary
+- [ ] Coach and participant projects exist with the documented Foundry boundary
+- [ ] Hacker file set is public-repository safe and contains five challenges
+- [ ] Coach guide explains the solution and deployment and has matching challenge copies
 - [ ] Coach and participant deployments use distinct resource groups
 - [ ] Coach Foundry resources are running and participant deployment has no Foundry resource
 - [ ] Prompted the user to confirm the project run is complete at the end
