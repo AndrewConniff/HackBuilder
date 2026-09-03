@@ -1,17 +1,9 @@
 ---
-description: "Run the full Azure infrastructure workflow end-to-end"
-agent: "az-01-conductor"
-model: "Claude Opus 4.6"
-tools:
-  - agent
-  - edit/createFile
-  - edit/editFiles
-  - read/readFile
-  - search/listDirectory
-  - execute/runInTerminal
+name: run-conductor
+description: Run the full Azure infrastructure workflow end-to-end
+disable-model-invocation: true
 argument-hint: Describe the Azure infrastructure project you want to build
 ---
-
 # Run Conductor — End-to-End Workflow
 
 Orchestrate the complete Azure infrastructure development workflow
@@ -23,7 +15,8 @@ between each step.
 Guide a project from business description through two deployable Azure projects,
 a public hacker file set, and a private coach guide using the full agent pipeline:
 Requirements → Hack plan → Architect → Design → Bicep → Development
-(conditional) → Hack packages → Deploy both packages → Demo Guide.
+(conditional) → Hack packages → Deploy coach and team packages
+→ Demo Guide.
 All steps are required to have a successful project and do the handover to the user. After the final handoff, prompt the user to confirm the project run is complete.
 
 ## Scope & Preconditions
@@ -36,8 +29,8 @@ All steps are required to have a successful project and do the handover to the u
   `generated-scenarios/${input:projectName}/packages/`:
   - `coach/` is the full deployable solution, including Azure AI Foundry resources
   - `participant/` is the deployable starter with supporting resources and no Foundry resources
-  - `hack/` is public GitHub-ready participant content with five challenges
-  - `coach-guide/` explains the full solution and deployment and contains exact challenge copies
+  - `hack/` is public GitHub-ready Skillable content with five industry challenge pages
+  - `coach-guide/` contains exact challenge copies and a private Finale with coach notes
 - The packages use separate azd environments and separate resource groups. The
   coach resource group contains the complete Foundry solution; the participant
   resource group contains supporting Azure resources only.
@@ -49,6 +42,7 @@ All steps are required to have a successful project and do the handover to the u
 | ----------------------------- | ------------------------------------------------- | -------- |
 | `${input:projectName}`        | Project name (kebab-case)                         | Required |
 | `${input:projectDescription}` | Business or technical description of the workload | Required |
+| `${input:teamCount}`          | Hacker teams from 1 through 20                    | `1`      |
 
 ## Workflow
 
@@ -111,15 +105,17 @@ Delegate to **HackCreator Agent** in `package` mode before deployment. It must
 create `coach/`, `participant/`, `hack/`, and `coach-guide/`. It assigns distinct
 azd environment and resource-group names to the two projects, verifies the
 participant Foundry exclusion, scans hacker files for public-repository safety,
-and confirms the coach challenge copies match the hacker files exactly.
+confirms the coach challenge copies match the hacker files exactly, validates
+the private Finale notes for every challenge, and creates the team deployment
+manifest. Default to one team when the count is omitted.
 
 ### Step 6: Deploy both packages
 
 Delegate to **Deploy** agent. Run a what-if analysis for each package, prompt
-the user for Azure credentials and one confirmation, then deploy coach and
-participant packages with `azd up` to their dedicated resource groups. Validate
-the coach agent and Foundry resources, and validate that no Foundry resource is
-present in the participant group. Generate package deployment summaries.
+the user for Azure credentials and one confirmation, then deploy coach once and
+the participant package once per manifest team. Validate the coach application,
+agent, and Foundry resources. Validate every team group and confirm that no
+prebuilt Foundry resource is present when the challenge contract omits it.
 
 Automatically continue to Step 7 (Demo Guide).
 
@@ -148,6 +144,7 @@ generated-scenarios/{projectName}/
 ├── 05-implementation-reference.md
 ├── 06-deployment-summary.md
 ├── 07-webapp-summary.md          (conditional — if sample webapp requested)
+├── 09-hack-event-manifest.json
 ├── /demoguide/demoguide.md
 ├── /demoguide/images/*.png
 ├── /packages/coach/               # Complete, deployable coach technology review package
@@ -175,7 +172,11 @@ Before completing each step, verify:
 - [ ] All validation commands pass before proceeding
 - [ ] Coach and participant projects exist with the documented Foundry boundary
 - [ ] Hacker file set is public-repository safe and contains five challenges
-- [ ] Coach guide explains the solution and deployment and has matching challenge copies
+- [ ] Challenges are Skillable pages under one canonical industry folder in `Instructions`
+- [ ] Coach guide has matching challenge copies and a private Finale covering every challenge
 - [ ] Coach and participant deployments use distinct resource groups
+- [ ] Team count defaults to one and never exceeds 20
+- [ ] Every team has a unique azd environment and numbered resource group
+- [ ] Deployment manifest statuses and required application URLs are complete
 - [ ] Coach Foundry resources are running and participant deployment has no Foundry resource
 - [ ] Prompted the user to confirm the project run is complete at the end

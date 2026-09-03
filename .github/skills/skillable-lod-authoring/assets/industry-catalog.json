@@ -1,0 +1,32 @@
+[
+  {
+    "displayName": "Financial Services",
+    "slug": "financial-services",
+    "positioning": "Large accounts and mature AI governance"
+  },
+  {
+    "displayName": "Healthcare",
+    "slug": "healthcare",
+    "positioning": "High-visibility agentic outcomes"
+  },
+  {
+    "displayName": "Manufacturing",
+    "slug": "manufacturing",
+    "positioning": "Deep Azure and IoT integration"
+  },
+  {
+    "displayName": "Retail",
+    "slug": "retail",
+    "positioning": "High-volume data and fast ROI cycles"
+  },
+  {
+    "displayName": "Energy / Oil & Gas",
+    "slug": "energy-oil-gas",
+    "positioning": "High-value knowledge mining"
+  },
+  {
+    "displayName": "Government / Public Sector",
+    "slug": "government-public-sector",
+    "positioning": "Mission and constituent services"
+  }
+]

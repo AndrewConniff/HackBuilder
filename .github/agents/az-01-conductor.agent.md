@@ -1,7 +1,10 @@
 ---
 name: az-01-conductor
-description: Orchestrates the Azure demo builder workflow end-to-end, coordinating specialized agents (Validation, Architect, Design, Bicep, Development, Deploy, DemoGuide) through a seven-step development cycle with automatic handoffs.
-model: "Claude Opus 4.6"
+description: Orchestrates the Azure demo builder workflow end-to-end with automatic handoffs between specialized agents.
+model:
+  - "GPT-5.6 Sol"
+  - "Claude Opus 5"
+  - "Claude Opus 4.6"
 argument-hint: Provide a scenario description for the Azure infrastructure project you want to build
 user-invokable: true
 agents:
@@ -91,6 +94,12 @@ Conductor for the Azure demo builder workflow.
 **After deriving the project name**, read:
 
 1. **Read** `.github/skills/az-consolidated/SKILL.md` — consolidated skill (defaults, artifacts, Bicep patterns, diagrams, demo guide)
+2. **For hack scenarios, read**
+  `.github/skills/az-multi-team-deployment/SKILL.md` — team-count and deployment
+  manifest contract
+3. **For Foundry scenarios, read**
+  `.github/instructions/az-foundry.instructions.md` — current project model,
+  region evidence, and end-to-end acceptance gates
 
 ## Core Principles
 
@@ -125,12 +134,13 @@ Conductor for the Azure demo builder workflow.
 ## The Workflow
 
 ```text
+Step 0: Region evidence → 00-region-availability.json
 Step 1: Requirements    → 01-requirements.md
-Step 1b: Hack plan      → 08-hack-package-contract.md
+Step 1b: Hack plan      → 08-hack-package-contract.md + nextsteps.MD
 Step 2: Architecture    → 02-architecture-assessment.md
 Step 3: Bicep           → infra/ + azure.yaml + 04-runtime-diagram.png
 Step 3b: Development    → src/ + azure.yaml (services block) (conditional)
-Step 4: Hack packages   → coach/ + participant/ + hack/ + coach-guide/
+Step 4: Hack packages   → coach/ + participant/ + hack/ + coach-guide/ + deployment manifest
 Step 5: Deploy packages → deployed coach + participant environments
 Step 6: Demo Guide      → demoguide/demoguide.md
 Step 7: Contribute      → standalone repo + scenarios/registry.json PR (user-invoked)
@@ -146,8 +156,14 @@ Step 7: Contribute      → standalone repo + scenarios/registry.json PR (user-i
 
 ### Checkpoint 1: After Requirements
 
+Verify `00-region-availability.json` identifies the configured subscription,
+evaluates every requested region plus supported alternatives, and selects a
+region where the complete resource set and exact model deployment can be
+created. For Foundry scenarios, reject hub-based architecture evidence.
+
 ```text
 📋 REQUIREMENTS COMPLETE
+Evidence: generated-scenarios/{project}/00-region-availability.json
 Artifact: generated-scenarios/{project}/01-requirements.md
 ✅ Next: Architecture Assessment (Step 2)
 ➡️ Continue automatically to Architecture Assessment (Step 2)
@@ -156,14 +172,18 @@ Artifact: generated-scenarios/{project}/01-requirements.md
 ### Checkpoint 1b: Hack package plan
 
 Before Architecture starts, delegate to **HackCreator Agent** in `plan` mode.
-It creates `08-hack-package-contract.md`, which records all four output
-boundaries: the complete coach project, the participant project's intentional
-Foundry gap, the public hacker content, and the private coach guide. Architect
-and Bicep must read this contract so both deployable projects are valid.
+It creates `08-hack-package-contract.md` and scenario-root `nextsteps.MD`.
+The package contract records all four output boundaries: the complete coach
+project, the participant project's intentional Foundry gap, the public hacker
+content, and the private coach guide. The next-steps file inventories every
+supporting artifact with exact files, schemas, Azure targets, package paths,
+creation work, and acceptance tests. Architect and Bicep must read both files
+so both deployable projects are valid.
 
 ```text
 🏟️ HACK PACKAGE PLAN COMPLETE
 Artifact: generated-scenarios/{project}/08-hack-package-contract.md
+Artifact: generated-scenarios/{project}/nextsteps.MD
 ✅ Next: Architecture Assessment (Step 2)
 ➡️ Continue automatically to Architecture Assessment (Step 2)
 ```
@@ -184,6 +204,8 @@ Artifact: generated-scenarios/{project}/02-architecture-assessment.md
 Templates: generated-scenarios/{project}/infra/
 Diagram:   generated-scenarios/{project}/04-runtime-diagram.png
 AZD config: generated-scenarios/{project}/azure.yaml
+✅ Region matches 00-region-availability.json
+✅ Foundry uses a direct project and contains no hub resources
 ✅ Next: Development (Step 3b) or Hack packages (Step 4)
 ➡️ If sample webapp requested: continue to Development (Step 3b)
 ➡️ If no webapp requested or VM-only: skip to Hack packages (Step 4)
@@ -207,9 +229,15 @@ Coach:       generated-scenarios/{project}/packages/coach/ → dedicated coach r
 Participant: generated-scenarios/{project}/packages/participant/ → dedicated participant resource group
 Hack:        generated-scenarios/{project}/packages/hack/ → public GitHub-ready files
 Coach guide: generated-scenarios/{project}/packages/coach-guide/ → private coach files
+Manifest:    generated-scenarios/{project}/09-hack-event-manifest.json
+Next steps:  generated-scenarios/{project}/nextsteps.MD
 ✅ Coach contains the complete Foundry solution
 ✅ Participant retains supporting resources and omits all Foundry resources
-✅ Coach guide challenge copies exactly match the hacker challenge files
+✅ Industry challenge pages are Skillable-ready beneath Instructions
+✅ Coach challenge copies match and private Finale covers every challenge
+✅ Every deployment-critical supporting artifact is packaged
+Teams:    {teamCount}
+✅ Manifest contains one isolated participant environment per team
 ✅ Next: Deploy packages (Step 5)
 ➡️ Continue automatically to Deploy packages (Step 5)
 ```
@@ -224,17 +252,24 @@ Coach guide: generated-scenarios/{project}/packages/coach-guide/ → private coa
 > 3. Skip deployment and continue to Demo Guide (user’s explicit choice)
 > 4. Abort workflow
 >
-> Only proceed to Step 6 if both package deployments succeeded OR the user explicitly
-> chooses to continue without deployment.
+> Only proceed to Step 6 if the coach and all configured team deployments
+> succeeded OR the user explicitly chooses to continue without deployment.
+
+Do not accept a coach package whose chatbot is placeholder-only or lacks the
+Foundry project endpoint and orchestrator invocation path.
 
 ### Checkpoint 5: After Deploy packages
 
 ```text
 🚀 PACKAGE DEPLOYMENTS COMPLETE
 Coach:       deployed to its dedicated coach resource group
-Participant: deployed to its dedicated participant resource group
+Participants: deployed once per manifest team to numbered resource groups
 ✅ Coach Foundry resources and agent health validated
+✅ Coach chatbot invoked the orchestrator successfully
 ✅ Participant supporting resources validated; no Foundry resource exists
+✅ Supporting artifacts loaded and their Azure acceptance checks passed
+✅ Deployment-critical entries in nextsteps.MD are azure-verified
+✅ Manifest has no planned/deploying status or required null application URL
 ✅ Next: Demo Guide (Step 6)
 ➡️ Continue automatically to Demo Guide (Step 6)
 ```
@@ -270,7 +305,7 @@ Scenario: generated-scenarios/{project}/
 
 Production artifacts: infra/, azure.yaml, README.md, demoguide/, 04-runtime-diagram.png,
                       packages/coach/, packages/participant/, packages/hack/,
-                      packages/coach-guide/
+                      packages/coach-guide/, nextsteps.MD
                       + src/ (if webapp was generated)
 
 Would you like to contribute this scenario to the project?
@@ -296,8 +331,8 @@ Use `#runSubagent` for each workflow step:
 | 2    | Architect    | Create architecture assessment for requirements in 01-requirements.md                                                                                                                                                 |
 | 3    | Bicep        | Run governance discovery, generate Bicep templates and 04-runtime-diagram.png, validate per 02-architecture-assessment.md                                                                                             |
 | 3b   | Development  | Scaffold .NET 10 sample webapp with {industry} seed data, wire into azure.yaml, validate build. **Skip if VM-only or user declined.**                                                                                 |
-| 4    | HackCreator Agent | Create and validate all four package directories in `package` mode. Only coach and participant are deployable projects; hack is public and coach-guide is private. |
-| 5    | Deploy       | Run package-specific what-if analysis, prompt user, deploy both packages with `azd up` to distinct resource groups, and validate the coach Foundry solution plus the participant Foundry exclusion. **MUST attempt both deployments.** |
+| 4    | HackCreator Agent | Create all four package directories and the team deployment manifest in `package` mode. |
+| 5    | Deploy       | Deploy coach once and participant once per manifest team. Validate every numbered resource group. |
 | 6    | DemoGuide    | Generate an audience-aware coach-solution runbook with **Playwright screenshots** from the coach resource group. **VERIFY screenshots exist in `demoguide/images/` before marking complete.** |
 | 7    | Contribute   | Validate artifacts, fork repo, create branch, commit scenario, open draft PR, optionally create tracking issue. **User must explicitly opt in — never auto-trigger.**                                                  |
 
@@ -325,6 +360,7 @@ Use `#runSubagent` for each workflow step:
 | ---- | --------------------------------- | ------------------------------------------------ |
 | 1    | `01-requirements.md`              | Exists?                                          |
 | 1b   | `08-hack-package-contract.md`     | Exists?                                          |
+| 1b   | `nextsteps.MD`                    | Detailed supporting-artifact plan exists?        |
 | 2    | `02-architecture-assessment.md`   | Exists?                                          |
 | 3    | `infra/main.bicep`                | Templates valid?                                 |
 | 3    | `azure.yaml`                      | Exists?                                          |
@@ -335,9 +371,13 @@ Use `#runSubagent` for each workflow step:
 | 5    | `demoguide/images/*.png`          | **MANDATORY** — screenshots captured or fallback |
 | 4    | `packages/coach/`                 | Deployable full solution exists?                 |
 | 4    | `packages/participant/`           | Deployable non-Foundry starter exists?           |
-| 4    | `packages/hack/challenges/`       | Five public challenge files exist?               |
-| 4    | `packages/coach-guide/`           | Coach solution and deployment guides exist?      |
-| 4    | Challenge file hashes             | Hacker and coach copies match exactly?           |
+| 4    | `packages/hack/Instructions/`     | One industry folder and five pages exist?        |
+| 4    | `packages/coach-guide/`           | Private guide and Skillable root files exist?    |
+| 4    | `99-finale.md`                    | Coach notes map all five challenges?              |
+| 4    | Challenge file hashes             | Learner and coach copies match exactly?           |
+| 4    | `09-hack-event-manifest.json`      | Valid team count and unique numbered groups?     |
+| 4    | Deployment-critical artifacts      | Packaged at every `nextsteps.MD` destination?    |
+| 5    | Supporting-artifact Azure checks   | Loaded, tested, and marked `azure-verified`?     |
 | 7    | Draft PR on upstream              | User opted in?                                   |
 
 ## Model Selection

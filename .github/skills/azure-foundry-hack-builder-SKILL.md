@@ -5,7 +5,8 @@ description: >
    topic/scenario input. Produces a complete Azure AI Foundry agent scenario:
    a fully working coach solution and a 3-hour participant hack broken into
    timed challenges, written in the Agents League house style (badge header,
-   time budget, scenario, milestones, success criteria, hints, resources).
+   time budget, scenario, milestones, success criteria, hints, resources) and
+   packaged as GitHub-ready Skillable / Learn On Demand pages.
   Use when the user asks to "build a hack", "create hack challenges",
   "make a Foundry hackathon", "write a challenge for the hack",
   "turn this into a hack", "draft an agent-building lab", or supplies a
@@ -30,7 +31,11 @@ deliverables that share one design:
 - A **hacker file set** that is safe for a public GitHub repository and teaches
    participants to build the omitted Foundry solution.
 - A **coach guide** that explains the complete solution and deployment process
-   and includes an exact copy of the hacker challenges.
+   and includes exact copies of the hacker challenges plus a private Finale
+   page containing coach notes for every challenge.
+- A scenario-level **supporting-artifact plan** named `nextsteps.MD` that
+   specifies every synthetic dataset, source document, media file, contract,
+   evaluation set, and installation script required by the design.
 
 The two deployable projects must use separate azd environments and separate
 resource groups. A participant deployment must never target, reuse, or modify
@@ -94,37 +99,68 @@ requires.
    evaluation and identity/RBAC where applicable), the supporting Azure
    resources, and the Foundry resources intentionally omitted from the
    participant package. If a resource is not applicable, state why.
-4. **Map to the time budget.** Assign the extracted specifics into Challenges
+4. **Inventory supporting artifacts.** Create scenario-root `nextsteps.MD`
+   from the Skillable template. Name exact files, schemas, synthetic content,
+   package paths, Azure targets, creation and installation methods, identity,
+   ownership, and acceptance tests. Classify runtime dependencies as
+   `deployment-critical`.
+5. **Map to the time budget.** Assign the extracted specifics into Challenges
    0–4. If the input has no data source, use the synthetic-data fallback.
-5. **Write each challenge** using
-   `.github/PULL_REQUEST_TEMPLATE/challenge-template.md` verbatim as the
-   section order.
-6. **Apply the style rules** in
+6. **Read the Skillable contract** in
+   `.github/skills/skillable-lod-authoring/SKILL.md` and select its canonical
+   industry slug.
+7. **Write each challenge** using
+   `.github/skills/skillable-lod-authoring/assets/challenge-page.template.md`
+   as the section order and frontmatter contract.
+8. **Apply the style rules** in
    `.github/instructions/hack-authoring-instructions.md`.
-7. **Emit four file sets** under `packages/`: `coach/`, `participant/`,
+9. **Emit four file sets** under `packages/`: `coach/`, `participant/`,
    `hack/`, and `coach-guide/`.
-8. **Self-check** against the checklist below before delivering.
+10. **Fulfill deployment artifacts.** Create and package every
+   deployment-critical entry, wire idempotent load or installation hooks, and
+   update its `nextsteps.MD` status to `packaged`.
+11. **Create Finale** from the Skillable Finale template. Map every challenge's
+   coach notes in the private coach source only.
+12. **Self-check** against the checklist below before delivering. Hand both
+   deployable projects to the Deploy agent for mandatory `azd up` testing.
 
 ## Output file layout
 
 ```text
-packages/
-├─ coach/                     # Complete deployable solution
-├─ participant/               # Deployable non-Foundry starter
-├─ hack/                      # Public GitHub-ready participant content
-│  ├─ README.md
-│  ├─ challenges/
-│  │  ├─ challenge-00-setup.md
-│  │  ├─ challenge-01-build-the-agent.md
-│  │  ├─ challenge-02-ground-it.md
-│  │  ├─ challenge-03-give-it-tools.md
-│  │  └─ challenge-04-harden-and-demo.md
-│  └─ resources.md
-└─ coach-guide/               # Private coach documentation
-   ├─ README.md
-   ├─ solution-overview.md
-   ├─ deployment-guide.md
-   └─ challenges/             # Exact copies of hack/challenges
+generated-scenarios/<project>/
+├─ nextsteps.MD               # Detailed supporting-artifact plan
+└─ packages/
+   ├─ coach/                     # Complete deployable solution
+   ├─ participant/               # Deployable non-Foundry starter
+   ├─ hack/                      # Public GitHub-ready participant content
+   │  ├─ README.md
+   │  ├─ index.md
+   │  ├─ _config.yml
+   │  ├─ _build.yml
+   │  ├─ resources.md
+   │  ├─ Allfiles/
+   │  └─ Instructions/<industry-slug>/
+   │     ├─ 01-secure-foundation.md
+   │     ├─ 02-build-the-agent.md
+   │     ├─ 03-ground-it.md
+   │     ├─ 04-give-it-tools.md
+   │     └─ 05-harden-and-demo.md
+   └─ coach-guide/               # Private coach documentation
+      ├─ README.md
+      ├─ index.md
+      ├─ _config.yml
+      ├─ _build.yml
+      ├─ resources.md
+      ├─ Allfiles/
+      ├─ solution-overview.md
+      ├─ deployment-guide.md
+      └─ Instructions/<industry-slug>/
+         ├─ 01-secure-foundation.md
+         ├─ 02-build-the-agent.md
+         ├─ 03-ground-it.md
+         ├─ 04-give-it-tools.md
+         ├─ 05-harden-and-demo.md
+         └─ 99-finale.md          # Coach notes for every challenge
 ```
 
 ## Hard rules
@@ -146,6 +182,18 @@ packages/
 - **No challenge exceeds 40 minutes.** If a challenge needs more, split it.
 - Code snippets stay under ~15 lines. Longer code belongs in the starter kit,
   not the challenge text.
+- The public learner and private coach roots use the same canonical industry
+   slug from the Skillable authoring skill.
+- Finale is mandatory in the private coach root, prohibited in the public
+   learner root, and excluded from challenge hash parity only because it is a
+   distinct coach-facing page.
+- Keep `nextsteps.MD` at the scenario root with its exact filename. Do not copy
+   it into a learner or coach documentation root.
+- Every deployment-critical artifact must exist at all listed package paths
+   before deployment handoff. Optional release enrichment may remain planned
+   only when no challenge or deployed acceptance path depends on it.
+- Planned artifact work never replaces coach and participant `azd up`
+   deployment and artifact-specific acceptance testing.
 
 ## Pre-delivery checklist
 
@@ -159,6 +207,18 @@ packages/
    tenant details, subscription IDs, deployed endpoints, or local paths
 - [ ] Coach guide documents the complete solution and deployment process
 - [ ] Coach guide challenge files exactly match the canonical hacker files
+- [ ] Both documentation roots contain the required Skillable/Jekyll root files
+- [ ] Challenge pages use valid `lab` frontmatter beneath the selected industry
+   folder in `Instructions`
+- [ ] Private `99-finale.md` maps coach notes to every challenge
+- [ ] Public learner content contains no Finale page or coach notes
+- [ ] Scenario-root `nextsteps.MD` inventories all supporting artifacts with
+   exact files, schemas, fake-data constraints, Azure targets, package paths,
+   creation, installation, identity, validation, acceptance, and ownership
+- [ ] Every deployment-critical artifact is packaged and wired to an
+   idempotent load or installation path
+- [ ] Handoff requires `azd up` for the coach and every participant manifest
+   entry plus post-deployment artifact validation
 - [ ] Challenge 0 states that participants deploy the supporting package to a
    dedicated participant resource group before creating Foundry resources
 - [ ] Challenge 0 proves model access with identity and RBAC but no pasted keys
@@ -179,5 +239,13 @@ packages/
 
 - `.github/instructions/hack-authoring-instructions.md` — authoring style and
    public-content rules
-- `.github/PULL_REQUEST_TEMPLATE/challenge-template.md` — exact markdown
-   skeleton to fill
+- `.github/skills/skillable-lod-authoring/SKILL.md` — GitHub, industry folder,
+   frontmatter, Finale, and validation contract
+- `.github/skills/skillable-lod-authoring/assets/challenge-page.template.md` —
+   exact challenge page skeleton
+- `.github/skills/skillable-lod-authoring/assets/finale-page.template.md` —
+   exact private coach Finale skeleton
+- `.github/skills/skillable-lod-authoring/assets/nextsteps.template.MD` —
+   scenario-level supporting-artifact and delivery plan
+- `.github/skills/skillable-lod-authoring/references/scenario-artifact-inventory.md` —
+   service-specific artifact detail and deployment rules

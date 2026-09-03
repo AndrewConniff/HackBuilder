@@ -1,6 +1,8 @@
 ---
 name: az-06-Deploy
-description: Deploys Azure infrastructure using azd, runs what-if analysis, validates deployment, and produces a deployment summary. Bridges the gap between Bicep code generation and demo guide creation.
+description: >
+   Deploys Azure infrastructure using azd, runs what-if analysis, validates the
+   deployment, and produces the deployment summary used by the demo guide.
 model: "Claude Opus 4.6"
 user-invokable: true
 argument-hint: Provide the project folder name to deploy (e.g., azure-func-servicebus-webapp)
@@ -97,6 +99,12 @@ validates deployed resources, and produces deployment summaries.
 2. **Read** `.github/skills/az-azure-deploy/SKILL.md` — deployment patterns, `azd` usage, rollback procedures
 3. **Read** `.github/skills/az-azure-validate/SKILL.md` — pre-deployment validation, preflight checks
 4. **Read** `.github/instructions/az-bicep-code-best-practices.instructions.md` — deployment script requirements
+5. **When `09-hack-event-manifest.json` exists, read**
+   `.github/skills/az-multi-team-deployment/SKILL.md`
+6. **Read** `.github/instructions/az-default-account.instructions.md` and
+   fail closed unless Azure extension, CLI, and azd contexts match
+7. **For Foundry scenarios, read**
+   `.github/instructions/az-foundry.instructions.md`
 
 ## DO / DON'T
 
@@ -125,6 +133,9 @@ validates deployed resources, and produces deployment summaries.
 - ❌ **NEVER skip deployment because of tooling issues** — attempt fixes, then ask the user
 - ❌ **NEVER autonomously decide to generate a "dry-run only" or "blocked" summary** — the user decides
 - ❌ **NEVER proceed to DemoGuide without either a successful deployment or explicit user approval to skip**
+- ❌ Fall back to another account, tenant, subscription, or region
+- ❌ Report success while a manifest team is planned/deploying or a required
+   application URL is null
 
 ## Prerequisites Check
 
@@ -138,36 +149,75 @@ Before starting, validate the package artifacts exist in
 | Both package `azure.yaml` files          | Yes | Package-specific AZD configurations        |
 | Both package READMEs                     | Yes | Distinct environments and resource groups  |
 | `packages/hack/README.md`                | Yes | Public hacker entry point                  |
-| `packages/hack/challenges/`              | Yes | Five canonical challenge files             |
+| `packages/hack/Instructions/<industry>/` | Yes | Five canonical Skillable challenge pages   |
 | `packages/coach-guide/deployment-guide.md` | Yes | Coach deployment instructions            |
-| `packages/coach-guide/challenges/`       | Yes | Exact copies of canonical challenges       |
+| `packages/coach-guide/Instructions/<industry>/` | Yes | Challenge copies and private Finale |
+| `09-hack-event-manifest.json`            | Hack packages | Team deployment source of truth       |
+| `nextsteps.MD`                            | Hack packages | Supporting-artifact source of truth  |
 
-If any file set is missing or coach challenge copies differ from the hacker
-files, STOP and request handoff to the HackCreator Agent. Deploy only the coach
+If any file set is missing, Finale does not map every challenge, or coach
+challenge copies differ from the hacker files, STOP and request handoff to the
+HackCreator Agent. Also stop when a deployment-critical `nextsteps.MD` entry is
+below `packaged` or any listed destination is missing. Deploy only the coach
 and participant projects; `hack/` and `coach-guide/` are documentation sets.
+
+Before Azure preflight, run the Skillable validator from the repository root
+with the canonical industry slug recorded in `08-hack-package-contract.md`:
+
+```powershell
+python .github/skills/skillable-lod-authoring/scripts/validate_skillable_package.py `
+   generated-scenarios/{project}/packages `
+   --industry <industry-slug>
+```
+
+Treat a nonzero exit code as a package failure and return the package to the
+HackCreator Agent.
+
+Read every deployment-critical entry in `nextsteps.MD` before Azure preflight.
+Map its Azure target, load or installation hook, expected count or file set,
+representative query, negative test, and application acceptance check into the
+deployment validation plan. A planned release-enrichment artifact is not a
+reason to omit or defer deployment.
+
+For Foundry scenarios, also build and test the coach solution chatbot. Confirm
+coach Bicep has a direct Foundry project and no hub resource or hub identifier
+before what-if.
 
 ## Package Deployment Mode (Mandatory for Foundry Hacks)
 
 When `packages/coach/` and `packages/participant/` exist, deploy those packages
-instead of the root scenario. Read both package READMEs and
-`08-hack-package-contract.md` to obtain the assigned azd environment names and
-resource groups. Stop and request a HackCreator correction if either value is
-missing or if the two resource group names are equal.
+instead of the root scenario. Read both package READMEs,
+`08-hack-package-contract.md`, and `09-hack-event-manifest.json` when present.
+The deployment manifest overrides a single participant environment with one
+entry per team. Stop and request correction for missing, duplicate,
+out-of-range, or overlapping environment and resource-group values.
 
-1. Build, lint, and run what-if separately for `packages/coach/infra/main.bicep`
-   and `packages/participant/infra/main.bicep` against their respective groups.
-2. After one user confirmation, run `azd up --no-prompt` from
-   `packages/coach/`, then from `packages/participant/`, after setting each
-   package's documented azd environment.
-3. Validate all expected coach resources, including the Foundry account,
+1. Build, lint, and run what-if for the coach and every manifest participant
+   resource group.
+2. After one user confirmation listing all target groups, run
+   `azd up --no-prompt` from `packages/coach/` once.
+3. Run `azd up --no-prompt` from `packages/participant/` sequentially for each
+   manifest team after explicitly selecting its azd environment and setting
+   `AZURE_RESOURCE_GROUP`.
+4. Validate all expected coach resources, including the Foundry account,
    project, model deployment, and agent where applicable.
-4. Validate all expected participant supporting resources, then use
+5. Confirm `azd up` ran every deployment-critical data load or installation
+   hook. Run each artifact's Azure count, query, negative, rerun, and
+   application acceptance checks from `nextsteps.MD`.
+6. Validate every participant group's supporting resources, then use
    `az resource list --resource-group {participant-rg}` to confirm that no
    resource type starts with `Microsoft.CognitiveServices`,
    `Microsoft.MachineLearningServices`, or `Microsoft.AI`.
-5. Write separate coach and participant deployment results, including resource
-   group names, to the deployment summary. The DemoGuide uses only the coach
-   result because it demonstrates the fully built solution.
+7. Update successful deployment-critical entries in `nextsteps.MD` to
+   `azure-verified`. Leave failed entries below that state and report their
+   exact failed acceptance check.
+8. Update non-secret application URLs and deployment status in the manifest.
+9. Write one coach row and one row per team to the deployment summary. The
+   DemoGuide uses the coach result for the completed solution.
+10. Fail the completion gate if the coach or any team remains `planned` or
+   `deploying`, if any deployment failed, or if an application URL required by
+   its package remains null. Also fail while any deployment-critical artifact
+   is not `azure-verified`.
 
 For a package deployment failure, do not deploy the other package into the
 failed package's resource group. Follow the existing user-decision handling for
@@ -180,13 +230,15 @@ the affected package and clearly identify which package is blocked.
 > [!CAUTION]
 > This is a **hard gate**. If pre-deployment validation fails, STOP and inform the user.
 
-1. **Verify Azure authentication**:
+1. **Verify Azure extension, CLI, and azd authentication** against
+   `.github/instructions/az-default-account.instructions.md`:
 
    ```powershell
    az account show --output table
    ```
 
-   If not authenticated, prompt the user to run `az login`.
+   If not authenticated, use an interactive login for the required account.
+   Never request credentials in chat.
 
 2. **Verify subscription context**:
 
@@ -194,7 +246,8 @@ the affected package and clearly identify which package is blocked.
    az account show --query "{Subscription:name, Id:id, Tenant:tenantId}" --output table
    ```
 
-   Confirm the correct subscription is active.
+   Confirm the account, subscription display name, and subscription ID all
+   match the default account instruction. Stop on any mismatch.
 
 3. **Final template validation**:
 
@@ -282,7 +335,10 @@ After deployment completes:
 2. **Check each resource's provisioning state**:
 
    ```powershell
-   az resource list --resource-group {rg-name} --query "[].{Name:name, Type:type, State:provisioningState}" --output table
+    az resource list `
+       --resource-group {rg-name} `
+       --query "[].{Name:name, Type:type, State:provisioningState}" `
+       --output table
    ```
 
 3. **Collect deployment outputs**:
@@ -430,4 +486,9 @@ How would you like to proceed?
 - [ ] User confirmed deployment (or dry-run documented)
 - [ ] Deployment executed successfully (or failure documented)
 - [ ] Post-deployment resource validation completed
+- [ ] Every deployment-critical artifact was loaded and passed its Azure and
+   application acceptance checks
+- [ ] Successful deployment-critical entries are `azure-verified` in
+   `nextsteps.MD`
+- [ ] Planned release-enrichment work was not used to skip `azd up`
 - [ ] `README.md` generated with quickstart instructions

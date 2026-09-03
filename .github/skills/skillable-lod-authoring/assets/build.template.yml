@@ -1,0 +1,36 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - task: CopyFiles@2
+    displayName: Stage Skillable content
+    inputs:
+      sourceFolder: $(Build.SourcesDirectory)
+      contents: |
+        Allfiles/**
+        Instructions/**
+        README.md
+        index.md
+        resources.md
+        solution-overview.md
+        deployment-guide.md
+        _config.yml
+      targetFolder: $(Build.ArtifactStagingDirectory)/skillable
+
+  - task: ArchiveFiles@2
+    displayName: Create Skillable archive
+    inputs:
+      rootFolderOrFile: $(Build.ArtifactStagingDirectory)/skillable
+      includeRootFolder: false
+      archiveType: zip
+      archiveFile: $(Build.ArtifactStagingDirectory)/skillable-content.zip
+      replaceExistingArchive: true
+
+  - publish: $(Build.ArtifactStagingDirectory)/skillable-content.zip
+    displayName: Publish Skillable archive
+    artifact: skillable-content

@@ -23,6 +23,12 @@ When I ask for a hack, hackathon, challenge, lab, or workshop, assume:
   first, and a Foundry SDK (code-first) path collapsed underneath.
 - Invoke the `azure-foundry-hack-builder` skill for the actual writing — it
   carries the layout, style, and template.
+- Apply `.github/skills/skillable-lod-authoring/SKILL.md` for the GitHub-ready
+  repository shape, `lab` frontmatter, industry path, and private Finale.
+- Create scenario-root `nextsteps.MD` from the Skillable template. Give every
+  supporting artifact an exact filename, detailed schema or structure,
+  synthetic-data rules, package destinations, Azure target, creation and
+  installation work, tests, owner, classification, and status.
 
 ## Non-negotiables in anything hack-related
 
@@ -34,17 +40,44 @@ When I ask for a hack, hackathon, challenge, lab, or workshop, assume:
 - Assume the output may land in a public repo. General-level content only.
 - Every challenge needs a fallback so a team that fails it can still start the
   next one.
+- Every runtime artifact must be `packaged` before deployment. Optional
+  follow-up artifacts may remain planned only when no required challenge or
+  acceptance path depends on them.
+- Planned follow-up work never replaces coach or participant `azd up`
+  deployment and testing.
 
 ## Default output shape
 
-Deliver hack content as markdown files, never as one long chat response:
+Deliver the learner and coach content as separate GitHub-ready roots, never as
+one long chat response:
 
+```text
+generated-scenarios/<project>/
+├── nextsteps.MD
+└── packages/
+    ├── hack/
+    │   ├── README.md
+    │   ├── index.md
+    │   ├── _config.yml
+    │   ├── _build.yml
+    │   ├── resources.md
+    │   ├── Allfiles/
+    │   └── Instructions/<industry-slug>/01-..05-*.md
+    └── coach-guide/
+        ├── README.md
+        ├── index.md
+        ├── _config.yml
+        ├── _build.yml
+        ├── resources.md
+        ├── Allfiles/
+        └── Instructions/<industry-slug>/
+            ├── 01-..05-*.md
+            └── 99-finale.md
 ```
-<hack-name>/
-├─ README.md
-├─ challenges/challenge-00..04-*.md
-└─ resources.md
-```
+
+The five numbered coach challenge files are exact copies of the learner pages.
+`99-finale.md` is private, contains the coach notes for every challenge, and
+must not appear in `packages/hack/`.
 
 ## Default writing style
 

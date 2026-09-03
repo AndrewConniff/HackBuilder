@@ -21,7 +21,11 @@ This is the visual and voice contract. Every generated challenge must match it.
 
 ## 2. Heading hierarchy (fixed)
 
-```
+Skillable pages begin with the `lab` YAML frontmatter from the canonical
+challenge or Finale template. The first Markdown heading after frontmatter is
+the single H1.
+
+```markdown
 # 🧠 Challenge 02 — Ground Your Agent        <- H1, one per file, emoji + number + em dash
 ## 🎯 Goal                                    <- H2, fixed section names
 ### Step 1 — Create the knowledge source      <- H3, numbered steps, em dash
@@ -29,7 +33,8 @@ This is the visual and voice contract. Every generated challenge must match it.
 ```
 
 - One H1 per file. Never skip a level.
-- Section H2s always appear in the template order, even if short.
+- Section H2s always appear in the canonical Skillable template order, even if
+  short.
 - Steps are `### Step N — <verb phrase>`. Always start with a verb.
 
 ---
@@ -37,19 +42,23 @@ This is the visual and voice contract. Every generated challenge must match it.
 ## 3. Emoji set (use only these — one per heading, never inline in body text)
 
 | Emoji | Reserved for |
-|---|---|
+| --- | --- |
 | 🏟️ | Hack landing page / arena |
 | 🎯 | Goal |
-| 💡 | Why this matters |
-| 🛠️ | Build steps |
+| 💡 | Scenario / why this matters |
+| 🛠️ | High-level and detailed steps |
+| 🎒 | Prerequisites |
+| 🧱 | Build progression and checkpoints |
 | ✅ | Success criteria / definition of done |
 | 🧭 | Choose your path (low-code vs code-first) |
 | 💬 | Hints / stuck? |
 | 🌟 | Stretch goal |
+| 🔁 | Fallback |
 | 📚 | Resources |
 | ⏱️ | Time budget |
 | ⚠️ | Security & confidentiality |
 | ❓ | FAQ |
+| 🏆 | Judging |
 | 🧠 🔌 🧪 🚀 | Challenge number badges (build, tools, test, ship) |
 
 No other emoji. No emoji inside sentences, tables, or bullets.
@@ -103,10 +112,11 @@ No other emoji. No emoji inside sentences, tables, or bullets.
 
 Always present the portal path first, code second, as collapsed tabs-by-heading:
 
-```markdown
+````markdown
 ## 🧭 Choose your path
 
 **Path A — Foundry portal (low-code)**
+
 1. ...
 
 <details>
@@ -115,8 +125,9 @@ Always present the portal path first, code second, as collapsed tabs-by-heading:
 ```python
 # ≤ 15 lines, no secrets, DefaultAzureCredential only
 ```
+
 </details>
-```
+````
 
 Code-first is always inside `<details>` so the portal path stays the visual
 default and the page stays short.
@@ -132,7 +143,10 @@ Hints are always collapsed, always progressive (3 levels, increasingly explicit)
 
 <details><summary>Hint 1 — nudge</summary>Check where the agent's knowledge source is attached.</details>
 <details><summary>Hint 2 — narrower</summary>File Search needs the file indexed on the agent, not the thread.</details>
-<details><summary>Hint 3 — the answer</summary>In the portal, open Agent → Knowledge → Add → Files, then re-run.</details>
+<details>
+<summary>Hint 3 — the answer</summary>
+In the portal, open Agent → Knowledge → Add → Files, then re-run.
+</details>
 ```
 
 Never reveal an answer outside a `<details>`.
@@ -156,7 +170,7 @@ Never write "the agent works correctly" or "the output is good quality".
 
 ## 10. Code fence rules
 
-- Always language-tagged: ```python, ```bash, ```json, ```markdown.
+- Always language-tagged with `python`, `bash`, `json`, or `markdown`.
 - Placeholders in `UPPER_SNAKE` wrapped in angle brackets: `<YOUR_PROJECT_ENDPOINT>`.
 - Never a real endpoint, key, subscription ID, or tenant ID — not even a fake
   realistic-looking one.
@@ -178,7 +192,7 @@ Never write "the agent works correctly" or "the output is good quality".
 ## 12. Length targets
 
 | File | Target |
-|---|---|
+| --- | --- |
 | Hack `README.md` | 150–250 lines |
 | Each challenge file | 60–110 lines |
 | `resources.md` | under 80 lines |

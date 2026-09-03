@@ -152,7 +152,28 @@ Apply security baselines appropriate to the industry vertical and data sensitivi
 
 Derive: Compliance frameworks (based on industry from Phase 1),
 Security measures (default: Managed Identity + Key Vault + TLS 1.2+),
-Authentication method (infer from system type), Region (default: swedencentral).
+Authentication method (infer from system type), and requested region
+preferences. A requested region is not selected until Azure validation passes.
+
+## Phase 4b: Azure Region Validation — MANDATORY HARD GATE
+
+After parsing Phases 1-4 and before writing Requirements:
+
+1. Read `.github/instructions/az-default-account.instructions.md` and verify
+   Azure extension, Azure CLI, and azd contexts match it.
+2. For Foundry workloads, read
+   `.github/instructions/az-foundry.instructions.md` and current Microsoft
+   Learn guidance for Foundry projects, Agent Service, models, and regions.
+3. Evaluate every requested region and current supported alternatives.
+4. Query the configured subscription for every resource, feature, exact
+   model/version/deployment type/SKU, quota, and live capacity.
+5. Recommend one region where the complete resource set can deploy.
+6. Save evidence to
+   `generated-scenarios/{project}/00-region-availability.json`.
+
+If no common region exists, record each rejection and produce an explicit
+multi-region recommendation. Do not preserve an unavailable requested region,
+guess model capacity, or proceed with static defaults.
 
 ## Phase 5: Draft & Finalize — ONLY AFTER Phases 1-4 Are Complete
 
@@ -171,8 +192,9 @@ infer it from the scenario and document assumptions.
 These skills are your single source of truth. Do NOT use hardcoded values.
 
 1. Run research via subagent for any Azure documentation gaps
-2. Generate full requirements document matching H2 structure from the azure-artifacts skill
-3. Generate final draft and save automatically
+2. Complete Azure validation and save `00-region-availability.json`
+3. Generate the requirements document using the artifact template
+4. Generate final draft and save automatically
 
 ### Auto-Save (Before Handoff)
 
@@ -208,7 +230,8 @@ These skills are your single source of truth. Do NOT use hardcoded values.
 
 - ❌ **NEVER read skills or templates before processing Phases 1-4 from the scenario**
 - ❌ **NEVER call `create_file` or `edit` tools before Phases 1-4 are complete**
-- ❌ Create ANY files other than `generated-scenarios/{project}/01-requirements.md` and `generated-scenarios/{project}/README.md`
+- ❌ Create files other than `00-region-availability.json`,
+  `01-requirements.md`, and `README.md` in the project folder
 - ❌ Modify existing Bicep code or implement infrastructure
 - ❌ Show Bicep code blocks — describe requirements, not implementation
 - ❌ Skip Phase 1 business discovery
@@ -241,7 +264,7 @@ These skills are your single source of truth. Do NOT use hardcoded values.
 | Azure services      | Phase 3     | (based on workload pattern)  |
 | Compliance          | Phase 4     | Based on industry            |
 | Security controls   | Phase 4     | Managed Identity + KV + TLS  |
-| Region              | Phase 4     | `swedencentral`              |
+| Region              | Phase 4b    | Selected from Azure evidence |
 | Timeline            | Phase 5     | 1-3 months                   |
 
 If the scenario description is too vague to extract requirements, ask clarifying
@@ -256,7 +279,9 @@ Before saving the requirements document:
 - [ ] Architecture Pattern H3 populated (workload, tier, justification)
 - [ ] Recommended Security Controls H3 populated
 - [ ] Budget section has approximate monthly amount
-- [ ] Region defaults correct (swedencentral unless exception)
+- [ ] Region evidence identifies the configured subscription
+- [ ] Exact Foundry model/version/SKU quota and capacity are confirmed
+- [ ] Selected region matches `00-region-availability.json`
 - [ ] Baseline tags captured (Environment, ManagedBy, Project, Owner)
 - [ ] Attribution header matches template pattern exactly
 - [ ] No Bicep code blocks in the document

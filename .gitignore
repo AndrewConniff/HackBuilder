@@ -7,6 +7,9 @@ local.settings.json
 # Copilot session logs
 Copilot-Processing.md
 
+# Workspace-specific Azure identity
+.github/instructions/az-default-account.instructions.md
+
 # Bicep
 *.bin
 

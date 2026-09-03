@@ -1,18 +1,9 @@
 ---
-description: "Scaffold a .NET 10 C# sample web application with industry-specific local data for the demo workload scenario."
-agent: "az-05b-Development"
-model: "Claude Opus 4.6"
-tools:
-  - read/readFile
-  - edit/createFile
-  - edit/editFiles
-  - execute/runInTerminal
-  - search/codebase
-  - search/listDirectory
-  - agent
+name: generate-webapp
+description: Scaffold a .NET 10 C# sample web application with industry-specific data for the demo workload scenario.
+disable-model-invocation: true
 argument-hint: Provide the project name and business industry for the sample webapp
 ---
-
 # Generate Sample Web Application
 
 Scaffold a .NET 10 C# Razor Pages web application with industry-specific
@@ -23,7 +14,8 @@ seed data, wire it into the azd framework, and validate the build.
 Generate a complete, buildable sample web application that demonstrates
 the Azure demo workload with realistic local data. The application must
 integrate with the existing infrastructure via the `azure.yaml` service
-configuration.
+configuration. Its visual theme must come from the original scenario prompt
+and use Fluent design and icons for navigation and common actions.
 
 ## Scope & Preconditions
 
@@ -31,6 +23,8 @@ configuration.
 - `generated-scenarios/${input:projectName}/infra/` must contain validated Bicep templates
 - Read `.github/skills/az-consolidated/SKILL.md` for naming conventions and defaults
 - Read `.github/skills/az-webapp-development/SKILL.md` for .NET 10 patterns
+- For Foundry applications, read
+  `.github/skills/az-webapp-development/app-creation-SKILL.md`
 - Read `.github/instructions/az-dotnet-webapp.instructions.md` for coding standards
 - Output saved to `generated-scenarios/${input:projectName}/src/{ProjectName}.Web/`
 
@@ -40,14 +34,17 @@ configuration.
 | ---------------------- | -------------------------------------------- | -------- |
 | `${input:projectName}` | Project name matching the `generated-scenarios/` folder | Required |
 | `${input:industry}`    | Business industry for seed data              | Required |
+| `${input:visualTheme}` | Optional visual cues; otherwise derive them from the original prompt | Derived |
 
 ## Workflow
 
 ### Step 1: Context Extraction
 
 1. Read `02-architecture-assessment.md` to identify compute targets
-2. Determine if webapp is eligible (App Service, Container Apps, ACI, AKS)
-3. If compute is VM-only, skip webapp generation entirely
+2. Read the original scenario prompt when available and `01-requirements.md`
+  to derive the audience, tone, industry, brand cues, and visual theme
+3. Determine if webapp is eligible (App Service, Container Apps, ACI, AKS)
+4. If compute is VM-only, skip webapp generation entirely
 
 ### Step 2: Scaffold .NET 10 Project
 
@@ -62,8 +59,11 @@ configuration.
 
 ### Step 4: Build Razor Pages
 
-1. Home dashboard with entity counts and navigation
-2. List and Detail pages per entity type
+1. Build a professional Fluent 2 application shell themed from the original prompt
+2. Use official Microsoft Fluent System Icons in responsive, accessible navigation
+3. Add a home dashboard with entity counts and clear routes to primary workflows
+4. Add List and Detail pages per entity type
+5. Implement loading, empty, error, current-page, focus, and mobile navigation states
 
 ### Step 5: Container Support (if needed)
 
@@ -79,7 +79,8 @@ configuration.
 
 1. Run `dotnet build` — must succeed
 2. Verify seed data files are included in output
-3. Generate `07-webapp-summary.md`
+3. Verify Fluent icons, keyboard navigation, responsive layout, and WCAG 2.2 AA contrast
+4. Generate `07-webapp-summary.md` with the selected prompt-derived theme documented
 
 ## Output Expectations
 

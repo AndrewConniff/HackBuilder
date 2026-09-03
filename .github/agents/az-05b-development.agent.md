@@ -1,9 +1,14 @@
 ---
 name: az-05b-Development
-description: Scaffolds and generates a .NET 10 C# sample web application tailored to the project's business industry. Uses Azure data services (Storage Table, SQL, Cosmos DB, etc.) when present in the architecture, falling back to local JSON seed data only when no data endpoint exists. Supports App Service, Container Apps, ACI, and AKS deployment targets. Skips VM-only scenarios.
+description: >
+  Scaffolds a .NET 10 C# sample application tailored to the project's business
+  industry. Uses architecture-defined Azure data services, with local JSON
+  only when no data endpoint exists. Supports App Service, Container Apps,
+  ACI, and AKS deployment targets. Skips VM-only scenarios.
 model: "Claude Opus 4.6"
 user-invokable: true
-argument-hint: Provide the project folder name and business industry for the sample web app (e.g., healthcare, retail, finance)
+argument-hint: >
+  Provide the project folder name and business industry for the sample web app
 agents: []
 tools:
   [
@@ -73,9 +78,18 @@ Azure App Service, Container Apps, ACI, or AKS — never on VM-only scenarios.
 
 **Before doing ANY work**, read these skills:
 
-1. **Read** `.github/skills/az-consolidated/SKILL.md` — consolidated skill (defaults, AVM, Bicep patterns, artifacts, diagrams, demo guide)
-2. **Read** `.github/skills/az-webapp-development/SKILL.md` — webapp scaffolding patterns, industry data templates, Dockerfile, azd service wiring
-3. **Read** `.github/instructions/az-dotnet-webapp.instructions.md` — .NET 10 coding standards, project structure, sample data patterns
+1. **Read** `.github/skills/az-consolidated/SKILL.md` — consolidated defaults,
+  AVM, Bicep patterns, artifacts, diagrams, and demo guide
+2. **Read** `.github/skills/az-webapp-development/SKILL.md` — webapp
+  scaffolding, industry data, Dockerfile, and azd service wiring
+3. **For Foundry applications, read**
+  `.github/skills/az-webapp-development/app-creation-SKILL.md` — Foundry
+  application, deployment, chatbot, Fluent UI, and validation requirements
+4. **For Foundry applications, read**
+  `.github/instructions/az-foundry.instructions.md` — direct project model,
+  current SDK research, and end-to-end validation gates
+5. **Read** `.github/instructions/az-dotnet-webapp.instructions.md` — .NET 10
+  coding standards, project structure, and sample data patterns
 
 ## Eligibility Check
 
@@ -103,8 +117,10 @@ Azure App Service, Container Apps, ACI, or AKS — never on VM-only scenarios.
 ## Core Principles
 
 1. **Always .NET 10**: Use `dotnet new webapp` with `--framework net10.0`
-2. **Data Backend First**: If the architecture includes a data service (Storage Table, SQL Database, Cosmos DB, Event Hub, Service Bus, Redis, etc.), use that service as the app's data store via the appropriate SDK. Seed the service with sample data on first run.
-3. **Local JSON Fallback**: Only use in-memory data with static JSON seed files when the architecture has **no** data endpoint
+2. **Data Backend First**: Use an architecture-defined data service through
+  its appropriate SDK. Seed the service with sample data on first run.
+3. **Local JSON Fallback**: Use static JSON seed files only when the
+  architecture has **no** data endpoint
 4. **Industry-Aware**: Generate domain models and seed data matching the project's business industry
 5. **Container-Ready**: For container targets, include a multi-stage `Dockerfile`
 6. **azd-Integrated**: Wire the app as a service in `azure.yaml` so `azd deploy` picks it up
@@ -113,6 +129,11 @@ Azure App Service, Container Apps, ACI, or AKS — never on VM-only scenarios.
   identity or `DefaultAzureCredential`. The participant package must retain
   only documented configuration placeholders until participants complete the
   Foundry challenges.
+8. **Prompt-Themed**: Derive the visual direction from the original scenario
+  prompt. Preserve its industry, brand cues, tone, and user context instead of
+  substituting a generic Azure theme.
+9. **Fluent by Design**: Use Fluent 2 design principles and Microsoft Fluent
+  System Icons for a professional, accessible, responsive navigation shell.
 
 ## DO / DON'T
 
@@ -123,11 +144,16 @@ Azure App Service, Container Apps, ACI, or AKS — never on VM-only scenarios.
 - ✅ Place the app under `generated-scenarios/{project}/src/{ProjectName}.Web/`
 - ✅ Generate industry-specific models, seed data, and Razor pages
 - ✅ Detect data endpoints in the architecture (Storage Table, SQL, Cosmos DB, etc.)
-- ✅ When a data service exists: use its SDK, connect via managed identity or connection string from app settings, seed sample data on first run
+- ✅ When a data service exists, use its SDK, connect through managed identity
+  or configured app settings, and seed sample data on first run
 - ✅ When no data service exists: include a `SeedData/` folder with JSON files and use in-memory collections
 - ✅ Add a `Dockerfile` for container-targeted scenarios (multi-stage build)
 - ✅ Update `azure.yaml` to register the app as a service
 - ✅ Run `dotnet build` to validate the project compiles
+- ✅ For Foundry, implement a backend chat route that uses the project endpoint
+  and invokes the configured orchestrator agent
+- ✅ Add focused tests for successful invocation, missing configuration,
+  authentication failure, service failure, and cancellation
 
 ### DON'T
 
@@ -139,6 +165,8 @@ Azure App Service, Container Apps, ACI, or AKS — never on VM-only scenarios.
 - ❌ Hardcode Azure-specific config in the app — use environment variables and app settings
 - ❌ Forget to wire the service in `azure.yaml`
 - ❌ Create the `.sln` file in the workspace root — it MUST go in `generated-scenarios/{project}/`
+- ❌ Treat a static chat UI, echo response, mock-only client, or TODO as a
+  completed Foundry chatbot
 
 ## Prerequisites Check
 
@@ -151,13 +179,19 @@ Before starting, validate these artifacts exist in `generated-scenarios/{project
 | `infra/main.bicep`              | Yes      | Infrastructure templates (for service wiring) |
 | `azure.yaml`                    | Yes      | AZD project configuration                     |
 | `08-hack-package-contract.md`   | Yes for Foundry hacks | Coach/participant integration boundary |
+| `00-region-availability.json`   | Yes for Foundry hacks | Project region and model evidence       |
 
 ## Workflow
 
 ### Phase 1: Context Extraction
 
-1. Read `01-requirements.md` — extract **business industry** and **project description**
-2. Read `02-architecture-assessment.md` — identify **compute target** (App Service, Container Apps, ACI, AKS, or VM) and **data endpoints**; note the App Service or container resource names
+1. Read the original scenario prompt when available, then
+  `01-requirements.md`. Extract the **business industry**, **project
+  description**, audience, tone, brand cues, and visual theme. Treat the
+  requirements artifact as the fallback when the original prompt is not
+  available.
+2. Read `02-architecture-assessment.md`. Identify the **compute target**,
+   **data endpoints**, and relevant App Service or container resource names.
 3. If VM-only → SKIP with message and return
 4. Scan `infra/` to confirm resource names and connection point details
 5. For Foundry hacks, read `08-hack-package-contract.md` and identify the
@@ -202,9 +236,12 @@ Based on the business industry from requirements and the data strategy from Phas
 
 1. **Domain Models** in `Models/` — 2-4 entity classes relevant to the industry
 2. **Data Service** in `Services/`:
-   - **If data backend detected**: Create a service that reads/writes to the Azure service (e.g., `TableStorageDataService`, `CosmosDataService`, `SqlDataService`). Use connection string or managed identity from `IConfiguration`. Include a seed method that populates the backend with sample data if empty.
+   - **If data backend detected**: Create a service that reads and writes with
+     the relevant Azure SDK. Use managed identity or configuration and seed the
+     backend with sample data when empty.
    - **If no data backend**: Create `SampleDataService` that loads local JSON files in-memory.
-3. **Seed Data** in `SeedData/` — JSON files with 10-20 realistic sample records per entity (used for initial seeding of the backend, or as the data source for the fallback)
+3. **Seed Data** in `SeedData/` — 10-20 realistic JSON records per entity for
+  backend initialization or local fallback
 4. **Razor Pages** in `Pages/` — list and detail pages for each entity
 
 #### Industry Templates
@@ -281,14 +318,33 @@ services:
       path: ./src/{ProjectName}.Web/Dockerfile
 ```
 
+  ### Phase 6: Apply Scenario Theme and Fluent Design
+
+  1. Define semantic CSS custom properties from the prompt-derived theme for
+    brand, accent, surface, text, border, success, warning, and error roles.
+  2. Build a responsive Fluent navigation shell with official Microsoft Fluent
+    System Icons, visible current-page state, keyboard support, and accessible
+    labels for icon-only actions.
+  3. Keep the scenario's primary workflow prominent. For Foundry applications,
+    the chatbot is the main interaction and supporting domain views remain
+    secondary.
+  4. Implement loading, empty, error, and missing-configuration states using
+    Fluent patterns. Do not communicate status through color alone.
+  5. Check WCAG 2.2 AA contrast and verify the application at desktop and mobile
+    widths without overlap, clipping, or inaccessible navigation.
+
 ### Phase 7: Build Validation
 
 ```powershell
 cd generated-scenarios/{project}/src/{ProjectName}.Web
 dotnet build
+dotnet test
 ```
 
-If the build fails, fix issues before proceeding.
+For Foundry apps, verify the backend route resolves the project endpoint from
+configuration, obtains credentials without embedded secrets, calls the
+orchestrator agent, and returns its response. If build or tests fail, fix them
+before proceeding.
 
 ## Output Files
 
@@ -305,11 +361,18 @@ If the build fails, fix issues before proceeding.
 - [ ] Industry-specific models and seed data generated
 - [ ] In-memory data service loads JSON seed data at startup
 - [ ] Razor pages display entity lists and details
+- [ ] Visual theme reflects the original prompt or documented requirements
+- [ ] Fluent navigation and official Fluent icons work at desktop and mobile widths
+- [ ] Navigation, controls, and status states meet accessibility requirements
 - [ ] Dockerfile generated (container targets only)
 - [ ] `azure.yaml` updated with service definition
 - [ ] For Foundry hacks, coach app calls the designed Foundry agent through
   credential-based configuration and participant code contains only safe,
   documented Foundry placeholders
+- [ ] Backend chat route and orchestrator invocation tests pass
+- [ ] No echo, mock-only, or placeholder chatbot is marked complete
 - [ ] `dotnet build` passes without errors
+- [ ] `dotnet test` passes without errors
 - [ ] README.md updated with Step 4b completion
-- [ ] No external database dependencies — all data is local/in-memory
+- [ ] Data strategy matches the architecture and uses local JSON only when no
+  Azure data endpoint exists

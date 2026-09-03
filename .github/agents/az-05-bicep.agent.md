@@ -75,6 +75,8 @@ the Deploy agent (Step 5) handles the actual Azure deployment.
 1. **Read** `.github/skills/az-consolidated/SKILL.md` — consolidated skill (defaults, AVM, Bicep patterns, artifacts, diagrams, demo guide, **azure.yaml naming convention**)
 2. **Read** `.github/skills/microsoft-code-reference/SKILL.md` — verify AVM module parameters,
    check API versions, find correct Bicep patterns via official docs
+3. **For Foundry scenarios, read**
+  `.github/instructions/az-foundry.instructions.md`
 4. **Read** `.github/instructions/az-bicep-policy-compliance.instructions.md` — governance
    compliance mandate, dynamic tag list, anti-patterns
 5. **Read** `.github/instructions/az-bicep-code-best-practices.instructions.md` — Bicep coding
@@ -93,6 +95,9 @@ These skills are your single source of truth. Do NOT use hardcoded values.
 - ✅ Auto-select deployment strategy (phased for >5 resources, single otherwise) from governance + architecture context — no plan file needed
 - ✅ Plan implementation internally (YAML task specs in working context) — do NOT save to disk
 - ✅ Run preflight check BEFORE writing any Bicep code — results are internal, do NOT save to disk
+- ✅ Use region, model, SKU, quota, and capacity evidence from
+  `00-region-availability.json`
+- ✅ For Foundry, deploy a Foundry resource with a direct child project
 - ✅ Use AVM modules for EVERY resource that has one — never raw Bicep when AVM exists
 - ✅ Generate `uniqueSuffix` ONCE in `main.bicep`, pass to ALL modules
 - ✅ Apply baseline tags (`Environment`, `ManagedBy`, `Project`, `Owner`) plus any extras from governance
@@ -130,11 +135,15 @@ These skills are your single source of truth. Do NOT use hardcoded values.
 - ❌ Use `az policy assignment list` alone — it misses management group-inherited policies
 - ❌ Hardcode SKUs without AVM verification
 - ❌ Leave `04-runtime-diagram.py` on disk after the PNG is generated
+- ❌ Generate `aiHub`, `hubResourceId`, a hub module, or
+  `Microsoft.MachineLearningServices/workspaces` for greenfield Foundry
+- ❌ Hardcode a model or region absent from validated evidence
 
 ## Prerequisites Check
 
-Before starting, validate `02-architecture-assessment.md` exists in `generated-scenarios/{project}/`.
-If missing, STOP and request handoff to Architect agent.
+Before starting, validate `00-region-availability.json` and
+`02-architecture-assessment.md` exist in `generated-scenarios/{project}/`.
+If either is missing, STOP and request the appropriate agent handoff.
 
 Read for context:
 
@@ -143,6 +152,8 @@ Read for context:
 - `08-hack-package-contract.md` — required Foundry and supporting resources for the
   complete coach implementation, plus the Foundry resources to omit from the
   participant package
+- `00-region-availability.json` — configured subscription, selected region,
+  exact model deployment, quota, capacity, and candidate rejection evidence
 
 ## Workflow
 
@@ -225,8 +236,9 @@ Before writing ANY Bicep code, validate AVM compatibility (results stay in worki
    - If AVM exists: query `mcp_bicep_resolve_avm_module` for parameter schema
    - Cross-check planned parameters against actual AVM schema
    - Flag type mismatches (see AVM Known Pitfalls in azure-defaults skill)
-2. Check region limitations for all services
-3. If blockers found → STOP and report to user
+2. Confirm every service and model matches `00-region-availability.json`
+3. Search planned resources for forbidden Foundry hub types and identifiers
+4. If blockers found → STOP and report to user
 
 ### Phase 5: Progressive Implementation
 

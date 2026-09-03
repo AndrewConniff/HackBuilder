@@ -3,6 +3,11 @@
 Two skeletons: the hack landing page, then the per-challenge file. Section order
 is fixed. Omit nothing; if a section is thin, tighten the wording instead.
 
+> [!IMPORTANT]
+> Apply the frontmatter and complete page contract from
+> `.github/skills/skillable-lod-authoring/assets/challenge-page.template.md`.
+> This file preserves the Foundry challenge content pattern only.
+
 ---
 
 ## A. Hack landing page — `README.md`
@@ -52,11 +57,11 @@ This scenario is identical in every challenge file.>
 
 | # | Challenge | Time | You'll finish with |
 |---|---|---|---|
-| 0 | [Secure Foundation](challenges/challenge-00-setup.md) | 25 min | Project, model, access, and baseline test |
-| 1 | [Build the MVP](challenges/challenge-01-build-the-agent.md) | 35 min | A minimal agent that answers end to end |
-| 2 | [Ground It](challenges/challenge-02-ground-it.md) | 35 min | Answers grounded in your data, with citations |
-| 3 | [Give It Tools](challenges/challenge-03-give-it-tools.md) | 35 min | One authenticated real-world action |
-| 4 | [Harden & Demo](challenges/challenge-04-harden-and-demo.md) | 30 min | Evals, security checks, and a 3-minute demo |
+| 0 | [Secure Foundation](Instructions/<industry-slug>/01-secure-foundation.md) | 25 min | Access and baseline |
+| 1 | [Build the MVP](Instructions/<industry-slug>/02-build-the-agent.md) | 35 min | End-to-end response |
+| 2 | [Ground It](Instructions/<industry-slug>/03-ground-it.md) | 35 min | Grounded citations |
+| 3 | [Give It Tools](Instructions/<industry-slug>/04-give-it-tools.md) | 35 min | Authenticated action |
+| 4 | [Harden & Demo](Instructions/<industry-slug>/05-harden-and-demo.md) | 30 min | Evaluation and demo |
 
 ## 🧱 Build progression
 
@@ -85,7 +90,7 @@ See [resources.md](resources.md).
 
 ---
 
-## B. Per-challenge file — `challenge-NN-<slug>.md`
+## B. Per-challenge file — `Instructions/<industry-slug>/NN-<slug>.md`
 
 ````markdown
 # 🧠 Challenge 02 — Ground Your Agent
@@ -198,3 +203,9 @@ Every challenge needs this — no team gets stranded.>
 Every fallback must preserve the previous checkpoint and provide the minimum
 artifact needed to continue. Every challenge must include a regression check
 for at least one earlier capability.
+
+## F. Finale
+
+Create the coach-only `Instructions/<industry-slug>/99-finale.md` from the
+Skillable Finale template. It contains coach notes for Challenges 0 through 4
+and must not appear in the public learner package.

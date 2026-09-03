@@ -18,14 +18,21 @@ architecture diagrams, artifact templates, and demo guide generation.
 
 ## 1. Azure Defaults
 
-### Default Regions
+### Region Selection
 
-| Service             | Default Region  | Reason                              |
-| ------------------- | --------------- | ----------------------------------- |
-| **All resources**   | `eastus2`       | Primary Azure Region                |
-| **Static Web Apps** | `westeurope`    | Not available in swedencentral      |
-| **Azure OpenAI**    | `swedencentral` | Limited availability — verify first |
-| **Fallback**        | `westus3`       | Secondary Azure Region (if needed)  |
+There is no static default Azure region. Before architecture or code
+generation, the Validation agent must authenticate to the account configured
+in `.github/instructions/az-default-account.instructions.md` and create
+`generated-scenarios/{project}/00-region-availability.json`.
+
+Evaluate every requested region and current supported alternatives against the
+complete resource set. For models, validate the exact model, version,
+deployment type, SKU, subscription quota, and live capacity. Select one common
+region when possible; otherwise record an explicit multi-region design and the
+reason each single-region candidate failed.
+
+All downstream agents must consume this evidence unchanged. Documentation
+examples and historical regional availability are not deployment proof.
 
 ### Required Tags
 

@@ -70,9 +70,9 @@ tools:
 > Your **first action** MUST be to verify `01-requirements.md` exists and contains
 > the information below. Do NOT read skills or templates before this step.
 
-Validate `01-requirements.md` and `08-hack-package-contract.md` exist in
-`generated-scenarios/{project}/`. If either is missing, STOP and request the
-appropriate Requirements or HackCreator Agent handoff.
+Validate `00-region-availability.json`, `01-requirements.md`, and
+`08-hack-package-contract.md` exist in `generated-scenarios/{project}/`. If
+any is missing, STOP and request the appropriate agent handoff.
 
 Verify these are documented — **auto-default if missing**:
 
@@ -80,23 +80,27 @@ Verify these are documented — **auto-default if missing**:
 | -------- | ----------------------- | ---------------------- |
 | Scope    | Services, workload type | Infer from scenario    |
 | Scale    | Users, data volume      | Use default estimates  |
-| Region   | Deployment region       | Default: swedencentral |
+| Region   | Deployment region       | Use region evidence    |
 
 ## MANDATORY: Read Skills (After Prerequisites, Before Assessment)
 
 **After prerequisites are confirmed**, read these skills:
 
 1. **Read** `.github/skills/az-consolidated/SKILL.md` — consolidated skill (defaults, artifacts, Bicep patterns, diagrams, demo guide)
-2. **Read** the template file:
+2. **For Foundry scenarios, read**
+  `.github/instructions/az-foundry.instructions.md`
+3. **Read** the template file:
    - `.github/skills/az-azure-artifacts/templates/02-architecture-assessment.template.md`
      Use as structural skeleton.
-3. **Read** `.github/skills/microsoft-docs/SKILL.md` — query official Microsoft docs for service limits and SKU comparisons
+4. **Read** `.github/skills/microsoft-docs/SKILL.md` — query official Microsoft docs for service limits and SKU comparisons
 
 ## DO / DON'T
 
 ### DO
 
 - ✅ Search Microsoft docs for EACH Azure service being recommended
+- ✅ Preserve the selected region from `00-region-availability.json`
+- ✅ Use a Foundry resource with a direct child project
 - ✅ Recommend appropriate SKUs and tiers for the demo/PoC scope
 - ✅ Document trade-offs between service options
 - ✅ Auto-fill critical requirement gaps using defaults and assumptions
@@ -112,6 +116,8 @@ Verify these are documented — **auto-default if missing**:
 - ❌ Use H2 headings that differ from the template
 - ❌ Assume requirements — ask when critical info is missing
 - ❌ Over-engineer for production — this is demo/PoC scope
+- ❌ Introduce Foundry hubs or hub-based projects in greenfield scenarios
+- ❌ Replace subscription-scoped evidence with a static region default
 
 ## Core Workflow
 
@@ -120,12 +126,14 @@ Verify these are documented — **auto-default if missing**:
 1. **Read requirements and package contract** — Parse `01-requirements.md` and
   `08-hack-package-contract.md` for scope, services, scale, the complete coach
   implementation, and the participant package's intentional Foundry gap
-2. **Search docs** — Query Microsoft docs for each Azure service and architecture pattern
-3. **Assess trade-offs** — Evaluate service options, identify primary concerns
-4. **Select SKUs** — Choose resource SKUs and tiers appropriate for demo/PoC
-5. **Generate assessment** — Save `02-architecture-assessment.md` using template structure
-6. **Self-validate** — Run `npm run lint:artifact-templates` and fix any errors
-7. **Automatic handoff** — Present summary and continue to the next workflow step
+2. **Read region evidence** — Verify subscription, selected region, model,
+   quota, capacity, and candidate rejection reasons
+3. **Search docs** — Query Microsoft docs for each Azure service and pattern
+4. **Assess trade-offs** — Evaluate service options and primary concerns
+5. **Select SKUs** — Choose tiers appropriate for demo/PoC
+6. **Generate assessment** — Save `02-architecture-assessment.md`
+7. **Self-validate** — Run artifact lint and fix errors
+8. **Automatic handoff** — Present summary and continue
 
 ## Execution Handoff (MANDATORY)
 
@@ -165,7 +173,8 @@ Include attribution header from the template file (do not hardcode).
 - [ ] All recommended services researched via Microsoft docs
 - [ ] SKUs appropriate for demo/PoC scope (not over-provisioned)
 - [ ] H2 headings match azure-artifacts templates exactly
-- [ ] Region selection justified (default: swedencentral)
+- [ ] Region selection matches `00-region-availability.json`
+- [ ] Foundry architecture has a direct project and no hub resources
 - [ ] AVM modules recommended where available
 - [ ] Coach Foundry resources and participant supporting-resource boundary align with `08-hack-package-contract.md`
 - [ ] Trade-offs explicitly documented

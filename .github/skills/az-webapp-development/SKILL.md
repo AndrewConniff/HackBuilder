@@ -1,6 +1,8 @@
 ---
 name: webapp-development
-description: ".NET 10 C# sample web application scaffolding patterns, industry-specific seed data templates, Dockerfile generation, and azd service wiring for demo workload scenarios."
+description: >
+    .NET 10 C# sample web application scaffolding, industry-specific seed data,
+    Dockerfile generation, and azd service wiring for demo workload scenarios.
 compatibility: Works with Claude Code, GitHub Copilot, VS Code, and any Agent Skills compatible tool.
 license: MIT
 metadata:
@@ -298,7 +300,8 @@ public class TableStorageDataService
         _env = env;
     }
 
-    public async Task<List<T>> GetAllAsync<T>(string tableName) where T : class, ITableEntity, new()
+    public async Task<List<T>> GetAllAsync<T>(string tableName)
+        where T : class, ITableEntity, new()
     {
         var tableClient = _serviceClient.GetTableClient(tableName);
         await tableClient.CreateIfNotExistsAsync();
@@ -310,7 +313,10 @@ public class TableStorageDataService
         return entities;
     }
 
-    public async Task<T?> GetByIdAsync<T>(string tableName, string partitionKey, string rowKey) where T : class, ITableEntity, new()
+    public async Task<T?> GetByIdAsync<T>(
+        string tableName,
+        string partitionKey,
+        string rowKey) where T : class, ITableEntity, new()
     {
         var tableClient = _serviceClient.GetTableClient(tableName);
         try
@@ -324,7 +330,8 @@ public class TableStorageDataService
         }
     }
 
-    public async Task SeedIfEmptyAsync<T>(string tableName, string seedFileName) where T : class, ITableEntity, new()
+    public async Task SeedIfEmptyAsync<T>(string tableName, string seedFileName)
+        where T : class, ITableEntity, new()
     {
         var tableClient = _serviceClient.GetTableClient(tableName);
         await tableClient.CreateIfNotExistsAsync();
@@ -338,7 +345,8 @@ public class TableStorageDataService
         if (!File.Exists(path)) return;
 
         var json = await File.ReadAllTextAsync(path);
-        var items = JsonSerializer.Deserialize<List<T>>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+        var items = JsonSerializer.Deserialize<List<T>>(json, options);
         if (items == null) return;
 
         foreach (var item in items)
@@ -644,18 +652,37 @@ public class DetailsModel : PageModel
 
 ---
 
-## 8. Homepage Dashboard
+## 8. Visual Theme and Fluent Design
+
+- Derive the visual direction from the user's original scenario prompt. Carry
+    its industry, audience, tone, brand cues, and terminology into the
+    application shell and content. Use `01-requirements.md` as the fallback when
+    the original prompt is unavailable.
+- Use Fluent 2 design principles and semantic design tokens for color,
+    typography, spacing, elevation, focus, and state. Do not default every
+    scenario to Azure blue.
+- Use official Microsoft Fluent System Icons for navigation, common actions,
+    status, and Foundry chat interactions. Do not create substitute icons when a
+    Fluent icon exists.
+- Give icon-only controls accessible names and tooltips. Navigation must expose
+    a visible current-page state and support keyboard and narrow-screen use.
+- Meet WCAG 2.2 AA contrast, avoid color-only status communication, and test
+    loading, empty, error, and missing-configuration states.
+- Keep layouts professional and task-focused. Avoid decorative card-heavy
+    composition; use cards only for repeated records or genuinely grouped data.
+
+## 9. Homepage Dashboard
 
 The `Pages/Index.cshtml` should show a dashboard with:
 
 - Project name and industry context
-- Navigation cards for each entity type
+- Clear routes to each primary workflow through the Fluent navigation shell
 - Quick stats (total counts per entity)
 - A brief description of the demo scenario
 
 ---
 
-## 9. Guardrails
+## 10. Guardrails
 
 - **DO**: Always use .NET 10 (`net10.0`)
 - **DO**: Keep seed data realistic but fictional (no real PII)
@@ -665,6 +692,8 @@ The `Pages/Index.cshtml` should show a dashboard with:
 - **DO**: Use the Azure data service SDK when the architecture includes a data endpoint
 - **DO**: Prefer managed identity (`DefaultAzureCredential`) over connection strings with secrets
 - **DO**: Seed the backend from JSON on first run when the data store is empty
+- **DO**: Document the prompt-derived visual theme in `07-webapp-summary.md`
+- **DO**: Validate Fluent navigation and responsive behavior at desktop and mobile widths
 - **DON'T**: Add authentication to the sample app (keep it simple for demos)
 - **DON'T**: Use local JSON when a data endpoint is available in the architecture
 - **DON'T**: Use Entity Framework — use the native SDK for each data service

@@ -1,18 +1,9 @@
 ---
-description: "Plan governance-aware infrastructure and generate production-ready Bicep templates, following the Azure Developer CLI (AZD framework) with a focus on Azure Verified Modules (AVM) and policy compliance."
-agent: "az-05-Bicep"
-model: "GPT-5.3-Codex"
-tools:
-  - read/readFile
-  - edit/createFile
-  - edit/editFiles
-  - execute/runInTerminal
-  - search/codebase
-  - agent
-  - "bicep/*"
+name: generate-bicep
+description: Plan governance-aware infrastructure and generate production-ready Bicep templates, following the Azure Developer CLI (AZD framework) with a focus on Azure Verified Modules (AVM) and policy compliance.
+disable-model-invocation: true
 argument-hint: Provide the project name to plan and generate Bicep templates for
 ---
-
 # Generate Bicep Templates
 
 Discover governance constraints, plan the implementation, generate

@@ -1,3 +1,8 @@
+---
+name: generate-demoguide
+description: generate-demoguide
+disable-model-invocation: true
+---
 ```prompt
 ---
 description: "Generate an audience-aware demo guide for a deployed Azure project"

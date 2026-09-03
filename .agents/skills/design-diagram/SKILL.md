@@ -1,15 +1,9 @@
 ---
-description: "Generate a Python architecture diagram for an Azure project"
-agent: "az-04-Diagrammer"
-model: "GPT-5.3-Codex"
-tools:
-  - read/readFile
-  - edit/createFile
-  - execute/runInTerminal
-  - search/codebase
+name: design-diagram
+description: Generate a Python architecture diagram for an Azure project
+disable-model-invocation: true
 argument-hint: Provide the project name to generate a diagram for
 ---
-
 # Generate Architecture Diagram
 
 Create a Python architecture diagram using the `diagrams` library that

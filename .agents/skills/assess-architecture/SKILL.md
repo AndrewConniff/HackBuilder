@@ -1,21 +1,9 @@
 ---
-description: "Assess architecture using Well-Architected Framework with cost estimates"
-agent: "az-03-Architect"
-model: "Claude Opus 4.6"
-tools:
-  - read/readFile
-  - edit/createFile
-  - edit/editFiles
-  - search/codebase
-  - web/fetch
-  - azure-pricing/azure_bulk_estimate
-  - azure-pricing/azure_cost_estimate
-  - azure-pricing/azure_price_search
-  - azure-pricing/azure_price_compare
-  - azure-pricing/azure_sku_discovery
+name: assess-architecture
+description: Assess architecture using Well-Architected Framework with cost estimates
+disable-model-invocation: true
 argument-hint: Provide the project name to assess
 ---
-
 # Assess Architecture — WAF Assessment & Cost Estimate
 
 Evaluate the captured requirements against the Azure Well-Architected Framework

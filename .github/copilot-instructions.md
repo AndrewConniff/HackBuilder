@@ -13,6 +13,7 @@
 
 | Step | Agent        | Output                                                    | Progression |
 | ---- | ------------ | --------------------------------------------------------- | ----------- |
+| 0    | Validation   | `00-region-availability.json`                             | Automatic   |
 | 1    | Requirements | `01-requirements.md`                                      | Automatic   |
 | 2    | Architect    | `02-architecture-assessment.md`                           | Automatic   |
 | 3    | Diagrammer   | `03-architect-*.{py,png,md}`                              | Automatic   |
@@ -30,6 +31,9 @@ All outputs → `generated-scenarios/{project}/`. Context flows via artifact fil
 | ----------------------------- | --------------------------------------------------------------------- |
 | **`SKILL.md`** (consolidated) | Defaults, AVM, Bicep patterns, diagrams, artifacts, demo guide        |
 | `webapp-development`          | .NET 10 sample webapp scaffolding, industry seed data, azd wiring     |
+| `app-creation`                | Foundry app deployment, chatbot integration, and Fluent UI companion |
+| `skillable-lod-authoring`     | Industry pages, Jekyll files, and private Finale coach notes          |
+| `az-multi-team-deployment`    | Manifest-driven deployment for 1-20 isolated team environments       |
 | `azure-adr`                   | Architecture Decision Records                                         |
 | `github-operations`           | GitHub issues, PRs, CLI, Actions, releases                            |
 | `git-commit`                  | Commit message conventions                                            |
@@ -39,23 +43,39 @@ All outputs → `generated-scenarios/{project}/`. Context flows via artifact fil
 
 Agents read the consolidated skill via: **"Read `.github/skills/az-consolidated/SKILL.md`"** in their body.
 
+Azure agents must also follow:
+
+- `.github/instructions/az-default-account.instructions.md` for the required
+  account and subscription. Authentication mismatches fail closed.
+- `.github/instructions/az-foundry.instructions.md` for current direct Foundry
+  projects, live region/model evidence, and end-to-end acceptance.
+
 ## Chat Triggers
 
 - If a user message starts with `gh`, treat it as a GitHub operation.
   Examples: `gh pr create ...`, `gh workflow run ...`, `gh api ...`.
-- Automatically follow the `github-operations` skill guidance (MCP-first, `gh` CLI fallback) from `.github/skills/github-operations/SKILL.md`.
+- Automatically follow the `github-operations` skill guidance from
+  `.github/skills/github-operations/SKILL.md` (MCP-first, `gh` CLI fallback).
 
 ### GitHub MCP Priority (Mandatory)
 
 - For issues and pull requests, always prefer GitHub MCP tools over `gh` CLI.
 - Only use `gh` for operations that have no equivalent MCP write tool in the current environment.
-- In devcontainers, do not run `gh auth` commands unless the user explicitly asks for CLI authentication troubleshooting.
+- In devcontainers, do not run `gh auth` commands unless the user explicitly
+  asks for CLI authentication troubleshooting.
 
 ## Key Conventions
 
-See the root `AGENTS.md` for full conventions. Summary of VS Code-specific overrides:
+See the root `AGENTS.md` for full conventions. Summary of VS Code-specific
+overrides:
 
 - **AVM-first**: Always prefer Azure Verified Modules over raw Bicep
+- **Evidence-first regions**: Never use a static region default; consume
+  `00-region-availability.json` from the configured subscription.
+- **No greenfield hubs**: Use a Foundry resource with a direct child project.
+- **Complete means deployed**: Require the real coach chatbot, one coach
+  deployment, one deployment per manifest team, and complete application URLs
+  and statuses before advancing.
 
 Full details in `.github/skills/az-consolidated/SKILL.md`.
 
