@@ -61,6 +61,54 @@ to restore or correct the source or choose a valid entry. Do not fall back to
 an invented name or a hard-coded sample. Catalog domains are reference data,
 not proof of ownership, deployable endpoints, or authorization to contact them.
 
+### Fictitious People Identity - CSV Only
+
+The repository-root [fictitious people catalog](../../../fictitious_people_names.csv)
+is the **only** permitted source of person names in sample application datasets.
+This includes customers, employees, contacts, patients, clinicians, guests,
+authors, approvers, and person references embedded in free text, documents,
+chat examples, evaluation fixtures, screenshots, and demo scripts using that data.
+Names from prompts, remembered examples, Faker, or other generators are not
+alternative sources.
+
+1. Read the actual catalog from the HackBuilder repository before generating
+   person-bearing data, including when the scenario workspace is external.
+   Parse CSV with UTF-8 BOM support, quoting, and Unicode preservation.
+   Require the headers `FirstName`, `LastName`, `FullName`, `FirstNameNative`,
+   `LastNameNative`, `FullNameNative`, `Gender`, and `Language`.
+1. Select complete valid records with the expected field count and nonempty
+   fields needed by the target schema. Reject and report malformed records;
+   do not silently truncate values or repair the source without approval.
+1. Populate full-name fields from the exact parsed `FullName`, and component
+   fields from that same record's `FirstName` and `LastName`. For native-script
+   names, use the corresponding `*Native` fields from the same record.
+   Never recombine different records, reorder components, reconstruct a full
+   name, invent nicknames or initials, transliterate, or strip diacritics.
+   Store titles and roles separately from name fields.
+1. Assign people deterministically to stable entity IDs. Record the catalog
+   source, record numbers, selected name columns, and entity-to-record mapping
+   in existing generation metadata or the supporting-artifact plan; summarize
+   the selection in requirements. Keep this mapping consistent across seed
+   JSON/CSV, database loaders, API fixtures, documents, and all package copies.
+   Duplicate catalog names are not unique IDs; use separate stable entity IDs.
+1. Use only selected catalog identities in generated person-bearing text.
+   Keep first-name-only references tied to the same selected record.
+   Technical usernames or identifiers may be derived deterministically, but
+   must not replace the person's catalog display name. Email addresses and
+   other contact data remain synthetic; a catalog name is not consent to
+   identify, locate, or contact a real person.
+1. Before handoff, check every person-name field and embedded person reference
+   against its mapped source record and selected column, not just membership
+   of separate first and last names. Verify unchanged names after seed import
+   and consistency across coach, participant, learner, and demo materials.
+   Report failures and block handoff until corrected.
+
+If the source is missing, unreadable, has invalid headers, or lacks enough
+eligible records for required distinct people, stop person-dependent generation
+and ask the user to restore or correct the catalog or adjust the requirement.
+Never fall back to invented names, anonymous name placeholders, or hard-coded
+examples. Reuse valid identities only where the dataset's uniqueness rules allow.
+
 ### Region Selection
 
 There is no static default Azure region. Before architecture or code

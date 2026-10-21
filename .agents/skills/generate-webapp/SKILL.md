@@ -61,6 +61,13 @@ and use Fluent design and icons for navigation and common actions.
 
 1. Create entity models based on industry selection
 2. Generate 10-20 realistic seed records per entity as JSON
+   All person names must follow the
+   [CSV-only people rules](../../../.github/skills/az-consolidated/SKILL.md#fictitious-people-identity---csv-only).
+   Read `fictitious_people_names.csv` from the repository root and select
+   complete valid records. Use exact full names and matching same-record
+   components, preserving Unicode and native name order. Record deterministic
+   entity-to-source mappings and reuse them in related records and package copies.
+   Never invent people, recombine names, or copy unverified example names.
 3. Create `SampleDataService` for in-memory data loading
 
 ### Step 4: Build Razor Pages
@@ -87,6 +94,8 @@ and use Fluent design and icons for navigation and common actions.
 2. Verify seed data files are included in output
 3. Verify Fluent icons, keyboard navigation, responsive layout, and WCAG 2.2 AA contrast
 4. Generate `07-webapp-summary.md` with the selected prompt-derived theme documented
+5. Verify every person-name field and embedded person reference against its
+   selected catalog record, including imported data and displayed UI values
 
 ## Output Expectations
 

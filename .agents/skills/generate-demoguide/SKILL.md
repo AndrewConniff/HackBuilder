@@ -61,6 +61,15 @@ Read all available project artifacts in order:
 5. `06-deployment-summary.md` — deployed resources, outputs, endpoints
 6. `generated-scenarios/{projectName}/infra/` or `generated-scenarios/{projectName}/infra/terraform/` — actual templates
 
+For any people referenced from sample application data, apply the
+[CSV-only people identity rules](../../../.github/skills/az-consolidated/SKILL.md#fictitious-people-identity---csv-only).
+Read the repository-root `fictitious_people_names.csv` and the dataset's
+entity-to-record mapping. Use the same exact catalog names in walkthroughs,
+talking points, prompts, expected results, and screenshots. Do not invent demo
+customers, employees, or other people. If deployed sample data contains an
+unapproved name, report the mismatch and have the owning data workflow correct
+and revalidate it before capturing screenshots; do not conceal it in the guide.
+
 ### Step 2: Generate Pre-Demo Checklist
 
 Create validation commands for every resource in the architecture.
@@ -106,6 +115,7 @@ exact H2 structure defined in the azure-artifacts skill.
 ## Quality Checklist
 
 - [ ] All source artifacts read before generation
+- [ ] Sample-data person names match their mapped `fictitious_people_names.csv` records
 - [ ] Audience format confirmed with user
 - [ ] H2 headings match template structure exactly
 - [ ] Every demo step has a time estimate

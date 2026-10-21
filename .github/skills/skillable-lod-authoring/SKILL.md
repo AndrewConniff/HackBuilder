@@ -59,6 +59,16 @@ materials, and private coach notes. Any secondary fictitious company must
 also come from a valid catalog entry; never invent customer or supplier brands.
 Do not copy internal source paths into public learner materials.
 
+Apply the
+[CSV-only people identity rules](../az-consolidated/SKILL.md#fictitious-people-identity---csv-only)
+to all sample-data person references in challenges, supporting documents,
+payloads, and coach notes. Source names only from valid records in the
+repository-root `fictitious_people_names.csv`; reuse the dataset's deterministic
+entity-to-record mapping rather than inventing new people while authoring.
+Record provenance in the internal supporting-artifact plan, not absolute
+workstation paths in public learner pages. Keep names identical in matching
+learner and coach content.
+
 ## Publishing boundaries
 
 Create two GitHub-ready documentation roots under `packages/`:

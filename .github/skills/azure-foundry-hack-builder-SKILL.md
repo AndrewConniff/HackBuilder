@@ -111,6 +111,13 @@ requires.
    package paths, Azure targets, creation and installation methods, identity,
    ownership, and acceptance tests. Classify runtime dependencies as
    `deployment-critical`.
+   Apply the
+   [CSV-only people identity rules](./az-consolidated/SKILL.md#fictitious-people-identity---csv-only).
+   Source every sample-data person from the repository-root
+   `fictitious_people_names.csv`, recording deterministic entity-to-record
+   mappings in the artifact plan. Reuse exact catalog names in datasets,
+   knowledge documents, tool fixtures, evaluations, and challenge narratives;
+   never invent people as part of synthetic-data generation.
 5. **Map to the time budget.** Assign the extracted specifics into Challenges
    0–4. If the input has no data source, use the synthetic-data fallback.
 6. **Read the Skillable contract** in

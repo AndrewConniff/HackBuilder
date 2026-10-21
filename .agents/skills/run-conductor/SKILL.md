@@ -46,6 +46,13 @@ provenance in the requirements. Pass that identity to every delegated step;
 do not let agents invent a replacement brand for apps, packages, or resources.
 Stop and ask the user if no eligible valid catalog entry can be read.
 
+For sample datasets, also apply the
+[CSV-only people identity rules](../../../.github/skills/az-consolidated/SKILL.md#fictitious-people-identity---csv-only).
+Read the repository-root `fictitious_people_names.csv` before assigning people.
+Pass the deterministic entity-to-catalog-record mapping to Development,
+HackCreator, and DemoGuide so names stay unchanged across datasets and packages.
+Do not allow invented names in seed data or supporting scenario references.
+
 ## Inputs
 
 | Variable                      | Description                                       | Default  |

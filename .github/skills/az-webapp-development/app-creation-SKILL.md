@@ -23,6 +23,14 @@ Verify the requirements' selected company against the repository-root
 agent instructions, knowledge documents, and company-derived resource names.
 Do not invent a company from the scenario theme or substitute an example brand.
 
+Person-bearing seed data, knowledge documents, tool fixtures, and sample chats
+must follow the
+[CSV-only people identity rules](../az-consolidated/SKILL.md#fictitious-people-identity---csv-only).
+Read `fictitious_people_names.csv` from the repository root and reuse the
+recorded entity-to-person mapping. Every referenced person must come from a
+valid catalog record, with exact names preserved through ingestion and display.
+Do not invent people in fallback responses, evaluation examples, or demo prompts.
+
 ## Purpose
 
 You are the deployment agent for an Azure AI Foundry multi-agent chatbot

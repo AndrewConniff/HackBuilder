@@ -32,6 +32,19 @@ technical identifiers. Prompt-derived themes may control styling, not invent
 or override the company identity. Validate the same identity in both coach
 and participant apps; never use a hard-coded sample company as a fallback.
 
+## People dataset prerequisite
+
+Follow the [CSV-only people identity rules](../az-consolidated/SKILL.md#fictitious-people-identity---csv-only).
+Read the repository-root `fictitious_people_names.csv` before creating customer,
+employee, patient, doctor, guest, contact, or other person-bearing records.
+Use exact `FullName` values, or the corresponding name fields from the same
+record, with a deterministic entity-to-record mapping shared by every dataset,
+loader, package, and UI example. Preserve Unicode and catalog name order.
+Do not use Faker, invented names, cross-record first/last-name combinations,
+or hard-coded examples as a fallback. Keep professional titles in separate fields.
+The healthcare excerpt below illustrates schema only; verify its people against
+the current catalog before use, just as for every other industry.
+
 ---
 
 ## 1. Project Structure
@@ -143,16 +156,16 @@ public class Appointment
 [
   {
     "Id": 1,
-    "Name": "Dr. Sarah Chen",
+    "Name": "Airi Ilves",
     "Specialty": "Cardiology",
-    "Email": "s.chen@clinic.local",
+    "Email": "airi.ilves@clinic.local",
     "Phone": "555-0101"
   },
   {
     "Id": 2,
-    "Name": "Dr. James Wilson",
+    "Name": "Hasan Ibrahimov",
     "Specialty": "Neurology",
-    "Email": "j.wilson@clinic.local",
+    "Email": "hasan.ibrahimov@clinic.local",
     "Phone": "555-0102"
   }
 ]
