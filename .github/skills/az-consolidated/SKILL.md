@@ -18,6 +18,49 @@ architecture diagrams, artifact templates, and demo guide generation.
 
 ## 1. Azure Defaults
 
+### Fictitious Company Identity - CSV Only
+
+The repository-root [fictitious company catalog](../../../fictitious_company_names.csv)
+is the **only** permitted source of fictitious company names. Apply this rule
+before generating business content, application branding, seed data, or
+company-derived infrastructure names. It also applies to names supplied in a
+prompt, examples in skills, and secondary fictitious organizations.
+
+1. Read the actual catalog from the HackBuilder repository, even when the
+   scenario workspace is external. Require the `Company Name` and `Domain Name*`
+   headers. Parse CSV quoting correctly; do not split lines blindly on commas.
+1. Select one valid, nonempty company entry appropriate to the scenario.
+   A user-supplied company is eligible only if its complete name matches a
+   valid catalog entry. Do not invent, expand, abbreviate, or substitute a
+   display name from memory.
+1. Reject malformed rows, including unquoted embedded commas that produce more
+   than two fields. Never accept a parser's silently truncated company name.
+   Report invalid rows; do not repair the catalog without user approval.
+1. Record `companyName`, `companyDomain`, `companySlug`, and the source catalog
+   path and record number in `01-requirements.md` and the hack package contract
+   when present. Preserve the exact parsed company name and domain values.
+   The catalog does not declare industries; do not invent an industry column.
+1. Derive `companySlug` deterministically from the selected name: lowercase,
+   replace runs of non-ASCII-alphanumeric characters with `-`, and trim outer
+   hyphens. For Azure resource names, apply the existing service-specific
+   character and length rules, prefixes, environment/team identifiers, and
+   unique suffixes. These technical derivations are not new company names.
+1. Reuse the recorded identity across app titles, chatbot instructions,
+   datasets, source documents, diagrams, resource references, and every package.
+   An app title may combine the exact company name with a workload label.
+   A technical project slug need not include the company; do not rename
+   existing projects or deployed resources merely to add branding.
+1. Before handoff, verify every fictitious company display name against a
+   complete valid catalog entry, verify company-derived identifiers against the
+   recorded slug, and check that all packages use the same primary identity.
+   Any secondary fictitious company must have its own catalog provenance.
+
+If the catalog is missing, unreadable, malformed at the header level, or has
+no eligible valid entry, stop company-dependent generation and ask the user
+to restore or correct the source or choose a valid entry. Do not fall back to
+an invented name or a hard-coded sample. Catalog domains are reference data,
+not proof of ownership, deployable endpoints, or authorization to contact them.
+
 ### Region Selection
 
 There is no static default Azure region. Before architecture or code

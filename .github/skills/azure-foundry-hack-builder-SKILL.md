@@ -91,6 +91,13 @@ requires.
 
 1. **Read the input.** Extract: industry/brand, the business problem, the end
    user of the agent, and any named data or systems.
+   Before fixing the scenario, apply the
+   [CSV-only company identity rules](./az-consolidated/SKILL.md#fictitious-company-identity---csv-only).
+   Select the fictitious company only from a valid entry in the repository-root
+   `fictitious_company_names.csv`, or verify the identity already recorded in
+   the requirements. A prompt brand or example is not an alternative source.
+   Record the exact name, domain, derived slug, and catalog provenance in the
+   requirements and package contract, then reuse them in all four deliverables.
 2. **Fix the scenario.** Write one 2–3 sentence scenario the whole hack hangs
    off. Every challenge must advance that same agent — never switch scenarios
    mid-hack.

@@ -43,6 +43,12 @@ and use Fluent design and icons for navigation and common actions.
 1. Read `02-architecture-assessment.md` to identify compute targets
 2. Read the original scenario prompt when available and `01-requirements.md`
   to derive the audience, tone, industry, brand cues, and visual theme
+   Company identity must follow the
+   [CSV-only company rules](../../../.github/skills/az-consolidated/SKILL.md#fictitious-company-identity---csv-only).
+   Verify the recorded company against the repository-root
+   `fictitious_company_names.csv`; select and record a valid entry if absent.
+   Use the exact company name for branding and its derived slug for
+   company-bearing technical names. Theme cues never override this identity.
 3. Determine if webapp is eligible (App Service, Container Apps, ACI, AKS)
 4. If compute is VM-only, skip webapp generation entirely
 

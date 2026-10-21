@@ -21,6 +21,14 @@ Bicep modules with security baselines and automated validation.
 - Read `.github/skills/az-consolidated/SKILL.md` for naming, tags, AVM, security, templates, and Bicep patterns
 - Templates saved to `generated-scenarios/${input:projectName}/infra/` and compatible with `azd provision`
 
+Company-derived identifiers must follow the
+[CSV-only company identity rules](../../../.github/skills/az-consolidated/SKILL.md#fictitious-company-identity---csv-only).
+Verify the requirements' selected identity against the repository-root
+`fictitious_company_names.csv`. Use only its recorded slug when incorporating
+a company into app, Foundry project, resource, resource-group, or environment
+names. Apply Azure naming limits and existing team/suffix rules; do not invent
+another company or rename existing resources just to add branding.
+
 ## Inputs
 
 | Variable               | Description                                  | Default  |

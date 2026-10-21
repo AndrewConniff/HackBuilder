@@ -16,6 +16,13 @@ Generate Webapp prompt for Foundry application scenarios. The general
 `.github/skills/az-webapp-development/SKILL.md` rules continue to control the
 .NET application structure, data access, and Azure Developer CLI wiring.
 
+Company branding must follow the
+[CSV-only company identity rules](../az-consolidated/SKILL.md#fictitious-company-identity---csv-only).
+Verify the requirements' selected company against the repository-root
+`fictitious_company_names.csv`. Reuse that exact identity for the chatbot UI,
+agent instructions, knowledge documents, and company-derived resource names.
+Do not invent a company from the scenario theme or substitute an example brand.
+
 ## Purpose
 
 You are the deployment agent for an Azure AI Foundry multi-agent chatbot

@@ -20,6 +20,18 @@ that service as its data backend. Otherwise, it falls back to local JSON seed
 files. Covers project structure, data service patterns, container support, and
 azd integration.
 
+## Company branding prerequisite
+
+Follow the [CSV-only company identity rules](../az-consolidated/SKILL.md#fictitious-company-identity---csv-only).
+Read the recorded company identity in `01-requirements.md` and verify it
+against the repository-root `fictitious_company_names.csv` before scaffolding.
+If absent, select and record a valid catalog entry before generating branding.
+Use its exact company name in page titles, navigation, chatbot instructions,
+and company-bearing seed data; use the recorded slug for company-derived
+technical identifiers. Prompt-derived themes may control styling, not invent
+or override the company identity. Validate the same identity in both coach
+and participant apps; never use a hard-coded sample company as a fallback.
+
 ---
 
 ## 1. Project Structure

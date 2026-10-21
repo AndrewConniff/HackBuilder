@@ -49,6 +49,16 @@ availability, and documentation are verified by the owning workflow agents.
 Derive missing values from the requirements and package contract. Use visible
 placeholders only when evidence is unavailable; never invent values.
 
+Company identity is not a placeholder or free-form input. Apply the
+[CSV-only company identity rules](../az-consolidated/SKILL.md#fictitious-company-identity---csv-only)
+and verify the requirements' exact company name against the repository-root
+`fictitious_company_names.csv`. If no identity is recorded, select and record
+a valid catalog entry before authoring. Keep that identity consistent across
+all five challenges, synthetic business documents, `nextsteps.MD`, public
+materials, and private coach notes. Any secondary fictitious company must
+also come from a valid catalog entry; never invent customer or supplier brands.
+Do not copy internal source paths into public learner materials.
+
 ## Publishing boundaries
 
 Create two GitHub-ready documentation roots under `packages/`:

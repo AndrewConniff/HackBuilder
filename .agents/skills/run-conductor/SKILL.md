@@ -36,6 +36,16 @@ All steps are required to have a successful project and do the handover to the u
   resource group contains supporting Azure resources only.
 - Proceed through workflow steps automatically unless the user explicitly pauses
 
+## Company identity prerequisite
+
+Before Requirements generates business content, apply the
+[CSV-only company identity rules](../../../.github/skills/az-consolidated/SKILL.md#fictitious-company-identity---csv-only).
+Read `fictitious_company_names.csv` from the repository root, select a valid
+company entry, and record its exact name, domain, derived slug, and catalog
+provenance in the requirements. Pass that identity to every delegated step;
+do not let agents invent a replacement brand for apps, packages, or resources.
+Stop and ask the user if no eligible valid catalog entry can be read.
+
 ## Inputs
 
 | Variable                      | Description                                       | Default  |
