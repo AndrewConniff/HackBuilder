@@ -9,12 +9,12 @@ metadata:
   category: azure-infrastructure
 ---
 
-# Azure Demo Builder — Consolidated Skill
+# ABC Builder — Consolidated Skill
 
 Single reference for all agents. Covers Azure defaults, Bicep patterns,
 architecture diagrams, artifact templates, and demo guide generation.
 
-For Hack Builder sequencing, approval and deployment scope, use
+For ABC Builder sequencing, approval and deployment scope, use
 [the workflow contract](../hack-builder-workflow/SKILL.md). This skill supplies
 technical patterns, not an alternative orchestrator.
 
@@ -30,7 +30,7 @@ before generating business content, application branding, seed data, or
 company-derived infrastructure names. It also applies to names supplied in a
 prompt, examples in skills, and secondary fictitious organizations.
 
-1. Read the actual catalog from the HackBuilder repository, even when the
+1. Read the actual catalog from the ABC Builder repository, even when the
    scenario workspace is external. Require the `Company Name` and `Domain Name*`
    headers. Parse CSV quoting correctly; do not split lines blindly on commas.
 1. Select one valid, nonempty company entry appropriate to the scenario.
@@ -75,7 +75,7 @@ chat examples, evaluation fixtures, screenshots, and demo scripts using that dat
 Names from prompts, remembered examples, Faker, or other generators are not
 alternative sources.
 
-1. Read the actual catalog from the HackBuilder repository before generating
+1. Read the actual catalog from the ABC Builder repository before generating
    person-bearing data, including when the scenario workspace is external.
    Parse CSV with UTF-8 BOM support, quoting, and Unicode preservation.
    Require the headers `FirstName`, `LastName`, `FullName`, `FirstNameNative`,
@@ -112,6 +112,21 @@ eligible records for required distinct people, stop person-dependent generation
 and ask the user to restore or correct the catalog or adjust the requirement.
 Never fall back to invented names, anonymous name placeholders, or hard-coded
 examples. Reuse valid identities only where the dataset's uniqueness rules allow.
+
+### Industry and business-unit scope
+
+The workflow owns the exact `businessUnits` IDs and Generic exclusivity.
+Record the selected industry, units, personas, outcomes and cross-unit handoffs
+in requirements before generating the app, documents or data. Generic means a
+typical industry workflow without unit targeting, not all departments.
+
+Industry model examples are schema inspiration, not a required entity roster.
+Adapt entities, fields, relationships, documents and acceptance prompts to the
+selected units. Carry the same scope into the approved hack's learner and coach
+content. Catalog adaptations treat source architecture as read-only guidance,
+regenerate target business app/data, refresh technical evidence and obtain new
+design confirmation, validation and approval; never inherit deployment state,
+secrets, scopes, approvals, packages or runtime success.
 
 ### Region Selection
 
@@ -695,28 +710,10 @@ update date and progress percentage (each step ≈ 14%).
 > [!CAUTION] — Data loss / breaking change
 ```
 
-**Status emoji:**
-
-| Purpose          | Emoji |
-| ---------------- | ----- |
-| Success/Complete | ✅    |
-| Warning          | ⚠️    |
-| Error/Critical   | ❌    |
-| Info/Tip         | 💡    |
-| Security         | 🔐    |
-| Pending          | ⏳    |
-
-**Category icons:**
-
-| Category   | Icon |
-| ---------- | ---- |
-| Compute    | 💻   |
-| Data       | 💾   |
-| Networking | 🌐   |
-| Security   | 🔐   |
-| Monitoring | 📊   |
-| Identity   | 👤   |
-| Storage    | 📦   |
+Use plain headings, prose and navigation without decorative emoji. Write status
+as words such as `complete`, `pending`, `warning` or `failed`, and name resource
+categories in text. Preserve functional time/difficulty badges, Markdown
+checkboxes, alert callouts and meaningful architecture/service images.
 
 ---
 

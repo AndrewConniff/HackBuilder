@@ -40,7 +40,7 @@ authentication or target details are missing; never infer a decision from
 > [!CAUTION]
 > **MANDATORY DEPLOYMENT POLICY**
 >
-> 1. **Respect scope and gates**: Follow the Hack Builder workflow contract.
+> 1. **Respect scope and gates**: Follow the ABC Builder workflow contract.
 >    Attempt `azd up` only for the authorized reference or event scope after
 >    authentication, policy, preflight and user-confirmation gates pass.
 >    Tooling blockers (missing CLI, extension errors, auth issues) must be resolved

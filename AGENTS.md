@@ -1,4 +1,4 @@
-# Hack Builder repository conventions
+# ABC Builder repository conventions
 
 ## Purpose
 
@@ -20,6 +20,9 @@ generated scenarios as authorization to bypass approval.
 
 ## Layout and changes
 
+- ABC Builder is the product name. Preserve `az-01-conductor`, `HackCreator Agent`,
+  canonical skill folder identifiers, executable script names and environment
+  variables as compatibility APIs; branding does not rename them.
 - Canonical agents and skills live under `.github/`.
 - Former procedural agent bodies are preserved as historical skill references,
   not discoverable agents or executable handoff rules.
@@ -37,7 +40,7 @@ generated scenarios as authorization to bypass approval.
 ## Local portal contract
 
 The lightweight LOCAL web portal collects prompt, validated project slug,
-industry, selected services and Well-Architected Framework priorities. Its local
+industry, `businessUnits`, selected services and Well-Architected Framework priorities. Its local
 authenticated backend launches actual Copilot CLI jobs, not simulated results.
 It uses stable agent names `az-01-conductor` and `HackCreator Agent`.
 
@@ -64,6 +67,24 @@ Industry intake uses repository `microsoft_industry_verticals.csv`. Skillable
 currently supports six industry slugs; unsupported industries block composition
 pending an explicit support-extension or revised/reapproved scenario decision.
 Never silently map unsupported industries.
+
+## Business scope and reuse
+
+Use the [workflow scope and catalog contract](.github/skills/hack-builder-workflow/SKILL.md)
+for business-unit IDs, Generic exclusivity, manifest metadata and adaptation rules.
+Carry the selected scope through personas, story, application/data, acceptance
+tests and post-approval learner/coach materials. Generic means a typical industry
+workflow without unit targeting, not a selection of every unit.
+
+Catalog discovery reads `generated-scenarios\*\scenario-manifest.json` only.
+Workers maintain curated metadata through `scripts\scenario_catalog.py refresh`
+with `--metadata`; inferred manifests remain visibly `needs-review`.
+Reuse architecture as read-only guidance, never deployment state, secrets,
+scopes, approvals, packages or runtime success. Adaptations require fresh design,
+technical evidence, validation and approval. Discovery and source selection grant no consent.
+
+Use crisp, plain-text documentation headings and navigation. No decorative emoji
+in prose; preserve functional badges, Markdown checkboxes and alert callouts.
 
 ## Validation
 

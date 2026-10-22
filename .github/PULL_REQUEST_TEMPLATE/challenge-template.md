@@ -7,24 +7,26 @@ is fixed. Omit nothing; if a section is thin, tighten the wording instead.
 > Apply the frontmatter and complete page contract from
 > `.github/skills/skillable-lod-authoring/assets/challenge-page.template.md`.
 > This file preserves the Foundry challenge content pattern only.
+> Use plain headings, prose and navigation; preserve functional badges,
+> checkboxes and alert callouts. Keep the approved industry/business-unit scope.
 
 ---
 
 ## A. Hack landing page — `README.md`
 
 ```markdown
-# 🏟️ <Hack Name>
+# <Hack Name>
 
 **Build an Azure AI Foundry agent that <one-line outcome>.**
 
 > ⏱️ **3 hours** · 5 challenges · Microsoft Foundry · All skill levels
 
-## 💡 The scenario
+## The scenario
 
 <2–3 sentences. Who the customer is, what hurts today, what the agent must do.
 This scenario is identical in every challenge file.>
 
-## ⏱️ Schedule
+## Schedule
 
 | Block | Time | What you're doing |
 |---|---|---|
@@ -37,7 +39,7 @@ This scenario is identical in every challenge file.>
 | Wrap-up | 20 min | Demos and judging |
 | **Total** | **180 min** | |
 
-## 🎒 Prerequisites
+## Prerequisites
 
 | Requirement | Details | Applies to |
 |---|---|---|
@@ -47,13 +49,13 @@ This scenario is identical in every challenge file.>
 | Python 3.10+ | For the Foundry SDK | Code-first |
 | Azure CLI | `az login` for auth | Code-first |
 
-## ⚠️ Security & confidentiality
+## Security & confidentiality
 
 - No keys, secrets, connection strings, or subscription IDs in any repo or slide
 - No customer data or PII — use synthetic data
 - Authenticate with Managed Identity or `DefaultAzureCredential`
 
-## 🎯 Challenges
+## Challenges
 
 | # | Challenge | Time | You'll finish with |
 |---|---|---|---|
@@ -63,7 +65,7 @@ This scenario is identical in every challenge file.>
 | 3 | [Give It Tools](Instructions/<industry-slug>/04-give-it-tools.md) | 35 min | Authenticated action |
 | 4 | [Harden & Demo](Instructions/<industry-slug>/05-harden-and-demo.md) | 30 min | Evaluation and demo |
 
-## 🧱 Build progression
+## Build progression
 
 | Stage | Add only | Preserve from earlier stages |
 |---|---|---|
@@ -73,7 +75,7 @@ This scenario is identical in every challenge file.>
 | Action-enabled | One tool using identity or a managed connection | MVP and grounding behavior |
 | Hardened | Evals, tracing, least privilege, and negative tests | Every earlier success check |
 
-## 🏆 Judging
+## Judging
 
 | Criterion | Weight |
 |---|---|
@@ -83,7 +85,7 @@ This scenario is identical in every challenge file.>
 | Experience & presentation | 15% |
 | Technical implementation | 15% |
 
-## 📚 Resources
+## Resources
 
 See [resources.md](resources.md).
 ```
@@ -93,22 +95,22 @@ See [resources.md](resources.md).
 ## B. Per-challenge file — `Instructions/<industry-slug>/NN-<slug>.md`
 
 ````markdown
-# 🧠 Challenge 02 — Ground Your Agent
+# Challenge 02 — Ground Your Agent
 
 > ⏱️ **35 minutes** · Challenge 2 of 5 · Difficulty: ●●○ · Path: Low-code + Code-first
 
 **By the end of this challenge your agent will answer <scenario question> using
 your own documents, and show where the answer came from.**
 
-## 🎯 Goal
+## Goal
 
 <One sentence. The observable outcome, not the activity.>
 
-## 💡 Why this matters
+## Why this matters
 
 <2 sentences max. The real-world reason grounding beats a bigger prompt.>
 
-## 🧱 Build on what works
+## Build on what works
 
 **Starting checkpoint:** <The observable result learners already have.>
 
@@ -116,7 +118,7 @@ your own documents, and show where the answer came from.**
 
 **Keep working:** <The earlier success check that must still pass.>
 
-## 🧭 Choose your path
+## Choose your path
 
 **Path A — Foundry portal (low-code)**
 
@@ -140,24 +142,24 @@ your own documents, and show where the answer came from.**
 > [!TIP]
 > <One shortcut that saves 5+ minutes. Max 2 callouts per file.>
 
-## ✅ Done when
+## Done when
 
 - [ ] <Observable, checkable in under 60 seconds>
 - [ ] <Observable>
 - [ ] <Observable — include one negative test, e.g. graceful "I don't know">
 - [ ] <Regression check proving the previous challenge still works>
 
-## 💬 Stuck?
+## Stuck?
 
 <details><summary>Hint 1 — nudge</summary><...></details>
 <details><summary>Hint 2 — narrower</summary><...></details>
 <details><summary>Hint 3 — the answer</summary><...></details>
 
-## 🌟 Stretch goal
+## Stretch goal
 
 <One optional add-on for fast teams. Must not be a prerequisite for Challenge 3.>
 
-## 🔁 Fallback
+## Fallback
 
 <If this challenge fails, what the team does so Challenge 3 still works.
 Every challenge needs this — no team gets stranded.>
@@ -172,6 +174,7 @@ Every challenge needs this — no team gets stranded.>
 | Hack name | From the user's input topic; 2–4 words, arena-flavored |
 | Scenario | Derived from the input; never swapped between challenges |
 | Industry/brand specifics | From the input only — never invented |
+| Business units and personas | Approved scope; Generic is an industry workflow without unit targeting |
 | Data source | From the input; if absent, use the synthetic-data fallback |
 | Model names | Only models confirmed available in Foundry; else `[verify model availability]` |
 | Links | Only approved domains (see style guide §11) |

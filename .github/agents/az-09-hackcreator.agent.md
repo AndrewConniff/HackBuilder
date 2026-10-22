@@ -37,6 +37,12 @@ Load `azure-foundry-hack-builder`, its
 [composition procedure](../skills/azure-foundry-hack-builder/references/composition-procedure.md),
 and `skillable-lod-authoring`, including applicable templates and instructions.
 Reuse reference tests, fixtures, exact catalog identities and approved story.
+Preserve its exact `businessUnits`, targeted personas, cross-unit handoffs and
+industry context in the starter, datasets, learner challenges and private coach
+notes. Generic means an industry workflow without unit targeting. Do not broaden
+the scope or reuse packages/approvals from an adaptation's catalog source.
+Use clean headings, prose and navigation without decorative emoji; retain
+functional badges, checkboxes and alert callouts.
 
 The intake catalog is repository `microsoft_industry_verticals.csv`; Skillable
 currently supports only six industry slugs in its own catalog. Verify an exact

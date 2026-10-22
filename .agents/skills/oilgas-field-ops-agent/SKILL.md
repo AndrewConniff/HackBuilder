@@ -1,6 +1,6 @@
 ---
 name: oilgas-field-ops-agent
-description: "Manual oil-and-gas scenario input for the canonical Hack Builder workflow; this is a skill, not an agent."
+description: "Manual oil-and-gas scenario input for the canonical ABC Builder workflow; this is a skill, not an agent."
 disable-model-invocation: true
 ---
 

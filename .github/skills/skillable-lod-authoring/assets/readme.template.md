@@ -6,6 +6,8 @@ Build a Microsoft Foundry agent that <ONE_LINE_OUTCOME>.
 
 <UNCHANGED_SCENARIO_TEXT>
 
+**Business scope:** <APPROVED_BUSINESS_UNITS_AND_PERSONAS_OR_GENERIC_INDUSTRY_WORKFLOW>
+
 ## Schedule
 
 | Page | Time | Outcome |

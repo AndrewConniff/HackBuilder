@@ -3,25 +3,25 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hack Builder · Scenario studio</title>
+    <title>ABC Builder · Scenario studio</title>
+    <script src="/app.js"></script>
     <link rel="stylesheet" href="/styles.css" />
-    <script src="/app.js" defer></script>
   </head>
   <body>
     <aside class="sidebar">
       <a class="brand" href="/"
-        ><span class="brand-mark">H</span
-        ><span>hack builder<small>SCENARIO STUDIO</small></span></a
+        ><span class="brand-mark">ABC</span
+        ><span>ABC Builder<small>SCENARIO STUDIO</small></span></a
       >
       <p class="nav-label">YOUR WORKFLOW</p>
       <nav aria-label="Workflow">
         <a id="nav-shape" class="nav-item active" href="#intake"
-          ><span aria-hidden="true">&#128161;</span>Shape the scenario</a
+          ><span aria-hidden="true">1</span>Shape the scenario</a
         >
         <a id="nav-build" class="nav-item" href="#workspace"
-          ><span aria-hidden="true">&#128736;</span>Build &amp; validate</a
+          ><span aria-hidden="true">2</span>Build &amp; validate</a
         >
-        <a id="nav-hack" class="nav-item" href="#review"><span aria-hidden="true">&#127919;</span>Compose the hack</a>
+        <a id="nav-hack" class="nav-item" href="#review"><span aria-hidden="true">3</span>Compose the hack</a>
       </nav>
       <div class="sidebar-note">
         <span class="dot"></span> LOCAL WORKSPACE
@@ -40,8 +40,16 @@
     <main>
       <header class="topbar">
         <span>Workspace / <strong id="page-stage">Shape the scenario</strong></span
-        ><span id="connection" class="badge">Connecting</span>
+        >
+        <div class="topbar-actions">
+          <span id="connection" class="badge" role="status">Connecting</span>
+          <button id="theme-toggle" class="theme-toggle" type="button" role="switch" aria-checked="false">
+            <span class="theme-toggle-track" aria-hidden="true"></span>
+            Dark mode
+          </button>
+        </div>
       </header>
+      <p id="theme-notice" class="theme-notice" role="status" hidden></p>
       <section class="hero" id="intake">
         <p class="eyebrow">FROM AN IDEA TO A WORKING SCENARIO</p>
         <h1>
@@ -59,9 +67,22 @@
         </div>
       </section>
       <div id="error" role="alert" hidden></div>
-      <form id="scenario-form">
+      <form id="scenario-form" novalidate>
         <div class="layout">
           <div class="form-sections">
+            <section class="panel">
+              <h2>Reuse a scenario <span class="optional-label">Optional</span></h2>
+              <p>Start fresh or adapt an existing architecture to a new industry and business workflow.</p>
+              <label for="reuse-scenario">Local scenario catalog</label>
+              <select id="reuse-scenario">
+                <option value="">Start a new scenario</option>
+              </select>
+              <button id="refresh-catalog" class="text-button" type="button">Refresh catalog</button>
+              <p id="reuse-description" class="subtle">
+                Reuse creates a new reference. Deployment state, approvals and credentials are never inherited.
+              </p>
+              <p id="catalog-errors" role="status" class="subtle"></p>
+            </section>
             <section class="panel">
               <div class="section-heading">
                 <span class="section-number">01</span>
@@ -76,45 +97,70 @@
                 name="prompt"
                 maxlength="6000"
                 rows="5"
+                aria-describedby="prompt-help prompt-error"
                 placeholder="A finance team needs a Foundry agent that explains risk exposure using Cosmos DB data, with strong identity controls and auditable answers…"
               ></textarea>
+              <p id="prompt-help" class="subtle">
+                Optional when you select Azure building blocks. Maximum 6,000 characters.
+              </p>
+              <p id="prompt-error" class="field-error" hidden></p>
               <div class="field-row">
                 <div>
-                  <label for="project">Project name</label>
+                  <label for="project">Project name <span class="required-label">Required</span></label>
                   <input
                     id="project"
                     name="project"
                     required
                     pattern="[a-z0-9]+(-[a-z0-9]+)*"
                     maxlength="40"
+                    aria-describedby="project-help project-error"
                     placeholder="finance-risk-agent"
                   />
-                  <small
-                    >Lowercase and hyphens. Used for the scenario
-                    workspace.</small
-                  >
+                  <small id="project-help">
+                    Use lowercase letters, numbers and single hyphens, up to 40 characters.
+                    For example: energy-operations.
+                  </small>
+                  <p id="project-error" class="field-error" hidden></p>
                 </div>
                 <button class="text-button" id="example" type="button">
                   Try the finance example ↗
                 </button>
+              </div>
+              <div id="project-conflict" class="project-conflict" hidden>
+                <p id="project-conflict-message" role="status"></p>
+                <div class="project-conflict-actions">
+                  <button id="open-existing" class="secondary" type="button">Open existing project</button>
+                  <button id="new-project-name" class="secondary" type="button">Use a new name</button>
+                </div>
               </div>
             </section>
             <section class="panel">
               <div class="section-heading">
                 <span class="section-number">02</span>
                 <div>
-                  <h2>Pick an industry</h2>
-                  <p>
+                  <h2>Pick an industry <span class="required-label">Required</span></h2>
+                  <p id="industry-help">
                     One industry. A scenario grounded in its real business
                     context.
                   </p>
                 </div>
                 <span class="tag">SINGLE SELECT</span>
               </div>
-              <fieldset>
+              <fieldset id="industry-field" aria-describedby="industry-help industry-error">
                 <legend class="sr-only">Industry</legend>
                 <div id="industries" class="industry-grid"></div>
               </fieldset>
+              <p id="industry-error" class="field-error" hidden></p>
+              <fieldset id="businessUnits-field" class="domain-fieldset"
+                aria-describedby="businessUnits-help businessUnits-error">
+                <legend>Business units <span class="required-label">Required</span></legend>
+                <p id="businessUnits-help" class="subtle">
+                  Select one or more units to tailor the workflow and sample data.
+                  Generic covers a typical industry workflow without targeting a specific unit.
+                </p>
+                <div id="businessUnits" class="domain-grid"></div>
+              </fieldset>
+              <p id="businessUnits-error" class="field-error" hidden></p>
             </section>
             <section class="panel">
               <div class="section-heading">
@@ -140,7 +186,7 @@
               <div class="section-heading">
                 <span class="section-number">04</span>
                 <div>
-                  <h2>What matters technically?</h2>
+                  <h2>What matters technically? <span class="optional-label">Optional</span></h2>
                   <p>
                     Prioritize the five Well-Architected pillars and specific
                     technical domains.
@@ -163,10 +209,16 @@
           </div>
           <aside class="summary panel">
             <span class="eyebrow">YOUR SCENARIO BRIEF</span>
-            <h2>Ready for the orchestrator</h2>
+            <h2>Your scenario summary</h2>
             <dl>
+              <dt>Project name</dt>
+              <dd id="summary-project">Enter a project name</dd>
               <dt>Industry</dt>
               <dd id="summary-industry">Choose one industry</dd>
+              <dt>Business units</dt>
+              <dd id="summary-business-units">Generic</dd>
+              <dt>Architecture source</dt>
+              <dd id="summary-source">New scenario</dd>
               <dt>Azure services</dt>
               <dd id="summary-services">Microsoft Foundry</dd>
               <dt>Technical priorities</dt>
@@ -180,19 +232,29 @@
                 stays locked until you test and approve.
               </p>
             </div>
+            <section class="intake-readiness" aria-labelledby="readiness-title">
+              <h3 id="readiness-title">Before you build</h3>
+              <p id="launch-status" role="status" aria-live="polite" aria-atomic="true">
+                Checking scenario requirements.
+              </p>
+              <ul id="launch-blockers"></ul>
+            </section>
             <label class="consent"
-              ><input type="checkbox" id="tool-consent" /><span
+              ><input type="checkbox" id="tool-consent" required
+                aria-describedby="consent-help consent-error" /><span
                 >I authorize local Copilot tool execution to implement this
                 scenario.</span
               ></label
             >
-            <p class="fine-print">
+            <p id="consent-error" class="field-error" hidden></p>
+            <p id="consent-help" class="fine-print">
               Copilot can modify files and run commands as your local user. This
               is not a sandbox. Azure mutations, event rollout and publishing
               are not authorized by this initial request. Sign in first with
               <code>copilot login</code>.
             </p>
-            <button id="launch" type="submit" class="primary">
+            <button id="launch" type="submit" class="primary" disabled
+              aria-describedby="launch-status launch-blockers">
               Build my scenario <span>↗</span>
             </button>
             <button id="preview" type="button" class="secondary">
@@ -345,7 +407,7 @@
         </section>
       </section>
       <footer>
-        Hack Builder / local scenario studio
+        ABC Builder / local scenario studio
         <span>Working scenarios before learning experiences.</span>
       </footer>
     </main>

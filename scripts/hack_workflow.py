@@ -39,6 +39,7 @@ EXCLUDED_DIRECTORIES = {
     "node_modules",
 }
 EXCLUDED_ROOT_FILES = {
+    "scenario-manifest.json",
     STATE_FILE,
     "README.md",
     "08-hack-package-contract.md",

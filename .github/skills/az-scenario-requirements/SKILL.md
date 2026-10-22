@@ -1,7 +1,7 @@
 ---
 name: az-scenario-requirements
 description: >
-  Use when defining a Foundry scenario story, industry, business requirements,
+  Use when defining a Foundry scenario story, industry, business-unit scope, business requirements,
   selected services, WAF priorities, acceptance criteria or target/region evidence.
   The scenario orchestrator performs this procedure directly without delegation.
 ---
@@ -14,6 +14,14 @@ description: >
 1. Validate the intake industry against repository `microsoft_industry_verticals.csv`.
    Record its exact value. Flag Skillable's separate six-slug limitation for later
    composition; do not substitute another industry.
+1. Read `businessUnits` using the workflow's exact stable IDs. Generic is exclusive
+   and means a typical industry workflow without unit targeting. Record the IDs,
+   selected personas, ownership, cross-unit handoffs and out-of-scope work.
+   A missing legacy value has a visible Generic fallback, not invented unit targeting.
+1. If adapting a catalog source, read its architecture without modifying it.
+   Record `{scenarioId, manifestDigest}` provenance, then redefine requirements,
+   app/data and acceptance for the target industry and units. Never inherit source
+   deployment state, secrets, scopes, approvals, packages or runtime success.
 1. Apply the consolidated skill's company/person CSV provenance rules.
 1. Read current Foundry and research-first instructions. Research only unresolved
    technical decisions using official documentation. Confirm Azure targets before
@@ -26,6 +34,11 @@ description: >
    authorized subscription checks.
 1. Persist `01-requirements.md`, evidence, assumptions and decisions required.
    Do not produce a hack plan or claim deployment readiness without live evidence.
+1. Maintain `scenario-manifest.json` through
+   `python scripts\scenario_catalog.py refresh generated-scenarios\<slug> --metadata reviewed-metadata.json`.
+   Complete title, summary, industry, businessUnits, services, pillars, domains,
+   reference-only artifact paths and source provenance. Initial inferred entries
+   remain visibly `needs-review` until curated. Discovery itself is read-only.
 
 The [preserved requirements source](./references/historical-validation.md)
 contains detailed business-question and validation patterns. It is historical:

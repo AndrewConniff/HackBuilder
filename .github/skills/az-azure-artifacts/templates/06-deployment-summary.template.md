@@ -1,12 +1,12 @@
-# 🚀 Step 5: Deployment Summary - {project-name}
+# Step 5: Deployment Summary - {project-name}
 
-📑 Deployment Summary Contents
+Deployment Summary Contents
 
-- [📋 Deployment Details](#-deployment-details)
-- [🏗️ Deployed Resources](#-deployed-resources)
-- [📤 Outputs (Expected)](#-outputs-expected)
+- [Deployment Details](#deployment-details)
+- [Deployed Resources](#deployed-resources)
+- [Outputs (Expected)](#outputs-expected)
 
-## 📋 Deployment Details
+## Deployment Details
 
 | Property              | Value                                                   |
 | --------------------- | ------------------------------------------------------- |
@@ -18,7 +18,7 @@
 | **Region**            | `{location}`                                            |
 | **Environment**       | `{environment}`                                         |
 | **Deployment Method** | `azd up`                                                |
-| **Status**            | ✅ Succeeded / ⚠️ Partial / ❌ Failed / 🔍 Dry Run Only |
+| **Status**            | Succeeded / Partial / Failed / Dry Run Only |
 
 ### What-If Summary
 
@@ -29,20 +29,20 @@
 | Delete      | {count} |
 | No Change   | {count} |
 
-## 🏗️ Deployed Resources
+## Deployed Resources
 
 | Resource Name     | Type              | SKU/Tier | Provisioning State |
 | ----------------- | ----------------- | -------- | ------------------ |
-| `{resource-name}` | `{resource-type}` | `{sku}`  | ✅ Succeeded       |
+| `{resource-name}` | `{resource-type}` | `{sku}`  | {observed state} |
 
 ### Resource Health Checks
 
 | Resource          | Check              | Status  |
 | ----------------- | ------------------ | ------- |
-| `{resource-name}` | Provisioning state | ✅ PASS |
-| `{resource-name}` | Endpoint reachable | ✅ PASS |
+| `{resource-name}` | Provisioning state | {observed result} |
+| `{resource-name}` | Endpoint reachable | {observed result} |
 
-## 📤 Outputs (Expected)
+## Outputs (Expected)
 
 | Output Name     | Value            | Description     |
 | --------------- | ---------------- | --------------- |

@@ -9,12 +9,14 @@ import io
 import json
 import os
 import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import Mock, patch
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / "scripts"))
 SPEC = importlib.util.spec_from_file_location("start_portal", ROOT / "scripts" / "start_portal.py")
 assert SPEC is not None and SPEC.loader is not None
 launcher = importlib.util.module_from_spec(SPEC)
@@ -39,7 +41,7 @@ class PortalStartupTests(unittest.TestCase):
 
     def test_vscode_task_uses_existing_helper_without_shell_or_auto_execution(self) -> None:
         tasks = json.loads((ROOT / ".vscode" / "tasks.json").read_text(encoding="utf-8"))["tasks"]
-        task = next(item for item in tasks if item["label"] == "Hack Builder: Open Portal")
+        task = next(item for item in tasks if item["label"] == "ABC Builder: Open Portal")
         self.assertEqual("process", task["type"])
         self.assertEqual("python", task["command"])
         self.assertEqual(["${workspaceFolder}\\scripts\\start_portal.py"], task["args"])
@@ -51,12 +53,12 @@ class PortalStartupTests(unittest.TestCase):
             with self.subTest(code=code), tempfile.TemporaryDirectory(prefix="portal launcher ") as temp:
                 root = Path(temp)
                 (root / "scripts").mkdir()
-                (root / "Start-HackBuilder.cmd").write_bytes((ROOT / "Start-HackBuilder.cmd").read_bytes())
+                (root / "Start-ABCBuilder.cmd").write_bytes((ROOT / "Start-ABCBuilder.cmd").read_bytes())
                 (root / "scripts" / "start_portal.py").write_text(
                     f"print('launcher-helper-ok'); raise SystemExit({code})\n", encoding="utf-8",
                 )
                 result = subprocess.run(
-                    [os.environ["ComSpec"], "/d", "/c", str(root / "Start-HackBuilder.cmd")],
+                    [os.environ["ComSpec"], "/d", "/c", str(root / "Start-ABCBuilder.cmd")],
                     cwd=ROOT.parent, input="\n", capture_output=True, text=True, timeout=15, check=False,
                 )
                 self.assertEqual(code, result.returncode, result.stdout + result.stderr)
@@ -68,13 +70,62 @@ class PortalStartupTests(unittest.TestCase):
         response = client.getresponse.return_value
         response.status = 200
         response.read.return_value = json.dumps({"status": "ok", "workspace": str(ROOT)}).encode()
+        version_response = Mock(status=200)
+        version_response.read.return_value = json.dumps({"workflowVersion": launcher.WORKFLOW_VERSION}).encode()
+        client.getresponse.side_effect = [response, version_response]
         with patch.object(launcher.http.client, "HTTPConnection", return_value=client) as connection:
             self.assertEqual(self.config, launcher.running_portal())
         connection.assert_called_once_with("127.0.0.1", 8765, timeout=1)
-        client.request.assert_called_once_with(
+        client.request.assert_any_call(
             "GET", "/api/health", headers={"Authorization": "Bearer test-local-token"}
         )
         client.close.assert_called_once()
+
+    def test_incompatible_backend_is_not_reused_replaced_or_opened(self) -> None:
+        self.write_connection()
+        for catalog in ({}, {"workflowVersion": 1}, {"workflowVersion": "2"}, [], {"workflowVersion": True}):
+            with self.subTest(catalog=catalog):
+                health = Mock(status=200)
+                health.read.return_value = json.dumps({"status": "ok", "workspace": str(ROOT)}).encode()
+                version = Mock(status=200)
+                version.read.return_value = json.dumps(catalog).encode()
+                client = Mock()
+                client.getresponse.side_effect = [health, version]
+                error = io.StringIO()
+                with (
+                    patch.dict(os.environ, {"ABCBUILDER_PORTAL_JOB": "0", "HACKBUILDER_PORTAL_JOB": "0"}),
+                    patch("sys.argv", ["start_portal.py"]),
+                    patch.object(launcher.http.client, "HTTPConnection", return_value=client),
+                    patch.object(launcher.subprocess, "Popen") as spawn,
+                    patch.object(launcher.webbrowser, "open") as browser,
+                    contextlib.redirect_stderr(error),
+                ):
+                    self.assertEqual(1, launcher.main())
+                spawn.assert_not_called()
+                browser.assert_not_called()
+                self.assertIn("outdated portal server", error.getvalue())
+                self.assertIn("PID 123", error.getvalue())
+                self.assertNotIn(self.config["token"], error.getvalue())
+                client.close.assert_called_once()
+
+    def test_version_failure_after_health_never_starts_duplicate_server(self) -> None:
+        self.write_connection()
+        for status, body, exception in ((500, {}, None), (200, {}, TimeoutError())):
+            health = Mock(status=200)
+            health.read.return_value = json.dumps({"status": "ok", "workspace": str(ROOT)}).encode()
+            version = Mock(status=status)
+            version.read.return_value = json.dumps(body).encode()
+            client = Mock()
+            client.getresponse.side_effect = [health, exception or version]
+            with (
+                self.subTest(status=status, exception=exception),
+                patch.object(launcher.http.client, "HTTPConnection", return_value=client),
+                patch.object(launcher.subprocess, "Popen") as spawn,
+                self.assertRaises((ValueError, RuntimeError)),
+            ):
+                launcher.ensure_portal()
+            spawn.assert_not_called()
+            client.close.assert_called_once()
 
     def test_stale_connection_allows_restart(self) -> None:
         self.write_connection()

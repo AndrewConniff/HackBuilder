@@ -1,31 +1,34 @@
-# 🏛️ Step 2: Architecture Assessment - {project-name}
+# Step 2: Architecture Assessment - {project-name}
 
-📑 Assessment Contents
+Assessment Contents
 
-- [✅ Requirements Validation](#-requirements-validation)
-- [💎 Executive Summary](#-executive-summary)
-- [📦 Resource SKU Recommendations](#-resource-sku-recommendations)
-- [🎯 Architecture Decision Summary](#-architecture-decision-summary)
-- [🚀 Implementation Handoff](#-implementation-handoff)
-- [🔒 Execution Handoff](#-execution-handoff)
-- [References](#references)
+- [Requirements Validation](#requirements-validation)
+- [Resource SKU Recommendations](#resource-sku-recommendations)
+- [Architecture Decision Summary](#architecture-decision-summary)
+- [Implementation Handoff](#implementation-handoff)
 
 ---
+
+## Requirements Validation
+
+| Scope | Design response | Acceptance evidence |
+| --- | --- | --- |
+| {industry and exact businessUnits} | {personas, app/data and handoffs} | {tests} |
 
 ### Recommended Architecture
 
 ```mermaid
 flowchart TB
-    User["\U0001F464 Users"] --> FD["\U0001F6E1\uFE0F Front Door / CDN"]
-    FD --> App["\U0001F4BB App Service"]
-    App --> DB[("\U0001F5C4\uFE0F Database")]
-    App --> KV["\U0001F511 Key Vault"]
-    App --> Storage["\U0001F4E6 Storage"]
-    App --> Monitor["\U0001F4CA Monitor"]
+    User["Users"] --> FD["Front Door / CDN"]
+    FD --> App["App Service"]
+    App --> DB[("Database")]
+    App --> KV["Key Vault"]
+    App --> Storage["Storage"]
+    App --> Monitor["Monitor"]
 
     subgraph Security
         KV
-        NSG["\U0001F6E1\uFE0F NSG"]
+        NSG["NSG"]
     end
 
     subgraph Data
@@ -38,7 +41,7 @@ flowchart TB
 
 ---
 
-## 📦 Resource SKU Recommendations
+## Resource SKU Recommendations
 
 | Service   | Recommended SKU | Configuration |
 | --------- | --------------- | ------------- |
@@ -46,7 +49,7 @@ flowchart TB
 
 ---
 
-## 🎯 Architecture Decision Summary
+## Architecture Decision Summary
 
 | Decision   | Choice | Rationale |
 | ---------- | ------ | --------- |
@@ -55,7 +58,7 @@ flowchart TB
 
 ---
 
-## 🚀 Implementation Handoff
+## Implementation Handoff
 
 ### Ready for bicep-plan
 

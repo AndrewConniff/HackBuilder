@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "scenarios": [
+    {
+      "schemaVersion": 1,
+      "id": "dummy-sample",
+      "title": "Dummy sample",
+      "summary": "Locally discovered reference. Review its architecture and metadata before adapting. Source industry cell requires explicit classification review: Education; proposed focus: Higher Education",
+      "industry": null,
+      "businessUnits": [
+        "generic"
+      ],
+      "services": [],
+      "pillars": [
+        "cost-optimization",
+        "operational-excellence"
+      ],
+      "domains": [
+        "observability"
+      ],
+      "artifacts": [
+        "01-requirements.md",
+        "02-architecture-assessment.md"
+      ],
+      "source": null,
+      "metadataStatus": "needs-review",
+      "manifestDigest": "6453546489eb688bbdd9520213b952b725d0083657757e2eff962d2cc470233a"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "finance-security-hack",
+      "title": "Finance security hack",
+      "summary": "Locally discovered reference. Review its architecture and metadata before adapting.",
+      "industry": "Financial Services",
+      "businessUnits": [
+        "generic"
+      ],
+      "services": [
+        "foundry",
+        "container-apps",
+        "key-vault",
+        "managed-identity",
+        "api-management"
+      ],
+      "pillars": [
+        "security",
+        "operational-excellence"
+      ],
+      "domains": [
+        "identity"
+      ],
+      "artifacts": [
+        "01-requirements.md",
+        "02-architecture-assessment.md",
+        "04-implementation-plan.md",
+        "03-architect-diagram.png",
+        "04-runtime-diagram.png",
+        "azure.yaml",
+        "infra",
+        "src"
+      ],
+      "source": null,
+      "metadataStatus": "needs-review",
+      "manifestDigest": "3e6437c1690758e70518e99e49923861949090739dd3dec0683856ee1585a831"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "hospitality-feedback",
+      "title": "Hospitality feedback",
+      "summary": "Locally discovered reference. Review its architecture and metadata before adapting.",
+      "industry": "Hospitality & Travel",
+      "businessUnits": [
+        "generic"
+      ],
+      "services": [],
+      "pillars": [],
+      "domains": [],
+      "artifacts": [
+        "01-requirements.md",
+        "02-architecture-assessment.md",
+        "04-implementation-plan.md",
+        "03-architect-diagram.png",
+        "04-runtime-diagram.png",
+        "azure.yaml",
+        "infra",
+        "src"
+      ],
+      "source": null,
+      "metadataStatus": "needs-review",
+      "manifestDigest": "a43a623be9804de8ef2678509af3bc6d2440b59bebca6c60c1360004f9ccaad9"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "manu-multi-agent",
+      "title": "Manufacturing Sales-to-Marketing multi-agent handoff",
+      "summary": "Private keyless Foundry reference design for Adventure Works Cycles: Sales Fit, Marketing Claims and Handoff Coordinator turn synthetic mobility opportunities into cited, human-reviewed campaign drafts. Design only; implementation awaits confirmation.",
+      "industry": "Manufacturing & Mobility",
+      "businessUnits": [
+        "sales",
+        "marketing"
+      ],
+      "services": [
+        "foundry",
+        "container-apps",
+        "key-vault",
+        "managed-identity",
+        "api-management"
+      ],
+      "pillars": [
+        "operational-excellence"
+      ],
+      "domains": [],
+      "artifacts": [
+        "01-requirements.md",
+        "02-architecture-assessment.md"
+      ],
+      "source": {
+        "scenarioId": "finance-security-hack",
+        "manifestDigest": "3e6437c1690758e70518e99e49923861949090739dd3dec0683856ee1585a831"
+      },
+      "metadataStatus": "curated",
+      "manifestDigest": "920a4fbde08fb08e870ca0230999a62866df0e62af57af69bf247a48d547b249"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "retail-foundry-copilot",
+      "title": "Retail foundry copilot",
+      "summary": "Locally discovered reference. Review its architecture and metadata before adapting. Source industry cell requires explicit classification review: Retail",
+      "industry": null,
+      "businessUnits": [
+        "generic"
+      ],
+      "services": [],
+      "pillars": [],
+      "domains": [],
+      "artifacts": [
+        "01-requirements.md",
+        "02-architecture-assessment.md",
+        "04-implementation-plan.md",
+        "03-architect-diagram.png"
+      ],
+      "source": null,
+      "metadataStatus": "needs-review",
+      "manifestDigest": "d52e49b51b39dff3c3607875f74c87a2ccf03dc9823aa046c6431238d2fe6ea8"
+    }
+  ]
+}

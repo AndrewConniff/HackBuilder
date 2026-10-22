@@ -1,16 +1,32 @@
-# Local Hack Builder scenario studio
+# Local ABC Builder scenario studio
 
 The intake portal launches real local Copilot CLI jobs, using the current user's
 Copilot authentication. It is not a hosted agent service or an Azure deployment.
 There are no browser-side Azure/GitHub credentials and no new runtime packages.
 
+## Appearance and accessibility
+
+Use the **Dark mode** switch in the upper-right corner to choose light or dark appearance.
+With no saved choice, the portal follows your operating system's color preference, including live changes.
+An explicit choice is remembered locally in your browser and synchronized across portal tabs.
+If browser storage is blocked, the switch still works for the current tab and displays a notice.
+Appearance changes never start jobs, authorize tools or alter scenario state.
+
+The interface uses the supplied Microsoft Neutral / ILT palette: purple `#8661C5`, expanded teal `#389A91`,
+blue `#0078D4`, magenta `#C03BC4`, teal `#49C5B1` and light purple `#C5B4E3`.
+Light mode uses white `#FFFFFF`, warm off-white `#FFF8F3`, black `#000000` and blue-black `#091F2E`.
+Dark mode uses blue-black surfaces and light text. Contrast-safe accent shades are used for small text;
+the exact palette colors remain available for fills, borders and highlights.
+The switch supports keyboard activation, visible focus, an announced on/off state and a 44-pixel touch target.
+Reduced-motion preferences disable smooth scrolling.
+
 ## Run
 
-**Easiest on Windows:** double-click [`Start-HackBuilder.cmd`](../Start-HackBuilder.cmd)
+**Easiest on Windows:** double-click [`Start-ABCBuilder.cmd`](../Start-ABCBuilder.cmd)
 in the repository root. It starts or reuses the local server and opens the authenticated browser page.
 You can create a Windows shortcut to this file for desktop access. Python must be on PATH.
 
-**In VS Code:** select **Terminal > Run Task > Hack Builder: Open Portal**.
+**In VS Code:** select **Terminal > Run Task > ABC Builder: Open Portal**.
 Both launchers reuse the existing startup helper; they do not launch a scenario, deploy resources,
 or grant approval. A stopped web server cannot serve a button to start itself.
 
@@ -43,7 +59,8 @@ the agent reports it and the manual helper remains available.
 The helper verifies the authenticated health endpoint before reusing a server,
 starts a detached local Python process if needed, and opens the private entry
 point in your default browser. Opening the portal does not launch a scenario.
-Portal-launched CLI jobs inherit `HACKBUILDER_PORTAL_JOB=1` and skip startup.
+Portal-launched CLI jobs inherit `ABCBUILDER_PORTAL_JOB=1` and skip startup.
+The legacy `HACKBUILDER_PORTAL_JOB` guard remains supported for existing workers.
 This prevents recursive portal/browser launches. It does not change Azure
 deployment or scenario-approval gates.
 
@@ -54,13 +71,16 @@ the random per-start token and reject foreign origins/hosts.
 Use `--port 8766` if the default port is busy. Stop with Ctrl+C.
 
 After updating backend code, stop the existing portal server and run the helper again, then reload
-the page. A stale backend is detected by the dashboard protocol version; refreshing alone does not
-reload Python modules. Finish/stop active workers before a planned server restart.
+the page. The launcher verifies the backend workflow version before reusing a server.
+If outdated, it reports the server PID and stops without opening the browser, replacing the server
+or interrupting workers. The dashboard also rejects incompatible backends.
+Re-running the launcher or refreshing the page does not restart a running Python server.
+Finish/stop active workers before a planned server restart.
 
 No server is installed as a system service. Automatic startup leaves the local
 process available after the chat turn. Connection details (including the private
-token) are saved in ignored `.hackbuilder-portal/server.json`; never publish it.
-Background diagnostics are in `.hackbuilder-portal/server.log`, without the launch
+token) are saved in ignored `.abcbuilder-portal/server.json`; never publish it.
+Background diagnostics are in `.abcbuilder-portal/server.log`, without the launch
 URL. For a foreground server, use the original command and Ctrl+C to stop.
 To stop a background server on Windows, inspect the PID in `server.json` and
 verify that it belongs to this workspace's `portal_server.py`, then use
@@ -68,6 +88,10 @@ verify that it belongs to this workspace's `portal_server.py`, then use
 reuses a responsive instance; it does not kill another process occupying the port.
 Use a trusted personal/local machine: this version is not designed for multiple
 users, remote hosting or untrusted local accounts.
+
+Existing checkouts reuse `.hackbuilder-portal` if it exists and the new state directory does not.
+This compatibility path preserves running jobs, leases and history; it is not an automatic migration.
+The physical checkout and GitHub repository retain their existing locations.
 
 ## Intake and execution
 
@@ -82,11 +106,30 @@ Release ZIP downloads
 retain public/private labels. Coach solutions and Finale must not be distributed to participants.
 Only allowlisted package Markdown and named release ZIPs are served; arbitrary workspace paths are denied.
 
+The right-hand scenario summary includes a live **Before you build** checklist explaining every disabled-build reason.
+Choose a unique project slug, one industry, at least one business unit (Generic is preselected), and explicit local
+tool execution consent. Field links focus the relevant control without changing selections or granting consent.
+Invalid project names, missing selections and consent errors appear inline after editing or following a checklist link.
+Project names use lowercase letters, numbers and single hyphens, with a maximum of 40 characters.
+Prompts are optional when services are selected; technical priorities and architecture reuse are optional.
+Missing CLI installation, initial catalog/status loading, another running job and a submission in progress are
+shown as execution blockers, not missing fields. Preview/download validate the brief without requiring tool consent.
+Both preview and launch recheck input before sending; duplicate launch submissions are blocked.
+
+The project name identifies a saved workspace; **Reuse a scenario** selects a source architecture, not a project
+to continue. Reusing an architecture still requires a unique target name. If a name already exists, the intake
+offers **Open existing project** (or a read-only file preview) and an explicit suggested new name.
+Opening a project never starts a worker or grants approval. Choosing the suggestion changes only the name,
+preserving the rest of the intake. Saved project records are checked even when no scenario folder exists.
+Launch refreshes the saved-project list; a conflicting request is rejected without overwriting the original.
+If a record has no available run, the portal explains that its saved state remains intact.
+
 For older jobs lacking stage telemetry, a valid approved snapshot labels constituent reference
 artifacts **reviewed**, not pending or newly tested. Runtime and local test outcomes are not invented.
 
 1. Describe a scenario or select Azure building blocks. Choose one industry,
-   optional Well-Architected priorities and technical domains, and a project slug.
+   one or more business units, optional Well-Architected priorities and technical domains, and a project slug.
+   Generic is exclusive: it describes a typical industry workflow without targeting a specific unit.
 1. Preview the generated prompt or download the normalized JSON request.
 1. Explicitly authorize local CLI tool execution and select **Build my scenario**.
 1. Follow the scenario dashboard while the backend completes requirements and architecture.
@@ -160,6 +203,46 @@ health check. A successful CLI exit is not a passed scenario.
   catalog. Unsupported industries require a composition classification decision,
   not a silent substitution.
 
+## Reuse an architecture
+
+The intake catalog reads `generated-scenarios/*/scenario-manifest.json`, including top-level junctions.
+Select a source, choose a **new** project slug, target industry and business units, and review the service choices.
+The source architecture guides a new reference; it is not a deployment clone or an approved hack package.
+The worker adapts the sample app, agent grounding, synthetic data, personas and acceptance cases.
+Current technology evidence, design confirmation, validation and suitability approval are all required again.
+No source files are automatically copied. Credentials, `.azure`, endpoints, deployment scopes,
+approval records, runtime receipts and packages are never adaptation inputs.
+
+Backfill existing folders and export portable metadata into the repository:
+
+```powershell
+python scripts\scenario_catalog.py refresh
+```
+
+Workers refresh their own manifest after material changes; the backend refreshes it when a scenario job exits.
+For reviewed metadata, supply a JSON object with `title`, `summary`, `industry`, `businessUnits`,
+`services`, `pillars`, `domains` and `metadataStatus: "curated"`:
+
+```powershell
+python scripts\scenario_catalog.py refresh generated-scenarios\finance-security-hack --metadata reviewed-metadata.json
+python scripts\scenario_catalog.py index
+```
+
+Automatically initialized manifests are visibly `needs-review`; no deployment success is inferred.
+The schema includes `schemaVersion: 1`, stable slug `id`, those metadata fields,
+allowlisted relative `artifacts`, and `source` (null or `{scenarioId, manifestDigest}`).
+Catalog metadata is excluded from the approval fingerprint; actual source/app/infra edits still invalidate approval.
+The manifest digest prevents silently adapting a different metadata revision than the one selected.
+Manifest metadata must contain no secrets, customer data or deployment identifiers.
+
+[`scenarios/catalog.json`](../scenarios/catalog.json) contains portable metadata only.
+It is distinct from the existing external contribution registry. Entries without local reference files are
+visible but unavailable for reuse. To consolidate later, transfer each reference folder and its manifest into
+the shared location, then expose those folders under `generated-scenarios` and rebuild the index.
+No storage credentials, automatic remote sync, Azure operations or GitHub publication are introduced.
+**Refresh catalog** is read-only; invalid manifests appear as errors instead of silently disappearing.
+Reusing a source never modifies it. New adaptations record their source ID and digest in their own manifest.
+
 ## Local data and recovery
 
 The scenario selector also discovers valid project-slug directories/junctions under
@@ -169,7 +252,7 @@ is not invented; discovery does not create state, approve, run jobs or deploy re
 Portal-managed scenarios take precedence over duplicate disk entries. Refresh discovers new folders.
 
 Requests, input prompts, agent output and run metadata persist under the ignored
-`.hackbuilder-portal/` directory. They may contain local environment information:
+`.abcbuilder-portal/` directory (or the retained legacy directory). They may contain local environment information:
 do not publish them. Recent runs are selectable after restarting the server.
 Runs interrupted by shutdown are explicitly marked interrupted on restart.
 The browser displays only a bounded log tail; full output remains in the run's
@@ -190,7 +273,7 @@ actual endpoints, target details, timestamps and runtime logs. No historical rec
 
 ## Project state and worker reports
 
-Versioned project records live at `.hackbuilder-portal/projects/<projectSlug>.json`, separate
+Versioned project records live at `.abcbuilder-portal/projects/<projectSlug>.json`, separate
 from scenario suitability evidence and individual run logs. Existing legacy runs have no inferred
 progress; resuming creates a project record and asks the worker to reconcile actual evidence.
 Launching a new brief with an existing slug is rejected; use its saved scenario instead.
@@ -200,7 +283,8 @@ Project status and process status are distinct. An exit code of zero without sta
 live acceptance remain pending. Pending decisions survive server restart and are shown until answered.
 The dashboard groups attempts by scenario and follows the latest attempt.
 
-The backend supplies `HACKBUILDER_PROJECT_STATE`, `HACKBUILDER_PROJECT` and `HACKBUILDER_RUN_ID`.
+The backend supplies `ABCBUILDER_PROJECT_STATE`, `ABCBUILDER_PROJECT` and `ABCBUILDER_RUN_ID`.
+Legacy `HACKBUILDER_*` variables remain accepted for running workers.
 Workers read the latest revision and submit one JSON event file per transition:
 
 ```powershell
@@ -213,8 +297,8 @@ Use a distinct owner identifier, the actual project directory and current revisi
 the same explicit arguments when the backend environment variables are absent:
 
 ```powershell
-python scripts\portal_workflow.py read --directory .hackbuilder-portal\projects --project finance-agent
-python scripts\portal_workflow.py claim --directory .hackbuilder-portal\projects `
+python scripts\portal_workflow.py read --directory .abcbuilder-portal\projects --project finance-agent
+python scripts\portal_workflow.py claim --directory .abcbuilder-portal\projects `
   --project finance-agent --owner vscode-repair-1 --revision 12
 ```
 

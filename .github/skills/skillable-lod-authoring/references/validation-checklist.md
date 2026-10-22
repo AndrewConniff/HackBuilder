@@ -23,6 +23,10 @@
 
 - [ ] The five challenge durations total 150 minutes.
 - [ ] Every challenge uses the same scenario.
+- [ ] Industry, `businessUnits`, personas, app/data and learner/coach evidence
+      match the approved scope; Generic has no unit targeting.
+- [ ] Headings, prose and navigation have no decorative emoji; functional
+      badges, Markdown checkboxes and alert callouts are preserved.
 - [ ] Challenge 0 establishes identity, access, and a model request.
 - [ ] Challenge 1 reaches the minimal viable agent.
 - [ ] Challenges 2 and 3 add one capability each.

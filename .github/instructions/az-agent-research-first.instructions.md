@@ -1,5 +1,5 @@
 ---
-description: "Evidence-first implementation with bounded research and reuse across Hack Builder phases"
+description: "Evidence-first implementation with bounded research and reuse across ABC Builder phases"
 applyTo: "**/*.agent.md, **/generated-scenarios/**/*.md, **/.github/skills/**/SKILL.md"
 ---
 

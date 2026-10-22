@@ -114,6 +114,17 @@ class IntakeTests(unittest.TestCase):
             with self.subTest(industry=invalid), self.assertRaises(ValueError):
                 portal.normalize_request({**self.data, "industry": invalid}, self.catalog)
 
+    def test_business_unit_scope_accepts_multiple_units_and_generic_default(self) -> None:
+        self.assertEqual(12, len(self.catalog["businessUnits"]))
+        self.assertEqual(["generic"], portal.normalize_request(self.data, self.catalog)["businessUnits"])
+        result = portal.normalize_request({**self.data, "businessUnits": ["it", "legal"]}, self.catalog)
+        self.assertEqual(["it", "legal"], result["businessUnits"])
+        self.assertIn("Business units: IT, Legal", portal.scenario_prompt(result, self.catalog))
+        self.assertIn("synthetic data", portal.scenario_prompt(result, self.catalog))
+        for invalid in ([], ["generic", "it"], ["it", "it"], ["invented"], "finance", None, [{}]):
+            with self.subTest(invalid=invalid), self.assertRaises(ValueError):
+                portal.normalize_request({**self.data, "businessUnits": invalid}, self.catalog)
+
     def test_invalid_catalog_relationships_and_duplicates_fail(self) -> None:
         variants = [
             {**self.catalog, "schemaVersion": 2},
@@ -216,6 +227,45 @@ class HttpTests(unittest.TestCase):
         self.assertFalse(data["request"]["scenarioApproved"])
         self.assertIsNone(self.server.app.active)
         self.assertEqual([], list(self.server.app.state.glob("*/run.json")))
+
+    def test_catalog_and_adaptation_preview_do_not_clone_or_start_work(self) -> None:
+        root = Path(self.temp.name) / "repository"
+        source = root / "generated-scenarios" / "source-finance"
+        (source / "infra").mkdir(parents=True)
+        (source / "src").mkdir()
+        manifest = portal.scenario_catalog.refresh(source)
+        with patch.object(portal, "ROOT", root):
+            status, data = self.call("GET", "/api/scenarios")
+            self.assertEqual(200, status)
+            self.assertTrue(data["scenarios"][0]["available"])
+            status, data = self.call("POST", "/api/preview", {
+                **self.data, "reuseScenarioId": source.name,
+                "reuseManifestDigest": portal.scenario_catalog.digest(manifest),
+                "businessUnits": ["operations"],
+            })
+            self.assertEqual(200, status)
+            self.assertEqual(["operations"], data["request"]["businessUnits"])
+            self.assertFalse(data["request"]["scenarioApproved"])
+            self.assertIn("Never copy .azure", data["prompt"])
+            self.assertIn("Do not bulk-copy", data["prompt"])
+            self.assertEqual(source.name, data["request"]["reuseSource"]["scenarioId"])
+            self.assertFalse((source.parent / self.data["projectSlug"]).exists())
+            self.assertEqual(403, self.call("GET", "/api/scenarios", token="wrong")[0])
+            invalid = {
+                **self.data, "reuseScenarioId": source.name, "reuseManifestDigest": "0" * 64,
+            }
+            self.assertEqual(400, self.call("POST", "/api/runs", invalid)[0])
+            valid = {**invalid, "reuseManifestDigest": portal.scenario_catalog.digest(manifest)}
+            self.server.app.projects.claim({"projectSlug": source.name}, "source-writer", create=True)
+            status, error = self.call("POST", "/api/preview", valid)
+            self.assertEqual(400, status)
+            self.assertIn("active writer", error["error"])
+            self.server.app.projects.finish(source.name, "source-writer", "cancelled")
+            (source.parent / self.data["projectSlug"]).mkdir()
+            status, error = self.call("POST", "/api/preview", valid)
+            self.assertEqual(400, status)
+            self.assertIn("already exists", error["error"])
+        self.assertIsNone(self.server.app.active)
 
     def test_launch_requires_explicit_consent(self) -> None:
         for consent in (False, None, "true"):
@@ -639,11 +689,48 @@ class HttpTests(unittest.TestCase):
         self.server.app.active = None
 
     def test_duplicate_project_does_not_overwrite_intake(self) -> None:
-        self.create_run()
-        status, value = self.call("POST", "/api/runs", {**self.data, "prompt": "Replace story"})
-        self.assertEqual(400, status)
+        run = self.create_run()
+        before = self.server.app.projects.path("test-agent").read_bytes()
+        with patch.object(self.server.app, "execute") as execute:
+            status, value = self.call("POST", "/api/runs", {**self.data, "prompt": "Replace story"})
+        self.assertEqual(409, status)
         self.assertIn("already exists", value["error"])
+        self.assertEqual("project_exists", value["code"])
+        self.assertEqual(run["id"], value["project"]["runId"])
+        self.assertEqual("test-agent", value["project"]["projectSlug"])
+        execute.assert_not_called()
+        self.assertEqual(before, self.server.app.projects.path("test-agent").read_bytes())
         self.assertEqual("A retail assistant", self.server.app.projects.read("test-agent")["request"]["prompt"])
+
+    def test_project_names_include_saved_records_without_scenario_folders_or_runs(self) -> None:
+        run = self.create_run()
+        self.server.app.projects.claim({"projectSlug": "record-only"}, "external-owner", create=True)
+        before = {
+            path.name: path.read_bytes() for path in self.server.app.projects.directory.glob("*.json")
+        }
+        status, projects = self.call("GET", "/api/projects")
+        self.assertEqual(200, status)
+        self.assertEqual([
+            {"projectSlug": "record-only", "status": "running", "runId": None, "hasWriter": True},
+            {"projectSlug": "test-agent", "status": "needs_attention", "runId": run["id"], "hasWriter": False},
+        ], projects)
+        self.assertEqual(403, self.call("GET", "/api/projects", token="wrong")[0])
+        self.assertEqual(before, {
+            path.name: path.read_bytes() for path in self.server.app.projects.directory.glob("*.json")
+        })
+        self.assertEqual(1, len(list(self.server.app.state.glob("*/run.json"))))
+
+    def test_record_only_duplicate_returns_recovery_metadata_without_creating_a_run(self) -> None:
+        self.server.app.projects.claim(self.data, "external-owner", create=True)
+        before = self.server.app.projects.path("test-agent").read_bytes()
+        with patch.object(self.server.app, "execute") as execute:
+            status, value = self.call("POST", "/api/runs", self.data)
+        self.assertEqual(409, status)
+        self.assertEqual("project_exists", value["code"])
+        self.assertIsNone(value["project"]["runId"])
+        execute.assert_not_called()
+        self.assertEqual([], list(self.server.app.state.glob("*/run.json")))
+        self.assertEqual(before, self.server.app.projects.path("test-agent").read_bytes())
 
     def test_live_server_writer_is_not_reclaimed_by_second_portal(self) -> None:
         with patch.object(self.server.app, "execute"):

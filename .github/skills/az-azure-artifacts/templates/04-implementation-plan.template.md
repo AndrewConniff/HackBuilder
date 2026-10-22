@@ -1,34 +1,33 @@
-# 📀 Step 4: Implementation Plan - {project-name}
+# Step 4: Implementation Plan - {project-name}
 
-📑 Implementation Contents
+Implementation Contents
 
-- [📋 Overview](#-overview)
-- [📦 Resource Inventory](#-resource-inventory)
-- [🗂️ Module Structure](#-module-structure)
-- [🔨 Implementation Tasks](#-implementation-tasks)
-- [🚀 Deployment Phases](#-deployment-phases)
-- [🔗 Dependency Graph](#-dependency-graph)
-- [🔄 Runtime Flow Diagram](#-runtime-flow-diagram)
-- [🏷️ Naming Conventions](#-naming-conventions)
-- [🔒 Execution Handoff](#-execution-handoff)
+- [Overview](#overview)
+- [Resource Inventory](#resource-inventory)
+- [Module Structure](#module-structure)
+- [Implementation Tasks](#implementation-tasks)
+- [Dependency Graph](#dependency-graph)
+- [Runtime Flow Diagram](#runtime-flow-diagram)
+- [Naming Conventions](#naming-conventions)
+- [Execution Handoff](#execution-handoff)
 
-## 📋 Overview
+## Overview
 
 Brief description of what will be implemented.
 
 ---
 
-## 📦 Resource Inventory
+## Resource Inventory
 
 | Resource   | Type                            | SKU | AVM Status            | Dependencies | Status  |
 | ---------- | ------------------------------- | --- | --------------------- | ------------ | ------- |
-| Resource 1 | Microsoft.Provider/resourceType |     | ✅ AVM                |              | ⬜ Todo |
-| Resource 2 | Microsoft.Provider/resourceType |     | ⚠️ Requires Review    |              | ⬜ Todo |
-| Resource 3 | Microsoft.Provider/resourceType |     | ❌ No AVM (Justified) |              | ⬜ Todo |
+| Resource 1 | Microsoft.Provider/resourceType |     | AVM                |              | Todo |
+| Resource 2 | Microsoft.Provider/resourceType |     | Requires Review    |              | Todo |
+| Resource 3 | Microsoft.Provider/resourceType |     | No AVM (Justified) |              | Todo |
 
 ---
 
-## 🗂️ Module Structure
+## Module Structure
 
 ```text
 generated-scenarios/{project-name}/infra/
@@ -49,7 +48,7 @@ generated-scenarios/{project-name}/infra/
 
 ---
 
-## 🔨 Implementation Tasks
+## Implementation Tasks
 
 ### Task 1: main.bicep (Orchestration)
 
@@ -105,7 +104,7 @@ Example configuration snippet
 
 ---
 
-## 🔗 Dependency Graph
+## Dependency Graph
 
 ![Module Dependency Graph](./04-dependency-diagram.png)
 
@@ -115,7 +114,7 @@ Source: [04-dependency-diagram.py](./04-dependency-diagram.py)
 
 ---
 
-## 🔄 Runtime Flow Diagram
+## Runtime Flow Diagram
 
 ![Runtime Flow Diagram](./04-runtime-diagram.png)
 
@@ -125,7 +124,7 @@ Source: [04-runtime-diagram.py](./04-runtime-diagram.py)
 
 ---
 
-## 🏷️ Naming Conventions
+## Naming Conventions
 
 | Resource       | Pattern                  | Example            | Generated Name |
 | -------------- | ------------------------ | ------------------ | -------------- |
@@ -134,7 +133,7 @@ Source: [04-runtime-diagram.py](./04-runtime-diagram.py)
 
 ---
 
-## 🔒 Execution Handoff
+## Execution Handoff
 
 > Continue directly to bicep-code after this artifact is generated.
 

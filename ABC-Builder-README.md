@@ -1,4 +1,4 @@
-# Hack Builder
+# ABC Builder
 
 Build a working Microsoft Foundry business scenario first. Turn it into a
 customer hack only after the technical owner approves it.
@@ -36,7 +36,7 @@ what-if review, then explicitly approve the working scenario's suitability befor
 composition. Event rollout requires another separate request.
 
 The lightweight LOCAL web portal collects a prompt, validated project slug,
-industry, requested services and WAF priorities. Its local authenticated backend
+industry, `businessUnits`, requested services and WAF priorities. Its local authenticated backend
 launches real Copilot CLI jobs with the canonical agent names. Project paths are
 `generated-scenarios\{projectSlug}`. It is tooling, not an Azure-hosted progress app.
 
@@ -50,6 +50,28 @@ Noninteractive jobs stop and return missing user decisions rather than guessing.
 The portal never auto-approves scenarios or deploys events. Its approval action
 records the explicit response against the reviewed fingerprint, checks approval
 and launches composition as a separate job. Scenario jobs do not auto-start it.
+
+## Business scope and reusable scenarios
+
+Choose Generic or one or more specific business units:
+Executives, IT, Operations, Communications, Executive assistant, Legal, HR,
+Business manager, Finance, Sales and Marketing. Generic is exclusive and means
+a typical workflow for the selected industry without targeting a unit.
+Selections shape requirements, personas, the business story, application,
+synthetic data and, after approval, learner and coach materials.
+
+The portal discovers reusable references from
+`generated-scenarios\*\scenario-manifest.json`. Discovery is read-only and inferred
+entries remain visibly `needs-review` until a worker curates them.
+Workers maintain metadata with
+`python scripts\scenario_catalog.py refresh generated-scenarios\<slug> --metadata reviewed-metadata.json`.
+See the [schema and stable unit IDs](.github/skills/hack-builder-workflow/SKILL.md).
+
+Selecting a source grants no consent. Adaptations use source architecture as
+read-only guidance, regenerate business app/data for the target industry and units,
+refresh technical evidence, and require new design confirmation, validation and
+suitability approval. Deployment state, secrets, authorization scopes, approvals,
+packages and runtime success are never inherited.
 
 ## What happens
 
@@ -148,6 +170,8 @@ packages/
 
 ## Repository maintenance
 
+- ABC Builder is product branding only: stable agent names, canonical skill
+  folder identifiers, executable scripts and environment variables remain compatible.
 - [Workflow contract](.github/skills/hack-builder-workflow/SKILL.md)
 - [Agent/skill/instruction inventory and October 21 timing findings](AGENTSEXPLAINED.md)
 - [Repository conventions and validation commands](AGENTS.md)

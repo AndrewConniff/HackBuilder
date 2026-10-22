@@ -17,7 +17,7 @@ Create a public learner repository and a private coach repository from one
 scenario. Each challenge is a separate Markdown page beneath the selected
 industry folder in `Instructions`.
 
-For Hack Builder scenarios, first enforce
+For ABC Builder scenarios, first enforce
 [the workflow contract](../hack-builder-workflow/SKILL.md) and current recorded
 approval. This skill never bypasses scenario review. Package validation is a
 local authoring milestone; event rollout is separately requested.
@@ -52,6 +52,7 @@ In noninteractive jobs, report the required decision and stop.
 | --- | --- |
 | Scenario | One unchanged business scenario across all pages |
 | Industry | One supported display name and canonical slug |
+| Business units | Approved `businessUnits` IDs and personas; Generic means no unit targeting |
 | Module title | One title shared by all page frontmatter |
 | Challenge plan | Five progressive challenges totaling 150 build minutes |
 | Coach context | Expected evidence, recovery paths, and debrief guidance |
@@ -171,6 +172,9 @@ Start from `assets/challenge-page.template.md`. Every learner page must:
 - Begin with valid `lab` YAML frontmatter.
 - Use one H1 and the required H2 sections in template order.
 - Preserve the scenario and module title across all five pages.
+- Preserve the approved business-unit scope, personas, handoffs and dataset meaning.
+- Use plain headings, prose and navigation without decorative emoji; retain
+  functional badges, checkboxes and alert callouts.
 - State the starting checkpoint, smallest useful increment, retained behavior,
   and regression check.
 - Offer the Foundry portal path first and a collapsed SDK path second.

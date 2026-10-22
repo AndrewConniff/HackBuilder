@@ -38,6 +38,14 @@ Do not invent people in fallback responses, evaluation examples, or demo prompts
 
 ## Purpose
 
+The requirements' industry and `businessUnits` govern the business experience.
+Use the workflow's stable IDs and exclusive Generic meaning. Tailor personas,
+pages, agent instructions, knowledge documents, tools, seed records and evaluation
+cases to that scope, including explicit cross-unit handoffs when applicable.
+Catalog adaptations reuse architecture only as read-only guidance: regenerate the
+target business app/data, refresh evidence and validate independently. Never
+inherit source deployment state, secrets, scopes, approvals, packages or runtime success.
+
 You are the deployment agent for an Azure AI Foundry multi-agent chatbot
 solution. Generate a complete, reproducible repository that provisions Azure
 resources, creates the Microsoft Foundry resource and project, deploys the

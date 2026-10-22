@@ -1,37 +1,58 @@
-# 📋 Step 1: Requirements - {project-name}
+# Step 1: Requirements - {project-name}
 
-📑 Requirements Overview
+Requirements Overview
 
-- [🎯 Project Overview](#-project-overview)
-- [🚀 Functional Requirements](#-functional-requirements)
-- [🔧 Operational Requirements](#-operational-requirements)
-- [📋 Summary for Architecture Assessment](#-summary-for-architecture-assessment)
-- [References](#references)
+- [Project Overview](#project-overview)
+- [Functional Requirements](#functional-requirements)
+- [Non-Functional Requirements (NFRs)](#non-functional-requirements-nfrs)
+- [Summary for Architecture Assessment](#summary-for-architecture-assessment)
 
-## 🎯 Project Overview
+## Project Overview
 
 | Field                   | Value          |
 | ----------------------- | -------------- |
 | **Project Name**        | {project-name} |
 | **Primary Stakeholder** | {name / role}  |
+| **Industry**            | {exact intake industry} |
+| **Business Units**      | {businessUnits array using workflow IDs} |
+| **Business Outcome**    | {measurable industry/unit outcome} |
+| **Reuse Source**        | {null or scenarioId and manifestDigest; architecture guidance only} |
 
-## 🚀 Functional Requirements
+### Personas and scope
+
+Generic is exclusive of specific units and means a typical industry workflow
+without unit targeting. For specific units, describe each persona and cross-unit
+handoff. Do not infer Azure permissions from a business-unit selection.
+
+| Persona | Business unit or Generic workflow | Responsibility | Data and access boundary |
+| --- | --- | --- | --- |
+| {role} | {selected unit ID or generic} | {action and handoff} | {allowed and denied access} |
+
+**In scope:** {business workflows, application actions and sample-data coverage}
+
+**Out of scope:** {excluded workflows and units}
+
+For an adaptation, regenerate app/data for this target scope and refresh technical
+evidence. Never inherit source deployment state, secrets, scopes, approvals,
+packages or runtime success; require new design, validation and approval.
+
+## Functional Requirements
 
 ### Core Capabilities
 
 | #   | Capability   | Priority                       | Acceptance Criteria    |
 | --- | ------------ | ------------------------------ | ---------------------- |
-| 1   | {capability} | 🔴 Must / 🟡 Should / 🟢 Could | {measurable criterion} |
-| 2   | {capability} | 🔴 Must / 🟡 Should / 🟢 Could | {measurable criterion} |
+| 1   | {capability} | Must / Should / Could | {measurable industry/unit criterion} |
+| 2   | {capability} | Must / Should / Could | {measurable criterion and negative case} |
 
 ### Network Security
 
 | Control                     | Required | Notes     |
 | --------------------------- | -------- | --------- |
-| Private endpoints           | ✅ / ❌  | {details} |
-| VNet integration            | ✅ / ❌  | {details} |
-| Public endpoints acceptable | ✅ / ❌  | {details} |
-| WAF required                | ✅ / ❌  | {details} |
+| Private endpoints           | Yes / No | {details} |
+| VNet integration            | Yes / No | {details} |
+| Public endpoints acceptable | Yes / No | {details} |
+| WAF required                | Yes / No | {details} |
 
 ### Recommended Security Controls
 
@@ -48,7 +69,13 @@ Table of recommended controls based on workload pattern and compliance requireme
 | Encryption at Rest    | {yes/no}    | {yes/no}       | {Platform default}      |
 | Network Isolation     | {yes/no}    | {yes/no}       | {VNet/NSG/Private Link} |
 
-## 📋 Summary for Architecture Assessment
+## Non-Functional Requirements (NFRs)
+
+| Requirement | Target | Acceptance evidence |
+| --- | --- | --- |
+| {security, reliability, performance or cost constraint} | {measurable target} | {check} |
+
+## Summary for Architecture Assessment
 
 ### Handoff Summary
 
@@ -63,8 +90,9 @@ Table of recommended controls based on workload pattern and compliance requireme
 
 | Section                  | Status       | Notes   |
 | ------------------------ | ------------ | ------- |
-| Project Overview         | ✅ / ⚠️ / ❌ | {notes} |
-| Functional Requirements  | ✅ / ⚠️ / ❌ | {notes} |
-| Operational Requirements | ✅ / ⚠️ / ❌ | {notes} |
+| Project Overview         | Complete / Pending / Blocked | {notes} |
+| Functional Requirements  | Complete / Pending / Blocked | {notes} |
+| Non-Functional Requirements | Complete / Pending / Blocked | {notes} |
+| Industry and Business Units | Complete / Pending / Blocked | {persona, app/data and test coverage} |
 
 ---

@@ -1,13 +1,13 @@
 ---
 name: hack-builder-workflow
 description: >
-  Use when asked to build a hack, create a Foundry scenario, resume Hack Builder,
+  Use when asked to build a hack, create a Foundry scenario, resume ABC Builder,
   approve a scenario, author hack packages, or deploy a hack event. Defines the
   scenario-first workflow, explicit approval boundary, minimal learner starter,
   and separate optional team rollout.
 ---
 
-# Hack Builder workflow contract
+# ABC Builder workflow contract
 
 The user first needs proof that the story and technology work. A hack is derived
 from an approved deployed reference solution, not built in parallel with it.
@@ -19,7 +19,7 @@ specialists, invokes the other agent, or starts a subagent fanout.
 ## Intake and local portal
 
 The lightweight LOCAL web portal collects the prompt, a validated `projectSlug`,
-industry, selected services and Well-Architected Framework priorities. Its local
+industry, `businessUnits`, selected services and Well-Architected Framework priorities. Its local
 authenticated backend launches actual Copilot CLI jobs, not simulated results.
 Use `generated-scenarios\{projectSlug}` without silently changing the slug.
 
@@ -63,6 +63,88 @@ and `government-public-sector`. Do not silently map unsupported intake industrie
 Before composition, block on an unsupported selection and request an explicit
 decision to extend authoring support or revise/reapprove the scenario.
 
+## Business-unit scope
+
+`businessUnits` is a multi-select array of stable IDs. Use these exact IDs:
+
+| ID | Display name |
+| --- | --- |
+| `generic` | Generic |
+| `executives` | Executives |
+| `it` | IT |
+| `operations` | Operations |
+| `communications` | Communications |
+| `executive-assistant` | Executive assistant |
+| `legal` | Legal |
+| `hr` | HR |
+| `business-manager` | Business manager |
+| `finance` | Finance |
+| `sales` | Sales |
+| `marketing` | Marketing |
+
+Generic is exclusive: `["generic"]` means a typical workflow for the selected
+industry with no unit targeting. Never combine it with specific units or interpret
+it as every unit. For older intake without this field, make the Generic fallback
+visible; never infer a specific unit. Multiple specific units form one coherent
+cross-unit scenario with explicit handoffs, not unrelated demos.
+
+Record exact IDs and business meaning in requirements, personas, scenario narrative,
+data ownership and access boundaries. Carry them into app pages/actions, seed data,
+agent grounding/tools, evaluation prompts, demo acceptance and, after approval,
+learner challenges and private coach notes. These business-unit choices are not
+Azure deployment or authorization scopes.
+
+## Reusable scenario catalog
+
+The portal catalog reads `generated-scenarios\*\scenario-manifest.json`.
+Discovery is read-only: it must not refresh manifests, mutate source scenarios or
+infer consent. A selected source is guidance, not approval or permission to deploy.
+
+Each manifest uses this schema:
+
+| Field | Contract |
+| --- | --- |
+| `schemaVersion` | Integer `1` |
+| `id` | Scenario slug matching its folder |
+| `title`, `summary` | Curated business title and concise outcome summary |
+| `industry` | Exact intake catalog value; `null` for unclassified inferred metadata |
+| `businessUnits` | Array of stable IDs, respecting Generic exclusivity |
+| `services`, `pillars`, `domains` | Arrays of curated service, WAF and domain metadata |
+| `artifacts` | Relative paths to reference documents, infrastructure and application only |
+| `source` | `null` for an original; otherwise `{scenarioId, manifestDigest}` |
+| `metadataStatus` | `needs-review` for inferred metadata; `curated` after review |
+
+Initially inferred metadata
+must be visibly marked `needs-review`, never presented as curated or validated.
+Exclude packages, deployment/runtime state, credentials, secrets, environment files,
+approval records and authorization scopes from catalog artifacts. Paths must resolve
+inside the reference workspace; never include absolute paths or traversal.
+`manifestDigest` identifies the selected source manifest, not a runtime-success receipt.
+
+The worker maintains the target manifest explicitly at local preparation checkpoints
+and after reference changes, honoring writer leases and revision checks:
+
+```powershell
+python scripts\scenario_catalog.py refresh generated-scenarios\<slug>
+python scripts\scenario_catalog.py refresh generated-scenarios\<slug> --metadata reviewed-metadata.json
+```
+
+Write the reviewed metadata fields into `reviewed-metadata.json`, including business scope
+and `metadataStatus: "curated"`. Source provenance is maintained from the normalized adaptation request.
+The initial refresh can infer a
+`needs-review` entry; the worker must review and complete it with `--metadata`,
+then verify the saved manifest. Do not hand-edit catalog state or make discovery a writer.
+The portable repository index is `scenarios/catalog.json`; rebuild it through the same helper.
+Remote-only index entries remain unavailable until their reference folders and manifests are local.
+
+For an adaptation, read the source architecture as read-only guidance. Regenerate
+the business application, synthetic data, personas, grounding and tests for the
+target industry and units; a rename of source branding is not an adaptation.
+Refresh current technical evidence and obtain a new design confirmation, validation
+and suitability approval. Never inherit deployment state, secrets, authorization
+scopes, approvals, packages or runtime success. Source region/quota/runtime evidence
+is not target deployment proof. Do not modify the source or auto-start composition.
+
 ## Phase A: scenario implementation and review
 
 Create these artifacts at `generated-scenarios/{project}/`, using existing
@@ -71,6 +153,8 @@ templates where available:
 - `00-region-availability.json`: dated subscription, feature, model and region evidence.
 - `01-requirements.md`: scenario story, business outcome, personas, scope,
   fictitious company provenance, acceptance prompts and expected evidence.
+- `scenario-manifest.json`: curated catalog metadata, business units and optional
+  source provenance; it is not runtime validation or approval evidence.
 - `02-architecture-assessment.md`: complete reference architecture, SKUs,
   Foundry setup choice, identity/data paths, cost and trade-offs.
 - `infra/`, `azure.yaml`, `src/`, runtime data and installation scripts.

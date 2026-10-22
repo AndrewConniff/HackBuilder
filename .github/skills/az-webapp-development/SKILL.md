@@ -1,7 +1,7 @@
 ---
 name: az-webapp-development
 description: >
-    .NET 10 C# sample web application scaffolding, industry-specific seed data,
+    .NET 10 C# sample web application scaffolding, industry/business-unit seed data,
     Dockerfile generation, and azd service wiring for demo workload scenarios.
 compatibility: Works with Claude Code, GitHub Copilot, VS Code, and any Agent Skills compatible tool.
 license: MIT
@@ -28,6 +28,31 @@ needed. Historical role declarations, tool lists and handoffs are inactive;
 never invoke a development agent. Follow the
 [workflow contract](../hack-builder-workflow/SKILL.md), and keep local-only
 portal preparation separate from authorized Azure deployment.
+
+## Business scope prerequisite
+
+Read the approved design's industry, `businessUnits`, personas and workflows from
+requirements. Apply the workflow's exact IDs and Generic exclusivity. Generic
+uses a typical industry workflow without unit targeting; specific selections
+shape the app's pages, actions, role labels, ownership and cross-unit handoffs.
+
+Derive entities, fields, synthetic documents, tools, evaluation prompts and seed
+relationships from that scope, not from the industry examples below alone.
+For example, retail plus `["finance", "operations"]` can center on store variance
+review and operational remediation; retail plus `["generic"]` remains a typical
+retail workflow without department targeting. Unit selection does not grant access:
+preserve designed identity/RBAC and data boundaries.
+
+For a catalog adaptation, use source architecture as read-only guidance and
+regenerate the business application and data for the target industry and units.
+Do not merely rename source pages or copy source datasets/packages. Keep the source
+untouched; never import deployment state, secrets, scopes, approvals or runtime success.
+Refresh technical evidence and validate the new target independently.
+
+Test representative records and actions for every selected unit, meaningful
+cross-unit handoffs and negative access/error cases. Preserve the same scope in
+demo prompts and later learner/coach fixtures. Keep catalog metadata current via
+the workflow's `scripts\scenario_catalog.py refresh --metadata` procedure.
 
 ## Company branding prerequisite
 

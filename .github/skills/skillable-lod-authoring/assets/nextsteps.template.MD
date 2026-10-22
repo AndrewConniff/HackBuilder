@@ -12,6 +12,8 @@ supporting artifact. Keep it at `generated-scenarios/<PROJECT>/nextsteps.MD`.
 | Scenario | <SCENARIO_TITLE> |
 | Industry | <INDUSTRY_DISPLAY_NAME> |
 | Industry slug | `<INDUSTRY_SLUG>` |
+| Business units | <APPROVED_BUSINESS_UNIT_IDS_OR_GENERIC> |
+| Personas and handoffs | <APPROVED_PERSONAS_AND_CROSS_UNIT_HANDOFFS> |
 | Last updated | <LAST_UPDATED> |
 | Inventory owner | <OWNER_OR_ROLE> |
 | Package root | `generated-scenarios/<PROJECT>/packages/` |
@@ -65,6 +67,7 @@ file, API contract, message sample, evaluation set, or installation script.
 - **Required fields or sections:** <FIELD_NAMES_TYPES_REQUIRED_RULES_OR_HEADINGS>
 - **Expected quantity or size:** <RECORD_FILE_PAGE_AND_APPROXIMATE_SIZE_COUNTS>
 - **Synthetic content requirements:** <CATEGORIES_RANGES_EDGE_CASES_AND_FAKE_DATA_RULES>
+- **Business scope coverage:** <INDUSTRY_UNITS_PERSONAS_AND_HANDOFFS_OR_GENERIC_WORKFLOW>
 - **Generation method and dependencies:** <HOW_TO_CREATE_AND_REQUIRED_INPUTS>
 - **Upload or installation method:** <SCRIPT_HOOK_SDK_OR_PORTAL_METHOD>
 - **Identity and access:** <MANAGED_IDENTITY_RBAC_OR_DEFAULT_AZURE_CREDENTIAL>

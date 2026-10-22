@@ -1,4 +1,4 @@
-# Hack Builder customization and execution map
+# ABC Builder customization and execution map
 
 ## One workflow, three phases
 
@@ -46,6 +46,11 @@ is historical workflow evidence, not a runnable pipeline. Composition procedure
 content lives in the authoring skill's `references/composition-procedure.md`.
 
 ## Skills: canonical procedures and resources
+
+ABC Builder is the product name. `az-01-conductor`, `HackCreator Agent`,
+canonical skill folder IDs, executable script names and environment variables
+remain stable compatibility APIs; branding does not rename them.
+See the [ABC Builder overview](ABC-Builder-README.md).
 
 Canonical reusable knowledge lives under [`.github/skills/`](.github/skills/).
 Discoverable skills use `<name>/SKILL.md`, with matching folder and skill names.
@@ -108,6 +113,22 @@ The original oil/gas scenario is preserved as a clearly marked
 not an active workflow.
 
 ## Local portal and industry boundary
+
+Industry and `businessUnits` are independent intake dimensions. Use the exact
+[workflow unit IDs and Generic exclusivity](.github/skills/hack-builder-workflow/SKILL.md):
+Generic means an industry workflow without unit targeting. Scope flows into
+requirements, personas, business story, app/data, tests and learner/coach content.
+
+The portal's read-only catalog discovers
+`generated-scenarios\*\scenario-manifest.json`, schema version 1. Workers curate
+title, summary, industry, businessUnits, services, pillars, domains, reference-only
+artifact paths and nullable `{scenarioId, manifestDigest}` source provenance via
+`scripts\scenario_catalog.py refresh --metadata`. Inferred entries stay visibly
+`needs-review` until curated. Discovery and source selection grant no consent.
+Adaptations use source architecture as read-only guidance and regenerate target
+business app/data, refresh technical evidence and require new design, validation
+and approval. Never inherit source deployment state, secrets, scopes, approvals,
+packages or runtime success.
 
 The optional [local portal entry point](portal/README.md) launches the same two
 agent contexts. From the repository root:

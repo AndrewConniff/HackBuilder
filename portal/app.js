@@ -1,15 +1,94 @@
 "use strict";
 
 const $ = (id) => document.getElementById(id);
+const themeKey = "abcbuilder-theme";
+const systemTheme = matchMedia("(prefers-color-scheme: dark)");
+let themeStorageUnavailable = false;
+let themePreference = readThemePreference();
+
+function themeStorageError(error) {
+  if (!["SecurityError", "QuotaExceededError"].includes(error.name)) throw error;
+  console.warn("Appearance preference could not be stored by this browser.", error);
+  themeStorageUnavailable = true;
+}
+
+function readThemePreference() {
+  try {
+    const value = localStorage.getItem(themeKey);
+    if (value === null || value === "light" || value === "dark") return value;
+    console.warn("Ignoring an invalid saved appearance preference; using the system theme.");
+    return null;
+  } catch (error) {
+    themeStorageError(error);
+    return null;
+  }
+}
+
+function applyTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  const toggle = $("theme-toggle");
+  if (toggle) toggle.setAttribute("aria-checked", String(theme === "dark"));
+}
+
+applyTheme(themePreference || (systemTheme.matches ? "dark" : "light"));
+systemTheme.addEventListener("change", (event) => {
+  if (themePreference === null) applyTheme(event.matches ? "dark" : "light");
+});
+addEventListener("storage", (event) => {
+  if (event.key !== themeKey && event.key !== null) return;
+  themePreference = readThemePreference();
+  applyTheme(themePreference || (systemTheme.matches ? "dark" : "light"));
+});
+
+function initializeThemeSwitch() {
+  applyTheme(document.documentElement.dataset.theme);
+  const notice = $("theme-notice");
+  const showStorageNotice = () => {
+    notice.hidden = !themeStorageUnavailable;
+    notice.textContent = themeStorageUnavailable
+      ? "Appearance applies to this tab only because browser storage is unavailable."
+      : "";
+  };
+  showStorageNotice();
+  $("theme-toggle").addEventListener("click", () => {
+    themePreference = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    applyTheme(themePreference);
+    try {
+      localStorage.setItem(themeKey, themePreference);
+      themeStorageUnavailable = false;
+    } catch (error) {
+      themeStorageError(error);
+    }
+    showStorageNotice();
+  });
+}
+
 const bootstrap = new URLSearchParams(location.hash.slice(1)).get("token");
 if (bootstrap) {
-  sessionStorage.setItem("hackbuilder-token", bootstrap);
+  sessionStorage.setItem("abcbuilder-token", bootstrap);
   history.replaceState(null, "", location.pathname);
 }
 let catalog;
 let currentRun;
 let timer;
 let previewText = "";
+let reusableScenarios = [];
+let knownRuns = [];
+let knownProjects = [];
+let launching = false;
+let intakeReady = false;
+let readinessSignature = "";
+const touchedIntake = new Set();
+
+function portalToken() {
+  return sessionStorage.getItem("abcbuilder-token") || sessionStorage.getItem("hackbuilder-token") || "";
+}
+
+function scrollToWorkspace() {
+  $("workspace").scrollIntoView({
+    behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+  });
+}
 
 function showStage(stage, updateHash = true) {
   const shape = stage === "shape";
@@ -149,7 +228,7 @@ async function openArtifact(entry) {
   const url = `/api/runs/${currentRun.id}/artifact?path=${encodeURIComponent(entry.path)}`;
   if (entry.download) {
     const response = await fetch(url, {
-      headers: { Authorization: `Bearer ${sessionStorage.getItem("hackbuilder-token") || ""}` },
+      headers: { Authorization: `Bearer ${portalToken()}` },
     });
     if (!response.ok) throw new Error((await response.json()).error || "Download failed.");
     const link = document.createElement("a");
@@ -200,14 +279,16 @@ async function api(path, body) {
   const response = await fetch(path, {
     method: body === undefined ? "GET" : "POST",
     headers: {
-      Authorization: `Bearer ${sessionStorage.getItem("hackbuilder-token") || ""}`,
+      Authorization: `Bearer ${portalToken()}`,
       ...(body === undefined ? {} : { "Content-Type": "application/json" }),
     },
     ...(body === undefined ? {} : { body: JSON.stringify(body) }),
   });
   const value = await response.json();
   if (!response.ok)
-    throw new Error(value.error || `Request failed (${response.status}).`);
+    throw Object.assign(new Error(value.error || `Request failed (${response.status}).`), {
+      code: value.code, project: value.project,
+    });
   return value;
 }
 
@@ -223,6 +304,11 @@ function request() {
     prompt: $("prompt").value,
     projectSlug: $("project").value,
     industry: selected("industry")[0] || "",
+    businessUnits: selected("businessUnits"),
+    ...($("reuse-scenario").value ? {
+      reuseScenarioId: $("reuse-scenario").value,
+      reuseManifestDigest: reusableScenarios.find((item) => item.id === $("reuse-scenario").value)?.manifestDigest,
+    } : {}),
     services: selected("services"),
     pillars: selected("pillars"),
     domains: selected("domains"),
@@ -242,6 +328,8 @@ function choice(item, name, type = "checkbox") {
     input.disabled = true;
   }
   if (type === "radio") input.required = true;
+  if (name === "industry" || name === "businessUnits")
+    input.setAttribute("aria-describedby", `${name}-help ${name}-error`);
   const text = document.createElement("span");
   const title = document.createElement("strong");
   title.textContent = item.name;
@@ -255,9 +343,169 @@ function choice(item, name, type = "checkbox") {
   return label;
 }
 
+function existingProject(slug) {
+  const project = knownProjects.find((item) => item.projectSlug === slug);
+  const run = knownRuns.find((item) => item.request.projectSlug === slug);
+  const source = reusableScenarios.find((item) => item.id === slug);
+  return project || run || source ? {
+    projectSlug: slug,
+    runId: project?.runId || run?.id,
+    status: project?.status || run?.status || "local files only",
+    discovered: !project && (!run || run.discovered),
+  } : null;
+}
+
+function nextProjectName(slug) {
+  let number = 2;
+  let candidate;
+  do {
+    const suffix = `-${number++}`;
+    candidate = slug.slice(0, 40 - suffix.length).replace(/-+$/, "") + suffix;
+  } while (existingProject(candidate));
+  return candidate;
+}
+
+function renderProjectConflict(slug) {
+  const project = existingProject(slug);
+  $("project-conflict").hidden = !project;
+  if (!project) return;
+  $("project-conflict-message").textContent =
+    `“${slug}” already exists (${project.status.replaceAll("_", " ")}). ` +
+    (project.discovered
+      ? "Its local files can be previewed, but cannot be continued as a portal job. "
+      : project.runId
+      ? "Open it in Build & validate to review progress, continue, or request a revision. "
+      : "A saved project record exists without a portal run to open; the saved state has been preserved. ") +
+    "To build a separate scenario, use a new name. Reuse a scenario selects a source architecture, not a project to continue.";
+  $("open-existing").hidden = !project.runId;
+  $("open-existing").textContent = project.discovered ? "Preview existing files" : "Open existing project";
+  $("new-project-name").textContent = `Use new name: ${nextProjectName(slug)}`;
+}
+
+async function refreshProjects() {
+  knownProjects = await api("/api/projects");
+  summarize();
+}
+
+function intakeIssues(data, execution = true) {
+  const issues = [];
+  const add = (field, message) => issues.push({ field, message });
+  if (!data.projectSlug) {
+    add("project", "Enter a project name.");
+  } else if (data.projectSlug.length > 40) {
+    add("project", "Keep the project name to 40 characters or fewer.");
+  } else if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(data.projectSlug)) {
+    add("project", "Use lowercase letters, numbers and single hyphens in the project name; no spaces.");
+  } else if (existingProject(data.projectSlug)) {
+    add("project", "That project already exists. Choose a new name or continue it in Build & validate.");
+  }
+  if (!catalog.industries.some((item) => item.id === data.industry))
+    add("industry", "Choose one industry.");
+  if (!data.businessUnits.length) {
+    add("businessUnits", "Select at least one business unit, or choose Generic.");
+  } else if (data.businessUnits.includes("generic") && data.businessUnits.length > 1) {
+    add("businessUnits", "Choose Generic on its own, or select specific business units.");
+  }
+  if (data.prompt.length > 6000) add("prompt", "Keep the scenario prompt to 6,000 characters or fewer.");
+  if (!data.prompt.trim() && !data.services.length)
+    add("prompt", "Describe a business problem or select at least one Azure service.");
+  if (data.reuseScenarioId && !reusableScenarios.some(
+    (item) => item.id === data.reuseScenarioId && item.available,
+  )) add("reuse-scenario", "The selected architecture source is unavailable. Refresh the catalog and select it again.");
+  if (execution) {
+    if (!data.toolConsent) add("consent", "Check the local tool execution consent box below.");
+    if (!catalog.cliAvailable)
+      add("cli", "Copilot CLI was not detected. Install it, run copilot login, then restart the portal.");
+    const active = currentRun?.status === "running" ? currentRun : knownRuns.find((run) => run.status === "running");
+    if (active) add("active-run", `A job for ${active.request.projectSlug} is running. Review or stop it in Build & validate.`);
+    if (launching) add("starting", "Starting your scenario. Please wait.");
+    if (!intakeReady) add("loading", "Wait for the scenario catalog and job status to finish loading.");
+  }
+  return issues;
+}
+
+function focusIntakeIssue(issue) {
+  if (issue.field === "active-run") {
+    showStage("build");
+    $("run-select").focus();
+    return;
+  }
+  touchedIntake.add(issue.field);
+  summarize();
+  const target = issue.field === "consent" ? $("tool-consent")
+    : ["industry", "businessUnits"].includes(issue.field)
+    ? document.querySelector(`input[name="${issue.field}"]`) : $(issue.field);
+  target.focus();
+  target.scrollIntoView({
+    block: "center",
+    behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+  });
+}
+
+function renderIntakeValidation(data) {
+  const issues = intakeIssues(data);
+  const status = issues.length
+    ? `${issues.length} ${issues.length === 1 ? "item" : "items"} to resolve before building.`
+    : "Ready to build. Your scenario brief is complete.";
+  if ($("launch-status").textContent !== status) $("launch-status").textContent = status;
+  $("launch-status").dataset.ready = String(issues.length === 0);
+  const signature = JSON.stringify(issues);
+  if (signature !== readinessSignature) {
+    readinessSignature = signature;
+    $("launch-blockers").replaceChildren(...issues.map((issue) => {
+      const item = document.createElement("li");
+      if (["project", "industry", "businessUnits", "prompt", "reuse-scenario", "consent", "active-run"]
+        .includes(issue.field)) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "validation-link";
+        button.textContent = issue.message;
+        button.addEventListener("click", () => focusIntakeIssue(issue));
+        item.append(button);
+      } else {
+        item.textContent = issue.message;
+      }
+      return item;
+    }));
+  }
+  for (const field of ["project", "industry", "businessUnits", "prompt", "consent"]) {
+    const error = issues.find((issue) => issue.field === field);
+    const show = Boolean(error && touchedIntake.has(field));
+    $(`${field}-error`).textContent = show ? error.message : "";
+    $(`${field}-error`).hidden = !show;
+    const controls = ["industry", "businessUnits"].includes(field)
+      ? [$(`${field}-field`), ...document.querySelectorAll(`input[name="${field}"]`)]
+      : [$(field === "consent" ? "tool-consent" : field)];
+    for (const control of controls) control.setAttribute("aria-invalid", String(show));
+  }
+  $("launch").disabled = issues.length > 0;
+  $("launch").title = issues.map((issue) => issue.message).join("\n");
+  return issues;
+}
+
+function validatedIntake(execution = false) {
+  const data = request();
+  const issues = intakeIssues(data, execution);
+  for (const issue of issues) touchedIntake.add(issue.field);
+  renderIntakeValidation(data);
+  if (issues.length) {
+    const focusable = issues.find((issue) =>
+      ["project", "industry", "businessUnits", "prompt", "reuse-scenario", "consent", "active-run"].includes(issue.field),
+    );
+    if (focusable) focusIntakeIssue(focusable);
+    throw new Error(`Review your scenario brief: ${issues[0].message}`);
+  }
+  return data;
+}
+
 function summarize() {
   const data = request();
+  renderProjectConflict(data.projectSlug);
+  $("summary-project").textContent = data.projectSlug || "Enter a project name";
   $("summary-industry").textContent = data.industry || "Choose one industry";
+  $("summary-business-units").textContent = catalog.businessUnits
+    .filter((item) => data.businessUnits.includes(item.id)).map((item) => item.name).join(", ") || "Select a unit";
+  $("summary-source").textContent = data.reuseScenarioId || "New scenario";
   $("summary-services").textContent = catalog.services
     .filter((item) => data.services.includes(item.id))
     .map((item) => item.name)
@@ -273,10 +521,7 @@ function summarize() {
       )
       .map((item) => item.name)
       .join(", ") || "No preference yet";
-  $("launch").disabled =
-    !data.toolConsent ||
-    !catalog.cliAvailable ||
-    currentRun?.status === "running";
+  renderIntakeValidation(data);
   $("compose").disabled =
     !$("tested").checked ||
     !$("approval").value.trim() ||
@@ -494,6 +739,13 @@ async function loadRun(id) {
 
 async function refreshRuns(selectId) {
   const runs = await api("/api/runs");
+  const idToKeep = selectId || (
+    currentRun && !runs.some((run) => run.request.projectSlug === currentRun.request.projectSlug)
+      ? currentRun.id : null
+  );
+  if (idToKeep && !runs.some((run) => run.id === idToKeep))
+    runs.unshift(await api(`/api/runs/${idToKeep}`));
+  knownRuns = runs;
   const seen = new Set();
   const scenarios = runs.filter((run) => {
     const slug = run.request.projectSlug;
@@ -516,11 +768,13 @@ async function refreshRuns(selectId) {
   if (id) {
     $("run-select").value = id;
     await loadRun(id);
+  } else {
+    summarize();
   }
 }
 
 async function preview() {
-  const value = await api("/api/preview", request());
+  const value = await api("/api/preview", validatedIntake());
   previewText = value.prompt;
   $("preview-output").textContent = value.prompt;
   $("preview-panel").hidden = false;
@@ -569,18 +823,53 @@ async function followup(kind) {
   await refreshRuns(run.id);
   $("decision").value = "";
   showStage(kind === "compose" ? "hack" : "build");
-  $("workspace").scrollIntoView({ behavior: "smooth" });
+  scrollToWorkspace();
 }
 
 async function initialize() {
   catalog = await api("/api/catalog");
-  if (catalog.workflowVersion !== 1)
+  if (catalog.workflowVersion !== 3)
     throw new Error("Restart the local portal server to load the workflow dashboard, then reload this page.");
   for (const item of catalog.industries)
     $("industries").append(choice(item, "industry", "radio"));
-  for (const name of ["services", "pillars", "domains"]) {
+  for (const name of ["businessUnits", "services", "pillars", "domains"]) {
     for (const item of catalog[name]) $(name).append(choice(item, name));
   }
+  document.querySelector('input[name="businessUnits"][value="generic"]').checked = true;
+  $("businessUnits").addEventListener("change", (event) => {
+    const changed = event.target;
+    if (changed.name !== "businessUnits" || !changed.checked) return;
+    for (const input of document.querySelectorAll('input[name="businessUnits"]')) {
+      if (changed.value === "generic" ? input !== changed : input.value === "generic") input.checked = false;
+    }
+    summarize();
+  });
+  $("refresh-catalog").addEventListener("click", action(refreshCatalog));
+  $("open-existing").addEventListener("click", action(async () => {
+    const project = existingProject($("project").value);
+    if (!project?.runId) throw new Error("No portal run is available for this project. Choose a new name.");
+    await refreshRuns(project.runId);
+    showStage("build");
+    scrollToWorkspace();
+  }));
+  $("new-project-name").addEventListener("click", () => {
+    $("project").value = nextProjectName($("project").value);
+    $("error").hidden = true;
+    touchedIntake.add("project");
+    summarize();
+    $("project").focus();
+  });
+  $("reuse-scenario").addEventListener("change", () => {
+    const source = reusableScenarios.find((item) => item.id === $("reuse-scenario").value);
+    if (source) {
+      for (const name of ["services", "pillars", "domains"]) {
+        for (const input of document.querySelectorAll(`input[name="${name}"]`))
+          input.checked = input.disabled || source[name].includes(input.value);
+      }
+    }
+    describeSource();
+    summarize();
+  });
   $("connection").textContent = catalog.cliAvailable
     ? "Local CLI detected"
     : "Install Copilot CLI";
@@ -599,15 +888,42 @@ async function initialize() {
     });
   }
   showStage(location.hash === "#review" ? "hack" : location.hash === "#workspace" ? "build" : "shape", false);
-  $("scenario-form").addEventListener("input", summarize);
+  const updateIntake = (event) => {
+    const field = event.target.id === "tool-consent" ? "consent" : event.target.name;
+    if (field) touchedIntake.add(field);
+    summarize();
+  };
+  $("scenario-form").addEventListener("input", updateIntake);
+  $("scenario-form").addEventListener("change", updateIntake);
   $("review").addEventListener("input", summarize);
   $("scenario-form").addEventListener(
     "submit",
     action(async () => {
-      const run = await api("/api/runs", request());
-      await refreshRuns(run.id);
-      showStage("build");
-      $("workspace").scrollIntoView({ behavior: "smooth" });
+      const data = validatedIntake(true);
+      launching = true;
+      summarize();
+      try {
+        await refreshProjects();
+        if (existingProject(data.projectSlug)) {
+          touchedIntake.add("project");
+          throw new Error(`“${data.projectSlug}” already exists. Open the existing project or use a new name below.`);
+        }
+        const run = await api("/api/runs", data);
+        currentRun = run;
+        await refreshRuns(run.id);
+        showStage("build");
+        scrollToWorkspace();
+      } catch (error) {
+        if (error.code === "project_exists" && error.project?.projectSlug === data.projectSlug) {
+          knownProjects = knownProjects.filter((item) => item.projectSlug !== data.projectSlug);
+          knownProjects.push(error.project);
+          touchedIntake.add("project");
+        }
+        throw error;
+      } finally {
+        launching = false;
+        summarize();
+      }
     }),
   );
   $("preview").addEventListener("click", action(preview));
@@ -656,6 +972,8 @@ async function initialize() {
     $("project").value = "finance-risk-agent";
     for (const input of document.querySelectorAll('input[name="industry"]'))
       input.checked = input.value === "Financial Services";
+    for (const input of document.querySelectorAll('input[name="businessUnits"]'))
+      input.checked = input.value === "finance";
     for (const input of document.querySelectorAll('input[name="services"]'))
       input.checked = ["foundry", "cosmos-db", "managed-identity"].includes(
         input.value,
@@ -665,11 +983,54 @@ async function initialize() {
     summarize();
   });
   summarize();
+  await refreshCatalog();
+  await refreshProjects();
   await refreshRuns();
+  intakeReady = true;
+  summarize();
 }
 
-initialize().catch((error) => {
-  $("connection").textContent = "Connection required";
-  $("launch").disabled = true;
-  showError(error);
-});
+function describeSource() {
+  const source = reusableScenarios.find((item) => item.id === $("reuse-scenario").value);
+  $("reuse-description").textContent = source
+    ? `${source.title} · ${source.industry || "Industry not recorded"} · ${source.metadataStatus}. ${source.summary} ` +
+      "Choose your target industry and business units below. Architecture is guidance; app/data and validation are new."
+    : "Reuse creates a new reference. Deployment state, approvals and credentials are never inherited.";
+}
+
+async function refreshCatalog() {
+  const previous = $("reuse-scenario").value;
+  const value = await api("/api/scenarios");
+  reusableScenarios = value.scenarios;
+  const empty = document.createElement("option");
+  empty.value = "";
+  empty.textContent = "Start a new scenario";
+  $("reuse-scenario").replaceChildren(empty, ...reusableScenarios.map((item) => {
+    const option = document.createElement("option");
+    option.value = item.id;
+    option.disabled = !item.available;
+    option.textContent = `${item.title} (${item.id})${item.available ? "" : " · local files/manifest required"}`;
+    return option;
+  }));
+  if (reusableScenarios.some((item) => item.id === previous && item.available)) $("reuse-scenario").value = previous;
+  $("catalog-errors").textContent = value.errors.map((item) => `${item.id}: ${item.error}`).join("; ");
+  describeSource();
+  summarize();
+}
+
+function startPortal() {
+  initializeThemeSwitch();
+  initialize().catch((error) => {
+    $("connection").textContent = "Connection required";
+    $("launch").disabled = true;
+    $("launch-status").textContent = `Cannot build: ${error.message}`;
+    $("launch-status").dataset.ready = "false";
+    showError(error);
+  });
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", startPortal, { once: true });
+} else {
+  startPortal();
+}

@@ -12,6 +12,8 @@ from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 
+WORKFLOW_VERSION = 3
+
 STAGES = {
     "requirements": "Requirements",
     "architecture": "Architecture validation",
@@ -33,6 +35,17 @@ STATUSES = {"pending", "running", "completed", "waiting_for_user", "failed", "ca
 DECISION_KINDS = {"design", "business", "deployment-preparation", "deployment"}
 
 
+def state_directory(root: Path) -> Path:
+    legacy = root / ".hackbuilder-portal"
+    current = root / ".abcbuilder-portal"
+    # Retain live leases/history on upgrades; new checkouts use the ABC name.
+    return legacy if legacy.exists() and not current.exists() else current
+
+
+def environment(name: str) -> str | None:
+    return os.environ.get(f"ABCBUILDER_{name}") or os.environ.get(f"HACKBUILDER_{name}")
+
+
 def timestamp() -> str:
     return datetime.now(timezone.utc).isoformat()
 
@@ -41,6 +54,12 @@ def text(value: object, field: str, limit: int = 6000) -> str:
     if not isinstance(value, str) or not value.strip() or len(value) > limit:
         raise ValueError(f"{field} must be nonempty text of at most {limit} characters.")
     return value.strip()
+
+
+class ProjectExistsError(ValueError):
+    def __init__(self, slug: str) -> None:
+        self.slug = slug
+        super().__init__("This project already exists. Open the existing project or choose a new project name.")
 
 
 class Store:
@@ -113,7 +132,7 @@ class Store:
             if self.path(slug).exists():
                 project = self.read(slug)
                 if create:
-                    raise ValueError("This project already exists. Select it and continue or request a revision.")
+                    raise ProjectExistsError(slug)
                 self.check_revision(project, revision)
                 if project["writer"] is not None:
                     raise ValueError("This project has an active writer. Stop or finish that job before editing.")
@@ -342,9 +361,9 @@ class Store:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("command", choices=["read", "report", "claim", "finish"])
-    parser.add_argument("--directory", type=Path, default=os.environ.get("HACKBUILDER_PROJECT_STATE"))
-    parser.add_argument("--project", default=os.environ.get("HACKBUILDER_PROJECT"))
-    parser.add_argument("--owner", default=os.environ.get("HACKBUILDER_RUN_ID"))
+    parser.add_argument("--directory", type=Path, default=environment("PROJECT_STATE"))
+    parser.add_argument("--project", default=environment("PROJECT"))
+    parser.add_argument("--owner", default=environment("RUN_ID"))
     parser.add_argument("--revision", type=int)
     parser.add_argument("--event", type=Path, help="JSON stage report; never user consent.")
     parser.add_argument("--request", type=Path, help="Normalized intake JSON when claiming a new external project.")

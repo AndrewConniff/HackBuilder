@@ -36,18 +36,18 @@ REQUIRED_LAB_KEYS = {
     "primarytopics",
 }
 REQUIRED_CHALLENGE_SECTIONS = (
-    "## 💡 Scenario",
-    "## 🎯 What you will learn",
-    "## 🛠️ High-level lab steps",
-    "## 🎒 Prerequisites",
-    "## 🎯 Goal",
-    "## 💡 Why this matters",
-    "## 🧱 Build on what works",
-    "## 🧭 Choose your path",
-    "## ✅ Done when",
-    "## 💬 Stuck?",
-    "## 🌟 Stretch goal",
-    "## 🔁 Fallback",
+    "## Scenario",
+    "## What you will learn",
+    "## High-level lab steps",
+    "## Prerequisites",
+    "## Goal",
+    "## Why this matters",
+    "## Build on what works",
+    "## Choose your path",
+    "## Done when",
+    "## Stuck?",
+    "## Stretch goal",
+    "## Fallback",
     "## Summary",
 )
 COACH_NOTE_LABELS = (
@@ -383,6 +383,8 @@ def validate_challenge_page(path: Path, errors: list[str]) -> tuple[str, str, in
     validate_markdown_lines(path, text, errors)
     validate_local_images(path, text, errors)
 
+    # Existing released pages may retain decorative heading icons.
+    text = re.sub(r"^(## )[^A-Za-z0-9\n]+(?=[A-Za-z])", r"\1", text, flags=re.MULTILINE)
     for section in REQUIRED_CHALLENGE_SECTIONS:
         if section not in text:
             add_error(errors, f"{path} is missing section {section}.")
@@ -406,7 +408,7 @@ def validate_challenge_page(path: Path, errors: list[str]) -> tuple[str, str, in
     if values.get("title") != title:
         add_error(errors, f"{path} lab.title must match the title after the H1 em dash.")
 
-    scenario = section_text(text, "## 💡 Scenario")
+    scenario = section_text(text, "## Scenario")
     if not scenario:
         add_error(errors, f"{path} has an empty Scenario section.")
 

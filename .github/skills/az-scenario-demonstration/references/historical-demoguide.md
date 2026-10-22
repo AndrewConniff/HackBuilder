@@ -158,7 +158,7 @@ For each demo section, produce:
 
 | Element             | Description                                          |
 | ------------------- | ---------------------------------------------------- |
-| **Step title**      | Numbered heading with emoji indicator                |
+| **Step title**      | Numbered plain-text heading without decorative emoji |
 | **Duration**        | Estimated time for this step                         |
 | **What to show**    | Portal blade, CLI command, or code snippet           |
 | **What to say**     | Talking point aligned to the audience persona        |

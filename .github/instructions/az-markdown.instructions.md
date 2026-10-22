@@ -125,22 +125,23 @@ CI/pre-commit enforcement that is not configured.
 
 **MANDATORY**: All agent-generated documentation MUST follow the styling standards defined in:
 
-📚 **[Consolidated Skill](../skills/az-consolidated/SKILL.md)**
+**[Consolidated Skill](../skills/az-consolidated/SKILL.md)**
 
 ### Quick Reference
 
 | Element        | Usage               | Example                                        |
 | -------------- | ------------------- | ---------------------------------------------- |
 | Callouts       | Emphasis & warnings | `> [!NOTE]`, `> [!TIP]`, `> [!WARNING]`        |
-| Status Emoji   | Progress indicators | ✅ ⚠️ ❌ 💡                                    |
-| Category Icons | Resource sections   | 💻 💾 🌐 🔐 📊                                 |
+| Status         | Progress indicators | `complete`, `pending`, `warning`, `failed`      |
+| Categories     | Resource sections   | Plain-text service or resource names           |
 | Collapsible    | Long content        | `<details><summary>...</summary>...</details>` |
 | References     | Evidence links      | Microsoft Learn URLs at document bottom        |
 
 ### Callout Types
 
 Supported: `> [!NOTE]`, `> [!TIP]`, `> [!IMPORTANT]`, `> [!WARNING]`, `> [!CAUTION]`.
-Full examples and emoji tables are in the SKILL.md linked above.
+Use no decorative emoji in headings, prose or navigation. Preserve functional
+badges, Markdown checkboxes and alert callouts. Full examples are in the linked skill.
 
 ## Lists and Formatting
 

@@ -14,7 +14,7 @@ description: >
   submissions.
 ---
 
-# Azure AI Foundry Hack Builder
+# ABC Builder — Foundry hack authoring
 
 Turn any input (a scenario, an industry, a customer ask, a product theme) into a
 complete set of Azure AI Foundry hack challenges. **Every hack this skill
@@ -40,7 +40,7 @@ An unsupported industry blocks composition pending an explicit decision to exten
 support or revise and reapprove the scenario. Never silently map another industry.
 In noninteractive jobs, persist the missing decision and stop.
 
-When this skill is used by the Azure Demo Builder, the scenario has four
+When this skill is used by ABC Builder, the scenario has four
 deliverables that share one design:
 
 - A **coach solution** that fully implements the agent in Azure AI Foundry,
@@ -109,7 +109,7 @@ requires.
 
 ## Workflow
 
-1. **Read the input.** Extract: industry/brand, the business problem, the end
+1. **Read the input.** Extract: industry/brand, approved `businessUnits`, the business problem, the end
    user of the agent, and any named data or systems.
    Before fixing the scenario, apply the
    [CSV-only company identity rules](../az-consolidated/SKILL.md#fictitious-company-identity---csv-only).
@@ -120,7 +120,8 @@ requires.
    requirements and package contract, then reuse them in all four deliverables.
 2. **Fix the scenario.** Write one 2–3 sentence scenario the whole hack hangs
    off. Every challenge must advance that same agent — never switch scenarios
-   mid-hack.
+   mid-hack. Preserve the approved unit-specific personas and handoffs; Generic
+   is a typical industry workflow without unit targeting, not all units.
 3. **Define the solution boundary.** Reuse the approved fully built coach Foundry
    resources (account, project, model deployment, agent, connections, tools,
    evaluation and identity/RBAC where applicable), the supporting Azure
@@ -272,7 +273,8 @@ generated-scenarios/<project>/
 - [ ] Success criteria are observable ("the agent cites the PDF"), not vague
       ("the agent works well")
 - [ ] No secrets, no fabricated links, no confidential content
-- [ ] Emoji, heading levels, and callouts match the style guide
+- [ ] Headings, prose and navigation have no decorative emoji; functional badges,
+      checkboxes and callouts match the style guide
 
 ## References
 

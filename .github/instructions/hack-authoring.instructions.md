@@ -99,6 +99,11 @@ must not appear in `packages/hack/`.
 
 ## Default writing style
 
+- Preserve the approved industry and exact `businessUnits` across personas,
+  challenge stories, data, evidence and private coach notes. Generic is a typical
+  industry workflow with no unit targeting, not every business unit.
+- Use plain headings, prose and navigation without decorative emoji. Preserve
+  functional time/difficulty badges, Markdown checkboxes and alert callouts.
 - Second person, imperative, present tense. Sentence case headings.
 - Front-load the outcome: the first three lines say what will be working at the end.
 - Tables for parallel attributes, numbered steps for sequence, bullets for options.

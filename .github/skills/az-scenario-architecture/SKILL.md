@@ -11,6 +11,10 @@ description: >
 1. Read requirements, selected service constraints and current region evidence.
    If target evidence is unavailable, distinguish a provisional local design from
    a validated deployable design; return the exact decision needed.
+1. Trace industry and `businessUnits` into personas, data ownership, app workflows,
+   handoffs and acceptance. Generic means an industry workflow without unit targeting.
+   For adaptations, source architecture is read-only guidance, not inherited
+   deployment state, scopes, approvals or runtime evidence. Confirm the new target design.
 1. Use current Microsoft Foundry guidance and AVM metadata. Prefer the simplest
    design meeting business, identity, networking, residency and WAF requirements.
    Explain requested services that are unnecessary or unavailable; do not silently

@@ -12,8 +12,10 @@ import time
 import webbrowser
 from pathlib import Path
 
+from portal_workflow import WORKFLOW_VERSION, state_directory
+
 ROOT = Path(__file__).resolve().parents[1]
-STATE = ROOT / ".hackbuilder-portal"
+STATE = state_directory(ROOT)
 
 
 def running_portal() -> dict | None:
@@ -23,8 +25,9 @@ def running_portal() -> dict | None:
     config = json.loads(connection.read_text(encoding="utf-8"))
     port, token = config.get("port"), config.get("token")
     if type(port) is not int or not 1 <= port <= 65535 or not isinstance(token, str) or not token:
-        raise ValueError("Invalid local portal connection file. Inspect .hackbuilder-portal\\server.json.")
+        raise ValueError(f"Invalid local portal connection file. Inspect {STATE / 'server.json'}.")
     client = http.client.HTTPConnection("127.0.0.1", port, timeout=1)
+    identified = False
     try:
         client.request("GET", "/api/health", headers={"Authorization": f"Bearer {token}"})
         response = client.getresponse()
@@ -34,8 +37,32 @@ def running_portal() -> dict | None:
         health = json.loads(body)
         if health != {"status": "ok", "workspace": str(ROOT)}:
             raise ValueError("The local port is not serving this workspace's portal.")
+        identified = True
+        client.request("GET", "/api/catalog", headers={"Authorization": f"Bearer {token}"})
+        response = client.getresponse()
+        body = response.read()
+        if response.status != 200:
+            raise ValueError("Existing portal version check failed. Inspect its server before restarting.")
+        catalog = json.loads(body)
+        if (
+            not isinstance(catalog, dict)
+            or type(catalog.get("workflowVersion")) is not int
+            or catalog["workflowVersion"] != WORKFLOW_VERSION
+        ):
+            pid = config.get("pid")
+            label = str(pid) if type(pid) is int and pid > 0 else "unknown"
+            raise ValueError(
+                f"An outdated portal server is still running (PID {label}). "
+                "The launcher reuses servers; it does not restart them. "
+                "Finish or stop active workers, stop that server, then run Start-ABCBuilder.cmd again."
+            )
         return config
-    except (ConnectionRefusedError, TimeoutError):
+    except (ConnectionRefusedError, TimeoutError) as error:
+        if identified:
+            raise RuntimeError(
+                "The existing portal answered health but its version check timed out or disconnected. "
+                "No replacement was started; inspect that server before restarting."
+            ) from error
         return None
     finally:
         client.close()
@@ -68,19 +95,19 @@ def ensure_portal() -> dict:
             return config
         if process.poll() is not None:
             raise RuntimeError(
-                "Portal startup failed. Inspect .hackbuilder-portal\\server.log; port 8765 may be in use."
+                f"Portal startup failed. Inspect {STATE / 'server.log'}; port 8765 may be in use."
             )
         time.sleep(0.1)
     process.terminate()
     process.wait(timeout=5)
-    raise RuntimeError("Portal did not become ready in 10 seconds. Inspect .hackbuilder-portal\\server.log.")
+    raise RuntimeError(f"Portal did not become ready in 10 seconds. Inspect {STATE / 'server.log'}.")
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--hook", action="store_true", help="Return hook JSON without exposing the private URL.")
     args = parser.parse_args()
-    if os.environ.get("HACKBUILDER_PORTAL_JOB") == "1":
+    if os.environ.get("ABCBUILDER_PORTAL_JOB") == "1" or os.environ.get("HACKBUILDER_PORTAL_JOB") == "1":
         if args.hook:
             print("{}")
         else:

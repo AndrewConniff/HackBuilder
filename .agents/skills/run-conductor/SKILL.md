@@ -4,7 +4,7 @@ description: "Manual compatibility launcher for the canonical scenario orchestra
 disable-model-invocation: true
 ---
 
-# Run Hack Builder
+# Run ABC Builder
 
 Invoke `az-01-conductor` with the user's prompt and
 [the canonical workflow](../../../.github/skills/hack-builder-workflow/SKILL.md).

@@ -25,18 +25,19 @@ Include architecture preview if diagram exists, in the "what the demo scenario i
 <!-- markdownlint-disable MD033 MD041 -->
 
 <div>
-# 🏗️ {project-name}
+# {project-name}
 
 **{project-description in max 5 lines}**
 
 \*\*{include the following section}:
-💪 This template scenario is part of the larger [Microsoft Trainer Demo Deploy Catalog](https://aka.ms/trainer-demo-deploy).
+This template scenario is part of the larger
+[Microsoft Trainer Demo Deploy Catalog](https://aka.ms/trainer-demo-deploy).
 
 </div>
 
 ---
 
-## ⬇️ Installation
+## Installation
 
 [Azure Developer CLI - AZD](https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/install-azd)
 When installing AZD, the above the following tools will be installed on your machine as well, if not already installed:
@@ -45,7 +46,7 @@ When installing AZD, the above the following tools will be installed on your mac
 - [Bicep CLI](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install)
   You need Owner or Contributor access permissions to an Azure Subscription to deploy the scenario.
 
-## 🚀 Deploying the scenario in 4 steps:
+## Deploying the scenario in 4 steps:
 
 1. Create a new folder on your machine.
 
@@ -71,23 +72,26 @@ azd init -t <your repo link> e.g. petender/azd-hubspoke
 azd up
 ```
 
-⏩ Note: you can delete the deployed scenario from the Azure Portal, or by running azd down from within the initiated folder.
+Note: you can delete the deployed scenario from the Azure Portal,
+or by running `azd down` from within the initialized folder.
 
 ## What is the demo scenario about?
 
 **{project-description in max 10 lines}**
 
-## 📋 Project Summary
+## Project Summary
 
 | Property         | Value          |
 | ---------------- | -------------- |
 | **Created**      | {created-date} |
 | **Last Updated** | {updated-date} |
 | **Region**       | {azure-region} |
+| **Industry**     | {industry} |
+| **Business Units** | {businessUnits; Generic means no unit targeting} |
 
 ---
 
-## 🏛️ Architecture
+## Architecture
 
 <!-- Include diagram preview if available -->
 <!-- If diagram exists, include the following block -->

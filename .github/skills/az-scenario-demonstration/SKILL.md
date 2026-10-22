@@ -14,6 +14,8 @@ description: >
 1. Write `demoguide/demoguide.md`: audience, business story, prerequisites,
    exact live app flow, expected grounded/tool behavior, observable negative
    case, timing, cost and limitations. Use real outputs, not fabricated success.
+   Demonstrate the requirements' industry and `businessUnits` through the selected
+   personas, app/data and cross-unit handoffs. Generic has no unit targeting.
 1. Exercise the demonstration from the actual identity/network path within
    authorized scope. Capture screenshots with Playwright when available and
    provide an explicitly labeled screenshot fallback, not fake live acceptance.

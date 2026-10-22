@@ -32,7 +32,7 @@ does not execute scoped hooks, run `python scripts\start_portal.py` once at the
 start of the interactive task instead. Do not run both paths or repeat it on
 every follow-up. Surface startup failures; do not silently claim it opened.
 This helper owns a detached local server so it remains available after the turn.
-When `HACKBUILDER_PORTAL_JOB=1`, skip startup: the portal already launched this
+When `ABCBUILDER_PORTAL_JOB=1` (or legacy `HACKBUILDER_PORTAL_JOB=1`), skip startup: the portal already launched this
 noninteractive job. Never open another portal or enqueue a duplicate scenario.
 Continue a scenario supplied in chat directly; opening the portal is not consent
 to start another job, deploy Azure resources, approve a scenario or compose a hack.
@@ -47,6 +47,16 @@ Read the repository `microsoft_industry_verticals.csv` for industry intake and
 the consolidated skill for synthetic company/person provenance. Record requested
 services and Well-Architected Framework priorities as requirements, not permission
 to deploy or a reason to add unneeded complexity.
+
+Apply the workflow's `businessUnits` multi-select contract throughout requirements,
+personas, story, app/seed data and acceptance. Generic is exclusive and means a
+typical industry workflow without unit targeting. For catalog adaptations, treat
+source architecture as read-only guidance; regenerate target business app/data and
+refresh evidence. Never inherit source deployment state, secrets, scopes, approvals,
+packages or runtime success. Obtain new design confirmation, validation and approval.
+Maintain the target `scenario-manifest.json` through
+`python scripts\scenario_catalog.py refresh generated-scenarios\<slug> --metadata reviewed-metadata.json`.
+Complete inferred `needs-review` metadata; discovery is read-only and source selection is not consent.
 
 ## Implement directly with skills
 

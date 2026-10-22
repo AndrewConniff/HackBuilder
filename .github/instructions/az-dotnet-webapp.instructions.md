@@ -60,6 +60,15 @@ applyTo: "**/*.cs,**/*.csproj,**/Dockerfile"
 
 ### Seed Data
 
+- Derive entities, records, documents and actions from the requirements' industry,
+  `businessUnits`, personas and handoffs. Use the workflow's stable IDs; Generic
+  is exclusive and means a typical industry workflow without unit targeting.
+- For catalog adaptations, regenerate target business app/data rather than
+  relabeling source examples. Use source architecture as read-only guidance;
+  never copy deployment state, secrets, scopes, approvals, packages or runtime success.
+- Cover selected-unit workflows, cross-unit handoffs and negative cases in tests.
+- Preserve company/person CSV provenance and exact recorded identities across
+  seeds, app displays, grounding, evaluations and learner/coach fixtures.
 - JSON files with 10-20 realistic but fictional records
 - Use PascalCase property names in JSON (match C# models)
 - Include varied data (different statuses, dates, amounts)

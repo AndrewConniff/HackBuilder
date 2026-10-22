@@ -1,4 +1,4 @@
-# Hack Builder - Copilot instructions
+# ABC Builder - Copilot instructions
 
 ## Entry point and workflow
 
@@ -23,6 +23,8 @@ Existing packages and selected services are not authorization.
 
 ## Customization ownership
 
+- Product branding is ABC Builder. Stable agent names, canonical skill folder
+  identifiers, executable script names and environment variables remain compatibility APIs.
 - `.github/agents/*.agent.md`: exactly two canonical contexts, scenario orchestrator
   (`az-01-conductor`) and hack composition (`HackCreator Agent`). Both have
   `agents: []` and no delegation tools.
@@ -40,7 +42,7 @@ Do not assume missing skill files, policy files or npm scripts exist.
 ## Local portal and noninteractive execution
 
 The lightweight LOCAL web portal collects prompt, validated project slug,
-industry, services and WAF priorities. Its local authenticated backend launches
+industry, `businessUnits`, services and WAF priorities. Its local authenticated backend launches
 real Copilot CLI jobs using the two stable agent names. This is tooling, not an
 Azure-hosted learner/progress application or a sandbox.
 
@@ -73,6 +75,18 @@ Industry intake is repository `microsoft_industry_verticals.csv`; Skillable supp
 only six industry slugs. Unsupported industries block composition pending an
 explicit support-extension or revised/reapproved scenario decision; never silently
 map them to another industry.
+
+Apply the workflow's business-unit and reuse catalog contract. Generic is exclusive
+of specific units and means a typical industry workflow with no unit targeting.
+Carry scope through requirements, personas, application/data and learner/coach content.
+Catalog discovery is read-only; workers curate `scenario-manifest.json` through
+`python scripts\scenario_catalog.py refresh generated-scenarios\<slug> --metadata <JSON>`.
+Inferred metadata stays visibly `needs-review` until curated. Reuse source architecture
+as read-only guidance; regenerate business app/data for the target industry and units,
+refresh technical evidence, and obtain new design confirmation, validation and approval.
+Never inherit source deployment state, secrets, scopes, approvals, packages or runtime success.
+Source selection is not consent. Use plain headings/prose/navigation without decorative emoji;
+retain functional badges, checkboxes and callouts.
 
 ## Technical constraints
 

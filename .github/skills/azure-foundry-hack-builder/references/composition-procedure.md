@@ -32,6 +32,10 @@ Read requirements, architecture, root IaC/application, region evidence,
 
 Reuse reference synthetic fixtures, catalog provenance, APIs and passing tests.
 Refresh evidence only when inputs or current service behavior require it.
+Carry the approved industry and exact `businessUnits` through scenario text,
+personas, starter fixtures, challenge evidence and private Finale guidance.
+Generic remains an industry workflow without unit targeting. An adaptation uses
+only its newly approved reference, never its source's packages or approval.
 
 Before either mode, compare the recorded industry from repository
 `microsoft_industry_verticals.csv` with Skillable's six supported slugs. Do not
@@ -46,7 +50,8 @@ Skillable inventory template. These are **post-approval** artifacts.
 
 The contract records:
 
-- The approved reference fingerprint, unchanged story and supported industry slug.
+- The approved reference fingerprint, unchanged story, supported industry slug
+  and exact `businessUnits`, including selected personas and cross-unit handoffs.
 - Full coach solution and a **scenario-specific minimum** participant starter.
 - A private resource matrix: reference resource, preprovided/learner-built/
   coach-only disposition, rationale, challenge dependency and acceptance check.
