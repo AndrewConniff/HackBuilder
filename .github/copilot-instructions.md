@@ -1,94 +1,90 @@
-# Azure Demo Builder - Copilot Instructions
+# Hack Builder - Copilot instructions
 
-> VS Code Copilot-specific orchestration instructions.
-> For general project conventions, build commands, and code style, see the root `AGENTS.md`.
+## Entry point and workflow
 
-## Quick Start
+When a technical user asks to **build a hack**, use `az-01-conductor` as the
+scenario orchestrator and read
+[the canonical workflow](skills/hack-builder-workflow/SKILL.md).
 
-1. Enable subagents: `"github.copilot.chat": { "customAgentInSubagent": { "enabled": true } }`
-2. Open Chat (`Ctrl+Shift+I`) → Select **conductor** → Describe your project
-3. The Conductor guides you through all 7 steps with automatic handoffs
+1. Build the Foundry-oriented story and complete technical reference scenario:
+   requirements, architecture, diagrams, Bicep, real application, Azure
+   deployment, runtime tests and demo guide.
+1. Present the working scenario and **wait for explicit user approval** of its
+   suitability for the hack. Deployment consent is not scenario approval.
+1. Only after recorded approval, a separate `HackCreator Agent` composition
+   context derives the minimum participant starter, challenges, learner guide
+   and private coach package. Validate locally.
+1. Deploy a coach/team event only on a **separate explicit request**.
 
-## Workflow
+Each agent executes all of its phase's work directly through skills; no specialist
+delegation, agent fanout or nested orchestrator. The scenario process must not
+auto-start composition. Never create a package plan before approval.
+Existing packages and selected services are not authorization.
 
-| Step | Agent        | Output                                                    | Progression |
-| ---- | ------------ | --------------------------------------------------------- | ----------- |
-| 0    | Validation   | `00-region-availability.json`                             | Automatic   |
-| 1    | Requirements | `01-requirements.md`                                      | Automatic   |
-| 2    | Architect    | `02-architecture-assessment.md`                           | Automatic   |
-| 3    | Diagrammer   | `03-architect-*.{py,png,md}`                              | Automatic   |
-| 4    | Bicep        | `04-implementation-plan.md` + `generated-scenarios/{project}/infra/` | Automatic   |
-| 4b   | Development  | `07-webapp-summary.md` + `generated-scenarios/{project}/src/`        | Conditional |
-| 5    | Deploy       | `06-deployment-summary.md`                                | Automatic   |
-| 6    | DemoGuide    | `/demoguide/demoguide.md` + `/demoguide/*.png`            | Automatic   |
-| 7    | Contribute   | Standalone repo + `scenarios/registry.json` PR    | User-invoked |
+## Customization ownership
 
-All outputs → `generated-scenarios/{project}/`. Context flows via artifact files + handoffs.
+- `.github/agents/*.agent.md`: exactly two canonical contexts, scenario orchestrator
+  (`az-01-conductor`) and hack composition (`HackCreator Agent`). Both have
+  `agents: []` and no delegation tools.
+- `.github/skills/*/SKILL.md`: canonical reusable skills.
+- `.agents/skills/`: manual compatibility launchers and scenario prompts only;
+  no duplicate orchestration or implementation rules.
+- `.github/instructions/*.instructions.md`: file-scoped standards.
+- `AGENTS.md`: repository conventions and validation commands.
+- `AGENTSEXPLAINED.md`: inventory, discovery rules and measured execution findings.
 
-## Skills (Auto-Invoked by Agents)
+Descriptions enable discovery; a file's presence does not prove invocation.
+Use dated session evidence to distinguish discoverable from actually used.
+Do not assume missing skill files, policy files or npm scripts exist.
 
-| Skill                         | Purpose                                                               |
-| ----------------------------- | --------------------------------------------------------------------- |
-| **`SKILL.md`** (consolidated) | Defaults, AVM, Bicep patterns, diagrams, artifacts, demo guide        |
-| `webapp-development`          | .NET 10 sample webapp scaffolding, industry seed data, azd wiring     |
-| `app-creation`                | Foundry app deployment, chatbot integration, and Fluent UI companion |
-| `skillable-lod-authoring`     | Industry pages, Jekyll files, and private Finale coach notes          |
-| `az-multi-team-deployment`    | Manifest-driven deployment for 1-20 isolated team environments       |
-| `azure-adr`                   | Architecture Decision Records                                         |
-| `github-operations`           | GitHub issues, PRs, CLI, Actions, releases                            |
-| `git-commit`                  | Commit message conventions                                            |
-| `microsoft-docs`              | Query official Microsoft/Azure docs (requires Learn MCP)              |
-| `microsoft-code-reference`    | Verify SDK methods and find working code samples (requires Learn MCP) |
-| `golden-principles`           | Core operating principles for agent behavior                          |
+## Local portal and noninteractive execution
 
-Agents read the consolidated skill via: **"Read `.github/skills/az-consolidated/SKILL.md`"** in their body.
+The lightweight LOCAL web portal collects prompt, validated project slug,
+industry, services and WAF priorities. Its local authenticated backend launches
+real Copilot CLI jobs using the two stable agent names. This is tooling, not an
+Azure-hosted learner/progress application or a sandbox.
 
-Azure agents must also follow:
+Interactive VS Code invocation of `az-01-conductor` automatically opens the
+local portal using its scoped startup hook and `scripts\start_portal.py`.
+The helper starts or reuses a healthy local server; it does not start a scenario.
+For hosts without scoped-hook execution, the agent runs the helper once as its
+first interactive action. Portal CLI children set `HACKBUILDER_PORTAL_JOB=1`
+and must skip startup, avoiding recursive browser launches.
 
-- `.github/instructions/az-default-account.instructions.md` for the required
-  account and subscription. Authentication mismatches fail closed.
-- `.github/instructions/az-foundry.instructions.md` for current direct Foundry
-  projects, live region/model evidence, and end-to-end acceptance.
+Initial jobs allow local preparation only by instruction: use
+`generated-scenarios\{projectSlug}`, prepare the reference and what-if commands,
+then stop before Azure operations unless explicitly authorized. Tool execution
+requires explicit portal permission. Separate follow-up confirms exact deployment
+targets after what-if. Missing consent or decisions in noninteractive mode means
+persist **decision required** and stop, not invent approval.
 
-## Chat Triggers
+The portal is the normal decision and scenario-progress surface. Workers consume durable intake,
+preferences and all resolved answers and report stages through `scripts\portal_workflow.py`.
+Honor project writer leases and revision checks; do not edit a portal-owned scenario in parallel.
+Confirm architecture design before implementation. For local construction, record provisional
+publicly supported region/model choices; defer account, quota and budget checks to authorized
+deployment preparation. Status refresh is read-only. Free-text continuation is not cloud consent.
 
-- If a user message starts with `gh`, treat it as a GitHub operation.
-  Examples: `gh pr create ...`, `gh workflow run ...`, `gh api ...`.
-- Automatically follow the `github-operations` skill guidance from
-  `.github/skills/github-operations/SKILL.md` (MCP-first, `gh` CLI fallback).
+The portal records explicit suitability approval against the reviewed fingerprint,
+runs the helper's approval check and only then starts composition as a separate
+job. It never auto-approves a scenario or deploys an event.
 
-### GitHub MCP Priority (Mandatory)
+Industry intake is repository `microsoft_industry_verticals.csv`; Skillable supports
+only six industry slugs. Unsupported industries block composition pending an
+explicit support-extension or revised/reapproved scenario decision; never silently
+map them to another industry.
 
-- For issues and pull requests, always prefer GitHub MCP tools over `gh` CLI.
-- Only use `gh` for operations that have no equivalent MCP write tool in the current environment.
-- In devcontainers, do not run `gh auth` commands unless the user explicitly
-  asks for CLI authentication troubleshooting.
+## Technical constraints
 
-## Key Conventions
-
-See the root `AGENTS.md` for full conventions. Summary of VS Code-specific
-overrides:
-
-- **AVM-first**: Always prefer Azure Verified Modules over raw Bicep
-- **Evidence-first regions**: Never use a static region default; consume
-  `00-region-availability.json` from the configured subscription.
-- **No greenfield hubs**: Use a Foundry resource with a direct child project.
-- **Complete means deployed**: Require the real coach chatbot, one coach
-  deployment, one deployment per manifest team, and complete application URLs
-  and statuses before advancing.
-
-Full details in `.github/skills/az-consolidated/SKILL.md`.
-
-## Key Files
-
-| Path                              | Purpose                                      |
-| --------------------------------- | -------------------------------------------- |
-| `AGENTS.md`                       | Cross-agent project conventions and commands |
-| `.github/agents/*.agent.md`       | Agent definitions                            |
-| `.github/skills/*/SKILL.md`       | Reusable skill knowledge                     |
-| `.github/instructions/`           | File-type rules (Bicep, Markdown, etc.)      |
-| `generated-scenarios/{project}/`             | Agent-generated artifacts                    |
-| `generated-scenarios/{project}/infra/`       | Bicep templates                              |
-| `generated-scenarios/{project}/src/`         | Sample webapp source (when generated)        |
-| `.vscode/mcp.json`                | MCP server configuration                     |
-| `.vscode/infraops.toolsets.jsonc` | Workspace tool groups for interactive chat   |
+- Read `.github/instructions/az-foundry.instructions.md` for current Foundry
+  resources, direct child projects, live model/region evidence and acceptance.
+- Read `.github/skills/az-consolidated/SKILL.md` for shared defaults, AVM,
+  synthetic identity provenance and templates.
+- Confirm Azure CLI and azd use the user's selected account, subscription and
+  tenant. If a local default-account instruction exists, honor it. If absent,
+  ask for target confirmation; never invent a subscription or fail by repeatedly
+  reading a nonexistent file.
+- Use managed identity, real agent invocation and explicit errors; no mock
+  success. A provisioned resource or homepage is not a working scenario.
+- Inherit configured model preferences; do not hard-code model names in agents.
+- Use GitHub CLI for GitHub operations; publishing is always user-invoked.

@@ -93,7 +93,7 @@ The file contains:
   requirements.
 - GitHub destination, visibility, branch, review, and publication work.
 - A deployment gate that requires packaged runtime artifacts and preserves
-  mandatory coach and participant `azd up` testing.
+  coach and participant `azd up` testing for separately requested event rollout.
 
 Keep planned release enrichment separate from deployment-critical work. A
 runtime artifact cannot remain deferred when packages are handed to deployment.

@@ -1,9 +1,8 @@
 ---
 name: azure-foundry-hack-builder
 description: >
-  Generates Azure AI Foundry hack challenge content from a short prompt or a
-   topic/scenario input. Produces a complete Azure AI Foundry agent scenario:
-   a fully working coach solution and a 3-hour participant hack broken into
+  Authors Azure AI Foundry hack content only from an explicitly approved,
+   deployed reference scenario. Derives a minimum starter and a 3-hour hack with
    timed challenges, written in the Agents League house style (badge header,
    time budget, scenario, milestones, success criteria, hints, resources) and
    packaged as GitHub-ready Skillable / Learn On Demand pages.
@@ -21,13 +20,34 @@ Turn any input (a scenario, an industry, a customer ask, a product theme) into a
 complete set of Azure AI Foundry hack challenges. **Every hack this skill
 produces is an Azure AI Foundry agent-building hack that fits in 3 hours.**
 
+## Mandatory scenario approval gate
+
+For a new prompt, first follow
+[the workflow contract](../hack-builder-workflow/SKILL.md) through deployed
+scenario review. Do not write challenges, a package plan or `nextsteps.MD` yet.
+Before any hack authoring, run `scripts/hack_workflow.py check-approval` for
+the scenario. Missing or stale approval blocks authoring, even for direct use.
+This skill owns content rules, not orchestration or deployment.
+
+The hack composition agent executes this skill directly in its own context,
+using the [composition procedure](./references/composition-procedure.md).
+Do not invoke implementation or deployment agents.
+
+Industry intake uses repository `microsoft_industry_verticals.csv`; Skillable's
+catalog supports only six slugs. Check the recorded industry against
+`skillable-lod-authoring/assets/industry-catalog.json` before any authoring.
+An unsupported industry blocks composition pending an explicit decision to extend
+support or revise and reapprove the scenario. Never silently map another industry.
+In noninteractive jobs, persist the missing decision and stop.
+
 When this skill is used by the Azure Demo Builder, the scenario has four
 deliverables that share one design:
 
 - A **coach solution** that fully implements the agent in Azure AI Foundry,
    including its Foundry resources and every supporting Azure resource.
-- A **participant project** that deploys the same non-Foundry supporting
-   resources but intentionally omits every Foundry resource.
+- A **participant project** with only scenario-specific minimum access,
+   isolation and indispensable fixtures. Learners choose and build the remaining
+   components. Omit every Foundry resource and completed agent implementation.
 - A **hacker file set** that is safe for a public GitHub repository and teaches
    participants to build the omitted Foundry solution.
 - A **coach guide** that explains the complete solution and deployment process
@@ -92,7 +112,7 @@ requires.
 1. **Read the input.** Extract: industry/brand, the business problem, the end
    user of the agent, and any named data or systems.
    Before fixing the scenario, apply the
-   [CSV-only company identity rules](./az-consolidated/SKILL.md#fictitious-company-identity---csv-only).
+   [CSV-only company identity rules](../az-consolidated/SKILL.md#fictitious-company-identity---csv-only).
    Select the fictitious company only from a valid entry in the repository-root
    `fictitious_company_names.csv`, or verify the identity already recorded in
    the requirements. A prompt brand or example is not an alternative source.
@@ -101,18 +121,21 @@ requires.
 2. **Fix the scenario.** Write one 2–3 sentence scenario the whole hack hangs
    off. Every challenge must advance that same agent — never switch scenarios
    mid-hack.
-3. **Define the solution boundary.** List the fully built coach Foundry
+3. **Define the solution boundary.** Reuse the approved fully built coach Foundry
    resources (account, project, model deployment, agent, connections, tools,
    evaluation and identity/RBAC where applicable), the supporting Azure
    resources, and the Foundry resources intentionally omitted from the
-   participant package. If a resource is not applicable, state why.
+   participant package. Privately classify every reference resource as
+   preprovided, learner-built or coach-only; justify every preprovided resource.
+   Show only the minimum starter architecture publicly. Do not preserve every
+   supporting resource by default.
 4. **Inventory supporting artifacts.** Create scenario-root `nextsteps.MD`
    from the Skillable template. Name exact files, schemas, synthetic content,
    package paths, Azure targets, creation and installation methods, identity,
    ownership, and acceptance tests. Classify runtime dependencies as
    `deployment-critical`.
    Apply the
-   [CSV-only people identity rules](./az-consolidated/SKILL.md#fictitious-people-identity---csv-only).
+   [CSV-only people identity rules](../az-consolidated/SKILL.md#fictitious-people-identity---csv-only).
    Source every sample-data person from the repository-root
    `fictitious_people_names.csv`, recording deterministic entity-to-record
    mappings in the artifact plan. Reuse exact catalog names in datasets,
@@ -127,7 +150,7 @@ requires.
    `.github/skills/skillable-lod-authoring/assets/challenge-page.template.md`
    as the section order and frontmatter contract.
 8. **Apply the style rules** in
-   `.github/instructions/hack-authoring-instructions.md`.
+   `.github/instructions/hack-authoring.instructions.md`.
 9. **Emit four file sets** under `packages/`: `coach/`, `participant/`,
    `hack/`, and `coach-guide/`.
 10. **Fulfill deployment artifacts.** Create and package every
@@ -135,8 +158,10 @@ requires.
    update its `nextsteps.MD` status to `packaged`.
 11. **Create Finale** from the Skillable Finale template. Map every challenge's
    coach notes in the private coach source only.
-12. **Self-check** against the checklist below before delivering. Hand both
-   deployable projects to the Deploy agent for mandatory `azd up` testing.
+12. **Self-check** against the checklist below before delivering. Validate both
+   deployable projects locally and stop at **packages validated; event not deployed**.
+   Only a separate explicit event request lets the scenario orchestrator execute
+   deployment skills for real coach/team acceptance.
 
 ## Output file layout
 
@@ -145,7 +170,7 @@ generated-scenarios/<project>/
 ├─ nextsteps.MD               # Detailed supporting-artifact plan
 └─ packages/
    ├─ coach/                     # Complete deployable solution
-   ├─ participant/               # Deployable non-Foundry starter
+   ├─ participant/               # Minimum learner starter, no completed solution
    ├─ hack/                      # Public GitHub-ready participant content
    │  ├─ README.md
    │  ├─ index.md
@@ -206,8 +231,10 @@ generated-scenarios/<project>/
 - Every deployment-critical artifact must exist at all listed package paths
    before deployment handoff. Optional release enrichment may remain planned
    only when no challenge or deployed acceptance path depends on it.
-- Planned artifact work never replaces coach and participant `azd up`
-   deployment and artifact-specific acceptance testing.
+- Package validation does not deploy an event. Only a separate explicit event
+   request authorizes coach/team `azd up` and Azure acceptance testing.
+- Public challenges specify observable goals and constraints, not the completed
+   architecture or prescriptive solution steps. Keep answers in private Finale.
 
 ## Pre-delivery checklist
 
@@ -215,8 +242,8 @@ generated-scenarios/<project>/
 - [ ] Scenario is identical across all challenges
 - [ ] The coach solution is a complete, runnable Foundry-agent implementation,
    not only a challenge design
-- [ ] The participant package retains every required non-Foundry resource and
-   omits every Foundry resource, dependency, output, and role assignment
+- [ ] The participant package contains only justified minimum prerequisites;
+   omitted resources' dependencies, outputs, hooks and assignments are removed
 - [ ] Hacker file set contains no coach answers, secrets, environment state,
    tenant details, subscription IDs, deployed endpoints, or local paths
 - [ ] Coach guide documents the complete solution and deployment process
@@ -231,10 +258,8 @@ generated-scenarios/<project>/
    creation, installation, identity, validation, acceptance, and ownership
 - [ ] Every deployment-critical artifact is packaged and wired to an
    idempotent load or installation path
-- [ ] Handoff requires `azd up` for the coach and every participant manifest
-   entry plus post-deployment artifact validation
-- [ ] Challenge 0 states that participants deploy the supporting package to a
-   dedicated participant resource group before creating Foundry resources
+- [ ] Package validation and optional event-deployment status are reported separately
+- [ ] Challenge 0 identifies the minimum starter and what learners must build
 - [ ] Challenge 0 proves model access with identity and RBAC but no pasted keys
 - [ ] Challenge 1 reaches a minimal viable end-to-end response before refinement
 - [ ] Challenges 2-4 each preserve and retest an earlier working capability
@@ -251,7 +276,7 @@ generated-scenarios/<project>/
 
 ## References
 
-- `.github/instructions/hack-authoring-instructions.md` — authoring style and
+- `.github/instructions/hack-authoring.instructions.md` — authoring style and
    public-content rules
 - `.github/skills/skillable-lod-authoring/SKILL.md` — GitHub, industry folder,
    frontmatter, Finale, and validation contract

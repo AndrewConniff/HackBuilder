@@ -1,9 +1,12 @@
+<!-- Historical source preserved on 2026-10-22; not an agent definition or executable workflow. -->
+<!-- Use technical sections only under the owning SKILL.md. Old roles, tool declarations
+     and handoffs are historical, not instructions to delegate. -->
+
 ---
 name: az-03-Architect
 description: Evaluates project requirements, recommends Azure services and SKUs, documents trade-offs, and produces architecture assessments for demo and PoC scenarios. References Microsoft documentation for service capabilities and limits.
-model: "Claude Opus 4.6"
 argument-hint: Provide the path to a requirements document or describe the architecture to assess
-user-invokable: true
+user-invocable: false
 agents: []
 tools:
   [
@@ -13,6 +16,7 @@ tools:
     vscode/newWorkspace,
     vscode/openSimpleBrowser,
     vscode/runCommand,
+    vscode/askQuestions,
     vscode/vscodeAPI,
     execute/getTerminalOutput,
     execute/awaitTerminal,
@@ -28,8 +32,6 @@ tools:
     read/problems,
     read/readFile,
     read/readNotebookCellOutput,
-    agent/runSubagent,
-    agent,
     edit/createDirectory,
     edit/createFile,
     edit/createJupyterNotebook,
@@ -70,8 +72,8 @@ tools:
 > Your **first action** MUST be to verify `01-requirements.md` exists and contains
 > the information below. Do NOT read skills or templates before this step.
 
-Validate `00-region-availability.json`, `01-requirements.md`, and
-`08-hack-package-contract.md` exist in `generated-scenarios/{project}/`. If
+Validate `00-region-availability.json` and `01-requirements.md`
+exist in `generated-scenarios/{project}/`. If
 any is missing, STOP and request the appropriate agent handoff.
 
 Verify these are documented — **auto-default if missing**:
@@ -92,7 +94,8 @@ Verify these are documented — **auto-default if missing**:
 3. **Read** the template file:
    - `.github/skills/az-azure-artifacts/templates/02-architecture-assessment.template.md`
      Use as structural skeleton.
-4. **Read** `.github/skills/microsoft-docs/SKILL.md` — query official Microsoft docs for service limits and SKU comparisons
+4. Query official Microsoft Learn tools or pages for unresolved service limits
+   and SKU comparisons. Reuse valid evidence from Requirements.
 
 ## DO / DON'T
 
@@ -104,7 +107,7 @@ Verify these are documented — **auto-default if missing**:
 - ✅ Recommend appropriate SKUs and tiers for the demo/PoC scope
 - ✅ Document trade-offs between service options
 - ✅ Auto-fill critical requirement gaps using defaults and assumptions
-- ✅ Continue automatically to bicep-plan handoff after assessment is generated
+- ✅ Return the completed assessment and checks to the conductor
 - ✅ Match H2 headings from azure-artifacts skill exactly
 - ✅ Be specific to the workload — no generic recommendations
 
@@ -123,9 +126,9 @@ Verify these are documented — **auto-default if missing**:
 
 ### Steps
 
-1. **Read requirements and package contract** — Parse `01-requirements.md` and
-  `08-hack-package-contract.md` for scope, services, scale, the complete coach
-  implementation, and the participant package's intentional Foundry gap
+1. **Read requirements** — Parse `01-requirements.md` for the story, acceptance
+   outcomes, services and scale. Design the complete reference scenario only.
+   Do not require a hack contract or design the learner starter before approval.
 2. **Read region evidence** — Verify subscription, selected region, model,
    quota, capacity, and candidate rejection reasons
 3. **Search docs** — Query Microsoft docs for each Azure service and pattern
@@ -133,7 +136,7 @@ Verify these are documented — **auto-default if missing**:
 5. **Select SKUs** — Choose tiers appropriate for demo/PoC
 6. **Generate assessment** — Save `02-architecture-assessment.md`
 7. **Self-validate** — Run artifact lint and fix errors
-8. **Automatic handoff** — Present summary and continue
+8. **Return** — Present summary and return to the conductor without invoking another agent
 
 ## Execution Handoff (MANDATORY)
 
@@ -151,7 +154,7 @@ Architecture Pattern: {brief description}
 Region: {region}
 Data Endpoint: {Storage Table / SQL Database / Cosmos DB / None}
 
-Proceed directly to Bicep Planning after publishing this summary.
+Return this assessment to the conductor for the next bounded step.
 ```
 
 > **Important for downstream agents**: When the architecture includes a data service
@@ -176,7 +179,7 @@ Include attribution header from the template file (do not hardcode).
 - [ ] Region selection matches `00-region-availability.json`
 - [ ] Foundry architecture has a direct project and no hub resources
 - [ ] AVM modules recommended where available
-- [ ] Coach Foundry resources and participant supporting-resource boundary align with `08-hack-package-contract.md`
+- [ ] Complete reference architecture meets the story without pre-approval hack packaging
 - [ ] Trade-offs explicitly documented
-- [ ] Handoff summary presented before automatic delegation
+- [ ] Summary and checks returned to the conductor without further delegation
 - [ ] File saved to `generated-scenarios/{project}/`

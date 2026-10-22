@@ -1,5 +1,5 @@
 ---
-name: azd-demo-builder
+name: az-consolidated
 description: "Consolidated skill for Azure demo scenario generation: defaults, AVM-first Bicep, architecture diagrams, artifact templates, and demo guide patterns."
 compatibility: Works with Claude Code, GitHub Copilot, VS Code, and any Agent Skills compatible tool.
 license: MIT
@@ -13,6 +13,10 @@ metadata:
 
 Single reference for all agents. Covers Azure defaults, Bicep patterns,
 architecture diagrams, artifact templates, and demo guide generation.
+
+For Hack Builder sequencing, approval and deployment scope, use
+[the workflow contract](../hack-builder-workflow/SKILL.md). This skill supplies
+technical patterns, not an alternative orchestrator.
 
 ---
 
@@ -111,10 +115,15 @@ examples. Reuse valid identities only where the dataset's uniqueness rules allow
 
 ### Region Selection
 
-There is no static default Azure region. Before architecture or code
-generation, the Validation agent must authenticate to the account configured
-in `.github/instructions/az-default-account.instructions.md` and create
-`generated-scenarios/{project}/00-region-availability.json`.
+There is no static default Azure region. For local-only architecture and code,
+record a supported provisional region/model using current official documentation in
+`generated-scenarios/{project}/00-region-availability.json`. Honor supplied preferences
+and delegated choices. Mark evidence `provisional_local_design`; leave unknown subscription
+fields and `selectedRegion` null. Do not block local construction on account, quota or budget.
+
+Before authorized deployment preparation, confirm the user's target account,
+subscription and tenant (honoring a local default-account instruction if present).
+Query Azure only within explicit permission and replace provisional assumptions with live evidence.
 
 Evaluate every requested region and current supported alternatives against the
 complete resource set. For models, validate the exact model, version,
@@ -122,7 +131,7 @@ deployment type, SKU, subscription quota, and live capacity. Select one common
 region when possible; otherwise record an explicit multi-region design and the
 reason each single-region candidate failed.
 
-All downstream agents must consume this evidence unchanged. Documentation
+All downstream procedures must consume this evidence unchanged. Documentation
 examples and historical regional availability are not deployment proof.
 
 ### Required Tags
@@ -512,27 +521,29 @@ resource deployerKvRole 'Microsoft.Authorization/roleAssignments@2022-04-01' = i
 generated-scenarios/{project}/
 ├── 03-architect-diagram.py              # Architecture diagram source
 ├── 03-architect-diagram.png             # Architecture diagram PNG
-├── 03-architect-runtime-diagram.py      # Runtime flow diagram source
-├── 03-architect-runtime-diagram.png     # Runtime flow diagram PNG
+├── 04-runtime-diagram.png              # Runtime flow diagram PNG
 ```
 
 ### Execution
 
-Save `.py` to `generated-scenarios/{project}/`, then execute **both**:
+The scenario orchestrator generates both diagrams directly; do not invoke a second diagram
+stage. Save and execute the architecture source and a temporary runtime source:
 
 ```bash
 python3 generated-scenarios/{project}/03-architect-diagram.py
-python3 generated-scenarios/{project}/03-architect-runtime-diagram.py
+python3 generated-scenarios/{project}/04-runtime-diagram.py
 ```
 
 Verify both PNGs exist on disk before marking Step 3 complete.
+Delete the temporary `04-runtime-diagram.py` after successful rendering.
+The standalone Diagrammer may use other names for explicitly requested ad-hoc work.
 
 ### Diagram Types
 
 | Type                     | Purpose                                             | File Prefix                    |
 | ------------------------ | --------------------------------------------------- | ------------------------------ |
 | **Architecture Diagram** | Static resource layout, boundaries, Azure hierarchy | `03-architect-diagram`         |
-| **Runtime Flow Diagram** | Data paths, request flows, auth chains at runtime   | `03-architect-runtime-diagram` |
+| **Runtime Flow Diagram** | Data paths, request flows, auth chains at runtime   | `04-runtime-diagram` |
 
 ### Runtime Flow Diagram Guidelines
 

@@ -1,5 +1,5 @@
 ---
-name: azure-deploy
+name: az-azure-deploy
 description: "Deployment patterns, azd usage, rollback procedures, and post-deployment validation for Azure infrastructure projects."
 compatibility: Works with Claude Code, GitHub Copilot, VS Code, and any Agent Skills compatible tool.
 license: MIT
@@ -16,10 +16,33 @@ via Bicep templates and the Azure Developer CLI (azd). Covers the full
 deployment lifecycle: pre-flight checks, execution strategies, post-deployment
 validation, rollback, and cleanup.
 
+## Direct execution and scope
+
+The scenario orchestrator executes this procedure in its own context. Deployment
+is not a separate agent. Read the
+[workflow contract](../hack-builder-workflow/SKILL.md) and
+[preserved deployment detail](./references/historical-deployment.md) as needed.
+Historical personas, tool declarations and handoffs are inactive.
+
+Default to **reference** scope. Never require a hack contract or manifest for
+root reference deployment. A separate explicit event-deployment request and
+validated packages are prerequisites for event scope. Require an application
+URL only if the starter actually includes a deployed application.
+
+Initial portal jobs permit local preparation only by instruction. Prepare
+what-if commands and exact target previews, then stop for the necessary
+authorization. Do not execute Azure operations without explicit scope/permission.
+After authorized what-if, require exact target confirmation before deployment.
+In a noninteractive job, persist **decision required** and stop if consent,
+authentication or target details are missing; never infer a decision from
+`--no-ask-user` or tool-permission flags.
+
 > [!CAUTION]
 > **MANDATORY DEPLOYMENT POLICY**
 >
-> 1. **Always attempt deployment**: The Deploy agent MUST always attempt `azd up`.
+> 1. **Respect scope and gates**: Follow the Hack Builder workflow contract.
+>    Attempt `azd up` only for the authorized reference or event scope after
+>    authentication, policy, preflight and user-confirmation gates pass.
 >    Tooling blockers (missing CLI, extension errors, auth issues) must be resolved
 >    or escalated to the user — never used as a reason to autonomously skip deployment.
 > 2. **User decides on failure**: If deployment fails for any reason, present the
@@ -62,7 +85,7 @@ azd init
 
 # Set environment name
 azd env new {project}-{env}
-azd env set AZURE_LOCATION eastus2
+azd env set AZURE_LOCATION {validated-region}
 ```
 
 ### azd up — Full Deployment
@@ -128,7 +151,7 @@ infra:
 Set via:
 
 ```powershell
-azd env set AZURE_LOCATION eastus2
+azd env set AZURE_LOCATION {validated-region}
 azd env set AZURE_ENV_NAME dev
 ```
 
@@ -253,7 +276,7 @@ Deployment failed?
 ## 6. Common Deployment Errors
 
 > [!IMPORTANT]
-> For every error in this table, the Deploy agent must **present the error
+> For every error in this table, the scenario orchestrator must **present the error
 > to the user and ask how to proceed** if auto-remediation fails.
 > Never silently skip deployment or generate a dry-run summary.
 

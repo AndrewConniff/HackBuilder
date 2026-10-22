@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hack Builder · Scenario studio</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <aside class="sidebar">
+      <a class="brand" href="/"
+        ><span class="brand-mark">H</span
+        ><span>hack builder<small>SCENARIO STUDIO</small></span></a
+      >
+      <p class="nav-label">YOUR WORKFLOW</p>
+      <nav aria-label="Workflow">
+        <a id="nav-shape" class="nav-item active" href="#intake"
+          ><span aria-hidden="true">&#128161;</span>Shape the scenario</a
+        >
+        <a id="nav-build" class="nav-item" href="#workspace"
+          ><span aria-hidden="true">&#128736;</span>Build &amp; validate</a
+        >
+        <a id="nav-hack" class="nav-item" href="#review"><span aria-hidden="true">&#127919;</span>Compose the hack</a>
+      </nav>
+      <div class="sidebar-note">
+        <span class="dot"></span> LOCAL WORKSPACE
+        <p>
+          Your Copilot login. Your Azure context. No credentials in the browser.
+        </p>
+      </div>
+      <a
+        class="source-link"
+        href="https://learn.microsoft.com/azure/well-architected/pillars"
+        target="_blank"
+        rel="noreferrer"
+        >Built around Azure Well-Architected ↗</a
+      >
+    </aside>
+    <main>
+      <header class="topbar">
+        <span>Workspace / <strong id="page-stage">Shape the scenario</strong></span
+        ><span id="connection" class="badge">Connecting</span>
+      </header>
+      <section class="hero" id="intake">
+        <p class="eyebrow">FROM AN IDEA TO A WORKING SCENARIO</p>
+        <h1>
+          Start with a story.<br /><span>Build something worth solving.</span>
+        </h1>
+        <p>
+          Describe a business problem or choose your Azure building blocks.
+          Prove the scenario first. Turn it into a learner challenge only when
+          you're ready.
+        </p>
+        <div class="flow">
+          <span><b>1</b> Define</span><i>→</i
+          ><span><b>2</b> Build &amp; test</span><i>→</i
+          ><span><b>3</b> Approve &amp; compose</span>
+        </div>
+      </section>
+      <div id="error" role="alert" hidden></div>
+      <form id="scenario-form">
+        <div class="layout">
+          <div class="form-sections">
+            <section class="panel">
+              <div class="section-heading">
+                <span class="section-number">01</span>
+                <div>
+                  <h2>The business idea</h2>
+                  <p>Start with a prompt, a service selection, or both.</p>
+                </div>
+              </div>
+              <label for="prompt">What should the scenario demonstrate?</label>
+              <textarea
+                id="prompt"
+                name="prompt"
+                maxlength="6000"
+                rows="5"
+                placeholder="A finance team needs a Foundry agent that explains risk exposure using Cosmos DB data, with strong identity controls and auditable answers…"
+              ></textarea>
+              <div class="field-row">
+                <div>
+                  <label for="project">Project name</label>
+                  <input
+                    id="project"
+                    name="project"
+                    required
+                    pattern="[a-z0-9]+(-[a-z0-9]+)*"
+                    maxlength="40"
+                    placeholder="finance-risk-agent"
+                  />
+                  <small
+                    >Lowercase and hyphens. Used for the scenario
+                    workspace.</small
+                  >
+                </div>
+                <button class="text-button" id="example" type="button">
+                  Try the finance example ↗
+                </button>
+              </div>
+            </section>
+            <section class="panel">
+              <div class="section-heading">
+                <span class="section-number">02</span>
+                <div>
+                  <h2>Pick an industry</h2>
+                  <p>
+                    One industry. A scenario grounded in its real business
+                    context.
+                  </p>
+                </div>
+                <span class="tag">SINGLE SELECT</span>
+              </div>
+              <fieldset>
+                <legend class="sr-only">Industry</legend>
+                <div id="industries" class="industry-grid"></div>
+              </fieldset>
+            </section>
+            <section class="panel">
+              <div class="section-heading">
+                <span class="section-number">03</span>
+                <div>
+                  <h2>Your Azure building blocks</h2>
+                  <p>
+                    Selected services guide the design. Foundry is the
+                    foundation.
+                  </p>
+                </div>
+              </div>
+              <p class="subtle">
+                Editable repository allowlist · availability, SKUs and quota are
+                verified during scenario design.
+              </p>
+              <fieldset>
+                <legend class="sr-only">Azure services</legend>
+                <div id="services" class="service-grid"></div>
+              </fieldset>
+            </section>
+            <section class="panel">
+              <div class="section-heading">
+                <span class="section-number">04</span>
+                <div>
+                  <h2>What matters technically?</h2>
+                  <p>
+                    Prioritize the five Well-Architected pillars and specific
+                    technical domains.
+                  </p>
+                </div>
+              </div>
+              <fieldset>
+                <legend>Well-Architected priorities</legend>
+                <div id="pillars" class="pillar-grid"></div>
+              </fieldset>
+              <fieldset class="domain-fieldset">
+                <legend>Technical focus</legend>
+                <div id="domains" class="domain-grid"></div>
+              </fieldset>
+              <p class="subtle">
+                High availability is part of Reliability, not a sixth pillar.
+                Domain selections include their parent pillar.
+              </p>
+            </section>
+          </div>
+          <aside class="summary panel">
+            <span class="eyebrow">YOUR SCENARIO BRIEF</span>
+            <h2>Ready for the orchestrator</h2>
+            <dl>
+              <dt>Industry</dt>
+              <dd id="summary-industry">Choose one industry</dd>
+              <dt>Azure services</dt>
+              <dd id="summary-services">Microsoft Foundry</dd>
+              <dt>Technical priorities</dt>
+              <dd id="summary-priorities">No preference yet</dd>
+            </dl>
+            <div class="boundary">
+              <strong>Scenario first. Hack second.</strong>
+              <p>
+                The orchestrator builds the story, architecture and app.
+                Deployment needs your next explicit instruction. Composition
+                stays locked until you test and approve.
+              </p>
+            </div>
+            <label class="consent"
+              ><input type="checkbox" id="tool-consent" /><span
+                >I authorize local Copilot tool execution to implement this
+                scenario.</span
+              ></label
+            >
+            <p class="fine-print">
+              Copilot can modify files and run commands as your local user. This
+              is not a sandbox. Azure mutations, event rollout and publishing
+              are not authorized by this initial request. Sign in first with
+              <code>copilot login</code>.
+            </p>
+            <button id="launch" type="submit" class="primary">
+              Build my scenario <span>↗</span>
+            </button>
+            <button id="preview" type="button" class="secondary">
+              Preview orchestrator input
+            </button>
+            <button id="download" type="button" class="text-button">
+              Download structured request ↓
+            </button>
+          </aside>
+        </div>
+      </form>
+      <section id="preview-panel" class="panel" hidden>
+        <div class="panel-title">
+          <h2>Orchestrator input</h2>
+          <button id="copy" class="secondary" type="button">Copy input</button>
+        </div>
+        <pre id="preview-output"></pre>
+      </section>
+      <section id="workspace" class="panel workspace">
+        <div class="panel-title">
+          <div>
+            <p class="eyebrow">SELECTED SCENARIO</p>
+            <h2 id="workspace-title">Build &amp; validate</h2>
+          </div>
+          <button id="refresh-runs" class="secondary" type="button">
+            Refresh status
+          </button>
+        </div>
+        <label for="run-select">Scenarios</label
+        ><select id="run-select">
+          <option value="">No runs yet</option>
+        </select>
+        <label class="consent"><input id="workspace-consent" type="checkbox" /><span>
+          I authorize local Copilot tool execution for resume, revision or composition.
+          This does not authorize Azure deployment.
+        </span></label>
+        <div id="run-empty" class="empty-state">
+          <span class="empty-icon">◇</span>
+          <h3>Your next scenario starts here</h3>
+          <p>
+            Launch a brief to follow requirements, architecture, implementation
+            and validation.
+          </p>
+        </div>
+        <div id="run-details" hidden>
+          <div class="run-heading">
+            <strong id="run-name"></strong
+            ><span id="run-status" class="badge"></span
+            ><button id="stop" class="danger" type="button" hidden>
+              Stop job
+            </button>
+          </div>
+          <p id="project-summary" class="subtle" role="status" aria-live="polite"></p>
+          <div id="build-details">
+          <p class="subtle">Technical reference construction, deployment with explicit consent, and runtime validation.</p>
+          <ol id="stage-list" class="stage-list" aria-label="Scenario progress"></ol>
+          <details>
+            <summary>Available reference documents</summary>
+            <div id="reference-list" class="artifact-group-items"></div>
+            <article id="reference-content" class="markdown-preview" tabindex="0" hidden></article>
+          </details>
+          <section id="decision-panel" hidden>
+            <h3 id="decision-question"></h3>
+            <p id="decision-reason" class="subtle"></p>
+            <pre id="decision-scope" hidden></pre>
+            <label for="decision-choice">Your decision</label>
+            <select id="decision-choice"></select>
+            <p class="fine-print">
+              Design confirmation permits local implementation only. Cloud
+              preparation and deployment require separate exact-target consent.
+            </p>
+          </section>
+          <details id="instructions-panel">
+            <summary>Request a revision or provide additional instructions</summary>
+            <label for="decision">Instruction or optional decision explanation</label>
+            <textarea
+              id="decision"
+              rows="3"
+              maxlength="6000"
+              placeholder="Describe a change or explain a displayed decision. Free text does not grant deployment consent."
+            ></textarea>
+            <div class="actions">
+              <button id="continue" type="button" class="secondary">
+                Resume scenario</button
+              ><button id="revise" type="button" class="text-button">
+                Request revision
+              </button>
+            </div>
+            </details>
+            <div id="decision-actions" class="actions" hidden>
+              <button id="answer-decision" type="button" class="primary">Submit decision &amp; continue</button>
+            </div>
+            <details>
+              <summary>Technical details and execution log</summary>
+              <p id="execution-status" class="subtle"></p>
+              <pre id="run-output" aria-label="Copilot job output" tabindex="0"></pre>
+            </details>
+          </div>
+        </div>
+      </section>
+      <section id="review" class="panel">
+        <div class="section-heading">
+          <span class="section-number">03</span>
+          <div>
+            <h2>Compose the hack</h2>
+            <p>Only your explicit suitability approval unlocks composition.</p>
+          </div>
+          <span id="review-status" class="tag">LOCKED</span>
+        </div>
+        <p id="hack-summary" class="subtle">Approve a tested scenario to create learner and coach deliverables.</p>
+        <ol id="hack-stage-list" class="stage-list" aria-label="Hack composition progress"></ol>
+        <p id="review-reason" class="subtle">
+          Select a completed scenario run to inspect its review evidence.
+        </p>
+        <div id="review-evidence" hidden>
+          <a id="app-link" target="_blank" rel="noreferrer"
+            >Open deployed scenario ↗</a
+          >
+          <ul id="check-list"></ul>
+          <label class="consent"
+            ><input id="tested" type="checkbox" /><span id="tested-label"
+              >I tested the live scenario and confirm it is workable and usable
+              for this hack.</span
+            ></label
+          >
+          <label for="approval">Suitability approval</label
+          ><textarea
+            id="approval"
+            maxlength="6000"
+            rows="2"
+            placeholder="I approve this tested scenario for the hack."
+          ></textarea>
+          <button id="compose" class="primary" type="button">
+            Approve &amp; compose hack ↗
+          </button>
+          <p class="fine-print">
+            Creates a minimum learner starter, challenges and private coach
+            materials. This does not authorize event deployment. Some industries
+            need a supported Skillable classification decision.
+          </p>
+        </div>
+        <section id="hack-artifacts" hidden>
+          <h3><span aria-hidden="true">&#10024;</span> Hack deliverables</h3>
+          <p class="subtle">Read documents here or download release packages. Private coach materials contain solutions; do not share with participants.</p>
+          <div id="artifact-list" class="artifact-list"></div>
+          <section id="artifact-preview" hidden>
+            <h3 id="artifact-title"></h3>
+            <article id="artifact-content" class="markdown-preview" tabindex="0"></article>
+          </section>
+        </section>
+      </section>
+      <footer>
+        Hack Builder / local scenario studio
+        <span>Working scenarios before learning experiences.</span>
+      </footer>
+    </main>
+  </body>
+</html>

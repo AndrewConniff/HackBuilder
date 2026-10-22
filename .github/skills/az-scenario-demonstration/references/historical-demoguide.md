@@ -1,8 +1,11 @@
+<!-- Historical source preserved on 2026-10-22; not an agent definition or executable workflow. -->
+<!-- Use technical sections only under the owning SKILL.md. Old roles, tool declarations
+     and handoffs are historical, not instructions to delegate. -->
+
 ---
 name: az-07-DemoGuide
 description: Produces audience-aware demo guides, step-by-step runbooks, and presentation materials from deployed Azure infrastructure. Validates environment readiness, generates talking points, and includes contingency playbooks for live demonstrations.
-model: "GPT-5.3-Codex"
-user-invokable: true
+user-invocable: false
 argument-hint: Specify the project folder and target audience (executive, technical, or workshop)
 agents: []
 tools:
@@ -28,8 +31,6 @@ tools:
     read/problems,
     read/readFile,
     read/readNotebookCellOutput,
-    agent/runSubagent,
-    agent,
     edit/createDirectory,
     edit/createFile,
     edit/createJupyterNotebook,
@@ -117,7 +118,10 @@ with talking points, and produces contingency playbooks for live presentations.
      --query 'properties.outputs'
    ```
 
-5. Read `docs/presenter/character-reference.md` for persona storytelling hooks
+5. Reuse the requirements' personas and story; do not read nonexistent presenter files.
+   Phase A documents the reference deployment, not a coach/team event.
+   Include the deployed business-outcome walkthrough and return to the conductor
+   for scenario review. Never create challenges or auto-invoke HackCreator.
 
 ### Phase 2: Audience Selection
 

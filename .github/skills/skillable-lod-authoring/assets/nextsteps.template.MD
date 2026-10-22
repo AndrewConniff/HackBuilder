@@ -132,8 +132,10 @@ payloads.
 
 ## Deployment and test gate
 
-`azd up` is mandatory for `packages/coach/` and for every manifest entry that
-uses `packages/participant/`. Planned follow-up work never replaces deployment.
+Package authoring ends with local validation and does not authorize event rollout.
+After a separate explicit event-deployment request, `azd up` is mandatory for
+`packages/coach/` and every manifest entry using `packages/participant/`.
+Planned follow-up work never replaces acceptance for an authorized deployment.
 
 Before deployment handoff:
 
@@ -143,7 +145,7 @@ Before deployment handoff:
 - [ ] Coach and participant Bicep build and lint checks pass.
 - [ ] Application and focused integration tests pass locally.
 
-During and after deployment:
+During and after separately requested event deployment:
 
 - [ ] Run the configured data load and installation hooks as part of `azd up`.
 - [ ] Verify the coach application uses the real supporting artifacts.

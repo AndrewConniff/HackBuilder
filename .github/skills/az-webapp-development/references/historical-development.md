@@ -1,3 +1,7 @@
+<!-- Historical source preserved on 2026-10-22; not an agent definition or executable workflow. -->
+<!-- Use technical sections only under the owning SKILL.md. Old roles, tool declarations
+     and handoffs are historical, not instructions to delegate. -->
+
 ---
 name: az-05b-Development
 description: >
@@ -5,8 +9,7 @@ description: >
   industry. Uses architecture-defined Azure data services, with local JSON
   only when no data endpoint exists. Supports App Service, Container Apps,
   ACI, and AKS deployment targets. Skips VM-only scenarios.
-model: "Claude Opus 4.6"
-user-invokable: true
+user-invocable: false
 argument-hint: >
   Provide the project folder name and business industry for the sample web app
 agents: []
@@ -18,6 +21,7 @@ tools:
     vscode/newWorkspace,
     vscode/openSimpleBrowser,
     vscode/runCommand,
+    vscode/askQuestions,
     vscode/vscodeAPI,
     execute/getTerminalOutput,
     execute/awaitTerminal,
@@ -33,8 +37,6 @@ tools:
     read/problems,
     read/readFile,
     read/readNotebookCellOutput,
-    agent/runSubagent,
-    agent,
     edit/createDirectory,
     edit/createFile,
     edit/createJupyterNotebook,
@@ -126,9 +128,8 @@ Azure App Service, Container Apps, ACI, or AKS — never on VM-only scenarios.
 6. **azd-Integrated**: Wire the app as a service in `azure.yaml` so `azd deploy` picks it up
 7. **Foundry-Integrated**: For Foundry hack scenarios, implement the coach
   application's interaction with the designed Foundry agent using managed
-  identity or `DefaultAzureCredential`. The participant package must retain
-  only documented configuration placeholders until participants complete the
-  Foundry challenges.
+  identity or `DefaultAzureCredential`. Build the reference only; deriving a
+  minimum participant starter is a separate post-approval HackCreator task.
 8. **Prompt-Themed**: Derive the visual direction from the original scenario
   prompt. Preserve its industry, brand cues, tone, and user context instead of
   substituting a generic Azure theme.
@@ -178,7 +179,6 @@ Before starting, validate these artifacts exist in `generated-scenarios/{project
 | `02-architecture-assessment.md` | Yes      | Compute target and service selection          |
 | `infra/main.bicep`              | Yes      | Infrastructure templates (for service wiring) |
 | `azure.yaml`                    | Yes      | AZD project configuration                     |
-| `08-hack-package-contract.md`   | Yes for Foundry hacks | Coach/participant integration boundary |
 | `00-region-availability.json`   | Yes for Foundry hacks | Project region and model evidence       |
 
 ## Workflow
@@ -194,10 +194,10 @@ Before starting, validate these artifacts exist in `generated-scenarios/{project
    **data endpoints**, and relevant App Service or container resource names.
 3. If VM-only → SKIP with message and return
 4. Scan `infra/` to confirm resource names and connection point details
-5. For Foundry hacks, read `08-hack-package-contract.md` and identify the
-  coach agent endpoint, identity/RBAC requirements, and the participant-safe
-  configuration placeholders. Do not hardcode endpoints, keys, or deployment
-  outputs in source code.
+5. For Foundry hacks, use the reference architecture to identify the agent
+   endpoint, identity/RBAC and runtime fixture requirements. Do not require
+   a package contract or generate starter code before scenario approval.
+   Do not hardcode endpoints, keys, or deployment outputs in source code.
 6. Classify the **data strategy**:
 
 | Architecture Includes   | Data Strategy           | SDK / NuGet Package                                        |

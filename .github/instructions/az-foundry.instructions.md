@@ -13,18 +13,25 @@ Foundry Agent Service, Azure OpenAI, agents, model deployments, or an AI chatbot
 Foundry changes quickly. Do not rely on remembered product names, resource
 models, SDK versions, API versions, model versions, regions, or quotas.
 
-Before requirements are finalized or architecture is selected:
+Before selecting a provisional local design:
 
 1. Search current Microsoft Learn documentation for the requested Foundry
    capabilities, project model, SDK, agents API, model, and deployment type.
 2. Fetch and read the high-value Learn pages found by the search.
 3. Query current AVM metadata and Azure resource schemas before generating
    Bicep.
-4. Query the selected Azure subscription for model quota and capacity by
-   candidate region. Documentation availability alone is insufficient.
-5. Record the evidence date, URLs, subscription name and ID, requested
-   regions, candidate regions, and selected region in
+4. Record supported provisional model/version/deployment type and candidate regions
+   from official public documentation. Reuse supplied preferences or delegated choices;
+   do not block local construction on deployment account, quota or budget decisions.
+5. Record the evidence date, URLs, requested regions and candidate regions in
    `00-region-availability.json`.
+
+For local-only work, mark evidence `provisional_local_design`, leave unknown subscription
+fields and `selectedRegion` null, and record `provisionalRegion` and outstanding live checks.
+Public documentation is design evidence, never proof of deployment availability.
+Before authorized deployment preparation, confirm the selected account, subscription and tenant,
+then query live quota/capacity and policy for candidate regions. Replace provisional evidence
+with actual dated results before claiming deployment readiness. Do not query Azure without permission.
 
 If current official documentation conflicts with repository guidance, current
 Microsoft documentation controls. Update the affected repository guidance in
@@ -55,6 +62,7 @@ Foundry project.
 
 ## Validate One Deployable Region
 
+The following live checks are deployment-preparation gates, not local-construction prerequisites.
 Treat a requested region as a preference until Azure proves it is deployable.
 Build the candidate set from every region requested by the user plus current
 supported alternatives. For each candidate, validate all of the following in
@@ -80,11 +88,21 @@ The machine-readable evidence file must contain:
 - Rejection reasons for every unsuccessful candidate.
 - The final recommendation and any assumptions that still need confirmation.
 
-Requirements, architecture, Bicep, package, and deployment agents must read
+Requirements, architecture, Bicep, package and deployment procedures must read
 the same evidence file. They must not replace its selected region from memory
 or from a static default.
 
-## Required End-to-End Output
+## Phase-specific end-to-end output
+
+Follow `.github/skills/hack-builder-workflow/SKILL.md`. Phase A proves the root
+reference only. Explicit scenario approval unlocks package authoring; a separate
+event rollout request unlocks coach/team deployments. Do not require packages
+or deployed teams to review a reference scenario.
+
+The workflow also supports explicit historical user attestation for a successful reference
+whose one-off environment was deleted and cannot be recovered. Use its distinct evidence type
+and normal fingerprint/approval guard. Never invent per-check success or treat the attestation
+as subscription capacity, current deployment readiness or independent runtime verification.
 
 A complete coach solution includes all of these outcomes:
 
@@ -93,11 +111,16 @@ A complete coach solution includes all of these outcomes:
 - Orchestrator and specialist agents or idempotent creation automation.
 - A coach solution web application with a real chat endpoint that invokes the
   orchestrator through managed identity.
-- One isolated participant deployment per manifest team.
+- During requested event rollout only, one isolated participant deployment per manifest team.
 
-Do not create a separate web application solely to track hack progress. This
-does not remove a solution application that participants build or complete as
-part of the challenges.
+Do not create an Azure-hosted progress-tracking application. The repository's
+lightweight LOCAL authenticated workflow portal is tooling, not the scenario app.
+It launches real Copilot CLI jobs and never auto-approves or deploys an event.
+This does not remove a solution application participants build in the challenges.
+
+Foundry runtime orchestrator/specialist agents mentioned below are deployed
+business-solution components, not Copilot implementation subagents. The two
+Copilot agents execute all implementation and authoring directly through skills.
 
 Do not accept a placeholder-only coach chatbot. Missing project endpoint,
 model deployment, agent ID, or agent automation is a failed completion gate.
@@ -113,9 +136,9 @@ Before claiming success, verify and record:
 3. The selected model deployment accepts a test inference.
 4. The orchestrator and required specialist agents exist and can be invoked.
 5. The coach chatbot returns a grounded response through its deployed URL.
-6. Every manifest team resource group exists, is isolated, and has a reachable
+6. During requested event rollout, every manifest team resource group exists, is isolated, and has a reachable
    application URL when the package includes an application.
-7. The deployment manifest contains no `planned` or `deploying` status and no
+7. After requested event rollout, the deployment manifest contains no `planned` or `deploying` status and no
    null application URL required by the package contract.
 
 Use Playwright for web acceptance checks and Azure queries for resource,

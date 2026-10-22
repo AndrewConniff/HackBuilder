@@ -1,5 +1,5 @@
 ---
-name: webapp-development
+name: az-webapp-development
 description: >
     .NET 10 C# sample web application scaffolding, industry-specific seed data,
     Dockerfile generation, and azd service wiring for demo workload scenarios.
@@ -19,6 +19,15 @@ includes a data service (Storage Table, SQL, Cosmos DB, etc.), the app uses
 that service as its data backend. Otherwise, it falls back to local JSON seed
 files. Covers project structure, data service patterns, container support, and
 azd integration.
+
+The scenario orchestrator performs application development directly in its own
+context. Read the [companion application reference](./app-creation-SKILL.md)
+for real Foundry invocation and
+[preserved development patterns](./references/historical-development.md) as
+needed. Historical role declarations, tool lists and handoffs are inactive;
+never invoke a development agent. Follow the
+[workflow contract](../hack-builder-workflow/SKILL.md), and keep local-only
+portal preparation separate from authorized Azure deployment.
 
 ## Company branding prerequisite
 

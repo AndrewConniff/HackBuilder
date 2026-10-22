@@ -1,5 +1,5 @@
 ---
-name: azure-validate
+name: az-azure-validate
 description: "Pre-deployment and post-deployment validation patterns for Azure infrastructure. Covers authentication, template linting, what-if analysis, resource provider checks, and health verification."
 compatibility: Works with Claude Code, GitHub Copilot, VS Code, and any Agent Skills compatible tool.
 license: MIT
@@ -13,7 +13,11 @@ metadata:
 
 Pre-deployment and post-deployment validation gates that ensure Azure
 infrastructure is ready for deployment and correctly provisioned afterward.
-Used by the Deploy agent as hard gates before executing any deployment.
+Executed directly by the scenario orchestrator as hard gates before deployment.
+Use the [workflow contract](../hack-builder-workflow/SKILL.md). Initial portal
+preparation is local-only by instruction: prepare Azure check/what-if commands
+without running them unless the job explicitly authorizes that scope.
+Missing consent in noninteractive mode means persist the blocker and stop.
 
 ---
 

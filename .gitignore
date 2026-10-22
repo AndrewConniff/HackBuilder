@@ -7,6 +7,9 @@ local.settings.json
 # Copilot session logs
 Copilot-Processing.md
 
+# Local intake portal requests and execution logs
+.hackbuilder-portal/
+
 # Workspace-specific Azure identity
 .github/instructions/az-default-account.instructions.md
 

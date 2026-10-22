@@ -17,6 +17,11 @@ Create a public learner repository and a private coach repository from one
 scenario. Each challenge is a separate Markdown page beneath the selected
 industry folder in `Instructions`.
 
+For Hack Builder scenarios, first enforce
+[the workflow contract](../hack-builder-workflow/SKILL.md) and current recorded
+approval. This skill never bypasses scenario review. Package validation is a
+local authoring milestone; event rollout is separately requested.
+
 ## Required research
 
 Before generating content:
@@ -24,15 +29,22 @@ Before generating content:
 1. Read `.github/skills/az-consolidated/SKILL.md`.
 1. Read `.github/instructions/az-agent-research-first.instructions.md`.
 1. Read `.github/instructions/az-markdown.instructions.md`.
-1. Read `.github/instructions/hack-authoring-instructions.md`.
+1. Read `.github/instructions/hack-authoring.instructions.md`.
 1. Read `.github/instructions/style-guide.md`.
-1. Read `.github/skills/azure-foundry-hack-builder-SKILL.md` for Foundry hacks.
+1. Read `.github/skills/azure-foundry-hack-builder/SKILL.md` for Foundry hacks.
 1. Read all files in this skill's `references/` directory.
 1. Inspect the scenario requirements and package contract.
 1. Confirm the industry is in `assets/industry-catalog.json`.
 
 Do not generate Azure-specific steps until current service behavior, model
-availability, and documentation are verified by the owning workflow agents.
+availability, and documentation are verified by the scenario orchestrator.
+
+The repository `microsoft_industry_verticals.csv` is the broader intake catalog,
+not a replacement for this skill's six supported industry slugs. Before authoring,
+verify the exact selected slug against `assets/industry-catalog.json`. Unsupported
+industries block composition pending an explicit decision to extend authoring
+support or revise/reapprove the scenario; never silently map to a supported slug.
+In noninteractive jobs, report the required decision and stop.
 
 ## Required inputs
 
@@ -168,6 +180,8 @@ Start from `assets/challenge-page.template.md`. Every learner page must:
   content.
 - Contain no coach answer key, completed implementation, environment state,
   credentials, tenant details, subscription IDs, or deployed endpoints.
+- Let learners select/build components from outcomes and constraints. Keep the
+  complete solution architecture and prescriptive answer steps in private Finale.
 
 Copy the completed learner pages to the coach source without editing them.
 
@@ -217,11 +231,11 @@ listed destinations, and update it to `packaged`. Release-enrichment artifacts
 may remain planned only when no required challenge or deployed acceptance path
 depends on them.
 
-Missing deployment-critical artifacts block handoff to deployment; they never
-authorize skipping deployment. The Deploy agent must still run `azd up` for the
-coach and every participant manifest entry, execute the load or installation
-hooks, run the artifact-specific Azure checks, and update successful entries to
-`azure-verified`.
+Missing deployment-critical artifacts block handoff to deployment. Package
+authoring itself stops at local validation. After a separate explicit event
+request, Deploy runs `azd up` for coach and each participant manifest entry,
+executes the applicable load hooks, runs artifact-specific Azure checks, and
+updates successful entries to `azure-verified`.
 
 Keep `nextsteps.MD` safe for GitHub. It must contain no customer or personal
 data, coach answer key, credentials, resolved endpoints, tenant IDs,
@@ -262,8 +276,9 @@ Remove every template token before publication. Preserve an organization-approve
 1. Run the validation script.
 1. Stop on missing pages, unpackaged deployment-critical artifacts, stale
   tokens, unsafe content, parity failures, or incomplete Finale mappings.
-1. Hand both deployable projects to the Deploy agent for mandatory `azd up`
-  testing; do not replace deployment with the artifact backlog.
+1. Finish with **packages validated; event not deployed**. Only a separate explicit
+  event request authorizes the scenario orchestrator to execute deployment skills
+  and run real coach/team acceptance; no agent handoff or rollout is automatic.
 
 ## Validation
 
@@ -292,11 +307,13 @@ See `references/validation-checklist.md` for manual release checks.
 - Do not rename `Instructions`, change its capitalization, or add `Labs` between
   `Instructions` and the industry folder.
 - Do not reduce the existing five-challenge progression to three.
-- Do not create a progress-tracking or challenge-checklist application.
+- Do not create an Azure-hosted progress-tracking or challenge-checklist app.
+  The repository's local authenticated CLI-launching workflow portal is tooling,
+  not a learner app, and cannot auto-approve scenarios or deploy events.
 - Preserve the real coach solution application and applications participants
   build or complete during the challenges.
 - Do not omit `nextsteps.MD`, rename it, or copy it into a documentation root.
 - Do not leave a deployment-critical artifact at `planned`, `created`, or
-  `validated` when handing packages to the Deploy agent.
+  `validated` when declaring packages locally validated.
 - Do not use planned artifact creation as a reason to skip coach or participant
-  deployment testing.
+  acceptance after an explicitly requested event rollout.

@@ -1,8 +1,11 @@
+<!-- Historical source preserved on 2026-10-22; not an agent definition or executable workflow. -->
+<!-- Use technical sections only under the owning SKILL.md. Old roles, tool declarations
+     and handoffs are historical, not instructions to delegate. -->
+
 ---
 name: az-04-Diagrammer
-model: "GPT-5.3-Codex"
 description: "RETIRED FROM MAIN WORKFLOW. Architecture diagrams are now generated inline by the Bicep agent (04-runtime-diagram.png). This agent is kept for standalone/ad-hoc diagram generation only and is not invoked by the Conductor."
-user-invokable: true
+user-invocable: false
 argument-hint: Specify whether to generate a diagram, an ADR, or both for the current project
 agents: []
 tools:

@@ -1,8 +1,11 @@
+<!-- Historical source preserved on 2026-10-22; not an agent definition or executable workflow. -->
+<!-- Use technical sections only under the owning SKILL.md. Old roles, tool declarations
+     and handoffs are historical, not instructions to delegate. -->
+
 ---
 name: az-08-Contribute
 description: Publishes a completed scenario to a standalone repo in the contributor's GitHub account and registers it in the upstream project's scenario registry via a cross-fork PR.
-model: "Claude Opus 4.6"
-user-invokable: true
+user-invocable: false
 argument-hint: Provide the scenario project folder name to contribute (e.g., sentinel-threat-detection)
 agents: []
 tools:

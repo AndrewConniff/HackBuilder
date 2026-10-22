@@ -1,10 +1,13 @@
+<!-- Historical source preserved on 2026-10-22; not an agent definition or executable workflow. -->
+<!-- Use technical sections only under the owning SKILL.md. Old roles, first-action gates,
+     tool declarations and handoffs are historical, not instructions to delegate. -->
+
 ---
 name: az-02-Validations
-model: "Claude Opus 4.6"
 description: Gathers and validates Azure infrastructure project requirements by parsing the user's scenario description into a structured requirements document covering business context, workload patterns, service recommendations, and security constraints.
 argument-hint: Describe the Azure workload, including industry, scale, and key objectives
 target: vscode
-user-invokable: true
+user-invocable: false
 agents: []
 tools:
   [
@@ -14,6 +17,7 @@ tools:
     vscode/newWorkspace,
     vscode/openSimpleBrowser,
     vscode/runCommand,
+    vscode/askQuestions,
     vscode/vscodeAPI,
     execute/getTerminalOutput,
     execute/awaitTerminal,
@@ -29,8 +33,6 @@ tools:
     read/problems,
     read/readFile,
     read/readNotebookCellOutput,
-    agent/runSubagent,
-    agent,
     edit/createDirectory,
     edit/createFile,
     edit/createJupyterNotebook,
@@ -159,8 +161,9 @@ preferences. A requested region is not selected until Azure validation passes.
 
 After parsing Phases 1-4 and before writing Requirements:
 
-1. Read `.github/instructions/az-default-account.instructions.md` and verify
-   Azure extension, Azure CLI, and azd contexts match it.
+1. Verify Azure CLI, azd and available extension contexts match the user's
+   confirmed target subscription/tenant. Honor a local default-account
+   instruction if present; otherwise obtain target confirmation.
 2. For Foundry workloads, read
    `.github/instructions/az-foundry.instructions.md` and current Microsoft
    Learn guidance for Foundry projects, Agent Service, models, and regions.
@@ -191,7 +194,7 @@ infer it from the scenario and document assumptions.
 
 These skills are your single source of truth. Do NOT use hardcoded values.
 
-1. Run research via subagent for any Azure documentation gaps
+1. Resolve only remaining documentation gaps; reuse verified current evidence
 2. Complete Azure validation and save `00-region-availability.json`
 3. Generate the requirements document using the artifact template
 4. Generate final draft and save automatically
@@ -205,8 +208,8 @@ These skills are your single source of truth. Do NOT use hardcoded values.
    - Populate Project Summary with project name, region, environment from requirements
    - Set status badge to `In Progress`, step badge to `Step 1 of 5`
    - This is **MANDATORY** for every new project — do NOT skip
-4. Run `npm run lint:artifact-templates` — if errors appear for your artifact, fix them before continuing
-5. Save and proceed with Architect handoff
+4. Verify required template headings and evidence locally; do not run absent npm tasks
+5. Save and return the story, evidence and checks to the conductor
 
 ---
 

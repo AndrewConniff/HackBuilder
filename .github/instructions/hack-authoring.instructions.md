@@ -1,8 +1,21 @@
-# Hack Authoring — Personal Instructions
+---
+description: "Post-approval Foundry hack authoring, minimum starters and learner/coach boundaries"
+applyTo: "**/packages/hack/**/*.md, **/packages/coach-guide/**/*.md, **/08-hack-package-contract.md, **/nextsteps.MD"
+---
 
-Add this to your personal instructions file (`copilot-instructions.md`). These are
-always-on defaults; the detailed layout rules live in the
-`azure-foundry-hack-builder` skill.
+# Hack authoring
+
+First apply `.github/skills/hack-builder-workflow/SKILL.md`. A new "build a hack"
+prompt builds the technical reference scenario first, not challenge content.
+No hack plan or package is created until explicit scenario approval is recorded
+and `scripts/hack_workflow.py check-approval` succeeds.
+
+The hack composition agent executes authoring skills directly, without delegating
+to other agents. Industry intake uses repository `microsoft_industry_verticals.csv`,
+but Skillable currently supports only six slugs. An unsupported industry blocks
+composition pending an explicit support-extension or scenario-revision decision;
+never silently substitute another industry. In noninteractive jobs, persist and
+return the exact required decision, then stop rather than guessing consent.
 
 ---
 
@@ -43,8 +56,13 @@ When I ask for a hack, hackathon, challenge, lab, or workshop, assume:
 - Every runtime artifact must be `packaged` before deployment. Optional
   follow-up artifacts may remain planned only when no required challenge or
   acceptance path depends on them.
-- Planned follow-up work never replaces coach or participant `azd up`
-  deployment and testing.
+- Package authoring ends at local validation. Coach/team event deployment and
+  Azure testing require a separate explicit rollout request.
+- Preprovide only scenario-specific minimum access, isolation and indispensable
+  fixtures. Do not retain all non-Foundry infrastructure by default.
+- Learners decide what components/resources to build. Public content supplies
+  outcomes, constraints, optional portal/SDK routes and progressive hints;
+  detailed solution architecture and answers belong in the private Finale.
 
 ## Default output shape
 
@@ -91,8 +109,8 @@ must not appear in `packages/hack/`.
 
 ## Ask me only when
 
-- The input names no industry, scenario, or end user, **and** none can be found
-  in my email, Teams, or files.
+- The prompt names no industry, scenario, or end user and the current project
+  provides none. Do not search unrelated personal email, Teams, or files.
 - I ask for something outside Foundry agents — confirm before switching platform.
 
 Otherwise draft it and mark gaps with visible `[placeholders]`.

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": 1,
+  "scope": "Initial editable Hack Builder intake allowlist, not a claim of subscription availability or organizational approval.",
+  "services": [
+    {
+      "id": "foundry",
+      "name": "Microsoft Foundry",
+      "category": "AI",
+      "required": true,
+      "description": "Projects, agents, models and tools",
+      "url": "https://learn.microsoft.com/azure/foundry/"
+    },
+    {
+      "id": "cosmos-db",
+      "name": "Azure Cosmos DB",
+      "category": "Data",
+      "description": "Operational data for grounded agent workflows",
+      "url": "https://learn.microsoft.com/azure/cosmos-db/"
+    },
+    {
+      "id": "ai-search",
+      "name": "Azure AI Search",
+      "category": "AI",
+      "description": "Knowledge retrieval and search",
+      "url": "https://learn.microsoft.com/azure/search/"
+    },
+    {
+      "id": "storage",
+      "name": "Azure Storage",
+      "category": "Data",
+      "description": "Documents and synthetic fixtures",
+      "url": "https://learn.microsoft.com/azure/storage/"
+    },
+    {
+      "id": "sql",
+      "name": "Azure SQL Database",
+      "category": "Data",
+      "description": "Relational business data",
+      "url": "https://learn.microsoft.com/azure/azure-sql/database/"
+    },
+    {
+      "id": "app-service",
+      "name": "Azure App Service",
+      "category": "Compute",
+      "description": "Managed web application hosting",
+      "url": "https://learn.microsoft.com/azure/app-service/"
+    },
+    {
+      "id": "container-apps",
+      "name": "Azure Container Apps",
+      "category": "Compute",
+      "description": "Containerized applications and APIs",
+      "url": "https://learn.microsoft.com/azure/container-apps/"
+    },
+    {
+      "id": "functions",
+      "name": "Azure Functions",
+      "category": "Compute",
+      "description": "Event-driven agent tools",
+      "url": "https://learn.microsoft.com/azure/azure-functions/"
+    },
+    {
+      "id": "key-vault",
+      "name": "Azure Key Vault",
+      "category": "Security",
+      "description": "Secret and certificate protection",
+      "url": "https://learn.microsoft.com/azure/key-vault/"
+    },
+    {
+      "id": "managed-identity",
+      "name": "Azure managed identities",
+      "category": "Security",
+      "description": "Secretless service authentication",
+      "url": "https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/"
+    },
+    {
+      "id": "virtual-network",
+      "name": "Azure Virtual Network",
+      "category": "Networking",
+      "description": "Private connectivity and network isolation",
+      "url": "https://learn.microsoft.com/azure/virtual-network/"
+    },
+    {
+      "id": "api-management",
+      "name": "Azure API Management",
+      "category": "Integration",
+      "description": "Governed access to agent tools and APIs",
+      "url": "https://learn.microsoft.com/azure/api-management/"
+    },
+    {
+      "id": "service-bus",
+      "name": "Azure Service Bus",
+      "category": "Integration",
+      "description": "Reliable asynchronous messaging",
+      "url": "https://learn.microsoft.com/azure/service-bus-messaging/"
+    },
+    {
+      "id": "monitor",
+      "name": "Azure Monitor",
+      "category": "Operations",
+      "description": "Application Insights, logs and diagnostics",
+      "url": "https://learn.microsoft.com/azure/azure-monitor/"
+    }
+  ],
+  "pillars": [
+    {
+      "id": "security",
+      "name": "Security",
+      "description": "Identity, access and data protection"
+    },
+    {
+      "id": "reliability",
+      "name": "Reliability",
+      "description": "Resilience, availability and recovery"
+    },
+    {
+      "id": "cost-optimization",
+      "name": "Cost Optimization",
+      "description": "Cost modeling and efficient consumption"
+    },
+    {
+      "id": "operational-excellence",
+      "name": "Operational Excellence",
+      "description": "Observability, automation and safe delivery"
+    },
+    {
+      "id": "performance-efficiency",
+      "name": "Performance Efficiency",
+      "description": "Scaling, responsiveness and load testing"
+    }
+  ],
+  "domains": [
+    {
+      "id": "identity",
+      "name": "Identity and least privilege",
+      "pillar": "security"
+    },
+    {
+      "id": "private-networking",
+      "name": "Private networking",
+      "pillar": "security"
+    },
+    {
+      "id": "data-protection",
+      "name": "Data protection",
+      "pillar": "security"
+    },
+    {
+      "id": "high-availability",
+      "name": "High availability",
+      "pillar": "reliability"
+    },
+    {
+      "id": "disaster-recovery",
+      "name": "Disaster recovery",
+      "pillar": "reliability"
+    },
+    {
+      "id": "cost-controls",
+      "name": "Budgets and cost controls",
+      "pillar": "cost-optimization"
+    },
+    {
+      "id": "observability",
+      "name": "Tracing and observability",
+      "pillar": "operational-excellence"
+    },
+    {
+      "id": "safe-delivery",
+      "name": "Deployment automation",
+      "pillar": "operational-excellence"
+    },
+    {
+      "id": "scaling",
+      "name": "Scaling and load testing",
+      "pillar": "performance-efficiency"
+    }
+  ],
+  "wafReference": "https://learn.microsoft.com/azure/well-architected/pillars"
+}

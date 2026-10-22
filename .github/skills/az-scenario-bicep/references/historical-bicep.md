@@ -1,8 +1,11 @@
+<!-- Historical source preserved on 2026-10-22; not an agent definition or executable workflow. -->
+<!-- Use technical sections only under the owning SKILL.md. Old roles, tool declarations
+     and handoffs are historical, not instructions to delegate. -->
+
 ---
 name: az-05-Bicep
 description: Plans governance-aware Azure implementations and generates near-production-ready Bicep templates using Azure Verified Modules. Covers the full lifecycle from governance discovery and implementation planning through code generation and validation.
-model: "Claude Opus 4.6"
-user-invokable: true
+user-invocable: false
 argument-hint: Provide the path to an architecture assessment or describe the infrastructure to implement in Bicep
 agents: []
 tools:
@@ -13,6 +16,7 @@ tools:
     vscode/newWorkspace,
     vscode/openSimpleBrowser,
     vscode/runCommand,
+    vscode/askQuestions,
     vscode/vscodeAPI,
     execute/getTerminalOutput,
     execute/awaitTerminal,
@@ -28,8 +32,6 @@ tools:
     read/problems,
     read/readFile,
     read/readNotebookCellOutput,
-    agent/runSubagent,
-    agent,
     edit/createDirectory,
     edit/createFile,
     edit/createJupyterNotebook,
@@ -73,12 +75,12 @@ the Deploy agent (Step 5) handles the actual Azure deployment.
 **Before doing ANY work**, read these skills:
 
 1. **Read** `.github/skills/az-consolidated/SKILL.md` — consolidated skill (defaults, AVM, Bicep patterns, artifacts, diagrams, demo guide, **azure.yaml naming convention**)
-2. **Read** `.github/skills/microsoft-code-reference/SKILL.md` — verify AVM module parameters,
-   check API versions, find correct Bicep patterns via official docs
+2. Verify AVM module parameters and API versions with available Bicep metadata
+   and official Microsoft documentation; reuse already-verified evidence.
 3. **For Foundry scenarios, read**
   `.github/instructions/az-foundry.instructions.md`
-4. **Read** `.github/instructions/az-bicep-policy-compliance.instructions.md` — governance
-   compliance mandate, dynamic tag list, anti-patterns
+4. Discover governance constraints in the confirmed subscription; use the
+   existing Bicep best-practices instruction for policy-compliant implementation.
 5. **Read** `.github/instructions/az-bicep-code-best-practices.instructions.md` — Bicep coding
    standards, validation commands, and **azure.yaml naming convention** (`tdd-azd-{project}`)
 
@@ -112,7 +114,9 @@ These skills are your single source of truth. Do NOT use hardcoded values.
 - ✅ Generate `.bicepparam` parameter file for each environment
 - ✅ If strategy is phased: add `phase` parameter to `main.bicep` that conditionally deploys resource groups per phase
 - ✅ Run `bicep build` and `bicep lint` after generating templates
-- ✅ Generate runtime diagram: write `04-runtime-diagram.py`, execute it to produce `04-runtime-diagram.png`, then **immediately delete** `04-runtime-diagram.py`
+- ✅ Generate both `03-architect-diagram.png` and `04-runtime-diagram.png`
+  from the reference architecture; do not delegate a duplicate diagram pass.
+  Write `04-runtime-diagram.py`, execute it, then delete that temporary source.
   > [!IMPORTANT]
   > The `.py` source file is a temp artifact. Only the `.png` is kept.
   > Delete the `.py` file after verifying the `.png` exists on disk.
@@ -149,9 +153,8 @@ Read for context:
 
 - `02-architecture-assessment.md` — resource list, SKU recommendations, architecture decisions
 - `01-requirements.md` — compliance requirements and constraints (if available)
-- `08-hack-package-contract.md` — required Foundry and supporting resources for the
-  complete coach implementation, plus the Foundry resources to omit from the
-  participant package
+- No hack package contract is required before scenario approval. Generate only
+  the complete reference scenario, not participant infrastructure.
 - `00-region-availability.json` — configured subscription, selected region,
   exact model deployment, quota, capacity, and candidate rejection evidence
 
@@ -345,6 +348,7 @@ module networking 'modules/networking.bicep' = { ... }
 | ------------------------ | ------------------------------------------- | ----------------------------------------------- |
 | IaC Templates            | `generated-scenarios/{project}/infra/`                 | Permanent — the deployable infrastructure       |
 | AZD Project Config       | `generated-scenarios/{project}/azure.yaml`             | Permanent — required for `azd provision`        |
+| Architecture Diagram | `generated-scenarios/{project}/03-architect-diagram.png` | Reference resource layout |
 | Runtime Diagram (PNG)    | `generated-scenarios/{project}/04-runtime-diagram.png` | Permanent — architecture reference              |
 
 > [!NOTE]
@@ -368,7 +372,7 @@ module networking 'modules/networking.bicep' = { ... }
 - [ ] Length constraints respected (Key Vault ≤24, Storage ≤24)
 - [ ] No deprecated parameters used (checked against AVM pitfalls)
 - [ ] `bicep lint` and `bicep build` pass with no errors
-- [ ] `04-runtime-diagram.png` exists on disk
+- [ ] Both `03-architect-diagram.png` and `04-runtime-diagram.png` exist on disk
 - [ ] `04-runtime-diagram.py` has been deleted
 - [ ] `azure.yaml` exists with `infra.path: ./infra`
-- [ ] Coach implementation includes the contract's Foundry and supporting resources so HackCreator can derive the participant package safely
+- [ ] Reference implementation meets the architecture without requiring a pre-approval package contract

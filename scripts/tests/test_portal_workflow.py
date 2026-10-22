@@ -1,0 +1,256 @@
+"""Exercise durable project decisions, stage evidence and cooperating writer ownership."""
+
+from __future__ import annotations
+
+import json
+import os
+import subprocess
+import sys
+import tempfile
+import unittest
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import portal_workflow as workflow
+
+
+class ProjectTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.store = workflow.Store(Path(self.temp.name))
+        self.request = {"projectSlug": "finance-test", "prompt": "An investment broker", "services": ["foundry"]}
+        self.project = self.store.claim(self.request, "worker-1", create=True)
+
+    def report(self, stage: str = "architecture", status: str = "running", **values) -> dict:
+        self.project = self.store.report("finance-test", "worker-1", self.project["revision"], {
+            "stage": stage, "status": status, "summary": "Verified stage result",
+            "evidence": ["02-architecture-assessment.md"], **values,
+        })
+        return self.project
+
+    def ask_design(self) -> dict:
+        self.report("requirements", "completed", evidence=["01-requirements.md"])
+        return self.report(status="waiting_for_user", decision={
+            "kind": "design", "question": "Confirm private design?",
+            "reason": "Check dependencies and security boundaries",
+            "choices": ["Confirm design", "Revise"], "acceptChoice": "Confirm design",
+        })
+
+    def answer(self, choice: str) -> dict:
+        self.store.finish("finance-test", "worker-1", "completed")
+        self.project = self.store.read("finance-test")
+        decision = self.project["decisions"][-1]
+        self.project = self.store.respond("finance-test", self.project["revision"], choice, decision["id"], choice)
+        self.project = self.store.claim(self.request, "worker-1", self.project["revision"])
+        return self.project
+
+    def test_design_checkpoint_blocks_implementation_and_is_not_suitability_approval(self) -> None:
+        with self.assertRaisesRegex(ValueError, "Confirm the architecture"):
+            self.report("bicep")
+        self.ask_design()
+        with self.assertRaisesRegex(ValueError, "pending decision"):
+            self.report("requirements")
+        self.answer("Confirm design")
+        self.report("bicep", "completed")
+        self.assertTrue(self.project["designConfirmed"])
+        self.assertEqual([], self.project["authorizations"])
+        self.assertNotIn("approval", self.project)
+        self.assertEqual("completed", self.project["stages"]["architecture"]["status"])
+
+    def test_rejected_design_cannot_start_implementation(self) -> None:
+        self.ask_design()
+        self.answer("Revise")
+        with self.assertRaisesRegex(ValueError, "Confirm the architecture"):
+            self.report("application")
+
+    def test_worker_must_supply_evidence_and_known_event_shape(self) -> None:
+        for values in (
+            {"stage": "invented"},
+            {"status": "success"},
+            {"status": "completed", "evidence": []},
+            {"status": "waiting_for_user"},
+            {"summary": ""},
+            {"evidence": [1]},
+            {"status": "waiting_for_user", "decision": []},
+        ):
+            with self.subTest(values=values), self.assertRaises(ValueError):
+                self.report(**values)
+
+    def test_stale_revision_and_wrong_owner_rejected(self) -> None:
+        for owner, revision in (("worker-1", 0), ("another-chat", self.project["revision"])):
+            with self.subTest(owner=owner), self.assertRaises(ValueError):
+                self.store.report("finance-test", owner, revision, {
+                    "stage": "requirements", "status": "running", "summary": "start",
+                })
+        with self.assertRaisesRegex(ValueError, "active writer"):
+            workflow.Store(Path(self.temp.name)).claim(self.request, "worker-2", self.project["revision"])
+
+    def test_unknown_state_schema_fails_explicitly_without_resetting_progress(self) -> None:
+        self.project["schemaVersion"] = 2
+        path = self.store.path("finance-test")
+        path.write_text(json.dumps(self.project), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "unsupported project state"):
+            self.store.read("finance-test")
+        self.assertEqual(2, json.loads(path.read_text(encoding="utf-8"))["schemaVersion"])
+
+    def test_legacy_project_gains_composition_stages_without_read_side_effects(self) -> None:
+        path = self.store.path("finance-test")
+        project = self.store.read("finance-test")
+        project["stages"] = {key: value for key, value in project["stages"].items()
+                             if key in workflow.LEGACY_STAGES}
+        path.write_text(json.dumps(project), encoding="utf-8")
+        original = path.read_bytes()
+        restored = self.store.read("finance-test")
+        self.assertEqual("pending", restored["stages"]["hack-content"]["status"])
+        self.assertEqual(project["revision"], restored["revision"])
+        self.assertEqual(original, path.read_bytes())
+
+    def test_decision_and_history_survive_restart_and_multiple_answers(self) -> None:
+        self.ask_design()
+        self.store.finish("finance-test", "worker-1", "completed")
+        self.store = workflow.Store(Path(self.temp.name))
+        self.project = self.store.read("finance-test")
+        self.assertEqual("waiting_for_user", self.project["status"])
+        with self.assertRaisesRegex(ValueError, "displayed choices"):
+            self.store.respond("finance-test", self.project["revision"], "good to go")
+        decision = self.project["decisions"][0]
+        self.project = self.store.respond(
+            "finance-test", self.project["revision"], "Yes, as shown", decision["id"], "Confirm design",
+        )
+        self.project = self.store.respond("finance-test", self.project["revision"], "Keep chat anonymous")
+        self.assertEqual(["Yes, as shown", "Keep chat anonymous"], [h["message"] for h in self.project["history"]])
+        self.assertTrue(self.project["designConfirmed"])
+        self.assertEqual(self.request, self.project["request"])
+
+    def test_local_ready_requires_reported_validation_and_failure_is_not_hidden(self) -> None:
+        self.ask_design()
+        self.answer("Confirm design")
+        for stage in ("diagrams", "bicep", "application"):
+            self.report(stage, "completed")
+        self.report("local-validation", "completed", evidence=["dotnet test: 18 passed"])
+        self.store.finish("finance-test", "worker-1", "completed")
+        self.assertEqual("local_ready", self.store.read("finance-test")["status"])
+        self.project = self.store.claim(self.request, "worker-1", self.store.read("finance-test")["revision"])
+        self.report("bicep", "failed", summary="Bicep compiler failed")
+        self.store.finish("finance-test", "worker-1", "completed")
+        self.assertEqual("failed", self.store.read("finance-test")["status"])
+
+    def test_zero_exit_with_unfinished_stage_needs_attention(self) -> None:
+        self.report("requirements")
+        self.store.finish("finance-test", "worker-1", "completed")
+        project = self.store.read("finance-test")
+        self.assertEqual("needs_attention", project["status"])
+        self.assertEqual("failed", project["stages"]["requirements"]["status"])
+
+    def cloud_decision(self, kind: str, scope: dict) -> dict:
+        return self.report("deployment", "waiting_for_user", decision={
+            "kind": kind, "question": f"Authorize {kind} for displayed targets?",
+            "reason": "Review exact targets and scope", "choices": ["Authorize", "Decline"],
+            "acceptChoice": "Authorize", "scope": scope,
+        })
+
+    def test_cloud_permissions_are_separate_exact_scoped_and_revocable(self) -> None:
+        scope = dict(account="user@example.invalid", subscriptionId="subscription", tenantId="tenant",
+                     resourceGroup="rg-finance", environment="finance-dev", region="eastus2")
+        with self.assertRaisesRegex(ValueError, "deployment consent"):
+            self.report("deployment", "running")
+        self.cloud_decision("deployment-preparation", scope)
+        self.answer("Authorize")
+        self.assertEqual("deployment-preparation", self.project["authorizations"][0]["kind"])
+        with self.assertRaisesRegex(ValueError, "deployment consent"):
+            self.report("deployment", "running")
+        with self.assertRaisesRegex(ValueError, "whatIfEvidence"):
+            self.cloud_decision("deployment", scope)
+        deployment = {**scope, "whatIfEvidence": "what-if.txt: 8 creates, 0 deletes",
+                      "estimatedCost": "USD 120/month estimate"}
+        with self.assertRaisesRegex(ValueError, "these targets"):
+            self.cloud_decision("deployment", {**deployment, "region": "westus"})
+        self.cloud_decision("deployment", deployment)
+        self.answer("Authorize")
+        with self.assertRaisesRegex(ValueError, "local validation"):
+            self.report("deployment", "running")
+        self.ask_design()
+        self.answer("Confirm design")
+        for stage in ("diagrams", "bicep", "application", "local-validation"):
+            self.report(stage, "completed")
+        self.cloud_decision("deployment-preparation", scope)
+        self.answer("Authorize")
+        self.cloud_decision("deployment", deployment)
+        self.answer("Authorize")
+        self.report("deployment", "running")
+        self.store.finish("finance-test", "worker-1", "cancelled")
+        self.project = self.store.read("finance-test")
+        self.project = self.store.respond(
+            "finance-test", self.project["revision"], "Change security design", revise=True,
+        )
+        self.assertFalse(self.project["designConfirmed"])
+        self.assertEqual([], self.project["authorizations"])
+        self.assertTrue(all(stage["status"] == "pending" for stage in self.project["stages"].values()))
+
+    def test_repair_invalidates_local_validation_and_old_cloud_consent(self) -> None:
+        self.ask_design()
+        self.answer("Confirm design")
+        for stage in ("diagrams", "bicep", "application", "local-validation"):
+            self.report(stage, "completed")
+        scope = dict(account="user", subscriptionId="s", tenantId="t",
+                     resourceGroup="rg", environment="dev", region="eastus2")
+        self.cloud_decision("deployment-preparation", scope)
+        self.answer("Authorize")
+        self.cloud_decision("deployment", {**scope, "whatIfEvidence": "actual what-if", "estimatedCost": "$100"})
+        self.answer("Authorize")
+        self.report("application", "running")
+        self.assertEqual("pending", self.project["stages"]["local-validation"]["status"])
+        self.assertEqual([], self.project["authorizations"])
+
+    def test_declining_replacement_cloud_consent_revokes_old_deployment_permission(self) -> None:
+        scope = dict(account="user", subscriptionId="s", tenantId="t",
+                     resourceGroup="rg", environment="dev", region="eastus2")
+        self.cloud_decision("deployment-preparation", scope)
+        self.answer("Authorize")
+        self.cloud_decision("deployment", {**scope, "whatIfEvidence": "actual what-if", "estimatedCost": "$100"})
+        self.answer("Authorize")
+        self.cloud_decision("deployment-preparation", {**scope, "region": "westus"})
+        self.answer("Decline")
+        self.assertEqual([], self.project["authorizations"])
+
+    def test_report_cli_uses_backend_environment_and_rejects_stale_write(self) -> None:
+        event = Path(self.temp.name) / "event.json"
+        event.write_text(json.dumps({
+            "stage": "requirements", "status": "completed", "summary": "Requirements recorded",
+            "evidence": ["01-requirements.md"],
+        }), encoding="utf-8")
+        command = [sys.executable, str(Path(workflow.__file__)), "report",
+                   "--revision", str(self.project["revision"]), "--event", str(event)]
+        env = {**os.environ, "HACKBUILDER_PROJECT_STATE": self.temp.name,
+               "HACKBUILDER_PROJECT": "finance-test", "HACKBUILDER_RUN_ID": "worker-1"}
+        result = subprocess.run(command, env=env, capture_output=True, text=True, check=False)
+        self.assertEqual(0, result.returncode, result.stderr)
+        stale = subprocess.run(command, env=env, capture_output=True, text=True, check=False)
+        self.assertEqual(1, stale.returncode)
+        self.assertIn("Project changed", stale.stderr)
+
+    def test_external_chat_claim_uses_same_lease_as_portal(self) -> None:
+        self.store.finish("finance-test", "worker-1", "completed")
+        revision = self.store.read("finance-test")["revision"]
+        command = [
+            sys.executable, str(Path(workflow.__file__)), "claim", "--directory", self.temp.name,
+            "--project", "finance-test", "--owner", "vscode-repair", "--revision", str(revision),
+        ]
+        result = subprocess.run(command, capture_output=True, text=True, check=False)
+        self.assertEqual(0, result.returncode, result.stderr)
+        project = self.store.read("finance-test")
+        self.assertEqual("vscode-repair", project["writer"])
+        with self.assertRaisesRegex(ValueError, "active writer"):
+            self.store.claim(self.request, "portal-attempt", project["revision"])
+        command = [
+            sys.executable, str(Path(workflow.__file__)), "finish", "--directory", self.temp.name,
+            "--project", "finance-test", "--owner", "vscode-repair", "--outcome", "completed",
+        ]
+        result = subprocess.run(command, capture_output=True, text=True, check=False)
+        self.assertEqual(0, result.returncode, result.stderr)
+        self.assertIsNone(self.store.read("finance-test")["writer"])
+
+
+if __name__ == "__main__":
+    unittest.main()

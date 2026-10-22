@@ -1,240 +1,158 @@
-# Trainer-Demo-Deploy - Azure Demo Builder
+# Hack Builder
 
-An agent-driven workflow for building, deploying, and demonstrating Azure infrastructure scenarios — powered by GitHub Copilot custom agents and Azure Developer CLI (`azd`).
+Build a working Microsoft Foundry business scenario first. Turn it into a
+customer hack only after the technical owner approves it.
 
-## What Is This?
+## Start
 
-[Trainer-Demo-Deploy](https://aka.ms/trainer-demo-deploy) Azure Demo Builder automates the end-to-end lifecycle of Azure demo environments. Describe the Azure scenario you want to build in natural language, and a pipeline of specialized AI agents handles requirements gathering, architecture design, Bicep code generation, deployment, and demo guide creation — all within VS Code.
+Open this repository in VS Code with GitHub Copilot and select **az-01-conductor**,
+the **scenario orchestrator**. The second and only other agent is
+**HackCreator Agent**, the **hack composition agent**. Both work directly through
+skills, without specialist subagents or fanout.
 
-Instead of manually writing Bicep templates, configuring `azd`, and preparing demo scripts, you interact with a single **Conductor** agent that orchestrates specialized agents through the full workflow.
+Example:
 
-## How It Works
+> Build me a hack for a retail business: a Foundry agent that answers product
+> questions using approved documents and checks store inventory through a tool.
 
-The workflow is a multi-step pipeline. Each step is handled by a dedicated agent that produces versioned artifacts in `generated-scenarios/{project}/`. The Conductor coordinates handoffs automatically.
+The optional `/run-conductor` skill launches the same workflow. It is not a
+second orchestrator. Reload customizations or start a fresh chat after pulling
+workflow changes.
 
-```
-┌──────────────┐    ┌──────────────┐    ┌──────────────┐
-│ 02. Require- │───▶│ 03. Archi-   │───▶│ 04. Design   │
-│    ments     │    │    tect      │    │  (Diagrams)  │
-└──────────────┘    └──────────────┘    └──────────────┘
-                                              │
-        ┌─────────────────────────────────────┘
-        ▼
-┌──────────────┐    ┌──────────────┐    ┌──────────────┐
-│  05. Bicep   │───▶│ 05b. Dev*    │───▶│  06. Deploy  │
-│  (IaC Gen)   │    │ (Sample App) │    │   (azd up)   │
-└──────────────┘    └──────────────┘    └──────────────┘
-                                              │
-        ┌─────────────────────────────────────┘
-        ▼
-┌──────────────┐    ┌──────────────┐
-│  07. Demo    │───▶│ 08. Contri-  │
-│    Guide     │    │   bute*      │
-└──────────────┘    └──────────────┘
+## Local portal
 
-* = conditional / user-invoked
+The optional [local portal entry point](portal/README.md) is an alternative to
+starting in VS Code. From the repository root, authenticate and start it:
+
+```powershell
+copilot login
+python scripts\portal_server.py
 ```
 
-| Step | Agent            | What It Does                                                   | Key Output                                            |
-| ---- | ---------------- | -------------------------------------------------------------- | ----------------------------------------------------- |
-| 02   | **Validations**  | Parses your scenario description into structured requirements  | `01-requirements.md`                                  |
-| 03   | **Architect**    | Recommends Azure services, SKUs, and documents trade-offs      | `02-architecture-assessment.md`                       |
-| 04   | **Diagrammer**   | Generates Python-based architecture diagrams and ADRs          | `03-architect-diagram.py`, `03-architect-diagram.png` |
-| 05   | **Bicep**        | Runs governance discovery, generates AVM-first Bicep templates | `infra/main.bicep`, `04-implementation-plan.md`       |
-| 05b  | **Development**  | Scaffolds a .NET 10 sample webapp with industry seed data      | `src/`, `07-webapp-summary.md`                        |
-| 06   | **Deploy**       | Runs `azd up` with what-if analysis and validates deployment   | `06-deployment-summary.md`                            |
-| 07   | **DemoGuide**    | Produces an audience-aware demo runbook with talking points    | `demoguide/demoguide.md`                              |
-| 08   | **Contribute**   | Publishes scenario to a standalone repo and registers upstream | Standalone repo + registry draft PR                   |
+Open the printed private loopback URL and keep its token confidential. Local tool
+consent is not an OS sandbox and does not automatically authorize Azure deployment.
+The two approval stages remain separate: authorize exact deployment targets after
+what-if review, then explicitly approve the working scenario's suitability before
+composition. Event rollout requires another separate request.
 
-All artifacts land in `generated-scenarios/{project}/`, giving you a self-contained, version-controlled demo package.
+The lightweight LOCAL web portal collects a prompt, validated project slug,
+industry, requested services and WAF priorities. Its local authenticated backend
+launches real Copilot CLI jobs with the canonical agent names. Project paths are
+`generated-scenarios\{projectSlug}`. It is tooling, not an Azure-hosted progress app.
+
+Initial jobs prepare locally: reference implementation, tests and what-if commands/
+target preview, then stop before Azure operations unless explicitly authorized.
+Tool execution requires explicit portal permission; this is not a sandbox.
+A separate follow-up authorizes exact deployment targets after what-if review.
+Selected services, `--allow-all-tools` and `--no-ask-user` are not consent.
+Noninteractive jobs stop and return missing user decisions rather than guessing.
+
+The portal never auto-approves scenarios or deploys events. Its approval action
+records the explicit response against the reviewed fingerprint, checks approval
+and launches composition as a separate job. Scenario jobs do not auto-start it.
+
+## What happens
+
+### A: prove the scenario
+
+The agent produces a concrete story, requirements, architecture/diagrams,
+AVM-first Bicep, a real .NET application, synthetic runtime inputs, an Azure
+deployment and a demonstration guide. It tests the actual Foundry model,
+agent and web chat, grounding/tools where applicable, and an error case.
+
+You receive the live application URL, business-outcome walkthrough, costs,
+test evidence and limitations. **The agent stops and asks whether the scenario
+is workable and usable as your hack.**
+
+Approve it, request changes, or stop. A request to deploy/fix the application
+does not approve the scenario. An existing generated package does not bypass
+this review.
+
+### B: derive the hack after approval
+
+After explicit recorded approval, a separate **HackCreator Agent** context creates:
+
+- A sanitized full coach solution.
+- A stripped-down minimum starter architecture and deployable learner package.
+- Five outcome-led challenges totaling 150 build minutes, within a three-hour
+  event including kickoff and wrap-up.
+- Public Skillable-ready learner materials and private coach guidance/Finale.
+- A supporting-artifact inventory and a planned event deployment manifest.
+
+The minimum starter provides access/isolation and only indispensable fixtures
+or prerequisites. Learners decide what components/resources to use and build
+the rest. It is not automatically the full non-Foundry reference infrastructure.
+Complete architecture and detailed answers remain private.
+
+Local compilation, application tests and package validation finish this phase.
+**No coach/team event rollout happens automatically.**
+
+### C: deploy an event when requested
+
+Explicitly request the event rollout and team count (1-20). After what-if and
+target confirmation, the agent deploys one coach environment and isolated
+numbered participant environments. Every team uses its own resource group and
+azd environment. No learner environment reuses the reference/coach group.
+
+Required app URLs depend on the package: a starter without an app needs no URL.
+Rollout completion requires real validation of every requested target.
+The scenario orchestrator executes deployment skills directly; there is no
+deployment specialist agent. Publishing/contribution is also opt-in through a skill.
 
 ## Prerequisites
 
-| Requirement                                                                                                     | Purpose                                   |
-| --------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
-| [VS Code](https://code.visualstudio.com/) (1.100+)                                                              | IDE with agent support                    |
-| [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat) (active subscription) | Powers the AI agents                      |
-| [Azure Developer CLI (`azd`)](https://learn.microsoft.com/azure/developer/azure-developer-cli/install-azd)      | Deploys infrastructure                    |
-| [Azure CLI (`az`)](https://learn.microsoft.com/cli/azure/install-azure-cli)                                     | Governance discovery and authentication   |
-| [Bicep CLI](https://learn.microsoft.com/azure/azure-resource-manager/bicep/install)                             | Template compilation and linting          |
-| [Python 3.10+](https://www.python.org/)                                                                         | Diagram generation                        |
-| [Graphviz](https://graphviz.org/download/)                                                                      | Required by the `diagrams` Python library |
-| [GitHub CLI (`gh`)](https://cli.github.com/)                                                                     | Fork, branch, PR, and issue operations (required for contributing) |
-| An Azure subscription                                                                                           | Target for deployments                    |
+- VS Code and GitHub Copilot custom-agent support, or authenticated Copilot CLI
+  for local portal jobs; no specialist/subagent fanout is needed.
+- Azure CLI, Azure Developer CLI (`azd`) and Bicep CLI.
+- .NET 10 SDK for the sample application.
+- Python 3.10+ and Graphviz for diagrams; diagram dependencies are listed in
+  [`requirements.txt`](requirements.txt).
+- An Azure subscription with permissions for the required resources and role
+  assignments, plus current model quota/capacity in a supported region.
 
-### Recommended VS Code Extensions
+Confirm the intended Azure account, subscription and tenant. No hard-coded
+subscription or region is selected. If local account instructions exist, they
+are honored; mismatches block deployment. Never paste credentials into chat.
 
-The workspace includes an [extensions.json](.vscode/extensions.json) with recommendations. Key ones:
+Industry intake comes from [`microsoft_industry_verticals.csv`](microsoft_industry_verticals.csv).
+Skillable currently supports only `financial-services`, `healthcare`,
+`manufacturing`, `retail`, `energy-oil-gas` and `government-public-sector`.
+Other industries can inform a reference scenario, but composition blocks until
+you explicitly choose to extend authoring support or revise/reapprove the scenario.
+The system must not silently map an unsupported industry to another slug.
 
-- `ms-azuretools.vscode-azure-mcp-server` — Azure MCP server for resource queries
-- `ms-azuretools.vscode-bicep` — Bicep language support
-- `ms-vscode.copilot-mermaid-diagram` — Mermaid diagram rendering in chat
+## Outputs and approval
 
-### Python Dependencies
+Run `scripts/New-AzdScenarioWorkspace.ps1` through the conductor to create
+physical workspaces in the adjacent `azd-projects` directory with a junction at
+`generated-scenarios/<project>`. Existing legacy projects are reused in place.
 
-```bash
-pip install -r requirements.txt
+Phase A creates root `infra/`, `src/`, `azure.yaml`, diagrams,
+`06-deployment-summary.md`, `scenario-validation.json`, and `demoguide/`.
+The conductor records a review snapshot and, only after your affirmative
+response, records approval in `workflow-state.json`.
+
+The workflow helper rejects missing approval and reference changes. Changes to
+the story, implementation or evidence require revalidation and renewed review.
+The helper is an audit guard, not a substitute for real live tests or user consent.
+
+Phase B adds the package contract, `nextsteps.MD`, and:
+
+```text
+packages/
+  coach/          Full deployable reference copy
+  participant/    Minimum learner starter
+  hack/           Public learner repository
+  coach-guide/    Private solution and Finale
 ```
 
-## Getting Started
+## Repository maintenance
 
-### 1. Clone and Open
+- [Workflow contract](.github/skills/hack-builder-workflow/SKILL.md)
+- [Agent/skill/instruction inventory and October 21 timing findings](AGENTSEXPLAINED.md)
+- [Repository conventions and validation commands](AGENTS.md)
+- [Canonical agents](.github/agents/)
+- [Canonical skills](.github/skills/)
 
-```bash
-git clone https://github.com/petender/tdd-azd-demo-builder.git
-cd tdd-azd-demo-builder
-code .
-```
-
-### 2. Sign In to Azure
-
-```bash
-az login
-azd auth login
-```
-
-### 3. Install Python Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Open Copilot Chat and Run
-
-Open the Copilot Chat panel (`Ctrl+Shift+I`), select the **01-conductor** agent, and describe your scenario. The Conductor handles everything from there.
-
-#### Example Prompt
-
-> I want to build an Azure demo scenario with a web app hosted on Azure App Service, connected to an Azure SQL Database, with secrets stored in Key Vault, and monitoring via Application Insights. The web app should use managed identity to access both the database and Key Vault. Include a VNet with private endpoints for the SQL database and Key Vault.
-
-The agent will:
-
-1. Parse your description into structured requirements
-2. Assess the architecture (services, SKUs, trade-offs)
-3. Generate architecture diagrams
-4. Produce governance-aware Bicep templates using Azure Verified Modules
-5. Deploy to Azure via `azd up`
-6. Create a step-by-step demo guide
-
-#### More Example Prompts
-
-**Hub-spoke network with VMs and Bastion:**
-
-> Build a demo with a web VM and SQL VM in separate subnets, connected through Azure Firewall, with Bastion for secure access and Key Vault for password management.
-
-**Containerized microservices:**
-
-> Create an Azure Container Apps demo with three microservices, an Azure Container Registry, Application Insights for monitoring, and a Service Bus for async messaging between services.
-
-**Serverless event-driven:**
-
-> I need a serverless demo with Azure Functions triggered by Event Grid, writing to Cosmos DB, with API Management as the front door and Application Insights for observability.
-
-## Project Structure
-
-```
-.github/
-├── agents/                    # Agent definitions (one per workflow step)
-│   ├── az-01-conductor.agent.md
-│   ├── az-02-validation.agent.md
-│   ├── az-03-architect.agent.md
-│   ├── az-04-diagrammer.agent.md
-│   ├── az-05-bicep.agent.md
-│   ├── az-05b-development.agent.md
-│   ├── az-06-deploy.agent.md
-│   ├── az-07-demoguide.agent.md
-│   └── az-08-contribute.agent.md
-├── instructions/              # File-type coding standards (Bicep, Markdown, Python, etc.)
-└── skills/                    # Reusable knowledge consumed by agents
-    ├── az-consolidated/       # Consolidated skill (defaults, AVM, patterns, diagrams)
-    ├── az-azure-artifacts/    # Artifact templates
-    ├── az-azure-deploy/       # Deployment patterns
-    ├── az-azure-diagrams/     # Diagram generation guides
-    └── az-azure-validate/     # Pre/post deployment validation
-
-generated-scenarios/                      # Generated demo projects (one folder per scenario)
-├── webvm-sqlvm-bastion-fw/    # Example: VMs + Bastion + Firewall
-│   ├── 01-requirements.md
-│   ├── 02-architecture-assessment.md
-│   ├── 03-architect-diagram.py
-│   ├── 04-implementation-plan.md
-│   ├── 06-deployment-summary.md
-│   ├── demoguide/demoguide.md
-│   ├── azure.yaml
-│   ├── src/                   # Sample webapp (if generated)
-│   └── infra/
-│       ├── main.bicep
-│       ├── main.bicepparam
-│       └── modules/
-└── azure-container-scenarios/ # Example: Container Apps
-    └── ...
-```
-
-## Key Design Decisions
-
-- **AVM-first**: The Bicep agent always uses [Azure Verified Modules](https://aka.ms/avm) when available, falling back to raw Bicep only when no AVM module exists.
-- **Deployer data plane access**: When RBAC-enabled resources are deployed (Key Vault, Storage, etc.), the deploying user automatically receives data plane role assignments so they can immediately interact with the resources.
-- **Convention over configuration**: Default region (`eastus2`), naming conventions (CAF-aligned), security baseline (TLS 1.2, HTTPS-only, managed identity), and tagging are baked into the skills and instructions.
-
-## Teardown
-
-To remove all deployed resources for a scenario:
-
-```bash
-cd generated-scenarios/{project-name}
-azd down --force --purge
-```
-
-## Understanding the Agent Architecture
-
-New to GitHub Copilot custom agents? See
-[AGENTSEXPLAINED.md](AGENTSEXPLAINED.md) for a technical deep-dive into how
-agents, skills, instructions, and prompts work together — including how to
-add your own agents, skills, and coding standards to the workflow.
-
-## Contributing
-
-We welcome scenario contributions from the community! The contribution model publishes each scenario as a **standalone `azd`-compatible repo** in your GitHub account and registers it in the upstream project's scenario registry.
-
-### Prerequisites for Contributing
-
-| Requirement | Purpose |
-|---|---|
-| [GitHub CLI (`gh`)](https://cli.github.com/) | **Required.** The Contribute agent uses `gh` to create repos, fork the upstream project, and open PRs. Install and authenticate with `gh auth login` before contributing. |
-| Completed scenario (Steps 1–6) | Your scenario folder under `generated-scenarios/` must contain the required artifacts before contributing. |
-
-### Agent-Assisted (Recommended)
-
-After completing the agent workflow (Steps 1–6), invoke the **08-Contribute** agent
-in Copilot Chat. It will:
-
-1. **Validate** your scenario artifacts for completeness (`infra/main.bicep`, `azure.yaml`, `README.md`)
-2. **Create a standalone repo** named `tdd-azd-{scenario}` in your GitHub account (asks for approval first)
-3. **Populate the repo** with publishable artifacts (`infra/`, `src/`, `demoguide/`, `azure.yaml`, `README.md`) as a flat `azd`-compatible project
-4. **Register upstream** by opening a draft PR that adds your scenario to `scenarios/registry.json`
-
-The agent performs a sensitive-data check before copying — it will refuse to proceed if `.azure/`, `.env`, `bin/`, `obj/`, `publish/`, or `applogs/` files would be included.
-
-### Manual
-
-1. Install and authenticate the [GitHub CLI](https://cli.github.com/): `gh auth login`
-2. Create a public repo named `tdd-azd-{your-scenario-name}` in your GitHub account
-3. Copy the publishable artifacts from `generated-scenarios/{project}/` to the repo root:
-   - `infra/` (Bicep templates), `azure.yaml`, `README.md`
-   - `src/` (if webapp), `demoguide/` (if demo guide was generated)
-4. Ensure no sensitive files are included (`.azure/`, `.env`, `bin/`, `obj/`)
-5. Fork this repo, add your scenario to `scenarios/registry.json`, and open a draft PR
-
-### Project Structure
-
-1. **Agents** live in `.github/agents/` — each file defines one workflow step
-2. **Skills** live in `.github/skills/` — shared knowledge that agents reference
-3. **Instructions** live in `.github/instructions/` — file-type specific coding standards
-
-To modify agent behavior, edit the corresponding `.agent.md` file. To change
-patterns or defaults that apply across agents, update `SKILL.md` or the
-relevant instruction file.
-
-## License
-
-MIT
+The `.agents/skills` directory contains thin manual launchers and scenario input,
+not a second set of agents or independent implementation instructions.

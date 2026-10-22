@@ -74,6 +74,9 @@
 
 ## Deployment and publication
 
+Local package validation completes authoring without event deployment.
+The deployment checks below apply only after a separate explicit rollout request.
+
 - [ ] Seed and installation scripts are idempotent and wired to the correct
       `azd` lifecycle hook.
 - [ ] Package validation succeeds before Azure preflight.

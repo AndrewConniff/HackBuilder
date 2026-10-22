@@ -11,10 +11,15 @@ description: >
 
 ## Integration
 
-This companion skill is loaded explicitly by the Development agent and the
+This companion reference is loaded explicitly by the scenario orchestrator and the
 Generate Webapp prompt for Foundry application scenarios. The general
 `.github/skills/az-webapp-development/SKILL.md` rules continue to control the
 .NET application structure, data access, and Azure Developer CLI wiring.
+
+Runtime Foundry orchestrator/specialist agents in this reference are optional
+business-solution components when required by the story, not Copilot implementation
+subagents. Do not create a fixed specialist roster or invoke another coding agent.
+The scenario orchestrator implements and validates the chosen design directly.
 
 Company branding must follow the
 [CSV-only company identity rules](../az-consolidated/SKILL.md#fictitious-company-identity---csv-only).
