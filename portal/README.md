@@ -2,7 +2,76 @@
 
 The intake portal launches real local Copilot CLI jobs, using the current user's
 Copilot authentication. It is not a hosted agent service or an Azure deployment.
-There are no browser-side Azure/GitHub credentials and no new runtime packages.
+There are no browser-side Azure/GitHub credentials. Backend readiness uses the repository
+Python environment and Playwright/Chromium; the HTTP server itself uses the standard library.
+
+## Execution ownership
+
+The portal is a friendly interface to the same two canonical agents, not an additional approval workflow.
+The Python backend checks tools, the actual browser runtime, approved-proxy .NET restore/build and existing
+Azure CLI/azd sign-ins before launching a scenario worker. Its collapsed **Backend readiness** card shows
+the consolidated result and a fixed local setup/recheck action. The user normally prepares the machine once.
+
+Python assigns one bounded scenario operation at a time, verifies completion evidence and relevant builds,
+then automatically schedules the next operation without a stage-by-stage approval.
+Each scenario retains its own workspace, writer, inputs and evidence.
+CLI exit zero without the assigned result is an error, never scenario success.
+Failures preserve partial work; no hidden retry loop changes permissions or cloud targets.
+Design, exact-target cloud consent and deployed-scenario suitability remain the existing explicit checkpoints.
+Composition remains a separate approved-reference job producing the minimum starter, guides and release archives.
+
+## Resume and pause controls
+
+The Build view exposes **Play / Resume**, **Pause** and **Cancel run** without opening instructions.
+Play resumes cancelled, paused, failed or needs-attention attempts using their saved request and evidence.
+It requires retained local consent, a free worker slot and no unresolved decision or setup blocker.
+Granting consent alone does not start a worker; the status text explicitly distinguishes idle from running.
+
+Pause stops the current owned process and releases its writer after cleanup, preserving partial files and evidence.
+It is checkpoint-based resumption, not suspension of the process or its memory.
+Cancel also stops the current attempt and preserves work; Play can recover it later.
+Neither action deletes files or Azure resources, revokes consent or rolls back an in-flight cloud operation.
+The older Stop job action remains compatible with cancellation.
+
+### Resume local projects
+
+Folders found on disk without a managed execution appear as **local project**.
+Select one, authorize local execution once, and choose **Resume existing scenario**.
+The backend adopts that exact workspace and first recovers the business scope and dependency inventory
+from its requirements, architecture and implementation. No new brief or duplicate project is needed.
+Incomplete or inferred manifests are reviewed against the actual reference, not treated as validated intake.
+The documented Generic business-unit fallback is explicit when older artifacts lack unit targeting.
+
+Recovered intake is checked against current catalogs, then the full recovered dependency scope is audited.
+Existing assets are reused and revalidated operation by operation; file presence does not mark a stage complete.
+The project then uses the same progress, Pause, Cancel and Resume controls as portal-created scenarios.
+If discovery lacks enough evidence to recover genuine business scope, the failed attempt explains what is missing.
+Already-managed projects and active writers cannot be imported again.
+Import does not carry over Azure permissions, infer deployment success, approve suitability or start composition.
+Existing reference/package files are preserved; normal design and subsequent cloud/review checkpoints still apply.
+
+Cancel also works while a project is idle or waiting for a question. It preserves unanswered decisions;
+resuming does not silently answer them.
+
+## Backend-owned question handling
+
+Proposed business questions remain internal until a bounded backend review reads intake, answered decisions
+and relevant evidence. Users never classify or withdraw questions themselves.
+Routine implementation choices and solution-created IDs, endpoints and receipts become recorded backend actions,
+not user questionnaires. Already-answered input is reused. No user answer or deployment output is fabricated.
+Genuinely unresolved business/security decisions require a documented gap in saved input and a distinct impact
+for every choice before appearing in the portal. Verified external failures become actionable setup blockers.
+Insufficient classification evidence fails the job visibly instead of exposing an unclassified question.
+
+Legacy pending business questions undergo the same review. On startup and when capacity becomes free, the server
+resumes eligible waiting scenarios with retained local consent, no writer, and no other approval/setup blocker.
+Paused, cancelled and failed attempts are not restarted automatically; Play resumes their saved review.
+Review reports are revision/writer checked and audited. They preserve completed work, confirmed decisions and
+authorization scopes. They cannot approve design, cloud/directory operations, suitability or composition.
+Repeated identical technical questions are rejected using the recorded resolution.
+For a technical question interrupting a cloud stage, an older deployment grant is retained as history,
+not reused as recovery/retry consent. Preparation evidence must be refreshed under existing preparation scope,
+then renewed exact-target consent is required before further cloud execution.
 
 ## Appearance and accessibility
 
@@ -209,6 +278,22 @@ outside approved roots require review. Worker instructions require separate depe
 up-front inventory of design-specific browser/load tools; optional tools cannot block unrelated authoring.
 `/api/catalog` exposes `workerPathPolicyVersion` and `workerCacheDirectories`.
 The launcher refuses stale policy versions; a retry never clears a blocker without actual evidence.
+
+Read-only Azure preparation progress uses `stage: deployment`, `operation: deployment-preparation`
+and the exact authorized `scope`. The backend stores it in `deploymentPreparation`, not the actual
+deployment stage; completing what-if cannot mark resources deployed or unlock live validation/review.
+Current preparation consent is reused across attempts. Mismatched targets require a new scope review.
+Repository/workflow defects use `blocker.kind: workflow-error` and are labeled portal errors,
+not user tooling or permission deficiencies. Switching CLI/SDK transports does not change these gates.
+
+The **Azure readiness and proposed targets** disclosure resolves current Azure CLI/azd sign-ins and
+local scenario configuration only after read-only identity-discovery consent. It reuses saved targets,
+existing azd environments, architecture region evidence and environment/resource-group conventions.
+The card displays values and provenance, allows naming/region edits, and creates a prefilled
+exact-scope preparation decision without authorizing it. A legacy business question asking for all
+target IDs is superseded explicitly by this review; unrelated decisions are never overwritten.
+Accepting preparation rechecks current identity; deployment consent remains separate after what-if/cost.
+Private `deploymentContext` is passed to later workers, not included in the public catalog.
 
 Local container shell/liveness verification uses
 [`check_container_runtime.py`](../scripts/check_container_runtime.py), rather than generated multi-command

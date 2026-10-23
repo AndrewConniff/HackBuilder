@@ -28,7 +28,8 @@ class SystemLifecycleTests(unittest.TestCase):
             for name in (
                 "portal_server.py", "portal_workflow.py", "hack_workflow.py",
                 "scenario_catalog.py", "check_prerequisites.py",
-                "prerequisite_profiles.py",
+                "prerequisite_profiles.py", "azure_context.py", "backend_readiness.py", "workflow_engine.py",
+                "setup_backend.py",
             ):
                 shutil.copyfile(ROOT / "scripts" / name, root / "scripts" / name)
             shutil.copyfile(ROOT / "portal" / "catalog.json", root / "portal" / "catalog.json")

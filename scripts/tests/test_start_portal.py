@@ -78,6 +78,7 @@ class PortalStartupTests(unittest.TestCase):
         catalog.read.return_value = json.dumps({
             "workflowVersion": launcher.WORKFLOW_VERSION, "systemControlsVersion": 1, "prerequisitesVersion": 1,
             "workerPathPolicyVersion": launcher.WORKER_PATH_POLICY_VERSION,
+            "backendEngineVersion": launcher.BACKEND_ENGINE_VERSION,
         }).encode()
         client.getresponse.side_effect = [health, catalog]
         with patch.object(launcher.http.client, "HTTPConnection", return_value=client):
@@ -150,6 +151,7 @@ class PortalStartupTests(unittest.TestCase):
         version_response.read.return_value = json.dumps({
             "workflowVersion": launcher.WORKFLOW_VERSION, "systemControlsVersion": 1, "prerequisitesVersion": 1,
             "workerPathPolicyVersion": launcher.WORKER_PATH_POLICY_VERSION,
+            "backendEngineVersion": launcher.BACKEND_ENGINE_VERSION,
         }).encode()
         client.getresponse.side_effect = [response, version_response]
         with patch.object(launcher.http.client, "HTTPConnection", return_value=client) as connection:

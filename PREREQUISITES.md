@@ -4,6 +4,25 @@ Prepare this machine before starting scenario workers. The portal itself uses Py
 but reference generation also needs the SDKs, native diagram tooling and Python packages below.
 The setup covers the shipped baseline, not every package a future scenario might introduce.
 
+## Backend-owned scenario launch
+
+The user prepares tools, Azure CLI/azd authentication and the Docker Linux engine once.
+The portal backend now validates the selected baseline before launching an agent:
+all shared checks below, matching CLI/azd sign-ins and token metadata, an actual Chromium launch,
+and a temporary net10.0 package restore/build using repository `NuGet.Config`.
+No access token is retained. No resource, quota or provider query is included.
+The collapsed **Backend readiness** card shows all detected failures and their corrections together.
+**Prepare local toolchain** runs a fixed setup recipe while every worker is idle; it accepts
+package/source agreements and installs missing approved tools and repository Python/browser packages.
+It does not start Docker, sign in, change policy/certificates or override organization restrictions.
+**Recheck readiness & continue** runs the audit and resumes the next allowed operation.
+
+Python owns bounded stage scheduling, prerequisite receipts and automatic continuation.
+Workers implement their assigned operation rather than repeatedly negotiating setup or progression.
+Bicep and application completion also receive backend build checks. Scenario-specific packages,
+container behavior and real Azure/Foundry acceptance still require actual scenario validation;
+the baseline cannot guarantee future package compatibility or Azure capacity.
+
 ## Service-aware preflight and System checklist
 
 The portal **System** page lists the end-to-end toolchain before it has been checked.
@@ -52,7 +71,8 @@ Run a selected-service audit outside a worker:
     --services foundry container-apps cosmos-db service-bus --json
 ```
 
-Workers record a full audit at the start, after confirmed architecture changes and before affected operations:
+The backend records the launch audit and refreshes expired or scope-changed receipts.
+Manual workers can use:
 
 ```powershell
 python scripts\check_prerequisites.py --for-project --record --stage requirements --json
@@ -181,6 +201,27 @@ An operator can install it outside workers with
 `winget install --id GrafanaLabs.k6 --exact --source winget`.
 The portal resolves an existing standard `Program Files\k6\k6.exe` installation on its child PATH,
 without changing the host PATH. A fresh worker is required after installation.
+
+## Azure identity and target readiness
+
+The scenario workspace's **Azure readiness and proposed targets** card resolves existing local context
+after explicit read-only discovery consent. It checks `az account show`, token expiry/tenant/subscription
+metadata only (never retains the token), and `azd auth login --check-status --no-prompt`.
+It never signs in automatically, switches shared defaults or runs Azure resource queries.
+Matching CLI/azd account names are checked; azd target-tenant access, RBAC, policy, providers,
+SKU/model quota and capacity remain separate authorized preflight checks.
+
+Proposed targets reuse previously saved scenario targets first, then local azd environment/configuration,
+the scenario architecture region and `projectSlug` / `rg-{environment}` naming conventions.
+Conflicting local azd subscription/tenant values or ambiguous environments require reconciliation.
+Identity changes are visible rather than silently inheriting old consent.
+Environment, resource group and region can be edited in the card; account changes remain explicit local CLI actions.
+Private project state records values, provenance and verification time, never public catalog metadata.
+
+Resolving context creates a prefilled **deployment-preparation** review; it does not authorize anything.
+The user must separately select **Allow read-only preflight & what-if** for the exact scope.
+Identity is rechecked when accepting that decision. Actual what-if and cost review precede a separate
+deployment approval. Future workers read this saved context instead of asking for all known values again.
 
 ## Quick start on Windows
 

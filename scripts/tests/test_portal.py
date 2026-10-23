@@ -199,6 +199,12 @@ class HttpTests(unittest.TestCase):
     def setUp(self) -> None:
         self.temp = tempfile.TemporaryDirectory()
         self.server = portal.make_server(Path(self.temp.name) / "runs", "test-token", 0, sys.executable)
+        readiness = patch.object(self.server.app, "readiness", return_value={"ready": True, "checks": []})
+        readiness.start()
+        self.addCleanup(readiness.stop)
+        validation = patch.object(portal.workflow_engine, "validate_completed", return_value=[])
+        validation.start()
+        self.addCleanup(validation.stop)
         self.worker = threading.Thread(target=self.server.serve_forever, daemon=True)
         self.worker.start()
         self.addCleanup(self.cleanup)
@@ -239,6 +245,7 @@ class HttpTests(unittest.TestCase):
         self.assertEqual(200, status)
         self.assertEqual(5, len(data["pillars"]))
         self.assertEqual(1, data["systemControlsVersion"])
+        self.assertEqual(portal.workflow_engine.VERSION, data["backendEngineVersion"])
         self.assertEqual(1, data["prerequisitesVersion"])
         self.assertEqual(portal.WORKER_PATH_POLICY_VERSION, data["workerPathPolicyVersion"])
         self.assertEqual(
@@ -494,6 +501,38 @@ class HttpTests(unittest.TestCase):
         store.finish("test-agent", run["id"], "completed")
         return store.read("test-agent")
 
+    def test_azure_context_discovery_requires_consent_and_does_not_launch_or_authorize(self) -> None:
+        run = self.create_run(local_tool_consent=True)
+        project = self.server.app.projects.read("test-agent")
+        context = {
+            "scope": {"account": "operator", "subscriptionId": "sub", "tenantId": "tenant",
+                      "environment": "test-agent", "resourceGroup": "rg-test-agent", "region": "eastus2"},
+            "sources": {}, "checkedAtUtc": "2026-10-23T00:00:00Z",
+        }
+        body = {"runId": run["id"], "revision": project["revision"]}
+        with patch.object(portal.azure_context, "discover", return_value=context) as discover:
+            self.assertEqual(400, self.call("POST", "/api/azure-context", body)[0])
+            discover.assert_not_called()
+            with patch.object(self.server.app, "start", side_effect=AssertionError("No worker should start")):
+                status, result = self.call("POST", "/api/azure-context", {**body, "discoveryConsent": True})
+        self.assertEqual(200, status, result)
+        self.assertEqual([], result["project"]["authorizations"])
+        self.assertEqual("deployment-preparation", result["project"]["decisions"][-1]["kind"])
+        proposal = result["project"]
+        decision = proposal["decisions"][-1]
+        changed = {**context, "scope": {**context["scope"], "subscriptionId": "different"}}
+        with (
+            patch.object(portal.azure_context, "discover", return_value=changed),
+            patch.object(self.server.app, "start", side_effect=AssertionError("No worker should start")),
+        ):
+            status, error = self.call("POST", f"/api/runs/{run['id']}/continue", {
+                "revision": proposal["revision"], "decisionId": decision["id"],
+                "choice": decision["acceptChoice"], "message": decision["acceptChoice"],
+            })
+        self.assertEqual(400, status, error)
+        self.assertIn("identity changed", error["error"])
+        self.assertEqual([], self.server.app.projects.read("test-agent")["authorizations"])
+
     def test_setup_retry_does_not_accept_user_assertions_as_verified_setup(self) -> None:
         run = self.create_run(local_tool_consent=True)
         project = self.block_setup(run)
@@ -745,7 +784,7 @@ class HttpTests(unittest.TestCase):
                 first, second = runs[:2]
                 (self.server.app.state / first["id"] / "release").write_text("release", encoding="utf-8")
                 self.wait_for(lambda: first["id"] not in self.server.app.workers, "First worker did not finish.")
-                self.assertEqual("completed", self.server.app.read(first["id"])["status"])
+                self.assertEqual("failed", self.server.app.read(first["id"])["status"])
                 self.assertEqual(3, len(self.server.app.workers))
                 self.assertTrue(all(portal.process_alive(pids[run["id"]]) for run in runs[1:]))
                 self.assertIsNone(self.server.app.projects.read("parallel-0")["writer"])
@@ -803,6 +842,56 @@ class HttpTests(unittest.TestCase):
         with patch.object(portal.subprocess, "Popen") as spawn:
             self.server.app.execute(run, "test")
         spawn.assert_not_called()
+
+    def test_pause_before_launch_preserves_work_and_releases_writer(self) -> None:
+        with patch.object(portal.threading.Thread, "start"):
+            run = self.server.app.start(
+                portal.normalize_request(self.data, self.server.app.catalog), "test", "scenario",
+                local_tool_consent=True,
+            )
+        status, paused = self.call("POST", f"/api/runs/{run['id']}/pause", {})
+        self.assertEqual(200, status)
+        self.assertEqual("paused", paused["status"])
+        with patch.object(portal.subprocess, "Popen") as spawn:
+            self.server.app.execute(run, "test")
+        spawn.assert_not_called()
+        project = self.server.app.projects.read("test-agent")
+        self.assertEqual("paused", project["status"])
+        self.assertIsNone(project["writer"])
+        self.assertIsNotNone(project["localToolConsent"])
+        with patch.object(self.server.app, "execute"):
+            status, resumed = self.call("POST", f"/api/runs/{run['id']}/continue", {
+                "revision": project["revision"], "message": "Resume saved work",
+            })
+        self.assertEqual(202, status, resumed)
+        self.assertEqual(run["id"], resumed["parentId"])
+        self.finish_mock_run(resumed)
+
+    def test_cancel_idle_retains_internal_question_and_withdrawal_is_not_available(self) -> None:
+        run = self.create_run(local_tool_consent=True)
+        store = self.server.app.projects
+        project = store.read("test-agent")
+        project = store.claim(run["request"], "question-owner", project["revision"])
+        project = store.report("test-agent", "question-owner", project["revision"], {
+            "stage": "requirements", "status": "waiting_for_user", "summary": "Legacy technical question",
+            "decision": {"kind": "business", "question": "Return generated IDs?", "reason": "Old identity handoff",
+                         "choices": ["Return receipt"]},
+        })
+        store.finish("test-agent", "question-owner", "completed")
+        project = store.read("test-agent")
+        with patch.object(self.server.app, "execute") as execute:
+            status, cancelled = self.call("POST", f"/api/runs/{run['id']}/cancel", {"revision": project["revision"]})
+            self.assertEqual(200, status, cancelled)
+            self.assertEqual("cancelled", cancelled["project"]["status"])
+            project = cancelled["project"]
+            status, withdrawn = self.call("POST", f"/api/runs/{run['id']}/withdraw-question", {
+                "revision": project["revision"], "decisionId": project["decisions"][-1]["id"],
+                "message": "The deployment must produce these IDs.",
+            })
+            self.assertEqual(400, status, withdrawn)
+            execute.assert_not_called()
+        self.assertEqual("reviewing", store.read("test-agent")["decisions"][-1]["status"])
+        self.assertEqual([], store.read("test-agent")["authorizations"])
         self.assertEqual({}, self.server.app.workers)
         self.assertIsNone(self.server.app.projects.read("test-agent")["writer"])
 
@@ -971,13 +1060,14 @@ class HttpTests(unittest.TestCase):
             self.assertEqual({}, self.server.app.workers)
         status, result = self.call("GET", f"/api/runs/{run['id']}")
         self.assertEqual(200, status)
-        self.assertEqual("completed", result["status"])
-        self.assertEqual(0, result["exitCode"])
+        self.assertEqual("failed", result["status"])
+        self.assertEqual(1, result["exitCode"])
+        self.assertIn("evidence contract", result["error"])
         self.assertIn("local-executor-ok", result["output"])
         self.assertIn("portal-job=1", result["output"])
         self.assertFalse(result["review"]["ready"])
         restarted = portal.Portal(self.server.app.state, "new-token", sys.executable)
-        self.assertEqual("completed", restarted.read(run["id"])["status"])
+        self.assertEqual("failed", restarted.read(run["id"])["status"])
 
     def test_worker_reports_decision_then_portal_resumes_with_durable_history(self) -> None:
         script = (
@@ -987,8 +1077,9 @@ class HttpTests(unittest.TestCase):
             "s=Store(Path(os.environ['HACKBUILDER_PROJECT_STATE'])); "
             "slug=os.environ['HACKBUILDER_PROJECT']; owner=os.environ['HACKBUILDER_RUN_ID']; "
             "p=s.read(slug); "
-            "p=s.report(slug,owner,p['revision'],dict(stage='requirements',status='completed',"
-            "summary='Brokerage requirements recorded',evidence=['01-requirements.md'])); "
+            "\nif os.environ['ABCBUILDER_ASSIGNED_STAGES'] == '[\"requirements\"]':\n"
+            " s.report(slug,owner,p['revision'],dict(stage='requirements',status='completed',"
+            "summary='Brokerage requirements recorded',evidence=['01-requirements.md'])); sys.exit(0)\n"
             "s.report(slug,owner,p['revision'],dict(stage='architecture',status='waiting_for_user',"
             "summary='Private backend and anonymous public chat',evidence=['02-architecture-assessment.md'],"
             "decision=dict(kind='design',question='Confirm design?',reason='Review security boundaries',"
@@ -1196,6 +1287,39 @@ class HttpTests(unittest.TestCase):
                     "toolConsent": True, "message": "Resume",
                 })[0])
                 self.assertEqual([], list(self.server.app.state.glob("*/run.json")))
+
+    def test_discovered_local_project_resumes_in_place_with_no_inherited_approvals(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            folder = root / "generated-scenarios" / "legacy-hack"
+            folder.mkdir(parents=True)
+            original = b"Existing reference must not be replaced."
+            (folder / "README.md").write_bytes(original)
+            with patch.object(portal, "ROOT", root):
+                _, runs = self.call("GET", "/api/runs")
+                preview = next(item for item in runs if item["request"]["projectSlug"] == "legacy-hack")
+                endpoint = f"/api/runs/{preview['id']}/resume-local"
+                with patch.object(self.server.app, "execute") as execute:
+                    self.assertEqual(403, self.call("POST", endpoint, {"toolConsent": True}, token="wrong")[0])
+                    self.assertEqual(400, self.call("POST", endpoint, {"toolConsent": False})[0])
+                    execute.assert_not_called()
+                    status, run = self.call("POST", endpoint, {"toolConsent": True})
+                    self.assertEqual(202, status, run)
+                    execute.assert_called_once()
+                project = self.server.app.projects.read("legacy-hack")
+                self.assertEqual("pending", project["reconciliation"]["status"])
+                self.assertEqual("legacy-hack", project["request"]["projectSlug"])
+                self.assertIsNotNone(project["localToolConsent"])
+                self.assertFalse(project["designConfirmed"])
+                self.assertEqual([], project["authorizations"])
+                self.assertTrue(all(s["status"] == "pending" for s in project["stages"].values()))
+                self.assertEqual(original, (folder / "README.md").read_bytes())
+                self.assertEqual(409, self.call("POST", endpoint, {"toolConsent": True})[0])
+                _, listed = self.call("GET", "/api/runs")
+                same_project = [item for item in listed if item["request"]["projectSlug"] == "legacy-hack"]
+                self.assertEqual(1, len(same_project))
+                self.assertFalse(same_project[0].get("discovered", False))
+                self.finish_mock_run(run)
 
     def test_stale_continuation_cannot_start_worker(self) -> None:
         run = self.create_run()

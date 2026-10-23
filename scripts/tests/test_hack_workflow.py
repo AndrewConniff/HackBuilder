@@ -270,6 +270,34 @@ class ApprovalTests(unittest.TestCase):
 
 
 class CustomizationTests(unittest.TestCase):
+    def test_container_guidance_avoids_emulated_sdk_without_changing_runtime_target(self) -> None:
+        skill = (ROOT / ".github" / "skills" / "az-webapp-development" / "SKILL.md").read_text(encoding="utf-8")
+        instructions = (ROOT / ".github" / "instructions" / "az-dotnet-webapp.instructions.md").read_text(encoding="utf-8")
+        self.assertIn("FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:10.0 AS build", skill)
+        self.assertIn("FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime", skill)
+        self.assertIn("never drop `--locked-mode`", skill)
+        self.assertIn("not a missing Docker/SDK prerequisite", skill)
+        self.assertIn("--platform=$BUILDPLATFORM", instructions)
+
+    def test_identity_setup_guidance_is_wired_across_scenario_procedures(self) -> None:
+        skill = ROOT / ".github" / "skills"
+        contract = (skill / "hack-builder-workflow" / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("### Scenario-owned application identity setup", contract)
+        self.assertIn("default to new dedicated scenario-owned registrations", contract)
+        self.assertIn("Read-only preparation", contract)
+        self.assertIn("ask the same route question again", contract)
+        self.assertIn("**Deployment outputs are not user inputs.**", contract)
+        self.assertIn("Do not request them in a business decision", contract)
+        self.assertIn("Avoid a circular preparation gate", contract)
+        for path in (
+            skill / "az-scenario-architecture" / "SKILL.md",
+            skill / "az-scenario-bicep" / "SKILL.md",
+            skill / "az-azure-deploy" / "SKILL.md",
+            ROOT / ".github" / "agents" / "az-01-conductor.agent.md",
+        ):
+            with self.subTest(path=path.name, parent=path.parent.name):
+                self.assertIn("#scenario-owned-application-identity-setup", path.read_text(encoding="utf-8"))
+
     def test_agentic_catalog_has_all_18_patterns_and_source_pages(self) -> None:
         guide = (
             ROOT / ".github" / "skills" / "az-scenario-requirements" / "references" / "agentic-patterns.md"

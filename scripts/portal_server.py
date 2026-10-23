@@ -31,6 +31,10 @@ import hack_workflow
 import portal_workflow
 import prerequisite_profiles
 import scenario_catalog
+import azure_context
+import backend_readiness
+import workflow_engine
+import setup_backend
 from check_prerequisites import (
     WORKER_PATH_POLICY_VERSION, execution_environment, planned_checks, worker_cache_directories,
 )
@@ -303,6 +307,7 @@ class Portal:
         self.catalog = load_catalog()
         self.lock = threading.RLock()
         self.workers: dict[str, Worker] = {}
+        self.question_recovery_attempted: set[str] = set()
         self.closing = False
         self.lifecycle_action: str | None = None
         self.restart_token: str | None = None
@@ -327,11 +332,15 @@ class Portal:
                     self.projects.finish(slug, run["id"], "interrupted")
 
     def save(self, run: dict) -> None:
-        path = self.state / run["id"]
-        path.mkdir(exist_ok=True)
-        temporary = path / "run.tmp"
-        temporary.write_text(json.dumps(run, indent=2) + "\n", encoding="utf-8")
-        temporary.replace(path / "run.json")
+        with self.lock:
+            path = self.state / run["id"]
+            path.mkdir(exist_ok=True)
+            temporary = path / f"run.{uuid.uuid4().hex}.tmp"
+            try:
+                temporary.write_text(json.dumps(run, indent=2) + "\n", encoding="utf-8")
+                temporary.replace(path / "run.json")
+            finally:
+                temporary.unlink(missing_ok=True)
 
     def intake(self, data: dict) -> dict:
         request = normalize_request(data, self.catalog)
@@ -348,8 +357,9 @@ class Portal:
         if not RUN_ID.fullmatch(run_id):
             raise ValueError("Invalid run ID.")
         path = self.state / run_id / "run.json"
-        if path.exists():
-            return json.loads(path.read_text(encoding="utf-8"))
+        with self.lock:
+            if path.exists():
+                return json.loads(path.read_text(encoding="utf-8"))
         for run in self.discovered():
             if run["id"] == run_id:
                 return run
@@ -383,6 +393,33 @@ class Portal:
             for folder in sorted(directory.iterdir())
             if folder.is_dir() and SLUG.fullmatch(folder.name) and len(folder.name) <= 40
         ]
+
+    def resume_local(self, previous: dict, tool_consent: bool) -> dict:
+        if not previous.get("discovered") or tool_consent is not True:
+            raise ValueError("Authorize local execution before adopting an on-disk project.")
+        slug = previous["request"]["projectSlug"]
+        if not self.scenario(previous).is_dir():
+            raise ValueError("The discovered scenario folder is no longer available.")
+        if self.projects.path(slug).exists() or any(
+            run["request"]["projectSlug"] == slug for run in self.runs()
+        ):
+            raise portal_workflow.ProjectExistsError(slug)
+        request = {
+            "schemaVersion": 1, "projectSlug": slug,
+            "prompt": "Recover the existing scenario intent from its reference documents; do not create a new story.",
+            "industry": None, "businessUnits": ["generic"], "services": ["foundry"], "pillars": [], "domains": [],
+            "phase": "scenario", "deploymentAuthorized": False, "scenarioApproved": False,
+            "localResume": {"sourceRunId": previous["id"], "scope": "same-existing-workspace"},
+        }
+        return self.start(
+            request,
+            f"Resume the SAME existing reference at generated-scenarios\\{slug}. "
+            "First recover intake from local reference evidence and validate it. Preserve existing files. "
+            "Do not reset, rename, copy or regenerate the scenario. No stage completion or cloud authorization "
+            "is inferred from existing resources, manifests or packages. Never auto-start composition.",
+            "scenario", local_tool_consent=True,
+            initial_message="User selected Resume existing scenario with local execution consent.",
+        )
 
     def scenario(self, run: dict) -> Path:
         return ROOT / "generated-scenarios" / run["request"]["projectSlug"]
@@ -488,14 +525,17 @@ class Portal:
         return result
 
     def runs(self) -> list[dict]:
-        return sorted(
-            [json.loads(path.read_text(encoding="utf-8")) for path in self.state.glob("*/run.json")],
-            key=lambda run: run["startedAtUtc"], reverse=True,
-        )
+        with self.lock:
+            return sorted(
+                [json.loads(path.read_text(encoding="utf-8")) for path in self.state.glob("*/run.json")],
+                key=lambda run: run["startedAtUtc"], reverse=True,
+            )
 
     def require_capacity(self) -> None:
         if self.closing:
             raise ValueError("The portal is shutting down. No new worker jobs can be started.")
+        if getattr(self, "setup_running", False):
+            raise ValueError("Local toolchain setup is running. Wait until its validation finishes.")
         active = set(self.workers) | {run["id"] for run in self.runs() if run["status"] == "running"}
         if len(active) >= MAX_WORKERS:
             raise ValueError(
@@ -504,6 +544,48 @@ class Portal:
             )
         if not self.executable:
             raise ValueError("Copilot CLI was not found. Install it and run copilot login, then restart the portal.")
+
+    def recover_pending_questions(self) -> None:
+        with self.lock:
+            if self.closing or getattr(self, "setup_running", False) or not self.executable:
+                return
+            seen = set()
+            for run in self.runs():
+                slug = run["request"]["projectSlug"]
+                if slug in seen:
+                    continue
+                seen.add(slug)
+                if run["kind"] != "scenario" or run["status"] in {
+                    "running", "paused", "cancelled", "failed", "interrupted",
+                } or not self.projects.path(slug).exists():
+                    continue
+                project = self.projects.read(slug)
+                if (
+                    project["writer"] or project["setupBlocker"]
+                    or project["status"] in {"paused", "cancelled", "failed", "interrupted"}
+                    or not portal_workflow.local_execution_authorized(project)
+                    or any(portal_workflow.actionable_decision(item) for item in project["decisions"])
+                ):
+                    continue
+                question = next(
+                    (item for item in project["decisions"] if portal_workflow.needs_question_review(item)), None,
+                )
+                if not question or question["id"] in self.question_recovery_attempted:
+                    continue
+                active = set(self.workers) | {item["id"] for item in self.runs() if item["status"] == "running"}
+                if len(active) >= MAX_WORKERS:
+                    return
+                self.question_recovery_attempted.add(question["id"])
+                try:
+                    self.start(
+                        run["request"],
+                        f"Resume reference generated-scenarios\\{slug} from saved state. "
+                        "Backend review owns classification of the existing unanswered question. "
+                        "Reuse confirmed choices and artifacts. No new authorization or suitability approval granted.",
+                        "scenario", run["id"], project["revision"],
+                    )
+                except (OSError, ValueError, TypeError):
+                    LOG.exception("Could not schedule backend question review for %s; saved work retained.", slug)
 
     def system_status(self) -> dict:
         with self.lock:
@@ -536,6 +618,7 @@ class Portal:
                 "pid": os.getpid(), "startedAtUtc": self.started_at,
                 "uptimeSeconds": int(time.monotonic() - self.started_clock),
                 "workflowVersion": portal_workflow.WORKFLOW_VERSION,
+                "backendEngineVersion": workflow_engine.VERSION,
                 "systemControlsVersion": 1,
                 "workspace": str(ROOT), "stateDirectory": str(self.state.resolve()),
                 "pythonExecutable": sys.executable, "workers": workers, "writerProjects": leases,
@@ -763,6 +846,30 @@ class Portal:
             "Stop after reporting a decision. Noninteractive decisions must remain pending for the portal.\n"
             f"Project revision at launch: {project['revision']}. Read the canonical state before work."
         )
+        prompt += (
+            "\nAZURE CONTEXT REUSE: Read deploymentContext in canonical project state. It contains private "
+            "identity/target proposals, provenance and verification time. Reuse these values and architecture "
+            "region/naming rules; never ask users to retype known IDs. Discovery is NOT cloud consent. "
+            "The portal's Azure readiness action is explicitly authorized only for current az account show, "
+            "token expiry/tenant/subscription metadata and azd auth login --check-status, plus local config. "
+            "Do not display/store access tokens, log in automatically, set account defaults, initialize an azd "
+            "environment or query resource/quota/provider APIs without separate scope authorization. "
+            "If targets are unresolved, direct the user to Resolve current Azure context in the portal rather "
+            "than asking a business decision to retype all fields. After preparation consent, recheck the CLI "
+            "identity against the authorized scope and pass explicit subscription/environment to operations. "
+            "If identity changed, stop for target review. No inherited account or previous success grants consent.\n"
+            "If the latest preparation decision was answered Keep the reference local only, honor that choice: "
+            "persist the local completion summary and stop without asking the same target/preparation question again.\n"
+            "PREPARATION REPORTING CONTRACT: With existing exact-scope deployment-preparation consent, "
+            "report stage:deployment, operation:deployment-preparation, scope:<exact authorized scope> for "
+            "pending/running/completed/failed preparation progress. The backend stores this separately from "
+            "actual deployment. Do not request deployment consent just to report read-only preflight/what-if. "
+            "Preparation completion is NOT deployment completion and never unlocks live validation/review. "
+            "Reuse current consent across retries; ask again only for changed targets or new cloud mutations. "
+            "Repository/backend defects are kind:workflow-error, not missing user tooling or host permission. "
+            "Do not instruct end users to repair repository source or approve around a software defect. "
+            "Retain exact failure evidence and report the product error without inventing another consent gate.\n"
+        )
         try:
             self.save(run)
             if kind == "composition":
@@ -791,52 +898,27 @@ class Portal:
         log = self.state / run["id"] / "output.log"
         try:
             with log.open("wb") as output:
-                with self.lock:
-                    if self.read(run["id"])["status"] == "cancelled":
-                        return
-                    process = subprocess.Popen(
-                        cli_command(self.executable, run["agent"], prompt),
-                        cwd=ROOT,
-                        stdin=subprocess.DEVNULL,
-                        stdout=output,
-                        stderr=subprocess.STDOUT,
-                        shell=False,
-                        env={
-                            **execution_environment(ROOT),
-                            "ABCBUILDER_PORTAL_JOB": "1", "HACKBUILDER_PORTAL_JOB": "1",
-                            "ABCBUILDER_PROJECT_STATE": str(self.projects.directory.resolve()),
-                            "ABCBUILDER_PROJECT": run["request"]["projectSlug"],
-                            "ABCBUILDER_RUN_ID": run["id"],
-                            "HACKBUILDER_PROJECT_STATE": str(self.projects.directory.resolve()),
-                            "HACKBUILDER_PROJECT": run["request"]["projectSlug"],
-                            "HACKBUILDER_RUN_ID": run["id"],
-                        },
-                    )
-                    self.workers[run["id"]].process = process
-                    latest = self.read(run["id"])
-                    latest["childPid"] = process.pid
-                    self.save(latest)
-                code = process.wait()
+                code = self.execute_operations(run, prompt, output)
             with self.lock:
                 latest = self.read(run["id"])
-                if latest["status"] != "cancelled":
+                if latest["status"] not in {"cancelled", "paused"}:
                     if run["kind"] == "scenario" and self.scenario(run).is_dir():
                         scenario_catalog.refresh(self.scenario(run), request=run["request"])
                         scenario_catalog.export_index(ROOT)
                     latest.update(
                         status="completed" if code == 0 else "failed",
                         exitCode=code,
-                        error=None
-                        if code == 0
-                        else "CLI failed. Inspect output; check copilot login and prerequisites.",
+                        error=latest.get("error") if code != 0 else None,
                         finishedAtUtc=now(),
                     )
                     self.save(latest)
         except (OSError, ValueError, TypeError) as error:
             LOG.exception("CLI job failed: %s", run["id"])
             with self.lock:
-                run.update(status="failed", error=str(error), finishedAtUtc=now())
-                self.save(run)
+                latest = self.read(run["id"])
+                if latest["status"] not in {"cancelled", "paused"}:
+                    latest.update(status="failed", error=str(error), finishedAtUtc=now())
+                    self.save(latest)
         finally:
             with self.lock:
                 latest = self.read(run["id"])
@@ -844,8 +926,219 @@ class Portal:
                     self.projects.finish(run["request"]["projectSlug"], run["id"], latest["status"])
                 finally:
                     self.workers.pop(run["id"], None)
+            self.recover_pending_questions()
 
-    def cancel(self, run_id: str) -> dict:
+    def readiness(self, run: dict) -> dict:
+        project = self.projects.read(run["request"]["projectSlug"])
+        report = backend_readiness.audit(ROOT, project)
+        with self.projects.locked():
+            project = self.projects.read(run["request"]["projectSlug"])
+            if project["writer"] != run["id"]:
+                raise ValueError("Readiness owner changed; no receipt persisted.")
+            project["backendReadiness"] = report
+            self.projects.save(project)
+            report.update(projectSlug=project["projectSlug"], runId=run["id"])
+            receipts = self.projects.directory / "preflight"
+            receipts.mkdir(exist_ok=True)
+            target = receipts / f"{project['projectSlug']}.json"
+            temporary = target.with_suffix(".tmp")
+            temporary.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+            temporary.replace(target)
+        return report
+
+    def repair_readiness(self, data: dict) -> dict:
+        if data.get("installConsent") is not True:
+            raise ValueError("Authorize local setup and package agreements before installation.")
+        run = self.read(data.get("runId", ""))
+        with self.lock:
+            if not self.system_status()["canStopServer"]:
+                raise ValueError("Finish all scenario workers and audits before preparing shared local tooling.")
+            self.setup_running = True
+            self.preflight_lock.acquire()
+        try:
+            project = self.projects.read(run["request"]["projectSlug"])
+            report = backend_readiness.audit(ROOT, project)
+            evidence = setup_backend.repair(ROOT, report)
+            checked = backend_readiness.audit(ROOT, project)
+            with self.projects.locked():
+                current = self.projects.read(project["projectSlug"])
+                if current["writer"]:
+                    raise ValueError("Project ownership changed during setup; no readiness claimed.")
+                current["backendReadiness"] = checked
+                current["backendSetup"] = {"checkedAtUtc": now(), "evidence": evidence}
+                self.projects.save(current)
+            return checked
+        finally:
+            with self.lock:
+                self.setup_running = False
+                self.preflight_lock.release()
+
+    def execute_operations(self, run: dict, prompt: str, output) -> int:
+        slug = run["request"]["projectSlug"]
+        scenario = run["kind"] == "scenario"
+        if self.read(run["id"])["status"] in {"cancelled", "paused"}:
+            return 1
+        if scenario:
+            latest = self.read(run["id"])
+            latest["backendPhase"] = "readiness"
+            self.save(latest)
+            output.write(b"Backend: validating toolchain, browser runtime and Azure sign-ins before agent launch.\n")
+            output.flush()
+            report = self.readiness(run)
+            if not report["ready"]:
+                failures = [item["name"] for item in report["checks"] if not item["ok"]]
+                latest = self.read(run["id"])
+                latest.update(error="Readiness needs attention: " + ", ".join(failures), backendPhase="readiness-failed")
+                self.save(latest)
+                output.write((latest["error"] + "\n").encode("utf-8"))
+                return 1
+        for index in range(12):
+            project = self.projects.read(slug)
+            operation = workflow_engine.next_operation(project) if scenario else {
+                "name": "composition", "stages": [], "operation": None,
+            }
+            if operation is None:
+                return 0
+            if scenario and operation["name"] in prerequisite_profiles.STAGE_REQUIREMENTS:
+                try:
+                    prerequisite_profiles.require_stage(
+                        project, self.projects.directory, run["id"], operation["name"],
+                    )
+                except ValueError as error:
+                    output.write(f"Backend refreshing prerequisite receipt: {error}\n".encode("utf-8"))
+                    output.flush()
+                    report = self.readiness(run)
+                    if not report["ready"]:
+                        failures = [item["name"] for item in report["checks"] if not item["ok"]]
+                        raise ValueError("Readiness changed: " + ", ".join(failures))
+                    project = self.projects.read(slug)
+            if operation["name"] == "target-review":
+                context = azure_context.discover(ROOT, self.scenario(run), project)
+                if self.read(run["id"])["status"] in {"cancelled", "paused"}:
+                    return 1
+                self.projects.propose_deployment_context(slug, project["revision"], context, owner=run["id"])
+                return 0
+            with self.lock:
+                if self.read(run["id"])["status"] in {"cancelled", "paused"}:
+                    return 1
+                before = workflow_engine.signature(project)
+                job_prompt = prompt + (workflow_engine.instruction(operation) if scenario else "")
+                if operation["name"] == "reconcile-local":
+                    recovery_path = self.state / run["id"] / "recovered-intake.json"
+                    recovery_path.unlink(missing_ok=True)
+                    job_prompt += (
+                        f"\nRecovery output path: {recovery_path.resolve()}\n"
+                        f"Allowed intake catalogs:\n{json.dumps({key: self.catalog[key] for key in (
+                            'industries', 'businessUnits', 'services', 'pillars', 'domains',
+                        )})}\n"
+                    )
+                latest = self.read(run["id"])
+                latest.update(backendPhase=operation["name"], operationIndex=index + 1, childPid=None)
+                self.save(latest)
+                output.write(f"\nBackend assigned: {operation['name']}\n".encode("utf-8"))
+                output.flush()
+                environment = {
+                    **execution_environment(ROOT),
+                    "ABCBUILDER_PORTAL_JOB": "1", "HACKBUILDER_PORTAL_JOB": "1",
+                    "ABCBUILDER_PROJECT_STATE": str(self.projects.directory.resolve()),
+                    "ABCBUILDER_PROJECT": slug, "ABCBUILDER_RUN_ID": run["id"],
+                    "HACKBUILDER_PROJECT_STATE": str(self.projects.directory.resolve()),
+                    "HACKBUILDER_PROJECT": slug, "HACKBUILDER_RUN_ID": run["id"],
+                }
+                if scenario:
+                    environment["ABCBUILDER_ASSIGNED_STAGES"] = json.dumps(operation["stages"])
+                    environment["ABCBUILDER_ASSIGNED_JOB"] = operation["name"]
+                    if operation.get("operation"):
+                        environment["ABCBUILDER_ASSIGNED_OPERATION"] = operation["operation"]
+                process = subprocess.Popen(
+                    cli_command(self.executable, run["agent"], job_prompt), cwd=ROOT,
+                    stdin=subprocess.DEVNULL, stdout=output, stderr=subprocess.STDOUT, shell=False, env=environment,
+                )
+                self.workers[run["id"]].process = process
+                latest["childPid"] = process.pid
+                self.save(latest)
+            code = process.wait()
+            if self.read(run["id"])["status"] in {"cancelled", "paused"}:
+                return 1
+            if not scenario:
+                return code
+            project = self.projects.read(slug)
+            if code:
+                latest = self.read(run["id"])
+                latest["error"] = f"Assigned operation {operation['name']} failed (exit {code}); inspect retained evidence."
+                self.save(latest)
+                return code
+            if operation["name"] == "reconcile-local":
+                if (
+                    not recovery_path.is_file() or not recovery_path.resolve().is_relative_to(
+                        (self.state / run["id"]).resolve()
+                    ) or not 0 < recovery_path.stat().st_size <= 32768
+                ):
+                    raise ValueError("Local reconciliation needs a nonempty bounded recovered-intake.json output.")
+                recovered = json.loads(recovery_path.read_text(encoding="utf-8-sig"))
+                if not isinstance(recovered, dict) or recovered.get("projectSlug") != slug:
+                    raise ValueError("Recovered intake must identify this same local scenario.")
+                evidence = recovered.get("recoveryEvidence")
+                if not isinstance(evidence, list):
+                    raise ValueError("Recovered intake requires artifact evidence, not just inferred defaults.")
+                request = normalize_request(recovered, self.catalog)
+                request["localResume"] = project["request"]["localResume"]
+                project = self.projects.reconcile_intake(
+                    slug, run["id"], project["revision"], request, evidence,
+                )
+                run["request"] = request
+                latest = self.read(run["id"])
+                latest["request"] = request
+                self.save(latest)
+                prompt += (
+                    "\nRecovered local scenario intake (validated against current catalogs):\n"
+                    + json.dumps(request) + "\nReuse existing reference assets and validate each assigned stage."
+                )
+                report = self.readiness(run)
+                if not report["ready"]:
+                    raise ValueError("Recovered scenario dependencies need attention: " + ", ".join(
+                        item["name"] for item in report["checks"] if not item["ok"]
+                    ))
+                continue
+            if operation["name"] in project["stages"] and (
+                project["stages"][operation["name"]]["status"] == "completed"
+                or operation["name"] == "architecture"
+                and project["stages"]["architecture"]["status"] == "waiting_for_user"
+            ):
+                try:
+                    evidence = workflow_engine.validate_completed(ROOT, self.scenario(run), operation)
+                except ValueError as error:
+                    self.projects.report(slug, run["id"], project["revision"], {
+                        "stage": operation["name"], "status": "failed",
+                        "summary": "Backend artifact/build validation failed; no new permission is needed.",
+                        "evidence": [str(error)],
+                    })
+                    raise
+                if evidence and project["stages"][operation["name"]]["status"] == "completed":
+                    self.projects.report(slug, run["id"], project["revision"], {
+                        "stage": operation["name"], "status": "completed",
+                        "summary": project["stages"][operation["name"]]["summary"] + " Backend checks passed.",
+                        "evidence": project["stages"][operation["name"]]["evidence"] + evidence,
+                    })
+                    project = self.projects.read(slug)
+            if project.get("setupBlocker") or any(
+                portal_workflow.actionable_decision(d) for d in project["decisions"]
+            ):
+                return 0
+            following = workflow_engine.next_operation(project)
+            if following == operation or workflow_engine.signature(project) == before:
+                latest = self.read(run["id"])
+                latest["error"] = f"Assigned operation {operation['name']} returned without completing its evidence contract."
+                self.save(latest)
+                return 1
+        raise ValueError("Backend operation limit reached; persisted work retained for inspection.")
+
+    def cancel(self, run_id: str, pause: bool = False) -> dict:
+        status = "paused" if pause else "cancelled"
+        message = (
+            "Paused by user. Worker stopped; saved files/evidence retained. Play resumes from persisted progress."
+            if pause else "Stopped by user. Inspect partial artifacts before continuing."
+        )
         with self.lock:
             if run_id not in self.workers:
                 run = self.read(run_id)
@@ -856,21 +1149,23 @@ class Portal:
                         f"Original worker PID {run['childPid']} may still be alive. Verify and stop it locally "
                         "before retrying Stop to recover the lease; this server will not kill an unowned PID."
                     )
-                run.update(status="cancelled", error="Recovered after server interruption; partial files preserved.")
+                run.update(status=status, error="Recovered after server interruption; partial files preserved.")
                 self.save(run)
-                self.projects.finish(run["request"]["projectSlug"], run_id, "cancelled")
+                self.projects.finish(run["request"]["projectSlug"], run_id, status)
                 return run
             run = self.read(run_id)
             process = self.workers[run_id].process
             if process is None:
-                run.update(status="cancelled", error="Stopped by user before the CLI started.", finishedAtUtc=now())
+                run.update(status=status, error=message, finishedAtUtc=now())
                 self.save(run)
                 return run
             if process.poll() is not None:
-                raise ValueError("CLI has already exited. Refresh this run.")
-            stop_process_tree(process.pid)
+                if run["status"] != "running":
+                    raise ValueError("CLI has already exited. Refresh this run.")
+            else:
+                stop_process_tree(process.pid)
             run.update(
-                status="cancelled", error="Stopped by user. Inspect partial artifacts before continuing.",
+                status=status, error=message,
                 finishedAtUtc=now(),
             )
             self.save(run)
@@ -956,6 +1251,7 @@ class Handler(BaseHTTPRequestHandler):
                 self.send(200, {
                     **self.app.catalog, "cliAvailable": bool(self.app.executable),
                     "workflowVersion": portal_workflow.WORKFLOW_VERSION,
+                    "backendEngineVersion": workflow_engine.VERSION,
                     "systemControlsVersion": 1,
                     "prerequisitesVersion": prerequisite_profiles.VERSION,
                     "workerPathPolicyVersion": WORKER_PATH_POLICY_VERSION,
@@ -1041,6 +1337,30 @@ class Handler(BaseHTTPRequestHandler):
             if self.path == "/api/prerequisites/check":
                 self.send(200, self.app.check_prerequisites(data))
                 return
+            if self.path == "/api/readiness/repair":
+                self.send(200, self.app.repair_readiness(data))
+                return
+            if self.path == "/api/azure-context":
+                if data.get("discoveryConsent") is not True:
+                    raise ValueError("Authorize read-only identity/context discovery explicitly.")
+                run = self.app.read(data.get("runId", ""))
+                slug = run["request"]["projectSlug"]
+                with self.app.lock:
+                    project = self.app.projects.read(slug)
+                    self.app.projects.check_revision(project, data.get("revision"))
+                    if project["writer"] or project["setupBlocker"]:
+                        raise ValueError("Finish the worker or resolve setup before Azure discovery.")
+                    if not self.app.preflight_lock.acquire(blocking=False):
+                        raise ValueError("Another readiness audit is running.")
+                try:
+                    context = azure_context.discover(
+                        ROOT, self.app.scenario(run), project, data.get("overrides"),
+                    )
+                    project = self.app.projects.propose_deployment_context(slug, data["revision"], context)
+                    self.send(200, {"project": project, "context": context})
+                finally:
+                    self.app.preflight_lock.release()
+                return
             with self.app.lock:
                 if self.path in {"/api/system/stop", "/api/system/restart"}:
                     result = self.app.request_lifecycle(self.path.rsplit("/", 1)[1], data.get("confirmed"))
@@ -1066,12 +1386,22 @@ class Handler(BaseHTTPRequestHandler):
                         raise ValueError("Unknown action.")
                     previous = self.app.read(parts[3])
                     if previous.get("discovered"):
+                        if parts[4] == "resume-local":
+                            run = self.app.resume_local(previous, data.get("toolConsent") is True)
+                            self.send(HTTPStatus.ACCEPTED, run)
+                            return
                         raise ValueError(
-                            "Discovered scenarios are read-only previews. No job or approval is started from this view."
+                            "Use Resume existing scenario to reconcile this local project before other actions."
                         )
                     action = parts[4]
-                    if action == "stop":
-                        self.send(200, self.app.cancel(previous["id"]))
+                    if action == "cancel" and previous["status"] != "running":
+                        self.app.projects.cancel_idle(previous["request"]["projectSlug"], data.get("revision"))
+                        previous.update(status="cancelled", error="Cancelled while idle; saved work retained.")
+                        self.app.save(previous)
+                        self.send(200, self.app.public_run(previous))
+                        return
+                    if action in {"stop", "pause", "cancel"}:
+                        self.send(200, self.app.cancel(previous["id"], pause=action == "pause"))
                         return
                     slug = previous["request"]["projectSlug"]
                     project_path = self.app.projects.path(slug)
@@ -1202,6 +1532,20 @@ class Handler(BaseHTTPRequestHandler):
                         project_path = self.app.projects.path(slug)
                         project = None
                         if project_path.exists():
+                            existing = self.app.projects.read(slug)
+                            decision = next(
+                                (item for item in existing["decisions"] if item["status"] == "pending"
+                                 and item["id"] == data.get("decisionId")), None,
+                            )
+                            if (
+                                decision and decision["kind"] == "deployment-preparation"
+                                and data.get("choice") == decision["acceptChoice"]
+                                and existing.get("deploymentContext")
+                            ):
+                                fresh = azure_context.discover(ROOT, root, existing)
+                                for field in ("account", "subscriptionId", "tenantId"):
+                                    if fresh["scope"][field] != decision["scope"][field]:
+                                        raise ValueError("Local Azure identity changed. Resolve and review targets again.")
                             project = self.app.projects.respond(
                                 slug, data.get("revision"), message,
                                 data.get("decisionId"), data.get("choice"), action == "revise",
@@ -1282,6 +1626,7 @@ def main() -> None:
     if args.open_browser and not webbrowser.open(url):
         LOG.warning("Browser could not be opened. Run python scripts\\start_portal.py to retry.")
     try:
+        server.app.recover_pending_questions()
         server.serve_forever()
     except KeyboardInterrupt:
         LOG.info("Stopping local portal")

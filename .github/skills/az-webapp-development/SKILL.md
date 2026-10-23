@@ -572,7 +572,7 @@ app.Run();
 Multi-stage build for minimal image size:
 
 ```dockerfile
-FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 COPY *.csproj .
 RUN dotnet restore
@@ -586,6 +586,23 @@ EXPOSE 8080
 ENV ASPNETCORE_URLS=http://+:8080
 ENTRYPOINT ["dotnet", "{ProjectName}.Web.dll"]
 ```
+
+Run the SDK stage on Docker's `BUILDPLATFORM`, not the target runtime architecture.
+On ARM64 development hosts, emulating the amd64 SDK can crash during restore or compilation;
+an available Docker engine alone does not verify that path. Keep the runtime stage on the requested
+`--platform` (for example `linux/amd64`); native SDK compilation does not change the deployed architecture
+or switch to a remote build. Framework-dependent portable IL with `UseAppHost=false` can retain its
+architecture-neutral restore/publish. For RID-specific dependencies, app hosts, ReadyToRun or native output,
+use consistent `TARGETARCH`/runtime arguments for restore and publish and regenerate/revalidate lock files
+deliberately; never drop `--locked-mode` just to pass.
+Do not run target-architecture SDK probes as a universal prerequisite for this native-build pattern.
+Verify the actual locked restore/publish, inspect the final runtime architecture and run the owned runtime
+container. Do not repair shared Docker/QEMU configuration or ask users to change engines before diagnosing
+the Dockerfile's build-platform selection.
+An image that starts .NET but rejects missing required application settings has a configuration failure,
+not a missing Docker/SDK prerequisite. Supply the scenario's explicit local test configuration or retain
+that negative result; never relax production startup validation or claim agent/runtime success from it.
+See [Microsoft multi-platform container guidance](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-8/containers#build-multi-platform-container-images).
 
 `.dockerignore`:
 

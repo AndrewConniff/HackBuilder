@@ -534,7 +534,8 @@ const stageLabels = {
 };
 
 function pendingDecision() {
-  return currentRun?.project?.decisions.find((item) => item.status === "pending");
+  return currentRun?.project?.decisions.find((item) =>
+    item.status === "pending" && (item.kind !== "business" || item.review?.disposition === "business"));
 }
 
 function showError(error) {
@@ -668,7 +669,7 @@ function selectRun(id, slug) {
     knownProjects.find((project) => project.runId === id)?.projectSlug || null;
   selectionRevision++;
   if (currentRun?.id !== id) {
-    for (const name of ["continue", "revise", "answer-decision", "compose", "stop",
+    for (const name of ["continue", "play", "pause", "cancel-run", "revise", "answer-decision", "compose", "stop",
       "retry-setup", "revoke-consent"]) $(name).disabled = true;
     $("project-summary").textContent = "Loading the selected scenario. Actions are paused until its status arrives.";
   }
@@ -857,6 +858,92 @@ function localExecutionAllowed() {
     $("workspace-consent").checked;
 }
 
+function renderAzureContext(run) {
+  const context = run.project?.deploymentContext;
+  $("azure-readiness").hidden = Boolean(run.discovered);
+  const busy = Boolean(run.project?.writer) || run.status === "running" || Boolean(run.project?.setupBlocker);
+  $("azure-resolve").disabled = busy || !$("azure-discovery-consent").checked;
+  $("azure-save-targets").disabled = busy || !context || !$("azure-discovery-consent").checked;
+  $("azure-context-status").textContent = context ?
+    `Identity checked ${context.checkedAtUtc}. ${context.authentication.azureCli}. ${context.authentication.azd}. ` +
+    `${context.authentication.compatibility}. ${(context.conflicts || []).join(" ")}` :
+    "No identity/context audit recorded. Resolve known values instead of typing account IDs.";
+  $("azure-context-fields").replaceChildren(...Object.entries(context?.scope || {}).flatMap(([key, value]) => {
+    const title = document.createElement("dt");
+    title.textContent = key;
+    const detail = document.createElement("dd");
+    detail.textContent = `${value} — ${context.sources[key]}`;
+    return [title, detail];
+  }));
+  if ($("azure-readiness").dataset.contextVersion !== context?.checkedAtUtc) {
+    for (const [id, key] of [
+      ["azure-environment", "environment"], ["azure-resource-group", "resourceGroup"], ["azure-region", "region"],
+    ]) $(id).value = context?.scope[key] || "";
+    $("azure-readiness").dataset.contextVersion = context?.checkedAtUtc || "";
+  }
+}
+
+function renderBackendReadiness(run) {
+  const report = run.project?.backendReadiness;
+  $("backend-readiness").hidden = Boolean(run.discovered);
+  $("backend-readiness-badge").textContent = report ? (report.ready ? "· Ready" : "· Needs attention") : "· Not checked";
+  $("backend-readiness-status").textContent = report
+    ? `Backend checked ${report.checkedAtUtc}. ${report.checks.filter((item) => item.ok).length}/${report.checks.length} passed. ` +
+      (report.ready ? "Scenario-specific restore, build and runtime tests remain separate." : "All detected issues are listed together.")
+    : run.backendPhase === "readiness" ? "Python is validating tools, browser runtime, package restore and sign-ins."
+    : "The backend runs this audit before starting a scenario agent.";
+  renderPrerequisiteChecks("backend", report?.checks || [], report?.plan || { stages: {} });
+  const busy = Boolean(run.project?.writer) || run.status === "running";
+  $("backend-setup").disabled = busy || !report || report.ready || prerequisiteBusy;
+  $("backend-retry").disabled = busy || Boolean(run.project?.setupBlocker) || prerequisiteBusy;
+}
+
+async function repairBackendReadiness() {
+  if (!currentRun || prerequisiteBusy) return;
+  prerequisiteBusy = true;
+  const origin = currentRun;
+  renderBackendReadiness(origin);
+  $("backend-readiness-status").textContent = "Preparing local toolchain and rerunning real readiness checks. No Azure mutations.";
+  try {
+    await api("/api/readiness/repair", { runId: origin.id, installConsent: true });
+    await loadRun(origin.id);
+  } finally {
+    prerequisiteBusy = false;
+    if (currentRun) renderBackendReadiness(currentRun);
+  }
+}
+
+async function retryBackendReadiness() {
+  if (!currentRun) return;
+  const origin = currentRun;
+  const result = await api(`/api/runs/${origin.id}/continue`, {
+    revision: origin.project.revision,
+    message: "Recheck backend readiness and continue the next incomplete authorized operation.",
+  });
+  await refreshRuns(result.id, origin.request.projectSlug);
+}
+
+async function resolveAzureContext(edited = false) {
+  if (!currentRun || !$("azure-discovery-consent").checked)
+    throw new Error("Authorize read-only identity discovery first.");
+  const origin = currentRun;
+  const navigation = navigationRevision;
+  const body = { runId: origin.id, revision: origin.project.revision, discoveryConsent: true };
+  if (edited) body.overrides = {
+    environment: $("azure-environment").value.trim(),
+    resourceGroup: $("azure-resource-group").value.trim(), region: $("azure-region").value.trim(),
+  };
+  $("azure-resolve").disabled = true;
+  $("azure-save-targets").disabled = true;
+  $("azure-context-status").textContent = "Checking existing Azure CLI/azd identity and resolving local targets…";
+  try {
+    await api("/api/azure-context", body);
+    await refreshRuns(navigation === navigationRevision ? origin.id : undefined, origin.request.projectSlug);
+  } finally {
+    if (currentRun?.id === origin.id) renderAzureContext(currentRun);
+  }
+}
+
 function renderWorkerActivity(run) {
   const activity = run.activity;
   const running = run.status === "running";
@@ -903,6 +990,7 @@ function renderRun(run) {
     currentRun?.id !== run.id ||
     currentRun?.review?.fingerprint !== run.review?.fingerprint;
   currentRun = run;
+  renderBackendReadiness(run);
   if (switched && $("system-preflight-scope").value === "selected") resetSystemPrerequisites().catch(showError);
   if (switched) $("workspace-consent").checked = false;
   if (changed) {
@@ -914,19 +1002,28 @@ function renderRun(run) {
   $("run-details").hidden = false;
   $("run-name").textContent = `${run.request.projectSlug} / ${run.kind}`;
   const project = run.project;
+  const preparation = project?.deploymentPreparation;
+  $("preparation-progress").hidden = !preparation;
+  $("preparation-progress").textContent = preparation ?
+    `Azure preparation: ${preparation.status} — ${preparation.summary}. This is not deployment completion.` : "";
   const authorized = project?.localToolConsent?.scope === "scenario-local-execution";
   const setup = project?.setupBlocker;
-  $("workspace-consent-label").hidden = authorized || !project || Boolean(run.discovered);
+  $("workspace-consent-label").hidden = authorized || (!project && !run.discovered);
   $("workspace-consent").disabled = Boolean(project?.writer);
   $("local-consent-status").textContent = authorized
     ? "Local execution is authorized for this scenario across steps and resumptions. Azure and publishing are excluded."
-    : project && !run.discovered
+    : run.discovered
+      ? "Authorize local execution, then Resume existing scenario. Existing files are reused; cloud authorization is not imported."
+    : project
       ? "Authorize local execution once for this scenario. Older projects require one explicit confirmation."
       : "Select a saved scenario to view its local execution authorization.";
   $("revoke-consent").hidden = !authorized;
   $("revoke-consent").disabled = Boolean(project?.writer) || run.status === "running";
   $("setup-panel").hidden = !setup;
   if (setup) {
+    $("setup-kind").textContent = setup.kind === "workflow-error" ?
+      "Portal software error — no additional user permission is required." :
+      "Technical setup blocker — distinct from business or deployment approval.";
     $("setup-action").textContent = setup.action;
     $("setup-verification").textContent = `Required worker check: ${setup.verification}`;
   }
@@ -937,8 +1034,8 @@ function renderRun(run) {
     $("artifact-preview").hidden = true;
     $("reference-content").hidden = true;
   }
-  $("run-status").textContent = setup ? "Setup required" : run.discovered && !packaged
-    ? "Local project · read-only preview"
+  $("run-status").textContent = setup ? (setup.kind === "workflow-error" ? "Portal error" : "Setup required") : run.discovered && !packaged
+    ? "Local project · available to resume"
     : packaged
     ? "Packages validated · event not deployed"
     : run.review?.ready && approved
@@ -946,12 +1043,15 @@ function renderRun(run) {
     : run.review?.ready
     ? "Review ready"
     : (project?.status || "Legacy execution").replaceAll("_", " ");
-  $("execution-status").textContent = `Execution: ${run.status}${run.error ? ` · ${run.error}` : ""}`;
+  $("execution-status").textContent = `Execution: ${run.status}` +
+    (run.backendPhase ? ` · Backend: ${run.backendPhase}` : "") + (run.error ? ` · ${run.error}` : "");
   $("project-summary").textContent =
     setup
       ? "A technical prerequisite or host permission is unresolved. Verify setup rather than approving again."
     : run.discovered
-      ? `Discovered on disk. Read-only preview; missing workflow details are not inferred. Available: ${(run.localInventory || []).join(", ") || "No recognized artifacts yet"}.`
+      ? `Existing project found on disk. Resume recovers its scope, checks existing assets and joins the managed workflow without starting over. Available: ${(run.localInventory || []).join(", ") || "No recognized artifacts yet"}.`
+    : project?.reconciliation?.status === "pending"
+      ? "Recovering this existing project's scope and dependencies. Files are retained; earlier stage results are being verified, not assumed."
       : packaged
       ? "Challenges, learner guide, participant starter and private coach package are validated. Event not deployed."
       : run.composition?.status === "stale"
@@ -1069,6 +1169,7 @@ function renderRun(run) {
     return section;
   }));
   renderWorkerActivity(run);
+  renderAzureContext(run);
   $("run-output").textContent =
     run.output || run.error || "Starting the local Copilot CLI…";
   $("stop").hidden = run.status !== "running";
@@ -1083,11 +1184,32 @@ function renderRun(run) {
   $("decision-actions").hidden = !decision || packaged;
   $("answer-decision").disabled = !canAct;
   $("continue").disabled = !canAct || Boolean(decision);
+  const canImport = run.discovered && !project?.writer && hasWorkerCapacity() && localExecutionAllowed();
+  $("play").textContent = run.discovered ? "▶ Resume existing scenario" : "▶ Play / Resume";
+  $("play").disabled = run.discovered ? !canImport
+    : !canAct || Boolean(decision) || Boolean(run.review?.ready) || packaged;
+  const stoppable = run.status === "running" && !run.discovered;
+  $("pause").disabled = !stoppable;
+  $("cancel-run").disabled = Boolean(run.discovered) || Boolean(project?.writer && !stoppable) ||
+    (!stoppable && (!project || project.status === "cancelled"));
+  $("execution-control-status").textContent = stoppable
+    ? "Running. Pause or Cancel stops the worker and preserves files; neither deletes deployed resources. Resume starts a new attempt from saved progress."
+    : project?.writer ? "Waiting for the previous worker to release ownership. Controls enable after cleanup."
+    : decision ? "Waiting for the decision below. Play cannot bypass it."
+    : setup ? "Resolve the setup blocker and use Verify setup & retry."
+    : !run.discovered && (run.review?.ready || packaged) ? "Ready for review or completed. Use the review controls below."
+    : !localExecutionAllowed() ? "Authorize local execution above, then select Play / Resume. Authorization alone does not start work."
+    : !hasWorkerCapacity() ? "All worker slots are busy. Play enables when a slot is available."
+    : run.discovered ? "Ready to resume existing files. The backend first recovers intake and verifies evidence; it does not infer completed stages or cloud permission."
+    : "Idle — no worker is running. Select Play / Resume to continue saved progress, including cancelled or needs-attention runs.";
   $("revise").disabled = !canAct;
   if (decision) {
     const selectedChoice = $("decision-choice").value;
     $("decision-question").textContent = decision.question;
-    $("decision-reason").textContent = decision.reason;
+    $("decision-reason").textContent = decision.review?.disposition === "business"
+      ? `${decision.review.unresolvedNeed}\n${decision.review.intakeEvidence}\n` +
+        Object.entries(decision.review.choiceImpacts).map(([choice, impact]) => `${choice}: ${impact}`).join("\n")
+      : decision.reason;
     $("decision-choice").replaceChildren(
       new Option("Select a response", ""),
       ...decision.choices.map((value) => new Option(value, value)),
@@ -1260,7 +1382,7 @@ async function followup(kind) {
 
 async function initialize() {
   catalog = await api("/api/catalog");
-  if (catalog.workflowVersion !== 5 || catalog.maxConcurrentWorkers !== 4 ||
+  if (catalog.workflowVersion !== 5 || catalog.backendEngineVersion !== 3 || catalog.maxConcurrentWorkers !== 4 ||
       catalog.systemControlsVersion !== 1 || catalog.prerequisitesVersion !== 1)
     throw new Error("Restart the local portal server to load the workflow dashboard, then reload this page.");
   for (const item of catalog.industries)
@@ -1314,6 +1436,11 @@ async function initialize() {
     else summarize();
   });
   $("system-refresh").addEventListener("click", action(refreshSystem));
+  $("azure-discovery-consent").addEventListener("change", () => {
+    if (currentRun) renderAzureContext(currentRun);
+  });
+  $("azure-resolve").addEventListener("click", action(() => resolveAzureContext()));
+  $("azure-save-targets").addEventListener("click", action(() => resolveAzureContext(true)));
   $("system-preflight-consent").addEventListener("change", prerequisiteControls);
   renderPrerequisiteChecks("system", catalog.prerequisiteInventory, { stages: {} });
   for (const id of ["system-preflight-scope", "system-build-mode", "system-local-functions"])
@@ -1405,6 +1532,11 @@ async function initialize() {
     action(() => refreshRuns()),
   );
   $("answer-decision").addEventListener("click", action(() => followup("continue")));
+  $("play").addEventListener("click", action(() => followup(currentRun?.discovered ? "resume-local" : "continue")));
+  $("pause").addEventListener("click", action(() => followup("pause")));
+  $("cancel-run").addEventListener("click", action(() => followup("cancel")));
+  $("backend-setup").addEventListener("click", action(repairBackendReadiness));
+  $("backend-retry").addEventListener("click", action(retryBackendReadiness));
   $("run-select").addEventListener(
     "change",
     action(async () => {

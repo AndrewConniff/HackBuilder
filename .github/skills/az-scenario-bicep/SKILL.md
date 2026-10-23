@@ -17,6 +17,16 @@ description: >
    parameters/outputs. Retain user changes and existing deployed resource names.
 1. Wire real project/model/app outputs, runtime fixture installation and hooks.
    Use `az-webapp-development` directly for application integration.
+   Follow the workflow's
+   [scenario-owned application identity setup](../hack-builder-workflow/SKILL.md#scenario-owned-application-identity-setup).
+   Generate idempotent identity setup/verification and azd configuration wiring for required registrations.
+   Distinguish directory operations from ARM/Bicep what-if; plan their authorization and real ID capture
+   without asking the user to supply IDs for objects that this solution is intended to create.
+   Treat solution-created IDs, endpoints and installation receipts as deployment outputs, not user inputs.
+   Wire their producer/consumer ordering in the azd lifecycle: authorized identity setup, output capture,
+   dependent provisioning/configuration, then real authentication tests. Verify current supported resource
+   providers/hooks before choosing the mechanism; ARM Bicep does not automatically manage Graph objects.
+   Local-only scaffolding must remain buildable without pre-existing tenant objects.
 1. Use `az-azure-diagrams` for architecture and runtime diagrams in this context.
 1. Run `az bicep build` and `az bicep lint` for local validation when tooling is
    available. Prepare what-if commands/targets; Azure execution needs its own

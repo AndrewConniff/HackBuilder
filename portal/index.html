@@ -318,8 +318,8 @@
             <label class="consent"
               ><input type="checkbox" id="tool-consent" required
                 aria-describedby="consent-help consent-error" /><span
-                >I authorize local Copilot tool execution to implement this
-                scenario.</span
+                >I authorize local backend and Copilot tool execution to implement this
+                scenario, including read-only Azure CLI/azd sign-in metadata checks.</span
               ></label
             >
             <p id="consent-error" class="field-error" hidden></p>
@@ -390,6 +390,7 @@
           <p id="project-summary" class="subtle" role="status" aria-live="polite"></p>
           <section id="setup-panel" class="boundary" aria-labelledby="setup-title" hidden>
             <h3 id="setup-title">Setup required</h3>
+            <p id="setup-kind" class="subtle"></p>
             <p id="setup-action"></p>
             <p id="setup-verification" class="subtle"></p>
             <p class="fine-print">
@@ -402,6 +403,48 @@
           <div id="build-details">
           <p class="subtle">Technical reference construction, deployment with explicit consent, and runtime validation.</p>
           <ol id="stage-list" class="stage-list" aria-label="Scenario progress"></ol>
+          <p id="preparation-progress" class="subtle" hidden></p>
+          <div class="actions" role="group" aria-label="Scenario execution controls">
+            <button id="play" type="button" class="primary"><span aria-hidden="true">&#9654;</span> Play / Resume</button>
+            <button id="pause" type="button" class="secondary"><span aria-hidden="true">&#9208;</span> Pause</button>
+            <button id="cancel-run" type="button" class="danger"><span aria-hidden="true">&#9632;</span> Cancel run</button>
+          </div>
+          <p id="execution-control-status" class="subtle" role="status"></p>
+          <details id="backend-readiness" class="worker-activity">
+            <summary>Backend readiness <span id="backend-readiness-badge" class="subtle"></span></summary>
+            <p id="backend-readiness-status" role="status"></p>
+            <ul id="backend-preflight-results"></ul>
+            <p class="fine-print">Setup is managed here, not by scenario agents. The setup action installs missing
+              approved WinGet tools and repository Python/browser packages and accepts their package/source agreements.
+              It does not change cloud resources, permissions, certificates or subscription defaults.
+              Docker engine startup, organizational restrictions and interactive sign-in may still need your attention.</p>
+            <button id="backend-setup" type="button" class="secondary">Prepare local toolchain</button>
+            <button id="backend-retry" type="button" class="secondary">Recheck readiness &amp; continue</button>
+          </details>
+          <details id="azure-readiness" class="worker-activity">
+            <summary>Azure readiness and proposed targets</summary>
+            <p class="subtle">Reuse your local sign-ins, scenario architecture and naming conventions.
+              Discovery reads identity metadata and local configuration only; it does not authorize deployment.</p>
+            <label><input id="azure-discovery-consent" type="checkbox">
+              Allow read-only Azure CLI/azd identity checks. No tokens are displayed or stored.</label>
+            <button id="azure-resolve" type="button" class="secondary" disabled>Resolve current Azure context</button>
+            <p id="azure-context-status" role="status"></p>
+            <dl id="azure-context-fields" class="system-details"></dl>
+            <details>
+              <summary>Edit proposed naming or region</summary>
+              <p class="fine-print">To change account/subscription, select it explicitly in your local CLI first,
+                then resolve again. This portal never switches shared defaults.</p>
+              <label for="azure-environment">azd environment</label>
+              <input id="azure-environment" type="text">
+              <label for="azure-resource-group">Resource group</label>
+              <input id="azure-resource-group" type="text">
+              <label for="azure-region">Region</label>
+              <input id="azure-region" type="text">
+              <button id="azure-save-targets" type="button" class="secondary">Review edited targets</button>
+            </details>
+            <p class="fine-print">RBAC, policy, providers, regional model/SKU quota and capacity remain unchecked
+              until you authorize exact-target preflight below. Deployment requires another decision after what-if/cost review.</p>
+          </details>
           <details id="worker-activity" class="worker-activity">
             <summary>Worker activity <span id="worker-activity-badge" class="subtle"></span></summary>
             <p id="worker-activity-status" class="subtle" role="status"></p>

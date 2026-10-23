@@ -97,6 +97,11 @@ applyTo: "**/*.cs,**/*.csproj,**/Dockerfile"
 ## Dockerfile Requirements (Container Targets)
 
 - Use multi-stage build: SDK image for build, ASP.NET image for runtime
+- Pin the SDK build stage to `--platform=$BUILDPLATFORM` to avoid emulated SDK crashes on ARM64 hosts.
+  Retain the intended target platform for the runtime stage. Portable framework-dependent IL with
+  `UseAppHost=false` does not require a target-architecture SDK. For RID-specific/native output,
+  align restore/publish runtime arguments and lock files explicitly; preserve locked restore.
+  Diagnose generated Dockerfile platform selection before requesting shared Docker/emulator repair.
 - Base images: `mcr.microsoft.com/dotnet/sdk:10.0` and `mcr.microsoft.com/dotnet/aspnet:10.0`
 - Expose port 8080 (ASP.NET Core default in containers)
 - Set `ASPNETCORE_URLS=http://+:8080`

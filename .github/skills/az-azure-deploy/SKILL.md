@@ -37,6 +37,20 @@ In a noninteractive job, persist **decision required** and stop if consent,
 authentication or target details are missing; never infer a decision from
 `--no-ask-user` or tool-permission flags.
 
+Apply the workflow's
+[scenario-owned application identity setup](../hack-builder-workflow/SKILL.md#scenario-owned-application-identity-setup)
+before deployment depends on SPA/API client IDs. Reuse the recorded registration choice and approved
+installation plan. Run authorized scenario-local setup, capture verified IDs automatically and feed azd outputs.
+Do not introduce another installer-choice decision or assume tenant-administrator involvement without evidence.
+ARM what-if does not cover directory mutations; include them in the consolidated scope review rather than
+interpreting read-only preparation as write permission. Honor an explicitly selected administrator-managed route.
+Solution-created client/object IDs, endpoints and installation receipts are deployment outputs, not user inputs.
+Do not request them through portal business decisions. Execute the approved producer step, retain and validate
+its structured outputs, then supply dependent azd configuration automatically.
+Before creation, distinguish pending identity-dependent checks from independent read-only preparation.
+Missing generated IDs alone must not force an administrator handoff, manual receipt or local-only fallback.
+Real authorization/policy failures remain explicit blockers; never fabricate IDs or bypass directory restrictions.
+
 > [!CAUTION]
 > **MANDATORY DEPLOYMENT POLICY**
 >

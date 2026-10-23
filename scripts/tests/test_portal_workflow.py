@@ -9,6 +9,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import portal_workflow as workflow
@@ -57,6 +58,135 @@ class ProjectTests(unittest.TestCase):
         self.assertEqual([], self.project["authorizations"])
         self.assertNotIn("approval", self.project)
         self.assertEqual("completed", self.project["stages"]["architecture"]["status"])
+
+    def ask_technical_question(self) -> dict:
+        self.ask_design()
+        self.answer("Confirm design")
+        self.report("bicep", "completed")
+        return self.report("architecture", "waiting_for_user", decision={
+            "kind": "business", "question": "Which generated client IDs were installed?",
+            "reason": "Legacy manual identity handoff", "choices": ["Return receipt"],
+        })
+
+    def classify(self, **values) -> dict:
+        return self.report("architecture", decisionReview={
+            "decisionId": self.project["decisions"][-1]["id"], "disposition": "technical",
+            "reason": "Generated identities are implementation outputs.",
+            "resolution": "Wire idempotent creation and capture real outputs during authorized deployment.",
+            "evidence": ["Original intake requests a standalone reference; no supplied identity reuse."], **values,
+        })
+
+    def test_backend_question_review_preserves_confirmed_work_without_granting_consent(self) -> None:
+        self.ask_technical_question()
+        before = self.store.read("finance-test")
+        self.assertEqual("reviewing", before["decisions"][-1]["status"])
+        self.assertFalse(workflow.actionable_decision(before["decisions"][-1]))
+        after = self.classify()
+        self.assertEqual("superseded", after["decisions"][-1]["status"])
+        self.assertEqual("completed", after["stages"]["architecture"]["status"])
+        self.assertEqual(before["stages"]["bicep"], after["stages"]["bicep"])
+        self.assertTrue(after["designConfirmed"])
+        self.assertEqual(before["authorizations"], after["authorizations"])
+        self.assertEqual("running", after["status"])
+        self.assertEqual("backend-question-review", after["history"][-1]["action"])
+        self.assertNotIn("answer", after["decisions"][-1])
+        with self.assertRaisesRegex(ValueError, "Project changed"):
+            self.store.report("finance-test", "worker-1", before["revision"], {})
+        with self.assertRaisesRegex(ValueError, "already classified"):
+            self.report("architecture", "waiting_for_user", decision={
+                "kind": "business", "question": "Which generated client IDs were installed?",
+                "reason": "Repeat", "choices": ["Return receipt"],
+            })
+
+    def test_question_review_cannot_bypass_design_or_writer(self) -> None:
+        self.ask_design()
+        with self.assertRaisesRegex(ValueError, "unreviewed business"):
+            self.classify()
+        self.store.finish("finance-test", "worker-1", "completed")
+        self.project = self.store.read("finance-test")
+        with self.assertRaisesRegex(ValueError, "does not own"):
+            self.classify()
+        self.assertFalse(self.store.read("finance-test")["designConfirmed"])
+
+    def test_business_question_requires_gap_and_choice_impacts_before_exposure(self) -> None:
+        self.ask_technical_question()
+        with self.assertRaisesRegex(ValueError, "Unresolved business"):
+            self.classify(disposition="business")
+        self.assertEqual("reviewing", self.store.read("finance-test")["decisions"][-1]["status"])
+        self.project["decisions"][-1]["choices"] = ["Education only", "Personal recommendations"]
+        self.project = self.store.save(self.project)
+        self.classify(
+            disposition="business", unresolvedNeed="Whether to include regulated personalized advice.",
+            intakeEvidence="Intake says assistant but does not specify advice scope.",
+            choiceImpacts={"Education only": "General education only.",
+                          "Personal recommendations": "Requires additional advice/compliance controls."},
+        )
+        decision = self.project["decisions"][-1]
+        self.assertTrue(workflow.actionable_decision(decision))
+        self.assertEqual("waiting_for_user", self.project["status"])
+        self.assertEqual([], self.project["authorizations"])
+        self.answer("Education only")
+        self.assertEqual("Education only", self.project["decisions"][-1]["answer"])
+
+    def test_verified_external_failure_becomes_blocker_not_question(self) -> None:
+        self.ask_technical_question()
+        self.classify(disposition="external-blocker", blocker={
+            "kind": "host-permission", "observedFailure": "Actual Graph operation denied by tenant policy.",
+            "action": "Tenant operator must permit scenario-owned registration creation.",
+            "verification": "Read-only check of effective registration policy.",
+        }, evidence=["Captured denied operation, code Authorization_RequestDenied."])
+        self.assertEqual("setup_required", self.project["status"])
+        self.assertEqual("superseded", self.project["decisions"][-1]["status"])
+        self.assertEqual("host-permission", self.project["setupBlocker"]["kind"])
+        self.assertEqual([], self.project["authorizations"])
+
+    def test_incomplete_classification_stays_internal_and_cannot_grant_permissions(self) -> None:
+        self.ask_technical_question()
+        for invalid in (
+            {"disposition": "unknown"}, {"evidence": []},
+            {"disposition": "external-blocker", "blocker": {
+                "kind": "host-permission", "action": "Ask an admin",
+                "verification": "Check policy",
+            }},
+        ):
+            with self.assertRaises(ValueError):
+                self.classify(**invalid)
+            self.assertEqual("reviewing", self.store.read("finance-test")["decisions"][-1]["status"])
+        with self.assertRaisesRegex(ValueError, "cannot grant"):
+            self.report("architecture", authorizations=[{"kind": "deployment"}], decisionReview={})
+        with patch.dict(os.environ, {
+            "ABCBUILDER_RUN_ID": "worker-1", "ABCBUILDER_ASSIGNED_JOB": "question-review",
+        }):
+            with self.assertRaisesRegex(ValueError, "not report implementation"):
+                self.report("bicep", "completed")
+        self.assertEqual([], self.store.read("finance-test")["authorizations"])
+
+    def test_legacy_question_is_reviewed_without_changing_answered_decisions(self) -> None:
+        self.ask_technical_question()
+        self.project["decisions"][-1]["status"] = "pending"
+        self.project["decisions"][-1].pop("previousStage")
+        self.project = self.store.save(self.project)
+        answered = dict(self.project["decisions"][0])
+        self.assertTrue(workflow.needs_question_review(self.project["decisions"][-1]))
+        with self.assertRaisesRegex(ValueError, "no longer pending"):
+            self.store.finish("finance-test", "worker-1", "completed")
+            self.project = self.store.read("finance-test")
+            self.store.respond("finance-test", self.project["revision"], "Return receipt",
+                               self.project["decisions"][-1]["id"], "Return receipt")
+        self.project = self.store.claim(self.request, "worker-1", self.project["revision"])
+        self.classify()
+        self.assertEqual(answered, self.project["decisions"][0])
+        self.assertEqual("completed", self.project["stages"]["architecture"]["status"])
+
+    def test_cancel_idle_keeps_pending_decision_and_progress(self) -> None:
+        self.ask_design()
+        self.store.finish("finance-test", "worker-1", "completed")
+        before = self.store.read("finance-test")
+        after = self.store.cancel_idle("finance-test", before["revision"])
+        self.assertEqual("cancelled", after["status"])
+        self.assertEqual(before["stages"], after["stages"])
+        self.assertEqual(before["decisions"], after["decisions"])
+        self.assertEqual(before["authorizations"], after["authorizations"])
 
     def test_local_consent_survives_resume_and_restart_without_granting_cloud_access(self) -> None:
         self.store.finish("finance-test", "worker-1", "completed")
@@ -316,6 +446,46 @@ class ProjectTests(unittest.TestCase):
         self.report("application", "running")
         self.assertEqual("pending", self.project["stages"]["local-validation"]["status"])
         self.assertEqual([], self.project["authorizations"])
+
+    def test_preparation_progress_reuses_scope_without_marking_deployment_completed(self) -> None:
+        scope = dict(account="user", subscriptionId="s", tenantId="t",
+                     resourceGroup="rg", environment="dev", region="eastus2")
+        self.cloud_decision("deployment-preparation", scope)
+        self.answer("Authorize")
+        for status in ("running", "completed"):
+            self.report("deployment", status, operation="deployment-preparation", scope=scope)
+        self.assertEqual("completed", self.project["deploymentPreparation"]["status"])
+        self.assertEqual("pending", self.project["stages"]["deployment"]["status"])
+        self.assertEqual(["deployment-preparation"], [a["kind"] for a in self.project["authorizations"]])
+        for stage in ("deployment", "live-validation", "review"):
+            with self.subTest(stage=stage), self.assertRaisesRegex(ValueError, "deployment consent"):
+                self.report(stage, "running")
+        for change in ("region", "resourceGroup", "subscriptionId", "account", "tenantId", "environment"):
+            with self.subTest(change=change), self.assertRaisesRegex(ValueError, "preparation consent"):
+                self.report("deployment", "running", operation="deployment-preparation",
+                            scope={**scope, change: "other"})
+        with self.assertRaisesRegex(ValueError, "Preparation reports belong"):
+            self.report("live-validation", "completed", operation="deployment-preparation", scope=scope)
+        with self.assertRaisesRegex(ValueError, "Unknown workflow operation"):
+            self.report("deployment", "running", operation="anything", scope=scope)
+
+    def test_preparation_requires_consent_and_reports_failure_without_deployment(self) -> None:
+        scope = dict(account="user", subscriptionId="s", tenantId="t",
+                     resourceGroup="rg", environment="dev", region="eastus2")
+        with self.assertRaisesRegex(ValueError, "preparation consent"):
+            self.report("deployment", "running", operation="deployment-preparation", scope=scope)
+        self.cloud_decision("deployment-preparation", scope)
+        self.answer("Authorize")
+        self.report("deployment", "failed", operation="deployment-preparation", scope=scope)
+        self.assertEqual("failed", self.project["deploymentPreparation"]["status"])
+        self.assertEqual("pending", self.project["stages"]["deployment"]["status"])
+
+    def test_product_defect_can_be_reported_without_claiming_missing_host_permissions(self) -> None:
+        self.report("requirements", "blocked", blocker={
+            "kind": "workflow-error", "action": "Portal workflow failed; maintainer repair required, no new consent.",
+            "verification": "Run the workflow regression test.",
+        })
+        self.assertEqual("workflow-error", self.store.read("finance-test")["setupBlocker"]["kind"])
 
     def test_declining_replacement_cloud_consent_revokes_old_deployment_permission(self) -> None:
         scope = dict(account="user", subscriptionId="s", tenantId="t",

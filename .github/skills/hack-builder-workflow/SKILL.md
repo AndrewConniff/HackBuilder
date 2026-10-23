@@ -53,15 +53,20 @@ A user assertion, click, file presence or CLI exit alone is not setup verificati
 ### Service-aware prerequisites
 
 Use the shared profiles in `scripts\prerequisite_profiles.py` and the checker, not per-scenario guessed install lists.
-At the start of each portal attempt, run:
+The Python portal backend audits the full selected toolchain and Azure CLI/azd sign-ins
+before starting a scenario agent. It persists the current owner-bound receipt and a consolidated
+readiness result. Workers do not repeat the audit or request routine technical authorization.
+For manual execution, or an expired/scope-changed receipt, run:
 
 ```powershell
 python scripts\check_prerequisites.py --for-project --record --stage requirements --json
 ```
 
-This audits the entire planned local toolchain together, but requirements/design can proceed while later gates fail.
-After architecture confirmation, update manifest services and repeat. Before diagrams, Bicep, application,
-local validation or deployment, run with `--stage <stage>` and refresh expired receipts.
+The standalone checker allows requirements/design while later gates fail; the portal's managed launch
+requires the complete baseline to pass first. It also launches Chromium and restores/compiles a temporary
+.NET project through the approved NuGet proxy. These are real machine checks, not scenario acceptance.
+After architecture confirmation, update manifest services. The backend refreshes changed/expired profiles
+before an affected operation. Manual jobs can use `--stage <stage>` to refresh expired receipts.
 Portal build-stage reports require actual owner-bound checks, fresh within 15 minutes and covering the current services.
 Report all failed checks and affected stages together; block only before an affected operation.
 Docker is needed for confirmed local image builds, not Bicep/Dockerfile authoring.
@@ -76,6 +81,11 @@ The portal is the normal decision surface and scenario-level progress dashboard,
 Persist normalized intake, delegated preferences, resolved decisions and execution attempts in the
 backend project store. Workers use `scripts\portal_workflow.py read` and revision-checked `report`
 events; environment variables identify their project and writer lease. Status refresh is read-only.
+The Python controller assigns one bounded operation via `ABCBUILDER_ASSIGNED_STAGES`,
+validates required artifacts and Bicep/.NET builds, and schedules the next allowed operation automatically.
+Return after reporting the assigned operation; do not negotiate routine stage progression with the user.
+Every scenario owns a separate workspace, writer and execution history. Dependencies do not grant
+cross-scenario access or transfer deployment/suitability authorization.
 Never use CLI exit success, existing files or guessed log parsing as stage-completion evidence.
 Do not edit a portal-owned scenario concurrently from VS Code; the shared writer contract must be honored.
 
@@ -89,6 +99,63 @@ material security exceptions or unresolved business requirements need explicit s
 Cloud preparation and deployment use separate portal decisions with exact targets.
 Preparation permission precedes Azure queries/what-if. Deployment consent follows actual what-if,
 estimated cost and target review. Free-text continuation never grants cloud authorization.
+
+### Scenario-owned application identity setup
+
+Treat Microsoft Entra application registrations, service principals, exposed API scopes, app roles,
+redirect URIs and assignment requirements as technical deployment dependencies, not recurring business questions.
+Resolve them during architecture and carry one identity installation plan through IaC, app configuration and deployment.
+
+- Prefer managed identities for Azure backend communication. Add interactive-user SPA/API registrations only
+  when the scenario requires them; never substitute anonymous access for required authentication.
+- For a standalone scenario requiring registrations, default to new dedicated scenario-owned registrations
+  when no existing IDs were supplied and no requirement mandates reuse. Record this implementation choice;
+  do not ask "existing or new?" merely because IDs do not exist yet. Preserve an already answered choice.
+- Generate idempotent scenario-local identity setup and validation automation with the reference assets.
+  Persist tenant, stable scenario ownership markers, actual application/client and object IDs, scopes/roles,
+  redirects, assignment policy and outputs consumed by azd. Names alone are not proof of ownership.
+  Reuse only verified owned objects; do not adopt unrelated registrations or create duplicates on retries.
+- **Deployment outputs are not user inputs.** Client IDs, service-principal object IDs, generated scope/role IDs,
+  endpoint URLs and installation receipts for solution-created components belong to the deployment.
+  Do not request them in a business decision, portal message or manual receipt questionnaire.
+  A new registration having no ID before creation is expected, not evidence of a missing user prerequisite.
+  Use existing IDs as inputs only when the user requires integration with externally managed components.
+- Avoid a circular preparation gate: identity objects do not need to exist just to document their planned changes,
+  estimate cost or inspect the independent ARM changes within authorized read-only scope.
+  Identify which parameters are generated outputs and which checks genuinely depend on installed identities.
+  Where exact ARM what-if needs a generated ID, report that dependent check as pending until authorized identity
+  setup produces it; run independent checks now. Never invent an ID to claim an exact what-if passed,
+  require the user to manufacture one, or create directory objects during read-only preparation.
+  Present the planned directory changes and independent what-if with this limitation in the consolidated review.
+- Distinguish Azure resource authorization from Microsoft Graph/directory operations. Read-only preparation
+  and ARM what-if do not authorize directory writes or cover their changes. Include required directory writes,
+  any admin consent, target tenant and exact permissions in one consolidated authorization/installation plan
+  before the dependent operation. Reuse recorded authorization when it actually covers these operations.
+  Do not split it into source-choice, installer-choice and client-ID questionnaires.
+- Do not assume a tenant administrator is required merely to register an application. Member-user registration
+  may be permitted by tenant policy; creation, API permission consent, role assignment and assignment policy
+  have distinct requirements. Verify the current identity's applicable capabilities within authorized scope.
+  Never elevate roles, weaken tenant policy or grant broad Graph/admin consent to avoid a blocker.
+- Execute approved setup through the current authorized identity and azd lifecycle wiring when supported.
+  Capture real outputs automatically; do not ask the user to copy client IDs that the tooling can retrieve.
+  Keep local builds/tests running with explicit test configuration while live IDs are unresolved;
+  never invent production IDs or present placeholder-dependent what-if/runtime checks as passed.
+- If actual policy/permission evidence or a known tenant restriction prevents required setup, report one
+  precise technical prerequisite with the failed operation, least-privilege remediation, prepared script
+  and read-only verification. Request administrator assistance only for the operations that need it.
+  Missing directory authorization is a scope checkpoint, not proof that administrator installation is required.
+  Once the user explicitly chooses an administrator-managed route, honor it and consume verified outputs;
+  do not silently switch to worker-managed installation or ask the same route question again.
+  Administrator involvement, when genuinely necessary, should run the prepared installation automation;
+  its structured non-secret output is consumed and verified by the deployment, not transcribed into a business answer.
+  An earlier "arrange administrator installation" answer does not prove creation succeeded or confer write permission.
+  If no installation occurred, show the unresolved technical dependency once; do not turn it into a succession
+  of "which IDs were installed?" questions. A user correction that deployment must own setup changes the intended
+  installation route, not the tenant's permissions or the required authorization scope.
+
+Keep these dependencies visible in deployment status. Do not claim the scenario is deployed or authenticated
+until the real configuration, sign-in/token validation and expected denial cases pass.
+See [Microsoft Entra default permissions](https://learn.microsoft.com/en-us/entra/fundamentals/users-default-permissions).
 
 In noninteractive jobs, missing business decisions, authentication or target authorization mean
 persist progress, report **decision required** with the exact next action, and

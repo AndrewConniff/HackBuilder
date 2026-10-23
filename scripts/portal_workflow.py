@@ -41,6 +41,18 @@ def local_execution_authorized(project: dict) -> bool:
     return isinstance(consent, dict) and consent.get("scope") == "scenario-local-execution"
 
 
+def needs_question_review(decision: dict) -> bool:
+    return (
+        decision.get("kind") == "business"
+        and decision.get("status") in {"pending", "reviewing"}
+        and not decision.get("review")
+    )
+
+
+def actionable_decision(decision: dict) -> bool:
+    return decision.get("status") == "pending" and not needs_question_review(decision)
+
+
 def state_directory(root: Path) -> Path:
     legacy = root / ".hackbuilder-portal"
     current = root / ".abcbuilder-portal"
@@ -60,6 +72,17 @@ def text(value: object, field: str, limit: int = 6000) -> str:
     if not isinstance(value, str) or not value.strip() or len(value) > limit:
         raise ValueError(f"{field} must be nonempty text of at most {limit} characters.")
     return value.strip()
+
+
+def setup_verification(value: object) -> str:
+    command = text(value, "Setup verification", 2000)
+    if re.search(r"\$(?:home|pid|host)\s*=(?!=)", command, re.IGNORECASE):
+        raise ValueError(
+            "The proposed check assigns a PowerShell automatic/read-only variable ($HOME/$PID/$Host). "
+            "Correct the generated command using a nonreserved result variable before reporting setup. "
+            "This is a command bug, not a request for broader permissions."
+        )
+    return command
 
 
 class ProjectExistsError(ValueError):
@@ -134,7 +157,7 @@ class Store:
         if blocker is not None and (
             not isinstance(blocker, dict) or not isinstance(blocker.get("id"), str)
             or blocker.get("stage") not in STAGES
-            or blocker.get("kind") not in {"prerequisite", "host-permission"}
+            or blocker.get("kind") not in {"prerequisite", "host-permission", "workflow-error"}
             or any(not isinstance(blocker.get(key), str) or not blocker[key].strip()
                    for key in ("action", "verification", "createdAtUtc"))
         ):
@@ -189,6 +212,11 @@ class Store:
                     "recordedAtUtc": timestamp(),
                 })
             project.update(writer=owner, latestRunId=owner, status="running")
+            if create and request.get("localResume"):
+                project["reconciliation"] = {
+                    "status": "pending", "sourceRunId": request["localResume"]["sourceRunId"],
+                    "summary": "Existing files retained; intake and execution evidence need reconciliation.",
+                }
             if preflight_required:
                 project["preflightRequired"] = True
             return self.save(project)
@@ -210,6 +238,31 @@ class Store:
         if type(revision) is not int or revision != project["revision"]:
             raise ValueError("Project changed. Refresh before submitting this action.")
 
+    def reconcile_intake(self, slug: str, owner: str, revision: int, request: dict, evidence: list[str]) -> dict:
+        with self.locked():
+            project = self.read(slug)
+            self.check_revision(project, revision)
+            if project["writer"] != owner:
+                raise ValueError("Only the current project writer can reconcile local intake.")
+            if project.get("reconciliation", {}).get("status") != "pending":
+                raise ValueError("This project has no pending local intake reconciliation.")
+            if request.get("projectSlug") != slug or request.get("deploymentAuthorized") is not False:
+                raise ValueError("Reconciliation must preserve the slug and cannot authorize deployment.")
+            if request.get("scenarioApproved") is not False or project["designConfirmed"] or project["authorizations"]:
+                raise ValueError("Reconciliation cannot import design, deployment or suitability authorization.")
+            if not evidence or any(not isinstance(item, str) or not item.strip() for item in evidence):
+                raise ValueError("Recovered intake requires specific local artifact evidence.")
+            project["request"] = request
+            project["reconciliation"].update(
+                status="completed", evidence=evidence, updatedAtUtc=timestamp(),
+                summary="Local intake recovered. Stage evidence remains unverified until actual checks.",
+            )
+            project["history"].append({
+                "action": "reconcile-local-intake", "evidence": evidence, "recordedAtUtc": timestamp(),
+                "message": "Recovered scenario scope from existing files; no stage completion or authorization imported.",
+            })
+            return self.save(project)
+
     def report(self, slug: str, owner: str, revision: int, event: dict) -> dict:
         with self.locked():
             project = self.read(slug)
@@ -218,10 +271,43 @@ class Store:
                 raise ValueError("Worker does not own this project. Stale or external writes are rejected.")
             if "localToolConsent" in event or "authorizations" in event:
                 raise ValueError("Worker reports cannot grant user authorization.")
+            assigned_job = os.environ.get("ABCBUILDER_ASSIGNED_JOB")
+            if os.environ.get("ABCBUILDER_RUN_ID") == owner and assigned_job == "question-review":
+                if "decisionReview" not in event:
+                    raise ValueError("Question review must classify the saved question, not report implementation.")
+            if "decisionReview" in event:
+                if os.environ.get("ABCBUILDER_RUN_ID") == owner and assigned_job not in {None, "question-review"}:
+                    raise ValueError("Leave classification to the backend-assigned question-review operation.")
+                return self._apply_question_review(project, event)
             stage = event.get("stage")
             status = event.get("status")
             if stage not in STAGES or status not in STATUSES:
                 raise ValueError("Report a known stage and workflow status.")
+            assigned = os.environ.get("ABCBUILDER_ASSIGNED_STAGES")
+            if assigned and os.environ.get("ABCBUILDER_RUN_ID") == owner:
+                allowed = json.loads(assigned)
+                if stage not in allowed:
+                    raise ValueError(f"The Python backend assigned {allowed}; do not advance other stages in this job.")
+                expected_operation = os.environ.get("ABCBUILDER_ASSIGNED_OPERATION")
+                if expected_operation and event.get("operation") != expected_operation:
+                    raise ValueError(f"The backend assigned operation:{expected_operation}; include it in this report.")
+            operation = event.get("operation")
+            if operation not in {None, "deployment", "deployment-preparation"}:
+                raise ValueError("Unknown workflow operation.")
+            preparation = operation == "deployment-preparation"
+            if preparation:
+                if stage != "deployment":
+                    raise ValueError("Preparation reports belong to deployment, not live validation or review.")
+                if status not in {"pending", "running", "completed", "failed", "blocked", "cancelled"}:
+                    raise ValueError("Use a separate cloud decision for preparation authorization.")
+                scope = event.get("scope")
+                if not isinstance(scope, dict) or not any(
+                    item["kind"] == "deployment-preparation" and item["scope"] == scope
+                    for item in project["authorizations"]
+                ):
+                    raise ValueError("Exact-target deployment-preparation consent is required for this scope.")
+            elif operation == "deployment" and stage != "deployment":
+                raise ValueError("Deployment operation must use the deployment stage.")
             summary = text(event.get("summary"), "Stage summary", 1200)
             evidence = event.get("evidence", [])
             if not isinstance(evidence, list) or any(
@@ -247,17 +333,13 @@ class Store:
             setup = event.get("blocker")
             if status == "blocked":
                 if (
-                    not isinstance(setup, dict) or setup.get("kind") not in {"prerequisite", "host-permission"}
+                    not isinstance(setup, dict) or setup.get("kind") not in {
+                        "prerequisite", "host-permission", "workflow-error",
+                    }
                     or event.get("decision") is not None
                 ):
                     raise ValueError("Setup required needs a prerequisite/host-permission blocker, not a decision.")
-                proposed_check = text(setup.get("verification"), "Setup verification", 2000)
-                if re.search(r"\$(?:home|pid|host)\s*=(?!=)", proposed_check, re.IGNORECASE):
-                    raise ValueError(
-                        "The proposed check assigns a PowerShell automatic/read-only variable ($HOME/$PID/$Host). "
-                        "Correct the generated command using a nonreserved result variable before reporting setup. "
-                        "This is a command bug, not a request for broader permissions."
-                    )
+                proposed_check = setup_verification(setup.get("verification"))
                 setup = {
                     "id": blocker["id"] if blocker else uuid.uuid4().hex,
                     "stage": stage, "kind": setup["kind"],
@@ -272,7 +354,9 @@ class Store:
                 status == "completed" or isinstance(event.get("decision"), dict)
             ) and project["stages"]["requirements"]["status"] != "completed":
                 raise ValueError("Complete requirements before confirming architecture.")
-            pending = [item for item in project["decisions"] if item["status"] == "pending"]
+            pending = [
+                item for item in project["decisions"] if item["status"] in {"pending", "reviewing"}
+            ]
             if pending and status not in {"waiting_for_user", "failed", "cancelled"}:
                 raise ValueError("Resolve the pending decision before reporting more work.")
             if stage in {"diagrams", "bicep", "application", "local-validation"} and not project["designConfirmed"]:
@@ -292,13 +376,13 @@ class Store:
             )
             if (
                 stage in {"deployment", "live-validation", "review"}
-                and not requesting_cloud and status != "blocked" and verification is None
+                and not preparation and not requesting_cloud and status != "blocked" and verification is None
             ):
                 if not any(item["kind"] == "deployment" for item in project["authorizations"]):
                     raise ValueError("Exact-target deployment consent is required for cloud stages.")
             if stage == "review" and status == "completed":
                 raise ValueError("Suitability review is validated by the approval helper, not worker progress.")
-            if stage == "deployment" and status in {"running", "completed"}:
+            if stage == "deployment" and not preparation and status in {"running", "completed"}:
                 if project["stages"]["local-validation"]["status"] != "completed":
                     raise ValueError("Complete local validation before deployment.")
             if stage == "live-validation" and status in {"running", "completed"}:
@@ -366,18 +450,32 @@ class Store:
                         item for item in project["authorizations"]
                         if kind == "deployment" and item["kind"] == "deployment-preparation"
                     ]
+                question = text(decision.get("question"), "Decision question")
+                if kind == "business" and any(
+                    item["kind"] == "business" and item["question"].casefold() == question.casefold()
+                    and item.get("review", {}).get("disposition") == "technical"
+                    for item in project["decisions"]
+                ):
+                    raise ValueError(
+                        "The backend already classified this question as implementation-owned. "
+                        "Apply its recorded resolution; do not ask it again."
+                    )
                 project["decisions"].append({
                     "id": uuid.uuid4().hex,
                     "kind": kind,
                     "stage": stage,
-                    "question": text(decision.get("question"), "Decision question"),
+                    "question": question,
                     "reason": text(decision.get("reason"), "Decision reason"),
                     "choices": choices,
                     "acceptChoice": accept,
                     "scope": scope,
-                    "status": "pending",
+                    "status": "reviewing" if kind == "business" else "pending",
+                    "previousStage": dict(project["stages"][stage]),
                     "createdAtUtc": timestamp(),
                 })
+                if kind == "business":
+                    status = "pending"
+                    summary = "Backend reviewing a proposed question against saved intake and decisions."
             elif status == "waiting_for_user":
                 raise ValueError("waiting_for_user requires a structured decision.")
             if verification is not None:
@@ -388,13 +486,98 @@ class Store:
                 project["setupBlocker"] = None
             elif status == "blocked":
                 project["setupBlocker"] = setup
-            project["stages"][stage] = {
+            progress = {
                 "status": status, "summary": summary, "evidence": evidence, "updatedAtUtc": timestamp(),
             }
+            if preparation:
+                project["deploymentPreparation"] = {**progress, "scope": event["scope"]}
+                if verification is not None:
+                    project["stages"][stage] = {
+                        "status": "pending", "summary": "Preparation verified; actual deployment remains unauthorized.",
+                    }
+            else:
+                project["stages"][stage] = progress
             project["status"] = "setup_required" if status == "blocked" else (
-                "waiting_for_user" if decision else "running"
+                "waiting_for_user" if decision and decision["kind"] != "business" else "running"
             )
             return self.save(project)
+
+    def _apply_question_review(self, project: dict, event: dict) -> dict:
+        review = event["decisionReview"]
+        if not isinstance(review, dict):
+            raise ValueError("decisionReview must be a structured classification.")
+        decision = next(
+            (item for item in project["decisions"]
+             if item["id"] == review.get("decisionId") and needs_question_review(item)), None,
+        )
+        if not decision or project["setupBlocker"]:
+            raise ValueError("Review only an unreviewed business question without an existing setup blocker.")
+        if any(actionable_decision(item) for item in project["decisions"] if item is not decision):
+            raise ValueError("Resolve the existing design/cloud/business checkpoint before question review.")
+        if event.get("stage") != decision["stage"]:
+            raise ValueError("Question review must retain the original stage.")
+        assigned = os.environ.get("ABCBUILDER_ASSIGNED_STAGES")
+        if assigned and os.environ.get("ABCBUILDER_RUN_ID") == project["writer"]:
+            if decision["stage"] not in json.loads(assigned):
+                raise ValueError("Question review is outside the assigned stage.")
+        disposition = review.get("disposition")
+        if disposition not in {"technical", "business", "external-blocker"}:
+            raise ValueError("Classify as technical, business or external-blocker; unknown questions stay internal.")
+        reason = text(review.get("reason"), "Classification reason", 2000)
+        evidence = review.get("evidence")
+        if not isinstance(evidence, list) or not evidence or any(
+            not isinstance(item, str) or not item.strip() for item in evidence
+        ):
+            raise ValueError("Classification requires saved intake/decision or actual diagnostic evidence.")
+        record = {
+            "disposition": disposition, "reason": reason, "evidence": evidence, "reviewedAtUtc": timestamp(),
+        }
+        if disposition == "business":
+            record["unresolvedNeed"] = text(review.get("unresolvedNeed"), "Unresolved business/security need", 2000)
+            record["intakeEvidence"] = text(review.get("intakeEvidence"), "Why intake/history cannot resolve it", 2000)
+            impacts = review.get("choiceImpacts")
+            if not isinstance(impacts, dict) or set(impacts) != set(decision["choices"]) or len(impacts) < 2:
+                raise ValueError("A genuine business decision needs at least two choices with their distinct impacts.")
+            record["choiceImpacts"] = {
+                key: text(value, "Business/security impact", 1000) for key, value in impacts.items()
+            }
+            decision["status"] = "pending"
+            project["stages"][decision["stage"]]["status"] = "waiting_for_user"
+            project["status"] = "waiting_for_user"
+        elif disposition == "external-blocker":
+            blocker = review.get("blocker")
+            if not isinstance(blocker, dict) or blocker.get("kind") not in {"prerequisite", "host-permission"}:
+                raise ValueError("External blockers require an observed prerequisite failure or host denial.")
+            setup = {
+                "id": uuid.uuid4().hex, "stage": decision["stage"], "kind": blocker["kind"],
+                "action": text(blocker.get("action"), "Exact external action", 2000),
+                "verification": setup_verification(blocker.get("verification")),
+                "createdAtUtc": timestamp(), "updatedAtUtc": timestamp(), "evidence": evidence,
+            }
+            text(blocker.get("observedFailure"), "Observed failure", 2000)
+            setup["observedFailure"] = blocker["observedFailure"]
+            project["setupBlocker"] = setup
+            decision["status"] = "superseded"
+            project["stages"][decision["stage"]].update(status="blocked", summary=reason, evidence=evidence)
+            project["status"] = "setup_required"
+        else:
+            record["resolution"] = text(review.get("resolution"), "Implementation-owned next action", 2000)
+            decision["status"] = "superseded"
+            previous = decision.get("previousStage", {})
+            project["stages"][decision["stage"]] = (
+                dict(previous) if previous.get("status") == "completed" else {
+                    "status": "completed" if decision["stage"] == "architecture" and project["designConfirmed"]
+                    else "pending",
+                    "summary": record["resolution"], "evidence": evidence,
+                }
+            )
+            project["status"] = "running"
+        decision["review"] = record
+        project["history"].append({
+            "action": "backend-question-review", "decisionId": decision["id"], **record,
+            "authorization": "Classification grants no execution, cloud, directory or suitability permission.",
+        })
+        return self.save(project)
 
     def respond(self, slug: str, revision: int, message: str, decision_id: str | None = None,
                 choice: str | None = None, revise: bool = False) -> dict:
@@ -406,7 +589,7 @@ class Store:
             if project["setupBlocker"]:
                 raise ValueError("Setup required. Use Verify setup & retry; another approval cannot fix this blocker.")
             message = text(message, "User instruction")
-            pending = [item for item in project["decisions"] if item["status"] == "pending"]
+            pending = [item for item in project["decisions"] if actionable_decision(item)]
             if pending and not revise:
                 decision = pending[0]
                 if decision["id"] != decision_id or choice not in decision["choices"]:
@@ -428,12 +611,63 @@ class Store:
             if revise:
                 project["designConfirmed"] = False
                 project["authorizations"] = []
-                for decision in pending:
-                    decision["status"] = "superseded"
+                for decision in project["decisions"]:
+                    if decision["status"] in {"pending", "reviewing"}:
+                        decision["status"] = "superseded"
                 project["stages"] = {key: {"status": "pending", "summary": ""} for key in STAGES}
             project["history"].append({"message": message, "choice": choice, "revise": revise,
                                        "recordedAtUtc": timestamp()})
             project["status"] = "pending"
+            return self.save(project)
+
+    def cancel_idle(self, slug: str, revision: int) -> dict:
+        with self.locked():
+            project = self.read(slug)
+            self.check_revision(project, revision)
+            if project["writer"]:
+                raise ValueError("Stop the active worker before cancelling saved work.")
+            project["status"] = "cancelled"
+            project["history"].append({
+                "action": "cancel-idle", "message": "Cancelled saved work; artifacts, decisions and consent retained.",
+                "recordedAtUtc": timestamp(),
+            })
+            return self.save(project)
+
+    def propose_deployment_context(self, slug: str, revision: int, context: dict, owner: str | None = None) -> dict:
+        with self.locked():
+            project = self.read(slug)
+            self.check_revision(project, revision)
+            if (project["writer"] and project["writer"] != owner) or project["setupBlocker"]:
+                raise ValueError("Finish active work or resolve setup before reviewing Azure targets.")
+            pending = [item for item in project["decisions"] if item["status"] in {"pending", "reviewing"}]
+            for decision in pending:
+                if not (
+                    decision["kind"] == "deployment-preparation"
+                    or (decision["kind"] == "business" and
+                        "Provide exact Azure targets in the portal response" in decision["choices"])
+                ):
+                    raise ValueError("Resolve the existing unrelated decision before proposing Azure targets.")
+            scope = context.get("scope", {})
+            for field in ("account", "subscriptionId", "tenantId", "environment", "resourceGroup", "region"):
+                text(scope.get(field), f"Scope {field}", 500)
+            for decision in pending:
+                decision["status"] = "superseded"
+            project["deploymentContext"] = context
+            project["authorizations"] = []
+            project["decisions"].append({
+                "id": uuid.uuid4().hex, "kind": "deployment-preparation", "stage": "deployment",
+                "question": "Allow read-only Azure preflight and what-if for these proposed targets?",
+                "reason": "Identity and local configuration resolved. No resource/capacity queries or cloud mutations performed.",
+                "choices": ["Allow read-only preflight & what-if", "Keep the reference local only"],
+                "acceptChoice": "Allow read-only preflight & what-if", "scope": scope,
+                "status": "pending", "createdAtUtc": timestamp(),
+            })
+            project["stages"]["deployment"]["status"] = "waiting_for_user"
+            project["status"] = "waiting_for_user"
+            project["history"].append({
+                "message": "User requested identity discovery and reviewed a proposed Azure target context; no cloud consent granted.",
+                "recordedAtUtc": timestamp(),
+            })
             return self.save(project)
 
     def finish(self, slug: str, owner: str, outcome: str) -> None:
@@ -442,13 +676,15 @@ class Store:
             if project["writer"] != owner:
                 raise ValueError("Cannot release another project's writer.")
             project["writer"] = None
-            pending = any(item["status"] == "pending" for item in project["decisions"])
+            pending = any(actionable_decision(item) for item in project["decisions"])
             if outcome != "completed":
                 project["status"] = outcome
             elif project["setupBlocker"]:
                 project["status"] = "setup_required"
             elif pending:
                 project["status"] = "waiting_for_user"
+            elif project.get("deploymentPreparation", {}).get("status") == "failed":
+                project["status"] = "failed"
             elif any(stage["status"] == "failed" for stage in project["stages"].values()):
                 project["status"] = "failed"
             elif project["stages"]["live-validation"]["status"] == "completed":

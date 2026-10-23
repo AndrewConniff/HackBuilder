@@ -37,21 +37,23 @@
       ],
       "services": [
         "foundry",
-        "storage",
-        "app-service",
-        "managed-identity",
-        "virtual-network",
-        "monitor"
+        "storage"
       ],
       "pillars": [],
       "domains": [],
       "artifacts": [
         "01-requirements.md",
-        "02-architecture-assessment.md"
+        "02-architecture-assessment.md",
+        "04-implementation-plan.md",
+        "03-architect-diagram.png",
+        "04-runtime-diagram.png",
+        "azure.yaml",
+        "infra",
+        "src"
       ],
       "source": null,
       "metadataStatus": "curated",
-      "manifestDigest": "faa98d46b98a6c5b47889197fdfe0b6f5f343144a0f06efae7c547b4503be08f"
+      "manifestDigest": "006f7985f40103929bb508d862ded553f092c6408478d770fe71125cfc117f9b"
     },
     {
       "schemaVersion": 1,
@@ -120,7 +122,7 @@
       "schemaVersion": 1,
       "id": "manu-multi-agent",
       "title": "Manufacturing Sales-to-Marketing multi-agent handoff",
-      "summary": "Private keyless Foundry reference design for Adventure Works Cycles: Sales Fit, Marketing Claims and Handoff Coordinator turn synthetic mobility opportunities into cited, human-reviewed campaign drafts. Design only; implementation awaits confirmation.",
+      "summary": "Adventure Works Cycles Sales and Marketing reference with private keyless infrastructure, bounded three-agent application and offline local validation. Cloud deployment and live proof remain pending.",
       "industry": "Manufacturing & Mobility",
       "businessUnits": [
         "sales",
@@ -139,20 +141,58 @@
       "domains": [],
       "artifacts": [
         "01-requirements.md",
-        "02-architecture-assessment.md"
+        "02-architecture-assessment.md",
+        "04-implementation-plan.md",
+        "03-architect-diagram.png",
+        "04-runtime-diagram.png",
+        "azure.yaml",
+        "infra",
+        "src"
       ],
       "source": {
         "scenarioId": "finance-security-hack",
         "manifestDigest": "3e6437c1690758e70518e99e49923861949090739dd3dec0683856ee1585a831"
       },
       "metadataStatus": "curated",
-      "manifestDigest": "920a4fbde08fb08e870ca0230999a62866df0e62af57af69bf247a48d547b249"
+      "manifestDigest": "74f8fe9176c4abc1c47273ce2e977bdc4d3e7ae20fa62eba367524c644d4f43f"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "pharma-bot",
+      "title": "Adatum Corporation multilingual medication sales and pickup",
+      "summary": "Sales-focused English, Spanish and French medication information and confirmation-gated synthetic ordering for in-store pickup, with Microsoft Foundry and explicit prescription-review boundaries.",
+      "industry": "Healthcare / Life Sciences",
+      "businessUnits": [
+        "sales"
+      ],
+      "services": [
+        "foundry",
+        "app-service",
+        "cosmos-db",
+        "managed-identity",
+        "virtual-network",
+        "monitor"
+      ],
+      "pillars": [],
+      "domains": [],
+      "artifacts": [
+        "01-requirements.md",
+        "02-architecture-assessment.md",
+        "04-implementation-plan.md",
+        "03-architect-diagram.png",
+        "04-runtime-diagram.png",
+        "azure.yaml",
+        "infra"
+      ],
+      "source": null,
+      "metadataStatus": "curated",
+      "manifestDigest": "fd6f5377643bc0702efe6049f7e7a4a1d76b973e512cca5cd398ff6b1c16b68c"
     },
     {
       "schemaVersion": 1,
       "id": "resto-scale-agent",
       "title": "Fourth Coffee: five-floor restaurant agents under load",
-      "summary": "Generic Hospitality & Travel reference for a 250-seat restaurant with scoped Foundry agents, deterministic transactions and durable kitchen handoffs. Confirmed design with local runtime wiring, import, compensation and validation in progress. Recorded container setup verification passed. Not deployed or live-validated.",
+      "summary": "Generic Hospitality & Travel reference for a 250-seat restaurant with scoped Foundry agents, deterministic transactions and durable kitchen handoffs. Local checks retained. Registry configuration corrected; recovery preparation blocked by regional Cosmos zone access. Not deployed or live-validated.",
       "industry": "Hospitality & Travel",
       "businessUnits": [
         "generic"
@@ -184,7 +224,7 @@
       ],
       "source": null,
       "metadataStatus": "curated",
-      "manifestDigest": "41774f8b790b767a5059be84ff0aa1ccfb5d60e24b02278f96c483c48060a115"
+      "manifestDigest": "a463c9e3c3eb5f6142f409e91f87b366779da802220e097fa24f2396b60c3b38"
     },
     {
       "schemaVersion": 1,

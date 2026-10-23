@@ -47,6 +47,98 @@ test("Worker activity is collapsed by default and renders literal observed actio
   assert.equal(get("worker-activity").open, true);
 });
 
+test("Azure readiness displays private proposal sources and requires discovery consent without authorizing", async () => {
+  const run = fixture();
+  run.project.deploymentContext = {
+    scope: { account: "operator@example.test", environment: "finance-agent", region: "eastus2" },
+    sources: { account: "Current Azure CLI", environment: "Scenario slug", region: "Architecture" },
+    authentication: { azureCli: "Signed in", azd: "Signed in", compatibility: "Preflight still needed" },
+    checkedAtUtc: "2026-10-23T15:00:00Z", conflicts: [],
+  };
+  const { get } = await dashboard(run);
+  assert.equal(get("azure-resolve").disabled, true);
+  assert.match(get("azure-context-fields").children.at(-1).textContent, /eastus2.*Architecture/);
+  assert.equal(get("azure-environment").value, "finance-agent");
+  get("azure-discovery-consent").checked = true;
+  get("azure-discovery-consent").listeners.change();
+  assert.equal(get("azure-resolve").disabled, false);
+  assert.equal(run.project.authorizations.length, 0);
+});
+
+test("Backend readiness consolidates failures and retains collapsed state without claiming scenario success", async () => {
+  const run = fixture();
+  run.project.decisions = [];
+  run.project.backendReadiness = {
+    ready: false, checkedAtUtc: "2026-10-23T20:00:00Z",
+    plan: { stages: { "local-validation": ["docker"] } },
+    checks: [
+      { id: "docker", name: "Docker", ok: false, detail: "Engine stopped", fix: "Start Docker Desktop." },
+      { id: "azure-authentication", name: "Azure sign-in", ok: false, detail: "azd signed out" },
+      { id: "chromium-runtime", name: "Chromium", ok: true, detail: "Actual browser launch passed" },
+    ],
+  };
+  const { get, context, requests } = await dashboard(run);
+  assert.match(get("backend-readiness-badge").textContent, /Needs attention/);
+  assert.match(get("backend-readiness-status").textContent, /1\/3 passed/);
+  assert.equal(get("backend-preflight-results").children.length, 3);
+  assert.equal(get("backend-setup").disabled, false);
+  get("backend-readiness").open = true;
+  vm.runInContext("renderRun(currentRun)", context);
+  assert.equal(get("backend-readiness").open, true);
+  assert.equal(requests.some((item) => item.url === "/api/readiness/repair"), false);
+  run.status = "running";
+  run.project.writer = run.id;
+  vm.runInContext(`renderRun(${JSON.stringify(run)})`, context);
+  assert.equal(get("backend-setup").disabled, true);
+  assert.equal(get("backend-retry").disabled, true);
+});
+
+test("Visible execution controls resume idle cancelled projects and never bypass pending decisions", async () => {
+  const run = fixture();
+  run.status = "cancelled";
+  run.project.status = "cancelled";
+  run.project.decisions = [];
+  const { get, context } = await dashboard(run);
+  assert.equal(get("play").disabled, false);
+  assert.equal(get("pause").disabled, true);
+  assert.equal(get("cancel-run").disabled, true);
+  assert.match(get("execution-control-status").textContent, /Idle.*no worker is running/);
+  run.project.status = "needs_attention";
+  vm.runInContext(`renderRun(${JSON.stringify(run)})`, context);
+  assert.equal(get("play").disabled, false);
+  run.project.decisions = fixture().project.decisions;
+  vm.runInContext(`renderRun(${JSON.stringify(run)})`, context);
+  assert.equal(get("play").disabled, true);
+  assert.match(get("execution-control-status").textContent, /Waiting for the decision/);
+  run.status = "running";
+  run.project.writer = run.id;
+  vm.runInContext(`renderRun(${JSON.stringify(run)})`, context);
+  assert.equal(get("pause").disabled, false);
+  assert.equal(get("cancel-run").disabled, false);
+});
+
+test("Unreviewed technical questions stay internal; only classified business decisions reach the user", async () => {
+  const run = fixture();
+  run.project.decisions[0].kind = "business";
+  const { get, context } = await dashboard(run);
+  assert.equal(get("cancel-run").disabled, false);
+  assert.equal(get("decision-panel").hidden, true);
+  assert.equal(get("play").disabled, false);
+  run.project.decisions[0].review = {
+    disposition: "business", unresolvedNeed: "Advice scope is unresolved.",
+    intakeEvidence: "Intake does not specify personalized advice.",
+    choiceImpacts: { Education: "General information only", Advice: "Additional compliance controls" },
+  };
+  vm.runInContext(`renderRun(${JSON.stringify(run)})`, context);
+  assert.equal(get("decision-panel").hidden, false);
+  assert.equal(get("play").disabled, true);
+  assert.match(get("decision-reason").textContent, /Additional compliance controls/);
+  run.project.decisions[0].kind = "deployment";
+  vm.runInContext(`renderRun(${JSON.stringify(run)})`, context);
+  assert.equal(get("play").disabled, true);
+  assert.equal(get("cancel-run").disabled, false);
+});
+
 function fixture() {
   const project = {
     revision: 5,
@@ -66,6 +158,33 @@ function fixture() {
     request: { projectSlug: "finance-agent" }, project, review: { ready: false }, output: "raw CLI details",
   };
 }
+
+test("Local projects can resume in place with explicit consent rather than a new intake", async () => {
+  const run = {
+    id: "local-preview", kind: "local-preview", status: "discovered", discovered: true,
+    request: { projectSlug: "legacy-reference" }, project: null, review: { ready: false },
+    localInventory: ["01-requirements.md", "infra", "src"],
+  };
+  const { get, context, requests } = await dashboard(run);
+  assert.equal(get("workspace-consent-label").hidden, false);
+  assert.equal(get("workspace-consent").checked, false);
+  assert.equal(get("play").disabled, true);
+  assert.match(get("play").textContent, /Resume existing scenario/);
+  assert.match(get("project-summary").textContent, /without starting over/);
+  assert.equal(get("compose").disabled, true);
+  get("workspace-consent").checked = true;
+  vm.runInContext(`renderRun(${JSON.stringify(run)})`, context);
+  assert.equal(get("play").disabled, false);
+  assert.equal(get("continue").disabled, true);
+  assert.equal(get("pause").disabled, true);
+  const before = requests.filter((item) => item.method === "POST").length;
+  assert.equal(before, 0);
+  await get("play").listeners.click({ preventDefault() {} });
+  const submitted = requests.find((item) => item.url === "/api/runs/local-preview/resume-local");
+  assert.ok(submitted);
+  assert.equal(JSON.parse(submitted.body).toolConsent, true);
+  assert.equal(requests.some((item) => item.url === "/api/runs" && item.method === "POST"), false);
+});
 
 async function dashboard(run = fixture(), workflowVersion = 5, appearance = {}) {
   const elements = new Map();
@@ -94,7 +213,8 @@ async function dashboard(run = fixture(), workflowVersion = 5, appearance = {}) 
       { id: "generic", name: "Generic" }, { id: "finance", name: "Finance" }, { id: "it", name: "IT" },
     ],
     services: [{ id: "foundry", name: "Foundry", required: true }],
-    pillars: [], domains: [], cliAvailable: appearance.cliAvailable ?? true, workflowVersion, maxConcurrentWorkers: 4,
+    pillars: [], domains: [], cliAvailable: appearance.cliAvailable ?? true, workflowVersion, backendEngineVersion: 3,
+    maxConcurrentWorkers: 4,
     systemControlsVersion: appearance.systemControlsVersion ?? 1,
     prerequisitesVersion: appearance.prerequisitesVersion ?? 1,
     prerequisiteInventory: [
@@ -185,7 +305,7 @@ async function dashboard(run = fixture(), workflowVersion = 5, appearance = {}) 
         return { ok: true, json: async () => structuredClone(launchedRun) };
       }
       if (options.method === "POST" &&
-          /^\/api\/runs\/[^/]+\/(continue|revise|compose|stop|retry-setup|revoke-consent)$/.test(url)) {
+          /^\/api\/runs\/[^/]+\/(continue|revise|compose|stop|retry-setup|revoke-consent|resume-local)$/.test(url)) {
         if (appearance.followupGate) await appearance.followupGate;
         if (url.endsWith("/revoke-consent")) {
           run.project.localToolConsent = null;

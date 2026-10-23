@@ -484,6 +484,10 @@ function Test-Python {{
         Set-Content -LiteralPath (Join-Path $root 'pip-completed') -Value 'simulated'
         return
     }}
+    if ($args -contains 'playwright') {{
+        Set-Content -LiteralPath (Join-Path $root 'browser-completed') -Value ($args -join ' ')
+        return
+    }}
     if ($args -contains '--json') {{
         $name = if (Test-Path (Join-Path $root 'pip-completed')) {{ 'final.json' }} else {{ 'initial.json' }}
         Get-Content -LiteralPath (Join-Path $root $name) -Raw
@@ -522,6 +526,7 @@ function Get-Command {{
         self.assertIn("bicep install", trace)
         self.assertTrue((self.root / ".venv" / "Scripts" / "python.exe").exists())
         self.assertTrue((self.root / "pip-completed").exists())
+        self.assertIn("playwright install chromium", (self.root / "browser-completed").read_text())
 
 
 if __name__ == "__main__":

@@ -113,6 +113,11 @@ The portal is the normal user interaction surface. For portal jobs, read canonic
 project state with `python scripts\portal_workflow.py read`; report each stage start,
 completion, failure or structured decision through its revision-checked `report` command.
 The backend supplies project/owner/state environment variables and the event protocol.
+When `ABCBUILDER_ASSIGNED_STAGES` is present, Python owns scheduling and readiness.
+Implement only that bounded operation, report its real evidence and return.
+Do not advance into another stage, repeat the full machine audit or request routine technical permission.
+The backend validates required artifacts/builds and automatically schedules the next permitted operation.
+Reuse its current owner-bound prerequisite receipt; refresh only for expiry or a dependency-scope change.
 Do not edit canonical state directly or release its writer lease. A stale revision requires
 reading current state, not overwriting it. Never send users to VS Code or document edits to answer decisions.
 Do not edit a portal-owned scenario from a separate chat while its writer lease is active.
@@ -127,6 +132,15 @@ After design confirmation, execute implementation steps without routine user han
 Design confirmation is not deployment consent or deployed-scenario suitability approval.
 Free-text continuation does not authorize cloud operations; use separately recorded exact-target
 preparation permission and, after actual what-if/cost review, deployment consent.
+
+For required Entra registrations, follow the workflow's
+[scenario-owned application identity setup](../skills/hack-builder-workflow/SKILL.md#scenario-owned-application-identity-setup).
+Resolve routine registration/setup choices as implementation dependencies, generate idempotent automation,
+and capture actual IDs automatically within authorized scope. Do not repeat existing/new or installer-route
+questions, assume administrator installation without evidence, or reinterpret read-only consent as directory writes.
+Solution-created client IDs, object IDs, endpoints and receipts are deployment outputs, not user inputs.
+Do not ask users to paste these into portal business decisions. Generate and wire their installation/output
+capture in the authorized deployment; missing pre-creation IDs must not block independent preparation.
 
 ## Prove, present and stop
 

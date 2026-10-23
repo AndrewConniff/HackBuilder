@@ -27,6 +27,15 @@ description: >
    Supporting Azure resources serve this behavior, not an architecture-only demonstration.
 1. Document resource/SKU choices, direct child Foundry project, real application
    invocation, data ownership, managed identity/RBAC, operations and cost.
+   Apply the workflow's
+   [scenario-owned application identity setup](../hack-builder-workflow/SKILL.md#scenario-owned-application-identity-setup).
+   Resolve necessary SPA/API registrations, ownership, scopes/roles, redirects and assignment policy here.
+   Default standalone scenarios to dedicated registrations when required and no reuse inputs were supplied.
+   Record directory installation permissions alongside Azure dependencies; do not defer routine identity
+   implementation choices into repeated portal business decisions.
+   Separate pre-existing integration inputs from deployment-generated outputs such as client IDs and endpoints.
+   Plan dependency ordering so creation produces these values automatically; do not make new registrations'
+   IDs or administrator receipts prerequisites for completing architecture or independent read-only preparation.
 1. Write `02-architecture-assessment.md` using the artifact template.
    Capture service alternatives, WAF trade-offs and unresolved decisions.
 1. Use `az-azure-diagrams` directly for diagrams and persist all decisions.
