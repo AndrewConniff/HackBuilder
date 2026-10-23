@@ -76,6 +76,8 @@ If outdated, it reports the server PID and stops without opening the browser, re
 or interrupting workers. The dashboard also rejects incompatible backends.
 Re-running the launcher or refreshing the page does not restart a running Python server.
 Finish/stop active workers before a planned server restart.
+When starting a replacement, readiness waits for the new process's connection record before authenticating,
+so a previous server's per-start token is not sent to a newly bound listener.
 
 No server is installed as a system service. Automatic startup leaves the local
 process available after the chat turn. Connection details (including the private
@@ -112,7 +114,8 @@ tool execution consent. Field links focus the relevant control without changing 
 Invalid project names, missing selections and consent errors appear inline after editing or following a checklist link.
 Project names use lowercase letters, numbers and single hyphens, with a maximum of 40 characters.
 Prompts are optional when services are selected; technical priorities and architecture reuse are optional.
-Missing CLI installation, initial catalog/status loading, another running job and a submission in progress are
+Missing CLI installation, initial catalog/status loading, all four worker slots being busy and a submission
+in progress are
 shown as execution blockers, not missing fields. Preview/download validate the brief without requiring tool consent.
 Both preview and launch recheck input before sending; duplicate launch submissions are blocked.
 
@@ -170,12 +173,38 @@ records gain pending hack stages in memory on read; their old progress/history r
 The backend invokes the installed `copilot` executable with an argument list,
 the canonical agent name, `--prompt`, `--allow-all-tools`, `--no-ask-user` and
 text output. It inherits host model preferences and existing authentication.
-Only one job runs per portal instance. A durable project writer lease also rejects competing
-workers across portal instances; every state update checks its expected revision under a kernel lock.
+Up to **four independent scenario workers** can run concurrently in the portal.
+A durable project writer lease rejects overlapping jobs for the **same scenario**, including across portal instances;
+every state update checks its expected revision under a kernel lock.
 This coordinates cooperating tools, not arbitrary filesystem editors. VS Code work must check the
 same project state and must not edit a scenario with an active writer. Never manually clear a live lease.
 Path access additionally allows only the adjacent `azd-projects` workspace
 directory; it does not enable unrestricted filesystem access.
+
+### Working across scenarios
+
+Switch between scenarios and between **Build & validate** and **Compose the hack** without stopping running jobs.
+The worker status lists active scenarios and the four-slot capacity. Reaching capacity blocks new launches,
+resumes and composition jobs, not navigation, read-only inspection, or stopping a specific selected run.
+Finishing, failing or stopping one worker does not clear another worker's process, logs, progress or writer lease.
+An orderly server shutdown stops and joins all workers owned by that server.
+
+Unsaved instructions, decision choices, approval text and review confirmations are kept separately for each scenario
+in the current tab, along with its last workspace stage. They are not persisted across a browser reload.
+Review confirmations are restored only for the same run and reference fingerprint; changed evidence clears them.
+An in-flight response from a previously selected scenario cannot replace the current selection or erase its draft.
+Scenario actions are disabled while a newly selected run is loading. Starting or resuming work and then navigating
+elsewhere does not switch you back when that request finishes.
+
+[GitHub supports multiple concurrent CLI sessions][cli-sessions].
+Four workers is this portal's chosen limit, not a promise of unlimited machine resources or Copilot usage.
+Authentication, rate limits and account policies still apply. Workers share the host and installed tools:
+their instructions prohibit editing other scenarios, changing shared CLI account/subscription defaults or
+installing/upgrading shared SDKs during a job. Missing prerequisites or potentially conflicting Azure targets
+require user coordination. Each scenario retains its own deployment consents and suitability approval.
+These instructions coordinate cooperating workers; they are not OS-enforced isolation.
+
+[cli-sessions]: https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/work-with-multiple-sessions
 
 **Local tool consent is significant:** tools can modify files and execute
 commands as your user with your existing credentials. Workflow instructions are

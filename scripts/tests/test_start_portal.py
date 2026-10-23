@@ -39,6 +39,28 @@ class PortalStartupTests(unittest.TestCase):
     def test_missing_connection_is_not_running(self) -> None:
         self.assertIsNone(launcher.running_portal())
 
+    def test_startup_waits_for_owned_connection_record_before_authenticating(self) -> None:
+        self.write_connection()
+        before = (self.state / "server.json").read_bytes()
+        with patch.object(launcher.http.client, "HTTPConnection") as connection:
+            self.assertIsNone(launcher.running_portal(expected_pid=456))
+        connection.assert_not_called()
+        self.assertEqual(before, (self.state / "server.json").read_bytes())
+
+    def test_startup_poll_checks_the_new_process_not_stale_connection_credentials(self) -> None:
+        with (
+            patch.object(launcher, "running_portal", side_effect=[None, None, self.config]) as running,
+            patch.object(launcher.subprocess, "Popen") as spawn,
+            patch.object(launcher.time, "sleep"),
+        ):
+            spawn.return_value.pid = self.config["pid"]
+            spawn.return_value.poll.return_value = None
+            self.assertEqual(self.config, launcher.ensure_portal())
+        self.assertEqual(3, running.call_count)
+        for invocation in running.call_args_list[1:]:
+            self.assertEqual({"expected_pid": self.config["pid"]}, invocation.kwargs)
+        spawn.assert_called_once()
+
     def test_vscode_task_uses_existing_helper_without_shell_or_auto_execution(self) -> None:
         tasks = json.loads((ROOT / ".vscode" / "tasks.json").read_text(encoding="utf-8"))["tasks"]
         task = next(item for item in tasks if item["label"] == "ABC Builder: Open Portal")

@@ -12,7 +12,7 @@ from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 
-WORKFLOW_VERSION = 3
+WORKFLOW_VERSION = 4
 
 STAGES = {
     "requirements": "Requirements",

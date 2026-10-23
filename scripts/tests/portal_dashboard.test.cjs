@@ -47,7 +47,7 @@ function fixture() {
   };
 }
 
-async function dashboard(run = fixture(), workflowVersion = 3, appearance = {}) {
+async function dashboard(run = fixture(), workflowVersion = 4, appearance = {}) {
   const elements = new Map();
   const created = [];
   const requests = [];
@@ -74,7 +74,7 @@ async function dashboard(run = fixture(), workflowVersion = 3, appearance = {}) 
       { id: "generic", name: "Generic" }, { id: "finance", name: "Finance" }, { id: "it", name: "IT" },
     ],
     services: [{ id: "foundry", name: "Foundry", required: true }],
-    pillars: [], domains: [], cliAvailable: appearance.cliAvailable ?? true, workflowVersion,
+    pillars: [], domains: [], cliAvailable: appearance.cliAvailable ?? true, workflowVersion, maxConcurrentWorkers: 4,
   };
   const get = (id) => {
     if (!elements.has(id)) elements.set(id, new Element(
@@ -126,6 +126,15 @@ async function dashboard(run = fixture(), workflowVersion = 3, appearance = {}) 
         launchedRun = { ...run, id: "run-new", status: "running", request: JSON.parse(options.body) };
         return { ok: true, json: async () => structuredClone(launchedRun) };
       }
+      if (options.method === "POST" && /^\/api\/runs\/[^/]+\/(continue|revise|compose|stop)$/.test(url)) {
+        if (appearance.followupGate) await appearance.followupGate;
+        return { ok: true, json: async () => structuredClone(appearance.followupRun || run) };
+      }
+      if (options.method === "GET" && /^\/api\/runs\/[^/]+$/.test(url) && appearance.readRun) {
+        const override = await appearance.readRun(url);
+        if (override) return { ok: true, json: async () => structuredClone(override) };
+      }
+      const other = (appearance.additionalRuns || []).find((item) => url === `/api/runs/${item.id}`);
       const value = url === "/api/catalog" ? catalog
         : url === "/api/scenarios" ? { scenarios, errors: [] }
         : url === "/api/preview" ? { request: JSON.parse(options.body), prompt: "Prepared scenario preview" }
@@ -136,8 +145,8 @@ async function dashboard(run = fixture(), workflowVersion = 3, appearance = {}) 
           ...(appearance.additionalRuns || []),
         ] : url.includes("/artifact?") ? {
           path: "packages/coach-guide/Finale.md", text: "<script>not executed</script>\nPrivate answer",
-        } : appearance.archivedRun && url.endsWith(appearance.archivedRun.id) ? appearance.archivedRun
-        : launchedRun && url.endsWith(launchedRun.id) ? launchedRun : run;
+        } : other || (appearance.archivedRun && url.endsWith(appearance.archivedRun.id) ? appearance.archivedRun
+        : launchedRun && url.endsWith(launchedRun.id) ? launchedRun : run);
       return { ok: true, json: async () => structuredClone(value) };
     },
   });
@@ -241,15 +250,184 @@ test("business unit, consent and existing-project blockers are specific", async 
   }
 });
 
-test("missing CLI and jobs running in another scenario are not reported as missing fields", async () => {
-  const view = await dashboard(fixture(), 3, {
+test("an unrelated running job does not block a new scenario; missing CLI is explained separately", async () => {
+  const view = await dashboard(fixture(), 4, {
     cliAvailable: false,
     additionalRuns: [{ ...fixture(), id: "other-run", status: "running", request: { projectSlug: "other-project" } }],
   });
   readyBrief(view);
   assert.equal(view.get("launch").disabled, true);
   assert.ok(blockers(view).some((message) => /CLI was not detected/.test(message)));
-  assert.ok(blockers(view).some((message) => /other-project is running/.test(message)));
+  assert.ok(!blockers(view).some((message) => /busy|other-project/.test(message)));
+  assert.match(view.get("worker-capacity").textContent, /1 of 4 workers active/);
+});
+
+test("four busy workers block new work but leave navigation and the selected job's stop action available", async () => {
+  const additionalRuns = Array.from({ length: 4 }, (_, number) => ({
+    ...fixture(), id: `busy-${number}`, status: "running",
+    request: { projectSlug: `scenario-${number}` },
+  }));
+  const view = await dashboard(fixture(), 4, { additionalRuns });
+  readyBrief(view);
+  assert.equal(view.get("launch").disabled, true);
+  assert.ok(blockers(view).some((message) => /All 4 workers are busy/.test(message)));
+  assert.match(view.get("worker-capacity").textContent, /4 of 4 workers active/);
+  assert.equal(view.get("worker-list").children.length, 4);
+  assert.equal(view.get("continue").disabled, true);
+  view.get("nav-build").listeners.click({ preventDefault() {} });
+  view.get("run-select").value = "busy-2";
+  await view.get("run-select").listeners.change({ preventDefault() {} });
+  assert.equal(vm.runInContext("currentRun.id", view.context), "busy-2");
+  assert.equal(view.get("stop").hidden, false);
+  await view.get("stop").listeners.click({ preventDefault() {} });
+  const posts = view.requests.filter((item) => item.method === "POST");
+  assert.equal(posts.length, 1);
+  assert.equal(posts[0].url, "/api/runs/busy-2/stop");
+});
+
+test("three other workers leave a slot for another scenario and preserve worker-link focus on refresh", async () => {
+  const additionalRuns = Array.from({ length: 3 }, (_, number) => ({
+    ...fixture(), id: `busy-${number}`, status: "running", request: { projectSlug: `scenario-${number}` },
+  }));
+  const view = await dashboard(fixture(), 4, { additionalRuns });
+  readyBrief(view);
+  assert.equal(view.get("launch").disabled, false);
+  assert.equal(view.get("answer-decision").disabled, false);
+  const link = view.get("worker-list").children[0].children[0];
+  await vm.runInContext("refreshRuns()", view.context);
+  assert.equal(view.get("worker-list").children[0].children[0], link);
+});
+
+test("scenario switching preserves independent drafts, decision choices, review confirmations and last stage", async () => {
+  const first = fixture();
+  first.review = { ready: true, fingerprint: "review-a", checks: {}, applicationUrl: "https://example.invalid/a" };
+  const other = {
+    ...structuredClone(first), id: "other-run", request: { projectSlug: "other-scenario" },
+    review: { ...first.review, fingerprint: "review-b" },
+  };
+  const view = await dashboard(first, 4, { additionalRuns: [other] });
+  view.get("prompt").value = "Keep the new scenario intake untouched";
+  view.get("decision").value = "Instructions for A";
+  view.get("decision-choice").value = "Confirm";
+  view.get("approval").value = "Approval draft for A";
+  view.get("tested").checked = true;
+  view.get("nav-hack").listeners.click({ preventDefault() {} });
+  view.get("run-select").value = other.id;
+  await view.get("run-select").listeners.change({ preventDefault() {} });
+  assert.equal(view.get("decision").value, "");
+  assert.equal(view.get("decision-choice").value, "");
+  assert.equal(view.get("approval").value, "");
+  assert.equal(view.get("tested").checked, false);
+  view.get("decision").value = "Instructions for B";
+  view.get("nav-build").listeners.click({ preventDefault() {} });
+  view.get("run-select").value = first.id;
+  await view.get("run-select").listeners.change({ preventDefault() {} });
+  assert.equal(view.get("decision").value, "Instructions for A");
+  assert.equal(view.get("decision-choice").value, "Confirm");
+  assert.equal(view.get("approval").value, "Approval draft for A");
+  assert.equal(view.get("tested").checked, true);
+  assert.equal(view.get("page-stage").textContent, "Compose the hack");
+  first.review.fingerprint = "changed-review";
+  await vm.runInContext("refreshRuns()", view.context);
+  assert.equal(view.get("approval").value, "");
+  assert.equal(view.get("tested").checked, false);
+  view.get("run-select").value = other.id;
+  await view.get("run-select").listeners.change({ preventDefault() {} });
+  assert.equal(view.get("decision").value, "Instructions for B");
+  assert.equal(view.get("page-stage").textContent, "Build & validate");
+  assert.equal(view.get("prompt").value, "Keep the new scenario intake untouched");
+  assert.equal(view.requests.filter((item) => item.method === "POST").length, 0);
+});
+
+test("a late status response for the old scenario never replaces a newly selected scenario", async () => {
+  let release;
+  let block = false;
+  const delayed = new Promise((resolve) => { release = resolve; });
+  const first = fixture();
+  const other = { ...fixture(), id: "other-run", request: { projectSlug: "other-scenario" } };
+  const view = await dashboard(first, 4, {
+    additionalRuns: [other],
+    readRun: async (url) => block && url === `/api/runs/${first.id}` ? delayed : undefined,
+  });
+  block = true;
+  const refresh = vm.runInContext("refreshRuns()", view.context);
+  await new Promise(setImmediate);
+  view.get("run-select").value = other.id;
+  await view.get("run-select").listeners.change({ preventDefault() {} });
+  release(first);
+  await refresh;
+  assert.equal(vm.runInContext("currentRun.id", view.context), other.id);
+  assert.equal(view.get("run-select").value, other.id);
+});
+
+test("a background launch completing after navigation does not hijack the selected scenario", async () => {
+  let release;
+  const startGate = new Promise((resolve) => { release = resolve; });
+  const other = { ...fixture(), id: "other-run", request: { projectSlug: "other-scenario" } };
+  const view = await dashboard(fixture(), 4, { startGate, additionalRuns: [other] });
+  readyBrief(view);
+  const launch = view.get("scenario-form").listeners.submit({ preventDefault() {} });
+  await new Promise(setImmediate);
+  view.get("nav-build").listeners.click({ preventDefault() {} });
+  view.get("run-select").value = other.id;
+  await view.get("run-select").listeners.change({ preventDefault() {} });
+  view.get("decision").value = "Keep my current draft";
+  release();
+  await launch;
+  assert.equal(vm.runInContext("currentRun.id", view.context), other.id);
+  assert.equal(view.get("decision").value, "Keep my current draft");
+  assert.equal(view.get("page-stage").textContent, "Build & validate");
+  assert.match(view.get("worker-capacity").textContent, /1 of 4 workers active/);
+});
+
+test("actions pause while the newly selected scenario loads instead of targeting the previous scenario", async () => {
+  let release;
+  let block = false;
+  const delayed = new Promise((resolve) => { release = resolve; });
+  const other = { ...fixture(), id: "other-run", request: { projectSlug: "other-scenario" } };
+  const view = await dashboard(fixture(), 4, {
+    additionalRuns: [other],
+    readRun: async (url) => block && url === `/api/runs/${other.id}` ? delayed : undefined,
+  });
+  block = true;
+  view.get("run-select").value = other.id;
+  const change = view.get("run-select").listeners.change({ preventDefault() {} });
+  await new Promise(setImmediate);
+  for (const id of ["continue", "revise", "answer-decision", "compose", "stop"])
+    assert.equal(view.get(id).disabled, true);
+  await view.get("answer-decision").listeners.click({ preventDefault() {} });
+  assert.match(view.get("error").textContent, /finish loading/);
+  assert.equal(view.requests.filter((item) => item.method === "POST").length, 0);
+  release(other);
+  await change;
+  assert.equal(vm.runInContext("currentRun.id", view.context), other.id);
+  assert.equal(view.get("answer-decision").disabled, false);
+});
+
+test("a followup completing for A preserves B's selection and draft and targets A's revision", async () => {
+  let release;
+  const followupGate = new Promise((resolve) => { release = resolve; });
+  const first = fixture();
+  const other = {
+    ...fixture(), id: "other-run", request: { projectSlug: "other-scenario" },
+    project: { ...fixture().project, revision: 99 },
+  };
+  const view = await dashboard(first, 4, { followupGate, additionalRuns: [other] });
+  view.get("tool-consent").checked = true;
+  view.get("decision-choice").value = "Confirm";
+  view.get("decision").value = "Submit only to A";
+  const submit = view.get("answer-decision").listeners.click({ preventDefault() {} });
+  await new Promise(setImmediate);
+  view.get("run-select").value = other.id;
+  await view.get("run-select").listeners.change({ preventDefault() {} });
+  view.get("decision").value = "Do not erase B's draft";
+  release();
+  await submit;
+  const post = view.requests.find((item) => item.method === "POST");
+  assert.equal(post.url, `/api/runs/${first.id}/continue`);
+  assert.equal(JSON.parse(post.body).revision, 5);
+  assert.equal(vm.runInContext("currentRun.id", view.context), other.id);
+  assert.equal(view.get("decision").value, "Do not erase B's draft");
 });
 
 test("invalid submission and preview never send requests to start or prepare a scenario", async () => {
@@ -264,7 +442,7 @@ test("invalid submission and preview never send requests to start or prepare a s
 test("preview does not require execution consent, but launch does and prevents duplicate submissions", async () => {
   let release;
   const startGate = new Promise((resolve) => { release = resolve; });
-  const view = await dashboard(fixture(), 3, { startGate });
+  const view = await dashboard(fixture(), 4, { startGate });
   readyBrief(view);
   view.get("tool-consent").checked = false;
   await vm.runInContext("preview()", view.context);
@@ -286,7 +464,7 @@ test("preview does not require execution consent, but launch does and prevents d
 
 test("saved projects without files or runs are explained and are not overwritten", async () => {
   const projects = [{ projectSlug: "record-only", status: "needs_attention", runId: null }];
-  const view = await dashboard(fixture(), 3, { projects });
+  const view = await dashboard(fixture(), 4, { projects });
   readyBrief(view);
   view.get("project").value = "record-only";
   vm.runInContext("summarize()", view.context);
@@ -316,7 +494,7 @@ test("opening an existing project is navigation only and preserves the new intak
 
 test("existing project navigation keeps an older project outside the recent-run window selected", async () => {
   const archivedRun = { ...fixture(), id: "archived-run", request: { projectSlug: "older-project" } };
-  const view = await dashboard(fixture(), 3, {
+  const view = await dashboard(fixture(), 4, {
     projects: [{ projectSlug: "older-project", status: "waiting_for_user", runId: archivedRun.id }],
     archivedRun,
   });
@@ -331,7 +509,7 @@ test("existing project navigation keeps an older project outside the recent-run 
 
 test("suggested new names fit the slug limit, skip occupied names and change only the target name", async () => {
   const slug = "a".repeat(40);
-  const view = await dashboard(fixture(), 3, {
+  const view = await dashboard(fixture(), 4, {
     projects: [slug, `${"a".repeat(38)}-2`].map((projectSlug) => ({
       projectSlug, status: "completed", runId: null,
     })),
@@ -355,7 +533,7 @@ test("suggested new names fit the slug limit, skip occupied names and change onl
 
 test("launch refreshes project names to catch projects created in another tab without starting work", async () => {
   const projects = [];
-  const view = await dashboard(fixture(), 3, { projects });
+  const view = await dashboard(fixture(), 4, { projects });
   readyBrief(view);
   projects.push({ projectSlug: "energy-operations", status: "completed", runId: null });
   await view.get("scenario-form").listeners.submit({ preventDefault() {} });
@@ -367,7 +545,7 @@ test("launch refreshes project names to catch projects created in another tab wi
 });
 
 test("a concurrent server-side duplicate returns recovery actions without clearing or renaming the intake", async () => {
-  const view = await dashboard(fixture(), 3, {
+  const view = await dashboard(fixture(), 4, {
     conflict: { projectSlug: "energy-operations", status: "waiting_for_user", runId: "existing-run" },
   });
   readyBrief(view);
@@ -384,7 +562,7 @@ test("a concurrent server-side duplicate returns recovery actions without cleari
 
 test("project-list read failures are reported and never launch a scenario", async () => {
   const appearance = {};
-  const view = await dashboard(fixture(), 3, appearance);
+  const view = await dashboard(fixture(), 4, appearance);
   readyBrief(view);
   appearance.projectsUnavailable = true;
   await view.get("scenario-form").listeners.submit({ preventDefault() {} });
@@ -393,7 +571,7 @@ test("project-list read failures are reported and never launch a scenario", asyn
 });
 
 test("theme follows system preference and is applied before DOM content initializes", async () => {
-  const { get, context, requests, domEvents } = await dashboard(fixture(), 3, { systemDark: true, loading: true });
+  const { get, context, requests, domEvents } = await dashboard(fixture(), 4, { systemDark: true, loading: true });
   assert.equal(vm.runInContext("document.documentElement.dataset.theme", context), "dark");
   assert.equal(requests.length, 0);
   domEvents.DOMContentLoaded();
@@ -417,7 +595,7 @@ test("theme switch is independent of execution and saves an explicit preference"
 });
 
 test("saved theme overrides system preference and follows changes from another tab", async () => {
-  const { get, context, storage, events, media } = await dashboard(fixture(), 3, {
+  const { get, context, storage, events, media } = await dashboard(fixture(), 4, {
     systemDark: true, savedTheme: "light",
   });
   assert.equal(get("theme-toggle")["aria-checked"], "false");
@@ -433,7 +611,7 @@ test("saved theme overrides system preference and follows changes from another t
 });
 
 test("blocked theme storage is reported without blocking portal controls or switching", async () => {
-  const { get, context, warnings } = await dashboard(fixture(), 3, { storageBlocked: true });
+  const { get, context, warnings } = await dashboard(fixture(), 4, { storageBlocked: true });
   assert.equal(get("theme-notice").hidden, false);
   assert.match(get("theme-notice").textContent, /this tab only/);
   get("theme-toggle").listeners.click();
@@ -444,14 +622,14 @@ test("blocked theme storage is reported without blocking portal controls or swit
 });
 
 test("invalid stored themes use system preference and log the invalid setting", async () => {
-  const { context, warnings } = await dashboard(fixture(), 3, { savedTheme: "invalid", systemDark: true });
+  const { context, warnings } = await dashboard(fixture(), 4, { savedTheme: "invalid", systemDark: true });
   assert.equal(vm.runInContext("document.documentElement.dataset.theme", context), "dark");
   assert.equal(warnings.length, 1);
 });
 
 test("workspace scrolling respects reduced-motion preferences", async () => {
   for (const reducedMotion of [false, true]) {
-    const { get, context } = await dashboard(fixture(), 3, { reducedMotion });
+    const { get, context } = await dashboard(fixture(), 4, { reducedMotion });
     vm.runInContext("scrollToWorkspace()", context);
     assert.equal(get("workspace").scrollOptions.behavior, reducedMotion ? "instant" : "smooth");
   }

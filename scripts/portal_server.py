@@ -18,6 +18,7 @@ import threading
 import uuid
 import webbrowser
 from ctypes import wintypes
+from dataclasses import dataclass
 from datetime import datetime, timezone
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -34,6 +35,13 @@ LOG = logging.getLogger("abcbuilder.portal")
 SLUG = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 RUN_ID = re.compile(r"^[0-9a-f]{32}$")
 MAX_BODY = 32768
+MAX_WORKERS = 4
+
+
+@dataclass
+class Worker:
+    thread: threading.Thread
+    process: subprocess.Popen | None = None
 
 
 def now() -> str:
@@ -254,8 +262,8 @@ class Portal:
         self.executable = executable or shutil.which("copilot")
         self.catalog = load_catalog()
         self.lock = threading.RLock()
-        self.process: subprocess.Popen | None = None
-        self.active: str | None = None
+        self.workers: dict[str, Worker] = {}
+        self.closing = False
         self.projects = portal_workflow.Store(self.state / "projects")
         for path in self.state.glob("*/run.json"):
             run = json.loads(path.read_text(encoding="utf-8"))
@@ -428,16 +436,28 @@ class Portal:
                 })
         return result
 
-    def require_idle(self) -> None:
-        if self.active:
-            raise ValueError("A CLI job is already running. Wait for it to finish or stop it first.")
+    def runs(self) -> list[dict]:
+        return sorted(
+            [json.loads(path.read_text(encoding="utf-8")) for path in self.state.glob("*/run.json")],
+            key=lambda run: run["startedAtUtc"], reverse=True,
+        )
+
+    def require_capacity(self) -> None:
+        if self.closing:
+            raise ValueError("The portal is shutting down. No new worker jobs can be started.")
+        active = set(self.workers) | {run["id"] for run in self.runs() if run["status"] == "running"}
+        if len(active) >= MAX_WORKERS:
+            raise ValueError(
+                f"All {MAX_WORKERS} scenario workers are busy. You can still switch scenarios and review progress. "
+                "Wait for a worker to finish or stop a specific job before starting more work."
+            )
         if not self.executable:
             raise ValueError("Copilot CLI was not found. Install it and run copilot login, then restart the portal.")
 
     def start(self, request: dict, prompt: str, kind: str, parent: str | None = None,
               revision: int | None = None, initial_message: str | None = None,
               approval_message: str | None = None) -> dict:
-        self.require_idle()
+        self.require_capacity()
         if parent is None and request.get("reuseSource"):
             source = request["reuseSource"]
             scenario_catalog.select_source(
@@ -462,6 +482,12 @@ class Portal:
         )
         prompt += (
             "\n\nPORTAL WORKER CONTRACT:\n"
+            "Other scenarios may run concurrently. Write only this scenario's workspace and your owned run "
+            "directory; do not edit other scenarios or canonical repository files. Use a distinct azd environment. "
+            "Pass the authorized subscription explicitly to Azure commands; never change shared CLI account/"
+            "subscription defaults. Do not install or upgrade shared SDKs/tools during a worker job. "
+            "If prerequisites are missing, or an Azure target could conflict with another scenario, persist a "
+            "decision required and stop for user coordination. Concurrent jobs are not filesystem sandboxes.\n"
             "The portal is the sole normal user decision surface. Do not send the user to VS Code or "
             "ask them to edit requirements. Read canonical state and all prior answers:\n"
             "python scripts\\portal_workflow.py read\n"
@@ -508,8 +534,16 @@ class Portal:
             self.projects.finish(request["projectSlug"], run["id"], "failed")
             self.save(run)
             raise
-        self.active = run["id"]
-        threading.Thread(target=self.execute, args=(run, prompt), daemon=True).start()
+        worker = Worker(threading.Thread(target=self.execute, args=(run, prompt), daemon=True))
+        self.workers[run["id"]] = worker
+        try:
+            worker.thread.start()
+        except RuntimeError as error:
+            self.workers.pop(run["id"])
+            run.update(status="failed", error="Could not start the worker thread.", finishedAtUtc=now())
+            self.projects.finish(request["projectSlug"], run["id"], "failed")
+            self.save(run)
+            raise OSError("Could not start the worker thread.") from error
         return run
 
     def execute(self, run: dict, prompt: str) -> None:
@@ -517,7 +551,9 @@ class Portal:
         try:
             with log.open("wb") as output:
                 with self.lock:
-                    self.process = subprocess.Popen(
+                    if self.read(run["id"])["status"] == "cancelled":
+                        return
+                    process = subprocess.Popen(
                         cli_command(self.executable, run["agent"], prompt),
                         cwd=ROOT,
                         stdin=subprocess.DEVNULL,
@@ -534,17 +570,17 @@ class Portal:
                             "HACKBUILDER_RUN_ID": run["id"],
                         },
                     )
-                    process = self.process
+                    self.workers[run["id"]].process = process
                     latest = self.read(run["id"])
                     latest["childPid"] = process.pid
                     self.save(latest)
                 code = process.wait()
             with self.lock:
                 latest = self.read(run["id"])
-                if run["kind"] == "scenario" and self.scenario(run).is_dir():
-                    scenario_catalog.refresh(self.scenario(run), request=run["request"])
-                    scenario_catalog.export_index(ROOT)
                 if latest["status"] != "cancelled":
+                    if run["kind"] == "scenario" and self.scenario(run).is_dir():
+                        scenario_catalog.refresh(self.scenario(run), request=run["request"])
+                        scenario_catalog.export_index(ROOT)
                     latest.update(
                         status="completed" if code == 0 else "failed",
                         exitCode=code,
@@ -562,13 +598,14 @@ class Portal:
         finally:
             with self.lock:
                 latest = self.read(run["id"])
-                self.projects.finish(run["request"]["projectSlug"], run["id"], latest["status"])
-                self.active = None
-                self.process = None
+                try:
+                    self.projects.finish(run["request"]["projectSlug"], run["id"], latest["status"])
+                finally:
+                    self.workers.pop(run["id"], None)
 
     def cancel(self, run_id: str) -> dict:
         with self.lock:
-            if self.active != run_id:
+            if run_id not in self.workers:
                 run = self.read(run_id)
                 if run["status"] != "running" or process_alive(run.get("serverPid")):
                     raise ValueError("This job is not running in this server.")
@@ -582,15 +619,34 @@ class Portal:
                 self.projects.finish(run["request"]["projectSlug"], run_id, "cancelled")
                 return run
             run = self.read(run_id)
-            process = self.process
+            process = self.workers[run_id].process
             if process is None:
-                raise ValueError("Job is starting. Retry stop in a moment.")
+                run.update(status="cancelled", error="Stopped by user before the CLI started.", finishedAtUtc=now())
+                self.save(run)
+                return run
             if process.poll() is not None:
                 raise ValueError("CLI has already exited. Refresh this run.")
             stop_process_tree(process.pid)
-            run.update(status="cancelled", error="Stopped by user. Inspect partial artifacts before continuing.")
+            run.update(
+                status="cancelled", error="Stopped by user. Inspect partial artifacts before continuing.",
+                finishedAtUtc=now(),
+            )
             self.save(run)
             return run
+
+    def shutdown(self) -> None:
+        with self.lock:
+            self.closing = True
+            workers = list(self.workers.items())
+        for run_id, _ in workers:
+            try:
+                self.cancel(run_id)
+            except ValueError as error:
+                LOG.warning("Shutdown %s: %s", run_id, error)
+        for run_id, worker in workers:
+            worker.thread.join(timeout=5)
+            if worker.thread.is_alive():
+                LOG.error("Worker %s has not finished shutdown; inspect its process and saved lease.", run_id)
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -640,6 +696,7 @@ class Handler(BaseHTTPRequestHandler):
                 self.send(200, {
                     **self.app.catalog, "cliAvailable": bool(self.app.executable),
                     "workflowVersion": portal_workflow.WORKFLOW_VERSION,
+                    "maxConcurrentWorkers": MAX_WORKERS,
                 })
             elif path == "/api/scenarios":
                 self.send(200, scenario_catalog.discover(ROOT))
@@ -652,9 +709,16 @@ class Handler(BaseHTTPRequestHandler):
                 self.send(200, projects)
             elif path == "/api/runs":
                 with self.app.lock:
-                    runs = [json.loads(p.read_text(encoding="utf-8")) for p in self.app.state.glob("*/run.json")]
+                    runs = self.app.runs()
                 known = {run["request"]["projectSlug"] for run in runs}
-                self.send(200, sorted(runs, key=lambda run: run["startedAtUtc"], reverse=True)[:50] + [
+                visible = []
+                seen = set()
+                for index, run in enumerate(runs):
+                    slug = run["request"]["projectSlug"]
+                    if index < 50 or slug not in seen or run["status"] == "running":
+                        visible.append(run)
+                    seen.add(slug)
+                self.send(200, visible + [
                     run for run in self.app.discovered() if run["request"]["projectSlug"] not in known
                 ])
             elif path.startswith("/api/runs/"):
@@ -730,7 +794,7 @@ class Handler(BaseHTTPRequestHandler):
                     if action == "stop":
                         self.send(200, self.app.cancel(previous["id"]))
                         return
-                    self.app.require_idle()
+                    self.app.require_capacity()
                     if previous["status"] == "running":
                         raise ValueError("Wait for the current job to finish.")
                     message = data.get("message", "")
@@ -849,11 +913,7 @@ def main() -> None:
     except KeyboardInterrupt:
         LOG.info("Stopping local portal")
     finally:
-        if server.app.active and server.app.process:
-            try:
-                server.app.cancel(server.app.active)
-            except ValueError as error:
-                LOG.warning("Shutdown: %s", error)
+        server.app.shutdown()
         server.server_close()
         if connection.exists():
             current = json.loads(connection.read_text(encoding="utf-8"))

@@ -12,6 +12,7 @@ import tempfile
 import threading
 import time
 import unittest
+from collections.abc import Callable
 from pathlib import Path
 from unittest.mock import patch
 
@@ -188,6 +189,7 @@ class HttpTests(unittest.TestCase):
         }
 
     def cleanup(self) -> None:
+        self.server.app.shutdown()
         self.server.shutdown()
         self.server.server_close()
         self.worker.join(timeout=5)
@@ -225,7 +227,7 @@ class HttpTests(unittest.TestCase):
         self.assertEqual(200, status)
         self.assertEqual("scenario", data["request"]["phase"])
         self.assertFalse(data["request"]["scenarioApproved"])
-        self.assertIsNone(self.server.app.active)
+        self.assertEqual({}, self.server.app.workers)
         self.assertEqual([], list(self.server.app.state.glob("*/run.json")))
 
     def test_catalog_and_adaptation_preview_do_not_clone_or_start_work(self) -> None:
@@ -265,7 +267,7 @@ class HttpTests(unittest.TestCase):
             status, error = self.call("POST", "/api/preview", valid)
             self.assertEqual(400, status)
             self.assertIn("already exists", error["error"])
-        self.assertIsNone(self.server.app.active)
+        self.assertEqual({}, self.server.app.workers)
 
     def test_launch_requires_explicit_consent(self) -> None:
         for consent in (False, None, "true"):
@@ -276,7 +278,7 @@ class HttpTests(unittest.TestCase):
         request = portal.normalize_request(self.data, self.server.app.catalog)
         with patch.object(self.server.app, "execute"):
             run = self.server.app.start(request, "test", kind)
-        self.server.app.active = None
+        self.server.app.workers.clear()
         run["status"] = "completed"
         self.server.app.save(run)
         self.server.app.projects.finish(request["projectSlug"], run["id"], "completed")
@@ -293,16 +295,165 @@ class HttpTests(unittest.TestCase):
             self.assertEqual("running", body["status"])
             self.assertFalse(body["orphaned"])
         finally:
-            self.server.app.active = None
+            self.server.app.workers.clear()
 
-    def test_launch_writes_durable_request_and_blocks_parallel_work(self) -> None:
+    def test_launch_writes_durable_request_and_rejects_duplicate_projects(self) -> None:
         with patch.object(self.server.app, "execute"):
             status, run = self.call("POST", "/api/runs", self.data)
             self.assertEqual(202, status)
             self.assertEqual("az-01-conductor", run["agent"])
             self.assertTrue((self.server.app.state / run["id"] / "input.txt").exists())
-            self.assertEqual(400, self.call("POST", "/api/runs", self.data)[0])
-        self.server.app.active = None
+            self.assertEqual(409, self.call("POST", "/api/runs", self.data)[0])
+        self.server.app.workers.clear()
+
+    def wait_for(self, condition: Callable[[], bool], message: str) -> None:
+        deadline = time.monotonic() + 10
+        while time.monotonic() < deadline:
+            if condition():
+                return
+            time.sleep(0.05)
+        self.fail(message)
+
+    def test_four_real_workers_have_isolated_progress_logs_stop_and_completion(self) -> None:
+        script = (
+            "import os, sys, time; from pathlib import Path; "
+            f"sys.path.insert(0, {str(SCRIPTS)!r}); "
+            "from portal_workflow import Store; "
+            "state=Path(os.environ['ABCBUILDER_PROJECT_STATE']); "
+            "slug=os.environ['ABCBUILDER_PROJECT']; owner=os.environ['ABCBUILDER_RUN_ID']; "
+            "s=Store(state); p=s.read(slug); "
+            "s.report(slug,owner,p['revision'],dict(stage='requirements',status='completed',"
+            "summary='Synthetic worker '+slug,evidence=['Test subprocess report '+slug])); "
+            "print('worker='+slug, flush=True); folder=state.parent/owner; "
+            "(folder/'ready').write_text(slug); "
+            "exec(\"while not (folder/'release').exists(): time.sleep(0.025)\"); "
+            "print('finished='+slug, flush=True)"
+        )
+        with patch.object(portal, "cli_command", return_value=[sys.executable, "-c", script]):
+            runs = []
+            try:
+                for number in range(4):
+                    status, run = self.call("POST", "/api/runs", {
+                        **self.data, "projectSlug": f"parallel-{number}",
+                    })
+                    self.assertEqual(202, status, run)
+                    runs.append(run)
+                self.wait_for(
+                    lambda: all((self.server.app.state / run["id"] / "ready").is_file() for run in runs),
+                    "The four real subprocesses did not run concurrently.",
+                )
+                pids = {run["id"]: self.server.app.workers[run["id"]].process.pid for run in runs}
+                self.assertEqual(4, len(set(pids.values())))
+                for run in runs:
+                    _, value = self.call("GET", f"/api/runs/{run['id']}")
+                    self.assertEqual("running", value["status"])
+                    self.assertEqual(
+                        "Synthetic worker " + run["request"]["projectSlug"],
+                        value["project"]["stages"]["requirements"]["summary"],
+                    )
+                    self.assertIn("worker=" + run["request"]["projectSlug"], value["output"])
+                status, error = self.call("POST", "/api/runs", {**self.data, "projectSlug": "parallel-extra"})
+                self.assertEqual(400, status)
+                self.assertIn("All 4", error["error"])
+                self.assertFalse(self.server.app.projects.path("parallel-extra").exists())
+                other_portal = portal.Portal(self.server.app.state, "another-token", sys.executable)
+                with self.assertRaisesRegex(ValueError, "All 4"):
+                    other_portal.require_capacity()
+
+                first, second = runs[:2]
+                (self.server.app.state / first["id"] / "release").write_text("release", encoding="utf-8")
+                self.wait_for(lambda: first["id"] not in self.server.app.workers, "First worker did not finish.")
+                self.assertEqual("completed", self.server.app.read(first["id"])["status"])
+                self.assertEqual(3, len(self.server.app.workers))
+                self.assertTrue(all(portal.process_alive(pids[run["id"]]) for run in runs[1:]))
+                self.assertIsNone(self.server.app.projects.read("parallel-0")["writer"])
+
+                status, extra = self.call("POST", "/api/runs", {**self.data, "projectSlug": "parallel-extra"})
+                self.assertEqual(202, status)
+                runs.append(extra)
+                self.wait_for(
+                    lambda: (self.server.app.state / extra["id"] / "ready").is_file(),
+                    "A freed worker slot was not reusable.",
+                )
+                status, stopped = self.call("POST", f"/api/runs/{second['id']}/stop", {})
+                self.assertEqual(200, status)
+                self.assertEqual("cancelled", stopped["status"])
+                self.wait_for(lambda: second["id"] not in self.server.app.workers, "Stopped worker did not release.")
+                self.assertFalse(portal.process_alive(pids[second["id"]]))
+                self.assertTrue(all(portal.process_alive(pids[run["id"]]) for run in runs[2:4]))
+                self.assertEqual(extra["id"], self.server.app.projects.read("parallel-extra")["writer"])
+                self.assertEqual([], self.server.app.projects.read("parallel-extra")["authorizations"])
+            finally:
+                self.server.app.shutdown()
+            self.assertEqual({}, self.server.app.workers)
+            with self.assertRaisesRegex(ValueError, "shutting down"):
+                self.server.app.require_capacity()
+            for run in runs:
+                self.assertIsNone(self.server.app.projects.read(run["request"]["projectSlug"])["writer"])
+
+    def test_another_scenario_can_resume_without_releasing_the_running_projects_writer(self) -> None:
+        previous = self.create_run()
+        with patch.object(self.server.app, "execute"):
+            _, other = self.call("POST", "/api/runs", {**self.data, "projectSlug": "other-scenario"})
+            status, resumed = self.call("POST", f"/api/runs/{previous['id']}/continue", {
+                "toolConsent": True, "message": "Resume just this scenario",
+                "revision": self.server.app.projects.read("test-agent")["revision"],
+            })
+            self.assertEqual(202, status, resumed)
+            self.assertEqual(2, len(self.server.app.workers))
+            self.assertEqual(other["id"], self.server.app.projects.read("other-scenario")["writer"])
+            self.assertEqual(resumed["id"], self.server.app.projects.read("test-agent")["writer"])
+            before = self.server.app.projects.path("test-agent").read_bytes()
+            status, _ = self.call("POST", f"/api/runs/{resumed['id']}/continue", {
+                "toolConsent": True, "message": "Do not overlap this writer", "revision": 999,
+            })
+            self.assertEqual(400, status)
+            self.assertEqual(before, self.server.app.projects.path("test-agent").read_bytes())
+
+    def test_stop_before_process_launch_never_spawns_a_cli(self) -> None:
+        with patch.object(portal.threading.Thread, "start"):
+            with self.server.app.lock:
+                run = self.server.app.start(
+                    portal.normalize_request(self.data, self.server.app.catalog), "test", "scenario",
+                )
+        cancelled = self.server.app.cancel(run["id"])
+        self.assertEqual("cancelled", cancelled["status"])
+        with patch.object(portal.subprocess, "Popen") as spawn:
+            self.server.app.execute(run, "test")
+        spawn.assert_not_called()
+        self.assertEqual({}, self.server.app.workers)
+        self.assertIsNone(self.server.app.projects.read("test-agent")["writer"])
+
+    def test_thread_start_failure_releases_its_slot_and_project_lease(self) -> None:
+        with (
+            patch.object(portal.threading.Thread, "start", side_effect=RuntimeError("thread unavailable")),
+            self.server.app.lock,
+            self.assertRaisesRegex(OSError, "worker thread"),
+        ):
+            self.server.app.start(
+                portal.normalize_request(self.data, self.server.app.catalog), "test", "scenario",
+            )
+        self.assertEqual({}, self.server.app.workers)
+        self.assertIsNone(self.server.app.projects.read("test-agent")["writer"])
+        self.assertEqual("failed", self.server.app.runs()[0]["status"])
+
+    def test_run_list_keeps_each_scenario_and_all_active_jobs_beyond_recent_fifty_attempts(self) -> None:
+        old = {
+            "id": "a" * 32, "request": {"projectSlug": "older-project"},
+            "startedAtUtc": "2020-01-01T00:00:00Z", "status": "completed",
+        }
+        active = {**old, "id": "b" * 32, "request": {"projectSlug": "busy-project"}, "status": "running"}
+        self.server.app.save(old)
+        self.server.app.save(active)
+        for number in range(51):
+            self.server.app.save({
+                **old, "id": f"{number:032x}", "request": {"projectSlug": "busy-project"},
+                "startedAtUtc": f"2026-10-22T00:00:{number:02}Z",
+            })
+        status, runs = self.call("GET", "/api/runs")
+        self.assertEqual(200, status)
+        self.assertIn(old["id"], {run["id"] for run in runs})
+        self.assertIn(active["id"], {run["id"] for run in runs})
 
     def test_missing_review_cannot_launch_composition(self) -> None:
         run = self.create_run()
@@ -373,7 +524,7 @@ class HttpTests(unittest.TestCase):
                 self.assertEqual(202, status)
                 self.assertEqual("HackCreator Agent", job["agent"])
                 hack_workflow.check_approval(root)
-        self.server.app.active = None
+        self.server.app.workers.clear()
 
     def test_failed_composition_preparation_releases_writer_without_starting_worker(self) -> None:
         run = self.create_run()
@@ -421,7 +572,7 @@ class HttpTests(unittest.TestCase):
             self.assertEqual(202, status, job)
             self.assertEqual("HackCreator Agent", job["agent"])
             hack_workflow.check_approval(root)
-        self.server.app.active = None
+        self.server.app.workers.clear()
 
     def test_actual_subprocess_output_persists_without_claiming_validation(self) -> None:
         command = [
@@ -433,9 +584,9 @@ class HttpTests(unittest.TestCase):
             status, run = self.call("POST", "/api/runs", self.data)
             self.assertEqual(202, status)
             deadline = time.monotonic() + 10
-            while self.server.app.active and time.monotonic() < deadline:
+            while self.server.app.workers and time.monotonic() < deadline:
                 time.sleep(0.05)
-            self.assertIsNone(self.server.app.active)
+            self.assertEqual({}, self.server.app.workers)
         status, result = self.call("GET", f"/api/runs/{run['id']}")
         self.assertEqual(200, status)
         self.assertEqual("completed", result["status"])
@@ -464,9 +615,9 @@ class HttpTests(unittest.TestCase):
         with patch.object(portal, "cli_command", return_value=[sys.executable, "-c", script]):
             _, run = self.call("POST", "/api/runs", self.data)
             deadline = time.monotonic() + 10
-            while self.server.app.active and time.monotonic() < deadline:
+            while self.server.app.workers and time.monotonic() < deadline:
                 time.sleep(0.05)
-        self.assertIsNone(self.server.app.active)
+        self.assertEqual({}, self.server.app.workers)
         _, result = self.call("GET", f"/api/runs/{run['id']}")
         project = result["project"]
         self.assertEqual("waiting_for_user", project["status"])
@@ -485,7 +636,7 @@ class HttpTests(unittest.TestCase):
         prompt = (self.server.app.state / next_run["id"] / "input.txt").read_text(encoding="utf-8")
         self.assertIn("ALL canonical decisions", prompt)
         self.assertIn("Free-text messages are not cloud authorization", prompt)
-        self.server.app.active = None
+        self.server.app.workers.clear()
 
     def test_health_requires_authentication_and_identifies_workspace(self) -> None:
         status, health = self.call("GET", "/api/health")
@@ -497,7 +648,7 @@ class HttpTests(unittest.TestCase):
         with patch.object(portal, "cli_command", return_value=[sys.executable, "-c", "raise SystemExit(7)"]):
             _, run = self.call("POST", "/api/runs", self.data)
             deadline = time.monotonic() + 10
-            while self.server.app.active and time.monotonic() < deadline:
+            while self.server.app.workers and time.monotonic() < deadline:
                 time.sleep(0.05)
         result = self.server.app.read(run["id"])
         self.assertEqual("failed", result["status"])
@@ -511,12 +662,12 @@ class HttpTests(unittest.TestCase):
         ):
             _, run = self.call("POST", "/api/runs", self.data)
             deadline = time.monotonic() + 10
-            while self.server.app.active and time.monotonic() < deadline:
+            while self.server.app.workers and time.monotonic() < deadline:
                 time.sleep(0.05)
         result = self.server.app.read(run["id"])
         self.assertEqual("failed", result["status"])
         self.assertIn("test CLI missing", result["error"])
-        self.assertIsNone(self.server.app.active)
+        self.assertEqual({}, self.server.app.workers)
 
     def test_revision_revokes_approval_before_new_work(self) -> None:
         run = self.create_run()
@@ -533,7 +684,7 @@ class HttpTests(unittest.TestCase):
                 },
             )
             self.assertEqual(202, status)
-        self.server.app.active = None
+        self.server.app.workers.clear()
         with self.assertRaisesRegex(ValueError, "Explicit user approval"):
             hack_workflow.check_approval(root)
 
@@ -550,7 +701,7 @@ class HttpTests(unittest.TestCase):
                 },
             )
             self.assertEqual(202, status)
-        self.server.app.active = None
+        self.server.app.workers.clear()
         prompt = (self.server.app.state / next_run["id"] / "input.txt").read_text(encoding="utf-8")
         self.assertIn("Do not infer scenario approval", prompt)
         self.assertEqual("scenario", next_run["kind"])
@@ -686,7 +837,7 @@ class HttpTests(unittest.TestCase):
         self.assertEqual("Keep customer chat anonymous", project["history"][0]["message"])
         self.assertFalse(project["designConfirmed"])
         self.assertTrue(all(item["status"] == "pending" for item in project["stages"].values()))
-        self.server.app.active = None
+        self.server.app.workers.clear()
 
     def test_duplicate_project_does_not_overwrite_intake(self) -> None:
         run = self.create_run()
@@ -740,12 +891,12 @@ class HttpTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "active writer"):
             restarted.start(run["request"], "competing work", "scenario", run["id"],
                             restarted.projects.read("test-agent")["revision"])
-        self.server.app.active = None
+        self.server.app.workers.clear()
 
     def test_orphaned_live_child_retains_lease_until_explicit_recovery(self) -> None:
         with patch.object(self.server.app, "execute"):
             _, run = self.call("POST", "/api/runs", self.data)
-        self.server.app.active = None
+        self.server.app.workers.clear()
         run["serverPid"] = 12345
         run["childPid"] = 54321
         self.server.app.save(run)

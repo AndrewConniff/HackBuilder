@@ -79,6 +79,15 @@ let launching = false;
 let intakeReady = false;
 let readinessSignature = "";
 const touchedIntake = new Set();
+const scenarioDrafts = new Map();
+const scenarioStages = new Map();
+let selectedRunId = null;
+let selectedProjectSlug = null;
+let selectionRevision = 0;
+let detailRevision = 0;
+let listRevision = 0;
+let navigationRevision = 0;
+let workerSignature = "";
 
 function portalToken() {
   return sessionStorage.getItem("abcbuilder-token") || sessionStorage.getItem("hackbuilder-token") || "";
@@ -98,6 +107,8 @@ function showStage(stage, updateHash = true) {
   $("workspace").hidden = shape;
   $("build-details").hidden = stage !== "build";
   $("review").hidden = stage !== "hack";
+  const project = selectedProjectSlug || currentRun?.request.projectSlug;
+  if (!shape && project) scenarioStages.set(project, stage);
   const title = { shape: "Shape the scenario", build: "Build & validate", hack: "Compose the hack" }[stage];
   $("page-stage").textContent = title;
   $("workspace-title").textContent = title;
@@ -387,6 +398,52 @@ async function refreshProjects() {
   summarize();
 }
 
+function activeRuns() {
+  return knownRuns.filter((run) => run.status === "running");
+}
+
+function hasWorkerCapacity() {
+  return activeRuns().length < catalog.maxConcurrentWorkers;
+}
+
+function selectRun(id, slug) {
+  selectedRunId = id;
+  selectedProjectSlug = slug || knownRuns.find((run) => run.id === id)?.request.projectSlug ||
+    knownProjects.find((project) => project.runId === id)?.projectSlug || null;
+  selectionRevision++;
+  if (currentRun?.id !== id) {
+    for (const name of ["continue", "revise", "answer-decision", "compose", "stop"]) $(name).disabled = true;
+    $("project-summary").textContent = "Loading the selected scenario. Actions are paused until its status arrives.";
+  }
+}
+
+function renderWorkerCapacity() {
+  const running = activeRuns();
+  const message =
+    `${running.length} of ${catalog.maxConcurrentWorkers} workers active. ` +
+    (hasWorkerCapacity() ? "Other scenarios can run independently. " : "All workers are busy; new work must wait. ") +
+    "Switching scenarios never stops a job. Stop job affects only the selected run.";
+  if ($("worker-capacity").textContent !== message) $("worker-capacity").textContent = message;
+  const signature = JSON.stringify(running.map((run) => [run.id, run.kind, run.request.projectSlug]));
+  if (signature === workerSignature) return;
+  workerSignature = signature;
+  $("worker-list").replaceChildren(...running.map((run) => {
+    const item = document.createElement("li");
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "validation-link";
+    button.textContent = `${run.request.projectSlug} · ${run.kind} running`;
+    button.addEventListener("click", action(async () => {
+      const navigation = ++navigationRevision;
+      await refreshRuns(run.id, run.request.projectSlug);
+      if (navigation === navigationRevision && selectedProjectSlug === run.request.projectSlug)
+        showStage(scenarioStages.get(run.request.projectSlug) || "build");
+    }));
+    item.append(button);
+    return item;
+  }));
+}
+
 function intakeIssues(data, execution = true) {
   const issues = [];
   const add = (field, message) => issues.push({ field, message });
@@ -416,8 +473,8 @@ function intakeIssues(data, execution = true) {
     if (!data.toolConsent) add("consent", "Check the local tool execution consent box below.");
     if (!catalog.cliAvailable)
       add("cli", "Copilot CLI was not detected. Install it, run copilot login, then restart the portal.");
-    const active = currentRun?.status === "running" ? currentRun : knownRuns.find((run) => run.status === "running");
-    if (active) add("active-run", `A job for ${active.request.projectSlug} is running. Review or stop it in Build & validate.`);
+    if (!hasWorkerCapacity())
+      add("capacity", `All ${catalog.maxConcurrentWorkers} workers are busy. You can still switch scenarios and review progress.`);
     if (launching) add("starting", "Starting your scenario. Please wait.");
     if (!intakeReady) add("loading", "Wait for the scenario catalog and job status to finish loading.");
   }
@@ -425,7 +482,7 @@ function intakeIssues(data, execution = true) {
 }
 
 function focusIntakeIssue(issue) {
-  if (issue.field === "active-run") {
+  if (issue.field === "capacity") {
     showStage("build");
     $("run-select").focus();
     return;
@@ -454,7 +511,7 @@ function renderIntakeValidation(data) {
     readinessSignature = signature;
     $("launch-blockers").replaceChildren(...issues.map((issue) => {
       const item = document.createElement("li");
-      if (["project", "industry", "businessUnits", "prompt", "reuse-scenario", "consent", "active-run"]
+      if (["project", "industry", "businessUnits", "prompt", "reuse-scenario", "consent", "capacity"]
         .includes(issue.field)) {
         const button = document.createElement("button");
         button.type = "button";
@@ -490,7 +547,7 @@ function validatedIntake(execution = false) {
   renderIntakeValidation(data);
   if (issues.length) {
     const focusable = issues.find((issue) =>
-      ["project", "industry", "businessUnits", "prompt", "reuse-scenario", "consent", "active-run"].includes(issue.field),
+      ["project", "industry", "businessUnits", "prompt", "reuse-scenario", "consent", "capacity"].includes(issue.field),
     );
     if (focusable) focusIntakeIssue(focusable);
     throw new Error(`Review your scenario brief: ${issues[0].message}`);
@@ -522,24 +579,42 @@ function summarize() {
       .map((item) => item.name)
       .join(", ") || "No preference yet";
   renderIntakeValidation(data);
+  renderWorkerCapacity();
   $("compose").disabled =
     !$("tested").checked ||
     !$("approval").value.trim() ||
     !$("tool-consent").checked ||
     !currentRun?.review?.ready ||
+    selectedRunId !== currentRun?.id ||
+    Boolean(currentRun?.project?.writer) ||
+    !hasWorkerCapacity() ||
     currentRun.status === "running" ||
     Boolean(currentRun.discovered);
 }
 
 function renderRun(run) {
-  const previousDecisionId = pendingDecision()?.id;
+  const switched = currentRun?.request.projectSlug !== run.request.projectSlug;
+  if (switched && currentRun) {
+    scenarioDrafts.set(currentRun.request.projectSlug, {
+      decision: $("decision").value, choice: $("decision-choice").value, decisionId: pendingDecision()?.id,
+      approval: $("approval").value, tested: $("tested").checked,
+      fingerprint: currentRun.review?.fingerprint, runId: currentRun.id,
+    });
+  }
+  const draft = switched ? scenarioDrafts.get(run.request.projectSlug) : null;
+  const previousDecisionId = switched ? draft?.decisionId : pendingDecision()?.id;
+  if (switched) {
+    $("decision").value = draft?.decision || "";
+    $("decision-choice").value = draft?.choice || "";
+  }
   const changed =
     currentRun?.id !== run.id ||
     currentRun?.review?.fingerprint !== run.review?.fingerprint;
   currentRun = run;
   if (changed) {
-    $("tested").checked = false;
-    $("approval").value = "";
+    const sameReview = draft?.runId === run.id && draft?.fingerprint === run.review?.fingerprint;
+    $("tested").checked = Boolean(sameReview && draft.tested);
+    $("approval").value = sameReview ? draft.approval : "";
   }
   $("run-empty").hidden = true;
   $("run-details").hidden = false;
@@ -683,8 +758,10 @@ function renderRun(run) {
   $("run-output").textContent =
     run.output || run.error || "Starting the local Copilot CLI…";
   $("stop").hidden = run.status !== "running";
+  $("stop").disabled = false;
   const decision = pendingDecision();
-  const canAct = !run.discovered && !project?.writer && run.status !== "running" && run.kind !== "composition";
+  const canAct = !run.discovered && !project?.writer && run.status !== "running" &&
+    run.kind !== "composition" && hasWorkerCapacity();
   $("decision-panel").hidden = !decision || packaged;
   $("decision-actions").hidden = !decision || packaged;
   $("answer-decision").disabled = !canAct;
@@ -729,22 +806,40 @@ function renderRun(run) {
     );
   }
   summarize();
+  if (switched && !$("workspace").hidden && scenarioStages.has(run.request.projectSlug))
+    showStage(scenarioStages.get(run.request.projectSlug));
   clearTimeout(timer);
   timer = setTimeout(() => refreshRuns().catch(showError), 3000);
 }
 
 async function loadRun(id) {
-  renderRun(await api(`/api/runs/${id}`));
+  const selection = selectionRevision;
+  const detail = ++detailRevision;
+  let run;
+  try {
+    run = await api(`/api/runs/${id}`);
+  } catch (error) {
+    if (selection !== selectionRevision || detail !== detailRevision || selectedRunId !== id) {
+      console.warn("Ignoring a failed status request for a scenario no longer selected.", id, error);
+      return;
+    }
+    throw error;
+  }
+  if (selection === selectionRevision && detail === detailRevision && selectedRunId === id)
+    renderRun(run);
 }
 
-async function refreshRuns(selectId) {
+async function refreshRuns(selectId, selectSlug) {
+  if (selectId) selectRun(selectId, selectSlug);
+  const revision = ++listRevision;
   const runs = await api("/api/runs");
-  const idToKeep = selectId || (
-    currentRun && !runs.some((run) => run.request.projectSlug === currentRun.request.projectSlug)
-      ? currentRun.id : null
-  );
-  if (idToKeep && !runs.some((run) => run.id === idToKeep))
-    runs.unshift(await api(`/api/runs/${idToKeep}`));
+  if (revision !== listRevision) return;
+  const selection = selectionRevision;
+  if (selectedRunId && !runs.some((run) => run.request.projectSlug === selectedProjectSlug)) {
+    const missing = await api(`/api/runs/${selectedRunId}`);
+    if (revision !== listRevision || selection !== selectionRevision) return;
+    runs.unshift(missing);
+  }
   knownRuns = runs;
   const seen = new Set();
   const scenarios = runs.filter((run) => {
@@ -762,10 +857,11 @@ async function refreshRuns(selectId) {
       ),
     );
   }
-  const id = selectId || scenarios.find(
-    (run) => run.request.projectSlug === currentRun?.request.projectSlug,
-  )?.id || scenarios[0]?.id;
+  const selected = scenarios.find((run) => run.request.projectSlug === selectedProjectSlug) || scenarios[0];
+  const id = selected?.id;
   if (id) {
+    selectedRunId = id;
+    selectedProjectSlug = selected.request.projectSlug;
     $("run-select").value = id;
     await loadRun(id);
   } else {
@@ -795,6 +891,11 @@ function action(handler) {
 
 async function followup(kind) {
   if (!currentRun) throw new Error("Select a scenario run first.");
+  if (selectedRunId !== currentRun.id)
+    throw new Error("Wait for the selected scenario to finish loading before acting on it.");
+  const origin = currentRun;
+  const navigation = navigationRevision;
+  const sentText = $("decision").value;
   const body = {
     message: $("decision").value,
     toolConsent: $("tool-consent").checked,
@@ -819,16 +920,28 @@ async function followup(kind) {
       fingerprint: currentRun.review?.fingerprint,
     });
   }
-  const run = await api(`/api/runs/${currentRun.id}/${kind}`, body);
-  await refreshRuns(run.id);
-  $("decision").value = "";
-  showStage(kind === "compose" ? "hack" : "build");
-  scrollToWorkspace();
+  let run;
+  try {
+    run = await api(`/api/runs/${origin.id}/${kind}`, body);
+  } catch (error) {
+    error.message = `${origin.request.projectSlug}: ${error.message}`;
+    throw error;
+  }
+  const draft = scenarioDrafts.get(origin.request.projectSlug);
+  if (draft?.decision === sentText) draft.decision = "";
+  await refreshRuns(
+    navigation === navigationRevision ? run.id : undefined, origin.request.projectSlug,
+  );
+  if (navigation === navigationRevision && currentRun?.request.projectSlug === origin.request.projectSlug) {
+    if ($("decision").value === sentText) $("decision").value = "";
+    if (kind !== "stop") showStage(kind === "compose" ? "hack" : "build");
+    scrollToWorkspace();
+  }
 }
 
 async function initialize() {
   catalog = await api("/api/catalog");
-  if (catalog.workflowVersion !== 3)
+  if (catalog.workflowVersion !== 4 || catalog.maxConcurrentWorkers !== 4)
     throw new Error("Restart the local portal server to load the workflow dashboard, then reload this page.");
   for (const item of catalog.industries)
     $("industries").append(choice(item, "industry", "radio"));
@@ -848,9 +961,12 @@ async function initialize() {
   $("open-existing").addEventListener("click", action(async () => {
     const project = existingProject($("project").value);
     if (!project?.runId) throw new Error("No portal run is available for this project. Choose a new name.");
-    await refreshRuns(project.runId);
-    showStage("build");
-    scrollToWorkspace();
+    const navigation = ++navigationRevision;
+    await refreshRuns(project.runId, project.projectSlug);
+    if (navigation === navigationRevision && selectedProjectSlug === project.projectSlug) {
+      showStage("build");
+      scrollToWorkspace();
+    }
   }));
   $("new-project-name").addEventListener("click", () => {
     $("project").value = nextProjectName($("project").value);
@@ -884,6 +1000,8 @@ async function initialize() {
   for (const [name, hash] of [["shape", "#intake"], ["build", "#workspace"], ["hack", "#review"]]) {
     $("nav-" + name).addEventListener("click", (event) => {
       event.preventDefault();
+      navigationRevision++;
+      $("error").hidden = true;
       showStage(name);
     });
   }
@@ -900,6 +1018,7 @@ async function initialize() {
     "submit",
     action(async () => {
       const data = validatedIntake(true);
+      const navigation = navigationRevision;
       launching = true;
       summarize();
       try {
@@ -909,10 +1028,13 @@ async function initialize() {
           throw new Error(`“${data.projectSlug}” already exists. Open the existing project or use a new name below.`);
         }
         const run = await api("/api/runs", data);
-        currentRun = run;
-        await refreshRuns(run.id);
-        showStage("build");
-        scrollToWorkspace();
+        await refreshRuns(
+          navigation === navigationRevision ? run.id : undefined, data.projectSlug,
+        );
+        if (navigation === navigationRevision) {
+          showStage("build");
+          scrollToWorkspace();
+        }
       } catch (error) {
         if (error.code === "project_exists" && error.project?.projectSlug === data.projectSlug) {
           knownProjects = knownProjects.filter((item) => item.projectSlug !== data.projectSlug);
@@ -957,7 +1079,11 @@ async function initialize() {
   $("run-select").addEventListener(
     "change",
     action(async () => {
-      if ($("run-select").value) await loadRun($("run-select").value);
+      if ($("run-select").value) {
+        navigationRevision++;
+        selectRun($("run-select").value);
+        await loadRun(selectedRunId);
+      }
     }),
   );
   for (const kind of ["continue", "revise", "compose", "stop"]) {

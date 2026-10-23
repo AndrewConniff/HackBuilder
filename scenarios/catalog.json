@@ -123,6 +123,38 @@
     },
     {
       "schemaVersion": 1,
+      "id": "resto-scale-agent",
+      "title": "Fourth Coffee: five-floor restaurant agents under load",
+      "summary": "Generic Hospitality & Travel reference design for a 250-seat restaurant: customer and staff Foundry agents, deterministic reservations and settlement, durable kitchen handoffs and measurable burst recovery. Design only; implementation awaits confirmation.",
+      "industry": "Hospitality & Travel",
+      "businessUnits": [
+        "generic"
+      ],
+      "services": [
+        "foundry",
+        "cosmos-db",
+        "container-apps",
+        "key-vault",
+        "managed-identity",
+        "service-bus"
+      ],
+      "pillars": [
+        "reliability",
+        "performance-efficiency"
+      ],
+      "domains": [
+        "scaling"
+      ],
+      "artifacts": [
+        "01-requirements.md",
+        "02-architecture-assessment.md"
+      ],
+      "source": null,
+      "metadataStatus": "curated",
+      "manifestDigest": "8292e9e757802b09241971681c0730a2b07c6de70e37b03ef355e61e9af3a865"
+    },
+    {
+      "schemaVersion": 1,
       "id": "retail-foundry-copilot",
       "title": "Retail foundry copilot",
       "summary": "Locally discovered reference. Review its architecture and metadata before adapting. Source industry cell requires explicit classification review: Retail",

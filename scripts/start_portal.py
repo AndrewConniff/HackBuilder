@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 STATE = state_directory(ROOT)
 
 
-def running_portal() -> dict | None:
+def running_portal(expected_pid: int | None = None) -> dict | None:
     connection = STATE / "server.json"
     if not connection.exists():
         return None
@@ -26,6 +26,8 @@ def running_portal() -> dict | None:
     port, token = config.get("port"), config.get("token")
     if type(port) is not int or not 1 <= port <= 65535 or not isinstance(token, str) or not token:
         raise ValueError(f"Invalid local portal connection file. Inspect {STATE / 'server.json'}.")
+    if expected_pid is not None and config.get("pid") != expected_pid:
+        return None
     client = http.client.HTTPConnection("127.0.0.1", port, timeout=1)
     identified = False
     try:
@@ -90,7 +92,7 @@ def ensure_portal() -> dict:
         )
     deadline = time.monotonic() + 10
     while time.monotonic() < deadline:
-        config = running_portal()
+        config = running_portal(expected_pid=process.pid)
         if config is not None:
             return config
         if process.poll() is not None:

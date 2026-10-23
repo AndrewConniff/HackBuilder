@@ -450,6 +450,14 @@ h2 {
   white-space: normal;
   overflow-wrap: anywhere;
 }
+.worker-list {
+  padding-left: 18px;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.worker-list li {
+  margin-bottom: 6px;
+}
 .intake-readiness h3 {
   margin: 0;
   font-size: 14px;
