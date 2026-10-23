@@ -12,7 +12,8 @@ from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 
-WORKFLOW_VERSION = 4
+import prerequisite_profiles
+WORKFLOW_VERSION = 5
 
 STAGES = {
     "requirements": "Requirements",
@@ -31,8 +32,13 @@ STAGES = {
     "hack-validation": "Hack package validation",
 }
 LEGACY_STAGES = set(STAGES) - {key for key in STAGES if key.startswith("hack-")}
-STATUSES = {"pending", "running", "completed", "waiting_for_user", "failed", "cancelled"}
+STATUSES = {"pending", "running", "completed", "waiting_for_user", "blocked", "failed", "cancelled"}
 DECISION_KINDS = {"design", "business", "deployment-preparation", "deployment"}
+
+
+def local_execution_authorized(project: dict) -> bool:
+    consent = project.get("localToolConsent")
+    return isinstance(consent, dict) and consent.get("scope") == "scenario-local-execution"
 
 
 def state_directory(root: Path) -> Path:
@@ -114,6 +120,25 @@ class Store:
             raise ValueError("Invalid or unsupported project state. Inspect persisted state before recovery.")
         for key in STAGES:
             project["stages"].setdefault(key, {"status": "pending", "summary": ""})
+        project.setdefault("localToolConsent", None)
+        project.setdefault("setupBlocker", None)
+        if type(project.get("preflightRequired", False)) is not bool:
+            raise ValueError("Invalid prerequisite gating policy in saved project state.")
+        consent = project["localToolConsent"]
+        if consent is not None and (
+            not local_execution_authorized(project)
+            or not isinstance(consent.get("grantedAtUtc"), str) or not consent["grantedAtUtc"].strip()
+        ):
+            raise ValueError("Invalid local execution authorization. Review persisted project state.")
+        blocker = project["setupBlocker"]
+        if blocker is not None and (
+            not isinstance(blocker, dict) or not isinstance(blocker.get("id"), str)
+            or blocker.get("stage") not in STAGES
+            or blocker.get("kind") not in {"prerequisite", "host-permission"}
+            or any(not isinstance(blocker.get(key), str) or not blocker[key].strip()
+                   for key in ("action", "verification", "createdAtUtc"))
+        ):
+            raise ValueError("Invalid setup blocker. Review persisted project state.")
         return project
 
     def save(self, project: dict) -> dict:
@@ -126,7 +151,8 @@ class Store:
         return project
 
     def claim(self, request: dict, owner: str, revision: int | None = None, create: bool = False,
-              initial_message: str | None = None) -> dict:
+              initial_message: str | None = None, local_tool_consent: bool = False,
+              preflight_required: bool = False) -> dict:
         slug = request["projectSlug"]
         with self.locked():
             if self.path(slug).exists():
@@ -150,9 +176,33 @@ class Store:
                     ),
                     "authorizations": [],
                     "designConfirmed": False,
+                    "localToolConsent": None,
+                    "setupBlocker": None,
                     "status": "pending",
                 }
+            if local_tool_consent is True and not local_execution_authorized(project):
+                project["localToolConsent"] = {
+                    "scope": "scenario-local-execution", "grantedAtUtc": timestamp(),
+                }
+                project["history"].append({
+                    "message": "User authorized local execution for this scenario; cloud and publication excluded.",
+                    "recordedAtUtc": timestamp(),
+                })
             project.update(writer=owner, latestRunId=owner, status="running")
+            if preflight_required:
+                project["preflightRequired"] = True
+            return self.save(project)
+
+    def revoke_local_consent(self, slug: str, revision: int) -> dict:
+        with self.locked():
+            project = self.read(slug)
+            self.check_revision(project, revision)
+            if project["writer"]:
+                raise ValueError("Stop or finish the active worker before revoking local authorization.")
+            project["localToolConsent"] = None
+            project["history"].append({
+                "message": "User revoked local scenario execution authorization.", "recordedAtUtc": timestamp(),
+            })
             return self.save(project)
 
     @staticmethod
@@ -166,6 +216,8 @@ class Store:
             self.check_revision(project, revision)
             if project["writer"] != owner:
                 raise ValueError("Worker does not own this project. Stale or external writes are rejected.")
+            if "localToolConsent" in event or "authorizations" in event:
+                raise ValueError("Worker reports cannot grant user authorization.")
             stage = event.get("stage")
             status = event.get("status")
             if stage not in STAGES or status not in STATUSES:
@@ -178,6 +230,37 @@ class Store:
                 raise ValueError("Evidence must be a list of command/results or artifact references.")
             if status == "completed" and not evidence:
                 raise ValueError("Completed stages require evidence references.")
+            blocker = project["setupBlocker"]
+            verification = event.get("setupVerification")
+            if verification is not None:
+                if (
+                    not isinstance(verification, dict) or not blocker
+                    or verification.get("blockerId") != blocker["id"]
+                    or verification.get("passed") is not True
+                    or stage != blocker["stage"] or status != "pending" or not evidence
+                ):
+                    raise ValueError(
+                        "Setup verification requires the current blocker, pending stage and real evidence."
+                    )
+            if blocker and status not in {"blocked", "failed", "cancelled"} and verification is None:
+                raise ValueError("Verify the setup blocker in this worker before continuing implementation.")
+            setup = event.get("blocker")
+            if status == "blocked":
+                if (
+                    not isinstance(setup, dict) or setup.get("kind") not in {"prerequisite", "host-permission"}
+                    or event.get("decision") is not None
+                ):
+                    raise ValueError("Setup required needs a prerequisite/host-permission blocker, not a decision.")
+                setup = {
+                    "id": blocker["id"] if blocker else uuid.uuid4().hex,
+                    "stage": stage, "kind": setup["kind"],
+                    "action": text(setup.get("action"), "Setup action", 2000),
+                    "verification": text(setup.get("verification"), "Setup verification", 2000),
+                    "createdAtUtc": blocker["createdAtUtc"] if blocker else timestamp(),
+                    "updatedAtUtc": timestamp(),
+                }
+            elif setup is not None:
+                raise ValueError("A setup blocker requires blocked status.")
             if stage == "architecture" and (
                 status == "completed" or isinstance(event.get("decision"), dict)
             ) and project["stages"]["requirements"]["status"] != "completed":
@@ -187,6 +270,8 @@ class Store:
                 raise ValueError("Resolve the pending decision before reporting more work.")
             if stage in {"diagrams", "bicep", "application", "local-validation"} and not project["designConfirmed"]:
                 raise ValueError("Confirm the architecture design before implementation.")
+            if status in {"running", "completed"}:
+                prerequisite_profiles.require_stage(project, self.directory, owner, stage)
             if stage == "local-validation" and status == "completed":
                 if any(
                     project["stages"][key]["status"] != "completed"
@@ -198,7 +283,10 @@ class Store:
                 status == "waiting_for_user" and isinstance(decision, dict)
                 and decision.get("kind") in {"deployment-preparation", "deployment"}
             )
-            if stage in {"deployment", "live-validation", "review"} and not requesting_cloud:
+            if (
+                stage in {"deployment", "live-validation", "review"}
+                and not requesting_cloud and status != "blocked" and verification is None
+            ):
                 if not any(item["kind"] == "deployment" for item in project["authorizations"]):
                     raise ValueError("Exact-target deployment consent is required for cloud stages.")
             if stage == "review" and status == "completed":
@@ -285,10 +373,20 @@ class Store:
                 })
             elif status == "waiting_for_user":
                 raise ValueError("waiting_for_user requires a structured decision.")
+            if verification is not None:
+                project["history"].append({
+                    "message": "Setup verified in the worker.", "blockerId": blocker["id"],
+                    "evidence": evidence, "recordedAtUtc": timestamp(),
+                })
+                project["setupBlocker"] = None
+            elif status == "blocked":
+                project["setupBlocker"] = setup
             project["stages"][stage] = {
                 "status": status, "summary": summary, "evidence": evidence, "updatedAtUtc": timestamp(),
             }
-            project["status"] = "waiting_for_user" if decision else "running"
+            project["status"] = "setup_required" if status == "blocked" else (
+                "waiting_for_user" if decision else "running"
+            )
             return self.save(project)
 
     def respond(self, slug: str, revision: int, message: str, decision_id: str | None = None,
@@ -298,6 +396,8 @@ class Store:
             self.check_revision(project, revision)
             if project["writer"]:
                 raise ValueError("Wait for the active project writer to finish.")
+            if project["setupBlocker"]:
+                raise ValueError("Setup required. Use Verify setup & retry; another approval cannot fix this blocker.")
             message = text(message, "User instruction")
             pending = [item for item in project["decisions"] if item["status"] == "pending"]
             if pending and not revise:
@@ -338,6 +438,8 @@ class Store:
             pending = any(item["status"] == "pending" for item in project["decisions"])
             if outcome != "completed":
                 project["status"] = outcome
+            elif project["setupBlocker"]:
+                project["status"] = "setup_required"
             elif pending:
                 project["status"] = "waiting_for_user"
             elif any(stage["status"] == "failed" for stage in project["stages"].values()):
@@ -355,6 +457,8 @@ class Store:
                     stage["status"] = "failed" if outcome == "completed" else outcome
                     project["status"] = "needs_attention" if outcome == "completed" else outcome
                     stage["summary"] += " Worker exited before reporting a result."
+            if project["setupBlocker"] and outcome in {"completed", "failed"}:
+                project["status"] = "setup_required"
             self.save(project)
 
 

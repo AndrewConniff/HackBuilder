@@ -14,7 +14,9 @@ import re
 import secrets
 import shutil
 import subprocess
+import sys
 import threading
+import time
 import uuid
 import webbrowser
 from ctypes import wintypes
@@ -27,7 +29,9 @@ from urllib.parse import parse_qs, urlparse
 
 import hack_workflow
 import portal_workflow
+import prerequisite_profiles
 import scenario_catalog
+from check_prerequisites import execution_environment, planned_checks
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "portal"
@@ -118,6 +122,8 @@ def load_catalog() -> dict:
             raise ValueError(f"Catalog {field} IDs must be unique kebab-case identifiers.")
     if not any(item["id"] == "foundry" and item.get("required") is True for item in catalog["services"]):
         raise ValueError("The intake catalog must include Foundry as a required service.")
+    if {item["id"] for item in catalog["services"]} != set(prerequisite_profiles.SERVICE_REQUIREMENTS):
+        raise ValueError("Every catalog service must have a reviewed prerequisite profile; update both together.")
     pillars = {item["id"] for item in catalog["pillars"]}
     if any(item["pillar"] not in pillars for item in catalog["domains"]):
         raise ValueError("Every technical domain must reference a catalog pillar.")
@@ -264,6 +270,11 @@ class Portal:
         self.lock = threading.RLock()
         self.workers: dict[str, Worker] = {}
         self.closing = False
+        self.lifecycle_action: str | None = None
+        self.restart_token: str | None = None
+        self.started_at = now()
+        self.started_clock = time.monotonic()
+        self.preflight_lock = threading.Lock()
         self.projects = portal_workflow.Store(self.state / "projects")
         for path in self.state.glob("*/run.json"):
             run = json.loads(path.read_text(encoding="utf-8"))
@@ -454,9 +465,117 @@ class Portal:
         if not self.executable:
             raise ValueError("Copilot CLI was not found. Install it and run copilot login, then restart the portal.")
 
+    def system_status(self) -> dict:
+        with self.lock:
+            runs = {run["id"]: run for run in self.runs()}
+            active = set(self.workers) | {key for key, run in runs.items() if run["status"] == "running"}
+            leases = []
+            for path in sorted(self.projects.directory.glob("*.json")):
+                project = self.projects.read(path.stem)
+                if project["writer"]:
+                    active.add(project["writer"])
+                    leases.append(project["projectSlug"])
+            workers = []
+            for run_id in sorted(active):
+                run = runs.get(run_id)
+                workers.append({
+                    "runId": run_id,
+                    "projectSlug": run["request"]["projectSlug"] if run else "Unknown saved writer",
+                    "kind": run["kind"] if run else "unknown",
+                    "pid": run.get("childPid") if run else None,
+                    "owned": run_id in self.workers,
+                    "canStop": run is not None and (
+                        run_id in self.workers or (
+                            run["status"] == "running" and not process_alive(run.get("serverPid"))
+                            and not process_alive(run.get("childPid"))
+                        )
+                    ),
+                })
+            return {
+                "status": "stopping" if self.closing else "running",
+                "pid": os.getpid(), "startedAtUtc": self.started_at,
+                "uptimeSeconds": int(time.monotonic() - self.started_clock),
+                "workflowVersion": portal_workflow.WORKFLOW_VERSION,
+                "systemControlsVersion": 1,
+                "workspace": str(ROOT), "stateDirectory": str(self.state.resolve()),
+                "pythonExecutable": sys.executable, "workers": workers, "writerProjects": leases,
+                "preflightRunning": self.preflight_lock.locked(),
+                "maxConcurrentWorkers": MAX_WORKERS,
+                "canStopServer": not active and not self.closing and not self.preflight_lock.locked(),
+                "launcher": str(ROOT / "Start-ABCBuilder.cmd"),
+            }
+
+    def prerequisite_scope(self, data: dict) -> tuple[list[str], str, bool]:
+        if data.get("runId"):
+            run = self.read(data["runId"])
+            if run.get("discovered"):
+                raise ValueError(
+                    "Discovered scenarios have no confirmed prerequisite scope; select services in intake."
+                )
+            services = prerequisite_profiles.effective_services(
+                ROOT, run["request"], run["request"]["projectSlug"],
+            )
+        else:
+            services = data.get("services")
+        mode = data.get("buildMode", "auto")
+        functions = data.get("localFunctions", False)
+        prerequisite_profiles.plan(services, mode, functions)
+        return services, mode, functions
+
+    def check_prerequisites(self, data: dict) -> dict:
+        if data.get("toolConsent") is not True:
+            raise ValueError("Explicit authorization for read-only local prerequisite commands is required.")
+        services, mode, functions = self.prerequisite_scope(data)
+        with self.lock:
+            if self.closing:
+                raise ValueError("The portal is shutting down; no new prerequisite audit can start.")
+            if not self.preflight_lock.acquire(blocking=False):
+                raise ValueError("A prerequisite audit is already running. Wait for it to finish.")
+        try:
+            environment = execution_environment(ROOT)
+            python = shutil.which("python", path=environment.get("PATH", "")) or sys.executable
+            command = [
+                python, "-B", str(ROOT / "scripts" / "check_prerequisites.py"), "--json",
+                "--services", *services, "--build-mode", mode,
+            ]
+            if functions:
+                command.append("--local-functions")
+            result = subprocess.run(
+                command, env=environment, cwd=ROOT, capture_output=True, text=True, timeout=180, check=False,
+            )
+            if result.returncode not in (0, 1):
+                raise ValueError(f"Prerequisite audit failed: {(result.stderr or result.stdout)[-1800:]}")
+            report = json.loads(result.stdout)
+            if (
+                not isinstance(report, dict) or type(report.get("profileVersion")) is not int
+                or report["profileVersion"] != prerequisite_profiles.VERSION
+            ):
+                raise ValueError("Prerequisite checker returned an unsupported report.")
+            for stage in prerequisite_profiles.STAGE_REQUIREMENTS:
+                prerequisite_profiles.stage_failures(report, stage)
+            return report
+        except subprocess.TimeoutExpired as error:
+            raise ValueError(
+                "Prerequisite audit timed out; no readiness is claimed. Check tools outside the worker."
+            ) from error
+        finally:
+            self.preflight_lock.release()
+
+    def request_lifecycle(self, action: str, confirmed: object) -> dict:
+        with self.lock:
+            if action not in {"stop", "restart"} or confirmed is not True:
+                raise ValueError("Choose stop or restart and explicitly confirm the server action.")
+            if not self.system_status()["canStopServer"]:
+                raise ValueError("Stop/restart is blocked until workers, saved writer leases and audits are idle.")
+            self.closing = True
+            self.lifecycle_action = action
+            self.restart_token = secrets.token_urlsafe(32) if action == "restart" else None
+            return {"action": action, "restartToken": self.restart_token}
+
     def start(self, request: dict, prompt: str, kind: str, parent: str | None = None,
               revision: int | None = None, initial_message: str | None = None,
-              approval_message: str | None = None) -> dict:
+              approval_message: str | None = None, local_tool_consent: bool = False,
+              resume_composition: bool = False) -> dict:
         self.require_capacity()
         if parent is None and request.get("reuseSource"):
             source = request["reuseSource"]
@@ -464,7 +583,9 @@ class Portal:
                 ROOT, source["scenarioId"], source["manifestDigest"], request["projectSlug"],
             )
         if kind == "composition" and not approval_message:
-            raise ValueError("Composition requires explicit suitability approval.")
+            if not resume_composition or not parent or self.read(parent)["kind"] != "composition":
+                raise ValueError("Composition requires explicit suitability approval.")
+            hack_workflow.check_approval(ROOT / "generated-scenarios" / request["projectSlug"])
         run = {
             "id": uuid.uuid4().hex,
             "request": request,
@@ -479,6 +600,8 @@ class Portal:
         }
         project = self.projects.claim(
             request, run["id"], revision, create=parent is None, initial_message=initial_message,
+            local_tool_consent=local_tool_consent,
+            preflight_required=kind == "scenario",
         )
         prompt += (
             "\n\nPORTAL WORKER CONTRACT:\n"
@@ -487,7 +610,35 @@ class Portal:
             "Pass the authorized subscription explicitly to Azure commands; never change shared CLI account/"
             "subscription defaults. Do not install or upgrade shared SDKs/tools during a worker job. "
             "If prerequisites are missing, or an Azure target could conflict with another scenario, persist a "
-            "decision required and stop for user coordination. Concurrent jobs are not filesystem sandboxes.\n"
+            "setup blocker for missing prerequisites/host permission; real target conflicts need a scoped decision. "
+            "Concurrent jobs are not filesystem sandboxes.\n"
+            "Local execution consent is retained per scenario. Do not request permission again for ordinary local "
+            "files, diagrams, builds or tests. It never overrides host permissions or grants cloud/publishing consent. "
+            "Continue local implementation automatically after design confirmation until completion, a genuine "
+            "business/cloud decision, or a technical blocker. Never turn stage completion into another approval.\n"
+            "For missing tooling/PATH or a host-denied operation report status:blocked with no decision, and "
+            "blocker:{kind:prerequisite|host-permission, action:<exact setup action outside this worker>, "
+            "verification:<exact read-only check in the worker>}. Do not offer 'approve/corrected/resume' choices. "
+            "A user assertion cannot prove setup. On a retry first perform the recorded check under the SAME host "
+            "restrictions. Never bypass a denial, install shared tools or broaden permissions. If still blocked, "
+            "report blocked again and stop. Only after actual checks pass report the blocked stage as pending, "
+            "with setupVerification:{blockerId:<current id>, passed:true} and evidence:[exact command/result]. "
+            "Then continue the next incomplete step in the same job. Do not infer verification from CLI exit code.\n"
+            "SERVICE-AWARE PREREQUISITE PREFLIGHT:\n"
+            "At the beginning of this attempt run python scripts\\check_prerequisites.py "
+            "--for-project --record --stage requirements --json. This checks all planned local dependencies "
+            "together, but requirements/design can proceed while later tool gates fail. After confirming architecture "
+            "update scenario-manifest.json services and repeat the audit. Before diagrams, Bicep, application, "
+            "local-validation and deployment use --stage <stage>; running/completed reports require a fresh "
+            "owner-bound receipt. Receipts expire after 15 minutes; refresh before a gated step. "
+            "Use --build-mode local for a confirmed local image build; remote only for an explicitly selected "
+            "remote-build design, never to bypass an unavailable Docker engine or cloud consent. "
+            "Use --local-functions only for an explicit local Functions host. Add --services <IDs> for new "
+            "design dependencies until recorded in the manifest. Surface every failed check and affected stage "
+            "together. Stop only before an affected operation. Docker is not required for authoring Bicep, "
+            "writing application code or generating a Dockerfile. It is required for local container builds. "
+            "NuGet/package restore, actual builds and scenario-specific tools still need their own evidence. "
+            "Unknown dependencies are not a passing preflight. No audit grants host or Azure permission.\n"
             "The portal is the sole normal user decision surface. Do not send the user to VS Code or "
             "ask them to edit requirements. Read canonical state and all prior answers:\n"
             "python scripts\\portal_workflow.py read\n"
@@ -501,7 +652,7 @@ class Portal:
             "with checks [{name, command, exitCode}] and allCommandsPassed:true, then run "
             "python scripts\\hack_workflow.py record-packages generated-scenarios\\"
             + request["projectSlug"] + " . This receipt lets read-only refresh show external work. "
-            "Statuses: pending, running, completed, waiting_for_user, failed, cancelled. "
+            "Statuses: pending, running, completed, waiting_for_user, blocked, failed, cancelled. "
             "Report completed only with actual evidence. Do not infer success from existing filenames. "
             "Maintain scenario-manifest.json in the scenario folder. After creating the workspace and "
             "after material reference changes run python scripts\\scenario_catalog.py refresh "
@@ -526,7 +677,8 @@ class Portal:
         try:
             self.save(run)
             if kind == "composition":
-                hack_workflow.record_decision(self.scenario(run), approval_message, "approved")
+                if approval_message:
+                    hack_workflow.record_decision(self.scenario(run), approval_message, "approved")
                 hack_workflow.check_approval(self.scenario(run))
             (self.state / run["id"] / "input.txt").write_text(prompt, encoding="utf-8")
         except (OSError, ValueError, TypeError):
@@ -561,7 +713,8 @@ class Portal:
                         stderr=subprocess.STDOUT,
                         shell=False,
                         env={
-                            **os.environ, "ABCBUILDER_PORTAL_JOB": "1", "HACKBUILDER_PORTAL_JOB": "1",
+                            **execution_environment(ROOT),
+                            "ABCBUILDER_PORTAL_JOB": "1", "HACKBUILDER_PORTAL_JOB": "1",
                             "ABCBUILDER_PROJECT_STATE": str(self.projects.directory.resolve()),
                             "ABCBUILDER_PROJECT": run["request"]["projectSlug"],
                             "ABCBUILDER_RUN_ID": run["id"],
@@ -692,10 +845,31 @@ class Handler(BaseHTTPRequestHandler):
             path = urlparse(self.path).path
             if path == "/api/health":
                 self.send(200, {"status": "ok", "workspace": str(ROOT)})
+            elif path == "/api/prerequisites/plan":
+                query = parse_qs(urlparse(self.path).query, keep_blank_values=True)
+                local_functions = query.get("localFunctions", ["false"])[0]
+                if local_functions not in {"true", "false"}:
+                    raise ValueError("localFunctions must be true or false.")
+                data = {
+                    "services": query.get("services", ["foundry"])[0].split(","),
+                    "buildMode": query.get("buildMode", ["auto"])[0],
+                    "localFunctions": local_functions == "true",
+                }
+                if query.get("runId"):
+                    data["runId"] = query["runId"][0]
+                profile = prerequisite_profiles.plan(*self.app.prerequisite_scope(data))
+                self.send(200, {**profile, "checks": planned_checks(profile)})
+            elif path == "/api/system":
+                self.send(200, {**self.app.system_status(), "port": self.server.server_port})
             elif path == "/api/catalog":
                 self.send(200, {
                     **self.app.catalog, "cliAvailable": bool(self.app.executable),
                     "workflowVersion": portal_workflow.WORKFLOW_VERSION,
+                    "systemControlsVersion": 1,
+                    "prerequisitesVersion": prerequisite_profiles.VERSION,
+                    "prerequisiteInventory": planned_checks(prerequisite_profiles.plan(
+                        list(prerequisite_profiles.SERVICE_REQUIREMENTS),
+                    )),
                     "maxConcurrentWorkers": MAX_WORKERS,
                 })
             elif path == "/api/scenarios":
@@ -771,16 +945,28 @@ class Handler(BaseHTTPRequestHandler):
             data = json.loads(self.rfile.read(length))
             if not isinstance(data, dict):
                 raise ValueError("Request body must be a JSON object.")
+            if self.path == "/api/prerequisites/check":
+                self.send(200, self.app.check_prerequisites(data))
+                return
             with self.app.lock:
+                if self.path in {"/api/system/stop", "/api/system/restart"}:
+                    result = self.app.request_lifecycle(self.path.rsplit("/", 1)[1], data.get("confirmed"))
+                    try:
+                        self.send(202, result)
+                    finally:
+                        threading.Thread(target=self.server.shutdown, daemon=True).start()
+                    return
                 if self.path == "/api/preview":
                     request = self.app.intake(data)
                     self.send(200, {"request": request, "prompt": scenario_prompt(request, self.app.catalog)})
                     return
-                if data.get("toolConsent") is not True and not self.path.endswith("/stop"):
-                    raise ValueError("Explicit consent to local CLI tool execution is required.")
                 if self.path == "/api/runs":
+                    if data.get("toolConsent") is not True:
+                        raise ValueError("Explicit consent to local CLI tool execution is required.")
                     request = self.app.intake(data)
-                    run = self.app.start(request, scenario_prompt(request, self.app.catalog), "scenario")
+                    run = self.app.start(
+                        request, scenario_prompt(request, self.app.catalog), "scenario", local_tool_consent=True,
+                    )
                 elif self.path.startswith("/api/runs/"):
                     parts = self.path.split("/")
                     if len(parts) != 5:
@@ -794,13 +980,53 @@ class Handler(BaseHTTPRequestHandler):
                     if action == "stop":
                         self.send(200, self.app.cancel(previous["id"]))
                         return
+                    slug = previous["request"]["projectSlug"]
+                    project_path = self.app.projects.path(slug)
+                    project = self.app.projects.read(slug) if project_path.exists() else None
+                    if action == "revoke-consent":
+                        if project is None:
+                            raise ValueError("No saved authorization exists for this project.")
+                        self.app.projects.revoke_local_consent(slug, data.get("revision"))
+                        self.send(200, self.app.public_run(previous))
+                        return
+                    if data.get("toolConsent") is not True and not (
+                        project and portal_workflow.local_execution_authorized(project)
+                    ):
+                        raise ValueError("Authorize local execution once for this scenario before continuing.")
                     self.app.require_capacity()
                     if previous["status"] == "running":
                         raise ValueError("Wait for the current job to finish.")
                     message = data.get("message", "")
-                    if not isinstance(message, str) or not message.strip() or len(message) > 6000:
+                    if action != "retry-setup" and (
+                        not isinstance(message, str) or not message.strip() or len(message) > 6000
+                    ):
                         raise ValueError("Provide a decision or instruction of 1-6000 characters.")
                     root = self.app.scenario(previous)
+                    if project and project["setupBlocker"] and action != "retry-setup":
+                        raise ValueError("Setup required. Use Verify setup & retry; another approval cannot fix it.")
+                    if action == "retry-setup":
+                        if not project or not project["setupBlocker"]:
+                            raise ValueError("This scenario has no setup blocker to verify.")
+                        self.app.projects.check_revision(project, data.get("revision"))
+                        if any(item["status"] == "pending" for item in project["decisions"]):
+                            raise ValueError("Resolve the pending business/design decision before setup verification.")
+                        prompt = (
+                            f"Verify setup for generated-scenarios\\{slug} before any further implementation. "
+                            "Read canonical state and its setupBlocker. Run only the recorded read-only verification "
+                            "within existing host permissions. A retry is not a permission grant. "
+                            "If denied or unmet, report blocked with the exact failure and stop, without another "
+                            "approval question. Do not install tools, change PATH, or bypass any host restriction. "
+                            "If checks actually pass, report pending for the blocked stage with "
+                            "setupVerification:{blockerId:<current id>,passed:true} and exact evidence. "
+                            "Then resume the next incomplete step using all existing decisions and consent."
+                        )
+                        run = self.app.start(
+                            previous["request"], prompt, previous["kind"], previous["id"], project["revision"],
+                            local_tool_consent=data.get("toolConsent") is True,
+                            resume_composition=previous["kind"] == "composition",
+                        )
+                        self.send(HTTPStatus.ACCEPTED, run)
+                        return
                     if action == "compose":
                         project_path = self.app.projects.path(previous["request"]["projectSlug"])
                         revision = data.get("revision")
@@ -832,6 +1058,7 @@ class Handler(BaseHTTPRequestHandler):
                         run = self.app.start(
                             previous["request"], prompt, "composition", previous["id"], revision,
                             approval_message=message,
+                            local_tool_consent=data.get("toolConsent") is True,
                         )
                     elif action in {"continue", "revise"}:
                         slug = previous["request"]["projectSlug"]
@@ -858,6 +1085,7 @@ class Handler(BaseHTTPRequestHandler):
                         run = self.app.start(
                             previous["request"], prompt, "scenario", previous["id"],
                             project["revision"] if project else None, message if project is None else None,
+                            local_tool_consent=data.get("toolConsent") is True,
                         )
                     else:
                         raise ValueError("Unknown action.")
@@ -887,6 +1115,11 @@ def make_server(state: Path, token: str, port: int = 8765, executable: str | Non
     return server
 
 
+def restart_process(token: str) -> None:
+    os.environ["ABCBUILDER_PORTAL_RESTART_TOKEN"] = token
+    os.execv(sys.executable, [sys.executable, str(Path(__file__).resolve()), *sys.argv[1:]])
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--port", type=int, default=8765)
@@ -894,12 +1127,15 @@ def main() -> None:
     parser.add_argument("--quiet-url", action="store_true", help="Keep the private launch URL out of background logs.")
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
-    token = secrets.token_urlsafe(32)
+    token = os.environ.pop("ABCBUILDER_PORTAL_RESTART_TOKEN", None) or secrets.token_urlsafe(32)
+    startup_id = os.environ.pop("ABCBUILDER_PORTAL_STARTUP_ID", None)
     server = make_server(portal_workflow.state_directory(ROOT), token, args.port)
     connection = server.app.state / "server.json"
     temporary = connection.with_suffix(".tmp")
     temporary.write_text(
-        json.dumps({"pid": os.getpid(), "port": server.server_port, "token": token}) + "\n", encoding="utf-8"
+        json.dumps({
+            "pid": os.getpid(), "port": server.server_port, "token": token, "startupId": startup_id,
+        }) + "\n", encoding="utf-8"
     )
     temporary.replace(connection)
     url = f"http://127.0.0.1:{server.server_port}/#token={token}"
@@ -919,6 +1155,11 @@ def main() -> None:
             current = json.loads(connection.read_text(encoding="utf-8"))
             if current.get("pid") == os.getpid() and current.get("token") == token:
                 connection.unlink()
+    if server.app.lifecycle_action == "restart":
+        restart_token = server.app.restart_token
+        if restart_token is None:
+            raise RuntimeError("Restart was requested without a replacement authentication token.")
+        restart_process(restart_token)
 
 
 if __name__ == "__main__":

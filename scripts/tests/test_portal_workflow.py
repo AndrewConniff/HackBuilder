@@ -58,6 +58,111 @@ class ProjectTests(unittest.TestCase):
         self.assertNotIn("approval", self.project)
         self.assertEqual("completed", self.project["stages"]["architecture"]["status"])
 
+    def test_local_consent_survives_resume_and_restart_without_granting_cloud_access(self) -> None:
+        self.store.finish("finance-test", "worker-1", "completed")
+        self.project = self.store.read("finance-test")
+        self.assertIsNone(self.project["localToolConsent"])
+        self.project = self.store.claim(
+            self.request, "worker-1", self.project["revision"], local_tool_consent=True,
+        )
+        consent = self.project["localToolConsent"]
+        self.store.finish("finance-test", "worker-1", "completed")
+        self.store = workflow.Store(Path(self.temp.name))
+        self.project = self.store.read("finance-test")
+        self.project = self.store.claim(self.request, "worker-1", self.project["revision"])
+        self.assertEqual(consent, self.project["localToolConsent"])
+        self.assertEqual([], self.project["authorizations"])
+        self.assertFalse(self.project["designConfirmed"])
+        other = self.store.claim({"projectSlug": "other"}, "other-worker", create=True)
+        self.assertFalse(workflow.local_execution_authorized(other))
+
+    def test_portal_preflight_policy_gates_build_steps_but_not_requirements_or_design(self) -> None:
+        self.ask_design()
+        self.answer("Confirm design")
+        self.store.finish("finance-test", "worker-1", "completed")
+        self.project = self.store.read("finance-test")
+        self.project = self.store.claim(
+            self.request, "worker-1", self.project["revision"], preflight_required=True,
+        )
+        self.report("requirements", "completed")
+        with self.assertRaisesRegex(ValueError, "preflight is required"):
+            self.report("bicep")
+        self.assertTrue(self.project["preflightRequired"])
+        self.assertEqual([], self.project["authorizations"])
+
+    def test_local_consent_revocation_requires_idle_current_revision(self) -> None:
+        with self.assertRaisesRegex(ValueError, "active worker"):
+            self.store.revoke_local_consent("finance-test", self.project["revision"])
+        self.store.finish("finance-test", "worker-1", "completed")
+        self.project = self.store.read("finance-test")
+        self.project = self.store.claim(
+            self.request, "worker-1", self.project["revision"], local_tool_consent=True,
+        )
+        self.store.finish("finance-test", "worker-1", "completed")
+        self.project = self.store.read("finance-test")
+        with self.assertRaisesRegex(ValueError, "Project changed"):
+            self.store.revoke_local_consent("finance-test", self.project["revision"] - 1)
+        project = self.store.revoke_local_consent("finance-test", self.project["revision"])
+        self.assertFalse(workflow.local_execution_authorized(project))
+        self.assertEqual([], project["authorizations"])
+
+    def test_legacy_read_does_not_infer_or_persist_consent(self) -> None:
+        path = self.store.path("finance-test")
+        project = self.store.read("finance-test")
+        project.pop("localToolConsent")
+        project.pop("setupBlocker")
+        path.write_text(json.dumps(project), encoding="utf-8")
+        before = path.read_bytes()
+        self.assertIsNone(self.store.read("finance-test")["localToolConsent"])
+        self.assertEqual(before, path.read_bytes())
+        with self.assertRaisesRegex(ValueError, "cannot grant"):
+            self.report("requirements", localToolConsent={"scope": "scenario-local-execution"})
+
+    def test_setup_blocker_is_not_a_decision_and_requires_worker_verification(self) -> None:
+        setup = {
+            "kind": "prerequisite", "action": "Correct Graphviz PATH outside the worker.",
+            "verification": "Check dot and render a PNG from this worker.",
+        }
+        self.report("requirements", "blocked", blocker=setup, evidence=["Synthetic probe: dot unavailable"])
+        blocker = self.project["setupBlocker"]
+        self.assertEqual([], self.project["decisions"])
+        self.report("requirements", "blocked", blocker=setup)
+        self.assertEqual(blocker["id"], self.project["setupBlocker"]["id"])
+        self.store.finish("finance-test", "worker-1", "completed")
+        self.project = self.store.read("finance-test")
+        self.assertEqual("setup_required", self.project["status"])
+        with self.assertRaisesRegex(ValueError, "Verify setup"):
+            self.store.respond("finance-test", self.project["revision"], "I approve; it is corrected")
+        self.project = self.store.claim(self.request, "worker-1", self.project["revision"])
+        with self.assertRaisesRegex(ValueError, "Verify the setup"):
+            self.report("requirements")
+        for verification, evidence in (
+            ({"blockerId": "stale", "passed": True}, ["probe"]),
+            ({"blockerId": blocker["id"], "passed": False}, ["probe failed"]),
+            ({"blockerId": blocker["id"], "passed": True}, []),
+        ):
+            with self.subTest(verification=verification), self.assertRaises(ValueError):
+                self.report("requirements", "pending", setupVerification=verification, evidence=evidence)
+        self.report("requirements", "pending", setupVerification={"blockerId": blocker["id"], "passed": True},
+                    evidence=["Synthetic verification: dependency now resolves and render passed"])
+        self.assertIsNone(self.project["setupBlocker"])
+        self.assertEqual(blocker["id"], self.project["history"][-1]["blockerId"])
+        self.report("requirements", "completed")
+        self.assertEqual([], self.project["authorizations"])
+
+    def test_setup_verification_cannot_claim_stage_completion_or_cloud_permission(self) -> None:
+        self.report("deployment", "blocked", blocker={
+            "kind": "host-permission", "action": "Review the denied local probe in the execution host.",
+            "verification": "Repeat only the permitted original local probe.",
+        })
+        identifier = self.project["setupBlocker"]["id"]
+        with self.assertRaises(ValueError):
+            self.report("deployment", "completed", setupVerification={"blockerId": identifier, "passed": True})
+        self.report("deployment", "pending", setupVerification={"blockerId": identifier, "passed": True})
+        self.assertEqual([], self.project["authorizations"])
+        with self.assertRaisesRegex(ValueError, "Exact-target"):
+            self.report("deployment", "running")
+
     def test_rejected_design_cannot_start_implementation(self) -> None:
         self.ask_design()
         self.answer("Revise")

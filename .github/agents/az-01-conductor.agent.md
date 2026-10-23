@@ -86,7 +86,7 @@ Use current official evidence for technical decisions; no mock chat success.
 
 Prepare shared tooling with the [prerequisite guide](../../PREREQUISITES.md) outside scenario workers.
 Reuse current check results; report missing dependencies before the step that needs them.
-Do not repeatedly request SDK/tool installation from a worker: persist the exact setup decision and stop.
+Do not repeatedly request SDK/tool installation from a worker: report a technical setup blocker and stop.
 Installing a tool does not refresh an existing server's PATH or override execution-host permissions.
 
 ## Consent and noninteractive jobs
@@ -95,11 +95,16 @@ The initial portal job is local preparation only by instruction, not a sandbox.
 Prepare reference IaC, application, tests and what-if commands/target preview;
 stop before Azure operations unless the job explicitly authorizes them.
 Tool execution itself requires the portal's explicit permission consent.
+The backend retains that authorization per scenario across steps and resumptions.
+Do not request it again for ordinary local generation/build/test work or convert stage completion into a decision.
+Missing prerequisites/PATH and host-denied operations use the workflow's `blocked`/`setupBlocker`
+protocol, not a business approval card. A verification retry must first run the actual check under unchanged
+host restrictions and report evidence before resuming implementation. Another affirmative answer is not verification.
 Service selections, a build request or permissive CLI flags do not authorize
 deployment. A separate follow-up must confirm the exact account, subscription,
 tenant, resource groups and azd environments after what-if review.
 
-If a user decision, authentication, tool permission or target confirmation is
+If a business decision, authentication or target confirmation is
 missing for the current phase, persist progress and return **decision required** with the exact next
 action. In noninteractive CLI jobs, stop rather than guessing because an
 interactive question tool is unavailable. Never use `--no-ask-user` as consent.

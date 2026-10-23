@@ -33,6 +33,45 @@ target previews, then stop before Azure operations unless explicitly authorized.
 A separate user follow-up authorizes exact Azure targets; review actual what-if
 before deployment. Service selections alone never authorize deployment.
 
+Local execution authorization is recorded once per scenario, not per stage or CLI attempt.
+Reuse it for local files, diagrams, builds, tests, revisions and separately approved composition.
+It is revocable while idle, does not transfer to another scenario,
+and never grants host, Azure or publication permission.
+Do not ask for routine stage-by-stage authorization after design confirmation.
+
+Missing prerequisites/PATH or execution-host denials are technical blockers, not business decisions.
+For portal jobs report `status: "blocked"` with `blocker: {kind, action, verification}`,
+where kind is `prerequisite` or `host-permission`. State the exact outside-worker setup action and
+read-only check; stop without another approve/corrected/resume choice.
+The portal displays **Setup required** and **Verify setup & retry**.
+That action starts verification under the same host restrictions, not a permission grant.
+Keep the blocker if checks fail or are denied; do not install shared tooling or bypass a denial.
+Only actual passing checks permit a report for the blocked stage with `status: "pending"`,
+`setupVerification: {blockerId, passed: true}` and exact evidence, followed by continued implementation.
+A user assertion, click, file presence or CLI exit alone is not setup verification.
+
+### Service-aware prerequisites
+
+Use the shared profiles in `scripts\prerequisite_profiles.py` and the checker, not per-scenario guessed install lists.
+At the start of each portal attempt, run:
+
+```powershell
+python scripts\check_prerequisites.py --for-project --record --stage requirements --json
+```
+
+This audits the entire planned local toolchain together, but requirements/design can proceed while later gates fail.
+After architecture confirmation, update manifest services and repeat. Before diagrams, Bicep, application,
+local validation or deployment, run with `--stage <stage>` and refresh expired receipts.
+Portal build-stage reports require actual owner-bound checks, fresh within 15 minutes and covering the current services.
+Report all failed checks and affected stages together; block only before an affected operation.
+Docker is needed for confirmed local image builds, not Bicep/Dockerfile authoring.
+Check the running Linux engine, not just executable discovery.
+Use `--build-mode remote` only for an explicitly chosen remote-build design, never as a failure/permission fallback.
+Use `--local-functions` only for a planned local Functions host; do not require emulators or optional tools by default.
+Verify new design-specific packages with real restore/build. Unknown dependencies require explicit additional checks.
+No preflight grants Azure/host permission, starts engines, installs software or replaces deployment acceptance.
+See [the prerequisite guide](../../../PREREQUISITES.md) for the service/stage matrix and System checklist.
+
 The portal is the normal decision surface and scenario-level progress dashboard, not a CLI transcript.
 Persist normalized intake, delegated preferences, resolved decisions and execution attempts in the
 backend project store. Workers use `scripts\portal_workflow.py read` and revision-checked `report`
@@ -51,10 +90,11 @@ Cloud preparation and deployment use separate portal decisions with exact target
 Preparation permission precedes Azure queries/what-if. Deployment consent follows actual what-if,
 estimated cost and target review. Free-text continuation never grants cloud authorization.
 
-In noninteractive jobs, missing decisions, authentication or permission mean
+In noninteractive jobs, missing business decisions, authentication or target authorization mean
 persist progress, report **decision required** with the exact next action, and
 stop. Do not guess consent because an interactive question tool is unavailable.
 This customization work itself authorizes no Azure operations.
+For technical prerequisite/host-permission failures, use the separate blocked protocol above.
 
 Industry intake comes from repository `microsoft_industry_verticals.csv`.
 Skillable currently supports six slugs in its own authoring catalog:

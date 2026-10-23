@@ -33,6 +33,7 @@ function fixture() {
     revision: 5,
     status: "waiting_for_user",
     writer: null,
+    localToolConsent: { scope: "scenario-local-execution", grantedAtUtc: "2026-10-22T19:00:00Z" },
     stages: { requirements: { status: "completed", summary: "Brokerage story recorded" } },
     authorizations: [],
     decisions: [{
@@ -47,7 +48,7 @@ function fixture() {
   };
 }
 
-async function dashboard(run = fixture(), workflowVersion = 4, appearance = {}) {
+async function dashboard(run = fixture(), workflowVersion = 5, appearance = {}) {
   const elements = new Map();
   const created = [];
   const requests = [];
@@ -75,10 +76,18 @@ async function dashboard(run = fixture(), workflowVersion = 4, appearance = {}) 
     ],
     services: [{ id: "foundry", name: "Foundry", required: true }],
     pillars: [], domains: [], cliAvailable: appearance.cliAvailable ?? true, workflowVersion, maxConcurrentWorkers: 4,
+    systemControlsVersion: appearance.systemControlsVersion ?? 1,
+    prerequisitesVersion: appearance.prerequisitesVersion ?? 1,
+    prerequisiteInventory: [
+      {id:"azure-cli", name:"Azure CLI", state:"not-checked", stages:["bicep"]},
+      {id:"azd", name:"Azure Developer CLI", state:"not-checked", stages:["deployment"]},
+      {id:"docker", name:"Docker CLI and running Linux engine", state:"not-checked", stages:["local-validation"]},
+    ],
   };
   const get = (id) => {
     if (!elements.has(id)) elements.set(id, new Element(
-      ["run-select", "decision-choice", "reuse-scenario"].includes(id) ? "select" : "div",
+      ["run-select", "decision-choice", "reuse-scenario", "system-build-mode", "system-preflight-scope"].includes(id)
+        ? "select" : "div",
     ));
     return elements.get(id);
   };
@@ -105,12 +114,42 @@ async function dashboard(run = fixture(), workflowVersion = 4, appearance = {}) 
       setItem: (key, value) => appearance.storageBlocked ? storageFailure() : storage.set(key, value),
     },
     console: { warn: (...args) => warnings.push(args) },
-    location: { hash: "", pathname: "/" }, history: { replaceState() {} },
+    location: { hash: "", pathname: "/", reload() { get("reloaded").textContent = "yes"; } },
+    history: { replaceState() {} },
     sessionStorage: { getItem: () => "local-test", setItem() {} },
     URL, URLSearchParams, clearTimeout() {}, setTimeout() { return 1; },
     Option: function (text, value) { this.textContent = text; this.value = value; },
     fetch: async (url, options) => {
       requests.push({ url, ...options });
+      if (url.startsWith("/api/prerequisites/plan?")) return { ok:true, json:async () => ({
+        checks:catalog.prerequisiteInventory,
+        stages: { requirements:[], architecture:[], diagrams:["graphviz"], bicep:["azure-cli"],
+          application:["dotnet"], "local-validation":["docker"] },
+      }) };
+      if (url === "/api/prerequisites/check") {
+        if (appearance.preflightGate) await appearance.preflightGate;
+        return { ok:true, json:async () => ({
+          checkedAtUtc:"2026-10-23T05:00:00Z",
+          checks:[
+            {id:"azure-cli", name:"Azure CLI", ok:true, installed:true, state:"ready", detail:"Version checked"},
+            {id:"docker", name:"Docker CLI and running Linux engine", ok:false, installed:true,
+              state:"engine-unavailable", detail:"Linux engine unavailable", fix:"Start Docker Desktop."},
+          ],
+          plan:{ stages:{bicep:["azure-cli"],"local-validation":["docker"]} },
+        }) };
+      }
+      if (url === "/api/system") return { ok: true, json: async () => structuredClone(appearance.system || {
+        status: "running", pid: 123, uptimeSeconds: 30, workspace: "C:\\workspace",
+        stateDirectory: "C:\\workspace\\.abcbuilder-portal", pythonExecutable: "python.exe",
+        port: 8765, startedAtUtc: "2026-10-23T00:00:00Z", workflowVersion: 5, workers: [],
+        canStopServer: true, launcher: "C:\\workspace\\Start-ABCBuilder.cmd",
+      }) };
+      if (url === "/api/system/stop" || url === "/api/system/restart") return {
+        ok: true, json: async () => ({ action: url.split("/").at(-1), restartToken: "replacement-test-token" }),
+      };
+      if (url === "/api/health") return {
+        ok: true, json: async () => ({ status: "ok", workspace: "C:\\workspace" }),
+      };
       if (url === "/api/projects") {
         if (appearance.projectsUnavailable)
           return { ok: false, status: 500, json: async () => ({ error: "Project state could not be read." }) };
@@ -126,8 +165,13 @@ async function dashboard(run = fixture(), workflowVersion = 4, appearance = {}) 
         launchedRun = { ...run, id: "run-new", status: "running", request: JSON.parse(options.body) };
         return { ok: true, json: async () => structuredClone(launchedRun) };
       }
-      if (options.method === "POST" && /^\/api\/runs\/[^/]+\/(continue|revise|compose|stop)$/.test(url)) {
+      if (options.method === "POST" &&
+          /^\/api\/runs\/[^/]+\/(continue|revise|compose|stop|retry-setup|revoke-consent)$/.test(url)) {
         if (appearance.followupGate) await appearance.followupGate;
+        if (url.endsWith("/revoke-consent")) {
+          run.project.localToolConsent = null;
+          run.project.revision++;
+        }
         return { ok: true, json: async () => structuredClone(appearance.followupRun || run) };
       }
       if (options.method === "GET" && /^\/api\/runs\/[^/]+$/.test(url) && appearance.readRun) {
@@ -152,6 +196,8 @@ async function dashboard(run = fixture(), workflowVersion = 4, appearance = {}) 
   });
   vm.runInContext(fs.readFileSync(path.join(__dirname, "..", "..", "portal", "app.js"), "utf8"), context);
   await new Promise(setImmediate);
+  get("system-build-mode").value = "auto";
+  get("system-preflight-scope").value = "all";
   return { get, context, requests, run, query, storage, media, events, domEvents, warnings };
 }
 
@@ -161,6 +207,150 @@ function readyBrief(view) {
   view.get("tool-consent").checked = true;
   vm.runInContext("summarize()", view.context);
 }
+
+test("System navigation is read-only and reports local server details without launching work", async () => {
+  const view = await dashboard();
+  await view.get("nav-system").listeners.click({ preventDefault() {} });
+  assert.equal(view.get("system").hidden, false);
+  assert.equal(view.get("workspace").hidden, true);
+  assert.equal(view.get("scenario-form").hidden, true);
+  assert.equal(view.get("page-stage").textContent, "System");
+  assert.match(view.get("system-status").textContent, /PID 123/);
+  assert.match(view.get("system-worker-status").textContent, /All workers are idle/);
+  assert.equal(view.get("system-stop").disabled, true);
+  assert.equal(view.get("system-restart").disabled, true);
+  assert.equal(view.requests.some(item => item.method === "POST"), false);
+});
+
+test("System stop and restart remain blocked by workers despite a checked confirmation", async () => {
+  const view = await dashboard(fixture(), 5, { system: {
+    status: "running", pid: 123, workers: [{
+      runId: "other-worker", projectSlug: "other-scenario", kind: "scenario", pid: 456, canStop: false,
+    }], canStopServer: false,
+  } });
+  await view.get("nav-system").listeners.click({ preventDefault() {} });
+  view.get("system-confirm").checked = true;
+  view.get("system-confirm").listeners.change();
+  assert.equal(view.get("system-stop").disabled, true);
+  assert.equal(view.get("system-restart").disabled, true);
+  assert.match(view.get("system-worker-status").textContent, /blocked/);
+  await view.get("system-stop").listeners.click();
+  assert.match(view.get("error").textContent, /all workers are idle/);
+  assert.equal(view.requests.some(item => item.url === "/api/system/stop"), false);
+});
+
+test("System worker stop is confirmed and targets only that worker without changing scenario selection", async () => {
+  const view = await dashboard(fixture(), 5, { system: {
+    status: "running", pid: 123, workers: [{
+      runId: "other-worker", projectSlug: "other-scenario", kind: "scenario", pid: 456, canStop: true,
+    }], canStopServer: false,
+  } });
+  await view.get("nav-system").listeners.click({ preventDefault() {} });
+  const row = view.get("system-workers").children[0];
+  const checkbox = row.children[1].children[0];
+  const button = row.children[2];
+  assert.equal(button.disabled, true);
+  checkbox.checked = true;
+  checkbox.listeners.change();
+  await button.listeners.click();
+  assert.equal(view.requests.filter(item => item.method === "POST").length, 1);
+  assert.equal(view.requests.find(item => item.method === "POST").url, "/api/runs/other-worker/stop");
+  assert.equal(view.get("run-select").value, "run-2");
+  assert.equal(view.get("page-stage").textContent, "System");
+});
+
+test("System shutdown is explicit and leaves launcher recovery visible without refreshing the stopped server", async () => {
+  const view = await dashboard();
+  await view.get("nav-system").listeners.click({ preventDefault() {} });
+  view.get("system-confirm").checked = true;
+  view.get("system-confirm").listeners.change();
+  assert.equal(view.get("system-stop").disabled, false);
+  await view.get("system-stop").listeners.click();
+  assert.match(view.get("system-status").textContent, /Shutdown accepted/);
+  assert.equal(view.get("system-stop").disabled, true);
+  const before = view.requests.length;
+  await vm.runInContext("refreshRuns()", view.context);
+  assert.equal(view.requests.length, before);
+  assert.equal(JSON.parse(view.requests.find(item => item.url === "/api/system/stop").body).confirmed, true);
+});
+
+test("System restart waits for authenticated health then reloads the fresh backend", async () => {
+  const view = await dashboard();
+  await view.get("nav-system").listeners.click({ preventDefault() {} });
+  view.get("system-confirm").checked = true;
+  await view.get("system-restart").listeners.click();
+  assert.equal(view.get("reloaded").textContent, "yes");
+  assert.equal(view.requests.filter(item => item.url === "/api/system/restart").length, 1);
+  assert.equal(view.requests.filter(item => item.url === "/api/health").length, 1);
+});
+
+test("System page requires a compatible backend rather than presenting unsupported controls", async () => {
+  const view = await dashboard(fixture(), 5, { systemControlsVersion: 0 });
+  assert.match(view.get("error").textContent, /Restart the local portal/);
+  assert.equal(view.requests.some(item => item.url === "/api/system"), false);
+});
+
+test("System checklist starts unchecked and requires authorization before command probes", async () => {
+  const view = await dashboard();
+  assert.equal(view.get("system-preflight-results").children.length, 3);
+  const row = view.get("system-preflight-results").children[0];
+  assert.equal(row.dataset.state, "not-checked");
+  assert.match(row.children[1].textContent, /Not checked: Azure CLI/);
+  assert.equal(view.get("system-preflight-check").disabled, true);
+  await view.get("system-preflight-check").listeners.click();
+  assert.match(view.get("error").textContent, /Authorize/);
+  assert.equal(view.requests.some(item => item.url === "/api/prerequisites/check"), false);
+});
+
+test("System checklist distinguishes ready tools from an installed stopped Docker engine and shows its fix", async () => {
+  const view = await dashboard();
+  view.get("system-preflight-consent").checked = true;
+  view.get("system-preflight-consent").listeners.change();
+  await view.get("system-preflight-check").listeners.click();
+  const rows = view.get("system-preflight-results").children;
+  assert.equal(rows[0].dataset.state, "ready");
+  assert.equal(rows[0].children[0].textContent, "\u2611");
+  assert.match(rows[0].children[1].textContent, /Ready: Azure CLI/);
+  assert.equal(rows[1].dataset.state, "engine-unavailable");
+  assert.match(rows[1].children[2].textContent, /Executable discovered/);
+  assert.match(rows[1].children[2].textContent, /Start Docker Desktop/);
+  assert.match(view.get("system-preflight-status").textContent, /1 passed; 1 failed/);
+  assert.equal(view.requests.filter(item => item.method === "POST").length, 1);
+});
+
+test("Intake audits do not block early scenario work when a future container tool fails", async () => {
+  const view = await dashboard();
+  readyBrief(view);
+  assert.equal(view.get("launch").disabled, false);
+  await view.get("intake-preflight-check").listeners.click();
+  assert.match(view.get("intake-preflight-status").textContent, /Requirements\/design can proceed/);
+  assert.equal(view.get("launch").disabled, false);
+  assert.equal(view.requests.some(item => item.url === "/api/runs" && item.method === "POST"), false);
+});
+
+test("System scope changes clear green results instead of retaining old readiness", async () => {
+  const view = await dashboard();
+  view.get("system-preflight-consent").checked = true;
+  await view.get("system-preflight-check").listeners.click();
+  view.get("system-build-mode").value = "remote";
+  await view.get("system-build-mode").listeners.change();
+  assert.match(view.get("system-preflight-status").textContent, /Not checked/);
+  assert.equal(view.get("system-preflight-results").children[0].dataset.state, "not-checked");
+});
+
+test("Late prerequisite results cannot replace a changed diagnostic scope", async () => {
+  let release;
+  const preflightGate = new Promise(resolve => { release = resolve; });
+  const view = await dashboard(fixture(), 5, {preflightGate});
+  view.get("system-preflight-consent").checked = true;
+  const checking = view.get("system-preflight-check").listeners.click();
+  view.get("system-build-mode").value = "remote";
+  await view.get("system-build-mode").listeners.change();
+  release();
+  await checking;
+  assert.match(view.get("system-preflight-status").textContent, /Scope changed during/);
+  assert.equal(view.get("system-preflight-results").children[0].dataset.state, "not-checked");
+});
 
 function blockers(view) {
   return view.get("launch-blockers").children.map((item) => item.children[0]?.textContent || item.textContent);
@@ -251,7 +441,7 @@ test("business unit, consent and existing-project blockers are specific", async 
 });
 
 test("an unrelated running job does not block a new scenario; missing CLI is explained separately", async () => {
-  const view = await dashboard(fixture(), 4, {
+  const view = await dashboard(fixture(), 5, {
     cliAvailable: false,
     additionalRuns: [{ ...fixture(), id: "other-run", status: "running", request: { projectSlug: "other-project" } }],
   });
@@ -267,7 +457,7 @@ test("four busy workers block new work but leave navigation and the selected job
     ...fixture(), id: `busy-${number}`, status: "running",
     request: { projectSlug: `scenario-${number}` },
   }));
-  const view = await dashboard(fixture(), 4, { additionalRuns });
+  const view = await dashboard(fixture(), 5, { additionalRuns });
   readyBrief(view);
   assert.equal(view.get("launch").disabled, true);
   assert.ok(blockers(view).some((message) => /All 4 workers are busy/.test(message)));
@@ -289,7 +479,7 @@ test("three other workers leave a slot for another scenario and preserve worker-
   const additionalRuns = Array.from({ length: 3 }, (_, number) => ({
     ...fixture(), id: `busy-${number}`, status: "running", request: { projectSlug: `scenario-${number}` },
   }));
-  const view = await dashboard(fixture(), 4, { additionalRuns });
+  const view = await dashboard(fixture(), 5, { additionalRuns });
   readyBrief(view);
   assert.equal(view.get("launch").disabled, false);
   assert.equal(view.get("answer-decision").disabled, false);
@@ -305,7 +495,7 @@ test("scenario switching preserves independent drafts, decision choices, review 
     ...structuredClone(first), id: "other-run", request: { projectSlug: "other-scenario" },
     review: { ...first.review, fingerprint: "review-b" },
   };
-  const view = await dashboard(first, 4, { additionalRuns: [other] });
+  const view = await dashboard(first, 5, { additionalRuns: [other] });
   view.get("prompt").value = "Keep the new scenario intake untouched";
   view.get("decision").value = "Instructions for A";
   view.get("decision-choice").value = "Confirm";
@@ -345,7 +535,7 @@ test("a late status response for the old scenario never replaces a newly selecte
   const delayed = new Promise((resolve) => { release = resolve; });
   const first = fixture();
   const other = { ...fixture(), id: "other-run", request: { projectSlug: "other-scenario" } };
-  const view = await dashboard(first, 4, {
+  const view = await dashboard(first, 5, {
     additionalRuns: [other],
     readRun: async (url) => block && url === `/api/runs/${first.id}` ? delayed : undefined,
   });
@@ -364,7 +554,7 @@ test("a background launch completing after navigation does not hijack the select
   let release;
   const startGate = new Promise((resolve) => { release = resolve; });
   const other = { ...fixture(), id: "other-run", request: { projectSlug: "other-scenario" } };
-  const view = await dashboard(fixture(), 4, { startGate, additionalRuns: [other] });
+  const view = await dashboard(fixture(), 5, { startGate, additionalRuns: [other] });
   readyBrief(view);
   const launch = view.get("scenario-form").listeners.submit({ preventDefault() {} });
   await new Promise(setImmediate);
@@ -385,7 +575,7 @@ test("actions pause while the newly selected scenario loads instead of targeting
   let block = false;
   const delayed = new Promise((resolve) => { release = resolve; });
   const other = { ...fixture(), id: "other-run", request: { projectSlug: "other-scenario" } };
-  const view = await dashboard(fixture(), 4, {
+  const view = await dashboard(fixture(), 5, {
     additionalRuns: [other],
     readRun: async (url) => block && url === `/api/runs/${other.id}` ? delayed : undefined,
   });
@@ -412,7 +602,7 @@ test("a followup completing for A preserves B's selection and draft and targets 
     ...fixture(), id: "other-run", request: { projectSlug: "other-scenario" },
     project: { ...fixture().project, revision: 99 },
   };
-  const view = await dashboard(first, 4, { followupGate, additionalRuns: [other] });
+  const view = await dashboard(first, 5, { followupGate, additionalRuns: [other] });
   view.get("tool-consent").checked = true;
   view.get("decision-choice").value = "Confirm";
   view.get("decision").value = "Submit only to A";
@@ -442,7 +632,7 @@ test("invalid submission and preview never send requests to start or prepare a s
 test("preview does not require execution consent, but launch does and prevents duplicate submissions", async () => {
   let release;
   const startGate = new Promise((resolve) => { release = resolve; });
-  const view = await dashboard(fixture(), 4, { startGate });
+  const view = await dashboard(fixture(), 5, { startGate });
   readyBrief(view);
   view.get("tool-consent").checked = false;
   await vm.runInContext("preview()", view.context);
@@ -464,7 +654,7 @@ test("preview does not require execution consent, but launch does and prevents d
 
 test("saved projects without files or runs are explained and are not overwritten", async () => {
   const projects = [{ projectSlug: "record-only", status: "needs_attention", runId: null }];
-  const view = await dashboard(fixture(), 4, { projects });
+  const view = await dashboard(fixture(), 5, { projects });
   readyBrief(view);
   view.get("project").value = "record-only";
   vm.runInContext("summarize()", view.context);
@@ -494,7 +684,7 @@ test("opening an existing project is navigation only and preserves the new intak
 
 test("existing project navigation keeps an older project outside the recent-run window selected", async () => {
   const archivedRun = { ...fixture(), id: "archived-run", request: { projectSlug: "older-project" } };
-  const view = await dashboard(fixture(), 4, {
+  const view = await dashboard(fixture(), 5, {
     projects: [{ projectSlug: "older-project", status: "waiting_for_user", runId: archivedRun.id }],
     archivedRun,
   });
@@ -509,7 +699,7 @@ test("existing project navigation keeps an older project outside the recent-run 
 
 test("suggested new names fit the slug limit, skip occupied names and change only the target name", async () => {
   const slug = "a".repeat(40);
-  const view = await dashboard(fixture(), 4, {
+  const view = await dashboard(fixture(), 5, {
     projects: [slug, `${"a".repeat(38)}-2`].map((projectSlug) => ({
       projectSlug, status: "completed", runId: null,
     })),
@@ -533,7 +723,7 @@ test("suggested new names fit the slug limit, skip occupied names and change onl
 
 test("launch refreshes project names to catch projects created in another tab without starting work", async () => {
   const projects = [];
-  const view = await dashboard(fixture(), 4, { projects });
+  const view = await dashboard(fixture(), 5, { projects });
   readyBrief(view);
   projects.push({ projectSlug: "energy-operations", status: "completed", runId: null });
   await view.get("scenario-form").listeners.submit({ preventDefault() {} });
@@ -545,7 +735,7 @@ test("launch refreshes project names to catch projects created in another tab wi
 });
 
 test("a concurrent server-side duplicate returns recovery actions without clearing or renaming the intake", async () => {
-  const view = await dashboard(fixture(), 4, {
+  const view = await dashboard(fixture(), 5, {
     conflict: { projectSlug: "energy-operations", status: "waiting_for_user", runId: "existing-run" },
   });
   readyBrief(view);
@@ -562,7 +752,7 @@ test("a concurrent server-side duplicate returns recovery actions without cleari
 
 test("project-list read failures are reported and never launch a scenario", async () => {
   const appearance = {};
-  const view = await dashboard(fixture(), 4, appearance);
+  const view = await dashboard(fixture(), 5, appearance);
   readyBrief(view);
   appearance.projectsUnavailable = true;
   await view.get("scenario-form").listeners.submit({ preventDefault() {} });
@@ -571,7 +761,7 @@ test("project-list read failures are reported and never launch a scenario", asyn
 });
 
 test("theme follows system preference and is applied before DOM content initializes", async () => {
-  const { get, context, requests, domEvents } = await dashboard(fixture(), 4, { systemDark: true, loading: true });
+  const { get, context, requests, domEvents } = await dashboard(fixture(), 5, { systemDark: true, loading: true });
   assert.equal(vm.runInContext("document.documentElement.dataset.theme", context), "dark");
   assert.equal(requests.length, 0);
   domEvents.DOMContentLoaded();
@@ -595,7 +785,7 @@ test("theme switch is independent of execution and saves an explicit preference"
 });
 
 test("saved theme overrides system preference and follows changes from another tab", async () => {
-  const { get, context, storage, events, media } = await dashboard(fixture(), 4, {
+  const { get, context, storage, events, media } = await dashboard(fixture(), 5, {
     systemDark: true, savedTheme: "light",
   });
   assert.equal(get("theme-toggle")["aria-checked"], "false");
@@ -611,7 +801,7 @@ test("saved theme overrides system preference and follows changes from another t
 });
 
 test("blocked theme storage is reported without blocking portal controls or switching", async () => {
-  const { get, context, warnings } = await dashboard(fixture(), 4, { storageBlocked: true });
+  const { get, context, warnings } = await dashboard(fixture(), 5, { storageBlocked: true });
   assert.equal(get("theme-notice").hidden, false);
   assert.match(get("theme-notice").textContent, /this tab only/);
   get("theme-toggle").listeners.click();
@@ -622,14 +812,14 @@ test("blocked theme storage is reported without blocking portal controls or swit
 });
 
 test("invalid stored themes use system preference and log the invalid setting", async () => {
-  const { context, warnings } = await dashboard(fixture(), 4, { savedTheme: "invalid", systemDark: true });
+  const { context, warnings } = await dashboard(fixture(), 5, { savedTheme: "invalid", systemDark: true });
   assert.equal(vm.runInContext("document.documentElement.dataset.theme", context), "dark");
   assert.equal(warnings.length, 1);
 });
 
 test("workspace scrolling respects reduced-motion preferences", async () => {
   for (const reducedMotion of [false, true]) {
-    const { get, context } = await dashboard(fixture(), 4, { reducedMotion });
+    const { get, context } = await dashboard(fixture(), 5, { reducedMotion });
     vm.runInContext("scrollToWorkspace()", context);
     assert.equal(get("workspace").scrollOptions.behavior, reducedMotion ? "instant" : "smooth");
   }
@@ -746,6 +936,78 @@ test("decision submission includes ID, revision and selected answer but no impli
   assert.equal(body.deploymentAuthorized, undefined);
 });
 
+test("saved scenario consent survives refresh without checking or authorizing new intake", async () => {
+  const { get, requests } = await dashboard();
+  assert.equal(get("workspace-consent-label").hidden, true);
+  assert.match(get("local-consent-status").textContent, /authorized for this scenario/);
+  assert.equal(get("tool-consent").checked, false);
+  assert.equal(get("workspace-consent").checked, false);
+  get("decision-choice").value = "Confirm";
+  await get("answer-decision").listeners.click({ preventDefault() {} });
+  const posted = requests.find((request) => request.method === "POST");
+  assert.equal(JSON.parse(posted.body).toolConsent, false);
+  assert.equal(get("workspace-consent-label").hidden, true);
+  assert.equal(get("tool-consent").checked, false);
+});
+
+test("legacy workspace consent is explicit and cannot leak across scenarios or into intake", async () => {
+  const run = fixture();
+  run.project.localToolConsent = null;
+  const { get, context } = await dashboard(run);
+  assert.equal(get("workspace-consent-label").hidden, false);
+  assert.equal(get("answer-decision").disabled, true);
+  get("workspace-consent").checked = true;
+  get("workspace-consent").listeners.change();
+  assert.equal(get("tool-consent").checked, false);
+  assert.equal(get("answer-decision").disabled, false);
+  context.otherConsentRun = structuredClone(run);
+  context.otherConsentRun.id = "other-run";
+  context.otherConsentRun.request.projectSlug = "other-scenario";
+  vm.runInContext("selectRun(otherConsentRun.id, otherConsentRun.request.projectSlug); renderRun(otherConsentRun)", context);
+  assert.equal(get("workspace-consent").checked, false);
+  assert.equal(get("answer-decision").disabled, true);
+  assert.equal(get("tool-consent").checked, false);
+});
+
+test("revocation does not start a worker and makes explicit authorization necessary again", async () => {
+  const { get, requests } = await dashboard();
+  assert.equal(get("revoke-consent").hidden, false);
+  await get("revoke-consent").listeners.click({ preventDefault() {} });
+  const posted = requests.filter((request) => request.method === "POST");
+  assert.equal(posted.length, 1);
+  assert.equal(posted[0].url, "/api/runs/run-2/revoke-consent");
+  assert.equal(get("workspace-consent-label").hidden, false);
+  assert.equal(get("revoke-consent").hidden, true);
+  assert.equal(get("answer-decision").disabled, true);
+});
+
+test("setup required replaces approval choices and retry cannot itself clear the blocker", async () => {
+  const run = fixture();
+  run.project.decisions = [];
+  run.project.status = "setup_required";
+  run.project.setupBlocker = {
+    id: "setup-1", stage: "diagrams", kind: "prerequisite",
+    action: "Repair Graphviz PATH outside the worker.", verification: "Render a PNG in the actual worker.",
+  };
+  run.project.stages.diagrams = { status: "blocked", summary: "dot unavailable" };
+  const { get, requests } = await dashboard(run);
+  assert.equal(get("run-status").textContent, "Setup required");
+  assert.equal(get("setup-panel").hidden, false);
+  assert.match(get("setup-action").textContent, /Graphviz/);
+  assert.equal(get("decision-panel").hidden, true);
+  assert.equal(get("instructions-panel").hidden, true);
+  assert.equal(get("continue").disabled, true);
+  assert.equal(get("retry-setup").disabled, false);
+  await get("retry-setup").listeners.click({ preventDefault() {} });
+  const posted = requests.find((request) => request.method === "POST");
+  assert.equal(posted.url, "/api/runs/run-2/retry-setup");
+  const body = JSON.parse(posted.body);
+  assert.equal(body.decisionId, undefined);
+  assert.equal(body.passed, undefined);
+  assert.equal(body.toolConsent, false);
+  assert.equal(get("setup-panel").hidden, false);
+});
+
 test("pending decision survives refresh, but choice is cleared for a different decision", async () => {
   const { get, context, run } = await dashboard();
   get("decision-choice").value = "Confirm";
@@ -832,7 +1094,7 @@ test("workflow navigation separates shape, build and actual hack artifacts", asy
   assert.match(get("artifact-list").children[0].children[2].children[0].textContent, /01-challenge.md/);
   get("workspace-consent").checked = true;
   get("workspace-consent").listeners.change();
-  assert.equal(get("tool-consent").checked, true);
+  assert.equal(get("tool-consent").checked, false);
 });
 
 test("document preview is authenticated inert text and clearly labels private coach material", async () => {

@@ -5,13 +5,16 @@ from __future__ import annotations
 import argparse
 import importlib.metadata
 import json
+import logging
 import os
 import re
 import shutil
 import subprocess
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
+import prerequisite_profiles as profiles
 ROOT = Path(__file__).resolve().parents[1]
 TOOLS = (
     ("git", "Git", "git", ["--version"], None, "Git.Git"),
@@ -45,6 +48,27 @@ print("Python diagrams and Graphviz successfully rendered and verified a PNG.")
 """
 
 
+def execution_environment(root: Path) -> dict[str, str]:
+    environment = os.environ.copy()
+    scripts = root / ".venv" / ("Scripts" if os.name == "nt" else "bin")
+    if (scripts / ("python.exe" if os.name == "nt" else "python")).is_file():
+        environment["VIRTUAL_ENV"] = str(scripts.parent)
+        environment["PATH"] = str(scripts) + os.pathsep + environment.get("PATH", "")
+    program_files_path = os.environ.get("ProgramFiles")
+    if os.name == "nt" and program_files_path:
+        program_files = Path(program_files_path)
+        for command, candidate in (
+            ("dot", program_files / "Graphviz" / "bin" / "dot.exe"),
+            ("dotnet", program_files / "dotnet" / "dotnet.exe"),
+        ):
+            if not shutil.which(command, path=environment.get("PATH", "")) and candidate.is_file():
+                environment["PATH"] = environment.get("PATH", "") + os.pathsep + str(candidate.parent)
+                logging.getLogger("abcbuilder.portal").info(
+                    "Using existing %s installation on the portal/worker PATH: %s", command, candidate.parent,
+                )
+    return environment
+
+
 def run_command(command: list[str], timeout: int = 45) -> tuple[int, str]:
     try:
         result = subprocess.run(
@@ -57,14 +81,26 @@ def run_command(command: list[str], timeout: int = 45) -> tuple[int, str]:
 
 
 def check(identifier: str, name: str, ok: bool, detail: str, winget: str | None = None) -> dict:
-    return {"id": identifier, "name": name, "ok": ok, "detail": detail, "winget": winget}
+    if identifier.startswith("python-package:") or identifier in {"venv", "pip-health"}:
+        fix = "While workers and the portal are stopped, prepare/repair the repository .venv from requirements.txt."
+    elif identifier == "diagram-render":
+        fix = "Repair Graphviz and the diagram Python packages, then rerun the real PNG rendering check."
+    else:
+        fix = "Follow PREREQUISITES.md to install or repair this tool, then verify it in the portal environment."
+    return {
+        "id": identifier, "name": name, "ok": ok, "detail": detail, "winget": winget,
+        "state": "ready" if ok else "failed-check", "fix": "" if ok else fix,
+    }
 
 
 def tool_check(spec: tuple) -> dict:
     identifier, name, command, arguments, major, winget = spec
     executable = shutil.which(command)
     if not executable:
-        return check(identifier, name, False, f"{command} is not on this process's PATH.", winget)
+        return {
+            **check(identifier, name, False, f"{command} is not on this process's PATH.", winget),
+            "installed": False, "state": "not-found",
+        }
     code, output = run_command([executable, *arguments])
     ok = code == 0
     if identifier == "dotnet":
@@ -83,7 +119,20 @@ def tool_check(spec: tuple) -> dict:
             ok = help_code == 0 and not missing
             if not ok:
                 output += f"\nPortal CLI flags unavailable: {', '.join(missing)}. {help_text[:300]}"
-    return check(identifier, name, ok, f"{executable}\n{output[:1800] or 'No version output.'}", winget)
+    elif identifier == "docker":
+        ok = ok and bool(re.search(r"\d+\.\d+", output)) and "linux" in output.lower()
+    result = {
+        **check(identifier, name, ok, f"{executable}\n{output[:1800] or 'No version output.'}", winget),
+        "installed": True,
+    }
+    if identifier == "docker" and not ok:
+        result.update(
+            state="engine-unavailable",
+            fix="Docker is installed. Start Docker Desktop, select the Linux engine and wait until it is ready. "
+                "Rerun docker version and docker info before local container builds. Follow organizational "
+                "licensing/virtualization procedures; do not reinstall merely because the engine is stopped.",
+        )
+    return result
 
 
 def minimum_satisfied(installed: str, minimum: str) -> bool:
@@ -100,6 +149,19 @@ def minimum_satisfied(installed: str, minimum: str) -> bool:
     )
 
 
+def package_requirements(root: Path) -> list[tuple[str, str]]:
+    requirements = []
+    for line in (root / "requirements.txt").read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        requirement = re.fullmatch(r"([A-Za-z0-9_-]+)>=(\d+(?:\.\d+)*)", line)
+        if requirement is None:
+            raise ValueError(f"Unsupported prerequisite requirement syntax: {line}")
+        requirements.append(requirement.groups())
+    return requirements
+
+
 def python_checks(root: Path) -> list[dict]:
     results = [
         check(
@@ -112,20 +174,13 @@ def python_checks(root: Path) -> list[dict]:
             f"Expected {root / '.venv'}; current interpreter prefix is {sys.prefix}.",
         ),
     ]
-    for line in (root / "requirements.txt").read_text(encoding="utf-8").splitlines():
-        line = line.strip()
-        if not line or line.startswith("#"):
-            continue
-        requirement = re.fullmatch(r"([A-Za-z0-9_-]+)>=(\d+(?:\.\d+)*)", line)
-        if requirement is None:
-            raise ValueError(f"Unsupported prerequisite requirement syntax: {line}")
-        name, minimum = requirement.groups()
+    for name, minimum in package_requirements(root):
         try:
             installed = importlib.metadata.version(name)
             ok = minimum_satisfied(installed, minimum)
             detail = f"Installed {installed}; requires >= {minimum}."
         except importlib.metadata.PackageNotFoundError:
-            ok, detail = False, f"Missing; install {line} in the repository .venv."
+            ok, detail = False, f"Missing; install {name}>={minimum} in the repository .venv."
         results.append(check(f"python-package:{name}", name, ok, detail))
     code, output = run_command([sys.executable, "-B", "-m", "pip", "check"])
     results.append(check("pip-health", "Python dependency consistency", code == 0, output[:1800]))
@@ -138,10 +193,11 @@ def build_report(root: Path = ROOT, contributor: bool = False, docker: bool = Fa
     if docker:
         specs.append((
             "docker", "Docker CLI and running engine", "docker",
-            ["info", "--format", "{{.ServerVersion}}"], None, "Docker.DockerDesktop",
+            ["info", "--format", "{{.ServerVersion}} {{.OSType}}"], None, "Docker.DockerDesktop",
         ))
     results.extend(tool_check(spec) for spec in specs)
-    packages_ok = all(item["ok"] for item in results if item["id"].startswith("python-package:"))
+    renderer_packages = {"python-package:diagrams", "python-package:matplotlib", "python-package:pillow"}
+    packages_ok = all(item["ok"] for item in results if item["id"] in renderer_packages)
     dot_ok = next(item["ok"] for item in results if item["id"] == "graphviz")
     if packages_ok and dot_ok:
         code, output = run_command([sys.executable, "-B", "-c", DIAGRAM_SMOKE])
@@ -162,14 +218,89 @@ def build_report(root: Path = ROOT, contributor: bool = False, docker: bool = Fa
     }
 
 
+def service_report(services: list[str], build_mode: str = "auto", local_functions: bool = False,
+                   root: Path = ROOT) -> dict:
+    profile = profiles.plan(services, build_mode, local_functions)
+    report = build_report(root, docker="docker" in profile["stages"]["local-validation"])
+    if local_functions:
+        report["checks"].append(tool_check((
+            "functions-core-tools", "Azure Functions Core Tools 4+", "func", ["--version"], 4,
+            "Microsoft.Azure.FunctionsCoreTools",
+        )))
+    report.update(
+        profileVersion=profiles.VERSION, checkedAtUtc=datetime.now(timezone.utc).isoformat(),
+        services=profile["services"], buildMode=profile["buildMode"], localFunctions=local_functions, plan=profile,
+    )
+    report["blockedStages"] = {
+        stage: [item["id"] for item in profiles.stage_failures(report, stage)]
+        for stage in profile["stages"]
+    }
+    report["ready"] = all(item["ok"] for item in report["checks"])
+    return report
+
+
+def planned_checks(profile: dict, root: Path = ROOT) -> list[dict]:
+    names = [(spec[0], spec[1]) for spec in TOOLS]
+    names += [("python", "Python 3.10+"), ("venv", "Repository Python environment")]
+    names += [(f"python-package:{name}", f"{name} >= {minimum}") for name, minimum in package_requirements(root)]
+    names += [("pip-health", "Python dependency consistency"), ("diagram-render", "Real PNG rendering")]
+    if "docker" in profile["stages"]["local-validation"]:
+        names.append(("docker", "Docker CLI and running Linux engine"))
+    if profile["localFunctions"]:
+        names.append(("functions-core-tools", "Azure Functions Core Tools 4+"))
+    return [{
+        "id": identifier, "name": name, "state": "not-checked",
+        "stages": [stage for stage, tools in profile["stages"].items() if identifier in tools],
+    } for identifier, name in names]
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--json", action="store_true")
     parser.add_argument("--contributor", action="store_true")
     parser.add_argument("--docker", action="store_true")
+    parser.add_argument("--services", nargs="+", choices=sorted(profiles.SERVICE_REQUIREMENTS))
+    parser.add_argument("--build-mode", choices=["auto", "local", "remote"], default="auto")
+    parser.add_argument("--local-functions", action="store_true")
+    parser.add_argument("--stage", choices=list(profiles.STAGE_REQUIREMENTS))
+    parser.add_argument("--for-project", action="store_true")
+    parser.add_argument("--record", action="store_true")
     args = parser.parse_args()
     try:
-        report = build_report(contributor=args.contributor, docker=args.docker)
+        if args.record and not args.for_project:
+            raise ValueError("--record requires the actual --for-project worker context.")
+        if args.for_project:
+            import portal_workflow
+
+            directory = portal_workflow.environment("PROJECT_STATE")
+            slug = portal_workflow.environment("PROJECT")
+            owner = portal_workflow.environment("RUN_ID")
+            if not directory or not slug or not owner:
+                raise ValueError("--for-project requires the portal project, state and run environment.")
+            store = portal_workflow.Store(Path(directory))
+            project = store.read(slug)
+            if project["writer"] != owner or not portal_workflow.local_execution_authorized(project):
+                raise ValueError("Only the authorized current worker can record prerequisite checks.")
+            services = profiles.effective_services(ROOT, project["request"], slug)
+            if args.services:
+                services = sorted(set(services) | set(args.services))
+        else:
+            services = args.services
+        report = (
+            service_report(services, args.build_mode, args.local_functions) if services is not None
+            else build_report(contributor=args.contributor, docker=args.docker)
+        )
+        if args.record:
+            with store.locked():
+                if store.read(slug)["writer"] != owner:
+                    raise ValueError("Worker ownership changed during prerequisite checks; no receipt recorded.")
+                report.update(projectSlug=slug, runId=owner)
+                receipts = store.directory / "preflight"
+                receipts.mkdir(exist_ok=True)
+                target = receipts / f"{slug}.json"
+                temporary = target.with_suffix(".tmp")
+                temporary.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+                temporary.replace(target)
     except (OSError, ValueError) as error:
         print(f"Prerequisite check failed: {error}", file=sys.stderr)
         return 2
@@ -179,7 +310,8 @@ def main() -> int:
         for item in report["checks"]:
             print(f"{'READY' if item['ok'] else 'MISSING/FAILED'}: {item['name']}\n  {item['detail']}")
         print("\nNot checked: " + "; ".join(report["notChecked"]))
-    return 0 if report["ready"] else 1
+    ready = not profiles.stage_failures(report, args.stage) if args.stage and services is not None else report["ready"]
+    return 0 if ready else 1
 
 
 if __name__ == "__main__":

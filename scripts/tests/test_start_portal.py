@@ -57,9 +57,30 @@ class PortalStartupTests(unittest.TestCase):
             spawn.return_value.poll.return_value = None
             self.assertEqual(self.config, launcher.ensure_portal())
         self.assertEqual(3, running.call_count)
+        startup_id = spawn.call_args.kwargs["env"]["ABCBUILDER_PORTAL_STARTUP_ID"]
         for invocation in running.call_args_list[1:]:
-            self.assertEqual({"expected_pid": self.config["pid"]}, invocation.kwargs)
+            self.assertEqual({"expected_startup_id": startup_id}, invocation.kwargs)
         spawn.assert_called_once()
+
+    def test_startup_identifier_rejects_stale_records_before_sending_credentials(self) -> None:
+        self.write_connection({**self.config, "startupId": "old-launch"})
+        with patch.object(launcher.http.client, "HTTPConnection") as connection:
+            self.assertIsNone(launcher.running_portal(expected_startup_id="new-launch"))
+        connection.assert_not_called()
+
+    def test_matching_startup_identifier_accepts_windows_interpreter_pid_handoff(self) -> None:
+        config = {**self.config, "pid": 456, "startupId": "owned-launch"}
+        self.write_connection(config)
+        client = Mock()
+        health = Mock(status=200)
+        health.read.return_value = json.dumps({"status": "ok", "workspace": str(ROOT)}).encode()
+        catalog = Mock(status=200)
+        catalog.read.return_value = json.dumps({
+            "workflowVersion": launcher.WORKFLOW_VERSION, "systemControlsVersion": 1, "prerequisitesVersion": 1,
+        }).encode()
+        client.getresponse.side_effect = [health, catalog]
+        with patch.object(launcher.http.client, "HTTPConnection", return_value=client):
+            self.assertEqual(config, launcher.running_portal(expected_startup_id="owned-launch"))
 
     def test_vscode_task_uses_existing_helper_without_shell_or_auto_execution(self) -> None:
         tasks = json.loads((ROOT / ".vscode" / "tasks.json").read_text(encoding="utf-8"))["tasks"]
@@ -77,7 +98,9 @@ class PortalStartupTests(unittest.TestCase):
         interpreter.touch()
         with (
             patch.object(launcher, "ROOT", root),
-            patch.dict(os.environ, {"PATH": "original-path", "ABC_SETUP_TEST": "preserved"}),
+            patch.dict(os.environ, {
+                "PATH": "original-path", "ABC_SETUP_TEST": "preserved", "ProgramFiles": str(root / "programs"),
+            }),
             patch.object(launcher, "running_portal", side_effect=[None, self.config]),
             patch.object(launcher.subprocess, "Popen") as spawn,
         ):
@@ -91,6 +114,7 @@ class PortalStartupTests(unittest.TestCase):
     def test_missing_repository_environment_keeps_current_interpreter(self) -> None:
         with (
             patch.object(launcher, "ROOT", self.state / "workspace"),
+            patch.dict(os.environ, {"ProgramFiles": str(self.state / "programs")}),
             patch.object(launcher, "running_portal", side_effect=[None, self.config]),
             patch.object(launcher.subprocess, "Popen") as spawn,
         ):
@@ -122,7 +146,9 @@ class PortalStartupTests(unittest.TestCase):
         response.status = 200
         response.read.return_value = json.dumps({"status": "ok", "workspace": str(ROOT)}).encode()
         version_response = Mock(status=200)
-        version_response.read.return_value = json.dumps({"workflowVersion": launcher.WORKFLOW_VERSION}).encode()
+        version_response.read.return_value = json.dumps({
+            "workflowVersion": launcher.WORKFLOW_VERSION, "systemControlsVersion": 1, "prerequisitesVersion": 1,
+        }).encode()
         client.getresponse.side_effect = [response, version_response]
         with patch.object(launcher.http.client, "HTTPConnection", return_value=client) as connection:
             self.assertEqual(self.config, launcher.running_portal())
@@ -134,7 +160,10 @@ class PortalStartupTests(unittest.TestCase):
 
     def test_incompatible_backend_is_not_reused_replaced_or_opened(self) -> None:
         self.write_connection()
-        for catalog in ({}, {"workflowVersion": 1}, {"workflowVersion": "2"}, [], {"workflowVersion": True}):
+        for catalog in (
+            {}, {"workflowVersion": 1}, {"workflowVersion": "2"}, [], {"workflowVersion": True},
+            {"workflowVersion": launcher.WORKFLOW_VERSION},
+        ):
             with self.subTest(catalog=catalog):
                 health = Mock(status=200)
                 health.read.return_value = json.dumps({"status": "ok", "workspace": str(ROOT)}).encode()

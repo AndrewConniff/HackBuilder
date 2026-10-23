@@ -4,6 +4,71 @@ Prepare this machine before starting scenario workers. The portal itself uses Py
 but reference generation also needs the SDKs, native diagram tooling and Python packages below.
 The setup covers the shipped baseline, not every package a future scenario might introduce.
 
+## Service-aware preflight and System checklist
+
+The portal **System** page lists the end-to-end toolchain before it has been checked.
+Unchecked items are **Not checked**, never assumed ready. Authorize read-only diagnostics and select
+**Check prerequisites** to verify versions, Python dependencies, a real PNG and any required running engine.
+Green checked indicators mean the check passed at the displayed time, not merely that a file exists.
+Failures show the command result, affected stages and a corrective action.
+For **Docker installed, engine unavailable**, start Docker Desktop's Linux engine and wait until it is ready;
+do not reinstall Docker merely because its named pipe is unavailable. The audit never starts Docker for you.
+
+Check **All catalog services** for the broadest shipped baseline or **Selected saved scenario** for its
+intake plus current manifest services. Intake also previews requirements and can audit its selected services.
+This is a dependency union, not a separate setup for every combination.
+Changing services/build assumptions invalidates displayed results. Requirements and design remain available.
+
+| Service or build choice | Additional local requirement beyond the shared baseline |
+| --- | --- |
+| Foundry | .NET 10 application; actual package restore/build verifies SDK dependencies |
+| Cosmos DB, AI Search, Storage, SQL | Application packages; no mandatory local database/search emulator |
+| App Service | Default .NET publish/zip path; Docker only for a chosen container build |
+| Container Apps | Default local image build: Docker CLI and a responsive **Linux** engine |
+| Functions | Application packages; Core Tools 4+ only for an explicit local Functions host |
+| Key Vault, managed identity | Application packages; live identity/RBAC verification remains separate |
+| Virtual Network, API Management | Shared infrastructure tools; live connectivity/gateway checks remain separate |
+| Service Bus, Monitor | Application packages; live messaging/telemetry tests remain separate |
+| Explicit remote image build | No local Docker gate; separate authorization is still required for Azure builds |
+
+The shared checklist includes Python, repository `.venv`, all packages in `requirements.txt`, dependency consistency,
+Git, Copilot CLI, PowerShell 7+, .NET 10 SDK, Graphviz, Azure CLI, azd and Azure CLI Bicep.
+Node.js/GitHub CLI remain the separate optional contributor/publication profile, not hidden baseline requirements.
+
+| Stage | Tool gate |
+| --- | --- |
+| Requirements and architecture | No tooling gate; collect all future setup issues together |
+| Diagrams | Python environment/packages, Graphviz and a real PNG render |
+| Bicep | Azure CLI/Bicep and Python Checkov dependencies |
+| Application scaffolding | .NET 10 SDK |
+| Local validation | Build/validation tools, plus Docker or Functions Core Tools only when the build path needs them |
+| Deployment | CLI/azd/PowerShell, plus Docker for local image packaging; cloud consent remains separate |
+
+Run a selected-service audit outside a worker:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\check_prerequisites.py `
+    --services foundry container-apps cosmos-db service-bus --json
+```
+
+Workers record a full audit at the start, after confirmed architecture changes and before affected operations:
+
+```powershell
+python scripts\check_prerequisites.py --for-project --record --stage requirements --json
+python scripts\check_prerequisites.py --for-project --record --stage local-validation --json
+```
+
+Worker receipts are bound to the current project/run, expire after 15 minutes and become invalid when
+manifest services expand. Early-stage commands can succeed while reporting future failures;
+the affected stage cannot report running/completed until its required checks pass.
+Use `--build-mode local` or `--build-mode remote` only for the confirmed architecture.
+Use `--local-functions` only for an explicit local Functions host.
+These switches describe checks, not authorization or a change to deployment configuration.
+
+Unknown design-specific dependencies still require explicit checks. Actual NuGet restore/build,
+generated Dockerfiles, host restrictions, sign-in, Azure target/region/model capacity and runtime acceptance
+cannot be proven by this local tool inventory. No audit installs software, grants permission or repairs a failed host.
+
 ## Quick start on Windows
 
 Run from the repository root in PowerShell. Check-only is the default; it installs nothing:
@@ -142,6 +207,14 @@ An existing repository `.venv` takes precedence and is never deleted or replaced
 If incomplete or created with an incompatible Python, preserve it and recreate/repair it manually
 while workers are idle.
 The checker always reports which interpreter it actually used.
+
+New portal processes and workers prefer the repository `.venv` when present.
+On Windows, when `dot` or `dotnet` is unresolved, they also expose an already installed executable
+under `%ProgramFiles%\Graphviz\bin` or `%ProgramFiles%\dotnet` on that process's PATH.
+Existing PATH selections take precedence. This does not install software, edit User/Machine PATH
+or relax host permissions. Version and diagram checks must still pass in the actual worker.
+This handles the standard Graphviz installer location even when an older terminal lacks its PATH entry.
+Nonstandard installation locations still require explicit environment setup.
 
 ## Authentication, trust and permissions remain manual
 

@@ -20,6 +20,36 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 class PrerequisiteChecksTests(unittest.TestCase):
+    @unittest.skipUnless(os.name == "nt", "Windows installation locations")
+    def test_execution_environment_resolves_existing_tools_without_changing_host_path(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            programs = root / "programs"
+            graphviz = programs / "Graphviz" / "bin" / "dot.exe"
+            dotnet = programs / "dotnet" / "dotnet.exe"
+            for executable in (graphviz, dotnet):
+                executable.parent.mkdir(parents=True)
+                executable.touch()
+            with patch.dict(os.environ, {"PATH": "", "ProgramFiles": str(programs)}):
+                before = dict(os.environ)
+                environment = prerequisites.execution_environment(root)
+                self.assertEqual(before, dict(os.environ))
+                self.assertEqual(graphviz, Path(shutil.which("dot", path=environment["PATH"])))
+                self.assertEqual(dotnet, Path(shutil.which("dotnet", path=environment["PATH"])))
+                self.assertEqual(environment["PATH"], prerequisites.execution_environment(root)["PATH"])
+
+    @unittest.skipUnless(os.name == "nt", "Windows installation locations")
+    def test_execution_environment_preserves_selected_tools_and_does_not_invent_installations(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            selected = root / "selected"
+            selected.mkdir()
+            (selected / "dot.exe").touch()
+            with patch.dict(os.environ, {"PATH": str(selected), "ProgramFiles": str(root / "absent")}):
+                environment = prerequisites.execution_environment(root)
+            self.assertEqual(str(selected), environment["PATH"])
+            self.assertNotIn(str(root / "absent"), environment["PATH"])
+
     def tool(self, identifier: str) -> tuple:
         return next(item for item in prerequisites.TOOLS if item[0] == identifier)
 
@@ -57,6 +87,39 @@ class PrerequisiteChecksTests(unittest.TestCase):
             patch.object(prerequisites, "run_command", return_value=(0, "unrelated dot command")),
         ):
             self.assertFalse(prerequisites.tool_check(self.tool("graphviz"))["ok"])
+
+    def test_docker_distinguishes_missing_cli_from_a_stopped_or_wrong_engine(self) -> None:
+        spec = ("docker", "Docker Linux engine", "docker", ["info"], None, "Docker.DockerDesktop")
+        with patch.object(prerequisites.shutil, "which", return_value=None):
+            result = prerequisites.tool_check(spec)
+            self.assertFalse(result["installed"])
+            self.assertEqual("not-found", result["state"])
+        for code, output, ready in ((1, "pipe not found", False), (0, "28.0.1 windows", False),
+                                    (0, "28.0.1 linux", True)):
+            with (
+                self.subTest(output=output),
+                patch.object(prerequisites.shutil, "which", return_value="docker.exe"),
+                patch.object(prerequisites, "run_command", return_value=(code, output)),
+            ):
+                result = prerequisites.tool_check(spec)
+            self.assertEqual(ready, result["ok"])
+            self.assertTrue(result["installed"])
+            if not ready:
+                self.assertIn("Start Docker Desktop", result["fix"])
+                self.assertEqual("engine-unavailable", result["state"])
+
+    def test_service_report_aggregates_failures_without_blocking_unrelated_stages(self) -> None:
+        identifiers = {tool for tools in prerequisites.profiles.plan(["container-apps"])["stages"].values()
+                       for tool in tools}
+        checks = [prerequisites.check(key, key, key not in {"docker", "graphviz"}, "Synthetic result")
+                  for key in identifiers]
+        with patch.object(prerequisites, "build_report", return_value={"checks": checks}):
+            report = prerequisites.service_report(["container-apps"])
+        self.assertFalse(report["ready"])
+        self.assertEqual(["graphviz"], report["blockedStages"]["diagrams"])
+        self.assertEqual([], report["blockedStages"]["bicep"])
+        self.assertEqual(["docker"], report["blockedStages"]["local-validation"])
+        self.assertEqual([], report["blockedStages"]["requirements"])
 
     def test_copilot_requires_portal_flags(self) -> None:
         for help_text, expected in (

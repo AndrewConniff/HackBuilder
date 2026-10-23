@@ -88,6 +88,15 @@ let detailRevision = 0;
 let listRevision = 0;
 let navigationRevision = 0;
 let workerSignature = "";
+let currentStage = "shape";
+let systemTimer;
+let systemStatus;
+let systemWorkerSignature = "";
+let serverTransition = null;
+let prerequisiteSignature = "";
+let prerequisiteRevision = 0;
+let prerequisiteBusy = false;
+let systemPrerequisiteRevision = 0;
 
 function portalToken() {
   return sessionStorage.getItem("abcbuilder-token") || sessionStorage.getItem("hackbuilder-token") || "";
@@ -100,23 +109,270 @@ function scrollToWorkspace() {
 }
 
 function showStage(stage, updateHash = true) {
+  currentStage = stage;
   const shape = stage === "shape";
+  const system = stage === "system";
+  $("system").hidden = !system;
   $("intake").hidden = !shape;
   $("scenario-form").hidden = !shape;
   if (!shape) $("preview-panel").hidden = true;
-  $("workspace").hidden = shape;
+  $("workspace").hidden = shape || system;
   $("build-details").hidden = stage !== "build";
   $("review").hidden = stage !== "hack";
   const project = selectedProjectSlug || currentRun?.request.projectSlug;
-  if (!shape && project) scenarioStages.set(project, stage);
-  const title = { shape: "Shape the scenario", build: "Build & validate", hack: "Compose the hack" }[stage];
+  if (["build", "hack"].includes(stage) && project) scenarioStages.set(project, stage);
+  const title = {
+    shape: "Shape the scenario", build: "Build & validate", hack: "Compose the hack", system: "System",
+  }[stage];
   $("page-stage").textContent = title;
   $("workspace-title").textContent = title;
-  for (const name of ["shape", "build", "hack"]) {
+  for (const name of ["shape", "build", "hack", "system"]) {
     $("nav-" + name).className = `nav-item${name === stage ? " active" : ""}`;
     $("nav-" + name).setAttribute("aria-current", name === stage ? "step" : "false");
   }
-  if (updateHash) history.replaceState(null, "", { shape: "#intake", build: "#workspace", hack: "#review" }[stage]);
+  if (updateHash) history.replaceState(null, "", {
+    shape: "#intake", build: "#workspace", hack: "#review", system: "#system",
+  }[stage]);
+  clearTimeout(systemTimer);
+}
+
+function systemControls() {
+  const allowed = systemStatus?.canStopServer && $("system-confirm").checked && !serverTransition && !prerequisiteBusy;
+  $("system-stop").disabled = !allowed;
+  $("system-restart").disabled = !allowed;
+  $("system-confirm").disabled = Boolean(serverTransition);
+  $("system-refresh").disabled = Boolean(serverTransition);
+  prerequisiteControls();
+}
+
+function prerequisiteControls() {
+  $("intake-preflight-check").disabled = prerequisiteBusy || !$("tool-consent").checked || Boolean(serverTransition);
+  $("system-preflight-check").disabled =
+    prerequisiteBusy || !$("system-preflight-consent").checked || Boolean(serverTransition);
+}
+
+function renderPrerequisiteChecks(scope, checks, profile) {
+  $(scope + "-preflight-results").replaceChildren(...checks.map((check) => {
+    const stages = check.stages || Object.entries(profile.stages)
+      .filter(([, tools]) => tools.includes(check.id)).map(([stage]) => stage);
+    const item = document.createElement("li");
+    item.className = "preflight-result";
+    item.dataset.state = check.state || (check.ok ? "ready" : "failed-check");
+    const indicator = document.createElement("span");
+    indicator.className = "preflight-indicator";
+    indicator.textContent = check.ok ? "\u2611" : "\u2610";
+    indicator.setAttribute("aria-hidden", "true");
+    const label = document.createElement("strong");
+    label.textContent = `${check.state === "not-checked" ? "Not checked" : check.ok ? "Ready" : "Needs attention"}: ` +
+      check.name;
+    const details = document.createElement("p");
+    details.textContent = (stages.length ? `Required for ${stages.join(", ")}.` : "General toolchain check.") +
+      (check.installed === true ? " Executable discovered." : check.installed === false ? " Executable not found." : "") +
+      (check.detail ? `\n${check.detail}` : "") + (check.fix ? `\nFix: ${check.fix}` : "");
+    item.append(indicator, label, details);
+    return item;
+  }));
+}
+
+async function prerequisitePlan() {
+  const services = selected("services");
+  const signature = JSON.stringify(services);
+  if (signature === prerequisiteSignature) return;
+  prerequisiteSignature = signature;
+  const revision = ++prerequisiteRevision;
+  $("intake-preflight-status").textContent = "Service scope changed. Run a new prerequisite check.";
+  $("intake-preflight-results").replaceChildren();
+  $("intake-preflight-plan-status").textContent = "Resolving the selected service profile.";
+  $("intake-preflight-plan").replaceChildren();
+  try {
+    const profile = await api(`/api/prerequisites/plan?services=${encodeURIComponent(services.join(","))}`);
+    if (revision !== prerequisiteRevision) return;
+    $("intake-preflight-plan-status").textContent =
+      "No tool gate for requirements/design. Build approach is provisional until architecture is confirmed.";
+    $("intake-preflight-plan").replaceChildren(...Object.entries(profile.stages)
+      .filter(([, tools]) => tools.length).map(([stage, tools]) => {
+        const item = document.createElement("li");
+        item.textContent = `${stage}: ${tools.join(", ")}`;
+        return item;
+      }));
+  } catch (error) {
+    if (revision !== prerequisiteRevision) return;
+    prerequisiteSignature = "";
+    $("intake-preflight-plan-status").textContent = `Could not resolve prerequisites: ${error.message}`;
+    throw error;
+  }
+}
+
+async function prerequisiteCheck(scope) {
+  if (prerequisiteBusy) throw new Error("Wait for the current prerequisite audit.");
+  const consent = scope === "intake" ? $("tool-consent").checked : $("system-preflight-consent").checked;
+  if (!consent) throw new Error("Authorize the local read-only commands before running prerequisite checks.");
+  const selectedScope = $("system-preflight-scope").value;
+  if (scope === "system" && selectedScope === "selected" && (!currentRun || currentRun.discovered))
+    throw new Error("Select a saved scenario with service scope in Build & validate, or check all catalog services.");
+  const body = scope === "intake" ? { services: selected("services") }
+    : selectedScope === "selected" ? { runId: currentRun.id }
+    : { services: catalog.services.map((item) => item.id) };
+  body.buildMode = scope === "intake" ? "auto" : $("system-build-mode").value;
+  body.localFunctions = scope === "system" && $("system-local-functions").checked;
+  body.toolConsent = true;
+  const signature = prerequisiteSignature;
+  const systemRevision = systemPrerequisiteRevision;
+  const selectedProject = currentRun?.request.projectSlug;
+  prerequisiteBusy = true;
+  systemControls();
+  const status = $(scope + "-preflight-status");
+  status.textContent = "Checking all planned dependencies and a temporary PNG. No installation or cloud operations.";
+  $(scope + "-preflight-results").replaceChildren();
+  try {
+    const report = await api("/api/prerequisites/check", body);
+    if ((scope === "intake" && signature !== prerequisiteSignature) ||
+        (scope === "system" && (systemRevision !== systemPrerequisiteRevision ||
+          (selectedScope === "selected" && selectedProject !== currentRun?.request.projectSlug)))) {
+      status.textContent = "Scope changed during the audit. Run a new check; old results were not applied.";
+      return;
+    }
+    const failures = report.checks.filter((item) => !item.ok);
+    status.textContent = `${report.checks.length - failures.length} passed; ${failures.length} failed. ` +
+      `Checked ${report.checkedAtUtc}. Requirements/design can proceed. ` +
+      "Recheck after setup changes and in the actual worker before an affected build stage.";
+    renderPrerequisiteChecks(scope, report.checks, report.plan);
+  } catch (error) {
+    status.textContent = `Audit failed; no readiness is claimed. ${error.message}`;
+    throw error;
+  } finally {
+    prerequisiteBusy = false;
+    systemControls();
+  }
+}
+
+async function resetSystemPrerequisites() {
+  const revision = ++systemPrerequisiteRevision;
+  $("system-preflight-status").textContent = "Scope changed. Not checked; no readiness is assumed.";
+  $("system-preflight-results").replaceChildren();
+  const query = new URLSearchParams({
+    buildMode: $("system-build-mode").value,
+    localFunctions: String($("system-local-functions").checked),
+  });
+  if ($("system-preflight-scope").value === "selected") {
+    if (!currentRun || currentRun.discovered) return;
+    query.set("runId", currentRun.id);
+  } else {
+    query.set("services", catalog.services.map((item) => item.id).join(","));
+  }
+  const profile = await api(`/api/prerequisites/plan?${query}`);
+  if (revision === systemPrerequisiteRevision)
+    renderPrerequisiteChecks("system", profile.checks, profile);
+}
+
+async function refreshSystem() {
+  if (serverTransition) return;
+  systemStatus = await api("/api/system");
+  if (serverTransition) return;
+  $("system-status").textContent =
+    `Server ${systemStatus.status} · PID ${systemStatus.pid} · uptime ${systemStatus.uptimeSeconds}s`;
+  const details = [
+    ["Workspace", systemStatus.workspace], ["State directory", systemStatus.stateDirectory],
+    ["Python", systemStatus.pythonExecutable], ["Port", systemStatus.port],
+    ["Started (UTC)", systemStatus.startedAtUtc], ["Workflow version", systemStatus.workflowVersion],
+  ];
+  $("system-details").replaceChildren(...details.flatMap(([label, value]) => {
+    const term = document.createElement("dt");
+    term.textContent = label;
+    const description = document.createElement("dd");
+    description.textContent = String(value);
+    return [term, description];
+  }));
+  $("system-launcher").textContent = `Local launcher: ${systemStatus.launcher}`;
+  $("system-worker-status").textContent = systemStatus.preflightRunning
+    ? "A prerequisite audit is running. Server stop/restart is paused until it finishes."
+    : systemStatus.workers.length
+    ? `${systemStatus.workers.length} active worker/writer entries. Server stop/restart is blocked.`
+    : "All workers are idle. Server stop/restart is available after confirmation.";
+  const signature = JSON.stringify(systemStatus.workers);
+  if (signature !== systemWorkerSignature) {
+    systemWorkerSignature = signature;
+    $("system-workers").replaceChildren(...systemStatus.workers.map((worker) => {
+      const item = document.createElement("li");
+      const title = document.createElement("p");
+      title.textContent = `${worker.projectSlug} · ${worker.kind} · PID ${worker.pid ?? "not started"}`;
+      item.append(title);
+      if (!worker.canStop) {
+        const warning = document.createElement("p");
+        warning.textContent = "Not stoppable by this server. Inspect the original process and saved writer locally.";
+        item.append(warning);
+        return item;
+      }
+      const confirmation = document.createElement("label");
+      confirmation.className = "consent";
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      const label = document.createElement("span");
+      label.textContent = `Confirm stopping only ${worker.projectSlug}.`;
+      confirmation.append(checkbox, label);
+      const stop = document.createElement("button");
+      stop.type = "button";
+      stop.className = "secondary";
+      stop.textContent = `Stop worker: ${worker.projectSlug}`;
+      stop.disabled = true;
+      checkbox.addEventListener("change", () => { stop.disabled = !checkbox.checked; });
+      stop.addEventListener("click", action(async () => {
+        if (!checkbox.checked) throw new Error("Confirm the specific worker before stopping it.");
+        stop.disabled = true;
+        try {
+          await api(`/api/runs/${worker.runId}/stop`, {});
+        } finally {
+          systemWorkerSignature = "";
+          await refreshSystem();
+        }
+      }));
+      item.append(confirmation, stop);
+      return item;
+    }));
+  }
+  systemControls();
+  clearTimeout(systemTimer);
+  if (currentStage === "system")
+    systemTimer = setTimeout(() => refreshSystem().catch(showError), 3000);
+}
+
+async function serverAction(kind) {
+  if (!systemStatus?.canStopServer || !$("system-confirm").checked || serverTransition || prerequisiteBusy)
+    throw new Error("Wait until all workers are idle and confirm the server action.");
+  serverTransition = kind;
+  systemControls();
+  clearTimeout(timer);
+  clearTimeout(systemTimer);
+  let result;
+  try {
+    result = await api(`/api/system/${kind}`, { confirmed: true });
+  } catch (error) {
+    serverTransition = null;
+    systemControls();
+    await refreshSystem();
+    throw error;
+  }
+  $("system-status").textContent = kind === "stop"
+    ? "Shutdown accepted. Use the local launcher below to start the portal again."
+    : "Restarting server. Waiting for the fresh backend to become ready…";
+  $("connection").textContent = kind === "stop" ? "Server stopping" : "Restarting";
+  if (kind === "stop") return;
+  sessionStorage.setItem("abcbuilder-token", result.restartToken);
+  let failure = "Server has not answered yet.";
+  for (let attempt = 0; attempt < 40; attempt++) {
+    try {
+      const health = await api("/api/health");
+      if (health.workspace !== systemStatus.workspace)
+        throw new Error("The restarted port belongs to another workspace. Use the local launcher.");
+      location.reload();
+      return;
+    } catch (error) {
+      if (!(error instanceof TypeError) && error.status !== 403 && error.status !== 503) throw error;
+      failure = error.message;
+    }
+    await new Promise((resolve) => setTimeout(resolve, 500));
+  }
+  throw new Error(`Restart did not become ready. Use the local launcher to recover. Last check: ${failure}`);
 }
 
 function markdownInline(parent, value) {
@@ -298,7 +554,7 @@ async function api(path, body) {
   const value = await response.json();
   if (!response.ok)
     throw Object.assign(new Error(value.error || `Request failed (${response.status}).`), {
-      code: value.code, project: value.project,
+      code: value.code, project: value.project, status: response.status,
     });
   return value;
 }
@@ -412,7 +668,8 @@ function selectRun(id, slug) {
     knownProjects.find((project) => project.runId === id)?.projectSlug || null;
   selectionRevision++;
   if (currentRun?.id !== id) {
-    for (const name of ["continue", "revise", "answer-decision", "compose", "stop"]) $(name).disabled = true;
+    for (const name of ["continue", "revise", "answer-decision", "compose", "stop",
+      "retry-setup", "revoke-consent"]) $(name).disabled = true;
     $("project-summary").textContent = "Loading the selected scenario. Actions are paused until its status arrives.";
   }
 }
@@ -556,6 +813,8 @@ function validatedIntake(execution = false) {
 }
 
 function summarize() {
+  prerequisiteControls();
+  prerequisitePlan().catch(showError);
   const data = request();
   renderProjectConflict(data.projectSlug);
   $("summary-project").textContent = data.projectSlug || "Enter a project name";
@@ -583,13 +842,19 @@ function summarize() {
   $("compose").disabled =
     !$("tested").checked ||
     !$("approval").value.trim() ||
-    !$("tool-consent").checked ||
+    !localExecutionAllowed() ||
+    Boolean(currentRun?.project?.setupBlocker) ||
     !currentRun?.review?.ready ||
     selectedRunId !== currentRun?.id ||
     Boolean(currentRun?.project?.writer) ||
     !hasWorkerCapacity() ||
     currentRun.status === "running" ||
     Boolean(currentRun.discovered);
+}
+
+function localExecutionAllowed() {
+  return currentRun?.project?.localToolConsent?.scope === "scenario-local-execution" ||
+    $("workspace-consent").checked;
 }
 
 function renderRun(run) {
@@ -611,6 +876,8 @@ function renderRun(run) {
     currentRun?.id !== run.id ||
     currentRun?.review?.fingerprint !== run.review?.fingerprint;
   currentRun = run;
+  if (switched && $("system-preflight-scope").value === "selected") resetSystemPrerequisites().catch(showError);
+  if (switched) $("workspace-consent").checked = false;
   if (changed) {
     const sameReview = draft?.runId === run.id && draft?.fingerprint === run.review?.fingerprint;
     $("tested").checked = Boolean(sameReview && draft.tested);
@@ -620,6 +887,22 @@ function renderRun(run) {
   $("run-details").hidden = false;
   $("run-name").textContent = `${run.request.projectSlug} / ${run.kind}`;
   const project = run.project;
+  const authorized = project?.localToolConsent?.scope === "scenario-local-execution";
+  const setup = project?.setupBlocker;
+  $("workspace-consent-label").hidden = authorized || !project || Boolean(run.discovered);
+  $("workspace-consent").disabled = Boolean(project?.writer);
+  $("local-consent-status").textContent = authorized
+    ? "Local execution is authorized for this scenario across steps and resumptions. Azure and publishing are excluded."
+    : project && !run.discovered
+      ? "Authorize local execution once for this scenario. Older projects require one explicit confirmation."
+      : "Select a saved scenario to view its local execution authorization.";
+  $("revoke-consent").hidden = !authorized;
+  $("revoke-consent").disabled = Boolean(project?.writer) || run.status === "running";
+  $("setup-panel").hidden = !setup;
+  if (setup) {
+    $("setup-action").textContent = setup.action;
+    $("setup-verification").textContent = `Required worker check: ${setup.verification}`;
+  }
   const historical = run.review?.evidenceType === "historical-user-attestation";
   const packaged = run.composition?.status === "packages_validated";
   const approved = run.review?.approval?.decision === "approved";
@@ -627,7 +910,7 @@ function renderRun(run) {
     $("artifact-preview").hidden = true;
     $("reference-content").hidden = true;
   }
-  $("run-status").textContent = run.discovered && !packaged
+  $("run-status").textContent = setup ? "Setup required" : run.discovered && !packaged
     ? "Local project · read-only preview"
     : packaged
     ? "Packages validated · event not deployed"
@@ -638,7 +921,9 @@ function renderRun(run) {
     : (project?.status || "Legacy execution").replaceAll("_", " ");
   $("execution-status").textContent = `Execution: ${run.status}${run.error ? ` · ${run.error}` : ""}`;
   $("project-summary").textContent =
-    run.discovered
+    setup
+      ? "A technical prerequisite or host permission is unresolved. Verify setup rather than approving again."
+    : run.discovered
       ? `Discovered on disk. Read-only preview; missing workflow details are not inferred. Available: ${(run.localInventory || []).join(", ") || "No recognized artifacts yet"}.`
       : packaged
       ? "Challenges, learner guide, participant starter and private coach package are validated. Event not deployed."
@@ -680,6 +965,7 @@ function renderRun(run) {
       const status = document.createElement("span");
       status.textContent = run.review?.ready && !approved && key === "review"
         ? "Ready for your review"
+        : stage?.status === "blocked" ? "Setup required"
         : (stage?.status || "pending") === "pending" && key === "deployment" &&
             !project?.authorizations.some((entry) => entry.kind === "deployment")
           ? "Not authorized"
@@ -760,8 +1046,11 @@ function renderRun(run) {
   $("stop").hidden = run.status !== "running";
   $("stop").disabled = false;
   const decision = pendingDecision();
-  const canAct = !run.discovered && !project?.writer && run.status !== "running" &&
-    run.kind !== "composition" && hasWorkerCapacity();
+  const idle = !run.discovered && !project?.writer && run.status !== "running" && hasWorkerCapacity() &&
+    localExecutionAllowed();
+  const canAct = idle && run.kind !== "composition" && !setup;
+  $("retry-setup").disabled = !idle || Boolean(decision);
+  $("instructions-panel").hidden = Boolean(setup);
   $("decision-panel").hidden = !decision || packaged;
   $("decision-actions").hidden = !decision || packaged;
   $("answer-decision").disabled = !canAct;
@@ -830,6 +1119,7 @@ async function loadRun(id) {
 }
 
 async function refreshRuns(selectId, selectSlug) {
+  if (serverTransition) return;
   if (selectId) selectRun(selectId, selectSlug);
   const revision = ++listRevision;
   const runs = await api("/api/runs");
@@ -898,7 +1188,7 @@ async function followup(kind) {
   const sentText = $("decision").value;
   const body = {
     message: $("decision").value,
-    toolConsent: $("tool-consent").checked,
+    toolConsent: $("workspace-consent").checked,
     revision: currentRun.project?.revision,
   };
   const decision = pendingDecision();
@@ -927,21 +1217,23 @@ async function followup(kind) {
     error.message = `${origin.request.projectSlug}: ${error.message}`;
     throw error;
   }
+  const consumesInstruction = ["continue", "revise", "compose"].includes(kind);
   const draft = scenarioDrafts.get(origin.request.projectSlug);
-  if (draft?.decision === sentText) draft.decision = "";
+  if (consumesInstruction && draft?.decision === sentText) draft.decision = "";
   await refreshRuns(
     navigation === navigationRevision ? run.id : undefined, origin.request.projectSlug,
   );
   if (navigation === navigationRevision && currentRun?.request.projectSlug === origin.request.projectSlug) {
-    if ($("decision").value === sentText) $("decision").value = "";
-    if (kind !== "stop") showStage(kind === "compose" ? "hack" : "build");
+    if (consumesInstruction && $("decision").value === sentText) $("decision").value = "";
+    if (!["stop", "revoke-consent"].includes(kind)) showStage(kind === "compose" ? "hack" : "build");
     scrollToWorkspace();
   }
 }
 
 async function initialize() {
   catalog = await api("/api/catalog");
-  if (catalog.workflowVersion !== 4 || catalog.maxConcurrentWorkers !== 4)
+  if (catalog.workflowVersion !== 5 || catalog.maxConcurrentWorkers !== 4 ||
+      catalog.systemControlsVersion !== 1 || catalog.prerequisitesVersion !== 1)
     throw new Error("Restart the local portal server to load the workflow dashboard, then reload this page.");
   for (const item of catalog.industries)
     $("industries").append(choice(item, "industry", "radio"));
@@ -989,23 +1281,32 @@ async function initialize() {
   $("connection").textContent = catalog.cliAvailable
     ? "Local CLI detected"
     : "Install Copilot CLI";
-  $("workspace-consent").checked = $("tool-consent").checked;
   $("workspace-consent").addEventListener("change", () => {
-    $("tool-consent").checked = $("workspace-consent").checked;
-    summarize();
+    if (currentRun) renderRun(currentRun);
+    else summarize();
   });
-  $("tool-consent").addEventListener("change", () => {
-    $("workspace-consent").checked = $("tool-consent").checked;
-  });
-  for (const [name, hash] of [["shape", "#intake"], ["build", "#workspace"], ["hack", "#review"]]) {
-    $("nav-" + name).addEventListener("click", (event) => {
+  $("system-refresh").addEventListener("click", action(refreshSystem));
+  $("system-preflight-consent").addEventListener("change", prerequisiteControls);
+  renderPrerequisiteChecks("system", catalog.prerequisiteInventory, { stages: {} });
+  for (const id of ["system-preflight-scope", "system-build-mode", "system-local-functions"])
+    $(id).addEventListener("change", action(resetSystemPrerequisites));
+  for (const scope of ["intake", "system"])
+    $(scope + "-preflight-check").addEventListener("click", action(() => prerequisiteCheck(scope)));
+  $("system-confirm").addEventListener("change", systemControls);
+  for (const kind of ["stop", "restart"])
+    $("system-" + kind).addEventListener("click", action(() => serverAction(kind)));
+  for (const name of ["shape", "build", "hack", "system"]) {
+    $("nav-" + name).addEventListener("click", action(async (event) => {
       event.preventDefault();
       navigationRevision++;
       $("error").hidden = true;
       showStage(name);
-    });
+      if (name === "system") await refreshSystem();
+    }));
   }
-  showStage(location.hash === "#review" ? "hack" : location.hash === "#workspace" ? "build" : "shape", false);
+  showStage(location.hash === "#system" ? "system"
+    : location.hash === "#review" ? "hack" : location.hash === "#workspace" ? "build" : "shape", false);
+  if (currentStage === "system") await refreshSystem();
   const updateIntake = (event) => {
     const field = event.target.id === "tool-consent" ? "consent" : event.target.name;
     if (field) touchedIntake.add(field);
@@ -1086,7 +1387,7 @@ async function initialize() {
       }
     }),
   );
-  for (const kind of ["continue", "revise", "compose", "stop"]) {
+  for (const kind of ["continue", "revise", "compose", "stop", "retry-setup", "revoke-consent"]) {
     $(kind).addEventListener(
       "click",
       action(() => followup(kind)),

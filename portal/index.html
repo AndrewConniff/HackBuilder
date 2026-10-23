@@ -22,6 +22,7 @@
           ><span aria-hidden="true">2</span>Build &amp; validate</a
         >
         <a id="nav-hack" class="nav-item" href="#review"><span aria-hidden="true">3</span>Compose the hack</a>
+        <a id="nav-system" class="nav-item" href="#system"><span aria-hidden="true">S</span>System</a>
       </nav>
       <div class="sidebar-note">
         <span class="dot"></span> LOCAL WORKSPACE
@@ -50,6 +51,73 @@
         </div>
       </header>
       <p id="theme-notice" class="theme-notice" role="status" hidden></p>
+      <section id="system" class="workspace" aria-labelledby="system-title" hidden>
+        <section class="panel">
+          <div class="panel-title">
+            <h2 id="system-title">Local system</h2>
+            <button id="system-refresh" class="secondary" type="button">Refresh system status</button>
+          </div>
+          <p id="system-status" role="status">Loading local server status.</p>
+          <dl id="system-details" class="system-details"></dl>
+          <p>Controls apply only to this local portal and its scenario workers, never Azure resources.</p>
+        </section>
+        <section class="panel">
+          <h2>Running workers</h2>
+          <p>Stopping a worker interrupts that job. Files and history are retained; resume the existing scenario later.</p>
+          <p id="system-worker-status" role="status"></p>
+          <ul id="system-workers" class="system-workers"></ul>
+        </section>
+        <section class="panel">
+          <h2>Server controls</h2>
+          <p id="system-boundary">
+            Stop and restart are blocked while any worker or saved writer lease is active.
+            Stop individual workers above and wait for them to finish first. Prerequisite audits must also finish.
+          </p>
+          <label class="consent">
+            <input id="system-confirm" type="checkbox" />
+            <span>I confirm stopping or restarting this portal server. Saved scenarios will be preserved.</span>
+          </label>
+          <div class="actions">
+            <button id="system-restart" class="secondary" type="button" disabled>Restart server</button>
+            <button id="system-stop" class="secondary" type="button" disabled>Stop server</button>
+          </div>
+          <p>Restart reloads backend code. It does not refresh the environment inherited from Windows or install tools.</p>
+        </section>
+        <section class="panel">
+          <h2>Prerequisite audit</h2>
+          <p>Check all planned tools together without installing anything or accessing Azure accounts.</p>
+          <label for="system-preflight-scope">Service scope</label>
+          <select id="system-preflight-scope">
+            <option value="all">All catalog services</option>
+            <option value="selected">Selected saved scenario</option>
+          </select>
+          <label for="system-build-mode">Container build approach (diagnostic scope only)</label>
+          <select id="system-build-mode">
+            <option value="auto">Infer baseline from services</option>
+            <option value="local">Confirmed local container build</option>
+            <option value="remote">Explicitly chosen remote image build</option>
+          </select>
+          <label class="consent"><input id="system-local-functions" type="checkbox" />
+            <span>Include an explicitly planned local Functions host.</span></label>
+          <label class="consent"><input id="system-preflight-consent" type="checkbox" />
+            <span>Authorize read-only local version, dependency, Docker-engine and temporary PNG checks.</span></label>
+          <button id="system-preflight-check" class="secondary" type="button" disabled>Check prerequisites</button>
+          <p id="system-preflight-status" role="status">Not checked. No tool readiness is assumed.</p>
+          <ul id="system-preflight-results" class="preflight-results"></ul>
+          <p class="subtle">Choosing a diagnostic scope does not change a scenario's architecture or grant deployment consent.</p>
+        </section>
+        <section class="panel">
+          <h2>Start or reopen the portal</h2>
+          <p>
+            A stopped server cannot run a browser button. Open <strong>Start-ABCBuilder.cmd</strong>
+            in the repository, or run the command below from the repository root.
+            The launcher starts the server or opens the existing one with fresh local authentication.
+          </p>
+          <pre><code>python scripts\start_portal.py</code></pre>
+          <p id="system-launcher" class="subtle"></p>
+          <p>For Windows PATH changes, launch from a fresh terminal. Browser refresh alone cannot change worker PATH.</p>
+        </section>
+      </section>
       <section class="hero" id="intake">
         <p class="eyebrow">FROM AN IDEA TO A WORKING SCENARIO</p>
         <h1>
@@ -181,6 +249,14 @@
                 <legend class="sr-only">Azure services</legend>
                 <div id="services" class="service-grid"></div>
               </fieldset>
+              <h3>Planned prerequisites</h3>
+              <p>Requirements and design remain available. Later steps require only their relevant tool checks.</p>
+              <p id="intake-preflight-plan-status" role="status">Resolving the selected service profile.</p>
+              <ul id="intake-preflight-plan"></ul>
+              <button id="intake-preflight-check" class="secondary" type="button" disabled>Check selected prerequisites</button>
+              <p class="subtle">Uses the local execution authorization below. Checks only; never installs or starts Docker.</p>
+              <p id="intake-preflight-status" role="status">Not checked. Architecture changes require a new audit.</p>
+              <ul id="intake-preflight-results" class="preflight-results"></ul>
             </section>
             <section class="panel">
               <div class="section-heading">
@@ -289,10 +365,12 @@
         </select>
         <p id="worker-capacity" class="subtle" role="status"></p>
         <ul id="worker-list" class="worker-list" aria-label="Active scenario workers"></ul>
-        <label class="consent"><input id="workspace-consent" type="checkbox" /><span>
-          I authorize local Copilot tool execution for resume, revision or composition.
-          This does not authorize Azure deployment.
+        <p id="local-consent-status" class="subtle" role="status"></p>
+        <label id="workspace-consent-label" class="consent"><input id="workspace-consent" type="checkbox" /><span>
+          Authorize local execution once for this selected scenario, including resume, revision and approved composition.
+          Azure operations and publishing remain separate.
         </span></label>
+        <button id="revoke-consent" type="button" class="text-button" hidden>Revoke local authorization</button>
         <div id="run-empty" class="empty-state">
           <span class="empty-icon">◇</span>
           <h3>Your next scenario starts here</h3>
@@ -310,6 +388,17 @@
             </button>
           </div>
           <p id="project-summary" class="subtle" role="status" aria-live="polite"></p>
+          <section id="setup-panel" class="boundary" aria-labelledby="setup-title" hidden>
+            <h3 id="setup-title">Setup required</h3>
+            <p id="setup-action"></p>
+            <p id="setup-verification" class="subtle"></p>
+            <p class="fine-print">
+              Another approval cannot install a tool, refresh worker PATH or override a host denial.
+              Correct setup outside the worker, then verify under the existing host permissions.
+              The blocker stays active until actual checks pass.
+            </p>
+            <button id="retry-setup" type="button" class="secondary">Verify setup &amp; retry</button>
+          </section>
           <div id="build-details">
           <p class="subtle">Technical reference construction, deployment with explicit consent, and runtime validation.</p>
           <ol id="stage-list" class="stage-list" aria-label="Scenario progress"></ol>

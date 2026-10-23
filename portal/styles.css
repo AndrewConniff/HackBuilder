@@ -65,6 +65,51 @@
 * {
   box-sizing: border-box;
 }
+.system-details {
+  display: grid;
+  grid-template-columns: minmax(90px, 1fr) minmax(0, 3fr);
+  gap: 8px 16px;
+}
+.system-details dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.system-workers {
+  list-style: none;
+  padding: 0;
+}
+.system-workers li {
+  border-top: 1px solid var(--border);
+  padding: 16px 0;
+  overflow-wrap: anywhere;
+}
+.preflight-results {
+  padding-left: 20px;
+}
+.preflight-results li {
+  margin-bottom: 12px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.preflight-result .preflight-indicator {
+  margin-right: 8px;
+  color: var(--muted);
+}
+.preflight-result[data-state="ready"] .preflight-indicator {
+  color: #18733b;
+}
+:root[data-theme="dark"] .preflight-result[data-state="ready"] .preflight-indicator {
+  color: #73df9a;
+}
+.preflight-result[data-state="failed-check"] .preflight-indicator,
+.preflight-result[data-state="engine-unavailable"] .preflight-indicator,
+.preflight-result[data-state="not-found"] .preflight-indicator {
+  color: var(--danger-text);
+}
+#system pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
 html {
   scroll-behavior: smooth;
 }

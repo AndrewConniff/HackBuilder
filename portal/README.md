@@ -83,8 +83,33 @@ If outdated, it reports the server PID and stops without opening the browser, re
 or interrupting workers. The dashboard also rejects incompatible backends.
 Re-running the launcher or refreshing the page does not restart a running Python server.
 Finish/stop active workers before a planned server restart.
+The **System** page shows the server PID, uptime, interpreter, workspace/state paths and active workers.
+Each owned worker has its own confirmation and **Stop worker** action; no arbitrary PID termination is exposed.
+Server **Stop** and **Restart** require confirmation and are rejected while any worker or saved writer lease is active,
+including workers from another scenario. Wait for cancellation cleanup before trying again.
+Restart shuts down the listener, reloads the Python backend and rotates local authentication;
+the requesting tab waits for authenticated health and reloads. Other tabs must reopen through the launcher.
+After **Stop**, the loaded page keeps recovery instructions visible, but cannot start an offline server.
+Use `Start-ABCBuilder.cmd` or `python scripts\start_portal.py` locally to start/open it again.
+No persistent supervisor or system service is installed.
+Restart does not refresh inherited Windows environment variables; use a fresh terminal after PATH changes.
+The **System** prerequisite checklist lists the end-to-end local toolchain with unchecked, ready and failed states.
+Read-only checks require explicit local command authorization; they do not consume a scenario worker slot.
+Server stop/restart also waits for active audits, so their child processes are not abandoned.
+Green checks mean real version/dependency/render/engine probes passed, not just executable discovery.
+Failures list affected stages and fixes, including **Docker installed: start the Linux engine**,
+without auto-starting it.
+Audit all catalog services or the selected saved scenario plus its current manifest.
+Intake also previews the selected-service dependency union and can check it before launch.
+Requirements/design are never blocked by future build-tool failures.
+New/resumed scenario workers must record fresh owner-bound audits before affected implementation/validation stages.
+Receipt scope follows manifest changes and expires after 15 minutes; UI diagnostics never fabricate worker receipts.
+Build-mode/Functions-host selections on System are diagnostic only, not architecture changes or Azure authorization.
+See [the service/stage matrix](../PREREQUISITES.md#service-aware-preflight-and-system-checklist).
 When starting a replacement, readiness waits for the new process's connection record before authenticating,
 so a previous server's per-start token is not sent to a newly bound listener.
+A random per-launch identifier verifies ownership even when Windows virtual-environment Python hands off
+to a different PID. A stale connection record never satisfies that identifier.
 
 No server is installed as a system service. Automatic startup leaves the local
 process available after the chat turn. Connection details (including the private
@@ -159,6 +184,24 @@ Local design uses current public evidence and delegated provisional region/model
 Account, quota and budget checks are deferred until authorized deployment preparation.
 Follow-ups consume canonical intake, all answers and history, not just the latest free-text message.
 The portal displays structured decisions; free-text instructions cannot grant cloud consent.
+Local execution consent is stored once per scenario and reused for steps, resumptions, revisions and
+separately approved composition, including after browser/server restarts. Intake authorization never transfers
+to another selected project. The workspace shows the saved authorization and an idle-only revoke action.
+Older projects without a recorded grant require one explicit workspace confirmation; no approval is inferred
+from prior decisions, history, CLI flags or existing files. Revocation blocks new jobs until explicitly reauthorized.
+
+Missing tooling/PATH and execution-host denials have a separate **Setup required** card, not an approval choice.
+Workers report `blocked` with `blocker: {kind, action, verification}`; kind is `prerequisite` or `host-permission`.
+**Verify setup & retry** starts a worker that first checks the recorded blocker using existing host permissions.
+The blocker remains active during retry and after a failed/denied check.
+Only a revision/owner-checked report for the blocked stage, with `status: "pending"`,
+`setupVerification: {blockerId, passed: true}` and actual command/result evidence clears it.
+The worker can then continue automatically. The retry does not install tools, change PATH, grant host permissions,
+approve an Azure target or change suitability approval. Existing business/design/cloud decisions remain separate.
+Older pending business decisions are not silently answered or reclassified.
+
+This version changes the workflow protocol. Let active workers finish before restarting the portal,
+then open its newly authenticated entry page. Existing jobs keep their original instructions until they end.
 **Refresh status** only reads persisted state and never starts another agent.
 Refresh also reads fingerprint-bound composition receipts from the scenario workspace, including
 work completed by a standalone composition job. Five hack stages cover planning, learner content,

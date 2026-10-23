@@ -216,11 +216,131 @@ class HttpTests(unittest.TestCase):
         status, data = self.call("GET", "/api/catalog")
         self.assertEqual(200, status)
         self.assertEqual(5, len(data["pillars"]))
+        self.assertEqual(1, data["systemControlsVersion"])
+        self.assertEqual(1, data["prerequisitesVersion"])
+        self.assertTrue(all(item["state"] == "not-checked" for item in data["prerequisiteInventory"]))
+        self.assertIn("docker", {item["id"] for item in data["prerequisiteInventory"]})
 
     def test_host_and_cross_origin_are_rejected(self) -> None:
         for headers in ({"Host": "attacker.invalid"}, {"Origin": "https://attacker.invalid"}):
             with self.subTest(headers=headers):
                 self.assertEqual(403, self.call("POST", "/api/preview", self.data, headers=headers)[0])
+
+    def test_system_status_is_authenticated_and_does_not_expose_token(self) -> None:
+        self.assertEqual(403, self.call("GET", "/api/system", token="wrong")[0])
+        status, value = self.call("GET", "/api/system")
+        self.assertEqual(200, status)
+        self.assertEqual(os.getpid(), value["pid"])
+        self.assertEqual([], value["workers"])
+        self.assertTrue(value["canStopServer"])
+        self.assertNotIn("test-token", json.dumps(value))
+        self.assertNotIn("token", value)
+
+    def test_prerequisite_plan_covers_catalog_without_running_commands(self) -> None:
+        with patch.object(portal.subprocess, "run") as execute:
+            status, profile = self.call("GET", "/api/prerequisites/plan?services=foundry,container-apps")
+            self.assertEqual(200, status)
+            self.assertIn("docker", profile["stages"]["local-validation"])
+            self.assertNotIn("docker", profile["stages"]["bicep"])
+            self.assertTrue(all(item["state"] == "not-checked" for item in profile["checks"]))
+        execute.assert_not_called()
+        self.assertEqual(400, self.call("GET", "/api/prerequisites/plan?services=unknown")[0])
+        self.assertEqual(403, self.call("GET", "/api/prerequisites/plan?services=foundry", token="wrong")[0])
+
+    def test_prerequisite_audit_requires_consent_and_returns_all_failures_without_a_worker(self) -> None:
+        from scripts.tests.test_prerequisite_profiles import report_fixture
+
+        report = report_fixture(["container-apps"], failed="docker")
+        report["blockedStages"] = {"local-validation": ["docker"], "bicep": []}
+        body = {"services": ["container-apps"], "toolConsent": True}
+        with patch.object(portal.subprocess, "run", return_value=subprocess.CompletedProcess(
+            [], 1, json.dumps(report), "",
+        )) as execute:
+            self.assertEqual(400, self.call("POST", "/api/prerequisites/check", {
+                **body, "toolConsent": False,
+            })[0])
+            execute.assert_not_called()
+            status, actual = self.call("POST", "/api/prerequisites/check", body)
+        self.assertEqual(200, status)
+        self.assertEqual(report["checks"], actual["checks"])
+        self.assertEqual([], self.server.app.runs())
+        self.assertFalse(execute.call_args.kwargs.get("shell", False))
+        self.assertIn("--services", execute.call_args.args[0])
+
+    def test_prerequisite_audit_errors_and_concurrent_checks_are_explicit(self) -> None:
+        body = {"services": ["foundry"], "toolConsent": True}
+        with patch.object(portal.subprocess, "run", side_effect=subprocess.TimeoutExpired("check", 180)):
+            status, value = self.call("POST", "/api/prerequisites/check", body)
+        self.assertEqual(400, status)
+        self.assertIn("timed out", value["error"])
+        self.assertFalse(self.server.app.preflight_lock.locked())
+        self.server.app.preflight_lock.acquire()
+        try:
+            self.assertFalse(self.call("GET", "/api/system")[1]["canStopServer"])
+            self.assertEqual(400, self.call("POST", "/api/system/restart", {"confirmed": True})[0])
+            status, value = self.call("POST", "/api/prerequisites/check", body)
+            self.assertEqual(400, status)
+            self.assertIn("already running", value["error"])
+        finally:
+            self.server.app.preflight_lock.release()
+
+    def test_system_actions_reject_missing_confirmation_and_foreign_requests(self) -> None:
+        for action in ("stop", "restart"):
+            path = f"/api/system/{action}"
+            for data in ({}, {"confirmed": "true"}, {"confirmed": False}):
+                self.assertEqual(400, self.call("POST", path, data)[0])
+            self.assertEqual(403, self.call("POST", path, {"confirmed": True}, token="wrong")[0])
+            self.assertEqual(403, self.call(
+                "POST", path, {"confirmed": True}, headers={"Origin": "https://untrusted.invalid"},
+            )[0])
+        self.assertFalse(self.server.app.closing)
+
+    def test_system_stop_and_restart_are_blocked_by_saved_writer_even_without_a_worker(self) -> None:
+        self.server.app.projects.claim({"projectSlug": "other-project"}, "saved-owner", create=True)
+        status, value = self.call("GET", "/api/system")
+        self.assertEqual(200, status)
+        self.assertFalse(value["canStopServer"])
+        self.assertFalse(value["workers"][0]["canStop"])
+        for action in ("stop", "restart"):
+            self.assertEqual(400, self.call("POST", f"/api/system/{action}", {"confirmed": True})[0])
+        self.assertFalse(self.server.app.closing)
+
+    def test_system_lists_owned_worker_and_blocks_lifecycle_until_cleanup_finishes(self) -> None:
+        run = self.create_run()
+        self.server.app.workers[run["id"]] = portal.Worker(threading.Thread())
+        status, value = self.call("GET", "/api/system")
+        self.assertEqual(200, status)
+        self.assertFalse(value["canStopServer"])
+        self.assertTrue(value["workers"][0]["canStop"])
+        self.assertEqual("test-agent", value["workers"][0]["projectSlug"])
+        self.assertEqual(400, self.call("POST", "/api/system/restart", {"confirmed": True})[0])
+        self.server.app.workers.clear()
+        self.assertTrue(self.call("GET", "/api/system")[1]["canStopServer"])
+
+    def test_idle_system_shutdown_is_acknowledged_and_prevents_new_jobs(self) -> None:
+        status, value = self.call("POST", "/api/system/stop", {"confirmed": True})
+        self.assertEqual(202, status)
+        self.assertEqual("stop", value["action"])
+        self.assertIsNone(value["restartToken"])
+        self.worker.join(timeout=3)
+        self.assertFalse(self.worker.is_alive())
+        with self.assertRaisesRegex(ValueError, "shutting down"):
+            self.server.app.require_capacity()
+
+    def test_idle_system_restart_rotates_token_and_does_not_launch_a_worker(self) -> None:
+        status, value = self.call("POST", "/api/system/restart", {"confirmed": True})
+        self.assertEqual(202, status)
+        self.assertEqual("restart", value["action"])
+        self.assertNotEqual("test-token", value["restartToken"])
+        self.assertEqual(value["restartToken"], self.server.app.restart_token)
+        self.worker.join(timeout=3)
+        self.assertFalse(self.worker.is_alive())
+        self.assertEqual({}, self.server.app.workers)
+        with patch.dict(os.environ), patch.object(portal.os, "execv") as execute:
+            portal.restart_process(value["restartToken"])
+            self.assertEqual(value["restartToken"], os.environ["ABCBUILDER_PORTAL_RESTART_TOKEN"])
+        self.assertEqual(sys.executable, execute.call_args.args[0])
+        self.assertEqual(str(SCRIPTS / "portal_server.py"), execute.call_args.args[1][1])
 
     def test_preview_has_no_execution_side_effect(self) -> None:
         status, data = self.call("POST", "/api/preview", self.data)
@@ -274,15 +394,172 @@ class HttpTests(unittest.TestCase):
             with self.subTest(consent=consent):
                 self.assertEqual(400, self.call("POST", "/api/runs", {**self.data, "toolConsent": consent})[0])
 
-    def create_run(self, kind: str = "scenario") -> dict:
+    def create_run(self, kind: str = "scenario", local_tool_consent: bool = False) -> dict:
         request = portal.normalize_request(self.data, self.server.app.catalog)
         with patch.object(self.server.app, "execute"):
-            run = self.server.app.start(request, "test", kind)
+            run = self.server.app.start(request, "test", kind, local_tool_consent=local_tool_consent)
         self.server.app.workers.clear()
         run["status"] = "completed"
         self.server.app.save(run)
         self.server.app.projects.finish(request["projectSlug"], run["id"], "completed")
         return run
+
+    def finish_mock_run(self, run: dict) -> None:
+        self.server.app.workers.pop(run["id"], None)
+        run["status"] = "completed"
+        self.server.app.save(run)
+        self.server.app.projects.finish(run["request"]["projectSlug"], run["id"], "completed")
+
+    def test_local_consent_is_saved_once_and_reused_without_request_flag(self) -> None:
+        with patch.object(self.server.app, "execute"):
+            status, run = self.call("POST", "/api/runs", self.data)
+        self.assertEqual(202, status, run)
+        self.finish_mock_run(run)
+        project = self.server.app.projects.read("test-agent")
+        consent = project["localToolConsent"]
+        self.assertEqual("scenario-local-execution", consent["scope"])
+        with patch.object(self.server.app, "execute"):
+            status, resumed = self.call("POST", f"/api/runs/{run['id']}/continue", {
+                "revision": project["revision"], "message": "Continue the confirmed local scope.",
+            })
+        self.assertEqual(202, status, resumed)
+        current = self.server.app.projects.read("test-agent")
+        self.assertEqual(consent, current["localToolConsent"])
+        self.assertEqual([], current["authorizations"])
+        self.finish_mock_run(resumed)
+
+    def test_legacy_consent_is_not_inferred_and_revocation_blocks_new_jobs(self) -> None:
+        run = self.create_run()
+        project = self.server.app.projects.read("test-agent")
+        body = {"revision": project["revision"], "message": "Resume"}
+        status, error = self.call("POST", f"/api/runs/{run['id']}/continue", body)
+        self.assertEqual(400, status)
+        self.assertIn("Authorize local execution once", error["error"])
+        with patch.object(self.server.app, "execute"):
+            status, resumed = self.call("POST", f"/api/runs/{run['id']}/continue", {
+                **body, "toolConsent": True,
+            })
+        self.assertEqual(202, status, resumed)
+        project = self.server.app.projects.read("test-agent")
+        self.assertEqual(400, self.call("POST", f"/api/runs/{resumed['id']}/revoke-consent", {
+            "revision": project["revision"],
+        })[0])
+        self.finish_mock_run(resumed)
+        project = self.server.app.projects.read("test-agent")
+        with patch.object(self.server.app, "require_capacity", side_effect=AssertionError("No worker needed")):
+            status, result = self.call("POST", f"/api/runs/{resumed['id']}/revoke-consent", {
+                "revision": project["revision"],
+            })
+        self.assertEqual(200, status, result)
+        self.assertIsNone(result["project"]["localToolConsent"])
+        self.assertEqual(400, self.call("POST", f"/api/runs/{resumed['id']}/continue", {
+            "revision": result["project"]["revision"], "message": "Resume",
+        })[0])
+
+    def block_setup(self, run: dict, stage: str = "requirements") -> dict:
+        store = self.server.app.projects
+        project = store.read("test-agent")
+        project = store.claim(run["request"], run["id"], project["revision"])
+        project = store.report("test-agent", run["id"], project["revision"], {
+            "stage": stage, "status": "blocked", "summary": "Synthetic missing prerequisite",
+            "blocker": {"kind": "prerequisite", "action": "Repair the test environment outside the worker.",
+                        "verification": "Check the prerequisite from the same worker."},
+        })
+        store.finish("test-agent", run["id"], "completed")
+        return store.read("test-agent")
+
+    def test_setup_retry_does_not_accept_user_assertions_as_verified_setup(self) -> None:
+        run = self.create_run(local_tool_consent=True)
+        project = self.block_setup(run)
+        identifier = project["setupBlocker"]["id"]
+        self.assertEqual("setup_required", project["status"])
+        self.assertEqual([], project["decisions"])
+        self.assertEqual(400, self.call("POST", f"/api/runs/{run['id']}/continue", {
+            "revision": project["revision"], "message": "I approve; the problem is corrected.",
+        })[0])
+        with patch.object(self.server.app, "execute"):
+            status, resumed = self.call("POST", f"/api/runs/{run['id']}/retry-setup", {
+                "revision": project["revision"],
+            })
+        self.assertEqual(202, status, resumed)
+        current = self.server.app.projects.read("test-agent")
+        self.assertEqual(identifier, current["setupBlocker"]["id"])
+        self.assertEqual([], current["authorizations"])
+        prompt = (self.server.app.state / resumed["id"] / "input.txt").read_text(encoding="utf-8")
+        self.assertIn("A retry is not a permission grant", prompt)
+        self.assertIn("Do not install tools, change PATH", prompt)
+        self.finish_mock_run(resumed)
+        self.assertEqual("setup_required", self.server.app.projects.read("test-agent")["status"])
+
+    def test_composition_setup_retry_checks_existing_approval_without_recording_a_new_one(self) -> None:
+        run = self.create_run(local_tool_consent=True)
+        run["kind"] = "composition"
+        self.server.app.save(run)
+        project = self.block_setup(run, "hack-validation")
+        with (
+            patch.object(self.server.app, "execute"),
+            patch.object(hack_workflow, "check_approval") as guard,
+            patch.object(hack_workflow, "record_decision") as approve,
+        ):
+            status, resumed = self.call("POST", f"/api/runs/{run['id']}/retry-setup", {
+                "revision": project["revision"],
+            })
+        self.assertEqual(202, status, resumed)
+        self.assertEqual("composition", resumed["kind"])
+        guard.assert_called()
+        approve.assert_not_called()
+        self.finish_mock_run(resumed)
+
+    def test_real_worker_block_verify_and_continue_cycle_preserves_consent(self) -> None:
+        prefix = (
+            "import os,sys; "
+            f"sys.path.insert(0,{str(SCRIPTS)!r}); "
+            "from pathlib import Path; from portal_workflow import Store; "
+            "s=Store(Path(os.environ['ABCBUILDER_PROJECT_STATE'])); "
+            "slug=os.environ['ABCBUILDER_PROJECT']; owner=os.environ['ABCBUILDER_RUN_ID']; p=s.read(slug); "
+        )
+        blocked = prefix + (
+            "s.report(slug,owner,p['revision'],dict(stage='requirements',status='blocked',"
+            "summary='Synthetic prerequisite failure',blocker=dict(kind='prerequisite',"
+            "action='Coordinate setup outside this test worker',"
+            "verification='Check Python version in the retry worker')))"
+        )
+        verified = prefix + (
+            "assert sys.version_info >= (3,10); "
+            "p=s.report(slug,owner,p['revision'],dict(stage='requirements',status='pending',"
+            "summary='Actual Python prerequisite probe passed',"
+            "setupVerification=dict(blockerId=p['setupBlocker']['id'],passed=True),"
+            "evidence=['Worker Python version: '+sys.version])); "
+            "s.report(slug,owner,p['revision'],dict(stage='requirements',status='completed',"
+            "summary='Continued the next local step',evidence=['Synthetic requirements fixture completed']))"
+        )
+        with patch.object(portal, "cli_command", return_value=[sys.executable, "-c", blocked]):
+            status, run = self.call("POST", "/api/runs", self.data)
+            self.assertEqual(202, status, run)
+            deadline = time.monotonic() + 10
+            while self.server.app.workers and time.monotonic() < deadline:
+                time.sleep(0.02)
+        self.assertEqual({}, self.server.app.workers)
+        project = self.server.app.projects.read("test-agent")
+        self.assertEqual("setup_required", project["status"])
+        consent = project["localToolConsent"]
+        with patch.object(portal, "cli_command", return_value=[sys.executable, "-c", verified]):
+            status, resumed = self.call("POST", f"/api/runs/{run['id']}/retry-setup", {
+                "revision": project["revision"],
+            })
+            self.assertEqual(202, status, resumed)
+            deadline = time.monotonic() + 10
+            while self.server.app.workers and time.monotonic() < deadline:
+                time.sleep(0.02)
+        self.assertEqual({}, self.server.app.workers)
+        project = self.server.app.projects.read("test-agent")
+        self.assertIsNone(project["setupBlocker"])
+        self.assertEqual("completed", project["stages"]["requirements"]["status"])
+        self.assertEqual(consent, project["localToolConsent"])
+        self.assertEqual([], project["decisions"])
+        self.assertEqual([], project["authorizations"])
+        self.assertTrue(any("Worker Python version:" in item
+                            for event in project["history"] for item in event.get("evidence", [])))
 
     def test_read_running_job_probes_live_server_without_error(self) -> None:
         with patch.object(self.server.app, "execute"):
@@ -630,7 +907,7 @@ class HttpTests(unittest.TestCase):
         self.assertEqual(202, status, next_run)
         current = self.server.app.projects.read("test-agent")
         self.assertTrue(current["designConfirmed"])
-        self.assertEqual("Keep chat anonymous", current["history"][0]["message"])
+        self.assertEqual("Keep chat anonymous", current["history"][-1]["message"])
         self.assertEqual([], current["authorizations"])
         self.assertEqual("A retail assistant", current["request"]["prompt"])
         prompt = (self.server.app.state / next_run["id"] / "input.txt").read_text(encoding="utf-8")

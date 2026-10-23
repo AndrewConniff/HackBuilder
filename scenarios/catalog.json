@@ -125,7 +125,7 @@
       "schemaVersion": 1,
       "id": "resto-scale-agent",
       "title": "Fourth Coffee: five-floor restaurant agents under load",
-      "summary": "Generic Hospitality & Travel reference design for a 250-seat restaurant: customer and staff Foundry agents, deterministic reservations and settlement, durable kitchen handoffs and measurable burst recovery. Design only; implementation awaits confirmation.",
+      "summary": "Generic Hospitality & Travel reference for a 250-seat restaurant: customer and staff Foundry agents, deterministic reservations and synthetic settlement, durable kitchen handoffs and measurable burst recovery. Confirmed design with diagrams; implementation and runtime verification pending.",
       "industry": "Hospitality & Travel",
       "businessUnits": [
         "generic"
@@ -147,11 +147,13 @@
       ],
       "artifacts": [
         "01-requirements.md",
-        "02-architecture-assessment.md"
+        "02-architecture-assessment.md",
+        "03-architect-diagram.png",
+        "04-runtime-diagram.png"
       ],
       "source": null,
       "metadataStatus": "curated",
-      "manifestDigest": "8292e9e757802b09241971681c0730a2b07c6de70e37b03ef355e61e9af3a865"
+      "manifestDigest": "56095010784c4e57a675b9fe093a958124aaa039c27b8cdfe9a37ae265f9939c"
     },
     {
       "schemaVersion": 1,
