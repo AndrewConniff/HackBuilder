@@ -58,6 +58,9 @@ When I ask for a hack, hackathon, challenge, lab, or workshop, assume:
   acceptance path depends on them.
 - Package authoring ends at local validation. Coach/team event deployment and
   Azure testing require a separate explicit rollout request.
+- Parameterize coach/participant regions from destination azd configuration; never hardcode or default to
+  the reference-validation region. Do not copy its subscription, tenant, `.azure` or quota/access evidence.
+  Document fresh destination-subscription regional/model/SKU checks for actual event rollout.
 - Preprovide only scenario-specific minimum access, isolation and indispensable
   fixtures. Do not retain all non-Foundry infrastructure by default.
 - Learners decide what components/resources to build. Public content supplies

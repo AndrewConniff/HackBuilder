@@ -72,6 +72,9 @@ the target subscription and tenant:
 - Foundry Agent Service and every required tool or feature.
 - Exact model name, version, deployment type, SKU, quota, and live capacity.
 - Every supporting Azure resource and selected SKU.
+- Subscription-specific access to required availability-zone features, not just public regional support.
+- Compute exact SKU restrictions and family/total regional vCPU plus VM-count quota headroom for aggregate
+  scale/surge demand. Use Microsoft.Web quota for App Service workers, not Compute VM-family quota.
 - Azure Policy and provider registration constraints.
 
 Select a single region where the complete resource set can deploy whenever
@@ -91,6 +94,9 @@ The machine-readable evidence file must contain:
 Requirements, architecture, Bicep, package and deployment procedures must read
 the same evidence file. They must not replace its selected region from memory
 or from a static default.
+For managed portal jobs, also write the workflow's `regionalReadiness` contract into this file.
+The backend rejects missing, failed, unknown, wrong-scope, stale or changed-infrastructure subscription evidence
+before deployment consent and provisioning. Read-only target discovery alone is not this validation.
 
 ## Phase-specific end-to-end output
 

@@ -1321,6 +1321,30 @@ class HttpTests(unittest.TestCase):
                 self.assertFalse(same_project[0].get("discovered", False))
                 self.finish_mock_run(run)
 
+    def test_unidentified_cli_approval_cannot_start_retry_worker(self) -> None:
+        run = self.create_run(local_tool_consent=True)
+        store = self.server.app.projects
+        project = store.read("test-agent")
+        project = store.claim(run["request"], "denial-owner", project["revision"])
+        store.report("test-agent", "denial-owner", project["revision"], {
+            "stage": "deployment", "status": "blocked", "summary": "CLI denied without identifying scope.",
+            "blocker": {
+                "kind": "host-permission", "action": "No structured permission metadata was returned.",
+                "verification": "Denied original operation",
+            },
+            "evidence": ["Permission denied because no interactive user response was available."],
+        })
+        store.finish("test-agent", "denial-owner", "completed")
+        project = store.read("test-agent")
+        with patch.object(self.server.app, "execute") as execute:
+            status, result = self.call("POST", f"/api/runs/{run['id']}/retry-setup", {
+                "revision": project["revision"],
+            })
+            self.assertEqual(400, status, result)
+            self.assertIn("no worker was started", result["error"])
+            execute.assert_not_called()
+        self.assertEqual("unresolved-cli-approval", store.read("test-agent")["setupBlocker"]["category"])
+
     def test_stale_continuation_cannot_start_worker(self) -> None:
         run = self.create_run()
         with patch.object(self.server.app, "execute") as execute:

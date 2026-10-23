@@ -19,6 +19,11 @@ An application URL is required only when the minimum starter includes an app.
 
 ## Team Rules
 
+- Resolve destination subscription, tenant and region independently for coach and each participant target.
+  Never inherit reference-validation targets, `.azure` settings or eligibility evidence.
+  Packages take region from explicit destination environment parameters, not a hardcoded validation default.
+  Run subscription-specific regional/SKU/model/quota checks for each distinct destination scope before what-if.
+
 - Accept an integer team count from 1 through 20.
 - Default to one team when no count is supplied.
 - Format team IDs as `01`, `02`, through `20`.

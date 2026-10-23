@@ -46,6 +46,7 @@ SLUG = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 RUN_ID = re.compile(r"^[0-9a-f]{32}$")
 MAX_BODY = 32768
 MAX_WORKERS = 4
+CLI_OPERATION_TIMEOUT = 7200
 
 
 @dataclass
@@ -298,6 +299,37 @@ def cli_command(executable: str, agent: str, prompt: str) -> list[str]:
     return command
 
 
+def validate_cli_command(command: list[str]) -> None:
+    if os.name != "nt":
+        return
+    units = len(subprocess.list2cmdline(command).encode("utf-16-le")) // 2
+    limit = 8191 if Path(command[0]).suffix.lower() in {".cmd", ".bat"} else 32766
+    if units > limit:
+        raise ValueError(
+            f"Backend CLI command exceeds the Windows launch limit ({units} UTF-16 units; limit {limit}). "
+            "The full assigned prompt is retained privately. No process started or additional permission is needed."
+        )
+
+
+def wait_for_cli(process: subprocess.Popen, operation: str) -> int:
+    try:
+        return process.wait(timeout=CLI_OPERATION_TIMEOUT)
+    except subprocess.TimeoutExpired as error:
+        try:
+            stop_process_tree(process.pid)
+            process.wait(timeout=30)
+        except (OSError, ValueError, subprocess.TimeoutExpired) as cleanup_error:
+            raise ValueError(
+                f"Assigned operation {operation} exceeded its CLI deadline, but process cleanup could not "
+                f"be confirmed: {cleanup_error}. The writer must remain reserved until the owned worker stops."
+            ) from cleanup_error
+        raise ValueError(
+            f"Assigned operation {operation} exceeded the {CLI_OPERATION_TIMEOUT}-second CLI deadline. "
+            "The owned local process tree was stopped; partial work and diagnostics are retained. "
+            "No automatic retry. Submitted Azure operations may still be running; inspect their state before resuming."
+        ) from error
+
+
 class Portal:
     def __init__(self, state: Path, token: str, executable: str | None = None) -> None:
         self.state = state
@@ -315,6 +347,10 @@ class Portal:
         self.started_clock = time.monotonic()
         self.preflight_lock = threading.Lock()
         self.projects = portal_workflow.Store(self.state / "projects")
+        for project_path in sorted(self.projects.directory.glob("*.json")):
+            saved = self.projects.read(project_path.stem)
+            if not saved["writer"]:
+                self.projects.classify_saved_approval_failure(saved["projectSlug"], saved["revision"])
         for path in self.state.glob("*/run.json"):
             run = json.loads(path.read_text(encoding="utf-8"))
             if (
@@ -808,8 +844,13 @@ class Portal:
             "failure as host-permission unless the tool was actually denied. "
             "For actual CLI approval failures inspect structured permission.requested/completed evidence: "
             "separate path, URL and shell approvals and identify the exact unapproved scope. Do not repeat "
-            "a denied command blindly or request generic administrator setup. Unknown access still requires "
-            "operator approval; never broaden trust automatically. Avoid packing unrelated commands, "
+            "a denied command blindly or request generic administrator setup. If no structured permission "
+            "metadata identifies the exact unapproved scope, report kind:workflow-error, with the original "
+            "command/result and missing diagnostic metadata. This is an unresolved backend CLI approval "
+            "failure, NOT an actionable user setup request. Do not tell users to inspect logs or decide "
+            "what scope to permit. Preserve the denial and stop; never retry through Python, a different "
+            "shell, SDK, direct HTTP or backend execution to bypass it. Never broaden trust automatically. "
+            "Avoid packing unrelated commands, "
             "dynamic URLs and automatic variables into a single generated shell expression.\n"
             "The portal is the sole normal user decision surface. Do not send the user to VS Code or "
             "ask them to edit requirements. Read canonical state and all prior answers:\n"
@@ -922,10 +963,14 @@ class Portal:
         finally:
             with self.lock:
                 latest = self.read(run["id"])
-                try:
-                    self.projects.finish(run["request"]["projectSlug"], run["id"], latest["status"])
-                finally:
-                    self.workers.pop(run["id"], None)
+                worker = self.workers.get(run["id"])
+                if worker and worker.process and worker.process.poll() is None:
+                    LOG.error("Worker %s is still alive; retaining ownership and writer lease.", run["id"])
+                else:
+                    try:
+                        self.projects.finish(run["request"]["projectSlug"], run["id"], latest["status"])
+                    finally:
+                        self.workers.pop(run["id"], None)
             self.recover_pending_questions()
 
     def readiness(self, run: dict) -> dict:
@@ -973,6 +1018,35 @@ class Portal:
                 self.setup_running = False
                 self.preflight_lock.release()
 
+    def require_regional_readiness(self, run: dict, project: dict, scope: dict | None) -> None:
+        try:
+            azure_context.validate_regional_readiness(
+                self.scenario(run), project, scope,
+                prerequisite_profiles.effective_services(ROOT, project["request"], project["projectSlug"]),
+            )
+        except (OSError, ValueError, TypeError) as error:
+            with self.projects.locked():
+                current = self.projects.read(project["projectSlug"])
+                if current["writer"] != run["id"]:
+                    raise ValueError("Regional validation owner changed; no state invalidated.") from error
+                invalidated = [item for item in current["authorizations"] if item["kind"] == "deployment"]
+                current["authorizations"] = [
+                    item for item in current["authorizations"] if item["kind"] != "deployment"
+                ]
+                if current.get("deploymentPreparation"):
+                    current["deploymentPreparation"].update(
+                        status="failed", summary=f"Subscription regional readiness failed: {error}",
+                    )
+                current["history"].append({
+                    "action": "regional-readiness-failed", "message": str(error),
+                    "invalidatedDeploymentAuthorizations": invalidated, "recordedAtUtc": now(),
+                })
+                self.projects.save(current)
+            raise ValueError(
+                f"Subscription regional readiness failed before provisioning: {error} "
+                "Resume performs read-only preparation again; no deployment or quota change was authorized."
+            ) from error
+
     def execute_operations(self, run: dict, prompt: str, output) -> int:
         slug = run["request"]["projectSlug"]
         scenario = run["kind"] == "scenario"
@@ -999,6 +1073,12 @@ class Portal:
             }
             if operation is None:
                 return 0
+            if scenario and operation["name"] in {"deployment-decision", "deployment"}:
+                preparation_scope = next(
+                    (item["scope"] for item in reversed(project["authorizations"])
+                     if item["kind"] == "deployment-preparation"), None,
+                )
+                self.require_regional_readiness(run, project, preparation_scope)
             if scenario and operation["name"] in prerequisite_profiles.STAGE_REQUIREMENTS:
                 try:
                     prerequisite_profiles.require_stage(
@@ -1033,36 +1113,62 @@ class Portal:
                         )})}\n"
                     )
                 latest = self.read(run["id"])
-                latest.update(backendPhase=operation["name"], operationIndex=index + 1, childPid=None)
+                operation_directory = self.state / run["id"] / f"operation-{index + 1:02d}-{operation['name']}"
+                operation_directory.mkdir(exist_ok=True)
+                (operation_directory / "prompt.txt").write_text(job_prompt, encoding="utf-8")
+                command = [
+                    *cli_command(self.executable, run["agent"], job_prompt),
+                    "--log-dir", str((operation_directory / "cli-diagnostics").resolve()),
+                ]
+                validate_cli_command(command)
+                latest.update(
+                    backendPhase=operation["name"], operationIndex=index + 1, childPid=None,
+                    operationStartedAtUtc=now(), operationTimeoutSeconds=CLI_OPERATION_TIMEOUT,
+                    operationDiagnostics=str(operation_directory.resolve()),
+                )
                 self.save(latest)
                 output.write(f"\nBackend assigned: {operation['name']}\n".encode("utf-8"))
                 output.flush()
                 environment = {
                     **execution_environment(ROOT),
+                    "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8",
                     "ABCBUILDER_PORTAL_JOB": "1", "HACKBUILDER_PORTAL_JOB": "1",
                     "ABCBUILDER_PROJECT_STATE": str(self.projects.directory.resolve()),
                     "ABCBUILDER_PROJECT": slug, "ABCBUILDER_RUN_ID": run["id"],
                     "HACKBUILDER_PROJECT_STATE": str(self.projects.directory.resolve()),
                     "HACKBUILDER_PROJECT": slug, "HACKBUILDER_RUN_ID": run["id"],
                 }
+                for key in ("ABCBUILDER_ASSIGNED_STAGES", "ABCBUILDER_ASSIGNED_JOB", "ABCBUILDER_ASSIGNED_OPERATION"):
+                    environment.pop(key, None)
                 if scenario:
                     environment["ABCBUILDER_ASSIGNED_STAGES"] = json.dumps(operation["stages"])
                     environment["ABCBUILDER_ASSIGNED_JOB"] = operation["name"]
                     if operation.get("operation"):
                         environment["ABCBUILDER_ASSIGNED_OPERATION"] = operation["operation"]
                 process = subprocess.Popen(
-                    cli_command(self.executable, run["agent"], job_prompt), cwd=ROOT,
+                    command, cwd=ROOT,
                     stdin=subprocess.DEVNULL, stdout=output, stderr=subprocess.STDOUT, shell=False, env=environment,
                 )
                 self.workers[run["id"]].process = process
                 latest["childPid"] = process.pid
                 self.save(latest)
-            code = process.wait()
+            code = wait_for_cli(process, operation["name"])
             if self.read(run["id"])["status"] in {"cancelled", "paused"}:
                 return 1
             if not scenario:
                 return code
             project = self.projects.read(slug)
+            progress = (
+                project.get("deploymentPreparation", {}) if operation.get("operation") == "deployment-preparation"
+                else project["stages"].get(operation["name"], {})
+            )
+            if progress.get("status") == "failed" and workflow_engine.signature(project) != before:
+                latest = self.read(run["id"])
+                latest["error"] = (
+                    f"Assigned operation {operation['name']} reported failure: {progress.get('summary', 'See retained evidence.')}"
+                )
+                self.save(latest)
+                return code or 1
             if code:
                 latest = self.read(run["id"])
                 latest["error"] = f"Assigned operation {operation['name']} failed (exit {code}); inspect retained evidence."
@@ -1100,6 +1206,10 @@ class Portal:
                         item["name"] for item in report["checks"] if not item["ok"]
                     ))
                 continue
+            if operation["name"] == "deployment-preparation" and (
+                project.get("deploymentPreparation", {}).get("status") == "completed"
+            ):
+                self.require_regional_readiness(run, project, operation["scope"])
             if operation["name"] in project["stages"] and (
                 project["stages"][operation["name"]]["status"] == "completed"
                 or operation["name"] == "architecture"
@@ -1160,15 +1270,22 @@ class Portal:
                 self.save(run)
                 return run
             if process.poll() is not None:
-                if run["status"] != "running":
+                if run["status"] != "running" and self.workers[run_id].thread.is_alive():
                     raise ValueError("CLI has already exited. Refresh this run.")
             else:
                 stop_process_tree(process.pid)
+                try:
+                    process.wait(timeout=30)
+                except subprocess.TimeoutExpired as error:
+                    raise ValueError("Owned worker has not exited; its writer lease is retained.") from error
             run.update(
                 status=status, error=message,
                 finishedAtUtc=now(),
             )
             self.save(run)
+            if not self.workers[run_id].thread.is_alive():
+                self.projects.finish(run["request"]["projectSlug"], run_id, status)
+                self.workers.pop(run_id)
             return run
 
     def shutdown(self) -> None:
@@ -1430,6 +1547,11 @@ class Handler(BaseHTTPRequestHandler):
                     if action == "retry-setup":
                         if not project or not project["setupBlocker"]:
                             raise ValueError("This scenario has no setup blocker to verify.")
+                        if project["setupBlocker"].get("category") == "unresolved-cli-approval":
+                            raise ValueError(
+                                "Backend CLI approval diagnostics are unresolved. Retry cannot identify or grant "
+                                "the missing permission; no worker was started."
+                            )
                         self.app.projects.check_revision(project, data.get("revision"))
                         if any(item["status"] == "pending" for item in project["decisions"]):
                             raise ValueError("Resolve the pending business/design decision before setup verification.")

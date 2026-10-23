@@ -188,6 +188,32 @@ class ProjectTests(unittest.TestCase):
         self.assertEqual(before["decisions"], after["decisions"])
         self.assertEqual(before["authorizations"], after["authorizations"])
 
+    def test_explicit_region_retarget_preserves_local_work_and_invalidates_cloud_grants(self) -> None:
+        self.ask_design()
+        self.answer("Confirm design")
+        self.report("bicep", "completed")
+        self.store.finish("finance-test", "worker-1", "completed")
+        project = self.store.read("finance-test")
+        scope = {
+            "account": "operator", "subscriptionId": "sub", "tenantId": "tenant",
+            "environment": "test", "resourceGroup": "rg-test", "region": "eastus2",
+        }
+        project["deploymentContext"] = {"scope": scope}
+        project["authorizations"] = [{"kind": "deployment", "scope": scope}]
+        project = self.store.save(project)
+        changed = self.store.retarget_preparation(
+            "finance-test", project["revision"], "eastus", "Try East US read-only validation.",
+        )
+        self.assertEqual("eastus", changed["deploymentContext"]["scope"]["region"])
+        self.assertEqual(["deployment-preparation"], [a["kind"] for a in changed["authorizations"]])
+        self.assertEqual(project["stages"]["bicep"], changed["stages"]["bicep"])
+        self.assertTrue(changed["designConfirmed"])
+        self.assertEqual("pending", changed["stages"]["deployment"]["status"])
+        self.assertEqual("eastus2", changed["history"][-1]["previousScope"]["region"])
+        self.assertEqual("deployment", changed["history"][-1]["previousAuthorizations"][0]["kind"])
+        with self.assertRaisesRegex(ValueError, "Project changed"):
+            self.store.retarget_preparation("finance-test", project["revision"], "eastus", "Stale request")
+
     def test_local_consent_survives_resume_and_restart_without_granting_cloud_access(self) -> None:
         self.store.finish("finance-test", "worker-1", "completed")
         self.project = self.store.read("finance-test")
@@ -301,6 +327,37 @@ class ProjectTests(unittest.TestCase):
         self.assertEqual([], self.project["authorizations"])
         with self.assertRaisesRegex(ValueError, "Exact-target"):
             self.report("deployment", "running")
+
+    def test_unidentified_cli_approval_is_not_an_actionable_host_setup_request(self) -> None:
+        self.report("deployment", "blocked", blocker={
+            "kind": "host-permission",
+            "action": "Inspect CLI evidence. No structured permission metadata was returned.",
+            "verification": "Original denied command; do not rerun.",
+        }, evidence=["Permission denied because no interactive user response was available."])
+        blocker = self.project["setupBlocker"]
+        self.assertEqual("workflow-error", blocker["kind"])
+        self.assertEqual("unresolved-cli-approval", blocker["category"])
+        self.assertIn("No user setup or approval action", blocker["action"])
+        self.assertEqual("Original denied command; do not rerun.", blocker["verification"])
+        self.assertEqual([], self.project["authorizations"])
+
+    def test_saved_unidentified_approval_migration_keeps_denial_and_permissions(self) -> None:
+        self.report("deployment", "blocked", blocker={
+            "kind": "host-permission", "action": "Review the specifically identified denied path.",
+            "verification": "Original command",
+        })
+        self.store.finish("finance-test", "worker-1", "completed")
+        project = self.store.read("finance-test")
+        project["setupBlocker"]["action"] = "No structured permission metadata was returned. Inspect CLI logs."
+        project = self.store.save(project)
+        before = dict(project["setupBlocker"])
+        migrated = self.store.classify_saved_approval_failure("finance-test", project["revision"])
+        self.assertEqual("workflow-error", migrated["setupBlocker"]["kind"])
+        self.assertEqual(before["id"], migrated["setupBlocker"]["id"])
+        self.assertEqual(before["verification"], migrated["setupBlocker"]["verification"])
+        self.assertEqual(project["authorizations"], migrated["authorizations"])
+        self.assertIsNone(migrated["writer"])
+        self.assertEqual(before, migrated["history"][-1]["previousBlocker"])
 
     def test_rejected_design_cannot_start_implementation(self) -> None:
         self.ask_design()

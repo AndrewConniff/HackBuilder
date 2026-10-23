@@ -164,7 +164,10 @@ def tool_check(spec: tuple) -> dict:
         ok = ok and "copilot" in output.lower()
         if ok:
             help_code, help_text = run_command([executable, "--help"])
-            required = ("--agent", "--prompt", "--allow-all-tools", "--no-ask-user", "--add-dir")
+            required = (
+                "--agent", "--prompt", "--allow-all-tools", "--no-ask-user", "--add-dir",
+                "--output-format", "--log-dir",
+            )
             missing = [flag for flag in required if flag not in help_text]
             ok = help_code == 0 and not missing
             if not ok:

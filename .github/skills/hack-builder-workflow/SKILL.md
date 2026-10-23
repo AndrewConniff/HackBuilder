@@ -100,6 +100,54 @@ Cloud preparation and deployment use separate portal decisions with exact target
 Preparation permission precedes Azure queries/what-if. Deployment consent follows actual what-if,
 estimated cost and target review. Free-text continuation never grants cloud authorization.
 
+### Subscription regional readiness
+
+Regional validation belongs to architecture, not a trial deployment. Public service locations support only
+provisional local design. At the first authorized exact-target read-only preparation, validate the actual
+subscription before deployment consent or provisioning. If that scope was already authorized during design,
+perform these checks then; do not ask again. Authentication alone is not subscription-query authorization.
+
+Build a candidate matrix for the complete resource set, exact SKUs, models, feature requirements and scale limits.
+Query only candidates covered by the authorization; otherwise present proposed alternatives for consolidated
+target review. Do not pin a failing preferred region merely because a public service table lists it.
+Preserve residency, security, zone redundancy and selected services when ranking alternatives.
+Only recommend a common region where all required checks pass; missing/denied data is unknown, not available.
+Never silently change targets or require a quota/support ticket before evaluating acceptable alternatives.
+
+- Cosmos DB: query subscription-scoped location properties. `supportsAvailabilityZone` does not prove access.
+  For zone-redundant accounts require `isSubscriptionRegionAccessAllowedForAz: true`; nonzonal accounts require
+  `isSubscriptionRegionAccessAllowedForRegular: true`. Require `status: Online` and applicable feature support.
+  Record rejected regions and the actual access flags; do not disable zones as a workaround.
+- Compute VMs/VMSS: query `az vm list-skus --all` and `az vm list-usage` with explicit subscription and region.
+  Verify exact SKU/family, subscription restrictions and requested zones, plus both total regional and family
+  vCPU headroom and VM-count quota. Aggregate all instances, maximum scale and rollout/surge demand.
+  Require `currentValue + required <= limit`; a zero limit with positive demand fails.
+- App Service/Functions plans: identify the actual ARM resource type before interpreting a size/quota error.
+  An App Service B2 worker quota is Microsoft.Web, not a Microsoft.Compute B-family VM quota.
+  Validate its exact SKU/worker quota and hosting requirements using the correct provider.
+- Foundry and dependencies: validate exact model/version/deployment type, quota, required tools/features,
+  provider registration, policy and each supporting service's restrictions. Provider registration is not quota.
+
+The backend requires `regionalReadiness` in `00-region-availability.json` before accepting completed preparation,
+starting the deployment-consent job or launching deployment. The bounded-job instruction specifies its exact
+schema: scope, timezone-aware timestamp, infrastructure fingerprint, per-resource/SKU/capability results,
+real command/result references and quota/access facts. Include every selected and supporting resource.
+Generate its fingerprint with `azure_context.infrastructure_fingerprint` using the actual scenario workspace.
+The backend rejects wrong-scope, missing, unknown, failing, changed-infrastructure or older-than-15-minute results.
+Failure invalidates active deployment authorization while retaining it in audit history; Resume refreshes
+read-only preparation and returns to exact-target consent rather than reusing a stopped deployment grant.
+
+Refresh after provider/capacity failure and immediately before deployment when stale. ARM what-if, quota and
+region metadata cannot reserve capacity or guarantee allocation; distinguish checked eligibility from capacity
+that Azure only resolves at deployment. Do not submit quota requests, change shared defaults or allocate probes.
+Keep each scenario's evidence, targets and approvals separate, even when two scenarios encounter similar errors.
+
+Official references:
+[Cosmos location properties][cosmos-locations] and [Compute quota and capacity][compute-quota].
+
+[cosmos-locations]: https://learn.microsoft.com/rest/api/cosmos-db-resource-provider/locations/list
+[compute-quota]: https://learn.microsoft.com/azure/virtual-machines/quotas
+
 ### Scenario-owned application identity setup
 
 Treat Microsoft Entra application registrations, service principals, exposed API scopes, app roles,
@@ -399,6 +447,14 @@ The coach is a sanitized deployable copy of the approved solution, not a second
 independently designed implementation. Do not redeploy an identical copy merely
 to finish authoring. State clearly that a new coach environment has not been
 deployed yet.
+
+Reference validation targets are not hack/event defaults. Parameterize region and any service-specific
+locations in coach and participant IaC; require explicit destination azd environment values.
+Do not copy the reference `.azure`, region parameter values, subscription/tenant IDs, capacity evidence or
+authorization into packages. Retain required region colocation constraints and document them without pinning
+the validation region. Event subscriptions can differ from each other and from the reference subscription.
+Validate the complete resource/model/SKU set afresh against each destination subscription and chosen region;
+never reuse reference quota or regional-access results as event readiness.
 
 The participant starter is the **scenario-specific minimum**: isolation/access
 and only indispensable synthetic fixtures or prerequisites that cannot fit the

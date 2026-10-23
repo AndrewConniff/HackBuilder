@@ -85,6 +85,28 @@ def setup_verification(value: object) -> str:
     return command
 
 
+def classify_blocker(blocker: dict, evidence: list[str]) -> dict:
+    details = " ".join([blocker["action"], *evidence]).casefold()
+    unidentified_approval = any(phrase in details for phrase in (
+        "no interactive user response", "no structured permission metadata",
+        "no structured permission.requested", "no unapproved scope metadata",
+        "unresolved backend cli approval",
+    ))
+    if (blocker["kind"] not in {"host-permission", "workflow-error"}
+            or blocker.get("category") == "unresolved-cli-approval" or not unidentified_approval):
+        return blocker
+    return {
+        **blocker, "kind": "workflow-error", "category": "unresolved-cli-approval",
+        "originalAction": blocker["action"],
+        "action": (
+            "The backend CLI stopped an operation without identifying the missing permission. "
+            "No user setup or approval action is available. Work is preserved and the operation remains "
+            "blocked pending backend diagnosis; do not retry through another execution route or broaden access."
+        ),
+        "diagnosticEvidence": evidence,
+    }
+
+
 class ProjectExistsError(ValueError):
     def __init__(self, slug: str) -> None:
         self.slug = slug
@@ -348,6 +370,7 @@ class Store:
                     "createdAtUtc": blocker["createdAtUtc"] if blocker else timestamp(),
                     "updatedAtUtc": timestamp(),
                 }
+                setup = classify_blocker(setup, evidence)
             elif setup is not None:
                 raise ValueError("A setup blocker requires blocked status.")
             if stage == "architecture" and (
@@ -556,6 +579,7 @@ class Store:
             }
             text(blocker.get("observedFailure"), "Observed failure", 2000)
             setup["observedFailure"] = blocker["observedFailure"]
+            setup = classify_blocker(setup, [*evidence, blocker["observedFailure"]])
             project["setupBlocker"] = setup
             decision["status"] = "superseded"
             project["stages"][decision["stage"]].update(status="blocked", summary=reason, evidence=evidence)
@@ -631,6 +655,75 @@ class Store:
                 "action": "cancel-idle", "message": "Cancelled saved work; artifacts, decisions and consent retained.",
                 "recordedAtUtc": timestamp(),
             })
+            return self.save(project)
+
+    def classify_saved_approval_failure(self, slug: str, revision: int) -> dict:
+        with self.locked():
+            project = self.read(slug)
+            self.check_revision(project, revision)
+            if project["writer"]:
+                raise ValueError("Wait for the active writer before classifying a saved approval failure.")
+            blocker = project["setupBlocker"]
+            if not blocker:
+                return project
+            classified = classify_blocker(blocker, [])
+            if classified == blocker:
+                return project
+            project["setupBlocker"] = classified
+            project["history"].append({
+                "action": "classify-unresolved-cli-approval", "previousBlocker": blocker,
+                "recordedAtUtc": timestamp(),
+                "message": "Backend diagnostic failure; denial retained. No retry or permission granted.",
+            })
+            return self.save(project)
+
+    def retarget_preparation(self, slug: str, revision: int, region: str, message: str) -> dict:
+        """Record an explicit user region change for read-only validation, never deployment."""
+        with self.locked():
+            project = self.read(slug)
+            self.check_revision(project, revision)
+            if project["writer"]:
+                raise ValueError("Finish the active worker before changing validation targets.")
+            if not isinstance(region, str) or not re.fullmatch(r"[a-z][a-z0-9]+", region):
+                raise ValueError("Use a canonical Azure region name.")
+            context = project.get("deploymentContext")
+            if not isinstance(context, dict) or not isinstance(context.get("scope"), dict):
+                raise ValueError("Resolve the existing exact Azure target before retargeting.")
+            scope = {**context["scope"], "region": region}
+            for field in ("account", "subscriptionId", "tenantId", "environment", "resourceGroup"):
+                text(scope.get(field), f"Scope {field}", 500)
+            blocker = project["setupBlocker"]
+            if blocker and blocker["stage"] != "deployment":
+                raise ValueError("Resolve unrelated local setup before changing deployment targets.")
+            pending = [d for d in project["decisions"] if d["status"] in {"pending", "reviewing"}]
+            if any(d["kind"] not in {"deployment-preparation", "deployment"} for d in pending):
+                raise ValueError("Resolve unrelated business/design decisions before retargeting.")
+            message = text(message, "Explicit user target/preparation instruction")
+            project["history"].append({
+                "action": "retarget-read-only-preparation", "message": message, "recordedAtUtc": timestamp(),
+                "previousScope": context["scope"], "previousBlocker": blocker,
+                "previousAuthorizations": project["authorizations"],
+                "previousPreparation": project.get("deploymentPreparation"),
+                "authorization": "New target read-only checks only; no deployment, directory writes or quota changes.",
+            })
+            for decision in pending:
+                decision["status"] = "superseded"
+            context["scope"] = scope
+            context.setdefault("sources", {})["region"] = "Explicit user validation-region change"
+            context["checkedAtUtc"] = timestamp()
+            project["setupBlocker"] = None
+            project["authorizations"] = [{
+                "kind": "deployment-preparation", "scope": scope, "message": message, "recordedAtUtc": timestamp(),
+            }]
+            project["deploymentPreparation"] = {
+                "status": "pending", "scope": scope,
+                "summary": "User requested fresh validation in this region; previous results are historical.",
+            }
+            for stage in ("deployment", "live-validation", "review"):
+                project["stages"][stage] = {
+                    "status": "pending", "summary": "Target revalidation required; no new deployment authorized.",
+                }
+            project["status"] = "pending"
             return self.save(project)
 
     def propose_deployment_context(self, slug: str, revision: int, context: dict, owner: str | None = None) -> dict:

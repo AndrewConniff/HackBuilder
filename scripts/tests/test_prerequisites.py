@@ -274,7 +274,8 @@ class PrerequisiteChecksTests(unittest.TestCase):
     def test_copilot_requires_portal_flags(self) -> None:
         for help_text, expected in (
             ("--agent --prompt", False),
-            ("--agent --prompt --allow-all-tools --no-ask-user --add-dir", True),
+            ("--agent --prompt --allow-all-tools --no-ask-user --add-dir", False),
+            ("--agent --prompt --allow-all-tools --no-ask-user --add-dir --output-format --log-dir", True),
         ):
             with (
                 self.subTest(help_text=help_text),

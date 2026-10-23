@@ -1008,6 +1008,7 @@ function renderRun(run) {
     `Azure preparation: ${preparation.status} — ${preparation.summary}. This is not deployment completion.` : "";
   const authorized = project?.localToolConsent?.scope === "scenario-local-execution";
   const setup = project?.setupBlocker;
+  const diagnosticFailure = setup?.category === "unresolved-cli-approval";
   $("workspace-consent-label").hidden = authorized || (!project && !run.discovered);
   $("workspace-consent").disabled = Boolean(project?.writer);
   $("local-consent-status").textContent = authorized
@@ -1020,12 +1021,18 @@ function renderRun(run) {
   $("revoke-consent").hidden = !authorized;
   $("revoke-consent").disabled = Boolean(project?.writer) || run.status === "running";
   $("setup-panel").hidden = !setup;
+  $("setup-title").textContent = diagnosticFailure ? "Backend needs attention" : "Setup required";
+  $("retry-setup").hidden = Boolean(diagnosticFailure);
   if (setup) {
     $("setup-kind").textContent = setup.kind === "workflow-error" ?
-      "Portal software error — no additional user permission is required." :
+      "Backend execution failure — this is not a user setup or approval request." :
       "Technical setup blocker — distinct from business or deployment approval.";
     $("setup-action").textContent = setup.action;
-    $("setup-verification").textContent = `Required worker check: ${setup.verification}`;
+    $("setup-verification").hidden = Boolean(diagnosticFailure);
+    $("setup-verification").textContent = diagnosticFailure ? "" : `Required worker check: ${setup.verification}`;
+    $("setup-help").textContent = diagnosticFailure
+      ? "The attempted operation was not permitted. Its missing permission was not identified. No alternative execution, retry or broader access has been authorized."
+      : "Another approval cannot install a tool, refresh worker PATH or override a host denial. Correct setup outside the worker, then verify under the existing host permissions. The blocker stays active until actual checks pass.";
   }
   const historical = run.review?.evidenceType === "historical-user-attestation";
   const packaged = run.composition?.status === "packages_validated";
@@ -1034,7 +1041,7 @@ function renderRun(run) {
     $("artifact-preview").hidden = true;
     $("reference-content").hidden = true;
   }
-  $("run-status").textContent = setup ? (setup.kind === "workflow-error" ? "Portal error" : "Setup required") : run.discovered && !packaged
+  $("run-status").textContent = setup ? (setup.kind === "workflow-error" ? "Backend needs attention" : "Setup required") : run.discovered && !packaged
     ? "Local project · available to resume"
     : packaged
     ? "Packages validated · event not deployed"
@@ -1047,7 +1054,9 @@ function renderRun(run) {
     (run.backendPhase ? ` · Backend: ${run.backendPhase}` : "") + (run.error ? ` · ${run.error}` : "");
   $("project-summary").textContent =
     setup
-      ? "A technical prerequisite or host permission is unresolved. Verify setup rather than approving again."
+      ? diagnosticFailure
+        ? "Backend execution is blocked. Your work is preserved; no setup task or additional approval is being requested."
+        : "A technical prerequisite or host permission is unresolved. Verify setup rather than approving again."
     : run.discovered
       ? `Existing project found on disk. Resume recovers its scope, checks existing assets and joins the managed workflow without starting over. Available: ${(run.localInventory || []).join(", ") || "No recognized artifacts yet"}.`
     : project?.reconciliation?.status === "pending"
@@ -1196,6 +1205,7 @@ function renderRun(run) {
     ? "Running. Pause or Cancel stops the worker and preserves files; neither deletes deployed resources. Resume starts a new attempt from saved progress."
     : project?.writer ? "Waiting for the previous worker to release ownership. Controls enable after cleanup."
     : decision ? "Waiting for the decision below. Play cannot bypass it."
+    : diagnosticFailure ? "Stopped for backend diagnosis. No user action is available; execution permissions are unchanged."
     : setup ? "Resolve the setup blocker and use Verify setup & retry."
     : !run.discovered && (run.review?.ready || packaged) ? "Ready for review or completed. Use the review controls below."
     : !localExecutionAllowed() ? "Authorize local execution above, then select Play / Resume. Authorization alone does not start work."
@@ -1382,7 +1392,7 @@ async function followup(kind) {
 
 async function initialize() {
   catalog = await api("/api/catalog");
-  if (catalog.workflowVersion !== 5 || catalog.backendEngineVersion !== 3 || catalog.maxConcurrentWorkers !== 4 ||
+  if (catalog.workflowVersion !== 5 || catalog.backendEngineVersion !== 5 || catalog.maxConcurrentWorkers !== 4 ||
       catalog.systemControlsVersion !== 1 || catalog.prerequisitesVersion !== 1)
     throw new Error("Restart the local portal server to load the workflow dashboard, then reload this page.");
   for (const item of catalog.industries)

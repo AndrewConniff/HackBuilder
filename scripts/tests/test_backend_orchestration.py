@@ -10,7 +10,7 @@ import tempfile
 import unittest
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import backend_readiness
@@ -21,6 +21,27 @@ import workflow_engine
 
 
 class BackendTests(unittest.TestCase):
+    def test_windows_command_limit_counts_encoded_units_and_batch_launchers(self) -> None:
+        with patch.object(portal_server.os, "name", "nt"):
+            portal_server.validate_cli_command(["copilot.exe", "--prompt", "x" * 32000])
+            for command in (
+                ["copilot.exe", "--prompt", "x" * 32766],
+                ["copilot.exe", "--prompt", "\U0001f600" * 16400],
+                ["copilot.cmd", "--prompt", "x" * 8200],
+            ):
+                with self.subTest(executable=command[0]), self.assertRaisesRegex(ValueError, "Windows launch limit"):
+                    portal_server.validate_cli_command(command)
+
+    def test_cli_deadline_stops_only_owned_tree_and_does_not_retry(self) -> None:
+        process = Mock(pid=123)
+        process.wait.side_effect = [subprocess.TimeoutExpired("copilot", 7200), -1]
+        with patch.object(portal_server, "stop_process_tree") as stop:
+            with self.assertRaisesRegex(ValueError, "Submitted Azure operations may still be running"):
+                portal_server.wait_for_cli(process, "deployment")
+        stop.assert_called_once_with(123)
+        self.assertEqual(2, process.wait.call_count)
+        self.assertEqual({"timeout": 7200}, process.wait.call_args_list[0].kwargs)
+
     def test_assigned_job_treats_generated_ids_as_deployment_outputs(self) -> None:
         instruction = workflow_engine.instruction({
             "name": "deployment-preparation", "stages": ["deployment"],
@@ -156,6 +177,45 @@ class BackendTests(unittest.TestCase):
         self.assertEqual("deployment-decision", workflow_engine.next_operation(self.project)["name"])
         self.project["authorizations"][-1]["recordedAtUtc"] = "2026-10-23T13:00:00+00:00"
         self.assertEqual("deployment", workflow_engine.next_operation(self.project)["name"])
+
+    def test_regional_failure_stops_before_worker_and_returns_resume_to_preparation(self) -> None:
+        portal = portal_server.Portal(self.root / "runs", "test-token", sys.executable)
+        try:
+            with patch.object(portal_server.threading.Thread, "start"):
+                run = portal.start(self.request, "test", "scenario", local_tool_consent=True)
+            scope = {"subscriptionId": "sub", "tenantId": "tenant", "region": "eastus2"}
+            with portal.projects.locked():
+                project = portal.projects.read("bounded-test")
+                project["designConfirmed"] = True
+                for stage in workflow_engine.LOCAL_STAGES:
+                    project["stages"][stage]["status"] = "completed"
+                project["authorizations"] = [
+                    {"kind": "deployment-preparation", "scope": scope},
+                    {"kind": "deployment", "scope": scope},
+                ]
+                project["deploymentPreparation"] = {"status": "completed", "scope": scope}
+                portal.projects.save(project)
+            with (
+                patch.object(portal, "readiness", return_value={"ready": True}),
+                patch.object(portal_server.azure_context, "validate_regional_readiness",
+                             side_effect=ValueError("VM B2 quota limit 0, required 1")),
+                patch.object(portal_server.subprocess, "Popen") as spawn,
+                self.assertLogs(portal_server.LOG, level="ERROR"),
+            ):
+                portal.execute(run, "Deploy if validated.")
+            spawn.assert_not_called()
+            saved = portal.read(run["id"])
+            self.assertEqual("failed", saved["status"])
+            self.assertIn("before provisioning", saved["error"])
+            project = portal.projects.read("bounded-test")
+            self.assertEqual(["deployment-preparation"], [item["kind"] for item in project["authorizations"]])
+            self.assertEqual("failed", project["deploymentPreparation"]["status"])
+            self.assertEqual("deployment-preparation", workflow_engine.next_operation(project)["name"])
+            self.assertEqual("regional-readiness-failed", project["history"][-1]["action"])
+            self.assertEqual(1, len(project["history"][-1]["invalidatedDeploymentAuthorizations"]))
+            self.assertIsNone(project["writer"])
+        finally:
+            portal.shutdown()
 
     def test_report_cannot_escape_backend_assigned_stage(self) -> None:
         with patch.dict(os.environ, {"ABCBUILDER_RUN_ID": "owner", "ABCBUILDER_ASSIGNED_STAGES": '["requirements"]'}):
@@ -343,6 +403,157 @@ class BackendTests(unittest.TestCase):
             self.assertEqual("failed", result["status"])
             self.assertIn("Docker, azd", result["error"])
             self.assertIsNone(portal.projects.read("bounded-test")["writer"])
+        finally:
+            portal.shutdown()
+
+    def test_reported_failure_survives_zero_cli_exit_and_is_not_a_missing_contract(self) -> None:
+        portal = portal_server.Portal(self.root / "runs", "test-token", sys.executable)
+        script = (
+            "import os,sys; from pathlib import Path; "
+            f"sys.path.insert(0,{str(Path(portal_server.__file__).parent)!r}); "
+            "from portal_workflow import Store; "
+            "assert os.environ['PYTHONUTF8']=='1'; "
+            "assert os.environ['PYTHONIOENCODING']=='utf-8'; "
+            "assert 'ABCBUILDER_ASSIGNED_OPERATION' not in os.environ; "
+            "print('Quota check: \\u2717'); "
+            "s=Store(Path(os.environ['ABCBUILDER_PROJECT_STATE'])); "
+            "slug=os.environ['ABCBUILDER_PROJECT']; p=s.read(slug); "
+            "s.report(slug,os.environ['ABCBUILDER_RUN_ID'],p['revision'],dict("
+            "stage='requirements',status='failed',summary='Exact provider quota failure, not missing permission.',"
+            "evidence=['Actual provider rejection']))"
+        )
+        try:
+            with (
+                patch.object(portal_server.threading.Thread, "start"),
+                patch.object(portal, "readiness", return_value={"ready": True}),
+                patch.dict(os.environ, {"ABCBUILDER_ASSIGNED_OPERATION": "stale-parent-operation"}),
+                patch.object(portal_server, "cli_command", return_value=[sys.executable, "-c", script]) as launch,
+            ):
+                run = portal.start(self.request, "test", "scenario", local_tool_consent=True)
+                portal.execute(run, "Complete assigned requirements.")
+            saved = portal.read(run["id"])
+            self.assertEqual("failed", saved["status"])
+            self.assertIn("Exact provider quota failure", saved["error"])
+            self.assertNotIn("evidence contract", saved["error"])
+            self.assertIsNone(portal.projects.read("bounded-test")["writer"])
+            self.assertEqual(1, launch.call_count)
+            diagnostics = Path(saved["operationDiagnostics"])
+            self.assertIn("Complete assigned requirements.", (diagnostics / "prompt.txt").read_text(encoding="utf-8"))
+            self.assertIn("Quota check: \u2717", (portal.state / run["id"] / "output.log").read_text(encoding="utf-8"))
+            self.assertEqual(7200, saved["operationTimeoutSeconds"])
+        finally:
+            portal.shutdown()
+
+    def test_real_stalled_child_times_out_without_leaking_writer_or_retrying(self) -> None:
+        portal = portal_server.Portal(self.root / "runs", "test-token", sys.executable)
+        try:
+            with (
+                patch.object(portal_server.threading.Thread, "start"),
+                patch.object(portal, "readiness", return_value={"ready": True}),
+                patch.object(portal_server, "CLI_OPERATION_TIMEOUT", 0.1),
+                patch.object(portal_server, "cli_command", return_value=[
+                    sys.executable, "-c", "import time; time.sleep(60)",
+                ]) as launch,
+                self.assertLogs(portal_server.LOG, level="ERROR"),
+            ):
+                run = portal.start(self.request, "test", "scenario", local_tool_consent=True)
+                portal.execute(run, "test")
+            saved = portal.read(run["id"])
+            self.assertEqual("failed", saved["status"])
+            self.assertIn("CLI deadline", saved["error"])
+            self.assertFalse(portal_server.process_alive(saved["childPid"]))
+            self.assertIsNone(portal.projects.read("bounded-test")["writer"])
+            self.assertNotIn(run["id"], portal.workers)
+            self.assertEqual(1, launch.call_count)
+        finally:
+            portal.shutdown()
+
+    def test_failed_timeout_cleanup_retains_writer_until_owned_stop_succeeds(self) -> None:
+        portal = portal_server.Portal(self.root / "runs", "test-token", sys.executable)
+        try:
+            with (
+                patch.object(portal_server.threading.Thread, "start"),
+                patch.object(portal, "readiness", return_value={"ready": True}),
+                patch.object(portal_server, "CLI_OPERATION_TIMEOUT", 0.1),
+                patch.object(portal_server, "stop_process_tree", side_effect=ValueError("Stop denied")),
+                patch.object(portal_server, "cli_command", return_value=[
+                    sys.executable, "-c", "import time; time.sleep(60)",
+                ]),
+                self.assertLogs(portal_server.LOG, level="ERROR"),
+            ):
+                run = portal.start(self.request, "test", "scenario", local_tool_consent=True)
+                portal.execute(run, "test")
+            saved = portal.read(run["id"])
+            self.assertIn("cleanup could not be confirmed", saved["error"])
+            self.assertTrue(portal_server.process_alive(saved["childPid"]))
+            self.assertEqual(run["id"], portal.projects.read("bounded-test")["writer"])
+            self.assertIn(run["id"], portal.workers)
+            with self.assertRaisesRegex(ValueError, "saved writer leases"):
+                portal.request_lifecycle("restart", True)
+            portal.cancel(run["id"])
+            self.assertFalse(portal_server.process_alive(saved["childPid"]))
+            self.assertIsNone(portal.projects.read("bounded-test")["writer"])
+            self.assertNotIn(run["id"], portal.workers)
+        finally:
+            portal.shutdown()
+
+    def test_preparation_provider_failure_is_not_replaced_by_generic_contract_error(self) -> None:
+        portal = portal_server.Portal(self.root / "runs", "test-token", sys.executable)
+        script = (
+            "import os,sys; from pathlib import Path; "
+            f"sys.path.insert(0,{str(Path(portal_server.__file__).parent)!r}); "
+            "from portal_workflow import Store; "
+            "s=Store(Path(os.environ['ABCBUILDER_PROJECT_STATE'])); "
+            "slug=os.environ['ABCBUILDER_PROJECT']; p=s.read(slug); "
+            "scope=p['authorizations'][-1]['scope']; "
+            "s.report(slug,os.environ['ABCBUILDER_RUN_ID'],p['revision'],dict("
+            "stage='deployment',operation='deployment-preparation',scope=scope,status='failed',"
+            "summary='Microsoft.Web B2 quota: 0 available; 1 required.',evidence=['Actual quota response']))"
+        )
+        try:
+            with (
+                patch.object(portal_server.threading.Thread, "start"),
+                patch.object(portal, "readiness", return_value={"ready": True}),
+                patch.object(portal_server, "cli_command", return_value=[sys.executable, "-c", script]) as launch,
+            ):
+                run = portal.start(self.request, "test", "scenario", local_tool_consent=True)
+                project = portal.projects.read("bounded-test")
+                for stage in workflow_engine.LOCAL_STAGES:
+                    project["stages"][stage]["status"] = "completed"
+                project["designConfirmed"] = True
+                project["authorizations"] = [{
+                    "kind": "deployment-preparation", "scope": {"region": "eastus", "subscriptionId": "test-only"},
+                }]
+                portal.projects.save(project)
+                portal.execute(run, "Perform assigned read-only preparation.")
+            saved = portal.read(run["id"])
+            self.assertEqual("failed", saved["status"])
+            self.assertIn("Microsoft.Web B2 quota: 0 available; 1 required", saved["error"])
+            self.assertNotIn("evidence contract", saved["error"])
+            project = portal.projects.read("bounded-test")
+            self.assertEqual("failed", project["deploymentPreparation"]["status"])
+            self.assertFalse(any(item["kind"] == "deployment" for item in project["authorizations"]))
+            self.assertEqual(1, launch.call_count)
+        finally:
+            portal.shutdown()
+
+    def test_zero_exit_without_a_report_fails_once_without_advancing(self) -> None:
+        portal = portal_server.Portal(self.root / "runs", "test-token", sys.executable)
+        try:
+            with (
+                patch.object(portal_server.threading.Thread, "start"),
+                patch.object(portal, "readiness", return_value={"ready": True}),
+                patch.object(portal_server, "cli_command", return_value=[
+                    sys.executable, "-c", "print('Done, everything succeeded')",
+                ]) as launch,
+            ):
+                run = portal.start(self.request, "test", "scenario", local_tool_consent=True)
+                portal.execute(run, "test")
+            saved = portal.read(run["id"])
+            self.assertEqual("failed", saved["status"])
+            self.assertIn("evidence contract", saved["error"])
+            self.assertEqual("pending", portal.projects.read("bounded-test")["stages"]["requirements"]["status"])
+            self.assertEqual(1, launch.call_count)
         finally:
             portal.shutdown()
 

@@ -11,6 +11,11 @@ description: >
 1. Read requirements, selected service constraints and current region evidence.
    If target evidence is unavailable, distinguish a provisional local design from
    a validated deployable design; return the exact decision needed.
+   Public regional availability is not subscription eligibility. Local-only architecture remains provisional.
+   As soon as exact-target read-only preparation is authorized, validate the whole design against that subscription:
+   exact service/SKU, required zones/features, model quota, provider restrictions and usable quota headroom.
+   Read and produce the subscription matrix in `00-region-availability.json` before calling a region deployable.
+   Use the workflow's [subscription regional readiness](../hack-builder-workflow/SKILL.md#subscription-regional-readiness).
 1. Trace industry and `businessUnits` into personas, data ownership, app workflows,
    handoffs and acceptance. Generic means an industry workflow without unit targeting.
    For adaptations, source architecture is read-only guidance, not inherited

@@ -13,7 +13,7 @@ from pathlib import Path
 from check_prerequisites import execution_environment
 from portal_workflow import actionable_decision, needs_question_review
 
-VERSION = 3
+VERSION = 5
 LOCAL_STAGES = ("requirements", "architecture", "diagrams", "bicep", "application", "local-validation")
 
 
@@ -85,6 +85,50 @@ def signature(project: dict) -> str:
         "blocker": project.get("setupBlocker"), "decisions": project["decisions"],
         "reconciliation": project.get("reconciliation"),
     }, sort_keys=True)
+
+
+def regional_instruction() -> str:
+    return (
+            "\nSUBSCRIPTION REGIONAL READINESS CONTRACT:\n"
+            "During authorized deployment-preparation, verify the ENTIRE planned resource set against the actual "
+            "subscription BEFORE deployment consent or any provisioning. Read current architecture and exact SKUs/"
+            "features, not just provider location lists. Test Foundry model/version/deployment type and usable quota; "
+            "Cosmos subscription regional access and exact zone/serverless/backup capabilities; compute exact SKU, "
+            "restrictions, zones, aggregate scale-out quota; App Service Microsoft.Web SKU/worker quotas; and other "
+            "service-specific restrictions, policy and provider state. B2 App Service worker quota is NOT a Compute "
+            "VM-family quota. Never infer the provider/resource type from a short size label. "
+            "For Cosmos use az cosmosdb locations list --subscription <authorized-subscription> --output json; "
+            "supportsAvailabilityZone=true alone does NOT pass: require status Online and the relevant actual "
+            "isSubscriptionRegionAccessAllowedForAz or isSubscriptionRegionAccessAllowedForRegular flag true. "
+            "For VMs use az vm list-skus --location <authorized-region> --resource-type virtualMachines --all "
+            "--subscription <authorized-subscription> and az vm list-usage with the same location/subscription. "
+            "Check NotAvailableForSubscription/restrictions and requested zones, plus current usage + aggregate "
+            "required demand <= limit for family, total regional vCPUs and VM count. Unknown, missing data, "
+            "denied queries and quota zero with positive demand do NOT pass. "
+            "For unsupported targets evaluate alternatives WITHIN authorized read-only region scope first; outside "
+            "that scope prepare a consolidated target/design recommendation, not unauthorized queries. "
+            "Do not force quota/support remediation for the first failing region when an acceptable alternative "
+            "may exist. Do not silently change region, hosting service, security, residency, reliability or costs. "
+            "Refresh after capacity/provider failure. What-if is not allocation/capacity proof. Availability/quota "
+            "checks reduce predictable failures but cannot reserve live capacity.\n"
+            "Write regionalReadiness in 00-region-availability.json with scope:<EXACT preparation scope>, "
+            "checkedAtUtc:<actual timezone-aware check time>, infrastructureFingerprint:<current hash from "
+            "azure_context.infrastructure_fingerprint(Path(scenario)) using scripts on Python import path>, "
+            "checks:[{service:<catalog ID or supporting-service ID>,resourceType:<actual ARM type>,"
+            "sku:<exact SKU or explicit not-applicable>,region:<authorized region>,status:passed|blocked|unknown,"
+            "evidence:[<specific real command/results>],quotas:[{name:<provider quota name>,limit:<number>,"
+            "currentValue:<number>,required:<additional aggregate demand>}]}]. Include EVERY selected and supporting "
+            "resource/SKU, including separate Foundry model/feature checks. For global resources record the "
+            "authorized deployment region and explicit evidence explaining nonregional applicability. "
+            "Cosmos account checks additionally need zoneRedundant:<actual bool from IaC> and properties:<actual "
+            "location response properties>. Compute VM/VMSS checks additionally need vmFamily:<exact family>, "
+            "restrictions:[], zonesSupported:true for requested placement, demand:{vcpus:<aggregate int>,"
+            "instances:<aggregate int>} and quota records named <vmFamily>, cores, virtualMachines. "
+            "App Service plan checks require actual Microsoft.Web quota records. Demand includes proposed max "
+            "instances/temporary rollout nodes, not merely one initial instance. Never fabricate observations. "
+            "The backend rejects missing, stale (>15 minutes), changed-infrastructure, wrong-scope, blocked or "
+            "unknown evidence before consent/deployment. Keep existing region candidate/rejection evidence too.\n"
+    )
 
 
 def instruction(operation: dict) -> str:
@@ -168,6 +212,9 @@ def instruction(operation: dict) -> str:
         "still stop; do not bypass them.\n"
         + (f"Preparation reports MUST include operation:deployment-preparation and scope:{json.dumps(operation['scope'])}.\n"
            if operation.get("operation") == "deployment-preparation" else "")
+        + (regional_instruction() if operation["name"] in {
+            "deployment-preparation", "deployment-decision", "deployment",
+        } else "")
     )
 
 

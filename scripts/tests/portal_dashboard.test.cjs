@@ -213,7 +213,7 @@ async function dashboard(run = fixture(), workflowVersion = 5, appearance = {}) 
       { id: "generic", name: "Generic" }, { id: "finance", name: "Finance" }, { id: "it", name: "IT" },
     ],
     services: [{ id: "foundry", name: "Foundry", required: true }],
-    pillars: [], domains: [], cliAvailable: appearance.cliAvailable ?? true, workflowVersion, backendEngineVersion: 3,
+    pillars: [], domains: [], cliAvailable: appearance.cliAvailable ?? true, workflowVersion, backendEngineVersion: 5,
     maxConcurrentWorkers: 4,
     systemControlsVersion: appearance.systemControlsVersion ?? 1,
     prerequisitesVersion: appearance.prerequisitesVersion ?? 1,
@@ -1145,6 +1145,25 @@ test("setup required replaces approval choices and retry cannot itself clear the
   assert.equal(body.passed, undefined);
   assert.equal(body.toolConsent, false);
   assert.equal(get("setup-panel").hidden, false);
+});
+
+test("Unidentified CLI approval failures are backend diagnostics without user setup or retry controls", async () => {
+  const run = fixture();
+  run.project.decisions = [];
+  run.project.setupBlocker = {
+    id: "denial", stage: "deployment", kind: "workflow-error", category: "unresolved-cli-approval",
+    action: "The CLI did not identify the missing permission. Work is preserved.",
+    verification: "private denied command",
+  };
+  const { get, requests } = await dashboard(run);
+  assert.equal(get("run-status").textContent, "Backend needs attention");
+  assert.equal(get("setup-title").textContent, "Backend needs attention");
+  assert.equal(get("retry-setup").hidden, true);
+  assert.equal(get("setup-verification").hidden, true);
+  assert.equal(get("setup-verification").textContent, "");
+  assert.match(get("project-summary").textContent, /no setup task or additional approval/);
+  assert.equal(get("play").disabled, true);
+  assert.equal(requests.some((item) => item.method === "POST"), false);
 });
 
 test("pending decision survives refresh, but choice is cleared for a different decision", async () => {

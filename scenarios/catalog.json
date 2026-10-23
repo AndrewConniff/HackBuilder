@@ -166,12 +166,7 @@
         "sales"
       ],
       "services": [
-        "foundry",
-        "app-service",
-        "cosmos-db",
-        "managed-identity",
-        "virtual-network",
-        "monitor"
+        "foundry"
       ],
       "pillars": [],
       "domains": [],
@@ -182,17 +177,18 @@
         "03-architect-diagram.png",
         "04-runtime-diagram.png",
         "azure.yaml",
-        "infra"
+        "infra",
+        "src"
       ],
       "source": null,
       "metadataStatus": "curated",
-      "manifestDigest": "fd6f5377643bc0702efe6049f7e7a4a1d76b973e512cca5cd398ff6b1c16b68c"
+      "manifestDigest": "c9eae1a0a2a709284139f33e77027ac58f5ecd0a8b4026dfc24769ef5c56b1d4"
     },
     {
       "schemaVersion": 1,
       "id": "resto-scale-agent",
       "title": "Fourth Coffee: five-floor restaurant agents under load",
-      "summary": "Generic Hospitality & Travel reference for a 250-seat restaurant with scoped Foundry agents, deterministic transactions and durable kitchen handoffs. Local checks retained. Registry configuration corrected; recovery preparation blocked by regional Cosmos zone access. Not deployed or live-validated.",
+      "summary": "Generic Hospitality & Travel reference for a 250-seat restaurant with scoped Foundry agents, deterministic transactions and durable kitchen handoffs. Local implementation retained; current read-only preparation failed regional eligibility and a resource-name conflict. Not deployed or live-validated.",
       "industry": "Hospitality & Travel",
       "businessUnits": [
         "generic"
@@ -224,7 +220,7 @@
       ],
       "source": null,
       "metadataStatus": "curated",
-      "manifestDigest": "a463c9e3c3eb5f6142f409e91f87b366779da802220e097fa24f2396b60c3b38"
+      "manifestDigest": "627d5fb6b565c7386e7872db72b3e1d2e993d2913419bd2d7858411b3449b253"
     },
     {
       "schemaVersion": 1,

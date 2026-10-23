@@ -55,6 +55,16 @@ resuming does not silently answer them.
 
 ## Backend-owned question handling
 
+Authorized deployment preparation must validate subscription-specific regional eligibility for the complete
+resource/SKU/feature set. Public service availability and successful what-if do not establish deployability.
+The backend checks the scenario's fresh, scope-bound `regionalReadiness` evidence before accepting preparation,
+starting deployment consent or launching provisioning. Cosmos zone access flags, VM SKU restrictions and
+family/total vCPU plus instance quota, and App Service worker quotas are distinct checks.
+Missing, denied, unknown, insufficient or stale results block deployment. Failed checks invalidate active
+deployment grants with an audit record; Resume returns to read-only preparation rather than repeating provisioning.
+Candidate recommendations retain the scenario's security/reliability requirements and authorized region scope.
+Quota and eligibility checks cannot reserve regional allocation capacity.
+
 Proposed business questions remain internal until a bounded backend review reads intake, answered decisions
 and relevant evidence. Users never classify or withdraw questions themselves.
 Routine implementation choices and solution-created IDs, endpoints and receipts become recorded backend actions,
@@ -62,6 +72,42 @@ not user questionnaires. Already-answered input is reused. No user answer or dep
 Genuinely unresolved business/security decisions require a documented gap in saved input and a distinct impact
 for every choice before appearing in the portal. Verified external failures become actionable setup blockers.
 Insufficient classification evidence fails the job visibly instead of exposing an unclassified question.
+
+A CLI denial without structured metadata identifying the missing permission is a backend diagnostic failure,
+not an actionable host setup request. The portal shows **Backend needs attention**, retains the denial and
+offers no setup-retry button for that failure. It never asks the user to inspect execution logs or invent a
+permission scope. Per-operation CLI diagnostics are retained privately with the run for investigation.
+No alternate shell, Python wrapper, SDK, direct HTTP or backend route may be used to bypass the denied operation.
+This handling does not repair the underlying CLI approval failure or prove Azure policy access.
+
+### CLI runner reliability checks
+
+Each assigned operation retains its full prompt and separate private CLI diagnostic directory with the run.
+Child Python tools use UTF-8 output rather than the Windows legacy code page. Assigned-operation variables
+are rebuilt for each child instead of inheriting an unrelated parent job.
+Readiness verifies every CLI flag used by the runner, including output format and diagnostic logging.
+This checks compatibility, not Copilot authentication, model access or enterprise permission rules.
+
+The runner rejects Windows commands exceeding the executable's launch limit before starting a process.
+It counts UTF-16 units, including quoting, and uses the lower limit for batch-file launchers.
+Oversized prompts are preserved, not truncated or silently launched through another execution route.
+Each CLI operation has a two-hour deadline. On timeout the owned local process tree is stopped without
+automatic retry. Submitted Azure operations may continue remotely; inspect actual cloud state before resuming.
+If local process termination cannot be confirmed, the writer lease and owned Stop control remain reserved.
+Server restart and another writer are blocked until cleanup succeeds.
+
+A reported stage or preparation failure stays a failure even when the CLI exits zero.
+Its saved provider/build explanation is preserved rather than replaced by a generic missing-contract error.
+Conversely, a zero exit or a prose success claim without the assigned report cannot complete a stage.
+Existing artifact/build, regional-readiness and explicit consent gates still apply.
+
+Local fault-injection tests cover stalled children, failed termination, no-report zero exits, reported
+failures, nonzero exits, parent-environment leakage, Unicode output, incompatible flags and Windows limits.
+These are deterministic runner tests, not proof of a successful real Copilot/Azure end-to-end flow.
+Before release, separately prove Copilot login/model access and exact tool/path/URL permissions under the
+intended user's enterprise policy; cancellation/recovery during real operations; and a complete deployed,
+runtime-validated scenario followed by explicit suitability approval and validated hack composition.
+Do not upgrade CLI versions, disable enterprise restrictions or broaden access as an automatic recovery.
 
 Legacy pending business questions undergo the same review. On startup and when capacity becomes free, the server
 resumes eligible waiting scenarios with retained local consent, no writer, and no other approval/setup blocker.
