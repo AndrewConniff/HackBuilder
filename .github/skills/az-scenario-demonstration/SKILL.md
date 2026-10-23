@@ -16,6 +16,10 @@ description: >
    case, timing, cost and limitations. Use real outputs, not fabricated success.
    Demonstrate the requirements' industry and `businessUnits` through the selected
    personas, app/data and cross-unit handoffs. Generic has no unit targeting.
+   Follow the selected [agentic pattern](../az-scenario-requirements/references/agentic-patterns.md):
+   demonstrate its useful business output, visible coordination/action evidence,
+   required human decision and one bounded failure/recovery path. Do not substitute
+   a resource inventory or believable text for actual runtime behavior.
 1. Exercise the demonstration from the actual identity/network path within
    authorized scope. Capture screenshots with Playwright when available and
    provide an explicitly labeled screenshot fallback, not fake live acceptance.

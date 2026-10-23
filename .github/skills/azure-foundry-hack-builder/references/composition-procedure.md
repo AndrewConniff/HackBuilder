@@ -37,6 +37,12 @@ personas, starter fixtures, challenge evidence and private Finale guidance.
 Generic remains an industry workflow without unit targeting. An adaptation uses
 only its newly approved reference, never its source's packages or approval.
 
+Preserve the approved [agentic pattern contract](../../az-scenario-requirements/references/agentic-patterns.md).
+Build challenges around a small useful increment of its runtime behavior and measurable coordination evidence.
+Do not add patterns or expose the completed solution graph/roster in public materials.
+Private Finale notes explain the trade-offs, expected traces, safety controls and recovery.
+If the approved pattern cannot meet the time budget or supported portal/SDK paths, stop for a scope/reapproval decision.
+
 Before either mode, compare the recorded industry from repository
 `microsoft_industry_verticals.csv` with Skillable's six supported slugs. Do not
 silently map an unsupported industry. Return **decision required** and stop for

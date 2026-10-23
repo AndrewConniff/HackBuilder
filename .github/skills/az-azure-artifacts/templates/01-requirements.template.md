@@ -45,6 +45,21 @@ packages or runtime success; require new design, validation and approval.
 | 1   | {capability} | Must / Should / Could | {measurable industry/unit criterion} |
 | 2   | {capability} | Must / Should / Could | {measurable criterion and negative case} |
 
+### Agentic business workflow
+
+Use the [pattern selection guide](../../az-scenario-requirements/references/agentic-patterns.md);
+tailor its ideas to the exact industry and selected units rather than copying a source use case.
+
+| Decision | Scenario-specific requirement |
+| --- | --- |
+| Business trigger and result | {input, accountable persona, useful artifact/action and measurable improvement} |
+| Primary pattern and overlays | {catalog IDs/names; include only justified supporting patterns} |
+| Simpler alternative | {single-agent baseline and reason for accepting/rejecting extra coordination} |
+| Roles and handoffs | {runtime ownership, typed contracts and intentionally withheld context} |
+| Grounding, tools and fixtures | {authoritative sources, read/draft/commit actions, synthetic schemas and provenance} |
+| Controls and limits | {deterministic rules, identity, approval rights, stop/budget and recovery conditions} |
+| Runtime acceptance | {success target, ambiguous input and coordination-specific failure with expected evidence} |
+
 ### Network Security
 
 | Control                     | Required | Notes     |

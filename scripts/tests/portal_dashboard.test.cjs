@@ -674,6 +674,8 @@ test("company palette and theme text/control contrast meet WCAG AA thresholds", 
     ]) check(foreground, background, 4.5);
     check("--control-border", "--input", 3);
     check("--accent-border", "--accent-surface", 3);
+    check("--text", "--accent-surface", 4.5);
+    check("--focus", "--accent-surface", 3);
     check("--focus", "--bg", 3);
   }
 });

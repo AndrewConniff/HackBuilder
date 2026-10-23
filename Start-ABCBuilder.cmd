@@ -1,7 +1,13 @@
 @echo off
 rem Start or reuse the local ABC Builder portal and open its authenticated browser page.
 setlocal
-python "%~dp0scripts\start_portal.py"
+if exist "%~dp0.venv\Scripts\python.exe" (
+    set "VIRTUAL_ENV=%~dp0.venv"
+    set "PATH=%~dp0.venv\Scripts;%PATH%"
+    "%~dp0.venv\Scripts\python.exe" "%~dp0scripts\start_portal.py"
+) else (
+    python "%~dp0scripts\start_portal.py"
+)
 set "result=%errorlevel%"
 if not "%result%"=="0" (
     echo.

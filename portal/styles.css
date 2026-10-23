@@ -676,6 +676,30 @@ legend {
   margin-top: 4px;
   accent-color: var(--accent);
 }
+.consent:has(#tool-consent),
+.consent:has(#workspace-consent) {
+  padding: 14px 16px;
+  border: 1px solid var(--accent-border);
+  border-left-width: 4px;
+  border-radius: 8px;
+  background: var(--accent-surface);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.consent:has(#tool-consent) input,
+.consent:has(#workspace-consent) input {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+.consent:has(#tool-consent):focus-within,
+.consent:has(#workspace-consent):focus-within {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
 .fine-print {
   font-size: 10px;
   color: var(--muted);

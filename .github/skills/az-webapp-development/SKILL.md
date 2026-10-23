@@ -54,6 +54,16 @@ cross-unit handoffs and negative access/error cases. Preserve the same scope in
 demo prompts and later learner/coach fixtures. Keep catalog metadata current via
 the workflow's `scripts\scenario_catalog.py refresh --metadata` procedure.
 
+## Agentic workflow implementation
+
+Implement the confirmed [pattern contract](../az-scenario-requirements/references/agentic-patterns.md)
+from requirements/architecture rather than a fixed chatbot/specialist roster.
+Wire actual Foundry invocation, typed handoffs/state, scoped tools, deterministic policies,
+budget/termination rules, human gates and explicit recovery into the business app.
+Expose the useful result and inspectable execution status without revealing hidden chain-of-thought.
+Test selected coordination behavior, missing evidence, unauthorized actions and one pattern-specific failure.
+Local fixtures may be synthetic; live agent responses and tool-action receipts must not be fabricated.
+
 ## Company branding prerequisite
 
 Follow the [CSV-only company identity rules](../az-consolidated/SKILL.md#fictitious-company-identity---csv-only).

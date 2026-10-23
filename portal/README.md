@@ -19,8 +19,15 @@ Dark mode uses blue-black surfaces and light text. Contrast-safe accent shades a
 the exact palette colors remain available for fills, borders and highlights.
 The switch supports keyboard activation, visible focus, an announced on/off state and a 44-pixel touch target.
 Reduced-motion preferences disable smooth scrolling.
+Local Copilot execution consent is highlighted in a teal-accented box in both intake and workspace views,
+with a bolder label, larger checkbox and keyboard-focus outline. Styling never selects the checkbox automatically.
 
 ## Run
+
+Complete the [prerequisite checklist and optional automated setup](../PREREQUISITES.md)
+before starting scenario workers. Check-only installs nothing; installation requires explicit opt-in
+and an idle, closed portal. New servers prefer the repository `.venv` and expose its Python on worker PATH.
+After installing tools, reopen the terminal/VS Code before starting a new server; browser refresh cannot update PATH.
 
 **Easiest on Windows:** double-click [`Start-ABCBuilder.cmd`](../Start-ABCBuilder.cmd)
 in the repository root. It starts or reuses the local server and opens the authenticated browser page.

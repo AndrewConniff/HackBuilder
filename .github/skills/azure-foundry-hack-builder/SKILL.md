@@ -109,6 +109,13 @@ requires.
 
 ## Workflow
 
+After the approval gate, read the approved
+[agentic pattern contract](../az-scenario-requirements/references/agentic-patterns.md).
+Derive a small progressive coordination increment from that proven behavior, not a tour of all 18 patterns.
+Preserve industry/unit ownership, fixtures, safety gates and observable success/failure evidence.
+Keep pattern trade-offs, the full solution graph and exact implementation in private coach notes.
+Do not add new patterns or invent unsupported low-code routes; a material scope change needs reapproval.
+
 1. **Read the input.** Extract: industry/brand, approved `businessUnits`, the business problem, the end
    user of the agent, and any named data or systems.
    Before fixing the scenario, apply the

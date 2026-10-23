@@ -2,7 +2,7 @@
 name: az-scenario-architecture
 description: >
   Use when designing the reference architecture, Azure SKUs, identity/data paths,
-  WAF trade-offs, cost or service choices for a Foundry business scenario.
+  agentic runtime patterns, WAF trade-offs, cost or service choices for a Foundry business scenario.
   Runs directly in the scenario orchestrator context, without specialist agents.
 ---
 
@@ -19,6 +19,12 @@ description: >
    design meeting business, identity, networking, residency and WAF requirements.
    Explain requested services that are unnecessary or unavailable; do not silently
    substitute them. Distinguish Basic/Standard requirements explicitly.
+1. Review the selected [agentic pattern](../az-scenario-requirements/references/agentic-patterns.md)
+   against the industry/unit outcome and simpler alternative. Define runtime roles,
+   typed handoffs/state, permission boundaries, deterministic policies, human checkpoints,
+   termination/budgets and failure recovery. Distinguish native Foundry features from
+   app-hosted orchestration invoking Foundry; verify actual SDK/language and low-code support.
+   Supporting Azure resources serve this behavior, not an architecture-only demonstration.
 1. Document resource/SKU choices, direct child Foundry project, real application
    invocation, data ownership, managed identity/RBAC, operations and cost.
 1. Write `02-architecture-assessment.md` using the artifact template.

@@ -58,6 +58,14 @@ Maintain the target `scenario-manifest.json` through
 `python scripts\scenario_catalog.py refresh generated-scenarios\<slug> --metadata reviewed-metadata.json`.
 Complete inferred `needs-review` metadata; discovery is read-only and source selection is not consent.
 
+Use the requirements skill's
+[agentic pattern guide](../skills/az-scenario-requirements/references/agentic-patterns.md)
+to frame a working industry/business-unit agent workflow before choosing infrastructure.
+Select and justify the simplest useful pattern, runtime roles, tools/data, human gates and observable result.
+The 18 patterns are ideas, not a checklist or a fixed specialist roster.
+They describe the generated Foundry runtime, never extra Copilot agents or implementation delegation.
+Carry the selected behavior into app/data, coordination tests and the live demo; recheck its fit for catalog adaptations.
+
 ## Implement directly with skills
 
 | Work | Skill |
@@ -75,6 +83,11 @@ Load only needed references and applicable file-scoped instructions.
 Historical agent bodies in skill references preserve technical knowledge;
 their retired tool declarations, roles and handoffs are not executable rules.
 Use current official evidence for technical decisions; no mock chat success.
+
+Prepare shared tooling with the [prerequisite guide](../../PREREQUISITES.md) outside scenario workers.
+Reuse current check results; report missing dependencies before the step that needs them.
+Do not repeatedly request SDK/tool installation from a worker: persist the exact setup decision and stop.
+Installing a tool does not refresh an existing server's PATH or override execution-host permissions.
 
 ## Consent and noninteractive jobs
 

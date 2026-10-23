@@ -75,6 +75,14 @@ def ensure_portal() -> dict:
     if config is not None:
         return config
     STATE.mkdir(exist_ok=True)
+    environment = os.environ.copy()
+    virtual_environment = ROOT / ".venv"
+    python = virtual_environment / ("Scripts/python.exe" if os.name == "nt" else "bin/python")
+    if python.is_file():
+        environment["VIRTUAL_ENV"] = str(virtual_environment)
+        environment["PATH"] = str(python.parent) + os.pathsep + environment.get("PATH", "")
+    else:
+        python = Path(sys.executable)
     with (STATE / "server.log").open("ab") as log:
         options = (
             {"creationflags": subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP}
@@ -82,12 +90,13 @@ def ensure_portal() -> dict:
             else {"start_new_session": True}
         )
         process = subprocess.Popen(
-            [sys.executable, str(ROOT / "scripts" / "portal_server.py"), "--quiet-url"],
+            [str(python), str(ROOT / "scripts" / "portal_server.py"), "--quiet-url"],
             cwd=ROOT,
             stdin=subprocess.DEVNULL,
             stdout=log,
             stderr=subprocess.STDOUT,
             close_fds=True,
+            env=environment,
             **options,
         )
     deadline = time.monotonic() + 10

@@ -2,7 +2,7 @@
 name: az-scenario-requirements
 description: >
   Use when defining a Foundry scenario story, industry, business-unit scope, business requirements,
-  selected services, WAF priorities, acceptance criteria or target/region evidence.
+  agentic workflow/pattern selection, selected services, WAF priorities, acceptance criteria or target/region evidence.
   The scenario orchestrator performs this procedure directly without delegation.
 ---
 
@@ -23,6 +23,11 @@ description: >
    app/data and acceptance for the target industry and units. Never inherit source
    deployment state, secrets, scopes, approvals, packages or runtime success.
 1. Apply the consolidated skill's company/person CSV provenance rules.
+1. Apply the [18-pattern selection guide](./references/agentic-patterns.md).
+   Start with the industry/unit business outcome, not an infrastructure inventory.
+   Select the simplest useful runtime pattern and justified overlays; compare a single-agent baseline.
+   Record roles, ownership, data/tool contracts, action/human gates, measurable success and coordination failures.
+   Tailor the guide's ideas rather than copying its source use cases or assigning one agent per business unit.
 1. Read current Foundry and research-first instructions. Research only unresolved
    technical decisions using official documentation. Confirm Azure targets before
    any authorized subscription queries. For local-only work, use current public evidence

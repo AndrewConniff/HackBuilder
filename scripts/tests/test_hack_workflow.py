@@ -219,6 +219,15 @@ class ApprovalTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             workflow.snapshot(self.root)
 
+    def test_agentic_coordination_failure_blocks_review(self) -> None:
+        self.evidence["checks"]["agenticWorkflow"] = False
+        self.write_evidence()
+        with self.assertRaises(ValueError):
+            workflow.snapshot(self.root)
+        self.evidence["checks"]["agenticWorkflow"] = True
+        self.write_evidence()
+        workflow.snapshot(self.root)
+
     def test_missing_artifacts_block_review(self) -> None:
         (self.root / "demoguide" / "demoguide.md").unlink()
         with self.assertRaisesRegex(ValueError, "Missing or empty"):
@@ -261,6 +270,79 @@ class ApprovalTests(unittest.TestCase):
 
 
 class CustomizationTests(unittest.TestCase):
+    def test_agentic_catalog_has_all_18_patterns_and_source_pages(self) -> None:
+        guide = (
+            ROOT / ".github" / "skills" / "az-scenario-requirements" / "references" / "agentic-patterns.md"
+        ).read_text(encoding="utf-8")
+        names = re.findall(r"(?m)^### (\d{2})\. (.+)$", guide)
+        self.assertEqual([
+            "Single-Agent Tool Loop", "Sequential / Pipeline", "Concurrent / Fan-Out-Fan-In",
+            "Routing / Triage", "Handoff / Transfer of Control", "Moderated Group Chat",
+            "Magentic Dynamic Collaboration", "Supervisor / Hierarchical Delegation", "Orchestrator-Workers",
+            "Planner-Executor", "Deterministic Loop", "Evaluator-Optimizer / Reflection", "Mixture of Agents",
+            "Event-Driven / Reactive Agents", "Blackboard / Shared Workspace", "Swarm / Peer-to-Peer",
+            "Human-in-the-Loop (HITL)", "Adaptive Hybrid / Composite Orchestration",
+        ], [name for _, name in names])
+        self.assertEqual([f"{number:02}" for number in range(1, 19)], [number for number, _ in names])
+        for number in range(18):
+            self.assertIn(f"PDF pp. {5 + number * 3}-{7 + number * 3}.", guide)
+        for unit in (
+            "generic", "executives", "it", "operations", "communications", "executive-assistant",
+            "legal", "hr", "business-manager", "finance", "sales", "marketing",
+        ):
+            self.assertIn(f"| `{unit}` |", guide)
+        for boundary in (
+            "not 18 native Foundry features", "not permission to add Copilot agents",
+            "not a separate package plan before approval", "checks.agenticWorkflow",
+            "not hidden chain-of-thought", "not automatically rewritten",
+        ):
+            self.assertIn(boundary, guide)
+
+    def test_agentic_contract_is_wired_through_both_phases(self) -> None:
+        paths = (
+            ".github/agents/az-01-conductor.agent.md",
+            ".github/instructions/az-foundry.instructions.md",
+            ".github/skills/hack-builder-workflow/SKILL.md",
+            ".github/skills/az-scenario-requirements/SKILL.md",
+            ".github/skills/az-scenario-architecture/SKILL.md",
+            ".github/skills/az-webapp-development/SKILL.md",
+            ".github/skills/az-webapp-development/app-creation-SKILL.md",
+            ".github/skills/az-azure-validate/SKILL.md",
+            ".github/skills/az-scenario-demonstration/SKILL.md",
+            ".github/skills/azure-foundry-hack-builder/SKILL.md",
+            ".github/skills/azure-foundry-hack-builder/references/composition-procedure.md",
+            ".github/skills/az-azure-artifacts/templates/01-requirements.template.md",
+            ".github/skills/az-azure-artifacts/templates/02-architecture-assessment.template.md",
+        )
+        for relative in paths:
+            path = ROOT / relative
+            with self.subTest(path=relative):
+                text = path.read_text(encoding="utf-8")
+                links = re.findall(r"\]\(([^)]+agentic-patterns\.md)\)", text)
+                self.assertTrue(links)
+                for link in links:
+                    self.assertTrue((path.parent / link).resolve().is_file(), link)
+        companion = (ROOT / paths[6]).read_text(encoding="utf-8")
+        self.assertNotIn("specialist-agent-3.agent.md", companion)
+        self.assertIn("A bounded single-agent tool loop remains valid", companion)
+
+    def test_agentic_templates_preserve_required_h2_order(self) -> None:
+        templates = ROOT / ".github" / "skills" / "az-azure-artifacts" / "templates"
+        for filename, headings, new_section in (
+            ("01-requirements.template.md", [
+                "Project Overview", "Functional Requirements", "Non-Functional Requirements (NFRs)",
+                "Summary for Architecture Assessment",
+            ], "Agentic business workflow"),
+            ("02-architecture-assessment.template.md", [
+                "Requirements Validation", "Resource SKU Recommendations", "Architecture Decision Summary",
+                "Implementation Handoff",
+            ], "Agentic runtime contract"),
+        ):
+            with self.subTest(template=filename):
+                text = (templates / filename).read_text(encoding="utf-8")
+                self.assertEqual(headings, re.findall(r"(?m)^## (.+)$", text))
+                self.assertIn(f"### {new_section}", text)
+
     def test_exactly_two_canonical_agent_contexts_exist(self) -> None:
         agents = ROOT / ".github" / "agents"
         self.assertEqual(

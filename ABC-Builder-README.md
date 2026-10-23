@@ -121,7 +121,26 @@ Rollout completion requires real validation of every requested target.
 The scenario orchestrator executes deployment skills directly; there is no
 deployment specialist agent. Publishing/contribution is also opt-in through a skill.
 
+## Agentic business scenarios
+
+The scenario builder uses the
+[18-pattern selection guide](.github/skills/az-scenario-requirements/references/agentic-patterns.md)
+as adaptable design guidance.
+It starts from the selected industry and business units, compares a single-agent baseline,
+and justifies any coordination, human gate or shared-state pattern.
+Requirements and architecture record the runtime contract; app/data, tests and demonstration prove it.
+Supporting Azure infrastructure is not the business outcome.
+
+After suitability approval, hack composition derives a small progressive agent-building experience
+from that working behavior. It does not add unrelated patterns or expose the private completed solution.
+Existing scenarios are not rewritten or automatically reapproved, and no new portal selection is required.
+
 ## Prerequisites
+
+Start with the [prerequisite guide and safe automated Windows setup](PREREQUISITES.md).
+It checks by default; installation is explicit, and shared tools are never installed by scenario workers.
+The guide covers native Graphviz, the .NET 10 SDK, repository Python environment,
+optional developer/container tools, authentication and stale-PATH troubleshooting.
 
 - VS Code and GitHub Copilot custom-agent support, or authenticated Copilot CLI
   for local portal jobs; no specialist/subagent fanout is needed.

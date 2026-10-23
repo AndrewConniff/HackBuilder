@@ -582,10 +582,10 @@ The runtime diagram shows how data and requests move through the architecture du
 
 ### Prerequisites
 
-```bash
-pip install diagrams matplotlib pillow
-# Graphviz required: choco install graphviz (Windows)
-```
+Use the [repository prerequisite setup](../../../PREREQUISITES.md) before starting workers:
+install root `requirements.txt` in `.venv` and native Graphviz with `dot` on the new server's PATH.
+The checker performs an actual PNG render. A Python package alone does not install native Graphviz.
+Missing shared tools require a user-coordinated setup decision, not another in-worker installer attempt.
 
 ### Quick Start
 

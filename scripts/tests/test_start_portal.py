@@ -69,6 +69,35 @@ class PortalStartupTests(unittest.TestCase):
         self.assertEqual(["${workspaceFolder}\\scripts\\start_portal.py"], task["args"])
         self.assertNotIn("runOptions", task)
 
+    def test_new_server_prefers_repository_environment_and_preserves_other_environment(self) -> None:
+        root = self.state / "workspace"
+        scripts = root / ".venv" / ("Scripts" if os.name == "nt" else "bin")
+        scripts.mkdir(parents=True)
+        interpreter = scripts / ("python.exe" if os.name == "nt" else "python")
+        interpreter.touch()
+        with (
+            patch.object(launcher, "ROOT", root),
+            patch.dict(os.environ, {"PATH": "original-path", "ABC_SETUP_TEST": "preserved"}),
+            patch.object(launcher, "running_portal", side_effect=[None, self.config]),
+            patch.object(launcher.subprocess, "Popen") as spawn,
+        ):
+            self.assertEqual(self.config, launcher.ensure_portal())
+        self.assertEqual(str(interpreter), spawn.call_args.args[0][0])
+        environment = spawn.call_args.kwargs["env"]
+        self.assertEqual(str(root / ".venv"), environment["VIRTUAL_ENV"])
+        self.assertEqual(str(scripts) + os.pathsep + "original-path", environment["PATH"])
+        self.assertEqual("preserved", environment["ABC_SETUP_TEST"])
+
+    def test_missing_repository_environment_keeps_current_interpreter(self) -> None:
+        with (
+            patch.object(launcher, "ROOT", self.state / "workspace"),
+            patch.object(launcher, "running_portal", side_effect=[None, self.config]),
+            patch.object(launcher.subprocess, "Popen") as spawn,
+        ):
+            launcher.ensure_portal()
+        self.assertEqual(sys.executable, spawn.call_args.args[0][0])
+        self.assertEqual(os.environ["PATH"], spawn.call_args.kwargs["env"]["PATH"])
+
     @unittest.skipUnless(os.name == "nt", "Windows click launcher")
     def test_click_launcher_runs_from_another_directory_and_returns_helper_status(self) -> None:
         for code in (0, 7):

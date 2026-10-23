@@ -94,6 +94,16 @@ agent grounding/tools, evaluation prompts, demo acceptance and, after approval,
 learner challenges and private coach notes. These business-unit choices are not
 Azure deployment or authorization scopes.
 
+## Agentic business workflow
+
+Use the requirements skill's
+[18-pattern guide](../az-scenario-requirements/references/agentic-patterns.md)
+to choose a useful industry/unit workflow before selecting supporting infrastructure.
+Record the simplest primary pattern, justified overlays, simpler alternative, runtime contract and measurable evidence
+in requirements and architecture. Patterns concern deployed Foundry behavior, not additional Copilot contexts.
+Carry the choice through app/data, runtime coordination checks, demonstration and only then approved hack composition.
+Catalog reuse requires a fresh fit assessment. Existing scenarios and approval records are not automatically changed.
+
 ## Reusable scenario catalog
 
 The portal catalog reads `generated-scenarios\*\scenario-manifest.json`.
@@ -184,6 +194,8 @@ Write `scenario-validation.json` with `status: "passed"`, `checkedAtUtc`,
 `applicationUrl`, and a `checks` object. Required boolean checks are `deployment`,
 `modelInference`, `agentInvocation`, `applicationChat`, and `negativeCase`.
 Add `grounding` and `tools` when requirements include those capabilities.
+For a new pattern-scoped reference, add `agenticWorkflow` after real coordination-specific
+success and failure tests pass; retain the exact traces/results in the deployment summary.
 All supplied checks must be true. Record exact commands/results in the deployment
 summary; this small JSON file is an evidence index, not a substitute for tests.
 

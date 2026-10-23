@@ -46,11 +46,13 @@ Catalog adaptations reuse architecture only as read-only guidance: regenerate th
 target business app/data, refresh evidence and validate independently. Never
 inherit source deployment state, secrets, scopes, approvals, packages or runtime success.
 
-You are the deployment agent for an Azure AI Foundry multi-agent chatbot
-solution. Generate a complete, reproducible repository that provisions Azure
+Implement the confirmed Foundry agentic business workflow directly.
+Use the [pattern contract](../az-scenario-requirements/references/agentic-patterns.md)
+to choose a bounded single-agent baseline or justified multi-agent coordination.
+Generate a complete, reproducible repository that provisions Azure
 resources, creates the Microsoft Foundry resource and project, deploys the
-model, configures multiple agents, and connects a web app to the orchestrator
-agent through the chatbot channel.
+model, configures only the runtime roles required by the design, and connects the
+business application to the Foundry entry agent/workflow through its real invocation path.
 
 The generated solution must be deployable through `azd up` or equivalent Azure
 CLI deployment commands. Do not stop after creating generic Azure
@@ -67,8 +69,8 @@ User
   -> Web app chatbot UI
   -> Chat endpoint / API route
   -> Microsoft Foundry project endpoint
-  -> Orchestrator agent
-  -> Connected specialist agents and tools
+  -> Entry agent / selected workflow
+  -> Optional selected specialists / scoped tools
   -> Azure data/resources
 ```
 
@@ -105,9 +107,7 @@ Generate or update the repository with this structure:
 │   │   └── chatbot client code
 │   └── agents/
 │       ├── orchestrator.agent.md
-│       ├── specialist-agent-1.agent.md
-│       ├── specialist-agent-2.agent.md
-│       └── specialist-agent-3.agent.md
+│       └── {selected-specialist}.agent.md  # Only when the chosen pattern requires it
 ├── scripts/
 │   ├── preflight.sh
 │   ├── deploy-foundry.sh
@@ -231,13 +231,14 @@ Create agent definitions as files under `src/agents/`. Each agent file must incl
 The orchestrator agent must:
 
 1. Receive all web app chatbot requests.
-2. Decide whether to answer directly or route to a specialist agent.
-3. Route only to approved specialist agents.
+2. Follow the confirmed pattern's routing, sequencing, aggregation or handoff contract when applicable.
+3. Invoke only selected, authorized runtime agents and tools.
 4. Never call a tool or agent that is not described in the generated repo.
 5. Return a concise final answer to the web app.
 6. Include trace-friendly metadata in logs, but not in the user-facing response unless requested.
 
-Specialist agents should be narrow and task-specific. Do not create one broad agent that does everything.
+When needed, specialist agents are narrow and task-specific. A bounded single-agent tool loop remains valid.
+Do not add specialists solely to fill this example structure.
 
 ## Web app requirements
 
@@ -323,7 +324,7 @@ Before claiming success, generate a validation report that checks:
 2. Foundry project exists.
 3. Model deployment exists and is usable.
 4. Orchestrator agent exists.
-5. Every specialist agent exists or has an explicit manual creation step.
+5. Every specialist required by the chosen pattern exists and can be invoked.
 6. Web app exists and has required app settings.
 7. Web app can reach the backend API.
 8. Backend can authenticate to Azure.
@@ -334,6 +335,9 @@ Before claiming success, generate a validation report that checks:
 13. Foundry resource has a direct child project and no hub resource exists.
 14. Region, model version, deployment type, SKU, quota, and capacity match the
   regional evidence.
+15. The selected business workflow and a coordination-specific failure pass with correlated runtime evidence,
+  including human decisions and action receipts when required. See the
+  [pattern acceptance guidance](../az-scenario-requirements/references/agentic-patterns.md).
 
 Create `docs/deployment-validation.md` with results in this format:
 
@@ -368,28 +372,15 @@ The README must include:
 4. Deployment steps.
 5. Configuration values produced by deployment.
 6. How the web app connects to Foundry.
-7. How the orchestrator routes to multiple agents.
+7. How the selected agentic pattern produces the industry/business-unit result.
 8. How MCP is used, if used.
 9. Validation steps.
 10. Troubleshooting.
 11. Teardown steps.
 
-Include this Mermaid diagram and adapt names as needed:
-
-```mermaid
-flowchart LR
-    U[User] --> W[Web App Chatbot]
-    W --> API[Backend Chat API]
-    API --> F[Microsoft Foundry Project]
-    F --> O[Orchestrator Agent]
-    O --> A1[Specialist Agent 1]
-    O --> A2[Specialist Agent 2]
-    O --> A3[Specialist Agent 3]
-    A1 --> S[Azure AI Search]
-    A2 --> ST[Storage or Data Source]
-    A3 --> T[External Tool or MCP Server]
-    API --> AI[Application Insights]
-```
+Embed the generated architecture/runtime diagrams for the confirmed pattern.
+Show actual ownership, typed handoffs, tools/data, human gates and failure paths.
+Do not invent a three-specialist roster or imply every solution needs one.
 
 ## Failure handling
 
@@ -419,6 +410,9 @@ The output is acceptable only when one of these is true:
 
 ### Documented partial automation
 
+This records incomplete preparation, not successful runtime acceptance or a review-ready scenario.
+Finish the manual steps and prove the chosen agentic behavior before claiming completion.
+
 - Azure infrastructure is deployed.
 - Foundry cannot be fully automated due to a verified limitation.
 - The repo includes scripts, placeholders, validation checks, and clear manual steps.
@@ -436,8 +430,8 @@ Update this repository so the Azure deployment creates the full Microsoft
 Foundry stack, not only the supporting Azure resources. Add Bicep modules,
 scripts, agent definition files, web app configuration, README content,
 validation checks, and troubleshooting notes. The final solution must deploy a
-web chatbot that connects to a Foundry orchestrator agent and routes to
-multiple specialist agents. If a Foundry operation cannot be fully automated,
+business application that invokes the confirmed Foundry agentic workflow,
+using only its selected runtime roles and tools. If a Foundry operation cannot be fully automated,
 create the closest valid script or placeholder and document the manual step
 clearly. Do not omit Foundry resources silently.
 ```

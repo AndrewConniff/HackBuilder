@@ -19,6 +19,11 @@ preparation is local-only by instruction: prepare Azure check/what-if commands
 without running them unless the job explicitly authorizes that scope.
 Missing consent in noninteractive mode means persist the blocker and stop.
 
+Use the [prerequisite guide](../../../PREREQUISITES.md) to prepare shared tools before workers start.
+The baseline provides the **Azure CLI Bicep component**, not a standalone `bicep` executable.
+Use `az bicep build/lint` below. If a prerequisite is missing, report the exact gap and stop for coordinated setup;
+do not install shared SDKs or repair PATH from a scenario worker.
+
 ---
 
 ## 1. Pre-Deployment Validation Gates
@@ -41,7 +46,7 @@ failure means the deployment cannot continue until the issue is resolved.
 ```text
 Gate 1: Authentication    → az login / azd auth status
 Gate 2: Subscription      → correct subscription selected
-Gate 3: Template          → bicep build + bicep lint pass
+Gate 3: Template          → az bicep build + az bicep lint pass
 Gate 4: Parameters        → required params have values
 Gate 5: Resource Providers → all needed providers registered
 Gate 6: What-If           → no unexpected destructive changes
@@ -127,22 +132,23 @@ az account set --subscription "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 
 ```powershell
 # Build main template (transpiles to ARM JSON)
-bicep build generated-scenarios/{project}/infra/main.bicep
+az bicep build --file generated-scenarios/{project}/infra/main.bicep
 
 # Build all bicep files in the directory
 Get-ChildItem generated-scenarios/{project}/infra -Recurse -Filter "*.bicep" | ForEach-Object {
     Write-Host "Building: $($_.FullName)"
-    bicep build $_.FullName
+    az bicep build --file $_.FullName
 }
 ```
 
-A successful `bicep build` produces no output. Any output indicates errors.
+Check the exit code and diagnostics from `az bicep build`; output alone is not a success/failure signal.
+Surface errors and assess warnings explicitly.
 
 ### Bicep Lint (Best Practice Check)
 
 ```powershell
 # Lint the main template
-bicep lint generated-scenarios/{project}/infra/main.bicep
+az bicep lint --file generated-scenarios/{project}/infra/main.bicep
 ```
 
 Linting checks against `bicepconfig.json` rules. Common lint warnings:
@@ -180,7 +186,7 @@ This calls the ARM validation endpoint which checks:
 
 ```powershell
 # Extract parameters from the Bicep file
-bicep build generated-scenarios/{project}/infra/main.bicep --stdout | `
+az bicep build --file generated-scenarios/{project}/infra/main.bicep --stdout | `
   ConvertFrom-Json | `
   Select-Object -ExpandProperty parameters | `
   ForEach-Object { $_.PSObject.Properties } | `
@@ -319,6 +325,18 @@ if ($whatif -match "Delete") {
 ---
 
 ## 8. Post-Deployment Validation
+
+### Agentic business workflow acceptance
+
+Read the confirmed [pattern contract](../az-scenario-requirements/references/agentic-patterns.md).
+Within authorized deployment scope, invoke the real app/Foundry path and verify the
+industry/unit business result, selected roles, route/handoff/aggregation decisions,
+state, grounding/tools, deterministic controls and action receipts.
+Test one coordination-specific failure and applicable approval/recovery behavior
+against the contract's numeric limits or explicit pass/fail conditions.
+Retain correlated, redacted traces and exact results in the deployment summary;
+set `checks.agenticWorkflow` only after these checks pass. Provisioning, local tests
+and a plausible final answer alone do not prove this behavior.
 
 ### Resource Provisioning State
 

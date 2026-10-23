@@ -108,7 +108,7 @@ A complete coach solution includes all of these outcomes:
 
 - Foundry resource and direct child project.
 - A deployable, usable model deployment.
-- Orchestrator and specialist agents or idempotent creation automation.
+- The selected entry agent/workflow and any required specialists, or idempotent creation automation.
 - A coach solution web application with a real chat endpoint that invokes the
   orchestrator through managed identity.
 - During requested event rollout only, one isolated participant deployment per manifest team.
@@ -134,7 +134,7 @@ Before claiming success, verify and record:
 1. The deployed resource is a Foundry resource and has a direct child project.
 2. No hub resource exists unless an explicit legacy exception was approved.
 3. The selected model deployment accepts a test inference.
-4. The orchestrator and required specialist agents exist and can be invoked.
+4. The selected entry agent/workflow and required specialists exist and can be invoked.
 5. The coach chatbot returns a grounded response through its deployed URL.
 6. During requested event rollout, every manifest team resource group exists, is isolated, and has a reachable
    application URL when the package includes an application.
@@ -143,6 +143,12 @@ Before claiming success, verify and record:
 
 Use Playwright for web acceptance checks and Azure queries for resource,
 project, model, agent, quota, capacity, and deployment evidence.
+
+For a pattern-scoped scenario, apply the
+[agentic runtime contract](../skills/az-scenario-requirements/references/agentic-patterns.md).
+Prove its business outcome and coordination-specific failure with actual traces/results.
+A single bounded agent is valid when adequate; do not provision a fixed specialist roster.
+Pattern names are not evidence of native Foundry or low-code feature support.
 
 ## Current Official References
 

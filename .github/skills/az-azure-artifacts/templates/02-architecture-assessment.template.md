@@ -15,6 +15,21 @@ Assessment Contents
 | --- | --- | --- |
 | {industry and exact businessUnits} | {personas, app/data and handoffs} | {tests} |
 
+### Agentic runtime contract
+
+Trace the [selected pattern](../../az-scenario-requirements/references/agentic-patterns.md)
+to the requirements' industry/unit outcome. Do not select infrastructure first and invent a workflow around it.
+
+| Contract | Design and evidence |
+| --- | --- |
+| Pattern selection | {IDs/names, overlays, business fit and rejected simpler alternative} |
+| Implementation support | {dated official SDK/language/hosting evidence; native versus app-hosted orchestration} |
+| Runtime roles and control | {entry point, ownership, route/handoff/aggregation rules and typed payloads} |
+| State and recovery | {store, checkpoint, version/conflict handling, retries, idempotency and cancellation} |
+| Permissions and human gates | {managed identities, scoped tools/data, deterministic limits and decision lifecycle} |
+| Operational budgets | {numeric time/call/token/round/concurrency/cost limits and exhaustion behavior} |
+| Acceptance and observability | {business result, correlation/receipts and positive/negative coordination tests} |
+
 ### Recommended Architecture
 
 ```mermaid

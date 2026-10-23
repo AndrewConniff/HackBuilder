@@ -87,6 +87,25 @@ that reuses the existing scripts/references. The application companion
 `az-webapp-development/app-creation-SKILL.md` is explicitly read by the scenario
 orchestrator, not a separately discoverable `app-creation` skill.
 
+## Agentic pattern guidance
+
+On 2026-10-22, the
+[18-pattern business-scenario guide](.github/skills/az-scenario-requirements/references/agentic-patterns.md)
+was added as a requirements-skill reference, not another discoverable skill or agent.
+It uses the supplied PDF as background and official Microsoft guidance for technical boundaries.
+Requirements, architecture templates, app development, validation and demonstration reference the same contract.
+Post-approval composition preserves that behavior while keeping completed solution details private.
+
+Industry and exact business-unit scope drive pattern selection, tools, synthetic data and evidence.
+Single-agent designs remain valid; multi-agent coordination needs a business justification.
+The patterns describe the generated Foundry runtime, never implementation delegation or additional Copilot contexts.
+Existing scenarios, catalog schemas, approval fingerprints and deployment permissions are not automatically changed.
+
+Local regression checks establish reference wiring and preserved approval boundaries.
+They do not prove a live scenario invoked a pattern or that every pattern is a native Foundry/low-code feature.
+Future execution evidence must show actual supported SDK/hosting and correlated runtime success/failure results.
+See also the [prerequisite setup](PREREQUISITES.md) for preparing the toolchain before workers start.
+
 ## The colleague's `.agents/skills` directory
 
 These files are **skills, not agents**. Both `.github/skills` and `.agents/skills`
