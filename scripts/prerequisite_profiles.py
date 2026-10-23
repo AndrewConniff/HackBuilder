@@ -39,14 +39,16 @@ STAGE_REQUIREMENTS = {
 }
 
 
-def plan(services: object, build_mode: str = "auto", local_functions: bool = False) -> dict:
+def plan(
+    services: object, build_mode: str = "auto", local_functions: bool = False, load_tests: bool = False,
+) -> dict:
     if (
         not isinstance(services, list) or not services
         or any(not isinstance(value, str) or value not in SERVICE_REQUIREMENTS for value in services)
         or len(services) != len(set(services))
     ):
         raise ValueError("Prerequisite services must be unique known catalog IDs.")
-    if build_mode not in {"auto", "local", "remote"} or type(local_functions) is not bool:
+    if build_mode not in {"auto", "local", "remote"} or type(local_functions) is not bool or type(load_tests) is not bool:
         raise ValueError("Select auto, local or remote build mode and a boolean local Functions option.")
     selected = sorted(set(services) | {"foundry"})
     mode = "local" if build_mode == "auto" and "container-apps" in selected else build_mode
@@ -58,8 +60,11 @@ def plan(services: object, build_mode: str = "auto", local_functions: bool = Fal
         if "functions" not in selected:
             raise ValueError("A local Functions host requires the Functions service selection.")
         stages["local-validation"].append("functions-core-tools")
+    if load_tests:
+        stages["local-validation"].append("k6")
     return {
         "version": VERSION, "services": selected, "buildMode": mode, "localFunctions": local_functions,
+        "loadTests": load_tests,
         "stages": stages,
         "serviceNotes": [{"id": value, "detail": SERVICE_REQUIREMENTS[value]} for value in selected],
         "conditions": [
@@ -90,10 +95,23 @@ def effective_services(root: Path, request: dict, slug: str) -> list[str]:
     return selected
 
 
+def requires_load_tests(root: Path, slug: str) -> bool:
+    manifest = root / "generated-scenarios" / slug / "scenario-manifest.json"
+    if not manifest.is_file():
+        return False
+    value = json.loads(manifest.read_text(encoding="utf-8"))
+    if not isinstance(value, dict):
+        raise ValueError("Scenario manifest must be an object.")
+    tools = value.get("validationTools", [])
+    if not isinstance(tools, list) or any(not isinstance(tool, str) for tool in tools):
+        raise ValueError("Manifest validationTools must be a list of tool names.")
+    return "k6" in tools
+
+
 def stage_failures(report: dict, stage: str) -> list[dict]:
     if not isinstance(report, dict) or not {"services", "buildMode", "localFunctions", "checks"} <= report.keys():
         raise ValueError("Prerequisite report is missing its scope or check results.")
-    profile = plan(report["services"], report["buildMode"], report["localFunctions"])
+    profile = plan(report["services"], report["buildMode"], report["localFunctions"], report.get("loadTests", False))
     checks = report["checks"]
     if (
         not isinstance(checks, list)
@@ -135,6 +153,12 @@ def require_stage(project: dict, directory: Path, owner: str, stage: str) -> Non
     if not -60 <= age <= 900:
         raise ValueError(f"Prerequisite receipt is stale. Run {command}.")
     failures = stage_failures(report, stage)
+    if (
+        stage == "local-validation"
+        and requires_load_tests(directory.parent.parent, project["projectSlug"])
+        and report.get("loadTests") is not True
+    ):
+        raise ValueError(f"Load-test scope changed. Run {command} --load-tests.")
     expected = effective_services(directory.parent.parent, project["request"], project["projectSlug"])
     if not set(expected).issubset(report["services"]):
         raise ValueError(f"Architecture service scope changed. Run {command}.")

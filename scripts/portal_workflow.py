@@ -251,11 +251,18 @@ class Store:
                     or event.get("decision") is not None
                 ):
                     raise ValueError("Setup required needs a prerequisite/host-permission blocker, not a decision.")
+                proposed_check = text(setup.get("verification"), "Setup verification", 2000)
+                if re.search(r"\$(?:home|pid|host)\s*=(?!=)", proposed_check, re.IGNORECASE):
+                    raise ValueError(
+                        "The proposed check assigns a PowerShell automatic/read-only variable ($HOME/$PID/$Host). "
+                        "Correct the generated command using a nonreserved result variable before reporting setup. "
+                        "This is a command bug, not a request for broader permissions."
+                    )
                 setup = {
                     "id": blocker["id"] if blocker else uuid.uuid4().hex,
                     "stage": stage, "kind": setup["kind"],
                     "action": text(setup.get("action"), "Setup action", 2000),
-                    "verification": text(setup.get("verification"), "Setup verification", 2000),
+                    "verification": proposed_check,
                     "createdAtUtc": blocker["createdAtUtc"] if blocker else timestamp(),
                     "updatedAtUtc": timestamp(),
                 }

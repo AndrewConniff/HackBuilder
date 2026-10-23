@@ -127,6 +127,61 @@ instructs the new worker to replace that obsolete check with the approved proxy 
 The worker must inspect the `nuget-https` result explicitly, verify effective restore sources and
 record fresh evidence against the existing blocker before clearing it. Historical failures remain unchanged.
 
+## Worker package and browser cache access
+
+This installation's operator approved scoped Copilot CLI trust for the worker account's
+`~\.nuget\packages` and `%LOCALAPPDATA%\ms-playwright` caches, in addition to the repository and
+adjacent `azd-projects` workspaces. On non-Windows hosts, the browser-cache default is
+`~/.cache/ms-playwright`. The portal passes these exact directories using `--add-dir`.
+This grants filesystem access and configuration trust, not read-only access.
+It does not enable `--allow-all-paths`, grant Azure consent, authorize shared tool installation
+or override organization restrictions.
+
+Future packages within these caches or the scenario workspace share that access; package names do not
+need individual filesystem approvals. Custom `NUGET_PACKAGES` and `PLAYWRIGHT_BROWSERS_PATH` values must
+remain inside approved cache/workspace roots; other locations require explicit review.
+`PLAYWRIGHT_BROWSERS_PATH=0` keeps Playwright's package-local behavior.
+No cache is created or software installed by this policy.
+
+Workers must inventory additional SDK and test-tool requirements before implementation and probe them
+separately. A missing optional browser or load-test tool must not block unrelated application authoring.
+Actual required tool execution, restore/build and browser/load validation still need evidence.
+PowerShell checks must not assign results to automatic/read-only variables such as `$HOME`, `$PID`
+or `$Host`; variable names are case-insensitive. Use `$homeResponse` for an HTTP response.
+An older loopback-only Docker check that assigned `Invoke-WebRequest` to `$home` has an
+operator-approved retry correction to `$homeResponse`, retaining permissions and validation criteria.
+Where the owned image and literal homepage marker can be extracted safely, retries instead use the
+repository runtime helper with the same image/marker and a 90-second startup window.
+The correction neither grants profile access nor clears the blocker without actual container/HTTP evidence.
+Generated-command errors must not be repaired by broadening filesystem trust.
+New setup reports reject obvious assignments to `$HOME`, `$PID` or `$Host` before saving a blocker.
+
+Use the reusable local runtime check instead of generated multi-command PowerShell for container smoke tests:
+
+```powershell
+python scripts\check_container_runtime.py --image scenario-local:owned-tag --marker "Expected company"
+```
+
+It requires an existing nonroot Linux x64 image, never pulls images, uses a read-only filesystem,
+publishes only to an ephemeral loopback port, retries startup for up to 90 seconds, captures container
+logs on success/failure and stops only the exact container it created. No host mounts or cloud access
+are involved. JSON `ok:true` requires the health and homepage checks and successful cleanup.
+This is shell/liveness evidence only, not live Foundry or full application acceptance.
+HTTP/startup failures are application diagnostics, not permission failures. Workers must inspect the
+actual failure before requesting additional access; genuine unknown paths/URLs still require approval.
+
+The authenticated catalog exposes the effective cache directories and path-policy version.
+The launcher rejects a server with an older path policy rather than silently reusing it.
+
+For a design that explicitly uses k6, record `"validationTools": ["k6"]` in the scenario manifest.
+Worker audits then check k6 automatically; standalone audits can use
+`python scripts\check_prerequisites.py --services foundry --load-tests --json`.
+Missing k6 gates local validation, not application authoring. It is not required for other scenarios.
+An operator can install it outside workers with
+`winget install --id GrafanaLabs.k6 --exact --source winget`.
+The portal resolves an existing standard `Program Files\k6\k6.exe` installation on its child PATH,
+without changing the host PATH. A fresh worker is required after installation.
+
 ## Quick start on Windows
 
 Run from the repository root in PowerShell. Check-only is the default; it installs nothing:

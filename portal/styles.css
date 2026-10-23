@@ -954,6 +954,19 @@ legend {
 details {
   margin-top: 20px;
 }
+.worker-activity {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--code-bg);
+}
+.worker-activity summary {
+  font-size: 14px;
+}
+.worker-activity li {
+  margin: 8px 0;
+  overflow-wrap: anywhere;
+}
 summary {
   cursor: pointer;
   font-size: 12px;

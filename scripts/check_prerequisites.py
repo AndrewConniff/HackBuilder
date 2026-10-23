@@ -16,6 +16,7 @@ from pathlib import Path
 
 import prerequisite_profiles as profiles
 ROOT = Path(__file__).resolve().parents[1]
+WORKER_PATH_POLICY_VERSION = 2
 TOOLS = (
     ("git", "Git", "git", ["--version"], None, "Git.Git"),
     ("copilot", "GitHub Copilot CLI", "copilot", ["--version"], None, "GitHub.Copilot"),
@@ -80,6 +81,7 @@ def execution_environment(root: Path) -> dict[str, str]:
         for command, candidate in (
             ("dot", program_files / "Graphviz" / "bin" / "dot.exe"),
             ("dotnet", program_files / "dotnet" / "dotnet.exe"),
+            ("k6", program_files / "k6" / "k6.exe"),
         ):
             if not shutil.which(command, path=environment.get("PATH", "")) and candidate.is_file():
                 environment["PATH"] = environment.get("PATH", "") + os.pathsep + str(candidate.parent)
@@ -87,6 +89,34 @@ def execution_environment(root: Path) -> dict[str, str]:
                     "Using existing %s installation on the portal/worker PATH: %s", command, candidate.parent,
                 )
     return environment
+
+
+def worker_cache_directories(root: Path = ROOT) -> list[Path]:
+    home = Path.home()
+    nuget = (home / ".nuget" / "packages").resolve()
+    local_app_data = os.environ.get("LOCALAPPDATA")
+    playwright = (
+        Path(local_app_data) / "ms-playwright" if local_app_data else home / ".cache" / "ms-playwright"
+    ).resolve()
+    directories = [nuget, playwright]
+    allowed_roots = [root.resolve(), (root.parent / "azd-projects").resolve(), *directories]
+    for variable in ("NUGET_PACKAGES", "PLAYWRIGHT_BROWSERS_PATH"):
+        configured = os.environ.get(variable)
+        if not configured or (variable == "PLAYWRIGHT_BROWSERS_PATH" and configured == "0"):
+            continue
+        candidate = Path(configured)
+        if not candidate.is_absolute():
+            raise ValueError(f"{variable} must be an absolute approved cache path, not {configured!r}.")
+        candidate = candidate.resolve()
+        if not any(candidate.is_relative_to(allowed) for allowed in allowed_roots):
+            raise ValueError(
+                f"{variable} points outside approved worker cache/workspace directories: {candidate}. "
+                "Review this exact directory's access outside the worker; unrestricted path access is not enabled."
+            )
+    for directory in directories:
+        if directory in {home.resolve(), directory.parent, Path(directory.anchor)}:
+            raise ValueError(f"Refusing broad worker cache trust: {directory}.")
+    return list(dict.fromkeys(directories))
 
 
 def run_command(command: list[str], timeout: int = 45) -> tuple[int, str]:
@@ -264,17 +294,20 @@ def build_report(root: Path = ROOT, contributor: bool = False, docker: bool = Fa
 
 
 def service_report(services: list[str], build_mode: str = "auto", local_functions: bool = False,
-                   root: Path = ROOT) -> dict:
-    profile = profiles.plan(services, build_mode, local_functions)
+                   root: Path = ROOT, load_tests: bool = False) -> dict:
+    profile = profiles.plan(services, build_mode, local_functions, load_tests)
     report = build_report(root, docker="docker" in profile["stages"]["local-validation"])
     if local_functions:
         report["checks"].append(tool_check((
             "functions-core-tools", "Azure Functions Core Tools 4+", "func", ["--version"], 4,
             "Microsoft.Azure.FunctionsCoreTools",
         )))
+    if load_tests:
+        report["checks"].append(tool_check(("k6", "k6 load-test runner", "k6", ["version"], None, "GrafanaLabs.k6")))
     report.update(
         profileVersion=profiles.VERSION, checkedAtUtc=datetime.now(timezone.utc).isoformat(),
-        services=profile["services"], buildMode=profile["buildMode"], localFunctions=local_functions, plan=profile,
+        services=profile["services"], buildMode=profile["buildMode"], localFunctions=local_functions,
+        loadTests=load_tests, plan=profile,
     )
     report["blockedStages"] = {
         stage: [item["id"] for item in profiles.stage_failures(report, stage)]
@@ -296,6 +329,8 @@ def planned_checks(profile: dict, root: Path = ROOT) -> list[dict]:
         names.append(("docker", "Docker CLI and running Linux engine"))
     if profile["localFunctions"]:
         names.append(("functions-core-tools", "Azure Functions Core Tools 4+"))
+    if profile.get("loadTests"):
+        names.append(("k6", "k6 load-test runner"))
     return [{
         "id": identifier, "name": name, "state": "not-checked",
         "stages": [stage for stage, tools in profile["stages"].items() if identifier in tools],
@@ -310,6 +345,7 @@ def main() -> int:
     parser.add_argument("--services", nargs="+", choices=sorted(profiles.SERVICE_REQUIREMENTS))
     parser.add_argument("--build-mode", choices=["auto", "local", "remote"], default="auto")
     parser.add_argument("--local-functions", action="store_true")
+    parser.add_argument("--load-tests", action="store_true", help="Check k6 for an explicitly selected load-test design.")
     parser.add_argument("--stage", choices=list(profiles.STAGE_REQUIREMENTS))
     parser.add_argument("--for-project", action="store_true")
     parser.add_argument("--record", action="store_true")
@@ -332,10 +368,12 @@ def main() -> int:
             services = profiles.effective_services(ROOT, project["request"], slug)
             if args.services:
                 services = sorted(set(services) | set(args.services))
+            args.load_tests = args.load_tests or profiles.requires_load_tests(ROOT, slug)
         else:
             services = args.services
         report = (
-            service_report(services, args.build_mode, args.local_functions) if services is not None
+            service_report(services, args.build_mode, args.local_functions, load_tests=args.load_tests)
+            if services is not None
             else build_report(contributor=args.contributor, docker=args.docker)
         )
         if args.record:

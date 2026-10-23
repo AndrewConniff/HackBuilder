@@ -150,6 +150,15 @@ class ProjectTests(unittest.TestCase):
         self.report("requirements", "completed")
         self.assertEqual([], self.project["authorizations"])
 
+    def test_generated_command_bugs_cannot_become_permission_blockers(self) -> None:
+        for name in ("home", "HOME", "pid", "Host"):
+            with self.subTest(name=name), self.assertRaisesRegex(ValueError, "command bug"):
+                self.report("requirements", "blocked", blocker={
+                    "kind": "host-permission", "action": "Grant profile access",
+                    "verification": f"${name} = Invoke-WebRequest http://127.0.0.1:8080",
+                })
+        self.assertIsNone(self.store.read("finance-test")["setupBlocker"])
+
     def test_setup_verification_cannot_claim_stage_completion_or_cloud_permission(self) -> None:
         self.report("deployment", "blocked", blocker={
             "kind": "host-permission", "action": "Review the denied local probe in the execution host.",

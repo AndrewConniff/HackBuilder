@@ -857,6 +857,33 @@ function localExecutionAllowed() {
     $("workspace-consent").checked;
 }
 
+function renderWorkerActivity(run) {
+  const activity = run.activity;
+  const running = run.status === "running";
+  const lastOutput = Date.parse(activity?.lastOutputAtUtc || "");
+  const start = Date.parse(run.startedAtUtc || "");
+  const end = running ? Date.now() : Date.parse(run.finishedAtUtc || "");
+  const seconds = Number.isFinite(lastOutput) ? Math.max(0, Math.floor((Date.now() - lastOutput) / 1000)) : null;
+  const age = seconds === null ? "No output received yet" :
+    `Last output ${seconds < 60 ? `${seconds}s` : `${Math.floor(seconds / 60)}m`} ago`;
+  const elapsed = Number.isFinite(start) && Number.isFinite(end) ?
+    ` · Attempt elapsed ${Math.max(0, Math.floor((end - start) / 60000))}m` : "";
+  const process = running ? (activity?.processAlive ? "Process running" : "Process status not confirmed") :
+    `Attempt ${run.status}`;
+  $("worker-activity").hidden = Boolean(run.discovered);
+  $("worker-activity-badge").textContent = `· ${running && seconds !== null && seconds >= 180 ? "Quiet" : process}`;
+  $("worker-activity-status").textContent = `${process} · ${age}${elapsed}` +
+    (running && seconds !== null && seconds >= 180 ? ". No recent output; this alone does not mean it is stuck." : "");
+  const actions = activity?.recentActions || [];
+  $("worker-latest-action").textContent = actions.length ?
+    `Latest observed action: ${actions.at(-1)}` : "No tool-action headings received yet.";
+  $("worker-recent-actions").replaceChildren(...actions.slice().reverse().map(label => {
+    const item = document.createElement("li");
+    item.textContent = label;
+    return item;
+  }));
+}
+
 function renderRun(run) {
   const switched = currentRun?.request.projectSlug !== run.request.projectSlug;
   if (switched && currentRun) {
@@ -1041,6 +1068,7 @@ function renderRun(run) {
     section.append(heading, description, list);
     return section;
   }));
+  renderWorkerActivity(run);
   $("run-output").textContent =
     run.output || run.error || "Starting the local Copilot CLI…";
   $("stop").hidden = run.status !== "running";

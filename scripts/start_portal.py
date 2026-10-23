@@ -13,7 +13,7 @@ import time
 import webbrowser
 from pathlib import Path
 
-from check_prerequisites import execution_environment
+from check_prerequisites import WORKER_PATH_POLICY_VERSION, execution_environment
 from portal_workflow import WORKFLOW_VERSION, state_directory
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -56,6 +56,7 @@ def running_portal(expected_pid: int | None = None, expected_startup_id: str | N
             or catalog["workflowVersion"] != WORKFLOW_VERSION
             or catalog.get("systemControlsVersion") != 1
             or catalog.get("prerequisitesVersion") != 1
+            or catalog.get("workerPathPolicyVersion") != WORKER_PATH_POLICY_VERSION
         ):
             pid = config.get("pid")
             label = str(pid) if type(pid) is int and pid > 0 else "unknown"

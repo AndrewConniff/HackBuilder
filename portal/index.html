@@ -402,6 +402,17 @@
           <div id="build-details">
           <p class="subtle">Technical reference construction, deployment with explicit consent, and runtime validation.</p>
           <ol id="stage-list" class="stage-list" aria-label="Scenario progress"></ol>
+          <details id="worker-activity" class="worker-activity">
+            <summary>Worker activity <span id="worker-activity-badge" class="subtle"></span></summary>
+            <p id="worker-activity-status" class="subtle" role="status"></p>
+            <p id="worker-latest-action"></p>
+            <ol id="worker-recent-actions" aria-label="Recent observed worker actions"></ol>
+            <p class="fine-print">
+              Actions come from worker tool-output headings, not internal reasoning.
+              Activity does not prove completion. Individual action timestamps are unavailable.
+              Expand Technical details and execution log below for command results.
+            </p>
+          </details>
           <details>
             <summary>Available reference documents</summary>
             <div id="reference-list" class="artifact-group-items"></div>

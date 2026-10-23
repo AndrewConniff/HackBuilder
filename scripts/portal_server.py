@@ -31,7 +31,9 @@ import hack_workflow
 import portal_workflow
 import prerequisite_profiles
 import scenario_catalog
-from check_prerequisites import execution_environment, planned_checks
+from check_prerequisites import (
+    WORKER_PATH_POLICY_VERSION, execution_environment, planned_checks, worker_cache_directories,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "portal"
@@ -244,8 +246,37 @@ def reuse_prompt(request: dict) -> str:
     )
 
 
+def worker_activity(output: str) -> list[str]:
+    actions = []
+    for line in output.splitlines():
+        clean = re.sub(r"\x1b\[[0-9;]*[A-Za-z]", "", line).strip()
+        match = re.match(r"^[●✗✓/]\s+(.+)$", clean)
+        if not match:
+            continue
+        label = match[1].strip()
+        if not re.search(
+            r"^(?:Read|Edit|Create|Write|Search|Run|Check|Verify|Inspect|Build|Test|Validate|"
+            r"Review|Update|Compile|Render|Execute|Install|Restore|Publish|List|Record|"
+            r"Generate|Compare|Fetch|Fix|Start|Stop|Prepare)\b", label, re.IGNORECASE,
+        ):
+            continue
+        label = re.sub(r"https?://\S+", "[URL omitted]", label)[:220]
+        if not actions or actions[-1] != label:
+            actions.append(label)
+    return actions[-12:]
+
+
+def corrected_docker_verification(verification: str) -> str | None:
+    if (
+        not re.search(r"\$home\s*=\s*Invoke-WebRequest\b", verification, re.IGNORECASE)
+        or not all(token in verification.lower() for token in ("docker run", "127.0.0.1", "finally", "docker stop"))
+    ):
+        return None
+    return re.sub(r"\$home\b", "$homeResponse", verification, flags=re.IGNORECASE)
+
+
 def cli_command(executable: str, agent: str, prompt: str) -> list[str]:
-    return [
+    command = [
         executable,
         "--agent",
         agent,
@@ -258,6 +289,9 @@ def cli_command(executable: str, agent: str, prompt: str) -> list[str]:
         "--add-dir",
         str(ROOT.parent / "azd-projects"),
     ]
+    for directory in worker_cache_directories(ROOT):
+        command.extend(["--add-dir", str(directory)])
+    return command
 
 
 class Portal:
@@ -379,6 +413,12 @@ class Portal:
                 run["output"] = stream.read().decode("utf-8", errors="replace")
         else:
             run["output"] = ""
+        run["activity"] = {
+            "lastOutputAtUtc": datetime.fromtimestamp(log.stat().st_mtime, timezone.utc).isoformat()
+            if log.exists() else None,
+            "processAlive": process_alive(run.get("childPid")) if run["status"] == "running" else False,
+            "recentActions": worker_activity(run["output"]),
+        }
         run["review"] = self.review(run) if run["status"] != "running" else {"ready": False}
         run["localValidation"] = None
         local_evidence = self.scenario(run) / "local-validation.json"
@@ -522,6 +562,12 @@ class Portal:
         prerequisite_profiles.plan(services, mode, functions)
         return services, mode, functions
 
+    def load_tests_required(self, data: dict) -> bool:
+        if data.get("runId"):
+            run = self.read(data["runId"])
+            return prerequisite_profiles.requires_load_tests(ROOT, run["request"]["projectSlug"])
+        return False
+
     def check_prerequisites(self, data: dict) -> dict:
         if data.get("toolConsent") is not True:
             raise ValueError("Explicit authorization for read-only local prerequisite commands is required.")
@@ -540,6 +586,8 @@ class Portal:
             ]
             if functions:
                 command.append("--local-functions")
+            if self.load_tests_required(data):
+                command.append("--load-tests")
             result = subprocess.run(
                 command, env=environment, cwd=ROOT, capture_output=True, text=True, timeout=180, check=False,
             )
@@ -638,12 +686,48 @@ class Portal:
             "together. Stop only before an affected operation. Docker is not required for authoring Bicep, "
             "writing application code or generating a Dockerfile. It is required for local container builds. "
             "NuGet/package restore, actual builds and scenario-specific tools still need their own evidence. "
+            "For confirmed k6 load testing, record validationTools:[\"k6\"] in scenario-manifest.json "
+            "and run preflight with --load-tests. It checks k6 early but gates local-validation only, "
+            "not application authoring. Shared k6 installation requires separate operator authorization. "
             "This host requires the approved MicrosoftPackageFeedProxy documented in PREREQUISITES.md and "
             "NuGet.Config. Do not request api.nuget.org directly, including hard-coded package metadata lookups. "
             "Use the proxy service index and its advertised package resources instead. Verify effective NuGet "
             "sources from the physical scenario workspace; repository configuration may not follow a junction. "
             "Use the repository NuGet.Config explicitly for restore when needed. Never fall back to NuGet.org.\n"
             "Unknown dependencies are not a passing preflight. No audit grants host or Azure permission.\n"
+            "SCOPED PACKAGE/CACHE ACCESS:\n"
+            "The operator has approved CLI filesystem trust for the account's .nuget\\packages and "
+            "Playwright browser cache only, in addition to the repository and azd-projects. These paths are "
+            "passed explicitly with --add-dir; --allow-all-paths is never enabled. Tool consent and path trust "
+            "are separate; neither overrides organization policy. Packages restored inside the scenario and "
+            "these approved caches do not require a new permission decision for every package. "
+            "Before application implementation, inventory the SDK packages and validation tools needed for "
+            "the confirmed design, including browser/load tools only where required. Check each tool or cache "
+            "separately; do not combine unrelated probes into one shell command. Absence of an optional "
+            "tool/cache is not a host denial and must not block unrelated application authoring. "
+            "Do not install shared tools, auto-trust new directories or switch validation design on failure. "
+            "Report exact additional setup needs together before the affected operation. A CLI approval "
+            "failure is distinct from a missing dependency or an operating-system denial. "
+            "On a setup retry use the current explicitly approved cache paths, verify the recorded command "
+            "and retain the blocker unless its actual required checks pass.\n"
+            "POWERSHELL CHECK CORRECTNESS:\n"
+            "PowerShell variables are case-insensitive. Never assign HTTP results or container identifiers "
+            "to automatic/read-only variables such as $HOME, $PID or $Host. Use $homeResponse, "
+            "$healthResponse and $containerId. A variable/path parsing error is not evidence that access to "
+            "the user profile is necessary. Diagnose structured permission metadata before requesting broader "
+            "trust. Do not use --allow-all-paths to compensate for a malformed generated command.\n"
+            "For local Docker shell/liveness checks use the repository helper, not an improvised PowerShell "
+            "one-liner: python scripts\\check_container_runtime.py --image <owned-local-tag> "
+            "--marker <expected-homepage-text>. It enforces nonroot linux/amd64, read-only filesystem, "
+            "ephemeral loopback binding, no pull/mounts, bounded startup retries, logs on failure and cleanup "
+            "of only its own container. A failed application/HTTP check is an implementation problem to "
+            "diagnose using captured logs, not a prerequisite or permission request. Never report a runtime "
+            "failure as host-permission unless the tool was actually denied. "
+            "For actual CLI approval failures inspect structured permission.requested/completed evidence: "
+            "separate path, URL and shell approvals and identify the exact unapproved scope. Do not repeat "
+            "a denied command blindly or request generic administrator setup. Unknown access still requires "
+            "operator approval; never broaden trust automatically. Avoid packing unrelated commands, "
+            "dynamic URLs and automatic variables into a single generated shell expression.\n"
             "The portal is the sole normal user decision surface. Do not send the user to VS Code or "
             "ask them to edit requirements. Read canonical state and all prior answers:\n"
             "python scripts\\portal_workflow.py read\n"
@@ -862,7 +946,9 @@ class Handler(BaseHTTPRequestHandler):
                 }
                 if query.get("runId"):
                     data["runId"] = query["runId"][0]
-                profile = prerequisite_profiles.plan(*self.app.prerequisite_scope(data))
+                profile = prerequisite_profiles.plan(
+                    *self.app.prerequisite_scope(data), load_tests=self.app.load_tests_required(data),
+                )
                 self.send(200, {**profile, "checks": planned_checks(profile)})
             elif path == "/api/system":
                 self.send(200, {**self.app.system_status(), "port": self.server.server_port})
@@ -872,6 +958,8 @@ class Handler(BaseHTTPRequestHandler):
                     "workflowVersion": portal_workflow.WORKFLOW_VERSION,
                     "systemControlsVersion": 1,
                     "prerequisitesVersion": prerequisite_profiles.VERSION,
+                    "workerPathPolicyVersion": WORKER_PATH_POLICY_VERSION,
+                    "workerCacheDirectories": [str(path) for path in worker_cache_directories(ROOT)],
                     "prerequisiteInventory": planned_checks(prerequisite_profiles.plan(
                         list(prerequisite_profiles.SERVICE_REQUIREMENTS),
                     )),
@@ -1041,6 +1129,33 @@ class Handler(BaseHTTPRequestHandler):
                                 "report a replacement blocker whose verification uses the approved proxy, never "
                                 "the obsolete direct endpoint. Resume package operations only through the approved "
                                 "proxy and verify actual restore/build separately."
+                            )
+                        corrected = corrected_docker_verification(project["setupBlocker"]["verification"])
+                        if corrected is not None:
+                            image_match = re.search(
+                                r"\$image\s*=\s*'([a-z0-9][a-z0-9._/-]*:[A-Za-z0-9_.-]+)'", corrected,
+                            )
+                            marker_match = re.search(
+                                r"\.Content\s+-notmatch\s+'([A-Za-z0-9 ._-]+)'", corrected,
+                            )
+                            if image_match and marker_match:
+                                corrected = (
+                                    "python scripts\\check_container_runtime.py "
+                                    f"--image {image_match[1]} --marker '{marker_match[1]}' --timeout 90"
+                                )
+                            prompt += (
+                                "\nPOWERSHELL DOCKER CHECK CORRECTION: The operator approved correcting the "
+                                "recorded loopback-only Docker verification without broadening permissions. "
+                                "$HOME is a read-only automatic variable, not an HTTP-response variable. "
+                                "Do not run the original malformed command or request user-profile trust. "
+                                "Use this corrected command instead, under the same permissions and container "
+                                "ownership/cleanup constraints. The repository helper, where used, preserves the "
+                                "same image/HTTP criteria and allows up to 90s for local x64 startup. It collects "
+                                "logs even on failure and stops only its own container. No host permissions or "
+                                "validation criteria are relaxed. Preserve historical evidence; "
+                                "clear the CURRENT blocker only after actual container/HTTP checks pass. "
+                                "If denied or failed, retain the blocker with exact diagnostic evidence.\n"
+                                + corrected
                             )
                         run = self.app.start(
                             previous["request"], prompt, previous["kind"], previous["id"], project["revision"],

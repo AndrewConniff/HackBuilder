@@ -200,9 +200,35 @@ The worker can then continue automatically. The retry does not install tools, ch
 approve an Azure target or change suitability approval. Existing business/design/cloud decisions remain separate.
 Older pending business decisions are not silently answered or reclassified.
 
+This installation explicitly trusts the worker account's NuGet package and Playwright browser caches
+through scoped `--add-dir` arguments, not unrestricted filesystem access. See
+[worker cache policy](../PREREQUISITES.md#worker-package-and-browser-cache-access).
+This is configuration trust as well as filesystem access; it grants neither shared installation nor
+cloud permission. Packages within these locations share the approved scope. Custom cache locations
+outside approved roots require review. Worker instructions require separate dependency probes and an
+up-front inventory of design-specific browser/load tools; optional tools cannot block unrelated authoring.
+`/api/catalog` exposes `workerPathPolicyVersion` and `workerCacheDirectories`.
+The launcher refuses stale policy versions; a retry never clears a blocker without actual evidence.
+
+Local container shell/liveness verification uses
+[`check_container_runtime.py`](../scripts/check_container_runtime.py), rather than generated multi-command
+PowerShell. The helper validates an owned nonroot Linux x64 image, starts a read-only loopback-only container,
+waits for health, checks the expected homepage text, captures logs and cleans up only its container.
+It never pulls images, mounts host directories or accesses Azure. Startup/HTTP failures remain application
+diagnostics, not permission requests. Earlier checks that assigned an HTTP response to the read-only `$HOME`
+variable are corrected on retry without granting profile access. New setup reports reject obvious assignments
+to `$HOME`, `$PID` or `$Host`; workers must diagnose CLI approval metadata before requesting broader scope.
+
 This version changes the workflow protocol. Let active workers finish before restarting the portal,
 then open its newly authenticated entry page. Existing jobs keep their original instructions until they end.
 **Refresh status** only reads persisted state and never starts another agent.
+The collapsed-by-default **Worker activity** card shows process liveness, attempt elapsed time,
+last log-write age and up to 12 observed tool-action headings from the bounded output tail.
+It refreshes with the existing run polling and preserves the user's expanded/collapsed choice.
+After three minutes without output it reports a quiet worker, not an inferred hang.
+Headings are observations, not completion evidence or internal reasoning; individual action times
+are not available. Raw technical output remains separately expandable. URLs are omitted from activity
+headings; this is not a general-purpose secret scrubber, and authenticated local logs remain private.
 Refresh also reads fingerprint-bound composition receipts from the scenario workspace, including
 work completed by a standalone composition job. Five hack stages cover planning, learner content,
 starter, coach and package validation. An approved review is shown as approved, not another prompt

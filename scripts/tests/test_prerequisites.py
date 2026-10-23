@@ -20,6 +20,82 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 class PrerequisiteChecksTests(unittest.TestCase):
+    def test_k6_is_checked_only_for_selected_load_tests_and_gates_validation(self) -> None:
+        profile = prerequisites.profiles.plan(["foundry"], load_tests=True)
+        self.assertEqual(["local-validation"], next(
+            item["stages"] for item in prerequisites.planned_checks(profile) if item["id"] == "k6"
+        ))
+        checks = [
+            prerequisites.check(key, key, True, "Synthetic ready")
+            for key in {key for keys in profile["stages"].values() for key in keys} if key != "k6"
+        ]
+        with (
+            patch.object(prerequisites, "build_report", return_value={"checks": checks}),
+            patch.object(prerequisites, "tool_check", return_value=
+                         prerequisites.check("k6", "k6", False, "Missing")) as tool,
+        ):
+            report = prerequisites.service_report(["foundry"], load_tests=True)
+        tool.assert_called_once()
+        self.assertEqual([], report["blockedStages"]["application"])
+        self.assertEqual(["k6"], report["blockedStages"]["local-validation"])
+        self.assertNotIn("k6", prerequisites.profiles.plan(["foundry"])["stages"]["local-validation"])
+
+    @unittest.skipUnless(os.name == "nt", "Windows k6 installation")
+    def test_existing_k6_is_added_to_child_path_without_host_changes(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            executable = root / "programs" / "k6" / "k6.exe"
+            executable.parent.mkdir(parents=True)
+            executable.touch()
+            with patch.dict(os.environ, {"PATH": "", "ProgramFiles": str(root / "programs")}):
+                environment = prerequisites.execution_environment(root)
+                self.assertEqual("", os.environ["PATH"])
+            self.assertEqual(executable, Path(shutil.which("k6", path=environment["PATH"])))
+
+    def test_manifest_declares_load_tests_explicitly(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            manifest = root / "generated-scenarios" / "example" / "scenario-manifest.json"
+            manifest.parent.mkdir(parents=True)
+            manifest.write_text('{"validationTools": ["k6"]}', encoding="utf-8")
+            self.assertTrue(prerequisites.profiles.requires_load_tests(root, "example"))
+            manifest.write_text('{"validationTools": "k6"}', encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "validationTools"):
+                prerequisites.profiles.requires_load_tests(root, "example")
+
+    def test_worker_cache_trust_is_scoped_and_does_not_create_directories(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            home = Path(temp) / "home"
+            local = home / "AppData" / "Local"
+            with (
+                patch.object(prerequisites.Path, "home", return_value=home),
+                patch.dict(os.environ, {
+                    "LOCALAPPDATA": str(local), "NUGET_PACKAGES": "", "PLAYWRIGHT_BROWSERS_PATH": "",
+                }),
+            ):
+                directories = prerequisites.worker_cache_directories(Path(temp) / "repo")
+            self.assertEqual(
+                [(home / ".nuget" / "packages").resolve(), (local / "ms-playwright").resolve()], directories,
+            )
+            self.assertFalse(home.exists())
+
+    def test_worker_cache_overrides_do_not_expand_approved_trust(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp) / "repo"
+            for variable in ("NUGET_PACKAGES", "PLAYWRIGHT_BROWSERS_PATH"):
+                with (
+                    self.subTest(variable=variable),
+                    patch.dict(os.environ, {
+                        "NUGET_PACKAGES": "", "PLAYWRIGHT_BROWSERS_PATH": "", variable: str(Path(temp) / "other"),
+                    }),
+                    self.assertRaisesRegex(ValueError, "outside approved"),
+                ):
+                    prerequisites.worker_cache_directories(root)
+            with patch.dict(os.environ, {
+                "NUGET_PACKAGES": str(root / ".packages"), "PLAYWRIGHT_BROWSERS_PATH": "0",
+            }):
+                self.assertEqual(2, len(prerequisites.worker_cache_directories(root)))
+
     def test_nuget_probe_uses_normal_powershell_tls_and_bounded_metadata_validation(self) -> None:
         with (
             patch.object(prerequisites.shutil, "which", return_value="pwsh"),

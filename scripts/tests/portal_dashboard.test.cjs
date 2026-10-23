@@ -28,6 +28,25 @@ class Element {
   scrollIntoView(options) { this.scrollOptions = options; }
 }
 
+test("Worker activity is collapsed by default and renders literal observed actions without reopening", async () => {
+  const run = fixture();
+  run.status = "running";
+  run.activity = {
+    processAlive: true,
+    lastOutputAtUtc: new Date(Date.now() - 240000).toISOString(),
+    recentActions: ["Read infrastructure", "<script>Run tests</script>"],
+  };
+  const { get, context } = await dashboard(run);
+  const html = fs.readFileSync(path.join(__dirname, "..", "..", "portal", "index.html"), "utf8");
+  assert.match(html, /<details id="worker-activity" class="worker-activity">/);
+  assert.match(get("worker-activity-status").textContent, /Process running/);
+  assert.match(get("worker-activity-status").textContent, /does not mean it is stuck/);
+  assert.equal(get("worker-recent-actions").children[0].textContent, "<script>Run tests</script>");
+  get("worker-activity").open = true;
+  vm.runInContext("renderRun(currentRun)", context);
+  assert.equal(get("worker-activity").open, true);
+});
+
 function fixture() {
   const project = {
     revision: 5,

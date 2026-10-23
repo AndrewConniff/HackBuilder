@@ -28,6 +28,33 @@
     },
     {
       "schemaVersion": 1,
+      "id": "equip-ai",
+      "title": "Washington equipment operations assistant",
+      "summary": "Entra-secured natural-language support for Washington machinery using fresh, event-ingested telemetry.",
+      "industry": "Manufacturing & Mobility",
+      "businessUnits": [
+        "operations"
+      ],
+      "services": [
+        "foundry",
+        "storage",
+        "app-service",
+        "managed-identity",
+        "virtual-network",
+        "monitor"
+      ],
+      "pillars": [],
+      "domains": [],
+      "artifacts": [
+        "01-requirements.md",
+        "02-architecture-assessment.md"
+      ],
+      "source": null,
+      "metadataStatus": "curated",
+      "manifestDigest": "faa98d46b98a6c5b47889197fdfe0b6f5f343144a0f06efae7c547b4503be08f"
+    },
+    {
+      "schemaVersion": 1,
       "id": "finance-security-hack",
       "title": "Finance security hack",
       "summary": "Locally discovered reference. Review its architecture and metadata before adapting.",
@@ -125,7 +152,7 @@
       "schemaVersion": 1,
       "id": "resto-scale-agent",
       "title": "Fourth Coffee: five-floor restaurant agents under load",
-      "summary": "Generic Hospitality & Travel reference for a 250-seat restaurant with scoped Foundry agents, deterministic transactions and durable kitchen handoffs. Confirmed design, diagrams and locally compiled infrastructure scaffold; application implementation blocked on dependency connectivity. Not deployed or runtime-validated.",
+      "summary": "Generic Hospitality & Travel reference for a 250-seat restaurant with scoped Foundry agents, deterministic transactions and durable kitchen handoffs. Confirmed design with local runtime wiring, import, compensation and validation in progress. Recorded container setup verification passed. Not deployed or live-validated.",
       "industry": "Hospitality & Travel",
       "businessUnits": [
         "generic"
@@ -152,11 +179,12 @@
         "03-architect-diagram.png",
         "04-runtime-diagram.png",
         "azure.yaml",
-        "infra"
+        "infra",
+        "src"
       ],
       "source": null,
       "metadataStatus": "curated",
-      "manifestDigest": "c258952ee3d8ca8b63755fae069550bcd235f54911181c2fe4713ced86a2f971"
+      "manifestDigest": "41774f8b790b767a5059be84ff0aa1ccfb5d60e24b02278f96c483c48060a115"
     },
     {
       "schemaVersion": 1,

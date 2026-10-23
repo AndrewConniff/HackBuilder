@@ -26,6 +26,23 @@ hack_workflow = portal.hack_workflow
 
 
 class ProcessAliveTests(unittest.TestCase):
+    def test_worker_activity_includes_only_bounded_observed_tool_headings(self) -> None:
+        output = (
+            "Internal narrative not an action\n"
+            "● Read Program.cs\n  │ secret command payload\n"
+            "● Read Program.cs\n"
+            "/ Search (grep)\n"
+            "✗ Run local tests (shell)\n"
+            "● Using model private-model\n"
+            "● Fetch https://example.test/?token=secret\n"
+        )
+        actions = portal.worker_activity(output)
+        self.assertEqual(
+            ["Read Program.cs", "Search (grep)", "Run local tests (shell)", "Fetch [URL omitted]"], actions,
+        )
+        self.assertNotIn("secret", str(actions))
+        self.assertEqual(12, len(portal.worker_activity("\n".join(f"● Read file-{i}" for i in range(30)))))
+
     def test_missing_pid_is_not_alive(self) -> None:
         self.assertFalse(portal.process_alive(None))
         self.assertFalse(portal.process_alive(0))
@@ -171,6 +188,11 @@ class IntakeTests(unittest.TestCase):
         self.assertNotIn("--allow-all-paths", command)
         self.assertNotIn("--model", command)
         self.assertEqual(str(portal.ROOT.parent / "azd-projects"), command[command.index("--add-dir") + 1])
+        directories = [command[index + 1] for index, value in enumerate(command) if value == "--add-dir"]
+        self.assertEqual(
+            [str(portal.ROOT.parent / "azd-projects"),
+             *[str(path) for path in portal.worker_cache_directories(portal.ROOT)]], directories,
+        )
 
 
 class HttpTests(unittest.TestCase):
@@ -218,6 +240,10 @@ class HttpTests(unittest.TestCase):
         self.assertEqual(5, len(data["pillars"]))
         self.assertEqual(1, data["systemControlsVersion"])
         self.assertEqual(1, data["prerequisitesVersion"])
+        self.assertEqual(portal.WORKER_PATH_POLICY_VERSION, data["workerPathPolicyVersion"])
+        self.assertEqual(
+            [str(path) for path in portal.worker_cache_directories(portal.ROOT)], data["workerCacheDirectories"],
+        )
         self.assertTrue(all(item["state"] == "not-checked" for item in data["prerequisiteInventory"]))
         self.assertIn("docker", {item["id"] for item in data["prerequisiteInventory"]})
 
@@ -537,6 +563,57 @@ class HttpTests(unittest.TestCase):
         self.assertIn("Never fall back to NuGet.org", prompt)
         self.assertEqual(blocker, store.read("test-agent")["setupBlocker"])
         self.finish_mock_run(resumed)
+
+    def test_setup_retry_corrects_docker_home_variable_without_expanding_trust(self) -> None:
+        run = self.create_run(local_tool_consent=True)
+        store = self.server.app.projects
+        project = store.read("test-agent")
+        project = store.claim(run["request"], run["id"], project["revision"])
+        command = (
+            "$image='test-image:owned'; "
+            "$containerId=docker run --rm --detach --publish 127.0.0.1::8080 $image; "
+            "try { $homeResponse=Invoke-WebRequest $url; "
+            "if ($homeResponse.Content -notmatch 'Fourth Coffee') { throw 'HTTP failure' } } "
+            "finally { docker stop $containerId }"
+        )
+        project = store.report("test-agent", run["id"], project["revision"], {
+            "stage": "requirements", "status": "blocked", "summary": "Malformed Docker check",
+            "blocker": {"kind": "host-permission", "action": "Review denied check", "verification": command},
+        })
+        store.finish("test-agent", run["id"], "completed")
+        project = store.read("test-agent")
+        # Model an old persisted check; new reports reject assignments to automatic variables.
+        legacy = json.loads(store.path("test-agent").read_text(encoding="utf-8"))
+        legacy["setupBlocker"]["verification"] = command.replace("$homeResponse", "$HOME")
+        store.path("test-agent").write_text(json.dumps(legacy), encoding="utf-8")
+        project = store.read("test-agent")
+        with patch.object(self.server.app, "execute"):
+            status, resumed = self.call("POST", f"/api/runs/{run['id']}/retry-setup", {
+                "revision": project["revision"],
+            })
+        self.assertEqual(202, status, resumed)
+        prompt = (self.server.app.state / resumed["id"] / "input.txt").read_text(encoding="utf-8")
+        self.assertIn("POWERSHELL DOCKER CHECK CORRECTION", prompt)
+        self.assertIn(
+            "python scripts\\check_container_runtime.py --image test-image:owned --marker 'Fourth Coffee'", prompt,
+        )
+        self.assertIn("Never assign HTTP results", prompt)
+        self.assertEqual(project["setupBlocker"], store.read("test-agent")["setupBlocker"])
+        self.finish_mock_run(resumed)
+
+    def test_docker_variable_correction_is_narrow_and_preserves_all_other_bytes(self) -> None:
+        command = (
+            "docker run --publish 127.0.0.1::8080 image; "
+            "try { $home=Invoke-WebRequest $url; $home.Content; $homeResponse } finally { docker stop $id }"
+        )
+        expected = command.replace("$home=", "$homeResponse=").replace("$home.Content", "$homeResponse.Content")
+        self.assertEqual(expected, portal.corrected_docker_verification(command))
+        for unrelated in (
+            "$home=Invoke-WebRequest $url",
+            command.replace("127.0.0.1", "0.0.0.0"),
+            command.replace("$home=", "$response="),
+        ):
+            self.assertIsNone(portal.corrected_docker_verification(unrelated))
 
     def test_real_worker_block_verify_and_continue_cycle_preserves_consent(self) -> None:
         prefix = (
