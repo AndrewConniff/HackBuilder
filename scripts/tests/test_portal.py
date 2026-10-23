@@ -510,6 +510,34 @@ class HttpTests(unittest.TestCase):
         approve.assert_not_called()
         self.finish_mock_run(resumed)
 
+    def test_setup_retry_replaces_obsolete_direct_nuget_verification_without_clearing_blocker(self) -> None:
+        run = self.create_run(local_tool_consent=True)
+        store = self.server.app.projects
+        project = store.read("test-agent")
+        project = store.claim(run["request"], run["id"], project["revision"])
+        project = store.report("test-agent", run["id"], project["revision"], {
+            "stage": "requirements", "status": "blocked", "summary": "Old direct NuGet check failed",
+            "blocker": {
+                "kind": "prerequisite", "action": "Restore NuGet access",
+                "verification": 'Invoke-RestMethod "https://api.nuget.org/v3-flatcontainer/azure.identity/index.json"',
+            },
+        })
+        store.finish("test-agent", run["id"], "completed")
+        project = store.read("test-agent")
+        blocker = project["setupBlocker"]
+        with patch.object(self.server.app, "execute"):
+            status, resumed = self.call("POST", f"/api/runs/{run['id']}/retry-setup", {
+                "revision": project["revision"],
+            })
+        self.assertEqual(202, status, resumed)
+        prompt = (self.server.app.state / resumed["id"] / "input.txt").read_text(encoding="utf-8")
+        self.assertIn("APPROVED NUGET VERIFICATION REPLACEMENT", prompt)
+        self.assertIn("Do NOT execute that saved command", prompt)
+        self.assertIn("Require nuget-https ok:true", prompt)
+        self.assertIn("Never fall back to NuGet.org", prompt)
+        self.assertEqual(blocker, store.read("test-agent")["setupBlocker"])
+        self.finish_mock_run(resumed)
+
     def test_real_worker_block_verify_and_continue_cycle_preserves_consent(self) -> None:
         prefix = (
             "import os,sys; "

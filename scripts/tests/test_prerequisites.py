@@ -20,6 +20,80 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 class PrerequisiteChecksTests(unittest.TestCase):
+    def test_nuget_probe_uses_normal_powershell_tls_and_bounded_metadata_validation(self) -> None:
+        with (
+            patch.object(prerequisites.shutil, "which", return_value="pwsh"),
+            patch.object(prerequisites, "run_command", return_value=(0, "Metadata verified")) as run,
+        ):
+            result = prerequisites.nuget_check()
+        self.assertTrue(result["ok"])
+        command = run.call_args.args[0]
+        self.assertEqual(["pwsh", "-NoProfile", "-NonInteractive", "-Command"], command[:4])
+        self.assertIn("-TimeoutSec 30", command[4])
+        self.assertIn(prerequisites.NUGET_METADATA_URL, command[4])
+        self.assertIn("PackageBaseAddress/3.0.0", command[4])
+        self.assertNotIn("api.nuget.org", command[4])
+        self.assertEqual(75, run.call_args.kwargs["timeout"])
+        self.assertIn("$metadata.versions -is [array]", command[4])
+        self.assertNotIn("SkipCertificateCheck", command[4])
+        self.assertNotIn("SecurityProtocol", command[4])
+        self.assertIn("metadata only", result["detail"])
+
+    def test_repository_nuget_sources_use_only_the_approved_proxy(self) -> None:
+        import xml.etree.ElementTree as ET
+
+        sources = ET.parse(ROOT / "NuGet.Config").getroot().find("packageSources")
+        self.assertEqual(["clear", "add"], [entry.tag for entry in sources])
+        self.assertEqual(
+            {"key": "MicrosoftPackageFeedProxy", "value": prerequisites.NUGET_METADATA_URL},
+            sources.find("add").attrib,
+        )
+
+    @unittest.skipUnless(shutil.which("pwsh"), "PowerShell required for local probe fixtures")
+    def test_nuget_script_validates_feed_and_metadata_without_network(self) -> None:
+        for index, metadata, ready in (
+            ('{"resources":[{"@type":"PackageBaseAddress/3.0.0","@id":"https://feed.test/flat/"}]}',
+             '{"versions":["1.0.0"]}', True),
+            ('{"resources":[]}', '{"versions":["1.0.0"]}', False),
+            ('{"resources":[{"@type":"PackageBaseAddress/3.0.0","@id":"http://feed.test/flat/"}]}',
+             '{"versions":["1.0.0"]}', False),
+            ('{"resources":[{"@type":"PackageBaseAddress/3.0.0","@id":"https://feed.test/flat/"}]}',
+             '{"versions":[3]}', False),
+        ):
+            with self.subTest(index=index, metadata=metadata):
+                fixture = (
+                    "function Invoke-RestMethod { param($Uri, $TimeoutSec, $ErrorAction) "
+                    f"if ($Uri -eq '{prerequisites.NUGET_METADATA_URL}') "
+                    f"{{ '{index}' | ConvertFrom-Json }} else {{ '{metadata}' | ConvertFrom-Json }} }}; "
+                )
+                code, output = prerequisites.run_command(
+                    ["pwsh", "-NoProfile", "-NonInteractive", "-Command", fixture + prerequisites.NUGET_SMOKE],
+                )
+                self.assertEqual(ready, code == 0, output)
+
+    def test_nuget_probe_failures_remain_setup_errors_without_install_or_retry(self) -> None:
+        for message in ("Remote TLS HandshakeFailure", "Operation timed out", "Malformed metadata response"):
+            with (
+                self.subTest(message=message),
+                patch.object(prerequisites.shutil, "which", return_value="pwsh"),
+                patch.object(prerequisites, "run_command", return_value=(1, message)) as run,
+            ):
+                result = prerequisites.nuget_check()
+                self.assertFalse(result["ok"])
+                self.assertIn(message, result["detail"])
+                self.assertIn("Do not disable certificate validation", result["fix"])
+                run.assert_called_once()
+
+    def test_nuget_probe_missing_powershell_does_not_claim_network_success(self) -> None:
+        with (
+            patch.object(prerequisites.shutil, "which", return_value=None),
+            patch.object(prerequisites, "run_command") as run,
+        ):
+            result = prerequisites.nuget_check()
+        self.assertFalse(result["ok"])
+        self.assertIn("probe was not run", result["detail"])
+        run.assert_not_called()
+
     @unittest.skipUnless(os.name == "nt", "Windows installation locations")
     def test_execution_environment_resolves_existing_tools_without_changing_host_path(self) -> None:
         with tempfile.TemporaryDirectory() as temp:
@@ -181,6 +255,8 @@ class PrerequisiteChecksTests(unittest.TestCase):
                 ]),
                 patch.object(prerequisites, "tool_check", side_effect=lambda spec:
                              prerequisites.check(spec[0], spec[1], True, "test")),
+                patch.object(prerequisites, "nuget_check", return_value=
+                             prerequisites.check("nuget-https", "NuGet HTTPS/TLS", True, "Synthetic metadata probe")),
                 patch.object(prerequisites, "run_command", return_value=(render_code, "PNG result")) as run,
             ):
                 report = prerequisites.build_report(contributor=True, docker=True)
@@ -190,6 +266,7 @@ class PrerequisiteChecksTests(unittest.TestCase):
                 self.assertEqual(prerequisites.DIAGRAM_SMOKE, run.call_args.args[0][-1])
             self.assertIn("node", [item["id"] for item in report["checks"]])
             self.assertIn("docker", [item["id"] for item in report["checks"]])
+            self.assertIn("nuget-https", [item["id"] for item in report["checks"]])
 
     def test_smoke_script_verifies_png_and_cleans_temporary_directory(self) -> None:
         self.assertIn("with tempfile.TemporaryDirectory(", prerequisites.DIAGRAM_SMOKE)

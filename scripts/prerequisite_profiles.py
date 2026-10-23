@@ -32,7 +32,9 @@ STAGE_REQUIREMENTS = {
     ],
     "bicep": ["azure-cli", "bicep", "python-package:checkov", "pip-health"],
     "application": ["dotnet"],
-    "local-validation": ["git", "powershell", "dotnet", "azure-cli", "bicep", "python-package:checkov", "pip-health"],
+    "local-validation": [
+        "git", "powershell", "dotnet", "azure-cli", "bicep", "python-package:checkov", "pip-health", "nuget-https",
+    ],
     "deployment": ["azure-cli", "azd", "powershell"],
 }
 
@@ -66,6 +68,8 @@ def plan(services: object, build_mode: str = "auto", local_functions: bool = Fal
             "never a failure fallback.",
             "Generated NuGet/package dependencies are verified by actual restore/build, "
             "not machine-wide SDK installation.",
+            "The NuGet HTTPS/TLS probe checks Azure.Identity metadata using PowerShell under the audit account; "
+            "it does not prove every configured feed or package download.",
             "Local emulators, browser automation and other new design-specific tools "
             "require explicit additional checks.",
         ],

@@ -35,6 +35,18 @@ def report_fixture(services: list[str], failed: str | None = None) -> dict:
 
 
 class ProfileTests(unittest.TestCase):
+    def test_nuget_tls_is_listed_and_blocks_only_restore_validation(self) -> None:
+        profile = profiles.plan(["foundry"])
+        planned = next(item for item in checker.planned_checks(profile) if item["id"] == "nuget-https")
+        self.assertEqual(["local-validation"], planned["stages"])
+        self.assertEqual("not-checked", planned["state"])
+        report = report_fixture(["foundry"], "nuget-https")
+        for stage in ("requirements", "architecture", "application", "diagrams", "bicep"):
+            self.assertEqual([], profiles.stage_failures(report, stage))
+        self.assertEqual(["nuget-https"], [
+            item["id"] for item in profiles.stage_failures(report, "local-validation")
+        ])
+
     def test_every_catalog_service_has_a_profile_and_pairwise_selection_is_a_union(self) -> None:
         catalog = json.loads((ROOT / "portal" / "catalog.json").read_text(encoding="utf-8"))
         services = [item["id"] for item in catalog["services"]]

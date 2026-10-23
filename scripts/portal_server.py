@@ -638,6 +638,11 @@ class Portal:
             "together. Stop only before an affected operation. Docker is not required for authoring Bicep, "
             "writing application code or generating a Dockerfile. It is required for local container builds. "
             "NuGet/package restore, actual builds and scenario-specific tools still need their own evidence. "
+            "This host requires the approved MicrosoftPackageFeedProxy documented in PREREQUISITES.md and "
+            "NuGet.Config. Do not request api.nuget.org directly, including hard-coded package metadata lookups. "
+            "Use the proxy service index and its advertised package resources instead. Verify effective NuGet "
+            "sources from the physical scenario workspace; repository configuration may not follow a junction. "
+            "Use the repository NuGet.Config explicitly for restore when needed. Never fall back to NuGet.org.\n"
             "Unknown dependencies are not a passing preflight. No audit grants host or Azure permission.\n"
             "The portal is the sole normal user decision surface. Do not send the user to VS Code or "
             "ask them to edit requirements. Read canonical state and all prior answers:\n"
@@ -1020,6 +1025,23 @@ class Handler(BaseHTTPRequestHandler):
                             "setupVerification:{blockerId:<current id>,passed:true} and exact evidence. "
                             "Then resume the next incomplete step using all existing decisions and consent."
                         )
+                        if "api.nuget.org" in project["setupBlocker"]["verification"].lower():
+                            prompt += (
+                                "\nAPPROVED NUGET VERIFICATION REPLACEMENT: The saved direct api.nuget.org "
+                                "verification is obsolete for this proxy-only host. Do NOT execute that saved "
+                                "command. This supersedes the recorded-check instruction above and in canonical "
+                                "state, not host restrictions. Read PREREQUISITES.md and repository NuGet.Config. "
+                                "Run python scripts\\check_prerequisites.py --for-project --record "
+                                "--stage requirements --json and inspect the nuget-https check specifically; "
+                                "CLI exit zero for requirements is NOT proof it passed. Require nuget-https ok:true. "
+                                "Verify the effective NuGet sources in the physical scenario workspace exclude "
+                                "direct NuGet.org; use the repository NuGet.Config explicitly for restore as needed. "
+                                "Report the proxy check's exact evidence against the CURRENT blocker ID before "
+                                "clearing it. Keep historical failure evidence unchanged. If the proxy check fails, "
+                                "report a replacement blocker whose verification uses the approved proxy, never "
+                                "the obsolete direct endpoint. Resume package operations only through the approved "
+                                "proxy and verify actual restore/build separately."
+                            )
                         run = self.app.start(
                             previous["request"], prompt, previous["kind"], previous["id"], project["revision"],
                             local_tool_consent=data.get("toolConsent") is True,

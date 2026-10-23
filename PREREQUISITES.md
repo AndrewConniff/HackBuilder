@@ -8,7 +8,8 @@ The setup covers the shipped baseline, not every package a future scenario might
 
 The portal **System** page lists the end-to-end toolchain before it has been checked.
 Unchecked items are **Not checked**, never assumed ready. Authorize read-only diagnostics and select
-**Check prerequisites** to verify versions, Python dependencies, a real PNG and any required running engine.
+**Check prerequisites** to verify versions, Python dependencies, a real PNG, NuGet metadata HTTPS/TLS
+and any required running engine.
 Green checked indicators mean the check passed at the displayed time, not merely that a file exists.
 Failures show the command result, affected stages and a corrective action.
 For **Docker installed, engine unavailable**, start Docker Desktop's Linux engine and wait until it is ready;
@@ -41,7 +42,7 @@ Node.js/GitHub CLI remain the separate optional contributor/publication profile,
 | Diagrams | Python environment/packages, Graphviz and a real PNG render |
 | Bicep | Azure CLI/Bicep and Python Checkov dependencies |
 | Application scaffolding | .NET 10 SDK |
-| Local validation | Build/validation tools, plus Docker or Functions Core Tools only when the build path needs them |
+| Local validation | Build/validation tools, NuGet HTTPS/TLS, plus Docker/Functions tools when the build path needs them |
 | Deployment | CLI/azd/PowerShell, plus Docker for local image packaging; cloud consent remains separate |
 
 Run a selected-service audit outside a worker:
@@ -68,6 +69,63 @@ These switches describe checks, not authorization or a change to deployment conf
 Unknown design-specific dependencies still require explicit checks. Actual NuGet restore/build,
 generated Dockerfiles, host restrictions, sign-in, Azure target/region/model capacity and runtime acceptance
 cannot be proven by this local tool inventory. No audit installs software, grants permission or repairs a failed host.
+
+## Package-feed HTTPS and TLS connectivity
+
+Installing the .NET SDK is not sufficient: the actual portal worker account must be able to reach
+the application's configured NuGet feeds and required package metadata/download endpoints over
+organization-approved HTTPS. Host proxy configuration, certificate trust and outbound access must
+work for that worker, not just for an interactive browser or a different terminal account.
+
+This environment requires **MicrosoftPackageFeedProxy**, not direct NuGet.org. Repository
+[`NuGet.Config`](./NuGet.Config) clears inherited package sources and enables only the approved proxy.
+The host already has this proxy enabled as `azure-default`; the source name does not affect connectivity.
+
+```powershell
+dotnet nuget list source
+python scripts\check_prerequisites.py --services foundry --json
+```
+
+For a new host, configure the portal worker account outside a running job:
+
+```powershell
+dotnet nuget disable source nuget.org
+dotnet nuget add source https://packagefeedproxy.microsoft.io/nuget/v3/index.json -n MicrosoftPackageFeedProxy
+```
+
+Disable NuGet.org only if it is listed; add the proxy only if its URL is not already enabled.
+These commands change that account's NuGet configuration, not every machine account.
+Generated workspaces can live outside the repository through a junction and may not inherit repository
+configuration. Verify their effective sources with `dotnet nuget list source` from the physical workspace.
+For an explicit local restore, pass `--configfile C:\HackBuilder\NuGet.Config` to `dotnet restore`.
+Container or remote builds need the same approved source configured inside their build environment;
+the host's user-level configuration is not automatically copied into an image.
+
+The checklist fetches the proxy's NuGet v3 service index, discovers its HTTPS `PackageBaseAddress/3.0.0`
+resource, then validates Azure.Identity version metadata there. The advertised package endpoint can use
+a different hostname; approved outbound access must cover it too. There is no direct NuGet.org fallback.
+This does not prove all feeds, package downloads or restore. Follow it with the generated application's
+actual restore/build using its configured NuGet sources.
+
+A remote TLS `HandshakeFailure` is a setup/network blocker, not a request for more deployment approval.
+Have the environment administrator investigate proxy/TLS inspection, approved certificate trust,
+outbound policy and feed access outside the worker. Do not disable certificate validation, weaken TLS,
+install certificates or upgrade shared tools from a scenario worker to work around the failure.
+After authorized setup correction, retry from a fresh worker and use **Verify setup & retry**.
+Keep the blocker active until the actual endpoint and required restore/build checks pass.
+
+The automated checklist runs this probe through PowerShell 7 with a 30-second timeout per request,
+a 75-second process timeout and normal certificate validation.
+Its separate **NuGet package metadata HTTPS/TLS** result
+gates local validation, not requirements, architecture or application scaffolding. Missing PowerShell,
+TLS/network errors or malformed metadata fail the check with a setup action; a green SDK indicator
+alone is not a package-feed connectivity result. A System-page audit runs as the server account;
+a fresh worker must still pass its own run-bound audit before local validation.
+The approved proxy is the baseline probe; a successful probe does not prove a workspace's source configuration.
+For older setup blockers that recorded a direct `api.nuget.org` check, **Verify setup & retry**
+instructs the new worker to replace that obsolete check with the approved proxy audit.
+The worker must inspect the `nuget-https` result explicitly, verify effective restore sources and
+record fresh evidence against the existing blocker before clearing it. Historical failures remain unchanged.
 
 ## Quick start on Windows
 

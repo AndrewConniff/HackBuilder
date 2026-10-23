@@ -46,6 +46,26 @@ with tempfile.TemporaryDirectory(prefix="abc-diagram-check-") as directory:
         image.verify()
 print("Python diagrams and Graphviz successfully rendered and verified a PNG.")
 """
+NUGET_METADATA_URL = "https://packagefeedproxy.microsoft.io/nuget/v3/index.json"
+NUGET_SMOKE = (
+    "$ErrorActionPreference = 'Stop'; "
+    "try { "
+    f"$index = Invoke-RestMethod -Uri '{NUGET_METADATA_URL}' -TimeoutSec 30 -ErrorAction Stop; "
+    "$base = @($index.resources | Where-Object { $_.'@type' -eq 'PackageBaseAddress/3.0.0' }); "
+    "if ($base.Count -ne 1) { throw 'Approved feed has no unique PackageBaseAddress/3.0.0 resource.' }; "
+    "$baseUri = [uri]$base[0].'@id'; "
+    "if (-not $baseUri.IsAbsoluteUri -or $baseUri.Scheme -ne 'https') "
+    "{ throw 'Approved feed package base must be an absolute HTTPS URL.' }; "
+    "$url = $baseUri.AbsoluteUri.TrimEnd('/') + '/azure.identity/index.json'; "
+    "$metadata = Invoke-RestMethod -Uri $url -TimeoutSec 30 -ErrorAction Stop; "
+    "if (-not ($metadata.versions -is [array]) -or $metadata.versions.Count -eq 0) "
+    "{ throw 'NuGet response does not contain a nonempty versions array.' }; "
+    "foreach ($version in $metadata.versions) { "
+    "if ($version -isnot [string] -or [string]::IsNullOrWhiteSpace($version)) "
+    "{ throw 'NuGet versions must be nonempty strings.' } }; "
+    "'NuGet metadata HTTPS request and response validation passed.'; "
+    "} catch { [Console]::Error.WriteLine($_.Exception.Message); exit 1 }"
+)
 
 
 def execution_environment(root: Path) -> dict[str, str]:
@@ -187,6 +207,30 @@ def python_checks(root: Path) -> list[dict]:
     return results
 
 
+def nuget_check() -> dict:
+    executable = shutil.which("pwsh")
+    if executable is None:
+        code, output = 1, "PowerShell 7 (pwsh) is not on this process's PATH; HTTPS probe was not run."
+    else:
+        code, output = run_command(
+            [executable, "-NoProfile", "-NonInteractive", "-Command", NUGET_SMOKE], timeout=75,
+        )
+    result = check(
+        "nuget-https", "NuGet package metadata HTTPS/TLS",
+        code == 0, f"{NUGET_METADATA_URL}\n{output[:1800]}\n"
+        "Probe covers Azure.Identity metadata only; configured feeds and actual restore/build still need verification.",
+    )
+    if code != 0:
+        result["fix"] = (
+            "Outside the worker, have the administrator restore approved proxy, certificate trust and outbound "
+            "HTTPS access for the actual portal worker account. Do not disable certificate validation, weaken TLS "
+            "or bypass host restrictions. Verify from a fresh worker, then retry actual restore/build. "
+            "Verify MicrosoftPackageFeedProxy in NuGet.Config and access to its service index and advertised "
+            "package endpoints; do not fall back to direct NuGet.org."
+        )
+    return result
+
+
 def build_report(root: Path = ROOT, contributor: bool = False, docker: bool = False) -> dict:
     results = python_checks(root)
     specs = [*TOOLS, *(CONTRIBUTOR_TOOLS if contributor else ())]
@@ -196,6 +240,7 @@ def build_report(root: Path = ROOT, contributor: bool = False, docker: bool = Fa
             ["info", "--format", "{{.ServerVersion}} {{.OSType}}"], None, "Docker.DockerDesktop",
         ))
     results.extend(tool_check(spec) for spec in specs)
+    results.append(nuget_check())
     renderer_packages = {"python-package:diagrams", "python-package:matplotlib", "python-package:pillow"}
     packages_ok = all(item["ok"] for item in results if item["id"] in renderer_packages)
     dot_ok = next(item["ok"] for item in results if item["id"] == "graphviz")
@@ -243,7 +288,10 @@ def planned_checks(profile: dict, root: Path = ROOT) -> list[dict]:
     names = [(spec[0], spec[1]) for spec in TOOLS]
     names += [("python", "Python 3.10+"), ("venv", "Repository Python environment")]
     names += [(f"python-package:{name}", f"{name} >= {minimum}") for name, minimum in package_requirements(root)]
-    names += [("pip-health", "Python dependency consistency"), ("diagram-render", "Real PNG rendering")]
+    names += [
+        ("pip-health", "Python dependency consistency"), ("diagram-render", "Real PNG rendering"),
+        ("nuget-https", "NuGet package metadata HTTPS/TLS"),
+    ]
     if "docker" in profile["stages"]["local-validation"]:
         names.append(("docker", "Docker CLI and running Linux engine"))
     if profile["localFunctions"]:
