@@ -16,6 +16,26 @@ SPEC.loader.exec_module(validator)
 
 
 class AuthoringStyleTests(unittest.TestCase):
+    def test_stable_filenames_use_the_visible_zero_based_challenge_numbers(self) -> None:
+        self.assertEqual(validator.CHALLENGE_PREFIXES, ("00-", "01-", "02-", "03-", "04-"))
+        self.assertEqual(validator.EXPECTED_CHALLENGE_FILES, (
+            "00-secure-foundation.md", "01-build-the-agent.md", "02-ground-it.md",
+            "03-give-it-tools.md", "04-harden-and-demo.md",
+        ))
+
+    def test_filename_and_visible_challenge_number_must_match(self) -> None:
+        for number, filename in enumerate(validator.EXPECTED_CHALLENGE_FILES):
+            for displayed in (number, (number + 1) % 5):
+                with self.subTest(filename=filename, displayed=displayed), tempfile.TemporaryDirectory() as temp:
+                    page = Path(temp) / filename
+                    page.write_text(
+                        f"# \U0001f9e0 Challenge {displayed} \u2014 Example\n", encoding="utf-8",
+                    )
+                    errors: list[str] = []
+                    validator.validate_challenge_page(page, errors)
+                    mismatch = [error for error in errors if "filename number" in error]
+                    self.assertEqual(bool(mismatch), displayed != number)
+
     def test_challenge_sections_accept_clean_and_legacy_headings(self) -> None:
         frontmatter = """---
 lab:

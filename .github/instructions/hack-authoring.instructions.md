@@ -12,7 +12,7 @@ and `scripts/hack_workflow.py check-approval` succeeds.
 
 The hack composition agent executes authoring skills directly, without delegating
 to other agents. Industry intake uses repository `microsoft_industry_verticals.csv`,
-but Skillable currently supports only six slugs. An unsupported industry blocks
+but Skillable currently supports eight slugs. An unsupported industry blocks
 composition pending an explicit support-extension or scenario-revision decision;
 never silently substitute another industry. In noninteractive jobs, persist and
 return the exact required decision, then stop rather than guessing consent.
@@ -69,6 +69,15 @@ When I ask for a hack, hackathon, challenge, lab, or workshop, assume:
 
 ## Default output shape
 
+For sample-app access, follow the [local-account and Azure RBAC contract](
+../skills/hack-builder-workflow/SKILL.md#sample-application-accounts-and-azure-resource-access).
+Both participant and coach guides explain local sign-in, usernames, assigned roles and secure credential delivery.
+Public guide templates use placeholders; actual generated credentials belong in private, gitignored
+deployment-specific participant and coach guide/access files. Never put coach credentials in participant output.
+Never copy live reference passwords into packages or new deployments. No Entra admin consent is required for
+sample sign-in; Azure resources retain managed identity and scoped runtime/deploying-admin RBAC.
+These are authoring requirements, not authorization to deploy an event or create credentials during composition.
+
 Deliver the learner and coach content as separate GitHub-ready roots, never as
 one long chat response:
 
@@ -83,7 +92,7 @@ generated-scenarios/<project>/
     │   ├── _build.yml
     │   ├── resources.md
     │   ├── Allfiles/
-    │   └── Instructions/<industry-slug>/01-..05-*.md
+    │   └── Instructions/<industry-slug>/00-..04-*.md
     └── coach-guide/
         ├── README.md
         ├── index.md
@@ -92,11 +101,12 @@ generated-scenarios/<project>/
         ├── resources.md
         ├── Allfiles/
         └── Instructions/<industry-slug>/
-            ├── 01-..05-*.md
+            ├── 00-..04-*.md
             └── 99-finale.md
 ```
 
 The five numbered coach challenge files are exact copies of the learner pages.
+Use filename prefixes `00-` through `04-` to match visible Challenge 0 through Challenge 4.
 `99-finale.md` is private, contains the coach notes for every challenge, and
 must not appear in `packages/hack/`.
 

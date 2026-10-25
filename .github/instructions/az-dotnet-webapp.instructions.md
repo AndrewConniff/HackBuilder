@@ -125,9 +125,21 @@ applyTo: "**/*.cs,**/*.csproj,**/Dockerfile"
 
 - ❌ Do not use Entity Framework or any ORM — use native SDKs (`Azure.Data.Tables`, `Microsoft.Azure.Cosmos`, `Microsoft.Data.SqlClient`)
 - ❌ Do not use local JSON seed data when an Azure data service exists in the architecture
-- ❌ Do not add authentication/authorization middleware
+- ❌ Do not use consent-dependent Entra sign-in, anonymous bypasses or hard-coded shared demo passwords
 - ❌ Do not use `HttpClient` to fetch external data
 - ❌ Do not add Swagger/OpenAPI (this is a Razor Pages app, not an API)
 - ❌ Do not use `IConfiguration` for seed data paths — use `IWebHostEnvironment.ContentRootPath`
 - ❌ Do not add health check endpoints (keep the app minimal)
 - ❌ Do not store secrets in appsettings.json — use environment variables or managed identity
+
+## Sample authentication and Azure access
+
+Apply the [local-account and Azure RBAC contract](
+../skills/hack-builder-workflow/SKILL.md#sample-application-accounts-and-azure-resource-access).
+Sample apps authenticate local app accounts with salted framework password hashes, secure cookies,
+CSRF checks, bounded sessions and login lockout/throttling. Enforce server-assigned roles.
+Never use Entra ID authentication if admin consent is required.
+Record generated participant and coach credentials separately in private, gitignored deployment access files;
+public guides contain placeholders and delivery instructions, not live passwords.
+Azure runtime calls always use managed identity. Provision the reviewed least-privilege Azure control/data-plane
+roles for the deploying admin user too; operator CLI validation does not replace app managed-identity tests.

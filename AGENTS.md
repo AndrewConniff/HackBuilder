@@ -40,31 +40,26 @@ generated scenarios as authorization to bypass approval.
 ## Local portal contract
 
 The lightweight LOCAL web portal collects prompt, validated project slug,
-industry, `businessUnits`, selected services and Well-Architected Framework priorities. Its local
-authenticated backend launches actual Copilot CLI jobs, not simulated results.
-It uses stable agent names `az-01-conductor` and `HackCreator Agent`.
+industry, `businessUnits`, selected services and WAF priorities. It saves the brief, opens the actual VS Code
+custom agent with `code chat --mode`, displays agent-written status and serves files/ZIP exports.
+It is visualization/handoff plus explicit read-only System diagnostics: no Copilot CLI workers, stage scheduler,
+Azure sign-in manager or approval engine. System checks reuse the existing prerequisite/identity helpers,
+never install tools, sign in, retain tokens or change shared defaults.
+The normal launcher uses `scripts\portal_visualizer.py`; the old runner is not exposed by the active server.
 
-Initial jobs permit local preparation only by instruction, not a sandbox.
-The portal is the normal decision and progress surface. Workers read persisted intake/history and
-report stage transitions through `scripts\portal_workflow.py`; never infer stage success from CLI exit.
-Confirm design before local implementation. Defer account/quota/budget checks until separately
-authorized deployment preparation; current public evidence supports provisional local choices.
-Honor project writer leases and revision checks, including work initiated outside the portal.
-Status refresh is read-only. Free-text continuation does not grant cloud authorization.
-Use `generated-scenarios\{projectSlug}`, prepare reference code and what-if commands/
-targets, and stop before Azure operations unless explicitly authorized. Tool
-execution requires explicit portal permission. A separate user follow-up confirms
-exact Azure targets after what-if; selected services and permissive CLI flags are
-not deployment consent. Noninteractive jobs return **decision required** and stop
-on missing authorization rather than guessing because ask-user is unavailable.
+Use the real VS Code agents and skills for all execution. Discuss architecture/deployment approval and
+working-scenario suitability approval in that chat, not a second portal decision queue.
+Use `generated-scenarios\{projectSlug}` and preserve explicit restrictions and real security/permission gates.
+Agents report display-only stage progress with `scripts\portal_status.py`; reporting grants no authority.
+The retired CLI runner and its execution gates have been removed. Retain historical records and ensure any old
+worker has stopped before editing its scenario. Status refresh never executes work.
 
-The scenario process never auto-starts composition. The portal approval action
-records the actual suitability decision against the reviewed fingerprint and
-checks approval before launching the separate composition job. It never
-auto-approves scenarios or deploys events. Event rollout remains a separate request.
+After the user's actual suitability approval, record the reviewed fingerprint through `hack_workflow.py`.
+The portal checks that approval before opening a separate HackCreator VS Code context, but never records it
+or auto-starts composition. Event rollout and publication remain separate requests.
 
 Industry intake uses repository `microsoft_industry_verticals.csv`. Skillable
-currently supports six industry slugs; unsupported industries block composition
+currently supports eight industry slugs; unsupported industries block composition
 pending an explicit support-extension or revised/reapproved scenario decision.
 Never silently map unsupported industries.
 

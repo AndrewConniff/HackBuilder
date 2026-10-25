@@ -59,11 +59,11 @@ This scenario is identical in every challenge file.>
 
 | # | Challenge | Time | You'll finish with |
 |---|---|---|---|
-| 0 | [Secure Foundation](Instructions/<industry-slug>/01-secure-foundation.md) | 25 min | Access and baseline |
-| 1 | [Build the MVP](Instructions/<industry-slug>/02-build-the-agent.md) | 35 min | End-to-end response |
-| 2 | [Ground It](Instructions/<industry-slug>/03-ground-it.md) | 35 min | Grounded citations |
-| 3 | [Give It Tools](Instructions/<industry-slug>/04-give-it-tools.md) | 35 min | Authenticated action |
-| 4 | [Harden & Demo](Instructions/<industry-slug>/05-harden-and-demo.md) | 30 min | Evaluation and demo |
+| 0 | [Secure Foundation](Instructions/<industry-slug>/00-secure-foundation.md) | 25 min | Access and baseline |
+| 1 | [Build the MVP](Instructions/<industry-slug>/01-build-the-agent.md) | 35 min | End-to-end response |
+| 2 | [Ground It](Instructions/<industry-slug>/02-ground-it.md) | 35 min | Grounded citations |
+| 3 | [Give It Tools](Instructions/<industry-slug>/03-give-it-tools.md) | 35 min | Authenticated action |
+| 4 | [Harden & Demo](Instructions/<industry-slug>/04-harden-and-demo.md) | 30 min | Evaluation and demo |
 
 ## Build progression
 

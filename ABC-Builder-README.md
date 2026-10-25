@@ -3,6 +3,9 @@
 Build a working Microsoft Foundry business scenario first. Turn it into a
 customer hack only after the technical owner approves it.
 
+New here? Follow the [illustrated how-to guide](ABC-Builder-HOWTO.md) for setup,
+browser navigation, VS Code interaction, milestone meanings, approvals and package exports.
+
 ## Start
 
 Open this repository in VS Code with GitHub Copilot and select **az-01-conductor**,
@@ -21,35 +24,53 @@ workflow changes.
 
 ## Local portal
 
-The optional [local portal entry point](portal/README.md) is an alternative to
-starting in VS Code. From the repository root, authenticate and start it:
+The [local portal](portal/README.md) collects your brief, opens the real VS Code
+agent conversation, displays progress reports and provides file/package browsing.
+From the repository root, start or reuse it:
 
 ```powershell
-copilot login
-python scripts\portal_server.py
+.\Start-ABCBuilder.cmd
 ```
 
-Open the printed private loopback URL and keep its token confidential. Local tool
-consent is not an OS sandbox and does not automatically authorize Azure deployment.
-The two approval stages remain separate: authorize exact deployment targets after
-what-if review, then explicitly approve the working scenario's suitability before
-composition. Event rollout requires another separate request.
+Alternatively, run `python scripts\start_portal.py`.
+The launcher opens the local loopback page in your browser.
+The active portal does not launch background Copilot CLI jobs or supervise agents;
+implementation, tool permissions and decisions remain in VS Code.
+See the [how-to guide](ABC-Builder-HOWTO.md) for the complete two-window walkthrough.
 
 The lightweight LOCAL web portal collects a prompt, validated project slug,
-industry, `businessUnits`, requested services and WAF priorities. Its local authenticated backend
-launches real Copilot CLI jobs with the canonical agent names. Project paths are
+industry, `businessUnits`, workflow pattern, requested services and WAF priorities.
+It saves a handoff and opens the canonical custom agent through `code chat`.
+Project paths are
 `generated-scenarios\{projectSlug}`. It is tooling, not an Azure-hosted progress app.
 
-Initial jobs prepare locally: reference implementation, tests and what-if commands/
-target preview, then stop before Azure operations unless explicitly authorized.
-Tool execution requires explicit portal permission; this is not a sandbox.
-A separate follow-up authorizes exact deployment targets after what-if review.
-Selected services, `--allow-all-tools` and `--no-ask-user` are not consent.
-Noninteractive jobs stop and return missing user decisions rather than guessing.
+Local preparation can proceed before cloud authorization.
+Review the exact deployment scope, authorized what-if results, costs and pending
+decisions in the existing VS Code chat. Tool permission and service selections
+are not Azure or Entra consent. Matching same-scenario authorization is reused;
+missing authority or material new scope requires a focused decision.
 
-The portal never auto-approves scenarios or deploys events. Its approval action
-records the explicit response against the reviewed fingerprint, checks approval
-and launches composition as a separate job. Scenario jobs do not auto-start it.
+The portal never auto-approves scenarios or deploys events.
+After you approve the proven scenario's suitability in chat, the agent records
+the decision against the reviewed fingerprint. The portal checks current approval
+before opening composition as a separate **HackCreator Agent** context.
+Scenario work does not auto-start composition; event rollout requires a separate request.
+
+## Sharing this repository
+
+Share source through Git or a source-only archive, not a ZIP of the entire working directory.
+The approved visualization portal is the only shipped portal implementation;
+the retired CLI runner and dashboard have been removed.
+
+Keep the how-to guide and its screenshots, canonical agents/skills, templates,
+identity catalogs, research references and the Scenario Chat bridge.
+Local portal state, generated scenario junctions, `.azure`, `.private` credential files,
+virtual environments, caches and build/test outputs are ignored and must not be distributed.
+Existing local environments and scenario evidence are preserved, not cleaned by deletion.
+Never force-add ignored files when preparing a source share.
+
+Each recipient prepares their own tools and Azure identities using
+[PREREQUISITES.md](PREREQUISITES.md); no Copilot CLI runner or Python browser installation is needed.
 
 ## Business scope and reusable scenarios
 
@@ -142,8 +163,8 @@ It checks by default; installation is explicit, and shared tools are never insta
 The guide covers native Graphviz, the .NET 10 SDK, repository Python environment,
 optional developer/container tools, authentication and stale-PATH troubleshooting.
 
-- VS Code and GitHub Copilot custom-agent support, or authenticated Copilot CLI
-  for local portal jobs; no specialist/subagent fanout is needed.
+- VS Code and GitHub Copilot custom-agent support, with the `code` launcher
+  for portal handoffs; no specialist/subagent fanout is needed.
 - Azure CLI, Azure Developer CLI (`azd`) and Bicep CLI.
 - .NET 10 SDK for the sample application.
 - Python 3.10+ and Graphviz for diagrams; diagram dependencies are listed in
@@ -156,8 +177,8 @@ subscription or region is selected. If local account instructions exist, they
 are honored; mismatches block deployment. Never paste credentials into chat.
 
 Industry intake comes from [`microsoft_industry_verticals.csv`](microsoft_industry_verticals.csv).
-Skillable currently supports only `financial-services`, `healthcare`,
-`manufacturing`, `retail`, `energy-oil-gas` and `government-public-sector`.
+See the current [Skillable authoring industry catalog](
+.github/skills/skillable-lod-authoring/references/industry-catalog.md) for supported package industries.
 Other industries can inform a reference scenario, but composition blocks until
 you explicitly choose to extend authoring support or revise/reapprove the scenario.
 The system must not silently map an unsupported industry to another slug.

@@ -18,57 +18,117 @@ specialists, invokes the other agent, or starts a subagent fanout.
 
 ## Intake and local portal
 
-The lightweight LOCAL web portal collects the prompt, a validated `projectSlug`,
-industry, `businessUnits`, selected services and Well-Architected Framework priorities. Its local
-authenticated backend launches actual Copilot CLI jobs, not simulated results.
+The portal is a visualization and handoff layer, not an execution engine.
+It saves the brief and opens the real interactive VS Code custom agent using
+`code chat --mode <agent> --add-file <handoff>`. It never launches Copilot CLI workers,
+schedules stages, runs scenario tests/deployments or answers decisions.
+Its optional System panel runs the existing read-only local prerequisite checker and verifies already-authenticated
+CLI identity metadata on explicit request. It never installs tools, signs in, retains tokens or changes Azure defaults.
+The agent performs the entire technical flow in VS Code through the existing skills.
 Use `generated-scenarios\{projectSlug}` without silently changing the slug.
 
-The backend uses `--agent az-01-conductor --prompt <text>` for scenario jobs and
-the stable name `HackCreator Agent` for separately approved composition jobs.
-The CLI supports `--output-format text/json`, `--allow-all-tools` and
-`--no-ask-user`. These flags are not user consent and do not establish a sandbox.
-Tool execution requires explicit portal permission. Initial jobs are local
-preparation only by instruction: prepare reference code and what-if commands/
-target previews, then stop before Azure operations unless explicitly authorized.
-A separate user follow-up authorizes exact Azure targets; review actual what-if
-before deployment. Service selections alone never authorize deployment.
+The normal user flow is:
 
-Local execution authorization is recorded once per scenario, not per stage or CLI attempt.
-Reuse it for local files, diagrams, builds, tests, revisions and separately approved composition.
-It is revocable while idle, does not transfer to another scenario,
-and never grants host, Azure or publication permission.
-Do not ask for routine stage-by-stage authorization after design confirmation.
+1. Enter the scenario brief in the portal and hand it to `az-01-conductor` in VS Code.
+1. The agent builds requirements, architecture, diagrams, Bicep, real app and tests.
+1. In that VS Code chat, approve the architecture and reviewed deployment scope once.
+1. The agent deploys, repairs in-scope errors and proves real application behavior.
+1. Approve the working scenario's suitability in chat; record the reviewed fingerprint.
+   Open the separate `HackCreator Agent` context to produce and validate hack materials.
+1. View files and export separate learner/private coach ZIPs in the portal. Done.
 
-Missing prerequisites/PATH or execution-host denials are technical blockers, not business decisions.
-For portal jobs report `status: "blocked"` with `blocker: {kind, action, verification}`,
-where kind is `prerequisite` or `host-permission`. State the exact outside-worker setup action and
-read-only check; stop without another approve/corrected/resume choice.
-The portal displays **Setup required** and **Verify setup & retry**.
-That action starts verification under the same host restrictions, not a permission grant.
-Keep the blocker if checks fail or are denied; do not install shared tooling or bypass a denial.
-Only actual passing checks permit a report for the blocked stage with `status: "pending"`,
-`setupVerification: {blockerId, passed: true}` and exact evidence, followed by continued implementation.
-A user assertion, click, file presence or CLI exit alone is not setup verification.
+Permissions and approvals belong to the actual VS Code session. The portal neither grants them nor
+creates another permission/decision queue. No repeated preflight, target, build or deployment approval
+cards. Required checks remain agent work; only genuine blockers or material changes outside the
+approved design require another decision. Preserve existing explicitly restricted instructions.
+Never bypass actual host, tenant or Azure restrictions.
+
+### Authorization continuity and consolidated review
+
+Separate local preparation, authorized cloud reads, installation writes and working-scenario suitability approval.
+Permission to use tools is not permission to change Azure or Entra, and a deployment approval is not hack approval.
+
+- Continue local analysis, public-documentation research, design/cost proposals, code and tests within the user's
+  existing local scope. Do not ask permission merely to prepare a repair or price an unapproved addition.
+  A local-only instruction still prohibits cloud operations; it does not block this local preparation.
+- Reconcile actual user responses for the same scenario by target and operation, across current and legacy records.
+  A later read-only grant does not revoke an earlier deployment grant unless the user explicitly withdraws or
+  restricts it. An initial false intake flag, expired worker receipt or portal migration is not a revocation.
+  Agent-written summaries, status reports and derived authorization files cannot create or revoke user consent.
+  Trace a claimed restriction to its actual user response, not merely a newer artifact timestamp.
+  Honor actual explicit restrictions and host/tenant denials. If user responses genuinely conflict, defer only
+  affected cloud operations and ask one focused clarification; continue independent authorized local work.
+- Reuse matching approval for its exact targets, resources, directory operations and reviewed cost scope.
+  Do not request routine reapproval for a build, unchanged readiness check, in-scope repair or installation step.
+  Azure readiness reads and Entra ownership reads are distinct: run only those covered by actual authority.
+  Missing read permission is not permission to query; mark the affected check pending and keep preparing locally.
+- Before asking about a missing private execution host, prepare a concrete preferred access-path repair and cost.
+  Use saved evidence and authorized discovery where available; otherwise label reuse/connectivity unverified.
+  Do not require a preliminary choice between "discover a runner" and "design a runner" just to prepare the review.
+  Carry the proposed host, artifact transfer, identity, DNS, execution wiring and lifecycle into local artifacts.
+  Do not create it, alter networking or relax private access before the required approval.
+- Present one consolidated new-scope review: what was already approved, the exact addition or conflict,
+  account/tenant/subscription and resource targets, Azure reads/writes versus Entra reads/writes,
+  security impact, incremental and total estimated cost, evidence and pending dependent checks.
+  Explain each requested permission by the operation it enables and state what it does not authorize.
+  Request only missing authority or the material change, not the entire previously approved deployment again.
+  Genuine business choices and observed permission failures still require a decision; never invent their answers.
+
+Use `waiting_for_user` only when local preparation is complete or a genuine missing decision blocks further work.
+Report a cloud step as blocked without implying all local work must stop. Once the scoped response is recorded,
+continue matching authorized work in the same context. Event rollout, publication and suitability remain separate.
+
+### Display-only progress
+
+At stage start, completion, a real blocker and a user review boundary, write a short report:
+
+```powershell
+python scripts\portal_status.py <projectSlug> --stage bicep --status running --summary "Creating infrastructure"
+```
+
+Stages are requirements, architecture, diagrams, bicep, application, local-validation,
+deployment, live-validation, review, hack-content, hack-starter, hack-coach and hack-validation.
+Statuses are running, completed, waiting_for_user, blocked and failed.
+The helper writes `.abcbuilder-portal\scenarios\<projectSlug>\status.json` atomically
+(or the existing legacy state directory). It has no leases, revisions, authorization or execution gates.
+Write truthful summaries without secrets. A completed step is not completion of the entire scenario.
+The portal shows the reported step and timestamp, not an inferred live process state.
+Validated package receipts establish package completion; a handoff alone never means an agent started.
+
+The retired CLI runner has been removed. Its saved state and diagnostics remain historical,
+not current instructions or a reason to reproduce background-worker errors.
+Before continuing an old scenario, ensure no legacy worker still owns it; never edit concurrently.
 
 ### Service-aware prerequisites
 
+Reuse the user's configured CLI/azd identity and existing prerequisite observations in VS Code.
+Do not ask each scenario to configure credentials or repeat the whole machine audit.
+Resolve tenant/subscription/account from `az account show` and verify `azd auth login --check-status`,
+using `scripts/azure_context.py` helpers. Do not request manual IDs available from the authenticated CLIs.
+Ask only for missing authentication, conflicting intended targets or an actual sign-in mismatch.
+The System panel's sign-in metadata is an observation, not permission for cloud resource queries or writes.
+Recheck affected tools after actual failure, changed environment or newly required capabilities.
+Keep RBAC, region/quota, what-if and runtime checks in the agent's technical flow, not portal checkpoints.
+
 Use the shared profiles in `scripts\prerequisite_profiles.py` and the checker, not per-scenario guessed install lists.
-The Python portal backend audits the full selected toolchain and Azure CLI/azd sign-ins
-before starting a scenario agent. It persists the current owner-bound receipt and a consolidated
-readiness result. Workers do not repeat the audit or request routine technical authorization.
-For manual execution, or an expired/scope-changed receipt, run:
+The scenario agent owns prerequisite checks through the existing skills. Check the tools needed for the
+current work, reuse unchanged results, and stop before an affected step if its dependency is unavailable.
+The optional portal System audit prepares shared tools before scenarios; it is not a stage scheduler,
+deployment-readiness gate or second scenario approval pipeline. Reuse matching saved results without a timed renewal.
+When a service-aware audit is needed, run:
 
 ```powershell
-python scripts\check_prerequisites.py --for-project --record --stage requirements --json
+python scripts\check_prerequisites.py --services foundry --stage requirements --json
 ```
 
-The standalone checker allows requirements/design while later gates fail; the portal's managed launch
-requires the complete baseline to pass first. It also launches Chromium and restores/compiles a temporary
-.NET project through the approved NuGet proxy. These are real machine checks, not scenario acceptance.
-After architecture confirmation, update manifest services. The backend refreshes changed/expired profiles
-before an affected operation. Manual jobs can use `--stage <stage>` to refresh expired receipts.
-Portal build-stage reports require actual owner-bound checks, fresh within 15 minutes and covering the current services.
-Report all failed checks and affected stages together; block only before an affected operation.
+Include the scenario's selected service IDs and confirmed build mode when needed.
+These are standalone diagnostics, not worker leases or timed execution gates; the System page records its own report.
+
+The checker allows requirements/design while later gates fail. Do not require a browser launch or a temporary
+.NET build before writing a story. After architecture confirmation, update manifest services and check
+new dependencies before using them. Actual scenario builds/tests remain required, but the portal does not
+repeat them after the agent has run them. Dashboard reports do not require a separate timed machine-audit receipt.
+Report all failed checks and affected stages together in chat; block only before an affected operation.
 Docker is needed for confirmed local image builds, not Bicep/Dockerfile authoring.
 Check the running Linux engine, not just executable discovery.
 Use `--build-mode remote` only for an explicitly chosen remote-build design, never as a failure/permission fallback.
@@ -77,28 +137,26 @@ Verify new design-specific packages with real restore/build. Unknown dependencie
 No preflight grants Azure/host permission, starts engines, installs software or replaces deployment acceptance.
 See [the prerequisite guide](../../../PREREQUISITES.md) for the service/stage matrix and System checklist.
 
-The portal is the normal decision surface and scenario-level progress dashboard, not a CLI transcript.
-Persist normalized intake, delegated preferences, resolved decisions and execution attempts in the
-backend project store. Workers use `scripts\portal_workflow.py read` and revision-checked `report`
-events; environment variables identify their project and writer lease. Status refresh is read-only.
-The Python controller assigns one bounded operation via `ABCBUILDER_ASSIGNED_STAGES`,
-validates required artifacts and Bicep/.NET builds, and schedules the next allowed operation automatically.
-Return after reporting the assigned operation; do not negotiate routine stage progression with the user.
-Every scenario owns a separate workspace, writer and execution history. Dependencies do not grant
-cross-scenario access or transfer deployment/suitability authorization.
-Never use CLI exit success, existing files or guessed log parsing as stage-completion evidence.
-Do not edit a portal-owned scenario concurrently from VS Code; the shared writer contract must be honored.
+Status refresh is read-only. Agents own execution, evidence and decisions in VS Code.
+Continue between technical steps in the same context; reporting status is not a handoff or gate.
+Never infer successful deployment or validation from existing files or a successful handoff.
 
 For local-only work, account, subscription quota and budget are deferred deployment concerns.
 Use current public evidence for provisional region/model choices and label unresolved live checks.
-Complete requirements/architecture, then obtain a concise portal design confirmation before implementation.
-This design checkpoint is not deployed-scenario suitability approval. Reuse answered choices and
+Complete local implementation and authorized preparation, then obtain a concise architecture/deployment approval in chat.
+This checkpoint is not deployed-scenario suitability approval. Reuse answered choices and
 continue backend implementation without unnecessary handoffs. Required service substitution,
 material security exceptions or unresolved business requirements need explicit structured decisions.
 
-Cloud preparation and deployment use separate portal decisions with exact targets.
-Preparation permission precedes Azure queries/what-if. Deployment consent follows actual what-if,
-estimated cost and target review. Free-text continuation never grants cloud authorization.
+Perform authorized readiness/what-if in the real VS Code session; the portal does not authorize commands.
+Architecture approval includes deployment consent after actual what-if, estimated cost and target review.
+Present one coherent end-to-end deployment scope, including necessary directory installation and cost.
+Use azd lifecycle hooks for technical dependency ordering; do not turn foundation, image publication,
+agent initialization and app rollout into separate routine user approvals.
+Further consent is needed only for permissions or material scope/cost changes outside the approved design,
+not each command or an in-scope corrective retry. Technical bugs are agent-owned work, not user decisions.
+Do not label generated configuration conflicts or correctable script errors as workstation setup.
+An existing explicitly restricted approval is not broadened by this rule; consolidate any remaining scope honestly.
 
 ### Subscription regional readiness
 
@@ -128,14 +186,13 @@ Never silently change targets or require a quota/support ticket before evaluatin
 - Foundry and dependencies: validate exact model/version/deployment type, quota, required tools/features,
   provider registration, policy and each supporting service's restrictions. Provider registration is not quota.
 
-The backend requires `regionalReadiness` in `00-region-availability.json` before accepting completed preparation,
-starting the deployment-consent job or launching deployment. The bounded-job instruction specifies its exact
-schema: scope, timezone-aware timestamp, infrastructure fingerprint, per-resource/SKU/capability results,
-real command/result references and quota/access facts. Include every selected and supporting resource.
-Generate its fingerprint with `azure_context.infrastructure_fingerprint` using the actual scenario workspace.
-The backend rejects wrong-scope, missing, unknown, failing, changed-infrastructure or older-than-15-minute results.
-Failure invalidates active deployment authorization while retaining it in audit history; Resume refreshes
-read-only preparation and returns to exact-target consent rather than reusing a stopped deployment grant.
+The agent records actual regional results in `00-region-availability.json` and the deployment summary.
+Use the validation skill and service-specific checks; do not introduce a second portal-specific evidence
+schema or repeat unchanged checks merely to satisfy a timed dashboard receipt.
+Missing, denied or insufficient eligibility remains a real blocker, never a passing default.
+Clearly distinguish actual failures from checks dependent on resources/identities created during installation.
+Disclose those dependencies, planned installation changes, what-if limits and cost in the consolidated review.
+Only actual user authorization for the reviewed targets permits deployment; preparation is not provisioning consent.
 
 Refresh after provider/capacity failure and immediately before deployment when stale. ARM what-if, quota and
 region metadata cannot reserve capacity or guarantee allocation; distinguish checked eligibility from capacity
@@ -148,14 +205,93 @@ Official references:
 [cosmos-locations]: https://learn.microsoft.com/rest/api/cosmos-db-resource-provider/locations/list
 [compute-quota]: https://learn.microsoft.com/azure/virtual-machines/quotas
 
+### Private-workload management access
+
+Private networking must include a usable operator and automation path in the architecture, not a surprise
+workstation prerequisite after provisioning. During design, inventory both control-plane and data-plane access
+for provisioning, image publishing, fixture ingestion, agent initialization, runtime tests and troubleshooting.
+An ARM deployment succeeding does not prove the execution host can reach private service endpoints.
+
+- Reuse an existing authorized VPN/connected runner when available. Otherwise recommend the simplest viable
+  path: a VNet-connected automation runner for unattended operations, and, when interactive administration is
+  needed, a management VM without a public IP reached through Azure Bastion or an approved VPN.
+  Bastion is interactive VM access, not automatic network connectivity for the local Copilot worker.
+  Explain how scripts/artifacts reach the execution host and how results return; do not assume portal access
+  or a jump VM makes local azd hooks run inside the VNet.
+- Compare a public-IP exception only where the service supports it and the requirements permit restricted
+  public access. A public-IP allowlist does not route to a private endpoint or work with public access disabled.
+  Never silently relax private-only requirements. If chosen, parameterize a confirmed operator egress IP,
+  restrict IPv4 rules to `/32` (or the equivalent narrow supported IPv6 rule), and document expiry/removal.
+  Do not discover the user's public IP through an unsolicited external lookup or use unrestricted ingress.
+- Plan routing, private DNS resolution/forwarding, NSGs/firewalls, required outbound build/package access,
+  operator sign-in and least-privilege execution identities. Network reachability does not grant RBAC.
+  Use managed identity for automation where supported; do not expose RDP/SSH to the Internet or embed credentials.
+- Include management resources, exact SKUs/region constraints, compute quota, ongoing VM/disk/Bastion/VPN
+  costs, patching, shutdown and cleanup in the architecture, diagrams and consolidated deployment review.
+  VM shutdown does not remove disk or Bastion charges. Suggest a concrete preferred option and alternatives
+  at the existing design checkpoint, not a new portal wizard or a routine prerequisite questionnaire.
+- Wire the selected path into IaC and installation automation. Order provisioning so the execution host and
+  private DNS exist before dependent publishing/initialization. Avoid a bootstrap dependency where installing
+  the management path itself requires access that only that path provides.
+  Validate DNS, TCP/TLS and an authenticated service operation from the actual execution host after provisioning,
+  plus the expected unauthorized/outside-network denial. Route metadata alone is not acceptance evidence.
+  Before provisioning, document planned checks without probing nonexistent endpoints or inventing success.
+- For existing deployments, an absent management path is a design gap: propose one consolidated repair with
+  cost/security impact. Create no VM, VPN, runner, peering or firewall exception outside recorded authorization.
+  Actual host/tenant restrictions remain blockers; never bypass a denied execution environment.
+
+Design evidence (reviewed 2026-10-23):
+[Private Endpoint DNS](https://learn.microsoft.com/azure/private-link/private-endpoint-dns) and
+[Azure Bastion](https://learn.microsoft.com/azure/bastion/bastion-overview).
+Refresh service/SKU-specific evidence when selecting a concrete scenario option.
+
+### Sample application accounts and Azure resource access
+
+Sample application sign-in uses **local app accounts**, not participants' Microsoft/Entra identities.
+Participants and coaches must not need directory roles, app registrations or consent-administrator access.
+Never use Entra ID authentication for a sample app if admin consent is required; switching OAuth flows
+or adding basic OpenID scopes does not remove tenant consent or assignment restrictions.
+Do not weaken tenant policy, remove required authentication or add an anonymous/role-selector bypass.
+An explicitly requested enterprise identity integration is a separate reviewed requirement, not the sample default.
+If that integration needs admin consent, stop the affected integration and retain local app sign-in.
+
+- Generate unique per-deployment passwords and separate participant and coach accounts with server-assigned roles.
+  Store only salted password hashes in the configured durable backend. Use secure HttpOnly session cookies,
+  CSRF protection, bounded sessions, login throttling/lockout and persistent session-key protection.
+  No public registration, shared hard-coded passwords or client-selected privileged roles.
+- Document login URL, usernames, role boundaries and credential delivery in both participant and coach guides.
+  Write actual generated credentials only into private, gitignored deployment-specific guide/access files
+  (for example `.private/participant-access.json` and `.private/coach-access.json`), with restrictive local access.
+  The participant file contains only participant credentials; coach credentials stay coach-only.
+  Public/GitHub-ready guides contain placeholders and private-file retrieval instructions, never live passwords.
+  Exclude these files from catalogs, web publishing, source archives and public learner exports.
+  Do not copy reference credentials to a new coach/team deployment; generate destination-specific credentials.
+  Before suitability approval, produce private reference access notes only, not hack plans or packages.
+- Azure resource-to-resource authentication always uses managed identities and least-privilege RBAC.
+  Local app passwords are not Azure credentials. Never substitute service keys, connection-string secrets
+  or shared service-principal secrets for the workload managed identity.
+- Resolve the signed-in deploying admin user's object ID from the existing CLI context. Include the necessary
+  scenario-scoped control-plane and data-plane RBAC assignments for that user in IaC/installation and what-if
+  review, alongside separate workload managed-identity assignments. Subscription ownership alone does not
+  imply data-plane access. Grant only roles needed to initialize, inspect and validate the complete scenario,
+  including grounding ingestion and queue/tool operations required by acceptance; avoid broad tenant roles.
+  Execute assignments only within authorized scope. Missing role-assignment rights are an explicit blocker,
+  not permission to elevate or silently omit validation.
+- Prove local login/logout, failed login/lockout, anonymous and wrong-role denial, and the real app-to-Azure
+  managed-identity path. Deployer probes complement, but never replace, runtime managed-identity acceptance.
+
 ### Scenario-owned application identity setup
+
+This section applies only to explicitly required non-default identity integrations, not sample-app login.
+Apply [sample application accounts and Azure resource access](#sample-application-accounts-and-azure-resource-access)
+first. Do not generate Entra registrations or consent dependencies merely to authenticate a sample app.
 
 Treat Microsoft Entra application registrations, service principals, exposed API scopes, app roles,
 redirect URIs and assignment requirements as technical deployment dependencies, not recurring business questions.
 Resolve them during architecture and carry one identity installation plan through IaC, app configuration and deployment.
 
-- Prefer managed identities for Azure backend communication. Add interactive-user SPA/API registrations only
-  when the scenario requires them; never substitute anonymous access for required authentication.
+- Use managed identities for Azure backend communication. Add interactive-user SPA/API registrations only
+  for the explicitly reviewed non-default integration, never as a local sample-account replacement.
 - For a standalone scenario requiring registrations, default to new dedicated scenario-owned registrations
   when no existing IDs were supplied and no requirement mandates reuse. Record this implementation choice;
   do not ask "existing or new?" merely because IDs do not exist yet. Preserve an already answered choice.
@@ -212,9 +348,10 @@ This customization work itself authorizes no Azure operations.
 For technical prerequisite/host-permission failures, use the separate blocked protocol above.
 
 Industry intake comes from repository `microsoft_industry_verticals.csv`.
-Skillable currently supports six slugs in its own authoring catalog:
+Skillable currently supports eight slugs in its own authoring catalog:
 `financial-services`, `healthcare`, `manufacturing`, `retail`, `energy-oil-gas`
-and `government-public-sector`. Do not silently map unsupported intake industries.
+`government-public-sector`, `hospitality-travel` and `media-communications`.
+Do not silently map unsupported intake industries.
 Before composition, block on an unsupported selection and request an explicit
 decision to extend authoring support or revise/reapprove the scenario.
 
@@ -409,10 +546,9 @@ The helper records the response, timestamp and reference fingerprint in
 audit guard against accidental progression, not an authentication boundary.
 Keep operational state out of public learner packages.
 
-The scenario process must not start composition automatically. The portal's
-approval action records the actual user response against the reviewed fingerprint,
-runs `check-approval`, and only then launches a separate composition job. It never
-auto-approves from job completion, selected services, or a deployment confirmation.
+The scenario process must not start composition automatically. Record the user's actual suitability response
+in VS Code against the reviewed fingerprint. The portal's HackCreator handoff checks approval but never records
+or invents it. Open the separate composition context only after approval.
 
 If the user requests revision or stops the scenario, record that response with
 the `reject` command and `--message`. This clears any previous authorization;

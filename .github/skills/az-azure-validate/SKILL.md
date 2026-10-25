@@ -32,14 +32,17 @@ All gates must pass before deployment proceeds. Each gate is a hard stop —
 failure means the deployment cannot continue until the issue is resolved.
 
 > [!CAUTION]
-> **GATE FAILURE POLICY**: If a gate fails and cannot be auto-remediated,
-> **present the failure to the user and ask how to proceed**.
-> Do NOT autonomously skip deployment or generate a dry-run summary.
-> The user must explicitly decide whether to:
+> **GATE FAILURE POLICY**: A failed required check still blocks its dependent operation.
+> Diagnose and repair generated code/configuration within existing authority before requesting user input.
+> Continue independent local preparation, including a proposed repair and its cost, without another approval.
+> Apply [authorization continuity and consolidated review](
+> ../hack-builder-workflow/SKILL.md#authorization-continuity-and-consolidated-review).
 >
-> 1. Fix the issue and retry
-> 2. Skip the gate (accepting risk)
-> 3. Abort the deployment
+> Reuse actual matching grants; a later read-only grant is not itself a revocation.
+> Agent-written summaries and derived receipts are not user restrictions.
+> When missing authority, a material scope change or an observed external denial remains, present one focused
+> review with the exact failed operation, affected scope, proposed remediation and incremental/total cost.
+> Never offer to skip a required security or acceptance check, assume unknown availability, or bypass a denial.
 
 ### Gate Sequence
 
@@ -412,20 +415,19 @@ Generate a structured validation report for the deployment summary:
 ## 10. Common Validation Failures
 
 > [!IMPORTANT]
-> For every failure below, if auto-remediation does not resolve the issue,
-> **prompt the user** with the error details and ask how to proceed.
-> Never autonomously skip deployment or generate a "blocked" summary.
+> Repair in-scope technical failures directly. Escalate only missing authority, a material design change,
+> a genuine business decision or an observed external blocker. Report all related unresolved items together.
+> Do not install shared tools, change shared defaults or register providers without applicable authorization.
 
-| Failure                           | Gate         | Auto-Fix Attempt                                                                  | If Auto-Fix Fails |
-| --------------------------------- | ------------ | --------------------------------------------------------------------------------- | ----------------- |
-| `az account show` returns nothing | Auth         | Prompt `az login`                                                                 | **Ask the user**  |
-| Wrong subscription selected       | Subscription | Run `az account set --subscription {id}`                                          | **Ask the user**  |
-| `bicep build` outputs errors      | Template     | Display errors for review                                                         | **Ask the user**  |
-| Bicep CLI not installed           | Template     | Try `az bicep install`                                                            | **Ask the user**  |
-| Azure CLI extension broken        | Auth         | Try removing broken extension                                                     | **Ask the user**  |
-| Missing parameter value           | Parameters   | Add to `.bicepparam` or set azd env variable                                      | **Ask the user**  |
-| Provider not registered           | Providers    | `az provider register --namespace {ns} --wait`                                    | **Ask the user**  |
-| What-if shows unexpected deletes  | What-If      | Review template changes; may indicate renamed resources                           | **Ask the user**  |
-| Resource stuck in `Creating`      | Post-Deploy  | Wait and retry; check Activity Log for errors                                     | **Ask the user**  |
-| `Forbidden` on resource access    | Post-Deploy  | Verify RBAC; managed identity may need role assignment propagation (up to 10 min) | **Ask the user**  |
-| Endpoint returns 404/503          | Connectivity | App may need time to start; check deployment logs                                 | **Ask the user**  |
+| Failure | Agent-owned next action | Escalation boundary |
+| --- | --- | --- |
+| Missing/mismatched sign-in or target | Reuse CLI metadata; identify the actual mismatch | User sign-in/target choice |
+| Bicep compilation error | Repair generated source and rerun local build/lint | Required design change |
+| Missing/broken CLI component | Report remedy; continue independent local work | Host setup permission |
+| Missing parameter | Resolve configuration or capture generated output | Genuine missing input |
+| Provider not registered | Include registration in scope; execute only if authorized | Missing registration authority |
+| Unexpected what-if deletes | Repair naming/source errors and rerun within authority | Intentional destructive change |
+| Resource still Creating | Inspect authorized logs/status; use bounded waits | Actual allocation/service failure |
+| Forbidden access | Inspect authorized RBAC/network evidence; check propagation | Missing rights or scope |
+| Endpoint 404/503 | Diagnose startup/configuration and repair within scope | External blocker or material change |
+| No private execution host | Prepare local design/cost; defer unauthorized discovery | New host/network scope |

@@ -8,8 +8,8 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 import unittest
-import uuid
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -21,9 +21,9 @@ SPEC.loader.exec_module(workflow)
 
 class ApprovalTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.root = ROOT / f".workflow-test-{uuid.uuid4().hex}"
-        self.root.mkdir()
-        self.addCleanup(shutil.rmtree, self.root)
+        temporary = tempfile.TemporaryDirectory(prefix="abc-workflow-test-")
+        self.addCleanup(temporary.cleanup)
+        self.root = Path(temporary.name)
         for name in workflow.REQUIRED_FILES:
             path = self.root / name
             path.parent.mkdir(parents=True, exist_ok=True)
@@ -270,6 +270,75 @@ class ApprovalTests(unittest.TestCase):
 
 
 class CustomizationTests(unittest.TestCase):
+    def test_authorization_continuity_prepares_repairs_before_requesting_new_scope(self) -> None:
+        skills = ROOT / ".github" / "skills"
+        contract = (skills / "hack-builder-workflow" / "SKILL.md").read_text(encoding="utf-8")
+        for requirement in (
+            "### Authorization continuity and consolidated review",
+            "Do not ask permission merely to prepare a repair or price an unapproved addition",
+            "A later read-only grant does not revoke an earlier deployment grant",
+            "Agent-written summaries, status reports and derived authorization files "
+            "cannot create or revoke user consent",
+            "Trace a claimed restriction to its actual user response",
+            "defer only",
+            "affected cloud operations",
+            "Azure readiness reads and Entra ownership reads are distinct",
+            "Do not require a preliminary choice",
+            "Present one consolidated new-scope review",
+            "incremental and total estimated cost",
+            "Request only missing authority or the material change",
+            "Event rollout, publication and suitability remain separate",
+        ):
+            with self.subTest(requirement=requirement):
+                self.assertIn(requirement, contract)
+        for path in (
+            ROOT / ".github" / "agents" / "az-01-conductor.agent.md",
+            skills / "az-scenario-architecture" / "SKILL.md",
+            skills / "az-azure-deploy" / "SKILL.md",
+            skills / "az-azure-validate" / "SKILL.md",
+        ):
+            with self.subTest(path=str(path.relative_to(ROOT))):
+                self.assertIn("#authorization-continuity-and-consolidated-review", path.read_text(encoding="utf-8"))
+
+    def test_validation_failures_do_not_force_routine_approval_or_offer_gate_bypass(self) -> None:
+        text = (ROOT / ".github" / "skills" / "az-azure-validate" / "SKILL.md").read_text(encoding="utf-8")
+        for requirement in (
+            "A failed required check still blocks its dependent operation",
+            "Diagnose and repair generated code/configuration within existing authority",
+            "Continue independent local preparation",
+            "Never offer to skip a required security or acceptance check",
+            "Do not install shared tools, change shared defaults or register providers "
+            "without applicable authorization",
+            "defer unauthorized discovery",
+        ):
+            with self.subTest(requirement=requirement):
+                self.assertIn(requirement, text)
+        self.assertNotIn("Skip the gate (accepting risk)", text)
+        self.assertNotIn("**Ask the user**", text)
+
+    def test_private_management_access_is_designed_and_consumed_across_phases(self) -> None:
+        skills = ROOT / ".github" / "skills"
+        contract = (skills / "hack-builder-workflow" / "SKILL.md").read_text(encoding="utf-8")
+        for requirement in (
+            "### Private-workload management access",
+            "public-IP allowlist does not route to a private endpoint",
+            "not automatic network connectivity for the local Copilot worker",
+            "Route metadata alone is not acceptance evidence",
+            "ongoing VM/disk/Bastion/VPN",
+            "absent management path is a design gap",
+        ):
+            with self.subTest(requirement=requirement):
+                self.assertIn(requirement, contract)
+        for path in (
+            skills / "az-scenario-architecture" / "SKILL.md",
+            skills / "az-scenario-bicep" / "SKILL.md",
+            skills / "az-azure-deploy" / "SKILL.md",
+            ROOT / ".github" / "agents" / "az-01-conductor.agent.md",
+            skills / "az-azure-artifacts" / "templates" / "02-architecture-assessment.template.md",
+        ):
+            with self.subTest(path=str(path.relative_to(ROOT))):
+                self.assertIn("#private-workload-management-access", path.read_text(encoding="utf-8"))
+
     def test_container_guidance_avoids_emulated_sdk_without_changing_runtime_target(self) -> None:
         skill = (ROOT / ".github" / "skills" / "az-webapp-development" / "SKILL.md").read_text(encoding="utf-8")
         instructions = (ROOT / ".github" / "instructions" / "az-dotnet-webapp.instructions.md").read_text(encoding="utf-8")
@@ -297,6 +366,40 @@ class CustomizationTests(unittest.TestCase):
         ):
             with self.subTest(path=path.name, parent=path.parent.name):
                 self.assertIn("#scenario-owned-application-identity-setup", path.read_text(encoding="utf-8"))
+
+    def test_sample_accounts_and_deployer_rbac_contract_is_wired(self) -> None:
+        contract = (ROOT / ".github/skills/hack-builder-workflow/SKILL.md").read_text(encoding="utf-8")
+        for requirement in (
+            "### Sample application accounts and Azure resource access",
+            "Never use Entra ID authentication for a sample app if admin consent is required",
+            ".private/participant-access.json",
+            ".private/coach-access.json",
+            "Public/GitHub-ready guides contain placeholders",
+            "Azure resource-to-resource authentication always uses managed identities",
+            "Subscription ownership alone does not",
+            "runtime managed-identity acceptance",
+        ):
+            with self.subTest(requirement=requirement):
+                self.assertIn(requirement, contract)
+        for relative in (
+            ".github/agents/az-01-conductor.agent.md",
+            ".github/agents/az-09-hackcreator.agent.md",
+            ".github/skills/az-scenario-architecture/SKILL.md",
+            ".github/skills/az-scenario-bicep/SKILL.md",
+            ".github/skills/az-azure-deploy/SKILL.md",
+            ".github/skills/az-webapp-development/SKILL.md",
+            ".github/instructions/az-dotnet-webapp.instructions.md",
+            ".github/instructions/hack-authoring.instructions.md",
+        ):
+            path = ROOT / relative
+            with self.subTest(path=relative):
+                text = path.read_text(encoding="utf-8")
+                self.assertIn("#sample-application-accounts-and-azure-resource-access", text)
+                self.assertTrue(any(word in text for word in ("private", "deploying-admin", "deploying admin")))
+        webapp = (ROOT / ".github/skills/az-webapp-development/SKILL.md").read_text(encoding="utf-8")
+        dotnet = (ROOT / ".github/instructions/az-dotnet-webapp.instructions.md").read_text(encoding="utf-8")
+        self.assertNotIn("Add authentication to the sample app (keep it simple for demos)", webapp)
+        self.assertNotIn("Do not add authentication/authorization middleware", dotnet)
 
     def test_agentic_catalog_has_all_18_patterns_and_source_pages(self) -> None:
         guide = (
@@ -426,7 +529,8 @@ class CustomizationTests(unittest.TestCase):
         self.assertIn("separate explicit event-deployment request", text)
         self.assertIn("Never require a hack contract", text)
         self.assertRegex(text, r"application\s+URL only if the starter")
-        self.assertIn("Initial portal jobs permit local preparation only", text)
+        self.assertIn("Approve architecture & deploy", text)
+        self.assertIn("Agent owns in-scope repairs", text)
 
     def test_both_agents_execute_without_delegation(self) -> None:
         for path in (ROOT / ".github" / "agents").glob("*.agent.md"):
@@ -475,16 +579,16 @@ class CustomizationTests(unittest.TestCase):
                         r"(?:Deploy|Development|Validation|Bicep) agent",
                     )
 
-    def test_portal_jobs_stop_for_decisions_and_never_auto_start_composition(self) -> None:
+    def test_vscode_agents_own_execution_and_never_auto_start_composition(self) -> None:
         text = (ROOT / ".github" / "agents" / "az-01-conductor.agent.md").read_text(encoding="utf-8")
         for phrase in (
-            "local preparation only",
-            "not a sandbox",
-            "decision required",
+            "directly in this VS Code context",
+            "portal_status.py",
+            "Handle decisions and tool permission prompts in this VS Code session",
             "Do not approve",
             "composition automatically",
             "projectSlug",
-            "explicit permission consent",
+            "no setup-retry loop",
         ):
             with self.subTest(phrase=phrase):
                 self.assertIn(phrase, text)
@@ -496,7 +600,17 @@ class CustomizationTests(unittest.TestCase):
     def test_industry_intake_and_skillable_support_remain_distinct(self) -> None:
         catalog = ROOT / ".github" / "skills" / "skillable-lod-authoring" / "assets" / "industry-catalog.json"
         entries = json.loads(catalog.read_text(encoding="utf-8"))
-        self.assertEqual(6, len(entries))
+        self.assertEqual(8, len(entries))
+        self.assertIn(
+            {"displayName": "Media & Communications", "slug": "media-communications",
+             "positioning": "Campaign engagement, subscriber recovery and human-reviewed cross-unit handoffs"},
+            entries,
+        )
+        self.assertIn(
+            {"displayName": "Hospitality & Travel", "slug": "hospitality-travel",
+             "positioning": "Sales-led service readiness, guest workflows and reviewed business handoffs"},
+            entries,
+        )
         self.assertTrue((ROOT / "microsoft_industry_verticals.csv").is_file())
         for path in (
             ROOT / ".github" / "agents" / "az-09-hackcreator.agent.md",

@@ -179,13 +179,16 @@ def identity(root: Path) -> dict:
     }
 
 
-def discover(root: Path, scenario: Path, project: dict, overrides: dict | None = None) -> dict:
-    identified = identity(root)
+def discover(root: Path, scenario: Path, project: dict, overrides: dict | None = None,
+             identified: dict | None = None) -> dict:
+    if identified is None:
+        identified = identity(root)
     account = identified["scope"]
     scope = {}
     sources = {}
     conflicts = []
-    saved = project.get("deploymentContext", {}).get("scope", {})
+    context = project.get("deploymentContext")
+    saved = context["scope"] if context is not None else {}
     authorized = next(
         (item["scope"] for item in reversed(project.get("authorizations", []))
          if item["kind"] == "deployment-preparation"), {},

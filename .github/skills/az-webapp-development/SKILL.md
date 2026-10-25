@@ -93,6 +93,19 @@ the current catalog before use, just as for every other industry.
 
 ## 1. Project Structure
 
+### Sample authentication and resource access
+
+Apply [sample application accounts and Azure resource access](
+../hack-builder-workflow/SKILL.md#sample-application-accounts-and-azure-resource-access).
+Use local app accounts for sample sign-in; never use Entra ID authentication if admin consent is required.
+Use the framework's password hashing and cookie authentication, durable role/account records,
+CSRF protection, login lockout/throttling and persistent session keys. Keep participants out of coach roles.
+Generate separate private participant and coach credential guides/access files; do not commit live passwords
+or publish them with application assets or public guides.
+All Azure resource calls use managed identity. Include scoped data-plane RBAC for the signed-in deploying
+admin user as well as the workload identity, so initialization and full acceptance are actually executable.
+This section overrides historical anonymous-demo guidance in this skill and its references.
+
 Every sample webapp follows this layout:
 
 ```text
@@ -776,11 +789,11 @@ The `Pages/Index.cshtml` should show a dashboard with:
 - **DO**: Include `SeedData/` folder in published output (copy to output)
 - **DO**: Validate with `dotnet build` before proceeding
 - **DO**: Use the Azure data service SDK when the architecture includes a data endpoint
-- **DO**: Prefer managed identity (`DefaultAzureCredential`) over connection strings with secrets
+- **DO**: Use managed identity for Azure runtime access; existing CLI user credentials are for authorized installation/tests
 - **DO**: Seed the backend from JSON on first run when the data store is empty
 - **DO**: Document the prompt-derived visual theme in `07-webapp-summary.md`
 - **DO**: Validate Fluent navigation and responsive behavior at desktop and mobile widths
-- **DON'T**: Add authentication to the sample app (keep it simple for demos)
+- **DON'T**: Use consent-dependent Entra sign-in, anonymous bypasses or hard-coded shared demo passwords
 - **DON'T**: Use local JSON when a data endpoint is available in the architecture
 - **DON'T**: Use Entity Framework — use the native SDK for each data service
 - **DON'T**: Add unnecessary NuGet packages beyond the data service SDK

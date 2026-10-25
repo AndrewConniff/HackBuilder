@@ -10,7 +10,7 @@ from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import hack_workflow
-import portal_workflow
+import portal_status
 import scenario_catalog as catalog
 
 
@@ -156,10 +156,10 @@ class ScenarioCatalogTests(unittest.TestCase):
         (self.source / "src" / "app.cs").write_text("// modified\n", encoding="utf-8")
         self.assertNotEqual(before, hack_workflow.reference_fingerprint(self.source))
 
-    def test_fresh_state_uses_abc_but_upgrade_keeps_existing_leases(self) -> None:
-        self.assertEqual(self.root / ".abcbuilder-portal", portal_workflow.state_directory(self.root))
+    def test_fresh_state_uses_abc_but_upgrade_keeps_existing_history(self) -> None:
+        self.assertEqual(self.root / ".abcbuilder-portal", portal_status.state_directory(self.root))
         (self.root / ".hackbuilder-portal").mkdir()
-        self.assertEqual(self.root / ".hackbuilder-portal", portal_workflow.state_directory(self.root))
+        self.assertEqual(self.root / ".hackbuilder-portal", portal_status.state_directory(self.root))
 
 
 if __name__ == "__main__":

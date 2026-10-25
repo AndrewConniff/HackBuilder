@@ -63,39 +63,6 @@ class PrerequisiteChecksTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "validationTools"):
                 prerequisites.profiles.requires_load_tests(root, "example")
 
-    def test_worker_cache_trust_is_scoped_and_does_not_create_directories(self) -> None:
-        with tempfile.TemporaryDirectory() as temp:
-            home = Path(temp) / "home"
-            local = home / "AppData" / "Local"
-            with (
-                patch.object(prerequisites.Path, "home", return_value=home),
-                patch.dict(os.environ, {
-                    "LOCALAPPDATA": str(local), "NUGET_PACKAGES": "", "PLAYWRIGHT_BROWSERS_PATH": "",
-                }),
-            ):
-                directories = prerequisites.worker_cache_directories(Path(temp) / "repo")
-            self.assertEqual(
-                [(home / ".nuget" / "packages").resolve(), (local / "ms-playwright").resolve()], directories,
-            )
-            self.assertFalse(home.exists())
-
-    def test_worker_cache_overrides_do_not_expand_approved_trust(self) -> None:
-        with tempfile.TemporaryDirectory() as temp:
-            root = Path(temp) / "repo"
-            for variable in ("NUGET_PACKAGES", "PLAYWRIGHT_BROWSERS_PATH"):
-                with (
-                    self.subTest(variable=variable),
-                    patch.dict(os.environ, {
-                        "NUGET_PACKAGES": "", "PLAYWRIGHT_BROWSERS_PATH": "", variable: str(Path(temp) / "other"),
-                    }),
-                    self.assertRaisesRegex(ValueError, "outside approved"),
-                ):
-                    prerequisites.worker_cache_directories(root)
-            with patch.dict(os.environ, {
-                "NUGET_PACKAGES": str(root / ".packages"), "PLAYWRIGHT_BROWSERS_PATH": "0",
-            }):
-                self.assertEqual(2, len(prerequisites.worker_cache_directories(root)))
-
     def test_nuget_probe_uses_normal_powershell_tls_and_bounded_metadata_validation(self) -> None:
         with (
             patch.object(prerequisites.shutil, "which", return_value="pwsh"),
@@ -271,20 +238,9 @@ class PrerequisiteChecksTests(unittest.TestCase):
         self.assertEqual(["docker"], report["blockedStages"]["local-validation"])
         self.assertEqual([], report["blockedStages"]["requirements"])
 
-    def test_copilot_requires_portal_flags(self) -> None:
-        for help_text, expected in (
-            ("--agent --prompt", False),
-            ("--agent --prompt --allow-all-tools --no-ask-user --add-dir", False),
-            ("--agent --prompt --allow-all-tools --no-ask-user --add-dir --output-format --log-dir", True),
-        ):
-            with (
-                self.subTest(help_text=help_text),
-                patch.object(prerequisites.shutil, "which", return_value="copilot"),
-                patch.object(prerequisites, "run_command", side_effect=[
-                    (0, "GitHub Copilot CLI"), (0, help_text),
-                ]),
-            ):
-                self.assertEqual(expected, prerequisites.tool_check(self.tool("copilot"))["ok"])
+    def test_retired_runner_dependencies_are_not_required(self) -> None:
+        self.assertNotIn("copilot", {item[0] for item in prerequisites.TOOLS})
+        self.assertNotIn("playwright", {name for name, _ in prerequisites.package_requirements(ROOT)})
 
     def test_minimum_versions_handle_padding_and_prereleases(self) -> None:
         for actual, minimum, ready in (
@@ -485,10 +441,6 @@ function Test-Python {{
         Set-Content -LiteralPath (Join-Path $root 'pip-completed') -Value 'simulated'
         return
     }}
-    if ($args -contains 'playwright') {{
-        Set-Content -LiteralPath (Join-Path $root 'browser-completed') -Value ($args -join ' ')
-        return
-    }}
     if ($args -contains '--json') {{
         $name = if (Test-Path (Join-Path $root 'pip-completed')) {{ 'final.json' }} else {{ 'initial.json' }}
         Get-Content -LiteralPath (Join-Path $root $name) -Raw
@@ -527,7 +479,7 @@ function Get-Command {{
         self.assertIn("bicep install", trace)
         self.assertTrue((self.root / ".venv" / "Scripts" / "python.exe").exists())
         self.assertTrue((self.root / "pip-completed").exists())
-        self.assertIn("playwright install chromium", (self.root / "browser-completed").read_text())
+        self.assertFalse((self.root / "browser-completed").exists())
 
 
 if __name__ == "__main__":

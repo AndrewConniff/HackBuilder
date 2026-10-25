@@ -260,10 +260,6 @@ try {
             if ($result.ExitCode -ne 0) { throw "Bicep installation failed: $($result.Output)" }
         }
         $python = Get-SetupPython -RepositoryRoot $repositoryRoot -Bootstrap $PythonExecutable
-        if ($PSCmdlet.ShouldProcess('Repository Playwright Chromium cache', 'Prepare headless Chromium browser')) {
-            $browser = Invoke-SetupCommand $python @('-m', 'playwright', 'install', 'chromium')
-            if ($browser.ExitCode -ne 0) { throw "Chromium preparation failed: $($browser.Output)" }
-        }
         $result = Invoke-SetupCommand $python $checkArguments
         if ($result.ExitCode -notin @(0, 1)) { throw "Final prerequisite check failed: $($result.Output)" }
         $report = $result.Output | ConvertFrom-Json

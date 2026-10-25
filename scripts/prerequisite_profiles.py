@@ -3,10 +3,9 @@
 from __future__ import annotations
 
 import json
-from datetime import datetime, timezone
 from pathlib import Path
 
-VERSION = 1
+VERSION = 2
 SERVICE_REQUIREMENTS = {
     "foundry": "Foundry agents use the repository .NET application baseline.",
     "cosmos-db": "Application SDK via NuGet restore; no local database emulator is required.",
@@ -126,42 +125,3 @@ def stage_failures(report: dict, stage: str) -> list[dict]:
         for identifier in profile["stages"].get(stage, [])
         if identifier not in by_id or not by_id[identifier]["ok"]
     ]
-
-
-def require_stage(project: dict, directory: Path, owner: str, stage: str) -> None:
-    if not project.get("preflightRequired") or not STAGE_REQUIREMENTS.get(stage):
-        return
-    receipt = directory / "preflight" / f"{project['projectSlug']}.json"
-    command = f"python scripts\\check_prerequisites.py --for-project --record --stage {stage}"
-    if not receipt.is_file():
-        raise ValueError(f"Prerequisite preflight is required before {stage}. Run {command}.")
-    report = json.loads(receipt.read_text(encoding="utf-8"))
-    if not isinstance(report, dict):
-        raise ValueError("Prerequisite receipt must be a report object.")
-    if (
-        type(report.get("profileVersion")) is not int
-        or report["profileVersion"] != VERSION or report.get("runId") != owner
-        or report.get("projectSlug") != project["projectSlug"]
-    ):
-        raise ValueError(f"Prerequisite receipt belongs to another attempt or profile. Run {command}.")
-    if not isinstance(report.get("checkedAtUtc"), str):
-        raise ValueError("Prerequisite receipt is missing its check timestamp.")
-    checked = datetime.fromisoformat(report["checkedAtUtc"])
-    if checked.tzinfo is None:
-        raise ValueError("Prerequisite receipt timestamp must include its timezone.")
-    age = (datetime.now(timezone.utc) - checked).total_seconds()
-    if not -60 <= age <= 900:
-        raise ValueError(f"Prerequisite receipt is stale. Run {command}.")
-    failures = stage_failures(report, stage)
-    if (
-        stage == "local-validation"
-        and requires_load_tests(directory.parent.parent, project["projectSlug"])
-        and report.get("loadTests") is not True
-    ):
-        raise ValueError(f"Load-test scope changed. Run {command} --load-tests.")
-    expected = effective_services(directory.parent.parent, project["request"], project["projectSlug"])
-    if not set(expected).issubset(report["services"]):
-        raise ValueError(f"Architecture service scope changed. Run {command}.")
-    if failures:
-        names = ", ".join(item["id"] for item in failures)
-        raise ValueError(f"Prerequisites block {stage}: {names}. Report one setup blocker with all failed checks.")

@@ -51,15 +51,16 @@ Learner pages use stable sequence numbers:
 
 | Page | Filename prefix | Purpose |
 | --- | --- | --- |
-| Challenge 0 | `01-` | Secure foundation |
-| Challenge 1 | `02-` | Minimal viable agent |
-| Challenge 2 | `03-` | Grounding and citations |
-| Challenge 3 | `04-` | Authenticated tool or action |
-| Challenge 4 | `05-` | Evaluation, security, and demo |
+| Challenge 0 | `00-` | Secure foundation |
+| Challenge 1 | `01-` | Minimal viable agent |
+| Challenge 2 | `02-` | Grounding and citations |
+| Challenge 3 | `03-` | Authenticated tool or action |
+| Challenge 4 | `04-` | Evaluation, security, and demo |
 | Finale | `99-` | Private coach notes and wrap-up |
 
-The page filename order follows the Learn On Demand example. The visible
-challenge numbers remain 0 through 4 to preserve the existing hack progression.
+The two-digit filename prefix matches the visible challenge number, from
+`00-` for Challenge 0 through `04-` for Challenge 4. Finale retains `99-`
+because it is a separate private coach page, not a learner challenge.
 
 ## Root files
 

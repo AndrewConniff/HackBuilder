@@ -149,66 +149,36 @@ business app/data, refresh technical evidence and require new design, validation
 and approval. Never inherit source deployment state, secrets, scopes, approvals,
 packages or runtime success.
 
-The optional [local portal entry point](portal/README.md) launches the same two
-agent contexts. From the repository root:
+The [local portal](portal/README.md) is now visualization only. From the repository root:
 
 ```powershell
-copilot login
-python scripts\portal_server.py
+python scripts\start_portal.py
 ```
 
-Open the printed private loopback URL; keep its token confidential. Local tool
-consent is not an OS sandbox or automatic Azure deployment authorization.
-Separate gates apply: local design confirmation, authorized exact-target cloud preparation,
-deployment consent after actual what-if/cost review, then explicit suitability approval of
-the working scenario before composition. Event rollout still requires a separate request.
+The portal saves intake, opens `code chat --mode az-01-conductor` (or `HackCreator Agent`),
+reads `portal_status.py` JSON reports and displays/exports files.
+All actual implementation, permissions, approvals and deployment happen in VS Code.
+It has no Copilot CLI runner, stage scheduler, Azure setup pipeline or portal decision queue.
+The retired runner code and dashboard have been removed; private state remains diagnostic history only.
+No new timing or successful-agent-execution claim is inferred from this implementation change.
 
-Interactive scenario-agent sessions now start or reuse the local portal through
-an agent-scoped `sessionStart` hook. The idempotent helper is
-`python scripts\start_portal.py`; it opens the authenticated entry point without
-printing the private token. Hosts must trust the workspace and permit scoped
-hooks. The agent instructions provide a once-per-task fallback when hooks do not
-execute. Portal-launched CLI jobs set `HACKBUILDER_PORTAL_JOB=1` and skip startup.
-The detached process is local tooling, not a system service or hosted web app.
-See the [portal lifecycle and stopping instructions](portal/README.md).
+### Portal cleanup and retained evidence
 
-Startup verification on **2026-10-22** confirmed authenticated health, reuse of
-the same live PID, and actual scenario-agent execution of the fallback helper
-with only the shell tool available. The installed CLI deferred `sessionStart`
-hooks at its workspace-trust gate, including the one-session trust smoke test.
-That test does not prove scoped-hook execution; the fallback was exercised
-successfully instead. No Azure operations or scenario jobs ran in these tests.
+On **2026-10-25**, the owner approved the VS Code handoff/visualization experience.
+The former CLI runner, backend setup/repair pipeline, dashboard and runner-only tests
+were removed. Copilot CLI and Python Playwright/Chromium are no longer baseline dependencies.
+The local portal does not install browsers or inherit CLI-worker filesystem trust.
 
-The lightweight LOCAL web portal collects prompt, validated project slug,
-industry, selected services and WAF priorities. Its local authenticated backend
-launches actual Copilot CLI jobs using the two stable agent names:
-`--agent az-01-conductor --prompt <text>` or `--agent "HackCreator Agent"`.
-The CLI supports `--output-format text/json`, `--allow-all-tools` and
-`--no-ask-user`; none of these flags grants scenario approval or deployment consent.
-
-Initial jobs allow local preparation only by instruction, not a sandbox.
-Tool execution requires explicit portal permission. Prepare reference artifacts
-and what-if commands/targets; stop before Azure operations unless explicitly
-authorized. A separate follow-up confirms exact deployment targets after what-if.
-In noninteractive jobs, return **decision required** and stop for missing user
-decisions; an unavailable question tool is never permission to guess.
-
-The portal is the normal decision surface and scenario-level progress dashboard.
-Workers report structured stages and decisions with `scripts\portal_workflow.py`.
-Versioned intake/history and scoped authorizations persist separately from run logs and
-suitability evidence. A writer lease and revision checks coordinate cooperating portal/VS Code
-work; arbitrary filesystem editors are not sandboxed. Refresh is read-only and CLI exit zero
-does not prove stage success. Local design uses public provisional region/model evidence;
-account/quota/budget checks are deferred until authorized cloud preparation.
-
-The backend approval action records the explicit suitability response against the
-reviewed fingerprint, checks approval and then starts a separate composition job.
-The portal never auto-approves scenarios or deploys events.
-Use `generated-scenarios\{projectSlug}` without silently deriving a new slug.
+The October 22 launcher test established startup/reuse and the fallback helper,
+not reliable scoped-hook execution. Keep the interactive fallback and workspace-trust boundary.
+Historical authorizations and diagnostic records remain private and readable for continuity;
+removing the old implementation neither revokes consent nor grants new authority.
+Current execution is documented in the [portal guide](portal/README.md), not a second historical runbook.
 
 The intake catalog is repository `microsoft_industry_verticals.csv`. Skillable
-currently supports six slugs: `financial-services`, `healthcare`, `manufacturing`,
-`retail`, `energy-oil-gas` and `government-public-sector`. Unsupported selections
+currently supports eight slugs: `financial-services`, `healthcare`, `manufacturing`,
+`retail`, `energy-oil-gas`, `government-public-sector`, `hospitality-travel` and
+`media-communications`. Unsupported selections
 block composition pending an explicit support-extension or revised/reapproved
 scenario decision. Never silently map another industry.
 

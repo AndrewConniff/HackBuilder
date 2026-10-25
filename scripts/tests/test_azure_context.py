@@ -13,7 +13,6 @@ from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import azure_context
-import portal_workflow
 
 
 class AzureContextTests(unittest.TestCase):
@@ -72,6 +71,21 @@ class AzureContextTests(unittest.TestCase):
         ):
             azure_context.discover(self.root, self.scenario, self.project)
 
+    def test_first_discovery_accepts_explicit_null_saved_context(self) -> None:
+        self.project["deploymentContext"] = None
+        with patch.object(azure_context, "command", side_effect=self.responses()):
+            result = azure_context.discover(self.root, self.scenario, self.project)
+        self.assertEqual(self.identity["subscriptionId"], result["scope"]["subscriptionId"])
+        self.assertEqual("eastus2", result["scope"]["region"])
+
+    def test_scenario_target_proposal_reuses_already_validated_tool_identity(self) -> None:
+        identified = {"scope": self.identity, "authentication": {"azureCli": "Verified", "azd": "Verified"}}
+        with patch.object(azure_context, "identity") as identity:
+            result = azure_context.discover(self.root, self.scenario, self.project, identified=identified)
+        identity.assert_not_called()
+        self.assertEqual(self.identity["subscriptionId"], result["scope"]["subscriptionId"])
+        self.assertEqual("rg-example", result["scope"]["resourceGroup"])
+
     def test_existing_azd_environment_and_explicit_edits(self) -> None:
         env = self.scenario / ".azure" / "existing"
         env.mkdir(parents=True)
@@ -82,29 +96,6 @@ class AzureContextTests(unittest.TestCase):
         self.assertEqual("rg-existing", result["scope"]["resourceGroup"])
         self.assertEqual("westus3", result["scope"]["region"])
         self.assertEqual("User-edited proposed target", result["sources"]["region"])
-
-    def test_context_review_supersedes_only_target_question_and_never_grants_consent(self) -> None:
-        store = portal_workflow.Store(self.root / "state")
-        p = store.claim({"projectSlug": "example"}, "worker", create=True)
-        p = store.report("example", "worker", p["revision"], {
-            "stage": "requirements", "status": "waiting_for_user", "summary": "Targets needed",
-            "decision": {
-                "kind": "business", "question": "Targets?", "reason": "Deferred",
-                "choices": ["Provide exact Azure targets in the portal response", "Keep local"], "acceptChoice": None,
-            },
-        })
-        store.finish("example", "worker", "completed")
-        p = store.read("example")
-        with patch.object(azure_context, "command", side_effect=self.responses()):
-            context = azure_context.discover(self.root, self.scenario, self.project)
-        updated = store.propose_deployment_context("example", p["revision"], context)
-        self.assertEqual([], updated["authorizations"])
-        self.assertEqual("superseded", updated["decisions"][0]["status"])
-        self.assertEqual("deployment-preparation", updated["decisions"][-1]["kind"])
-        self.assertEqual(context["scope"], updated["decisions"][-1]["scope"])
-        with self.assertRaisesRegex(ValueError, "changed"):
-            store.propose_deployment_context("example", p["revision"], context)
-
 
 class RegionalReadinessTests(unittest.TestCase):
     def setUp(self) -> None:

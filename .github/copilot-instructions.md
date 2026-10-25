@@ -39,47 +39,39 @@ Descriptions enable discovery; a file's presence does not prove invocation.
 Use dated session evidence to distinguish discoverable from actually used.
 Do not assume missing skill files, policy files or npm scripts exist.
 
-## Local portal and noninteractive execution
+## Local visualization portal and VS Code execution
 
 The lightweight LOCAL web portal collects prompt, validated project slug,
-industry, `businessUnits`, services and WAF priorities. Its local authenticated backend launches
-real Copilot CLI jobs using the two stable agent names. This is tooling, not an
-Azure-hosted learner/progress application or a sandbox.
+industry, `businessUnits`, services and WAF priorities. It saves the brief and opens the real interactive
+VS Code custom agent using `code chat --mode`. The portal displays status and serves files/ZIP exports.
+It never launches Copilot CLI workers, schedules stages or executes deployments.
+Optional System diagnostics check local tools and already-authenticated CLI identity metadata on explicit request;
+they never install software, sign in, retain tokens, grant cloud consent or change shared defaults.
+This is tooling, not an Azure-hosted learner/progress app or a sandbox.
 
 Interactive VS Code invocation of `az-01-conductor` automatically opens the
 local portal using its scoped startup hook and `scripts\start_portal.py`.
 The helper starts or reuses a healthy local server; it does not start a scenario.
 For hosts without scoped-hook execution, the agent runs the helper once as its
-first interactive action. Portal CLI children set `HACKBUILDER_PORTAL_JOB=1`
-and must skip startup, avoiding recursive browser launches.
+first interactive action. For a portal handoff the browser is already open; proceed directly.
 
-Initial jobs allow local preparation only by instruction: use
-`generated-scenarios\{projectSlug}`, prepare the reference and what-if commands,
-then stop before Azure operations unless explicitly authorized. Tool execution
-requires explicit portal permission. Separate follow-up confirms exact deployment
-targets after what-if. Missing consent or decisions in noninteractive mode means
-persist **decision required** and stop, not invent approval.
-
-The portal is the normal decision and scenario-progress surface. Workers consume durable intake,
-preferences and all resolved answers and report stages through `scripts\portal_workflow.py`.
-Honor project writer leases and revision checks; do not edit a portal-owned scenario in parallel.
-Confirm architecture design before implementation. For local construction, record provisional
-publicly supported region/model choices; defer account, quota and budget checks to authorized
-deployment preparation. Status refresh is read-only. Free-text continuation is not cloud consent.
-
-The portal records explicit suitability approval against the reviewed fingerprint,
-runs the helper's approval check and only then starts composition as a separate
-job. It never auto-approves a scenario or deploys an event.
+Use `generated-scenarios\{projectSlug}` and perform the existing skill flow in the real VS Code session.
+Handle actual permissions and the architecture/deployment approval in chat; no duplicate portal checkpoints.
+The agent writes display-only progress using `scripts\portal_status.py`.
+Old portal worker state/decision cards are historical, not instructions for new VS Code execution.
+Ensure any legacy worker has stopped before editing the same scenario.
+After runtime proof obtain explicit suitability approval in chat and record the reviewed fingerprint.
+The portal checks approval before opening HackCreator, never records it or starts composition automatically.
 
 Industry intake is repository `microsoft_industry_verticals.csv`; Skillable supports
-only six industry slugs. Unsupported industries block composition pending an
+eight industry slugs. Unsupported industries block composition pending an
 explicit support-extension or revised/reapproved scenario decision; never silently
 map them to another industry.
 
 Apply the workflow's business-unit and reuse catalog contract. Generic is exclusive
 of specific units and means a typical industry workflow with no unit targeting.
 Carry scope through requirements, personas, application/data and learner/coach content.
-Catalog discovery is read-only; workers curate `scenario-manifest.json` through
+Catalog discovery is read-only; agents curate `scenario-manifest.json` through
 `python scripts\scenario_catalog.py refresh generated-scenarios\<slug> --metadata <JSON>`.
 Inferred metadata stays visibly `needs-review` until curated. Reuse source architecture
 as read-only guidance; regenerate business app/data for the target industry and units,

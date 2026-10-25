@@ -94,9 +94,9 @@ The machine-readable evidence file must contain:
 Requirements, architecture, Bicep, package and deployment procedures must read
 the same evidence file. They must not replace its selected region from memory
 or from a static default.
-For managed portal jobs, also write the workflow's `regionalReadiness` contract into this file.
-The backend rejects missing, failed, unknown, wrong-scope, stale or changed-infrastructure subscription evidence
-before deployment consent and provisioning. Read-only target discovery alone is not this validation.
+The scenario agent performs these checks through the validation/deployment skills and records actual results.
+The portal displays their status; it does not impose a second evidence schema or repeat the service research.
+Read-only target discovery alone is not this validation. Unknown or failing eligibility must not be called passed.
 
 ## Phase-specific end-to-end output
 
@@ -120,8 +120,9 @@ A complete coach solution includes all of these outcomes:
 - During requested event rollout only, one isolated participant deployment per manifest team.
 
 Do not create an Azure-hosted progress-tracking application. The repository's
-lightweight LOCAL authenticated workflow portal is tooling, not the scenario app.
-It launches real Copilot CLI jobs and never auto-approves or deploys an event.
+lightweight LOCAL visualization portal is tooling, not the scenario app.
+It hands the brief to the real VS Code custom agent, displays agent-written JSON status
+and serves files/ZIP exports. It never runs agents, approves scenarios or deploys an event.
 This does not remove a solution application participants build in the challenges.
 
 Foundry runtime orchestrator/specialist agents mentioned below are deployed

@@ -40,7 +40,7 @@ Do not generate Azure-specific steps until current service behavior, model
 availability, and documentation are verified by the scenario orchestrator.
 
 The repository `microsoft_industry_verticals.csv` is the broader intake catalog,
-not a replacement for this skill's six supported industry slugs. Before authoring,
+not a replacement for this skill's explicitly supported industry slugs. Before authoring,
 verify the exact selected slug against `assets/industry-catalog.json`. Unsupported
 industries block composition pending an explicit decision to extend authoring
 support or revise/reapprove the scenario; never silently map to a supported slug.
@@ -121,11 +121,11 @@ generated-scenarios/<project>/
     │   ├── resources.md
     │   ├── Allfiles/
     │   └── Instructions/<industry-slug>/
-    │       ├── 01-secure-foundation.md
-    │       ├── 02-build-the-agent.md
-    │       ├── 03-ground-it.md
-    │       ├── 04-give-it-tools.md
-    │       ├── 05-harden-and-demo.md
+    │       ├── 00-secure-foundation.md
+    │       ├── 01-build-the-agent.md
+    │       ├── 02-ground-it.md
+    │       ├── 03-give-it-tools.md
+    │       ├── 04-harden-and-demo.md
     │       └── media/
     └── coach-guide/
         ├── README.md
@@ -137,11 +137,11 @@ generated-scenarios/<project>/
         ├── solution-overview.md
         ├── deployment-guide.md
         └── Instructions/<industry-slug>/
-            ├── 01-secure-foundation.md
-            ├── 02-build-the-agent.md
-            ├── 03-ground-it.md
-            ├── 04-give-it-tools.md
-            ├── 05-harden-and-demo.md
+            ├── 00-secure-foundation.md
+            ├── 01-build-the-agent.md
+            ├── 02-ground-it.md
+            ├── 03-give-it-tools.md
+            ├── 04-harden-and-demo.md
             ├── 99-finale.md
             └── media/
 ```
@@ -161,6 +161,8 @@ Use exactly one of these stable slugs per scenario:
 | Retail | `retail` |
 | Energy / Oil & Gas | `energy-oil-gas` |
 | Government / Public Sector | `government-public-sector` |
+| Hospitality & Travel | `hospitality-travel` |
+| Media & Communications | `media-communications` |
 
 The catalog in `assets/industry-catalog.json` is the machine-readable source of
 truth. Do not create synonyms or alternate folder spellings.

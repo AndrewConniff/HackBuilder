@@ -31,7 +31,7 @@ class PortalStartupTests(unittest.TestCase):
         self.state_patch = patch.object(launcher, "STATE", self.state)
         self.state_patch.start()
         self.addCleanup(self.state_patch.stop)
-        self.config = {"pid": 123, "port": 8765, "token": "test-local-token"}
+        self.config = {"pid": 123, "port": 8765}
 
     def write_connection(self, config: dict | None = None) -> None:
         (self.state / "server.json").write_text(json.dumps(config or self.config), encoding="utf-8")
@@ -158,7 +158,7 @@ class PortalStartupTests(unittest.TestCase):
             self.assertEqual(self.config, launcher.running_portal())
         connection.assert_called_once_with("127.0.0.1", 8765, timeout=1)
         client.request.assert_any_call(
-            "GET", "/api/health", headers={"Authorization": "Bearer test-local-token"}
+            "GET", "/api/health"
         )
         client.close.assert_called_once()
 
@@ -189,7 +189,7 @@ class PortalStartupTests(unittest.TestCase):
                 browser.assert_not_called()
                 self.assertIn("outdated portal server", error.getvalue())
                 self.assertIn("PID 123", error.getvalue())
-                self.assertNotIn(self.config["token"], error.getvalue())
+                self.assertNotIn("#token=", error.getvalue())
                 client.close.assert_called_once()
 
     def test_version_failure_after_health_never_starts_duplicate_server(self) -> None:
@@ -224,7 +224,7 @@ class PortalStartupTests(unittest.TestCase):
                 client.close.assert_called_once()
 
     def test_invalid_local_connection_is_explicit_error(self) -> None:
-        for values in ({"port": "8765"}, {"port": True}, {"port": 70000}, {"token": ""}):
+        for values in ({"port": "8765"}, {"port": True}, {"port": 70000}):
             self.write_connection({**self.config, **values})
             with self.subTest(values=values), self.assertRaises(ValueError):
                 launcher.running_portal()
@@ -260,7 +260,7 @@ class PortalStartupTests(unittest.TestCase):
             self.assertEqual(self.config, launcher.ensure_portal())
         args = spawn.call_args.args[0]
         self.assertIn("--quiet-url", args)
-        self.assertEqual(str(ROOT / "scripts" / "portal_server.py"), args[1])
+        self.assertEqual(str(ROOT / "scripts" / "portal_visualizer.py"), args[1])
         self.assertEqual(ROOT, spawn.call_args.kwargs["cwd"])
         self.assertEqual(launcher.subprocess.DEVNULL, spawn.call_args.kwargs["stdin"])
 
@@ -308,9 +308,9 @@ class PortalStartupTests(unittest.TestCase):
             contextlib.redirect_stdout(output),
         ):
             self.assertEqual(0, launcher.main())
-        browser.assert_called_once_with("http://127.0.0.1:8765/#token=test-local-token")
+        browser.assert_called_once_with("http://127.0.0.1:8765/")
         self.assertEqual({}, json.loads(output.getvalue()))
-        self.assertNotIn(self.config["token"], output.getvalue())
+        self.assertNotIn("#token=", output.getvalue())
 
     def test_browser_failure_is_explicit(self) -> None:
         output = io.StringIO()
@@ -323,7 +323,7 @@ class PortalStartupTests(unittest.TestCase):
         ):
             self.assertEqual(1, launcher.main())
         self.assertIn("browser could not be opened", output.getvalue())
-        self.assertNotIn(self.config["token"], output.getvalue())
+        self.assertNotIn("#token=", output.getvalue())
 
     def test_protocol_failure_is_reported(self) -> None:
         with (
@@ -340,8 +340,8 @@ class PortalStartupTests(unittest.TestCase):
         frontmatter = text.split("---", 2)[1]
         self.assertIn("sessionStart:", frontmatter)
         self.assertIn("python scripts\\start_portal.py --hook", frontmatter)
-        self.assertIn("HACKBUILDER_PORTAL_JOB=1", text)
-        self.assertIn("does not execute scoped hooks", text)
+        self.assertIn("scoped hooks are unavailable", text)
+        self.assertIn("For a portal handoff, the portal is already open", text)
 
 
 if __name__ == "__main__":

@@ -19,7 +19,6 @@ ROOT = Path(__file__).resolve().parents[1]
 WORKER_PATH_POLICY_VERSION = 2
 TOOLS = (
     ("git", "Git", "git", ["--version"], None, "Git.Git"),
-    ("copilot", "GitHub Copilot CLI", "copilot", ["--version"], None, "GitHub.Copilot"),
     ("powershell", "PowerShell 7+", "pwsh", ["--version"], 7, "Microsoft.PowerShell"),
     ("dotnet", ".NET 10 SDK", "dotnet", ["--list-sdks"], 10, "Microsoft.DotNet.SDK.10"),
     ("graphviz", "Graphviz dot", "dot", ["-V"], None, "Graphviz.Graphviz"),
@@ -91,34 +90,6 @@ def execution_environment(root: Path) -> dict[str, str]:
     return environment
 
 
-def worker_cache_directories(root: Path = ROOT) -> list[Path]:
-    home = Path.home()
-    nuget = (home / ".nuget" / "packages").resolve()
-    local_app_data = os.environ.get("LOCALAPPDATA")
-    playwright = (
-        Path(local_app_data) / "ms-playwright" if local_app_data else home / ".cache" / "ms-playwright"
-    ).resolve()
-    directories = [nuget, playwright]
-    allowed_roots = [root.resolve(), (root.parent / "azd-projects").resolve(), *directories]
-    for variable in ("NUGET_PACKAGES", "PLAYWRIGHT_BROWSERS_PATH"):
-        configured = os.environ.get(variable)
-        if not configured or (variable == "PLAYWRIGHT_BROWSERS_PATH" and configured == "0"):
-            continue
-        candidate = Path(configured)
-        if not candidate.is_absolute():
-            raise ValueError(f"{variable} must be an absolute approved cache path, not {configured!r}.")
-        candidate = candidate.resolve()
-        if not any(candidate.is_relative_to(allowed) for allowed in allowed_roots):
-            raise ValueError(
-                f"{variable} points outside approved worker cache/workspace directories: {candidate}. "
-                "Review this exact directory's access outside the worker; unrestricted path access is not enabled."
-            )
-    for directory in directories:
-        if directory in {home.resolve(), directory.parent, Path(directory.anchor)}:
-            raise ValueError(f"Refusing broad worker cache trust: {directory}.")
-    return list(dict.fromkeys(directories))
-
-
 def run_command(command: list[str], timeout: int = 45) -> tuple[int, str]:
     try:
         result = subprocess.run(
@@ -160,18 +131,6 @@ def tool_check(spec: tuple) -> dict:
         ok = ok and version is not None and int(version[1]) >= major
     elif identifier == "graphviz":
         ok = ok and "graphviz" in output.lower()
-    elif identifier == "copilot":
-        ok = ok and "copilot" in output.lower()
-        if ok:
-            help_code, help_text = run_command([executable, "--help"])
-            required = (
-                "--agent", "--prompt", "--allow-all-tools", "--no-ask-user", "--add-dir",
-                "--output-format", "--log-dir",
-            )
-            missing = [flag for flag in required if flag not in help_text]
-            ok = help_code == 0 and not missing
-            if not ok:
-                output += f"\nPortal CLI flags unavailable: {', '.join(missing)}. {help_text[:300]}"
     elif identifier == "docker":
         ok = ok and bool(re.search(r"\d+\.\d+", output)) and "linux" in output.lower()
     result = {
@@ -350,46 +309,14 @@ def main() -> int:
     parser.add_argument("--local-functions", action="store_true")
     parser.add_argument("--load-tests", action="store_true", help="Check k6 for an explicitly selected load-test design.")
     parser.add_argument("--stage", choices=list(profiles.STAGE_REQUIREMENTS))
-    parser.add_argument("--for-project", action="store_true")
-    parser.add_argument("--record", action="store_true")
     args = parser.parse_args()
     try:
-        if args.record and not args.for_project:
-            raise ValueError("--record requires the actual --for-project worker context.")
-        if args.for_project:
-            import portal_workflow
-
-            directory = portal_workflow.environment("PROJECT_STATE")
-            slug = portal_workflow.environment("PROJECT")
-            owner = portal_workflow.environment("RUN_ID")
-            if not directory or not slug or not owner:
-                raise ValueError("--for-project requires the portal project, state and run environment.")
-            store = portal_workflow.Store(Path(directory))
-            project = store.read(slug)
-            if project["writer"] != owner or not portal_workflow.local_execution_authorized(project):
-                raise ValueError("Only the authorized current worker can record prerequisite checks.")
-            services = profiles.effective_services(ROOT, project["request"], slug)
-            if args.services:
-                services = sorted(set(services) | set(args.services))
-            args.load_tests = args.load_tests or profiles.requires_load_tests(ROOT, slug)
-        else:
-            services = args.services
+        services = args.services
         report = (
             service_report(services, args.build_mode, args.local_functions, load_tests=args.load_tests)
             if services is not None
             else build_report(contributor=args.contributor, docker=args.docker)
         )
-        if args.record:
-            with store.locked():
-                if store.read(slug)["writer"] != owner:
-                    raise ValueError("Worker ownership changed during prerequisite checks; no receipt recorded.")
-                report.update(projectSlug=slug, runId=owner)
-                receipts = store.directory / "preflight"
-                receipts.mkdir(exist_ok=True)
-                target = receipts / f"{slug}.json"
-                temporary = target.with_suffix(".tmp")
-                temporary.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
-                temporary.replace(target)
     except (OSError, ValueError) as error:
         print(f"Prerequisite check failed: {error}", file=sys.stderr)
         return 2

@@ -1,6 +1,103 @@
 {
   "schemaVersion": 1,
   "scope": "Initial editable ABC Builder intake allowlist, not a claim of subscription availability or organizational approval.",
+  "agenticPatterns": [
+    {
+      "id": "ai-decides",
+      "name": "Let AI decide",
+      "description": "Copilot proposes a fitting customer scenario and the simplest useful pattern from your description, industry and business units."
+    },
+    {
+      "id": "single-agent-tool-loop",
+      "name": "Single-Agent Tool Loop",
+      "description": "One agent uses a bounded set of tools to handle a coherent business task."
+    },
+    {
+      "id": "sequential-pipeline",
+      "name": "Sequential / Pipeline",
+      "description": "Dependent stages process a business case in a defined order."
+    },
+    {
+      "id": "concurrent-fan-out-fan-in",
+      "name": "Concurrent / Fan-Out-Fan-In",
+      "description": "Independent evidence checks run in parallel, then combine into one result."
+    },
+    {
+      "id": "routing-triage",
+      "name": "Routing / Triage",
+      "description": "Classify a request and direct it to the right authorized workflow."
+    },
+    {
+      "id": "handoff-transfer-of-control",
+      "name": "Handoff / Transfer of Control",
+      "description": "Transfer an ongoing case and its context to another responsible agent or person."
+    },
+    {
+      "id": "moderated-group-chat",
+      "name": "Moderated Group Chat",
+      "description": "A moderator guides multiple perspectives toward a bounded case review."
+    },
+    {
+      "id": "magentic-dynamic-collaboration",
+      "name": "Magentic Dynamic Collaboration",
+      "description": "A manager adjusts specialist participation as an open-ended investigation develops."
+    },
+    {
+      "id": "supervisor-hierarchical-delegation",
+      "name": "Supervisor / Hierarchical Delegation",
+      "description": "A supervisor coordinates known specialists and owns the final response."
+    },
+    {
+      "id": "orchestrator-workers",
+      "name": "Orchestrator-Workers",
+      "description": "An orchestrator divides variable-sized work into bounded assignments and reconciles the results."
+    },
+    {
+      "id": "planner-executor",
+      "name": "Planner-Executor",
+      "description": "Create an inspectable plan before executing its authorized steps."
+    },
+    {
+      "id": "deterministic-loop",
+      "name": "Deterministic Loop",
+      "description": "Repeat a bounded process until a code-defined completion condition is met."
+    },
+    {
+      "id": "evaluator-optimizer-reflection",
+      "name": "Evaluator-Optimizer / Reflection",
+      "description": "Evaluate a draft against a clear rubric and revise it within a fixed budget."
+    },
+    {
+      "id": "mixture-of-agents",
+      "name": "Mixture of Agents",
+      "description": "Generate diverse candidates and synthesize their evidence into a stronger answer."
+    },
+    {
+      "id": "event-driven-reactive-agents",
+      "name": "Event-Driven / Reactive Agents",
+      "description": "An authorized business event triggers a bounded workflow with replay and failure handling."
+    },
+    {
+      "id": "blackboard-shared-workspace",
+      "name": "Blackboard / Shared Workspace",
+      "description": "Contributors coordinate through a persistent, access-controlled case workspace."
+    },
+    {
+      "id": "swarm-peer-to-peer",
+      "name": "Swarm / Peer-to-Peer",
+      "description": "Authorized peers coordinate work without one fixed central decision-maker."
+    },
+    {
+      "id": "human-in-the-loop",
+      "name": "Human-in-the-Loop (HITL)",
+      "description": "A recorded human decision gates a consequential action within the business workflow."
+    },
+    {
+      "id": "adaptive-hybrid-composite",
+      "name": "Adaptive Hybrid / Composite Orchestration",
+      "description": "Use an explicit policy to combine a small set of patterns for different work or risk classes."
+    }
+  ],
   "services": [
     {
       "id": "foundry",

@@ -44,7 +44,7 @@ Private Finale notes explain the trade-offs, expected traces, safety controls an
 If the approved pattern cannot meet the time budget or supported portal/SDK paths, stop for a scope/reapproval decision.
 
 Before either mode, compare the recorded industry from repository
-`microsoft_industry_verticals.csv` with Skillable's six supported slugs. Do not
+`microsoft_industry_verticals.csv` with Skillable's eight supported slugs. Do not
 silently map an unsupported industry. Return **decision required** and stop for
 an explicit support-extension or scenario-revision decision. Reapproval is
 required if the scenario changes. Do not guess in a noninteractive job.

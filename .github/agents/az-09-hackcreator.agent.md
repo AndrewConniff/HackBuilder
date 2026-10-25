@@ -44,8 +44,15 @@ the scope or reuse packages/approvals from an adaptation's catalog source.
 Use clean headings, prose and navigation without decorative emoji; retain
 functional badges, checkboxes and alert callouts.
 
+Follow [sample application accounts and Azure resource access](
+../skills/hack-builder-workflow/SKILL.md#sample-application-accounts-and-azure-resource-access).
+Participant and coach guides document local sample accounts and role boundaries, not Entra consent steps.
+Use placeholders in public templates and private deployment-specific access files for generated passwords;
+never copy reference passwords into packages or put coach credentials in participant material.
+Preserve managed-identity Azure access and the scoped RBAC installation/validation instructions for deployers.
+
 The intake catalog is repository `microsoft_industry_verticals.csv`; Skillable
-currently supports only six industry slugs in its own catalog. Verify an exact
+currently supports eight industry slugs in its own catalog. Verify an exact
 supported selection before composition. An unsupported industry blocks authoring
 pending an explicit decision to extend templates/validator support or revise and
 reapprove the scenario. Never silently map it to another industry.
@@ -60,8 +67,10 @@ Finish with exact artifact paths, checks, limitations and
 **packages validated; event not deployed**. Do not deploy resources.
 The user may separately request event rollout from the scenario orchestrator.
 
-Report composition progress to the shared portal worker protocol when a project lease is supplied:
-`hack-plan`, `hack-content`, `hack-starter`, `hack-coach`, `hack-validation`.
+Report display-only progress using `python scripts\portal_status.py <projectSlug> --stage hack-content
+--status running --summary "Writing challenges"`, and similarly for hack-starter, hack-coach and hack-validation.
+Use the real VS Code agent context. The portal only hands off and visualizes; do not launch CLI workers
+or use the old portal worker/lease/decision protocol. Handle actual permissions and questions in this chat.
 For both portal and standalone work, persist exact command results in
 `packages/validation/local-checks.json` with `checks` entries containing `name`, `command`, `exitCode`
 and `allCommandsPassed: true` only after success. Required names are coach-bicep-build,

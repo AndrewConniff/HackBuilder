@@ -1,29 +1,28 @@
 # ABC Builder prerequisites
 
-Prepare this machine before starting scenario workers. The portal itself uses Python's standard library,
+Prepare this machine before starting scenario work in VS Code. The portal itself uses Python's standard library,
 but reference generation also needs the SDKs, native diagram tooling and Python packages below.
 The setup covers the shipped baseline, not every package a future scenario might introduce.
 
-## Backend-owned scenario launch
+## Agent-owned scenario execution
 
 The user prepares tools, Azure CLI/azd authentication and the Docker Linux engine once.
-The portal backend now validates the selected baseline before launching an agent:
-all shared checks below, matching CLI/azd sign-ins and token metadata, an actual Chromium launch,
-and a temporary net10.0 package restore/build using repository `NuGet.Config`.
-No access token is retained. No resource, quota or provider query is included.
-The collapsed **Backend readiness** card shows all detected failures and their corrections together.
-**Prepare local toolchain** runs a fixed setup recipe while every worker is idle; it accepts
-package/source agreements and installs missing approved tools and repository Python/browser packages.
-It does not start Docker, sign in, change policy/certificates or override organization restrictions.
-**Recheck readiness & continue** runs the audit and resumes the next allowed operation.
+The canonical scenario agent uses its existing skills to check prerequisites before the work needing them.
+The portal does not require a Chromium launch, temporary .NET build, sign-in or timed receipt before
+every scenario run. Requirements and local design do not require cloud access.
+Use the portal's **System prerequisites** panel to check the shared baseline before scenarios.
+**Check Azure sign-in** separately verifies the existing Azure CLI/azd identities and displays their
+tenant/subscription metadata without retaining tokens or asking for manual IDs.
+No resource, quota or provider query is included. The active portal does not install/update tools,
+start Docker, sign in, or resume a scenario when a check completes.
+The former Backend readiness/setup/retry controls belong to the historical runner and are not active.
 
-Python owns bounded stage scheduling, prerequisite receipts and automatic continuation.
-Workers implement their assigned operation rather than repeatedly negotiating setup or progression.
-Bicep and application completion also receive backend build checks. Scenario-specific packages,
-container behavior and real Azure/Foundry acceptance still require actual scenario validation;
-the baseline cannot guarantee future package compatibility or Azure capacity.
+The agent owns scheduling, Bicep/application builds and validation in one context until an actual approval
+boundary or blocker. Python displays reported status and hands off to the actual agent, without repeating those builds
+or creating a subprocess per stage. Scenario-specific packages, container behavior and real Azure/Foundry
+acceptance still require actual scenario validation; a baseline diagnostic cannot prove them.
 
-## Service-aware preflight and System checklist
+## Workspace-wide System checklist and service-aware validation
 
 The portal **System** page lists the end-to-end toolchain before it has been checked.
 Unchecked items are **Not checked**, never assumed ready. Authorize read-only diagnostics and select
@@ -34,10 +33,13 @@ Failures show the command result, affected stages and a corrective action.
 For **Docker installed, engine unavailable**, start Docker Desktop's Linux engine and wait until it is ready;
 do not reinstall Docker merely because its named pipe is unavailable. The audit never starts Docker for you.
 
-Check **All catalog services** for the broadest shipped baseline or **Selected saved scenario** for its
-intake plus current manifest services. Intake also previews requirements and can audit its selected services.
-This is a dependency union, not a separate setup for every combination.
-Changing services/build assumptions invalidates displayed results. Requirements and design remain available.
+System uses one fixed workspace-wide profile: all catalog services, local container builds, Functions Core Tools
+and k6 load testing. It has no scenario, service or build-mode selector.
+Changing the working scenario or intake never changes this profile or triggers another audit.
+System reports **Ready** only after both the complete toolchain and Azure CLI/azd authentication checks pass.
+Earlier narrower reports are not presented as workspace-wide readiness.
+This prepares shared capabilities once; the scenario agent still applies only the dependencies its design needs.
+The conditional matrix below describes scenario validation, not additional System setup choices.
 
 | Service or build choice | Additional local requirement beyond the shared baseline |
 | --- | --- |
@@ -52,7 +54,9 @@ Changing services/build assumptions invalidates displayed results. Requirements 
 | Explicit remote image build | No local Docker gate; separate authorization is still required for Azure builds |
 
 The shared checklist includes Python, repository `.venv`, all packages in `requirements.txt`, dependency consistency,
-Git, Copilot CLI, PowerShell 7+, .NET 10 SDK, Graphviz, Azure CLI, azd and Azure CLI Bicep.
+Git, PowerShell 7+, .NET 10 SDK, Graphviz, Azure CLI, azd and Azure CLI Bicep.
+VS Code with GitHub Copilot and the `code` launcher handles agent conversations;
+the retired portal runner's Copilot CLI and Python Playwright/Chromium dependencies are not required.
 Node.js/GitHub CLI remain the separate optional contributor/publication profile, not hidden baseline requirements.
 
 | Stage | Tool gate |
@@ -71,17 +75,18 @@ Run a selected-service audit outside a worker:
     --services foundry container-apps cosmos-db service-bus --json
 ```
 
-The backend records the launch audit and refreshes expired or scope-changed receipts.
-Manual workers can use:
+The System panel records a shared full-toolchain audit and reuses matching observations across scenarios.
+Recheck after relevant tool/environment changes, not after changing scenario selections or on a timer.
+For a focused stage result, use the same standalone diagnostic:
 
 ```powershell
-python scripts\check_prerequisites.py --for-project --record --stage requirements --json
-python scripts\check_prerequisites.py --for-project --record --stage local-validation --json
+python scripts\check_prerequisites.py --services foundry --stage requirements --json
+python scripts\check_prerequisites.py --services foundry --stage local-validation --json
 ```
 
-Worker receipts are bound to the current project/run, expire after 15 minutes and become invalid when
-manifest services expand. Early-stage commands can succeed while reporting future failures;
-the affected stage cannot report running/completed until its required checks pass.
+The checker prints observations; it does not issue worker receipts, leases or execution permission.
+Early-stage commands can succeed while reporting future failures. Resolve required dependencies
+before the affected operation; there is no additional portal-stage gate.
 Use `--build-mode local` or `--build-mode remote` only for the confirmed architecture.
 Use `--local-functions` only for an explicit local Functions host.
 These switches describe checks, not authorization or a change to deployment configuration.
@@ -131,7 +136,7 @@ A remote TLS `HandshakeFailure` is a setup/network blocker, not a request for mo
 Have the environment administrator investigate proxy/TLS inspection, approved certificate trust,
 outbound policy and feed access outside the worker. Do not disable certificate validation, weaken TLS,
 install certificates or upgrade shared tools from a scenario worker to work around the failure.
-After authorized setup correction, retry from a fresh worker and use **Verify setup & retry**.
+After authorized setup correction, recheck in System and rerun the affected build in VS Code.
 Keep the blocker active until the actual endpoint and required restore/build checks pass.
 
 The automated checklist runs this probe through PowerShell 7 with a 30-second timeout per request,
@@ -140,41 +145,19 @@ Its separate **NuGet package metadata HTTPS/TLS** result
 gates local validation, not requirements, architecture or application scaffolding. Missing PowerShell,
 TLS/network errors or malformed metadata fail the check with a setup action; a green SDK indicator
 alone is not a package-feed connectivity result. A System-page audit runs as the server account;
-a fresh worker must still pass its own run-bound audit before local validation.
+scenario validation still needs actual restore/build under its execution identity.
 The approved proxy is the baseline probe; a successful probe does not prove a workspace's source configuration.
-For older setup blockers that recorded a direct `api.nuget.org` check, **Verify setup & retry**
-instructs the new worker to replace that obsolete check with the approved proxy audit.
-The worker must inspect the `nuget-https` result explicitly, verify effective restore sources and
-record fresh evidence against the existing blocker before clearing it. Historical failures remain unchanged.
+For historical direct-NuGet failures, use the approved proxy audit and verify the
+effective restore sources before retrying. Historical failures remain unchanged.
 
-## Worker package and browser cache access
+## Scenario-specific runtime tools
 
-This installation's operator approved scoped Copilot CLI trust for the worker account's
-`~\.nuget\packages` and `%LOCALAPPDATA%\ms-playwright` caches, in addition to the repository and
-adjacent `azd-projects` workspaces. On non-Windows hosts, the browser-cache default is
-`~/.cache/ms-playwright`. The portal passes these exact directories using `--add-dir`.
-This grants filesystem access and configuration trust, not read-only access.
-It does not enable `--allow-all-paths`, grant Azure consent, authorize shared tool installation
-or override organization restrictions.
-
-Future packages within these caches or the scenario workspace share that access; package names do not
-need individual filesystem approvals. Custom `NUGET_PACKAGES` and `PLAYWRIGHT_BROWSERS_PATH` values must
-remain inside approved cache/workspace roots; other locations require explicit review.
-`PLAYWRIGHT_BROWSERS_PATH=0` keeps Playwright's package-local behavior.
-No cache is created or software installed by this policy.
-
-Workers must inventory additional SDK and test-tool requirements before implementation and probe them
-separately. A missing optional browser or load-test tool must not block unrelated application authoring.
+Inventory additional SDK and test-tool requirements before implementation and probe them separately.
+A missing optional browser or load-test tool must not block unrelated application authoring.
 Actual required tool execution, restore/build and browser/load validation still need evidence.
 PowerShell checks must not assign results to automatic/read-only variables such as `$HOME`, `$PID`
 or `$Host`; variable names are case-insensitive. Use `$homeResponse` for an HTTP response.
-An older loopback-only Docker check that assigned `Invoke-WebRequest` to `$home` has an
-operator-approved retry correction to `$homeResponse`, retaining permissions and validation criteria.
-Where the owned image and literal homepage marker can be extracted safely, retries instead use the
-repository runtime helper with the same image/marker and a 90-second startup window.
-The correction neither grants profile access nor clears the blocker without actual container/HTTP evidence.
-Generated-command errors must not be repaired by broadening filesystem trust.
-New setup reports reject obvious assignments to `$HOME`, `$PID` or `$Host` before saving a blocker.
+Generated-command errors must not be repaired by broadening filesystem trust or weakening host restrictions.
 
 Use the reusable local runtime check instead of generated multi-command PowerShell for container smoke tests:
 
@@ -190,38 +173,34 @@ This is shell/liveness evidence only, not live Foundry or full application accep
 HTTP/startup failures are application diagnostics, not permission failures. Workers must inspect the
 actual failure before requesting additional access; genuine unknown paths/URLs still require approval.
 
-The authenticated catalog exposes the effective cache directories and path-policy version.
-The launcher rejects a server with an older path policy rather than silently reusing it.
-
 For a design that explicitly uses k6, record `"validationTools": ["k6"]` in the scenario manifest.
-Worker audits then check k6 automatically; standalone audits can use
+The scenario agent checks k6 when that design needs it; standalone audits can use
 `python scripts\check_prerequisites.py --services foundry --load-tests --json`.
 Missing k6 gates local validation, not application authoring. It is not required for other scenarios.
 An operator can install it outside workers with
 `winget install --id GrafanaLabs.k6 --exact --source winget`.
 The portal resolves an existing standard `Program Files\k6\k6.exe` installation on its child PATH,
-without changing the host PATH. A fresh worker is required after installation.
+without changing the host PATH. Restart the affected execution host after installation.
 
 ## Azure identity and target readiness
 
-The scenario workspace's **Azure readiness and proposed targets** card resolves existing local context
-after explicit read-only discovery consent. It checks `az account show`, token expiry/tenant/subscription
+The System page's **Check Azure sign-in** resolves existing local context
+after explicit read-only diagnostic consent. It checks `az account show`, token expiry/tenant/subscription
 metadata only (never retains the token), and `azd auth login --check-status --no-prompt`.
 It never signs in automatically, switches shared defaults or runs Azure resource queries.
 Matching CLI/azd account names are checked; azd target-tenant access, RBAC, policy, providers,
 SKU/model quota and capacity remain separate authorized preflight checks.
 
-Proposed targets reuse previously saved scenario targets first, then local azd environment/configuration,
+In VS Code, the scenario agent reuses previously saved targets first, then local azd environment/configuration,
 the scenario architecture region and `projectSlug` / `rg-{environment}` naming conventions.
 Conflicting local azd subscription/tenant values or ambiguous environments require reconciliation.
 Identity changes are visible rather than silently inheriting old consent.
-Environment, resource group and region can be edited in the card; account changes remain explicit local CLI actions.
-Private project state records values, provenance and verification time, never public catalog metadata.
+Review environment, resource group and region in the scenario chat; account changes remain explicit local CLI actions.
+Keep private target values, provenance and verification time outside public catalog metadata.
 
-Resolving context creates a prefilled **deployment-preparation** review; it does not authorize anything.
-The user must separately select **Allow read-only preflight & what-if** for the exact scope.
-Identity is rechecked when accepting that decision. Actual what-if and cost review precede a separate
-deployment approval. Future workers read this saved context instead of asking for all known values again.
+Resolving context does not authorize anything. The scenario agent runs exact-target readiness/what-if only
+within the user's granted scope, reviews cost and changes, and obtains deployment consent in VS Code.
+There is no additional portal approval queue. Reuse matching saved identity and same-scenario decisions.
 
 ## Quick start on Windows
 
@@ -262,7 +241,6 @@ installation uses WinGet. A missing-Python dry run lists that first step and mus
 | ---------- | ------------ | -------------------- |
 | Python 3.10+ | Portal, workflow helpers and diagrams | `Python.Python.3.13` |
 | Git | Repository and local CLI workflows | `Git.Git` |
-| GitHub Copilot CLI | Real portal scenario jobs | `GitHub.Copilot` |
 | PowerShell 7+ | Workspace and deployment scripts | `Microsoft.PowerShell` |
 | .NET **10 SDK** | Building the generated C# application | `Microsoft.DotNet.SDK.10` |
 | Graphviz, including `dot` | Rendering architecture/runtime diagrams | `Graphviz.Graphviz` |
@@ -273,7 +251,7 @@ installation uses WinGet. A missing-Python dry run lists that first step and mus
 | Node.js 22+, npm/npx | Optional frontend tests and configured browser MCP | `OpenJS.NodeJS.LTS` |
 | GitHub CLI | Optional, explicitly requested GitHub publication | `GitHub.cli` |
 | Docker Desktop and running engine | Optional local container builds | `Docker.DockerDesktop` |
-| VS Code and recommended extensions | Optional interactive editor/custom-agent experience | Manual |
+| VS Code, GitHub Copilot and the `code` launcher | Interactive custom-agent handoffs | Manual |
 
 Windows PowerShell 5.1 can run the bootstrap script; PowerShell 7+ remains part of the scenario toolchain.
 WinGet comes from Microsoft App Installer. If unavailable, use your approved software channel or manual installers.
@@ -290,7 +268,6 @@ The checker verifies:
 
 - Executables on this process's PATH and successful version probes.
 - A stable **10.x SDK** from `dotnet --list-sdks`; a runtime alone, SDK 9 or SDK 11 does not satisfy it.
-- Copilot CLI flags used by the portal, not merely an unrelated `copilot` executable.
 - Repository environment, package minimum versions and `pip check`.
 - A real diagrams/Graphviz render to a temporary PNG, opened and verified with Pillow; temporary output is removed.
 - With optional profiles, Node.js 22+, GitHub CLI and a responsive Docker engine.
@@ -329,14 +306,14 @@ This cannot update the environment of an already running VS Code, portal or work
 
 ## Restart sequence after installing tools
 
-1. Let existing scenario workers finish, or stop their selected runs through the portal.
+1. Let scenario tool operations finish in VS Code; the portal does not own or stop agent runs.
 1. Close the portal's server using its terminal, or your normal process-management procedure.
    Closing the browser tab alone does not stop the server.
 1. Open a fresh terminal. If launching from VS Code, fully restart VS Code so it inherits the new PATH.
 1. Run check-only again and resolve failures before launching the portal.
-1. Start the portal and open its newly authenticated entry page. Resume the scenario only afterward.
+1. Start the portal and open its loopback page. Continue the existing scenario chat afterward.
 
-Refreshing the page or clicking Resume cannot refresh an old server's PATH.
+Refreshing the page or reopening a chat cannot refresh an old server's PATH.
 The installer refuses real installation while a recorded portal PID is live or a project has a writer lease.
 It never kills processes, clears leases or overwrites saved project decisions.
 Stale leases must be recovered through the normal project workflow, not deleted to force setup through.
@@ -372,15 +349,9 @@ Nonstandard installation locations still require explicit environment setup.
 
 ## Authentication, trust and permissions remain manual
 
-After installing Copilot CLI, authenticate as the intended user:
-
-```powershell
-copilot login
-```
-
-Confirm access to Copilot, repository/workspace trust and any applicable execution-host tool permissions.
-The portal's **Allow local Copilot CLI tool execution** checkbox is separate from a scenario decision.
-Neither one overrides a host denial for an executable, download URL or filesystem location.
+Sign in to GitHub Copilot in VS Code and confirm custom-agent access, workspace trust
+and applicable tool permissions. The portal never launches a Copilot CLI job.
+An editor permission grant does not override a host denial for an executable, download URL or filesystem location.
 Ask the owner/administrator to authorize the specific intended operation; do not broadly disable permission checks.
 
 Before separately authorized Azure work, confirm Azure CLI and `azd` use the same intended account,
@@ -397,7 +368,7 @@ The setup does not edit MCP configuration, extension settings or Copilot approva
 ## Manual or non-Windows setup
 
 Use the official installers below when WinGet is unavailable or enterprise software management owns installation.
-On macOS/Linux, install equivalent Git, Python, PowerShell, Copilot CLI, .NET 10 SDK,
+On macOS/Linux, install equivalent Git, Python, PowerShell, VS Code with GitHub Copilot, .NET 10 SDK,
 Graphviz, Azure CLI and `azd` packages through their supported channels, then:
 
 ```bash
@@ -424,7 +395,6 @@ The startup helper selects `.venv\Scripts\python.exe` on Windows and `.venv/bin/
 
 - [Python on Windows](https://docs.python.org/3/using/windows.html)
 - [Git downloads](https://git-scm.com/downloads)
-- [Copilot CLI quickstart](https://docs.github.com/en/copilot/get-started/cli-quickstart)
 - [PowerShell installation](https://learn.microsoft.com/powershell/scripting/install/installing-powershell)
 - [.NET on Windows](https://learn.microsoft.com/dotnet/core/install/windows)
 - [Graphviz downloads](https://graphviz.org/download/)

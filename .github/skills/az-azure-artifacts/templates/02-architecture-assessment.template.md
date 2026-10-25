@@ -30,6 +30,22 @@ to the requirements' industry/unit outcome. Do not select infrastructure first a
 | Operational budgets | {numeric time/call/token/round/concurrency/cost limits and exhaustion behavior} |
 | Acceptance and observability | {business result, correlation/receipts and positive/negative coordination tests} |
 
+### Management and deployment access
+
+For private workloads, apply the
+[management-access contract](../../hack-builder-workflow/SKILL.md#private-workload-management-access).
+For public-only workloads, state why a separate management network is unnecessary.
+
+| Operation | Execution host and identity | Network/DNS path | Bootstrap and acceptance |
+| --- | --- | --- | --- |
+| Provision/publish | {host; scoped identity} | {control/data endpoints} | {ordering; checks} |
+| Initialize/test | {connected host; identity} | {DNS, routing, egress} | {positive/negative tests} |
+| Troubleshoot | {VPN or private VM/Bastion} | {remote/service access} | {sign-in; lifecycle; cleanup} |
+
+Record the recommended option, rejected alternatives, additional resources/SKUs, quota and ongoing costs.
+Distinguish supported public-IP exceptions from private-only access; do not silently weaken requirements.
+Include management components in the diagram and the consolidated deployment scope.
+
 ### Recommended Architecture
 
 ```mermaid

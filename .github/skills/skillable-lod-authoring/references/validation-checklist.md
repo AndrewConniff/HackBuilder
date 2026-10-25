@@ -6,7 +6,8 @@
 - [ ] Both roots contain `README.md`, `index.md`, `_config.yml`, `_build.yml`,
       `resources.md`, and `Allfiles/README.md`.
 - [ ] Both roots use the same canonical `Instructions/<industry-slug>/` path.
-- [ ] Exactly five learner challenge pages use prefixes `01-` through `05-`.
+- [ ] Exactly five learner challenge pages use prefixes `00-` through `04-`.
+- [ ] Each filename prefix matches its visible H1 challenge number, 0 through 4.
 - [ ] The private coach root contains the same five files plus `99-finale.md`.
 - [ ] No learner Finale page exists.
 - [ ] The scenario root contains exactly one case-sensitive `nextsteps.MD`.

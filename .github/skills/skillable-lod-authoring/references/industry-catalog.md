@@ -12,6 +12,8 @@ Use one industry per generated scenario package.
 | Retail | `retail` | High-volume data and fast ROI cycles |
 | Energy / Oil & Gas | `energy-oil-gas` | High-value knowledge mining |
 | Government / Public Sector | `government-public-sector` | Mission and constituent services |
+| Hospitality & Travel | `hospitality-travel` | Service readiness and reviewed business handoffs |
+| Media & Communications | `media-communications` | Campaign engagement and subscriber recovery |
 
 The machine-readable source is `../assets/industry-catalog.json`.
 
@@ -56,6 +58,28 @@ human-approved simulations unless an approved architecture says otherwise.
 Emphasize constituent service, caseworker knowledge, grants, permitting,
 records, or internal operations. Include accessibility, records handling,
 transparency, and human review appropriate to the scenario.
+
+### Hospitality & Travel
+
+Preserve the approved hospitality workflow and exact selected business units.
+Use synthetic store, service, stock and managerial-close evidence as applicable.
+Separate advisory narratives from authoritative calculations and human-approved
+actions. A sales-led coffee-shop scenario is not a Retail mapping or permission
+to add Operations or Finance; a reviewed finance handoff does not add a selected unit.
+Do not imply supplier transmission, payments, ledger posting, or guest-data access
+unless the approved scenario implements them. Use the shared challenge and Finale
+templates unchanged with `Hospitality & Travel` and `hospitality-travel`.
+
+### Media & Communications
+
+Preserve the approved media workflow, selected business units and explicit human
+handoffs. Use synthetic campaign posts, subscriber contacts and versioned policy.
+Keep model interpretation distinct from deterministic routing and human authority.
+Queue acceptance is not external email or social delivery. Do not imply provider
+integration, calibrated sentiment probabilities, native workflow coordination or
+native agent tools unless the approved reference actually proves them.
+Use the shared templates unchanged with `Media & Communications` and
+`media-communications`; never alias this industry to Retail or another slug.
 
 ## Stable naming rule
 

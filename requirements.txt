@@ -11,6 +11,3 @@ pillow>=10.0
 
 # Infrastructure validation and security scanning
 checkov>=3.0
-
-# Backend-owned headless browser readiness (browser binary installed separately)
-playwright>=1.55

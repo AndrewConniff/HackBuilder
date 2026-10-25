@@ -29,15 +29,31 @@ root reference deployment. A separate explicit event-deployment request and
 validated packages are prerequisites for event scope. Require an application
 URL only if the starter actually includes a deployed application.
 
-Initial portal jobs permit local preparation only by instruction. Prepare
-what-if commands and exact target previews, then stop for the necessary
-authorization. Do not execute Azure operations without explicit scope/permission.
-After authorized what-if, require exact target confirmation before deployment.
+The portal only hands off to VS Code and visualizes progress. Perform authorized readiness/what-if in that session.
+Present exact targets, actual what-if, cost and required directory operations in the architecture review in chat.
+**Approve architecture & deploy** authorizes the complete reference installation; do not ask again to deploy.
+Honor existing explicit local-only or otherwise restricted instructions.
+Do not execute Azure operations outside recorded scope/permission.
+Apply [authorization continuity and consolidated review](
+../hack-builder-workflow/SKILL.md#authorization-continuity-and-consolidated-review).
+Reuse actual matching grants; a later read-only grant is not itself a revocation.
+Agent-written summaries or derived authorization files cannot revoke user consent.
+Prepare local repair proposals and costs before asking; defer unauthorized cloud operations, not local preparation.
+Review only missing authority or material additions, including any new private execution host and incremental cost.
 In a noninteractive job, persist **decision required** and stop if consent,
 authentication or target details are missing; never infer a decision from
 `--no-ask-user` or tool-permission flags.
 
-Apply the workflow's
+Apply [sample application accounts and Azure resource access](
+../hack-builder-workflow/SKILL.md#sample-application-accounts-and-azure-resource-access).
+Sample login uses local app accounts; no Entra admin-consent step is part of the default installation.
+Generate separate private participant/coach access files and verify they are excluded from public outputs.
+Install the reviewed workload managed-identity and deploying-admin RBAC assignments before dependent
+ingestion, initialization and acceptance. A role-assignment denial is a scoped blocker, not a key-auth fallback.
+When migrating an existing sample, deploy working application authentication before disabling platform
+authentication; never expose an unauthenticated transition or trust formerly platform-injected headers.
+
+For explicitly required non-default directory integrations only, apply the workflow's
 [scenario-owned application identity setup](../hack-builder-workflow/SKILL.md#scenario-owned-application-identity-setup)
 before deployment depends on SPA/API client IDs. Reuse the recorded registration choice and approved
 installation plan. Run authorized scenario-local setup, capture verified IDs automatically and feed azd outputs.
@@ -51,6 +67,14 @@ Before creation, distinguish pending identity-dependent checks from independent 
 Missing generated IDs alone must not force an administrator handoff, manual receipt or local-only fallback.
 Real authorization/policy failures remain explicit blockers; never fabricate IDs or bypass directory restrictions.
 
+For private services, consume the architecture's
+[private-workload management access](../hack-builder-workflow/SKILL.md#private-workload-management-access).
+Run publishing, initialization and acceptance from the designed connected execution host.
+Validate real DNS/TLS and authenticated data-plane access there, not only local route metadata.
+Do not mark an absent designed execution path as a routine user workstation prerequisite: report the design gap,
+propose its consolidated repair/cost and obtain any missing scope authorization before creating management resources.
+Do not reopen public service access or bypass a host denial to make deployment succeed.
+
 > [!CAUTION]
 > **MANDATORY DEPLOYMENT POLICY**
 >
@@ -59,11 +83,11 @@ Real authorization/policy failures remain explicit blockers; never fabricate IDs
 >    authentication, policy, preflight and user-confirmation gates pass.
 >    Tooling blockers (missing CLI, extension errors, auth issues) must be resolved
 >    or escalated to the user — never used as a reason to autonomously skip deployment.
-> 2. **User decides on failure**: If deployment fails for any reason, present the
->    full error to the user and ask for their decision. Never autonomously generate
->    a "dry-run only" or "blocked" summary and move on.
-> 3. **Escalate, don’t absorb**: If a pre-deployment gate fails and cannot be
->    auto-fixed, ask the user. Do not silently document the failure and skip ahead.
+> 2. **Agent owns in-scope repairs**: Diagnose failures, correct generated configuration/code and retry
+>    within the reviewed installation scope. Retain errors and results; do not ask permission for each repair.
+>    Never delete unrelated resources, weaken security or expand permissions as a repair.
+> 3. **Escalate real blockers**: Stop only when existing authority cannot resolve the observed failure,
+>    or a material departure from the approved design needs a decision. Do not call a failed deployment successful.
 
 ---
 

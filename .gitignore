@@ -25,6 +25,7 @@ Copilot-Processing.md
 !.vscode/extensions.json
 !.vscode/mcp.json
 !.vscode/settings.json
+!.vscode/tasks.json
 *.code-workspace
 
 # OS
@@ -43,6 +44,7 @@ logs/
 
 # Secrets
 secrets/
+.private/
 *.secret
 *.key
 *.pem
@@ -67,14 +69,16 @@ __pycache__/
 *.pyc
 .venv/
 venv/
+.ruff_cache/
 
 # Test results
 TestResults/
 *.trx
+.workflow-test-*/
 
 # Demo Scenario folder — ignored by default so agent-generated scenarios
-# stay local. The 08-Contribute agent uses `git add -f` to selectively
-# stage a single scenario for cross-fork PRs.
+# stay local. Explicit publication through az-scenario-contribution can
+# selectively include a sanitized scenario.
 generated-scenarios/
 
 # Playwright screenshot artifacts

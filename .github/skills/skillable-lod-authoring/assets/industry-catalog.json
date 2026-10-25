@@ -1,5 +1,10 @@
 [
   {
+    "displayName": "Media & Communications",
+    "slug": "media-communications",
+    "positioning": "Campaign engagement, subscriber recovery and human-reviewed cross-unit handoffs"
+  },
+  {
     "displayName": "Financial Services",
     "slug": "financial-services",
     "positioning": "Large accounts and mature AI governance"
@@ -13,6 +18,11 @@
     "displayName": "Manufacturing",
     "slug": "manufacturing",
     "positioning": "Deep Azure and IoT integration"
+  },
+  {
+    "displayName": "Hospitality & Travel",
+    "slug": "hospitality-travel",
+    "positioning": "Sales-led service readiness, guest workflows and reviewed business handoffs"
   },
   {
     "displayName": "Retail",

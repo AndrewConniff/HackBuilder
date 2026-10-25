@@ -1,4 +1,4 @@
-"""Start or reuse the local portal and open its authenticated browser entry point."""
+"""Start or reuse the local portal and open its browser entry point."""
 
 from __future__ import annotations
 
@@ -14,8 +14,8 @@ import webbrowser
 from pathlib import Path
 
 from check_prerequisites import WORKER_PATH_POLICY_VERSION, execution_environment
-from portal_workflow import WORKFLOW_VERSION, state_directory
-from workflow_engine import VERSION as BACKEND_ENGINE_VERSION
+from portal_status import state_directory
+from portal_visualizer import WORKFLOW_VERSION, VERSION as BACKEND_ENGINE_VERSION
 
 ROOT = Path(__file__).resolve().parents[1]
 STATE = state_directory(ROOT)
@@ -26,8 +26,8 @@ def running_portal(expected_pid: int | None = None, expected_startup_id: str | N
     if not connection.exists():
         return None
     config = json.loads(connection.read_text(encoding="utf-8"))
-    port, token = config.get("port"), config.get("token")
-    if type(port) is not int or not 1 <= port <= 65535 or not isinstance(token, str) or not token:
+    port = config.get("port")
+    if type(port) is not int or not 1 <= port <= 65535:
         raise ValueError(f"Invalid local portal connection file. Inspect {STATE / 'server.json'}.")
     if expected_pid is not None and config.get("pid") != expected_pid:
         return None
@@ -36,16 +36,16 @@ def running_portal(expected_pid: int | None = None, expected_startup_id: str | N
     client = http.client.HTTPConnection("127.0.0.1", port, timeout=1)
     identified = False
     try:
-        client.request("GET", "/api/health", headers={"Authorization": f"Bearer {token}"})
+        client.request("GET", "/api/health")
         response = client.getresponse()
         body = response.read()
         if response.status != 200:
-            raise ValueError("Existing portal authentication failed. Inspect its server process before restarting.")
+            raise ValueError("Existing portal health check failed. Inspect its server process before restarting.")
         health = json.loads(body)
         if health != {"status": "ok", "workspace": str(ROOT)}:
             raise ValueError("The local port is not serving this workspace's portal.")
         identified = True
-        client.request("GET", "/api/catalog", headers={"Authorization": f"Bearer {token}"})
+        client.request("GET", "/api/catalog")
         response = client.getresponse()
         body = response.read()
         if response.status != 200:
@@ -98,7 +98,7 @@ def ensure_portal() -> dict:
             else {"start_new_session": True}
         )
         process = subprocess.Popen(
-            [str(python), str(ROOT / "scripts" / "portal_server.py"), "--quiet-url"],
+            [str(python), str(ROOT / "scripts" / "portal_visualizer.py"), "--quiet-url"],
             cwd=ROOT,
             stdin=subprocess.DEVNULL,
             stdout=log,
@@ -134,7 +134,7 @@ def main() -> int:
         return 0
     try:
         config = ensure_portal()
-        url = f"http://127.0.0.1:{config['port']}/#token={config['token']}"
+        url = f"http://127.0.0.1:{config['port']}/"
         if not webbrowser.open(url):
             raise RuntimeError(
                 "Portal is ready, but the browser could not be opened. Retry python scripts\\start_portal.py."
@@ -142,7 +142,7 @@ def main() -> int:
         if args.hook:
             print("{}")
         else:
-            print(f"Portal ready at http://127.0.0.1:{config['port']}/ and opened with local authentication.")
+            print(f"Portal ready at http://127.0.0.1:{config['port']}/ and opened in your browser.")
         return 0
     except (OSError, ValueError, RuntimeError, http.client.HTTPException) as error:
         print(f"Portal startup: {error}", file=sys.stderr)

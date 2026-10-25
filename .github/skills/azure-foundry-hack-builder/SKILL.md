@@ -34,7 +34,7 @@ using the [composition procedure](./references/composition-procedure.md).
 Do not invoke implementation or deployment agents.
 
 Industry intake uses repository `microsoft_industry_verticals.csv`; Skillable's
-catalog supports only six slugs. Check the recorded industry against
+catalog supports eight slugs, including `media-communications`. Check the recorded industry against
 `skillable-lod-authoring/assets/industry-catalog.json` before any authoring.
 An unsupported industry blocks composition pending an explicit decision to extend
 support or revise and reapprove the scenario. Never silently map another industry.
@@ -187,11 +187,11 @@ generated-scenarios/<project>/
    │  ├─ resources.md
    │  ├─ Allfiles/
    │  └─ Instructions/<industry-slug>/
-   │     ├─ 01-secure-foundation.md
-   │     ├─ 02-build-the-agent.md
-   │     ├─ 03-ground-it.md
-   │     ├─ 04-give-it-tools.md
-   │     └─ 05-harden-and-demo.md
+   │     ├─ 00-secure-foundation.md
+   │     ├─ 01-build-the-agent.md
+   │     ├─ 02-ground-it.md
+   │     ├─ 03-give-it-tools.md
+   │     └─ 04-harden-and-demo.md
    └─ coach-guide/               # Private coach documentation
       ├─ README.md
       ├─ index.md
@@ -202,11 +202,11 @@ generated-scenarios/<project>/
       ├─ solution-overview.md
       ├─ deployment-guide.md
       └─ Instructions/<industry-slug>/
-         ├─ 01-secure-foundation.md
-         ├─ 02-build-the-agent.md
-         ├─ 03-ground-it.md
-         ├─ 04-give-it-tools.md
-         ├─ 05-harden-and-demo.md
+         ├─ 00-secure-foundation.md
+         ├─ 01-build-the-agent.md
+         ├─ 02-ground-it.md
+         ├─ 03-give-it-tools.md
+         ├─ 04-harden-and-demo.md
          └─ 99-finale.md          # Coach notes for every challenge
 ```
 
