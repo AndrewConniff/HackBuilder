@@ -86,6 +86,11 @@ See [the prerequisite guide](../PREREQUISITES.md).
    Open `HackCreator Agent` as a separate VS Code context to derive and validate the hack.
 1. Browse scenario/learner/private coach files and download separate learner/coach ZIP exports.
 
+On Windows, a newly started portal opens a console titled **ABC Builder - Browser App Runtime**.
+Keep that window open while using the browser app; closing it stops the portal. You can minimize it.
+The console shows a static runtime notice; diagnostic output continues to go to the portal's `server.log`.
+Opening the launcher again reuses the existing healthy runtime rather than opening another runtime console.
+
 The first handoff opens the scenario chat. The shared working-scenario selector has one **Open scenario chat** action,
 available across Build & validate, Create hack and System, including while work is running or approved.
 The portal associates the conversation automatically; users do not copy chat links.

@@ -93,7 +93,7 @@ def ensure_portal() -> dict:
         python = Path(sys.executable)
     with (STATE / "server.log").open("ab") as log:
         options = (
-            {"creationflags": subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP}
+            {"creationflags": subprocess.CREATE_NEW_CONSOLE | subprocess.CREATE_NEW_PROCESS_GROUP}
             if os.name == "nt"
             else {"start_new_session": True}
         )

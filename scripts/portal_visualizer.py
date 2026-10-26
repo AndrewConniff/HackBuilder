@@ -774,6 +774,28 @@ def make_server(root: Path = ROOT, port: int = 8765) -> ThreadingHTTPServer:
     return server
 
 
+def show_runtime_console(port: int) -> None:
+    import ctypes
+
+    if not ctypes.windll.kernel32.SetConsoleTitleW("ABC Builder - Browser App Runtime"):
+        raise ctypes.WinError()
+    # The launcher redirects stdout to server.log; write the notice to the console itself.
+    with open("CONOUT$", "w", encoding="utf-8") as console:
+        print(
+            "\n"
+            "ABC Builder - Browser App Runtime\n"
+            "\n"
+            "This window runs the local ABC Builder browser app.\n"
+            "KEEP THIS WINDOW OPEN while using ABC Builder.\n"
+            "Closing this window stops the portal and disconnects the browser app.\n"
+            "\n"
+            f"Browser app: http://127.0.0.1:{port}/\n"
+            "You can minimize this window. Use the browser to work with ABC Builder.\n",
+            file=console,
+            flush=True,
+        )
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--port", type=int, default=8765)
@@ -782,6 +804,8 @@ def main() -> None:
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO)
     server = make_server(port=args.port)
+    if os.name == "nt" and args.quiet_url:
+        show_runtime_console(server.server_port)
     connection = server.app.state / "server.json"
     write_json(connection, {"pid": os.getpid(), "port": server.server_port,
                             "startupId": os.environ.pop("ABCBUILDER_PORTAL_STARTUP_ID", None)})

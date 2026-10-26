@@ -263,6 +263,52 @@ class PortalStartupTests(unittest.TestCase):
         self.assertEqual(str(ROOT / "scripts" / "portal_visualizer.py"), args[1])
         self.assertEqual(ROOT, spawn.call_args.kwargs["cwd"])
         self.assertEqual(launcher.subprocess.DEVNULL, spawn.call_args.kwargs["stdin"])
+        if os.name == "nt":
+            self.assertEqual(
+                subprocess.CREATE_NEW_CONSOLE | subprocess.CREATE_NEW_PROCESS_GROUP,
+                spawn.call_args.kwargs["creationflags"],
+            )
+        else:
+            self.assertTrue(spawn.call_args.kwargs["start_new_session"])
+
+    @unittest.skipUnless(os.name == "nt", "Windows runtime console")
+    def test_runtime_notice_is_visible_even_with_redirected_output(self) -> None:
+        script = """
+import ctypes
+import sys
+from ctypes import wintypes
+sys.path.insert(0, sys.argv[1])
+from portal_visualizer import show_runtime_console
+show_runtime_console(9876)
+kernel = ctypes.WinDLL("kernel32", use_last_error=True)
+kernel.CreateFileW.restype = wintypes.HANDLE
+kernel.CreateFileW.argtypes = [
+    wintypes.LPCWSTR, wintypes.DWORD, wintypes.DWORD, wintypes.LPVOID,
+    wintypes.DWORD, wintypes.DWORD, wintypes.HANDLE,
+]
+handle = kernel.CreateFileW("CONOUT$", 0x80000000, 3, None, 3, 0, None)
+kernel.ReadConsoleOutputCharacterW.argtypes = [
+    wintypes.HANDLE, wintypes.LPWSTR, wintypes.DWORD, wintypes.DWORD, ctypes.POINTER(wintypes.DWORD),
+]
+buffer = ctypes.create_unicode_buffer(8192)
+read = wintypes.DWORD()
+if not kernel.ReadConsoleOutputCharacterW(handle, buffer, len(buffer), 0, ctypes.byref(read)):
+    raise ctypes.WinError(ctypes.get_last_error())
+assert "ABC Builder - Browser App Runtime" in buffer.value
+assert "KEEP THIS WINDOW OPEN" in buffer.value
+assert "Closing this window stops the portal" in buffer.value
+assert "http://127.0.0.1:9876/" in buffer.value
+title = ctypes.create_unicode_buffer(256)
+kernel.GetConsoleTitleW(title, len(title))
+assert title.value == "ABC Builder - Browser App Runtime"
+"""
+        result = subprocess.run(
+            [sys.executable, "-c", script, str(ROOT / "scripts")],
+            stdin=subprocess.DEVNULL, capture_output=True, text=True, timeout=15, check=False,
+            creationflags=subprocess.CREATE_NEW_CONSOLE,
+        )
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+        self.assertEqual("", result.stdout)
 
     def test_start_failure_is_not_success_shaped(self) -> None:
         with (

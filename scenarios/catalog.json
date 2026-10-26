@@ -89,7 +89,7 @@
       "schemaVersion": 1,
       "id": "equip-ai",
       "title": "Washington equipment operations assistant",
-      "summary": "Entra-secured natural-language support for Washington machinery using fresh, event-ingested telemetry.",
+      "summary": "Site-isolated local-account support for Washington machinery using fresh, certified event telemetry.",
       "industry": "Manufacturing & Mobility",
       "businessUnits": [
         "operations"
@@ -116,7 +116,7 @@
       ],
       "source": null,
       "metadataStatus": "curated",
-      "manifestDigest": "8aa631e0137d19bdd02d19dec045ec213e52769175fd0d20af29e7152089d08b"
+      "manifestDigest": "2e8444c7d0eb8d6d172a91f2e5d55b46ed3acea1f8ae385cc2407a11022c2248"
     },
     {
       "schemaVersion": 1,
