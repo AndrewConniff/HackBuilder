@@ -22,6 +22,12 @@ description: >
    Provision separate least-privilege workload managed-identity and deploying-admin RBAC assignments,
    including the data-plane roles needed for complete initialization and acceptance.
    Resolve the deployer's object ID automatically, make assignments idempotent and include them in what-if.
+   Implement the complete [deployment-user full scenario access](
+   ../hack-builder-workflow/SKILL.md#deployment-user-full-scenario-access) matrix from architecture:
+   administrative control-plane roles plus full data-plane roles/service-native grants for every component.
+   Reader-only grants are insufficient for components the user must manage; workload roles remain separate.
+   Capture non-ARM grants in installation automation and the deployment review, and wire user-credential
+   access probes into post-deployment validation. Missing grant authority is an explicit completion blocker.
    Sample local-account setup needs no Entra registration, Graph application write or admin consent.
    Follow the workflow's
    [scenario-owned application identity setup](../hack-builder-workflow/SKILL.md#scenario-owned-application-identity-setup).
@@ -36,6 +42,8 @@ description: >
 1. Implement the approved
    [private-workload management access](../hack-builder-workflow/SKILL.md#private-workload-management-access)
    with parameterized management resources, DNS/routing, least-privilege identities and scoped remote access.
+   Include the approved human entry path (Bastion/VPN or verified existing connectivity), VM login method,
+   browser/CLI tooling and user-scoped resource/data access; a Run Command-only VM is automation, not operator access.
    Wire the actual connected execution host into publishing/initialization/test automation and azd ordering;
    a jump VM alone does not move local hooks into the VNet. Preserve private-only service settings.
    Include management infrastructure in what-if/cost review; do not add it as an unauthorized deployment repair.

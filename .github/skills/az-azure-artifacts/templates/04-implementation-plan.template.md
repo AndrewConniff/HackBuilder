@@ -19,6 +19,11 @@ Brief description of what will be implemented.
 
 ## Resource Inventory
 
+For private workloads, include the approved human administration and unattended automation resources from the
+[management-access contract](../../hack-builder-workflow/SKILL.md#private-workload-management-access).
+Inventory the VM, Bastion/VPN or verified existing entry path, DNS/routing, tooling and user/workload grants.
+A Run Command-only VM is not a complete operator environment.
+
 | Resource   | Type                            | SKU | AVM Status            | Dependencies | Status  |
 | ---------- | ------------------------------- | --- | --------------------- | ------------ | ------- |
 | Resource 1 | Microsoft.Provider/resourceType |     | AVM                |              | Todo |

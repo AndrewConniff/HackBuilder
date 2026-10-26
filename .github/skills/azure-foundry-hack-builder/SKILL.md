@@ -61,6 +61,12 @@ The two deployable projects must use separate azd environments and separate
 resource groups. A participant deployment must never target, reuse, or modify
 the coach resource group. The documentation sets are not deployed by `azd`.
 
+Apply [setup versus hack architecture](
+../hack-builder-workflow/SKILL.md#setup-architecture-versus-hack-architecture) after approval.
+Classify operator management resources privately rather than copying the full setup into the learner starter.
+Private access may be a bounded learner challenge with an early checkpoint and tested isolated fallback;
+retain independent coach administration and keep the complete reference topology out of public goals.
+
 ## Fixed constraints (never negotiate these)
 
 | Constraint      | Value                                                                       |

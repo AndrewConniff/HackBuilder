@@ -21,7 +21,10 @@ description: >
    required human decision and one bounded failure/recovery path. Do not substitute
    a resource inventory or believable text for actual runtime behavior.
 1. Exercise the demonstration from the actual identity/network path within
-   authorized scope. Capture screenshots with Playwright when available and
+   authorized scope. For private services, document operator entry, where the browser/CLI run and Azure user sign-in;
+   demonstrate allowed private administration separately from the expected outside-network denial.
+   A Run Command-only automation path is not proof of browser administration.
+   Capture screenshots with Playwright when available and
    provide an explicitly labeled screenshot fallback, not fake live acceptance.
 1. Persist checks and recovery commands. Present the complete scenario for
    suitability review and stop; do not compose hack challenges.

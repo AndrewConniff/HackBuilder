@@ -42,6 +42,22 @@ Deployment Summary Contents
 | `{resource-name}` | Provisioning state | {observed result} |
 | `{resource-name}` | Endpoint reachable | {observed result} |
 
+### Management Access Acceptance
+
+For private workloads, apply the
+[management-access contract](../../hack-builder-workflow/SKILL.md#private-workload-management-access).
+For public-only workloads, explain any not-applicable checks.
+
+| Path | Actual host and principal | Operation and timestamp | Result/evidence |
+| --- | --- | --- | --- |
+| Operator entry | {Bastion/VPN; VM/user} | {actual sign-in} | {observed result} |
+| Private browser/CLI | {browser/CLI host; Azure user} | {data operation; safe CRUD; cleanup} | {observed result} |
+| Backend/automation | {execution host; managed identity} | {publish/initialize; real agent call} | {observed result} |
+| Outside-network negative | {external client; identity} | {restricted endpoint request} | {expected denial} |
+
+Record full deployment-user access-matrix results and the private operator runbook location.
+Do not treat DNS/TLS, a Run Command-only VM or an expected outside-network denial as successful human administration.
+
 ## Outputs (Expected)
 
 | Output Name     | Value            | Description     |

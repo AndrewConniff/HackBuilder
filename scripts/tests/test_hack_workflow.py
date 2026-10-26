@@ -348,6 +348,86 @@ class CustomizationTests(unittest.TestCase):
         self.assertIn("not a missing Docker/SDK prerequisite", skill)
         self.assertIn("--platform=$BUILDPLATFORM", instructions)
 
+    def test_private_management_requires_human_access_not_only_automation(self) -> None:
+        skills = ROOT / ".github" / "skills"
+        contract = (skills / "hack-builder-workflow" / "SKILL.md").read_text(encoding="utf-8")
+        section = contract.split("### Private-workload management access\n", 1)[1].split("\n### ", 1)[0]
+        for requirement in (
+            "human administration is required",
+            "Default to a management VM without a public IP",
+            "equivalent browser/CLI access",
+            "a VM accessible only through Run Command is not a complete human administration path",
+            "browser running inside the private network",
+            "deploying user's own Azure credentials",
+            "Missing or unverified human administration blocks reference completion",
+            "expected outside-network denial never excuses a backend agent-call 403",
+        ):
+            with self.subTest(requirement=requirement):
+                self.assertIn(requirement, section)
+        for relative in (
+            "az-azure-validate/SKILL.md",
+            "az-azure-diagrams/SKILL.md",
+            "az-azure-artifacts/templates/04-implementation-plan.template.md",
+            "az-azure-artifacts/templates/06-deployment-summary.template.md",
+        ):
+            with self.subTest(path=relative):
+                self.assertIn(
+                    "#private-workload-management-access",
+                    (skills / relative).read_text(encoding="utf-8"),
+                )
+
+    def test_private_management_acceptance_separates_operator_backend_and_negative_paths(self) -> None:
+        skill = ROOT / ".github" / "skills"
+        text = (skill / "az-azure-validate/SKILL.md").read_text(encoding="utf-8")
+        section = text.split("### Private management access acceptance\n", 1)[1].split("\n### ", 1)[0]
+        for requirement in (
+            "operator can actually enter the management VM",
+            "browser reaches the private Foundry data-plane",
+            "own Azure credentials, not the VM managed identity",
+            "real backend agent calls succeed",
+            "negative case, not a successful private test",
+            "host, principal, endpoint/operation, timestamp, result",
+        ):
+            with self.subTest(requirement=requirement):
+                self.assertIn(requirement, section)
+        architecture = (skill / "az-azure-artifacts/templates/02-architecture-assessment.template.md").read_text(
+            encoding="utf-8",
+        )
+        for requirement in (
+            "Human browser administration", "Human CLI/SDK administration", "Deployment-user access matrix",
+        ):
+            with self.subTest(requirement=requirement):
+                self.assertIn(requirement, architecture)
+
+    def test_setup_and_learner_architectures_preserve_management_challenge_option(self) -> None:
+        skills = ROOT / ".github" / "skills"
+        contract = (skills / "hack-builder-workflow" / "SKILL.md").read_text(encoding="utf-8")
+        section = contract.split("### Setup architecture versus hack architecture\n", 1)[1].split("\n### ", 1)[0]
+        for requirement in (
+            "does not authorize hack planning before scenario approval",
+            "preprovided, learner-built or coach-only",
+            "Do not copy the full setup architecture into the participant starter",
+            "Retain an independent coach administration path",
+            "Private administration access may be a learner challenge",
+            "before the first private operation",
+            "tested, isolated fallback",
+            "Preprovide only indispensable bootstrap access and permissions",
+        ):
+            with self.subTest(requirement=requirement):
+                self.assertIn(requirement, section)
+        for relative in (
+            ".github/agents/az-01-conductor.agent.md",
+            ".github/skills/az-scenario-architecture/SKILL.md",
+            ".github/skills/az-azure-artifacts/templates/02-architecture-assessment.template.md",
+            ".github/skills/azure-foundry-hack-builder/SKILL.md",
+            ".github/instructions/hack-authoring.instructions.md",
+        ):
+            with self.subTest(path=relative):
+                self.assertIn(
+                    "#setup-architecture-versus-hack-architecture",
+                    (ROOT / relative).read_text(encoding="utf-8"),
+                )
+
     def test_identity_setup_guidance_is_wired_across_scenario_procedures(self) -> None:
         skill = ROOT / ".github" / "skills"
         contract = (skill / "hack-builder-workflow" / "SKILL.md").read_text(encoding="utf-8")
@@ -400,6 +480,37 @@ class CustomizationTests(unittest.TestCase):
         dotnet = (ROOT / ".github/instructions/az-dotnet-webapp.instructions.md").read_text(encoding="utf-8")
         self.assertNotIn("Add authentication to the sample app (keep it simple for demos)", webapp)
         self.assertNotIn("Do not add authentication/authorization middleware", dotnet)
+
+    def test_full_deployment_user_access_is_a_cross_phase_completion_gate(self) -> None:
+        contract = (ROOT / ".github/skills/hack-builder-workflow/SKILL.md").read_text(encoding="utf-8")
+        section = contract.split("### Deployment-user full scenario access\n", 1)[1].split("\n### ", 1)[0]
+        for requirement in (
+            "**Hard requirement:**",
+            "administer every scenario Azure resource",
+            "fully access and manage its data components",
+            "deployment-user access matrix",
+            "IoT Hub Data Reader",
+            "IoT Hub Data Contributor",
+            "not sufficient for full data administration",
+            "IaC or installation automation",
+            "Execute grants only within authorized scope",
+            "deployment user's Microsoft Entra credentials",
+            "safe create/update/delete probes",
+            "denied, unverified or incomplete access blocks completion",
+        ):
+            with self.subTest(requirement=requirement):
+                self.assertIn(requirement, section)
+        for relative in (
+            ".github/agents/az-01-conductor.agent.md",
+            ".github/skills/az-scenario-architecture/SKILL.md",
+            ".github/skills/az-scenario-bicep/SKILL.md",
+            ".github/skills/az-azure-validate/SKILL.md",
+        ):
+            with self.subTest(path=relative):
+                self.assertIn(
+                    "#deployment-user-full-scenario-access",
+                    (ROOT / relative).read_text(encoding="utf-8"),
+                )
 
     def test_agentic_catalog_has_all_18_patterns_and_source_pages(self) -> None:
         guide = (

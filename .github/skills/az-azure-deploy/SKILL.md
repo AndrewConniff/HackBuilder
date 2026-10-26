@@ -70,6 +70,9 @@ Real authorization/policy failures remain explicit blockers; never fabricate IDs
 For private services, consume the architecture's
 [private-workload management access](../hack-builder-workflow/SKILL.md#private-workload-management-access).
 Run publishing, initialization and acceptance from the designed connected execution host.
+Install the reviewed human browser/CLI administration path as well as unattended automation.
+Verify operator entry and the deploying user's private resource/data access; a successful Run Command is not enough.
+Record the private host and sign-in steps in the operator runbook without publishing credentials.
 Validate real DNS/TLS and authenticated data-plane access there, not only local route metadata.
 Do not mark an absent designed execution path as a routine user workstation prerequisite: report the design gap,
 propose its consolidated repair/cost and obtain any missing scope authorization before creating management resources.

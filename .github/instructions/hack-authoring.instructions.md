@@ -69,6 +69,16 @@ When I ask for a hack, hackathon, challenge, lab, or workshop, assume:
 
 ## Default output shape
 
+Apply [setup versus hack architecture](
+../skills/hack-builder-workflow/SKILL.md#setup-architecture-versus-hack-architecture).
+Keep the complete setup/operator architecture separate from the hack/learner architecture.
+Do not copy the reference management VM, Bastion/VPN and administrative grants into the starter by default.
+After approval, classify these as preprovided, learner-built or coach-only in the private resource matrix.
+Private administration access may be a challenge tied to the agent outcome, with a bounded time budget,
+an early dependency checkpoint and a tested isolated fallback. Keep coach administration independent of learners.
+Public goals test allowed private access, scoped data operations and expected outside-network denial;
+the reference topology and exact recovery steps stay private. This does not authorize pre-approval authoring.
+
 For sample-app access, follow the [local-account and Azure RBAC contract](
 ../skills/hack-builder-workflow/SKILL.md#sample-application-accounts-and-azure-resource-access).
 Both participant and coach guides explain local sign-in, usernames, assigned roles and secure credential delivery.

@@ -35,16 +35,34 @@ to the requirements' industry/unit outcome. Do not select infrastructure first a
 For private workloads, apply the
 [management-access contract](../../hack-builder-workflow/SKILL.md#private-workload-management-access).
 For public-only workloads, state why a separate management network is unnecessary.
+Describe the complete setup/operator architecture, not a prebuilt learner solution. Apply
+[setup versus hack architecture](../../hack-builder-workflow/SKILL.md#setup-architecture-versus-hack-architecture).
 
 | Operation | Execution host and identity | Network/DNS path | Bootstrap and acceptance |
 | --- | --- | --- | --- |
 | Provision/publish | {host; scoped identity} | {control/data endpoints} | {ordering; checks} |
 | Initialize/test | {connected host; identity} | {DNS, routing, egress} | {positive/negative tests} |
-| Troubleshoot | {VPN or private VM/Bastion} | {remote/service access} | {sign-in; lifecycle; cleanup} |
+| Human browser administration | {VM or VPN client; Azure user} | {Bastion/VPN; private DNS} | {entry/data-plane test} |
+| Human CLI/SDK administration | {private host; Azure user} | {resource/data endpoints} | {safe CRUD and cleanup} |
 
 Record the recommended option, rejected alternatives, additional resources/SKUs, quota and ongoing costs.
+Default to a private management VM reached through Bastion/VPN unless equivalent existing operator access is verified.
+Specify VM login, Azure user sign-in, browser/CLI tooling, artifact transfer and separate automation wiring.
+A Run Command-only VM is not complete human administration. Prove an allowed private operation and an expected
+outside-network denial separately; backend agent-call denial is not an expected success.
 Distinguish supported public-IP exceptions from private-only access; do not silently weaken requirements.
 Include management components in the diagram and the consolidated deployment scope.
+
+### Deployment-user access matrix
+
+Cover every resource/data component, not only workload operations. Record the deploying user's tenant/object ID
+and verification host; effective inherited grants may be reused only after verification.
+
+| Resource/scope | Administrative roles/grants | Data read/write/manage | User-credential verification |
+| --- | --- | --- | --- |
+| {resource} | {effective scoped roles} | {RBAC/native grants and operations} | {private host; probe; cleanup} |
+
+Missing access or a missing human management path blocks completion; managed-identity success is separate evidence.
 
 ### Recommended Architecture
 

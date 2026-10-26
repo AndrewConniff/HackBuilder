@@ -72,6 +72,11 @@ Write separate participant and coach credentials in private deployment-specific 
 public guide templates contain no live passwords. Provision least-privilege Azure RBAC for both the
 workload managed identities and the signed-in deploying admin user so the full setup can be validated.
 Local app passwords never authenticate Azure resource calls.
+**Hard requirement:** Apply [deployment-user full scenario access](
+../skills/hack-builder-workflow/SKILL.md#deployment-user-full-scenario-access).
+Design, provision and prove the deployment user's administrative control-plane and full data-plane access
+for every scenario component, including IoT device registry/twin access when applicable.
+Missing or unverified user access blocks reference completion and suitability review; app access alone is not proof.
 
 1. Build requirements, architecture, diagrams, Bicep, application and tests.
 1. Reuse configured Azure identity and prerequisite observations. Perform authorized readiness/what-if.
@@ -105,6 +110,10 @@ Do not install shared tools or change shared Azure defaults as a workaround.
 
 For private workloads, design [management access](../skills/hack-builder-workflow/SKILL.md#private-workload-management-access)
 before provisioning, including the actual host that runs publishing, initialization and tests.
+Include a usable human browser/CLI administration path, not only an automation or Run Command VM.
+Apply [setup versus hack architecture](
+../skills/hack-builder-workflow/SKILL.md#setup-architecture-versus-hack-architecture):
+prove the complete operator setup now; learner-built private access is a separate post-approval composition decision.
 For required Entra setup, follow
 [scenario-owned identity setup](../skills/hack-builder-workflow/SKILL.md#scenario-owned-application-identity-setup),
 generate idempotent installation and capture real IDs automatically.

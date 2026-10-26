@@ -212,9 +212,17 @@ workstation prerequisite after provisioning. During design, inventory both contr
 for provisioning, image publishing, fixture ingestion, agent initialization, runtime tests and troubleshooting.
 An ARM deployment succeeding does not prove the execution host can reach private service endpoints.
 
-- Reuse an existing authorized VPN/connected runner when available. Otherwise recommend the simplest viable
-  path: a VNet-connected automation runner for unattended operations, and, when interactive administration is
-  needed, a management VM without a public IP reached through Azure Bastion or an approved VPN.
+- Design two explicit paths: human administration and unattended automation. For private workloads,
+  human administration is required, not an optional troubleshooting enhancement.
+  Default to a management VM without a public IP in the workload VNet or an approved connected management VNet,
+  reached through Azure Bastion or an approved VPN. Reuse an existing operator environment only after verifying
+  equivalent browser/CLI access, private DNS/routing and the deploying user's resource/data administration.
+  A deployment-only runner or a VM accessible only through Run Command is not a complete human administration path.
+  The operator must have a browser running inside the private network, or a VPN-connected local browser with
+  working private DNS. An SSH-only session is insufficient when browser-based Foundry administration is required.
+  Document VM sign-in and Azure browser/CLI sign-in separately; use the deploying user's own Azure credentials,
+  not the VM's managed identity or local sample-app accounts, for human administration acceptance.
+  Keep a VNet-connected execution host for unattended operations; it may reuse the VM only when explicitly wired.
   Bastion is interactive VM access, not automatic network connectivity for the local Copilot worker.
   Explain how scripts/artifacts reach the execution host and how results return; do not assume portal access
   or a jump VM makes local azd hooks run inside the VNet.
@@ -235,15 +243,41 @@ An ARM deployment succeeding does not prove the execution host can reach private
   the management path itself requires access that only that path provides.
   Validate DNS, TCP/TLS and an authenticated service operation from the actual execution host after provisioning,
   plus the expected unauthorized/outside-network denial. Route metadata alone is not acceptance evidence.
+  Separately prove operator entry, browser-based Foundry data-plane access and CLI/SDK administration from
+  the documented private host using the deploying user's identity. Record host, principal, operation and result.
+  A blocked outside-network browser is an expected negative case, not proof of working private administration.
+  An expected outside-network denial never excuses a backend agent-call 403 on the intended allowed path.
+  Missing or unverified human administration blocks reference completion and suitability review.
   Before provisioning, document planned checks without probing nonexistent endpoints or inventing success.
 - For existing deployments, an absent management path is a design gap: propose one consolidated repair with
   cost/security impact. Create no VM, VPN, runner, peering or firewall exception outside recorded authorization.
   Actual host/tenant restrictions remain blockers; never bypass a denied execution environment.
 
-Design evidence (reviewed 2026-10-23):
+Design evidence (reviewed 2026-10-26):
 [Private Endpoint DNS](https://learn.microsoft.com/azure/private-link/private-endpoint-dns) and
 [Azure Bastion](https://learn.microsoft.com/azure/bastion/bastion-overview).
+The [Foundry network-isolation guide](https://learn.microsoft.com/azure/foundry/how-to/configure-private-link)
+describes VPN/ExpressRoute or a Bastion-connected VM as private access options.
 Refresh service/SKU-specific evidence when selecting a concrete scenario option.
+
+### Setup architecture versus hack architecture
+
+The setup/operator architecture is the complete reference and coach operating environment, including the
+human administration path, automation, private DNS, resource/data permissions and recovery tools.
+Document it separately from the hack/learner architecture; a working operator path must not depend on learners
+finishing a challenge. This distinction does not authorize hack planning before scenario approval.
+
+After approval, composition maps each management component to preprovided, learner-built or coach-only in the
+private reference-to-starter resource matrix. Do not copy the full setup architecture into the participant starter.
+Retain an independent coach administration path; never give learners coach administrator access as a fallback.
+
+Private administration access may be a learner challenge when it serves the approved agent-building outcome.
+Specify observable outcomes rather than prescribing the reference VM/Bastion solution: authorized private
+browser/CLI access works, scoped data operations succeed and outside-network access remains denied.
+Schedule the access checkpoint before the first private operation that depends on it, within the learning budget,
+with a tested, isolated fallback that preserves the last working agent checkpoint.
+Preprovide only indispensable bootstrap access and permissions; do not make the learner deployer depend on an
+access path it must first create. Keep complete topology and recovery instructions in private coach materials.
 
 ### Sample application accounts and Azure resource access
 
@@ -279,6 +313,44 @@ If that integration needs admin consent, stop the affected integration and retai
   not permission to elevate or silently omit validation.
 - Prove local login/logout, failed login/lockout, anonymous and wrong-role denial, and the real app-to-Azure
   managed-identity path. Deployer probes complement, but never replace, runtime managed-identity acceptance.
+
+### Deployment-user full scenario access
+
+**Hard requirement:** The deployment user must be able to administer every scenario Azure resource and
+fully access and manage its data components. A successful deployment or working application is not sufficient.
+This applies to new scenarios and repairs of existing scenarios; never leave required access as a manual
+post-deployment task for the user.
+
+- During architecture, inventory every resource and data component in a deployment-user access matrix:
+  resource/scope, deploying user's tenant/object ID, control-plane administrative operations and roles,
+  data-plane read/write/manage operations and roles or service-native grants, and the verification operation.
+  Resolve the signed-in user from the confirmed CLI context; do not confuse the user with a workload identity
+  or automation service principal. If automation deploys, identify the intended human administrator separately;
+  obtain that identity only when it cannot be resolved from existing confirmed inputs.
+- Cover resource administration and the complete scenario data lifecycle, not just read access or the
+  operations exercised by the app. Subscription ownership alone does not grant service data-plane access.
+  Select the least-privilege role combination that covers full scenario administration at resource or
+  scenario-resource-group scope; never grant subscription-wide or tenant-wide privileges as a shortcut.
+  Reuse verified effective inherited assignments instead of creating duplicates.
+- For IoT Hub, include device registry and twin visibility and management. **IoT Hub Data Reader** permits
+  inspection but is not sufficient for full data administration; use **IoT Hub Data Contributor** when full
+  IoT Hub data-plane operations are required. Verify current service role definitions rather than assuming
+  a resource Owner/Contributor assignment grants data access. Apply the equivalent service-specific checks
+  to storage, databases, messaging, search, Foundry and every other selected data service.
+  See [IoT Hub Microsoft Entra authorization](https://learn.microsoft.com/azure/iot-hub/authenticate-authorize-azure-ad)
+  (role semantics checked 2026-10-26).
+- Implement missing assignments/grants idempotently in IaC or installation automation. Include RBAC in
+  what-if and document any service-native grants outside ARM what-if in the same deployment review.
+  Preserve separate least-privilege workload identities; do not give workloads the user's administrative roles.
+  Execute grants only within authorized scope. Missing assignment authority, policy restrictions or an
+  unreachable private data endpoint are explicit blockers, not permission to bypass security or omit access.
+- Before reporting the reference complete or presenting it for suitability approval, prove the matrix using
+  the deployment user's Microsoft Entra credentials from the documented management path, not shared keys,
+  local app credentials or the workload identity. Verify effective administration permissions plus real
+  data-plane list/read and safe create/update/delete probes where supported, using disposable test data.
+  For IoT Hub, prove device listing and a disposable device/twin management operation. Preserve business data.
+  Record principal, scope, operations, exact results and any cleanup in the deployment summary.
+  Allow bounded RBAC propagation retries; any denied, unverified or incomplete access blocks completion.
 
 ### Scenario-owned application identity setup
 

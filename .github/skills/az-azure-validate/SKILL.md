@@ -329,6 +329,39 @@ if ($whatif -match "Delete") {
 
 ## 8. Post-Deployment Validation
 
+### Private management access acceptance
+
+Apply [private-workload management access](
+../hack-builder-workflow/SKILL.md#private-workload-management-access) separately to human and automation paths.
+For private workloads, prove all of the following from the documented hosts within authorized scope:
+
+- The operator can actually enter the management VM through Bastion/VPN, or use verified equivalent connectivity.
+- The operator's browser reaches the private Foundry data-plane experience and performs an authenticated operation.
+  State whether the browser runs on the VM or on a VPN-connected client; a local portal page alone is insufficient.
+- CLI/SDK resource administration and safe data-plane read/write/manage probes succeed using the deploying user's
+  own Azure credentials, not the VM managed identity. Apply the full access matrix below.
+- Publishing/initialization and real backend agent calls succeed through their separate workload identity path.
+- Outside-network access is denied as designed. Record that as a negative case, not a successful private test.
+
+Record host, principal, endpoint/operation, timestamp, result and disposable-data cleanup without secrets.
+DNS/TLS success, a provisioned VM or Run Command success alone does not establish operator access.
+An expected outside-network browser denial does not excuse a backend agent-call 403.
+Missing or unverified human administration blocks reference completion and suitability review.
+
+### Deployment-user full scenario access acceptance
+
+Apply the hard [deployment-user full scenario access](
+../hack-builder-workflow/SKILL.md#deployment-user-full-scenario-access) requirement.
+Verify every row of the architecture's deployment-user access matrix using the confirmed user's
+Microsoft Entra credentials and the documented management-network path.
+Check effective control-plane administrative permissions and perform real data-plane list/read and safe
+create/update/delete probes with disposable data, including IoT Hub device registry/twin access when selected.
+Check service-native grants as well as Azure RBAC; a role-assignment listing alone does not prove usable access.
+Record the principal, resource scope, operation, result and test-data cleanup in the deployment summary.
+Use bounded retries for propagation; denied, unverified or incomplete user access blocks reference completion
+and suitability review. Never substitute workload-identity success, service keys or app sign-in for these checks.
+Run separate workload managed-identity acceptance too; user administration rights must not be copied to workloads.
+
 ### Agentic business workflow acceptance
 
 Read the confirmed [pattern contract](../az-scenario-requirements/references/agentic-patterns.md).

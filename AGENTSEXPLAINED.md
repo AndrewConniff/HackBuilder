@@ -263,6 +263,17 @@ discard required security or data-ownership constraints.
 
 ## Verification
 
+The **2026-10-26** private-management guidance distinguishes the complete setup/operator architecture from
+the hack/learner architecture. Private references need verified human browser/CLI access as well as automation;
+a management VM usable only through Run Command is insufficient. Architecture, IaC, deployment, diagrams,
+validation and templates consume the shared
+[management-access contract](.github/skills/hack-builder-workflow/SKILL.md#private-workload-management-access).
+Post-approval composition applies the
+[setup/learner boundary](.github/skills/hack-builder-workflow/SKILL.md#setup-architecture-versus-hack-architecture):
+private access can be learner-built without copying the full operator setup or depending on learners for coach access.
+Local customization tests check these requirements and links, not live administration or guaranteed agent compliance.
+This guidance update does not provision a management path or change existing scenario validation.
+
 The **2026-10-22** two-agent refactor is configuration and local regression work.
 The October 21 invocation counts above describe the old flow only. No new actual
 agent invocation, Azure deployment, performance gain or portal acceptance is
