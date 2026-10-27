@@ -38,6 +38,11 @@ STAGE_REQUIREMENTS = {
 }
 
 
+def system_plan() -> dict:
+    """Return the same fixed full-toolchain profile used by the portal System page."""
+    return plan(sorted(SERVICE_REQUIREMENTS), "local", local_functions=True, load_tests=True)
+
+
 def plan(
     services: object, build_mode: str = "auto", local_functions: bool = False, load_tests: bool = False,
 ) -> dict:

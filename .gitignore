@@ -84,3 +84,7 @@ generated-scenarios/
 # Playwright screenshot artifacts
 .playwright-mcp/
 .vscode/settings.json
+
+# Local third-party installers and prerequisite reports (never redistribute through Git)
+system-tools/cache/
+system-tools/reports/

@@ -256,9 +256,9 @@ def build_report(root: Path = ROOT, contributor: bool = False, docker: bool = Fa
 
 
 def service_report(services: list[str], build_mode: str = "auto", local_functions: bool = False,
-                   root: Path = ROOT, load_tests: bool = False) -> dict:
+                   root: Path = ROOT, load_tests: bool = False, contributor: bool = False) -> dict:
     profile = profiles.plan(services, build_mode, local_functions, load_tests)
-    report = build_report(root, docker="docker" in profile["stages"]["local-validation"])
+    report = build_report(root, contributor=contributor, docker="docker" in profile["stages"]["local-validation"])
     if local_functions:
         report["checks"].append(tool_check((
             "functions-core-tools", "Azure Functions Core Tools 4+", "func", ["--version"], 4,
@@ -304,16 +304,25 @@ def main() -> int:
     parser.add_argument("--json", action="store_true")
     parser.add_argument("--contributor", action="store_true")
     parser.add_argument("--docker", action="store_true")
-    parser.add_argument("--services", nargs="+", choices=sorted(profiles.SERVICE_REQUIREMENTS))
+    scope = parser.add_mutually_exclusive_group()
+    scope.add_argument("--services", nargs="+", choices=sorted(profiles.SERVICE_REQUIREMENTS))
+    scope.add_argument("--system", action="store_true", help="Use the portal's fixed full-toolchain System profile.")
     parser.add_argument("--build-mode", choices=["auto", "local", "remote"], default="auto")
     parser.add_argument("--local-functions", action="store_true")
     parser.add_argument("--load-tests", action="store_true", help="Check k6 for an explicitly selected load-test design.")
     parser.add_argument("--stage", choices=list(profiles.STAGE_REQUIREMENTS))
     args = parser.parse_args()
     try:
-        services = args.services
+        if args.system and (args.build_mode != "auto" or args.local_functions or args.load_tests or args.docker):
+            parser.error("--system already fixes local Docker, Functions and k6; omit other profile switches.")
+        system = profiles.system_plan() if args.system else None
+        services = system["services"] if system else args.services
         report = (
-            service_report(services, args.build_mode, args.local_functions, load_tests=args.load_tests)
+            service_report(
+                services, system["buildMode"] if system else args.build_mode,
+                system["localFunctions"] if system else args.local_functions,
+                load_tests=system["loadTests"] if system else args.load_tests, contributor=args.contributor,
+            )
             if services is not None
             else build_report(contributor=args.contributor, docker=args.docker)
         )

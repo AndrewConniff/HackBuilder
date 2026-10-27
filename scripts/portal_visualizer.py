@@ -85,9 +85,7 @@ class Studio:
     def prerequisite_plan(self, data: dict) -> dict:
         if {"projectSlug", "services", "buildMode", "localFunctions", "loadTests"} & data.keys():
             raise ValueError("System checks are workspace-wide, not scenario-specific. Refresh the portal.")
-        profile = prerequisite_profiles.plan(
-            sorted(prerequisite_profiles.SERVICE_REQUIREMENTS), "local", local_functions=True, load_tests=True,
-        )
+        profile = prerequisite_profiles.system_plan()
         path = self.state / "system-prerequisites.json"
         report = scenario_catalog.read_json(path) if path.is_file() else None
         legacy = self.state / "tool-settings.json"

@@ -260,6 +260,34 @@
     },
     {
       "schemaVersion": 1,
+      "id": "live-demo-project",
+      "title": "Adatum Corporation brokerage service desk",
+      "summary": "Company-only brokerage answers with exact approved citations and accountable human takeover.",
+      "industry": "Financial Services",
+      "businessUnits": [
+        "generic"
+      ],
+      "services": [
+        "foundry"
+      ],
+      "pillars": [],
+      "domains": [],
+      "artifacts": [
+        "01-requirements.md",
+        "02-architecture-assessment.md",
+        "04-implementation-plan.md",
+        "03-architect-diagram.png",
+        "04-runtime-diagram.png",
+        "azure.yaml",
+        "infra",
+        "src"
+      ],
+      "source": null,
+      "metadataStatus": "curated",
+      "manifestDigest": "14b6f716e4b41c8763f92d53ab4ef1af22cb96e02a928318cb575fa5c143359e"
+    },
+    {
+      "schemaVersion": 1,
       "id": "manu-multi-agent",
       "title": "Manufacturing Sales-to-Marketing multi-agent handoff",
       "summary": "Adventure Works Cycles Sales and Marketing reference with private keyless infrastructure, bounded three-agent application, offline validation and guarded complete-reference installation wiring. Cloud deployment and live proof remain pending.",

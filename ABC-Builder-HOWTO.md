@@ -15,6 +15,8 @@ they are not a claim that every pictured stage was already complete.
 
 - [Understand the two-window workflow](#understand-the-two-window-workflow)
 - [Prepare your machine and open ABC Builder](#prepare-your-machine-and-open-abc-builder)
+- [Choose manual, online or cached setup](#choose-manual-online-or-cached-setup)
+- [Manual tool inventory and official downloads](#manual-tool-inventory-and-official-downloads)
 - [Navigate the browser app](#navigate-the-browser-app)
 - [Step 1: describe your scenario](#step-1-describe-your-scenario)
 - [Step 2: continue in VS Code](#step-2-continue-in-vs-code)
@@ -68,7 +70,10 @@ not scenario implementation or Azure deployment.
 
 ### Prepare once
 
-Follow the [prerequisite guide](PREREQUISITES.md) for installation and authentication instructions.
+Use the [setup choices below](#choose-manual-online-or-cached-setup), not just the System diagnostic.
+We provide an opt-in PowerShell installer and a local native-installer download cache under
+[`system-tools`](system-tools/README.md), as well as manual download links.
+The [prerequisite guide](PREREQUISITES.md) covers authentication and detailed troubleshooting.
 Before your first scenario:
 
 1. Open this repository as the active VS Code workspace and review Workspace Trust.
@@ -84,6 +89,174 @@ Before your first scenario:
 The portal itself uses Python's standard library.
 The broader toolchain is needed to generate and validate the reference, not simply to render the page.
 Do not install arbitrary packages in response to a scenario delay; use the documented diagnostics first.
+
+### Choose manual, online or cached setup
+
+Run these commands from the repository root in PowerShell. Windows PowerShell 5.1 can bootstrap setup;
+PowerShell 7+ is still required for scenario work. Follow your organization's script approval/signing policy.
+The scripts do not bypass execution policy.
+
+| Route | Best when | What happens |
+| --- | --- | --- |
+| Manual | Automated installation is not permitted. | Use the official links below; run checks afterward. |
+| Download baseline | You want the same native versions locally. | Downloads every pinned tool; installs nothing. |
+| Download and install | You want one opt-in Windows x64 flow. | Verifies all downloads, then installs from cache. |
+
+**Cached/offline native installation is not fully offline ABC Builder setup.**
+The cache includes the native tools and Bicep, but does not include Python wheels, vendor dependencies, WSL images,
+VS Code extensions or generated application NuGet packages.
+Installation still needs network access for missing Python requirements.
+Final checks include NuGet HTTPS, and Copilot/Azure sign-in needs connectivity.
+For an air-gapped machine, use your organization's separately approved complete software/package mirror;
+this repository does not supply or certify one.
+
+Check the full System profile first; this installs nothing:
+
+```powershell
+.\system-tools\Install-SystemTools.ps1 -Mode Check
+```
+
+Download the complete pinned native baseline without installing anything, including Node.js and GitHub CLI:
+
+```powershell
+.\system-tools\Install-SystemTools.ps1 -WhatIf
+.\system-tools\Install-SystemTools.ps1 -AcceptPackageAgreements -Verbose
+```
+
+To download/reuse the same files and optionally install missing tools in **one flow**,
+finish scenario work, close the portal, review vendor agreements and add `-Install`:
+
+```powershell
+.\system-tools\Install-SystemTools.ps1 -Install -AcceptPackageAgreements -Verbose
+```
+
+The script installs only missing/failed native tools, creates or preserves the repository `.venv`,
+installs [`requirements.txt`](requirements.txt), copies cached Bicep into the Azure CLI configuration directory
+and reruns the complete selected checks. All native downloads must verify before any native installation.
+Clean machines receive pinned versions; existing compatible versions are preserved rather than forcibly downgraded.
+Readiness checks verify supported versions and behavior, not exact equality with the download baseline.
+Timestamped messages distinguish already-ready tools, installation, verification, manual actions and failures.
+`-Verbose` streams command details/output. JSON outcomes go to the ignored `system-tools\reports` folder.
+An installer exit alone never means the toolchain passed.
+
+Docker licensing is a separate choice. If Docker is missing, the preceding command leaves it as a manual action.
+After reviewing [Docker's Windows requirements and subscription terms][docker-download],
+prepare working WSL 2.1.5+ and virtualization, then explicitly permit Docker installation:
+
+```powershell
+.\system-tools\Install-SystemTools.ps1 -Install -AcceptPackageAgreements -AcceptDockerLicense -Verbose
+```
+
+The script does not enable WSL/Hyper-V, restart Windows or start Docker.
+Docker Desktop is unsupported on Windows Server; the Linux engine must actually be running for System readiness.
+An installed but stopped/misconfigured Docker engine is reported for manual repair, not reinstalled.
+Some vendor installers require administrator approval or a reboot; setup does not relaunch itself elevated.
+
+The default download uses `system-tools\cache` and reuses matching verified files.
+To install on Windows **x64** without permitting any additional native downloads:
+
+```powershell
+.\system-tools\Install-SystemTools.ps1 -Install -UseCachedInstallers -AcceptPackageAgreements -Verbose
+```
+
+Add `-AcceptDockerLicense` if a new Docker installation is wanted.
+This automated baseline is x64-only; downloading it from an ARM64 host is supported, installing it is not.
+Manual ARM64/native installers remain available from the official sources below.
+Downloads can be large, especially Docker and the .NET SDK; allow several GB of space.
+
+[`tool-catalog.json`](system-tools/tool-catalog.json) pins each native version, official download URL and SHA256.
+Every user gets the same locked native files, without WinGet or resolving "latest".
+Download and reuse check the bytes against the repository-pinned SHA256 and Authenticode status/publisher.
+Catalogued open-source exceptions (Graphviz, k6 and GitHub CLI) may be unsigned;
+their hashes must still match the repository lock.
+Keep installer files **and receipts** trusted: a locally generated receipt is not a signed publisher manifest.
+Corrupt, missing or unexpected cache files stop installation; there is no silent online fallback.
+Vendor format changes may require a recipe update or manual installation.
+
+Downloaded binaries, receipts and reports are ignored by Git and are not shipped with the source repository.
+Do not force-add them or redistribute third-party installers without permission.
+Existing verified downloads are reused. Maintainers update versions/hashes through a reviewed catalog change.
+To recover an incomplete or older-baseline download, inspect/preserve the old cache and select a new `-CacheDirectory`.
+
+Node.js/npm and GitHub CLI are included by default; no contributor switch is needed.
+Use `-Mode Check` for read-only checks or `-SkipVSCode` if VS Code is managed separately.
+Setup does not install Copilot extensions or sign you in.
+See the [setup reference](system-tools/README.md) for custom paths, reports and exit codes.
+
+After setup, open a fresh terminal/VS Code, complete Copilot and Azure sign-in yourself,
+start Docker's Linux engine, rerun **Check**, and rerun both diagnostics in the portal's System page.
+The installer does not update the portal's saved diagnostic results or grant Azure deployment permission.
+
+### Manual tool inventory and official downloads
+
+You can install everything manually. Prefer your approved software channel or these official sources.
+Select installers for your OS/CPU; the automated cache is specifically Windows x64.
+The **full System profile** requires Docker, Functions Core Tools and k6 even if your first scenario does not use them.
+Narrow scenario checks may require less; a narrower successful report is not a full System pass.
+
+| Tool | Official source | Verification / requirement |
+| --- | --- | --- |
+| WinGet / Microsoft App Installer | [Installation guide][winget-download] | Optional legacy online installer |
+| Python 3.10+ | [Python downloads][python-download] | `python --version`; bootstrap selects 3.13 if missing |
+| Git | [Git for Windows][git-download] | `git --version` |
+| PowerShell 7+ | [PowerShell installation][pwsh-download] | `pwsh --version`; 5.1 alone is not enough |
+| .NET **10 SDK** | [.NET 10 downloads][dotnet-download] | `dotnet --list-sdks`; stable 10.x, not just runtime |
+| Native Graphviz | [Graphviz downloads][graphviz-download] | `dot -V`; Python's graphviz package is not enough |
+| Azure CLI | [Azure CLI installation][az-download] | `az --version` |
+| Azure Developer CLI | [azd installation][azd-download] | `azd version` |
+| Azure CLI Bicep component | [Bicep installation][bicep-download] | `az bicep install`, then `az bicep version` |
+| Docker Desktop | [Docker Windows setup][docker-download] | `docker info`; responsive **Linux** engine |
+| WSL 2 / virtualization | [WSL installation][wsl-download] | `wsl --version` and `wsl --status`; manual OS setup |
+| Functions Core Tools 4+ | [Functions local development][functions-download] | `func --version` |
+| Grafana k6 | [k6 installation][k6-download] | `k6 version` |
+| Visual Studio Code | [VS Code downloads][vscode-download] | `code --version`; 1.143+ for the local bridge |
+| GitHub Copilot | [Copilot setup in VS Code][copilot-download] | Install/enable, sign in and review Workspace Trust |
+| Scenario Chat bridge | [Local bridge instructions][bridge-setup] | Optional existing-chat navigation |
+| Node.js LTS, npm/npx | [Node.js downloads][node-download] | Included in setup; `node --version` must be 22+ |
+| GitHub CLI | [GitHub CLI downloads][gh-download] | Included in setup; `gh --version` |
+
+The repository Python environment is also required, not just a global Python installation:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install --requirement requirements.txt
+.\.venv\Scripts\python.exe -m pip check
+.\.venv\Scripts\python.exe -B scripts\check_prerequisites.py --system
+```
+
+Do not recreate or overwrite an existing `.venv`; preserve and repair it if necessary.
+[`requirements.txt`](requirements.txt) is authoritative. Current minimums and official package pages:
+
+- [diagrams on PyPI](https://pypi.org/project/diagrams/): `>=0.23.4`.
+- [matplotlib on PyPI](https://pypi.org/project/matplotlib/): `>=3.8`.
+- [Pillow on PyPI](https://pypi.org/project/pillow/): `>=10.0`.
+- [Checkov on PyPI](https://pypi.org/project/checkov/): `>=3.0`.
+
+The checker verifies package minimums, dependency consistency and a real PNG render, not merely imports.
+Generated .NET apps restore their own packages using the repository's approved
+[`NuGet.Config`](NuGet.Config) feed. Corporate proxy/certificate issues need an approved IT fix,
+not disabled TLS verification.
+The portal needs no Node/npm installation task, Copilot CLI or Python Playwright/Chromium baseline.
+Scenario-specific browser tests or other extra tools must be documented separately when chosen.
+
+[winget-download]: https://learn.microsoft.com/windows/package-manager/winget/
+[python-download]: https://www.python.org/downloads/windows/
+[git-download]: https://git-scm.com/downloads/win
+[pwsh-download]: https://learn.microsoft.com/powershell/scripting/install/installing-powershell-on-windows
+[dotnet-download]: https://dotnet.microsoft.com/download/dotnet/10.0
+[graphviz-download]: https://graphviz.org/download/
+[az-download]: https://learn.microsoft.com/cli/azure/install-azure-cli-windows
+[azd-download]: https://learn.microsoft.com/azure/developer/azure-developer-cli/install-azd
+[bicep-download]: https://learn.microsoft.com/azure/azure-resource-manager/bicep/install
+[docker-download]: https://docs.docker.com/desktop/setup/install/windows-install/
+[wsl-download]: https://learn.microsoft.com/windows/wsl/install
+[functions-download]: https://learn.microsoft.com/azure/azure-functions/functions-run-local
+[k6-download]: https://grafana.com/docs/k6/latest/set-up/install-k6/
+[vscode-download]: https://code.visualstudio.com/download
+[copilot-download]: https://code.visualstudio.com/docs/copilot/setup
+[node-download]: https://nodejs.org/en/download
+[gh-download]: https://cli.github.com/
+[bridge-setup]: tools/vscode-chat-bridge/README.md
 
 ### Open the browser app
 

@@ -361,6 +361,13 @@ class WindowsSetupTests(unittest.TestCase):
         self.assertFalse(json.loads(result.stdout)["ready"])
         self.assertFalse((self.root / ".venv").exists())
 
+    def test_json_output_stays_parseable_when_persisting_an_outcome(self) -> None:
+        path = self.root / "check-outcome.json"
+        result = self.run_setup("-CheckOnly", "-Json", "-ReportPath", str(path))
+        self.assertEqual(1, result.returncode, result.stdout + result.stderr)
+        self.assertFalse(json.loads(result.stdout)["ready"])
+        self.assertFalse(json.loads(path.read_text(encoding="utf-8"))["ready"])
+
     def test_whatif_does_not_install_or_create_environment_or_persist_path(self) -> None:
         graphviz = self.root / "graphviz"
         graphviz.mkdir()
@@ -419,10 +426,10 @@ class WindowsSetupTests(unittest.TestCase):
         self.assertEqual(23, result.returncode, result.stderr)
         self.assertEqual(7, json.loads(result.stdout)["ExitCode"])
 
-    def test_install_sequence_with_simulated_tools_rechecks_before_success(self) -> None:
+    def run_simulated_install(self, final_ready: bool) -> None:
         (self.root / "initial.json").write_text(json.dumps(self.report), encoding="utf-8")
-        final = {**self.report, "ready": True,
-                 "checks": [{**item, "ok": True} for item in self.report["checks"]]}
+        final = {**self.report, "ready": final_ready,
+                 "checks": [{**item, "ok": final_ready} for item in self.report["checks"]]}
         (self.root / "final.json").write_text(json.dumps(final), encoding="utf-8")
         root = str(self.root).replace("'", "''")
         result = subprocess.run(
@@ -443,7 +450,9 @@ function Test-Python {{
     }}
     if ($args -contains '--json') {{
         $name = if (Test-Path (Join-Path $root 'pip-completed')) {{ 'final.json' }} else {{ 'initial.json' }}
-        Get-Content -LiteralPath (Join-Path $root $name) -Raw
+        $json = Get-Content -LiteralPath (Join-Path $root $name) -Raw
+        $global:LASTEXITCODE = if (($json | ConvertFrom-Json).ready) {{ 0 }} else {{ 1 }}
+        $json
         return
     }}
     throw "Unexpected simulated Python invocation: $args"
@@ -469,17 +478,28 @@ function Get-Command {{
     Microsoft.PowerShell.Core\\Get-Command -Name $target -CommandType Function
 }}
 & (Join-Path $root 'scripts\\Install-Prerequisites.ps1') -Install -AcceptPackageAgreements `
-    -PythonExecutable python -GraphvizBin (Join-Path $root 'absent')
+    -PythonExecutable python -GraphvizBin (Join-Path $root 'absent') `
+    -ReportPath (Join-Path $root 'setup-result.json')
+exit $LASTEXITCODE
 """],
             capture_output=True, text=True, timeout=20, check=False,
         )
-        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+        self.assertEqual(0 if final_ready else 1, result.returncode, result.stdout + result.stderr)
+        outcome = json.loads((self.root / "setup-result.json").read_text(encoding="utf-8"))
+        self.assertEqual(final_ready, outcome["ready"])
+        self.assertEqual(final_ready, outcome["verification"]["ready"])
         trace = (self.root / "trace").read_text(encoding="utf-8")
         self.assertIn("--id Graphviz.Graphviz --exact --source winget", trace)
         self.assertIn("bicep install", trace)
         self.assertTrue((self.root / ".venv" / "Scripts" / "python.exe").exists())
         self.assertTrue((self.root / "pip-completed").exists())
         self.assertFalse((self.root / "browser-completed").exists())
+
+    def test_install_sequence_with_simulated_tools_rechecks_before_success(self) -> None:
+        self.run_simulated_install(final_ready=True)
+
+    def test_successful_install_commands_cannot_hide_final_unmet_checks(self) -> None:
+        self.run_simulated_install(final_ready=False)
 
 
 if __name__ == "__main__":

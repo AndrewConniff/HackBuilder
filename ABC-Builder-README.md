@@ -69,8 +69,10 @@ virtual environments, caches and build/test outputs are ignored and must not be 
 Existing local environments and scenario evidence are preserved, not cleaned by deletion.
 Never force-add ignored files when preparing a source share.
 
-Each recipient prepares their own tools and Azure identities using
-[PREREQUISITES.md](PREREQUISITES.md); no Copilot CLI runner or Python browser installation is needed.
+Each recipient prepares their own tools and Azure identities using the
+[manual, online or cached setup routes](ABC-Builder-HOWTO.md#choose-manual-online-or-cached-setup);
+no Copilot CLI runner or Python browser installation is needed.
+Never include the local `system-tools\cache` or `system-tools\reports` folders in a source share.
 
 ## Business scope and reusable scenarios
 
@@ -158,17 +160,53 @@ Existing scenarios are not rewritten or automatically reapproved, and no new por
 
 ## Prerequisites
 
-Start with the [prerequisite guide and safe automated Windows setup](PREREQUISITES.md).
-It checks by default; installation is explicit, and shared tools are never installed by scenario workers.
-The guide covers native Graphviz, the .NET 10 SDK, repository Python environment,
-optional developer/container tools, authentication and stale-PATH troubleshooting.
+Choose manual installation from the [complete official download inventory](
+ABC-Builder-HOWTO.md#manual-tool-inventory-and-official-downloads), or use the opt-in
+[`system-tools` PowerShell setup](system-tools/README.md).
+The default downloads all pinned native tools; installation requires `-Install`.
+Shared tools are never installed by scenario workers.
+The [prerequisite guide](PREREQUISITES.md) also covers authentication and stale-PATH troubleshooting.
+
+From the repository root on Windows:
+
+```powershell
+# Check everything required by the portal's System profile; install nothing.
+.\system-tools\Install-SystemTools.ps1 -Mode Check
+
+# Preview, then download the complete pinned baseline, including Node.js and GitHub CLI.
+.\system-tools\Install-SystemTools.ps1 -WhatIf
+.\system-tools\Install-SystemTools.ps1 -AcceptPackageAgreements -Verbose
+
+# One flow: download/reuse every native tool, then install missing tools from those files on Windows x64.
+.\system-tools\Install-SystemTools.ps1 -Install -AcceptPackageAgreements -AcceptDockerLicense -Verbose
+```
+
+**The offline/native cache is not a fully offline installer for the entire toolchain.**
+Native versions, URLs and SHA256 are pinned in [`tool-catalog.json`](system-tools/tool-catalog.json),
+including Bicep; WinGet is not needed. Missing Python requirements still need network access.
+Vendor dependencies, WSL, extensions and application NuGet packages are not bundled.
+This baseline targets Windows x64; ARM64 users should use official native manual installers.
+Binaries are downloaded locally on request, ignored by Git and not redistributed with this repository.
+Clean machines receive pinned native versions; compatible existing tools are preserved, not forcibly downgraded.
+Add `-UseCachedInstallers` with `-Install` to prohibit additional native downloads and require a complete local cache.
+
+Finish work and close the portal before installation. Review vendor terms first.
+New Docker installation additionally requires `-AcceptDockerLicense`, working WSL 2.1.5+ and virtualization;
+without that separate consent it remains a manual action.
+Setup never starts Docker, reboots Windows, signs in or relaunches itself elevated.
+Vendor installers can require administrator approval.
+Reopen your terminal afterward, complete sign-in and Docker setup, and rerun both System diagnostics.
+Timestamped progress and final checks explain what succeeded; local JSON reports are saved under
+`system-tools\reports`. Node.js/GitHub CLI are always included; no contributor switch is needed.
+Use `-SkipVSCode` only when VS Code is managed separately.
 
 - VS Code and GitHub Copilot custom-agent support, with the `code` launcher
   for portal handoffs; no specialist/subagent fanout is needed.
-- Azure CLI, Azure Developer CLI (`azd`) and Bicep CLI.
+- Azure CLI, Azure Developer CLI (`azd`) and the Azure CLI Bicep component (`az bicep`).
 - .NET 10 SDK for the sample application.
 - Python 3.10+ and Graphviz for diagrams; diagram dependencies are listed in
   [`requirements.txt`](requirements.txt).
+- For the full shared System profile: Docker's running Linux engine, Functions Core Tools 4+ and k6.
 - An Azure subscription with permissions for the required resources and role
   assignments, plus current model quota/capacity in a supported region.
 
