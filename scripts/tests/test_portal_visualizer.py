@@ -55,6 +55,243 @@ class VisualizerTests(unittest.TestCase):
             with self.subTest(field=field), self.assertRaises(ValueError):
                 self.studio.save_brief({**self.data, field: value})
 
+    def test_scoping_intake_is_explicit_and_legacy_briefs_default_to_build(self) -> None:
+        self.assertEqual("build", self.studio.intake(self.data)["intakeMode"])
+        self.studio.save_brief({**self.data, "intakeMode": "scope"})
+        item = self.studio.scenario("test-scenario")
+        self.assertEqual("scope", item["intakeMode"])
+        self.assertIn("Building has not been requested", item["progress"]["summary"])
+        self.assertFalse(item["scoping"]["available"])
+        for value in ("unknown", "", None, True, [], {}):
+            with self.subTest(value=value), self.assertRaisesRegex(ValueError, "intake mode"):
+                self.studio.intake({**self.data, "intakeMode": value})
+
+    def test_scoping_handoff_uses_real_conductor_without_build_identity_or_audit_instructions(self) -> None:
+        self.studio.save_brief({**self.data, "intakeMode": "scope"})
+        state = portal_status.scenario_state(self.root, "test-scenario")
+        original = (state / "request.json").read_bytes()
+        with (
+            patch.object(portal.shutil, "which", return_value="code"),
+            patch.object(portal.subprocess, "run", return_value=Mock(returncode=0)) as launch,
+            patch.object(portal.azure_context, "identity") as identity,
+            patch.object(portal.check_prerequisites, "build_report") as audit,
+        ):
+            result = self.studio.handoff("test-scenario", "scoping")
+        self.assertEqual("handed_off", result["status"])
+        self.assertIn("no build or deployment", result["message"])
+        identity.assert_not_called()
+        audit.assert_not_called()
+        self.assertEqual(2, launch.call_count)
+        command = launch.call_args.args[0]
+        self.assertEqual(["code", "chat", "--mode", "az-01-conductor"], command[:4])
+        self.assertIn(str(state / "scoping-handoff.txt"), command)
+        self.assertTrue(command[-1].startswith("Follow the attached scoping handoff"))
+        text = (state / "scoping-handoff.txt").read_text()
+        for fragment in ("SCOPING ONLY", "prompt-specific", "no predefined questionnaire", "scoping.md",
+                         "waiting_for_user", "brief confirmation", "Do not create a scenario workspace"):
+            self.assertIn(fragment, text)
+        self.assertNotIn("Resolve account, tenantId", text)
+        self.assertNotIn("Implement the story, architecture", text)
+        self.assertEqual(original, (state / "request.json").read_bytes())
+        self.assertFalse(self.studio.folder("test-scenario").exists())
+        self.assertTrue((state / "scenario-chat-started.json").is_file())
+        self.assertIn("AI scoping only", self.studio.scenario("test-scenario")["progress"]["summary"])
+        self.assertFalse(self.studio.scenario("test-scenario")["approval"]["approved"])
+
+    def test_scoping_notes_survive_restart_and_are_attached_to_the_build_handoff(self) -> None:
+        state = self.save()
+        notes = "## Refined scope\n\nConfirmed: operator approval.\n\nOpen: duplicate event recovery.\n"
+        (state / "scoping.md").write_text(notes, encoding="utf-8")
+        restored = portal.Studio(self.root)
+        self.assertEqual(notes, restored.scenario("test-scenario")["scoping"]["text"])
+        with (
+            patch.object(portal.shutil, "which", return_value="code"),
+            patch.object(portal.subprocess, "run", return_value=Mock(returncode=0)) as launch,
+        ):
+            restored.handoff("test-scenario", "scenario")
+        self.assertIn(str(state / "scoping.md"), launch.call_args.args[0])
+        text = (state / "scenario-handoff.txt").read_text()
+        self.assertIn("Adaptive prompt scoping", text)
+        self.assertIn("Do not force questions", text)
+        self.assertIn("not authorization", text)
+
+    def test_scoping_notes_are_bounded_and_do_not_follow_links_out_of_state(self) -> None:
+        state = self.save()
+        notes = state / "scoping.md"
+        notes.write_text("x" * (64 * 1024 + 1), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "64 KiB"):
+            self.studio.scoping_notes("test-scenario")
+        notes.unlink()
+        outside = self.root / "private-notes.md"
+        outside.write_text("Do not expose", encoding="utf-8")
+        try:
+            notes.symlink_to(outside)
+        except OSError:
+            self.skipTest("Host does not permit symbolic links.")
+        with self.assertRaisesRegex(ValueError, "inside this scenario"):
+            self.studio.scoping_notes("test-scenario")
+
+    def test_scoping_followup_reopens_the_same_scenario_chat_without_another_prompt(self) -> None:
+        state = self.save()
+        portal_status.write_json(state / "scenario-chat-started.json", {"phase": "scoping"})
+        with (
+            patch.object(self.studio, "reopen_chat", return_value={"status": "reopened"}) as reopen,
+            patch.object(portal.subprocess, "run") as launch,
+        ):
+            self.assertEqual("reopened", self.studio.handoff("test-scenario", "scenario")["status"])
+        reopen.assert_called_once_with("test-scenario", "scenario")
+        launch.assert_not_called()
+
+    def scoping_review(self) -> tuple[Path, dict]:
+        state = self.save()
+        (state / "scoping.md").write_text("## Scope\n\nA grocery journey.\n", encoding="utf-8")
+        portal_status.report(self.root, "test-scenario", "requirements", "waiting_for_user", "Review the brief.")
+        dispatch = patch.object(self.studio, "continue_brief", return_value={"status": "dispatched"})
+        dispatch.start()
+        self.addCleanup(dispatch.stop)
+        return state, self.studio.scoping_notes("test-scenario")
+
+    def test_scoping_confirmation_persists_without_starting_work_or_changing_agent_evidence(self) -> None:
+        state, notes = self.scoping_review()
+        originals = {name: (state / name).read_bytes() for name in ("request.json", "scoping.md", "status.json")}
+        with patch.object(portal.subprocess, "run") as launch:
+            result = self.studio.respond_to_scoping("test-scenario", notes["fingerprint"], "confirmed")
+        launch.assert_not_called()
+        self.assertIn("existing scenario agent", result["message"])
+        self.studio.continue_brief.assert_called_once()
+        restored = portal.Studio(self.root).scenario("test-scenario")
+        self.assertTrue(restored["scoping"]["responseCurrent"])
+        self.assertEqual("confirmed", restored["scoping"]["response"]["decision"])
+        self.assertEqual("waiting_for_user", restored["progress"]["status"])
+        self.assertFalse(restored["approval"]["approved"])
+        self.assertFalse(self.studio.folder("test-scenario").exists())
+        for name, original in originals.items():
+            self.assertEqual(original, (state / name).read_bytes())
+
+    def test_scoping_changes_are_saved_as_user_input_and_can_be_replaced_by_confirmation(self) -> None:
+        state, notes = self.scoping_review()
+        result = self.studio.respond_to_scoping(
+            "test-scenario", notes["fingerprint"], "changes_requested", "  Include a late delivery.  ",
+        )
+        self.assertEqual("Include a late delivery.", result["response"]["changes"])
+        self.assertEqual("dispatched", result["response"]["continuation"]["status"])
+        self.assertEqual("changes_requested", self.studio.scoping_notes("test-scenario")["response"]["decision"])
+        self.studio.respond_to_scoping("test-scenario", notes["fingerprint"], "confirmed")
+        self.assertEqual("confirmed", json.loads((state / "scoping-response.json").read_text())["decision"])
+
+    def test_scoping_response_rejects_stale_briefs_and_non_scoping_waits(self) -> None:
+        state, notes = self.scoping_review()
+        self.studio.respond_to_scoping("test-scenario", notes["fingerprint"], "confirmed")
+        (state / "scoping.md").write_text("## Changed brief\n", encoding="utf-8")
+        self.assertFalse(self.studio.scoping_notes("test-scenario")["responseCurrent"])
+        with self.assertRaisesRegex(ValueError, "changed"):
+            self.studio.respond_to_scoping("test-scenario", notes["fingerprint"], "confirmed")
+        current = self.studio.scoping_notes("test-scenario")["fingerprint"]
+        for stage, status in (("architecture", "waiting_for_user"), ("requirements", "running")):
+            portal_status.report(self.root, "test-scenario", stage, status, "Not a scoping response boundary.")
+            with self.assertRaisesRegex(ValueError, "changed"):
+                self.studio.respond_to_scoping("test-scenario", current, "confirmed")
+
+    def test_scoping_confirmation_survives_bom_and_line_endings_but_not_changed_text(self) -> None:
+        state, notes = self.scoping_review()
+        self.studio.respond_to_scoping("test-scenario", notes["fingerprint"], "confirmed")
+        path = state / "scoping.md"
+        text = path.read_text(encoding="utf-8-sig")
+        for newline in ("\n", "\r\n", "\r"):
+            for bom in ("", "\ufeff"):
+                with self.subTest(newline=newline, bom=bool(bom)):
+                    path.write_bytes((bom + text.replace("\n", newline)).encode("utf-8"))
+                    current = self.studio.scoping_notes("test-scenario")
+                    self.assertEqual(notes["fingerprint"], current["fingerprint"])
+                    self.assertTrue(current["responseCurrent"])
+        path.write_bytes((text + "A changed requirement.\n").encode("utf-8"))
+        self.assertFalse(self.studio.scoping_notes("test-scenario")["responseCurrent"])
+
+    def test_scoping_response_validates_decisions_and_changes_before_saving(self) -> None:
+        state, notes = self.scoping_review()
+        for decision, changes in (("approve-deployment", ""), ("changes_requested", " "),
+                                  ("confirmed", "Unsaved change"), ("changes_requested", "x" * 8001),
+                                  ("changes_requested", None)):
+            with self.subTest(decision=decision, changes=type(changes)), self.assertRaises(ValueError):
+                self.studio.respond_to_scoping("test-scenario", notes["fingerprint"], decision, changes)
+        self.assertFalse((state / "scoping-response.json").exists())
+
+    def test_explicit_handoff_carries_saved_scoping_response_without_treating_it_as_build_consent(self) -> None:
+        state, notes = self.scoping_review()
+        self.studio.respond_to_scoping("test-scenario", notes["fingerprint"], "confirmed")
+        with (
+            patch.object(portal.shutil, "which", return_value="code"),
+            patch.object(portal.subprocess, "run", return_value=Mock(returncode=0)) as launch,
+        ):
+            self.studio.handoff("test-scenario", "scoping", new_chat=True)
+        self.assertIn(str(state / "scoping-response.json"), launch.call_args.args[0])
+        instruction = (state / "scoping-handoff.txt").read_text()
+        self.assertIn("normal scenario workflow", instruction)
+        self.assertIn("SCOPING ONLY", instruction)
+
+    def test_scoping_continuation_is_idempotent_and_preserves_a_failed_response_for_retry(self) -> None:
+        state, notes = self.scoping_review()
+        self.studio.continue_brief.side_effect = ValueError("Bridge unavailable")
+        with self.assertRaisesRegex(ValueError, "response was saved"):
+            self.studio.respond_to_scoping("test-scenario", notes["fingerprint"], "confirmed")
+        failed = json.loads((state / "scoping-response.json").read_text())
+        self.assertEqual("failed", failed["continuation"]["status"])
+        self.assertFalse(self.studio.folder("test-scenario").exists())
+        self.studio.continue_brief.side_effect = None
+        result = self.studio.respond_to_scoping("test-scenario", notes["fingerprint"], "confirmed")
+        self.assertEqual(failed["continuation"]["requestId"], result["response"]["continuation"]["requestId"])
+        self.assertNotIn("error", result["response"]["continuation"])
+        self.studio.respond_to_scoping("test-scenario", notes["fingerprint"], "confirmed")
+        self.assertEqual(2, self.studio.continue_brief.call_count)
+
+    def test_native_brief_continuation_checks_bridge_version_and_uses_the_same_request_id(self) -> None:
+        state = self.save()
+        calls = []
+
+        def acknowledge(uri):
+            from urllib.parse import parse_qs, urlsplit
+            parsed = urlsplit(uri)
+            query = parse_qs(parsed.query)
+            calls.append(parsed.path)
+            value = {"status": "ready", "version": "0.2.3"} if parsed.path == "/ping" else {"status": "dispatched"}
+            portal_status.write_json(state / "chat-open" / f"{query['request'][0]}.json", value)
+
+        with (
+            patch.object(portal.scenario_chat, "resolve", return_value={"resource": "agent-host-session://copilot/existing"}),
+            patch.object(self.studio, "open_chat_uri", side_effect=acknowledge),
+        ):
+            result = self.studio.continue_brief("test-scenario", "a" * 32)
+        self.assertEqual("dispatched", result["status"])
+        self.assertEqual(["/ping", "/continue"], calls)
+        self.assertFalse(list((state / "chat-open").glob("*.json")))
+
+    def test_old_bridge_and_legacy_worker_cannot_dispatch_brief_continuation(self) -> None:
+        self.save()
+        with (
+            patch.object(portal.scenario_chat, "resolve"),
+            patch.object(self.studio, "chat_bridge", return_value={"status": "ready", "version": "0.2.2"}) as command,
+        ):
+            with self.assertRaisesRegex(ValueError, "reports 0.2.2.*0.2.3.*Restart Extension Host"):
+                self.studio.continue_brief("test-scenario", "a" * 32)
+            self.assertEqual(1, command.call_count)
+            portal_status.write_json(self.studio.state / "projects" / "test-scenario.json", {"writer": "old-worker"})
+            with self.assertRaisesRegex(ValueError, "legacy worker"):
+                self.studio.continue_brief("test-scenario", "a" * 32)
+            self.assertEqual(1, command.call_count)
+
+    def test_scoping_launch_failure_preserves_the_original_brief_and_retry_intent(self) -> None:
+        self.studio.save_brief({**self.data, "intakeMode": "scope"})
+        with patch.object(portal.shutil, "which", return_value=None):
+            with self.assertRaisesRegex(ValueError, "launcher"):
+                self.studio.handoff("test-scenario", "scoping")
+        restored = portal.Studio(self.root).scenario("test-scenario")
+        self.assertEqual("scope", restored["intakeMode"])
+        self.assertEqual("saved", restored["progress"]["status"])
+        self.assertTrue(restored["hasBrief"])
+        state = portal_status.scenario_state(self.root, "test-scenario")
+        self.assertFalse((state / "handoff.json").exists())
+        self.assertFalse(self.studio.folder("test-scenario").exists())
+
     def test_pattern_catalog_matches_all_18_guide_patterns_plus_ai_choice(self) -> None:
         patterns = self.studio.catalog()["agenticPatterns"]
         guide = (portal.ROOT / ".github" / "skills" / "az-scenario-requirements" / "references"
@@ -783,6 +1020,16 @@ class VisualizerTests(unittest.TestCase):
             status, body = call("GET", "/api/review?project=test-scenario")
             self.assertEqual(200, status)
             self.assertFalse(json.loads(body)["available"])
+            with patch.object(server.app, "respond_to_scoping", return_value={"response": {"decision": "confirmed"}}) as respond:
+                status, body = call("POST", "/api/scoping-response", payload={
+                    "projectSlug": "test-scenario", "fingerprint": "current", "decision": "confirmed",
+                })
+                self.assertEqual(200, status)
+                self.assertEqual("confirmed", json.loads(body)["response"]["decision"])
+                respond.assert_called_once_with("test-scenario", "current", "confirmed", "")
+                self.assertEqual(403, call("POST", "/api/scoping-response",
+                                          {"Origin": "https://example.test"})[0])
+                self.assertEqual(1, respond.call_count)
             for path in ("/api/runs", "/api/system/azure-identity", "/api/readiness/repair", "/api/runs/old/continue"):
                 self.assertEqual(404, call("POST", path)[0])
             self.assertEqual(403, call("GET", "/api/scenarios", {"Origin": "https://example.test"})[0])

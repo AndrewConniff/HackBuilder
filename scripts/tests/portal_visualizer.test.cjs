@@ -37,13 +37,14 @@ class Element {
 }
 
 async function portal({ saved = null, dark = false, storageError = null, items = [], files = [],
-  patterns = catalogPatterns, backendVersion = 15, review = { available: false }, fileText = "",
-  systemReady = true, systemFailure = false, identityFailure = false, hash = "" } = {}) {
+  patterns = catalogPatterns, backendVersion = 19, review = { available: false }, fileText = "",
+  systemReady = true, systemFailure = false, identityFailure = false, handoffFailure = false,
+  scopingFailure = false, scopingWait = null, hash = "" } = {}) {
   const elements = new Map();
   const get = (id) => {
     if (!elements.has(id)) {
       const element = new Element();
-      if (id === "create") element.disabled = true;
+      if (id === "create" || id === "refine") element.disabled = true;
       elements.set(id, element);
     }
     return elements.get(id);
@@ -91,6 +92,19 @@ async function portal({ saved = null, dark = false, storageError = null, items =
     fetch: async (url, options = {}) => {
       requests.push({ url, options });
       const data = options.body ? JSON.parse(options.body) : {};
+      if (url === "/api/handoff" && handoffFailure) {
+        return { ok: false, json: async () => ({ error: "Agent chat launcher unavailable." }) };
+      }
+      if (url === "/api/scoping-response") {
+        if (scopingWait) await scopingWait;
+        if (scopingFailure === "offline") throw new TypeError("Failed to fetch");
+        if (scopingFailure) return { ok: false, json: async () => ({ error: "The brief changed. Refresh first." }) };
+        const response = { decision: data.decision, changes: data.changes, fingerprint: data.fingerprint,
+          continuation: { status: "dispatched" } };
+        const item = items.find((entry) => entry.projectSlug === data.projectSlug);
+        item.scoping = { ...item.scoping, response, responseCurrent: true };
+        return { ok: true, json: async () => ({ response }) };
+      }
       const services = ["foundry", "container-apps", "functions"];
       const profile = { services, buildMode: "local", localFunctions: true,
         loadTests: true, stages: { application: ["dotnet"] } };
@@ -385,11 +399,340 @@ test("Start building still saves the brief and explicitly hands off the scenario
   const saved = ui.requests.find((item) => item.url === "/api/scenarios" && item.options.method === "POST");
   assert.equal(JSON.parse(saved.options.body).projectSlug, "test-scenario");
   assert.equal(JSON.parse(saved.options.body).agenticPattern, "ai-decides");
+  assert.equal(JSON.parse(saved.options.body).intakeMode, "build");
   const handoff = ui.requests.find((item) => item.url === "/api/handoff");
   assert.deepEqual(JSON.parse(handoff.options.body), { projectSlug: "test-scenario", phase: "scenario" });
   assert.equal(ui.get("handoff-status").textContent, "Brief sent.");
   assert.equal(ui.get("create").disabled, false);
   assert.equal(ui.get("error").hidden, true);
+});
+
+test("Refine with AI saves the same selections but requests scoping only, never a build", async () => {
+  const ui = await portal();
+  ui.get("slug").value = "test-scenario";
+  ui.checkChoice("industry", "Manufacturing & Mobility");
+  ui.checkChoice("agenticPattern", "human-in-the-loop");
+  ui.get("prompt").value = "Help a fictional factory handle ambiguous quality incidents.";
+  ui.get("intake").listeners.submit({ preventDefault() {}, submitter: { id: "refine" } });
+  assert.equal(ui.get("refine").disabled, true);
+  assert.equal(ui.get("create").disabled, true);
+  await new Promise(setImmediate);
+  const saved = ui.requests.find((item) => item.url === "/api/scenarios" && item.options.method === "POST");
+  const brief = JSON.parse(saved.options.body);
+  assert.equal(brief.intakeMode, "scope");
+  assert.equal(brief.prompt, ui.get("prompt").value);
+  assert.equal(brief.agenticPattern, "human-in-the-loop");
+  const launches = ui.requests.filter((item) => item.url === "/api/handoff");
+  assert.equal(launches.length, 1);
+  assert.deepEqual(JSON.parse(launches[0].options.body), { projectSlug: "test-scenario", phase: "scoping" });
+  assert.equal(ui.get("refine").disabled, false);
+  assert.equal(ui.get("view-build").hidden, false);
+  assert.match(html, /id="refine" type="submit" class="secondary" disabled>Refine with AI/);
+  assert.match(html, /does not start a build or deploy anything/);
+});
+
+test("Missing intake selections block refinement without saving or starting an agent", async () => {
+  const ui = await portal();
+  ui.get("intake").listeners.submit({ preventDefault() {}, submitter: { id: "refine" } });
+  await new Promise(setImmediate);
+  assert.match(ui.get("error").textContent, /Choose one industry/);
+  assert.equal(ui.requests.some((entry) => entry.url === "/api/handoff"), false);
+  assert.equal(ui.requests.some((entry) => entry.url === "/api/scenarios" && entry.options.method === "POST"), false);
+  assert.equal(ui.get("refine").disabled, false);
+});
+
+test("A failed AI scoping launch surfaces its error rather than claiming that analysis completed", async () => {
+  const ui = await portal({ handoffFailure: true });
+  ui.get("slug").value = "test-scenario";
+  ui.checkChoice("industry", "Manufacturing & Mobility");
+  ui.get("prompt").value = "An initial idea.";
+  ui.get("intake").listeners.submit({ preventDefault() {}, submitter: { id: "refine" } });
+  await new Promise(setImmediate);
+  assert.equal(ui.get("error").hidden, false);
+  assert.match(ui.get("error").textContent, /launcher unavailable/);
+  assert.equal(ui.get("handoff-status").textContent, "");
+  const saved = ui.requests.find((item) => item.url === "/api/scenarios" && item.options.method === "POST");
+  assert.equal(JSON.parse(saved.options.body).intakeMode, "scope");
+  assert.equal(ui.get("refine").disabled, false);
+});
+
+test("Saved scoping notes are rendered as safe markdown and cleared for a different scenario", async () => {
+  const item = scenario("waiting_for_user");
+  item.scoping = { available: true, text: "## Refined brief\n\nHuman review required.\n\n<script>untrusted()</script>" };
+  const ui = await portal({ items: [item] });
+  await ui.choose();
+  assert.equal(ui.get("scoping-notes").hidden, false);
+  const flattened = [];
+  function visit(element) {
+    flattened.push(element.tag);
+    for (const child of element.children || []) if (typeof child === "object") visit(child);
+  }
+  visit(ui.get("scoping-content"));
+  assert.equal(flattened.includes("script"), false);
+  assert.ok(flattened.includes("h2"));
+  item.scoping = { available: false };
+  await ui.refresh();
+  assert.equal(ui.get("scoping-notes").hidden, true);
+  assert.equal(ui.get("scoping-content").children.length, 0);
+});
+
+test("A saved scoping brief retries scoping, not implementation, when opening its first chat", async () => {
+  const item = scenario("saved", { canContinue: true });
+  item.intakeMode = "scope";
+  const ui = await portal({ items: [item] });
+  await ui.choose();
+  await ui.get("open-agent").listeners.click();
+  const handoff = ui.requests.find((entry) => entry.url === "/api/handoff");
+  assert.equal(JSON.parse(handoff.options.body).phase, "scoping");
+});
+
+function scopedScenario() {
+  const item = scenario("waiting_for_user");
+  item.progress.stage = "requirements";
+  item.stages = [
+    { id: "requirements", label: "Scenario description", status: "waiting_for_user",
+      summary: "Review the refined brief.", updatedAtUtc: "2026-10-27T22:00:00Z" },
+    { id: "architecture", label: "Architecture", status: "not_reported", summary: "No completion report recorded." },
+  ];
+  item.scoping = { available: true, text: "## Grocery brief", fingerprint: "reviewed-version", canRespond: true };
+  return item;
+}
+
+test("Brief confirmation is at the bottom of the brief and saves only the reviewed version", async () => {
+  const item = scopedScenario();
+  const ui = await portal({ items: [item] });
+  await ui.choose();
+  assert.equal(ui.get("scoping-response").hidden, false);
+  assert.ok(html.indexOf('id="scoping-content"') < html.indexOf('id="scoping-confirm"'));
+  await ui.get("scoping-confirm").listeners.click();
+  const request = ui.requests.find((entry) => entry.url === "/api/scoping-response");
+  assert.deepEqual(JSON.parse(request.options.body), {
+    projectSlug: "test-scenario", fingerprint: "reviewed-version", decision: "confirmed", changes: "",
+  });
+  assert.match(ui.get("scoping-response-status").textContent, /Brief confirmed.*Continuation requested/);
+  assert.match(ui.get("next-action").textContent, /normal scenario workflow has been requested/);
+  assert.equal(ui.get("scenario-status").textContent, "Starting");
+  assert.match(ui.get("summary").textContent, /waiting for its next progress report/);
+  assert.doesNotMatch(html, /id="scoping-continue"/);
+  assert.equal(ui.get("scoping-open-chat").textContent, "Open scenario chat");
+  assert.equal(ui.get("scoping-confirm").textContent, "Brief confirmed");
+  assert.equal(ui.get("scoping-confirm").disabled, true);
+  assert.equal(ui.get("stage-history").children[0].dataset.status, "brief_confirmed");
+  assert.equal(ui.get("stage-history").children[0].children[2].textContent,
+    "Brief confirmed");
+  assert.match(ui.get("stage-history").children[0].children[3].textContent, /Continuation requested/);
+  assert.equal(ui.get("stage-history").children[0].children[0].textContent, "");
+  assert.equal(ui.get("stage-history").children[1].dataset.status, "not_reported");
+  assert.equal(ui.get("stage-count").textContent, "0 of 2 milestones completed");
+  assert.equal(item.stages[0].status, "waiting_for_user");
+  await ui.refresh();
+  assert.equal(ui.get("scoping-confirm").disabled, true);
+  assert.equal(ui.get("stage-history").children[0].dataset.status, "brief_confirmed");
+  assert.equal(ui.requests.some((entry) => ["/api/handoff", "/api/chat-open"].includes(entry.url)), false);
+  assert.equal(item.progress.status, "waiting_for_user");
+});
+
+test("Legacy receipts use the single confirmation control without a user-written prompt", async () => {
+  const item = scopedScenario();
+  item.scoping.response = { decision: "confirmed" };
+  item.scoping.responseCurrent = true;
+  const ui = await portal({ items: [item] });
+  await ui.choose();
+  assert.equal(ui.get("scoping-confirm").disabled, false);
+  assert.equal(ui.get("scoping-confirm").textContent, "Confirm brief");
+  assert.doesNotMatch(html, /then send this request|Design only: do not implement/);
+  await ui.get("scoping-open-chat").listeners.click();
+  assert.equal(ui.requests.filter((entry) => entry.url === "/api/chat-open").length, 1);
+  assert.match(ui.get("scoping-chat-status").textContent, /controls handle continuation automatically/);
+  assert.equal(ui.requests.some((entry) => ["/api/handoff", "/api/scoping-response"].includes(entry.url)), false);
+  ui.get("scoping-modify").listeners.click();
+  assert.equal(ui.get("scoping-confirm").disabled, true);
+  ui.get("scoping-cancel").listeners.click();
+  assert.equal(ui.get("scoping-confirm").disabled, false);
+  await ui.refresh();
+  assert.equal(ui.requests.some((entry) => entry.url === "/api/scoping-response"), false);
+  await ui.get("scoping-confirm").listeners.click();
+  assert.equal(ui.get("scoping-confirm").disabled, true);
+  assert.match(ui.get("summary").textContent, /Continuation requested/);
+  assert.equal(ui.get("scoping-open-chat").textContent, "Open scenario chat");
+});
+
+test("Failed continuation keeps Confirm brief enabled for an explicit retry, never a polling retry", async () => {
+  const item = scopedScenario();
+  item.scoping.response = { decision: "confirmed", changes: "", fingerprint: "reviewed-version",
+    continuation: { requestId: "a".repeat(32), status: "failed", error: "Bridge unavailable." } };
+  item.scoping.responseCurrent = true;
+  const ui = await portal({ items: [item] });
+  await ui.choose();
+  assert.equal(ui.get("scoping-confirm").textContent, "Confirm brief");
+  assert.equal(ui.get("scoping-confirm").disabled, false);
+  assert.match(ui.get("scoping-response-status").textContent, /Select Confirm brief to retry/);
+  assert.equal(ui.get("scenario-status").textContent, "Needs attention");
+  await ui.refresh();
+  assert.equal(ui.requests.some((entry) => entry.url === "/api/scoping-response"), false);
+  await ui.get("scoping-confirm").listeners.click();
+  assert.equal(ui.get("scoping-confirm").disabled, true);
+  assert.equal(ui.get("scoping-confirm").textContent, "Brief confirmed");
+  assert.equal(ui.requests.filter((entry) => entry.url === "/api/scoping-response").length, 1);
+});
+
+test("Saved change requests can be retried through Modify brief without losing edited drafts", async () => {
+  const item = scopedScenario();
+  item.scoping.response = { decision: "changes_requested", changes: "Add delivery slots.",
+    continuation: { status: "failed" } };
+  item.scoping.responseCurrent = true;
+  const ui = await portal({ items: [item] });
+  await ui.choose();
+  assert.equal(ui.get("scoping-editor").hidden, true);
+  ui.get("scoping-modify").listeners.click();
+  assert.equal(ui.get("scoping-changes").value, "Add delivery slots.");
+  ui.get("scoping-changes").value = "Add delivery slots and substitutions.";
+  await ui.refresh();
+  assert.equal(ui.get("scoping-changes").value, "Add delivery slots and substitutions.");
+  await ui.get("scoping-request-changes").listeners.click();
+  const request = ui.requests.find((entry) => entry.url === "/api/scoping-response");
+  assert.equal(JSON.parse(request.options.body).changes, "Add delivery slots and substitutions.");
+  assert.equal(ui.get("scoping-editor").hidden, true);
+});
+
+test("Change requests persist comments and open only the existing chat on explicit navigation", async () => {
+  const ui = await portal({ items: [scopedScenario()] });
+  await ui.choose();
+  assert.equal(ui.get("scoping-editor").hidden, true);
+  ui.get("scoping-modify").listeners.click();
+  assert.equal(ui.get("scoping-editor").hidden, false);
+  assert.equal(ui.get("scoping-confirm").disabled, true);
+  ui.get("scoping-changes").value = "Include a late delivery.";
+  await ui.get("scoping-request-changes").listeners.click();
+  const request = ui.requests.find((entry) => entry.url === "/api/scoping-response");
+  assert.equal(JSON.parse(request.options.body).changes, "Include a late delivery.");
+  assert.match(ui.get("scoping-response-status").textContent, /Changes requested: Include a late delivery/);
+  assert.equal(ui.get("scoping-changes").value, "");
+  assert.equal(ui.get("scoping-editor").hidden, true);
+  assert.match(ui.get("summary").textContent, /Revision requested.*Waiting for the updated brief/);
+  assert.match(ui.get("next-action").textContent, /Revision requested/);
+  assert.equal(ui.get("stage-history").children[0].dataset.status, "changes_requested");
+  assert.equal(ui.get("stage-history").children[0].children[2].textContent, "Changes saved - revision pending");
+  assert.equal(ui.requests.some((entry) => entry.url === "/api/chat-open"), false);
+  await ui.get("scoping-open-chat").listeners.click();
+  assert.deepEqual(JSON.parse(ui.requests.find((entry) => entry.url === "/api/chat-open").options.body), {
+    projectSlug: "test-scenario", phase: "scenario",
+  });
+  assert.equal(ui.requests.some((entry) => entry.url === "/api/handoff"), false);
+});
+
+test("Empty requests and confirmation with unsent edits fail visibly without saving", async () => {
+  const ui = await portal({ items: [scopedScenario()] });
+  await ui.choose();
+  ui.get("scoping-modify").listeners.click();
+  await ui.get("scoping-request-changes").listeners.click();
+  assert.match(ui.get("error").textContent, /Describe the changes/);
+  assert.match(ui.get("scoping-response-error").textContent, /Describe the changes/);
+  assert.equal(ui.get("scoping-response-error").hidden, false);
+  assert.equal(ui.get("scoping-response-error").focused, true);
+  assert.equal(ui.get("scoping-response-error").scrolled, true);
+  ui.get("scoping-changes").value = "Pending edit";
+  await ui.get("scoping-confirm").listeners.click();
+  assert.match(ui.get("error").textContent, /clear them before confirming/);
+  assert.equal(ui.requests.some((entry) => entry.url === "/api/scoping-response"), false);
+});
+
+test("Modify brief reveals an editor and cancel discards only unsaved comments without submitting", async () => {
+  const ui = await portal({ items: [scopedScenario()] });
+  await ui.choose();
+  assert.equal(ui.get("scoping-editor").hidden, true);
+  assert.equal(ui.get("scoping-modify")["aria-expanded"], "false");
+  ui.get("scoping-modify").listeners.click();
+  assert.equal(ui.get("scoping-editor").hidden, false);
+  assert.equal(ui.get("scoping-modify")["aria-expanded"], "true");
+  assert.equal(ui.get("scoping-changes").focused, true);
+  ui.get("scoping-changes").value = "Discard this unsent draft";
+  await ui.refresh();
+  assert.equal(ui.get("scoping-editor").hidden, false);
+  assert.equal(ui.get("scoping-changes").value, "Discard this unsent draft");
+  ui.get("scoping-cancel").listeners.click();
+  assert.equal(ui.get("scoping-editor").hidden, true);
+  assert.equal(ui.get("scoping-changes").value, "");
+  assert.equal(ui.get("scoping-confirm").disabled, false);
+  assert.equal(ui.requests.some((entry) => entry.url === "/api/scoping-response"), false);
+});
+
+test("Disconnected saves show an adjacent actionable error and preserve comments for retry", async () => {
+  const ui = await portal({ items: [scopedScenario()], scopingFailure: "offline" });
+  await ui.choose();
+  ui.get("scoping-modify").listeners.click();
+  ui.get("scoping-changes").value = "Keep this change";
+  await ui.get("scoping-request-changes").listeners.click();
+  assert.match(ui.get("scoping-response-error").textContent, /Cannot reach the local portal.*runtime/);
+  assert.equal(ui.get("scoping-response-error").hidden, false);
+  assert.equal(ui.get("scoping-editor").hidden, false);
+  assert.equal(ui.get("scoping-changes").value, "Keep this change");
+  assert.equal(ui.get("scoping-request-changes").disabled, false);
+  await ui.refresh();
+  assert.equal(ui.get("scoping-response-error").hidden, false);
+  assert.doesNotMatch(ui.get("summary").textContent, /Change request saved/);
+});
+
+test("A slow save shows pending feedback and updates the current scenario after a concurrent poll", async () => {
+  let release;
+  const scopingWait = new Promise((resolve) => { release = resolve; });
+  const items = [scopedScenario()];
+  const ui = await portal({ items, scopingWait });
+  await ui.choose();
+  const saving = ui.get("scoping-confirm").listeners.click();
+  assert.match(ui.get("scoping-response-status").textContent, /Saving your brief response/);
+  assert.equal(ui.get("scoping-confirm").disabled, true);
+  items[0] = { ...items[0], scoping: { ...items[0].scoping } };
+  await ui.refresh();
+  assert.match(ui.get("scoping-response-status").textContent, /Saving your brief response/);
+  release();
+  await saving;
+  assert.match(ui.get("summary").textContent, /Brief confirmed/);
+  assert.equal(ui.get("scoping-confirm").textContent, "Brief confirmed");
+  assert.equal(ui.get("scoping-confirm").disabled, true);
+});
+
+test("A pre-confirmation backend asks for restart rather than silently hiding brief controls", async () => {
+  const ui = await portal({ backendVersion: 16 });
+  assert.match(ui.get("error").textContent, /Restart the portal.*automatic brief continuation/);
+  assert.equal(ui.get("refine").disabled, true);
+});
+
+test("Polling preserves unsent changes and a stale or failed confirmation never appears accepted", async () => {
+  const item = scopedScenario();
+  const ui = await portal({ items: [item], scopingFailure: true });
+  await ui.choose();
+  ui.get("scoping-changes").value = "Draft";
+  await ui.refresh();
+  assert.equal(ui.get("scoping-changes").value, "Draft");
+  ui.get("scoping-changes").value = "";
+  await ui.get("scoping-confirm").listeners.click();
+  assert.match(ui.get("error").textContent, /brief changed/);
+  assert.equal(ui.get("scoping-confirm").disabled, false);
+  assert.equal(ui.get("scoping-response-error").hidden, false);
+  assert.doesNotMatch(ui.get("scoping-response-status").textContent, /Brief confirmed/);
+  item.scoping.response = { decision: "confirmed" };
+  item.scoping.responseCurrent = false;
+  await ui.refresh();
+  assert.match(ui.get("scoping-response-status").textContent, /Review it again/);
+  assert.equal(ui.get("scenario-status").textContent, "Waiting for you");
+  assert.equal(ui.get("stage-history").children[0].dataset.status, "waiting_for_user");
+  item.scoping.canRespond = false;
+  await ui.refresh();
+  assert.equal(ui.get("scoping-response").hidden, true);
+});
+
+test("Brief confirmation never hides a running, failed, blocked or completed requirements report", async () => {
+  for (const status of ["running", "failed", "blocked", "completed"]) {
+    const item = scopedScenario();
+    item.scoping.response = { decision: "confirmed" };
+    item.scoping.responseCurrent = true;
+    item.scoping.canRespond = false;
+    item.stages[0].status = status;
+    const ui = await portal({ items: [item] });
+    await ui.choose();
+    assert.equal(ui.get("stage-history").children[0].dataset.status, status);
+  }
 });
 
 test("Create form shows 18 numbered patterns plus Let AI decide outside advanced selections", async () => {
@@ -478,6 +821,14 @@ test("An old server cannot silently discard the selected pattern", async () => {
   assert.equal(ui.get("create").disabled, true);
   assert.equal(ui.get("error").hidden, false);
   assert.match(ui.get("error").textContent, /Restart the portal/);
+});
+
+test("A pre-scoping server cannot silently turn refinement into a build", async () => {
+  const ui = await portal({ backendVersion: 15 });
+  assert.equal(ui.get("create").disabled, true);
+  assert.equal(ui.get("refine").disabled, true);
+  assert.match(ui.get("error").textContent, /Restart the portal/);
+  assert.equal(ui.requests.some((entry) => entry.options.method === "POST"), false);
 });
 
 test("System checklist starts unchecked and executes diagnostics only after explicit permission", async () => {

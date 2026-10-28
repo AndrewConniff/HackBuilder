@@ -46,6 +46,10 @@ It is visualization/handoff plus explicit read-only System diagnostics: no Copil
 Azure sign-in manager or approval engine. System checks reuse the existing prerequisite/identity helpers,
 never install tools, sign in, retain tokens or change shared defaults.
 The normal launcher uses `scripts\portal_visualizer.py`; the old runner is not exposed by the active server.
+Brief confirmation and saved changes send fixed, fingerprint-bound continuations through the native editor bridge
+to the existing scenario conversation. Confirmation resumes the normal workflow; changes remain scoping-only.
+These user actions do not grant Azure/Entra, deployment or suitability authority.
+Polling never dispatches work, and missing acknowledgement is not proof of agent execution.
 
 Use the real VS Code agents and skills for all execution. Discuss architecture/deployment approval and
 working-scenario suitability approval in that chat, not a second portal decision queue.

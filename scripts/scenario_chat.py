@@ -19,7 +19,7 @@ from portal_status import ROOT, STAGES, STATUSES, scenario_state, write_json
 
 LOG = logging.getLogger(__name__)
 HANDOFF = re.compile(
-    r"Follow the attached (scenario|composition|deployment-review) handoff for "
+    r"Follow the attached (scenario|scoping|composition|deployment-review) handoff for "
     r"([a-z0-9]+(?:-[a-z0-9]+)*). Report progress to portal_status\.py\."
     r"(?: ABC Builder chat trace: ([a-f0-9]{32})\.)?"
 )
@@ -148,12 +148,29 @@ def resolve(
     }
     if saved.get("schemaVersion") != 1 or not isinstance(saved.get("sessions"), dict):
         raise ValueError("Unsupported chat-sessions.json format.")
+    storage = storage if storage is not None else editor_storage()
     if phase in saved["sessions"]:
-        return saved["sessions"][phase]
+        selected = saved["sessions"][phase]
+        editor_id = selected.get("editorSessionId")
+        if (selected.get("source") in {
+            "handoff-trace", "handoff-and-progress-history", "reference-attachment-and-progress-history",
+        } and isinstance(editor_id, str) and selected.get("resource") == (
+            f"agent-host-session://copilot/{editor_id}?connectionAuthority=local"
+        )):
+            try:
+                editor_id = str(uuid.UUID(editor_id))
+            except ValueError as error:
+                raise ValueError("Invalid saved editor session identity. Relink the existing conversation.") from error
+            sdk_id = session_metadata(storage / editor_id, root.resolve())
+            if not sdk_id or sdk_id != selected.get("sdkSessionId"):
+                raise ValueError("The saved chat identity could not be verified in this editor profile. "
+                                 "Relink the existing conversation; no replacement was created.")
+            selected["resource"] = f"agent-host-session://ahp-session/{editor_id}?connectionAuthority=local"
+            write_json(filename, saved)
+        return selected
     launch = directory / f"{phase}-chat-started.json"
     receipt = json.loads(launch.read_text(encoding="utf-8")) if launch.is_file() else {}
     trace_id = receipt.get("traceId")
-    storage = storage if storage is not None else editor_storage()
     history = history if history is not None else Path.home() / ".copilot" / "session-state"
     if not storage.is_dir():
         raise ValueError("The local editor session catalog is unavailable. No new conversation was created.")
@@ -172,7 +189,7 @@ def resolve(
         if evidence is not None:
             candidates.append({
                 "editorSessionId": editor_id, "sdkSessionId": sdk_id,
-                "resource": f"agent-host-session://copilot/{editor_id}?connectionAuthority=local",
+                "resource": f"agent-host-session://ahp-session/{editor_id}?connectionAuthority=local",
                 **evidence,
             })
     if not candidates:

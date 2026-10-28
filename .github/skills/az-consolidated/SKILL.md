@@ -301,7 +301,7 @@ module keyVault 'br/public:avm/res/key-vault/vault:0.11.0' = {
 
 | Module                 | Issue                                       | Fix                                          |
 | ---------------------- | ------------------------------------------- | -------------------------------------------- |
-| Log Analytics          | `dailyQuotaGb` is `int`, not `string`       | Use `dailyQuotaGb: 5`                        |
+| Log Analytics | Quota types vary by pinned module version | Version 0.16.1 uses `dailyQuotaGb: '5'` |
 | Container Env          | `appLogsConfiguration` deprecated           | Use `logsConfiguration` with destination obj |
 | Container App          | `scaleSettings` is object, not array        | Check AVM schema for exact shape             |
 | SQL Server             | `sku` is typed object `{name,tier,cap}`     | Pass full SKU object                         |

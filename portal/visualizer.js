@@ -8,6 +8,8 @@ let fileSignature = "";
 let selectionVersion = 0;
 let reviewContext = null;
 let reviewSignature = "";
+let scopingDraftSlug = "";
+let scopingPendingSlug = "";
 let systemBusy = false;
 let systemReport = null;
 let systemIdentity = null;
@@ -88,19 +90,83 @@ function initializeAppearance() {
 }
 
 async function api(url, body) {
-  const response = await fetch(url, body === undefined ? {} : {
-    method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body),
-  });
+  let response;
+  try {
+    response = await fetch(url, body === undefined ? {} : {
+      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body),
+    });
+  } catch (value) {
+    if (value.name !== "TypeError") throw value;
+    throw new Error("Cannot reach the local portal. Check that the ABC Builder runtime is running. "
+      + "Your last action was not acknowledged; check its status before retrying.");
+  }
   const value = await response.json();
   if (!response.ok) throw new Error(value.error || `Request failed (${response.status}).`);
   return value;
 }
 function error(value) { $("error").textContent = value.message; $("error").hidden = false; }
 function group(item) {
+  if (item.scoping?.canRespond && item.scoping.responseCurrent
+      && item.scoping.response?.continuation?.status === "failed") return "Needs attention";
+  if (item.scoping?.canRespond && item.scoping.responseCurrent
+      && item.scoping.response?.continuation?.status === "dispatched") return "Starting";
+  if (briefConfirmed(item)) return "Ready to start";
   return { running: "Building", in_progress: "Building", handed_off: "Starting",
     waiting_for_user: "Waiting for you", blocked: "Needs attention", failed: "Needs attention",
     completed: "Ready to export", approved: "Scenario approved", saved: "Ready to start" }[item.progress.status]
     || "Status unavailable";
+}
+function briefConfirmed(item) {
+  return Boolean(item.scoping?.canRespond && item.scoping.responseCurrent
+    && item.scoping.response?.decision === "confirmed");
+}
+function renderScopingResponse(item) {
+  const canRespond = item.scoping?.canRespond;
+  const confirmed = briefConfirmed(item);
+  const editing = !$("scoping-editor").hidden;
+  const draft = $("scoping-changes").value.trim();
+  const response = item.scoping?.response;
+  const dispatched = Boolean(item.scoping?.responseCurrent && response?.continuation?.status === "dispatched");
+  const confirmationSent = confirmed && dispatched && !draft;
+  for (const id of ["scoping-request-changes", "scoping-open-chat", "scoping-cancel"]) $(id).disabled = busy || !canRespond;
+  $("scoping-modify").disabled = busy || !canRespond || editing;
+  $("scoping-modify").setAttribute("aria-expanded", String(editing));
+  $("scoping-confirm").disabled = busy || !canRespond || editing || confirmationSent;
+  $("scoping-confirm").textContent = confirmationSent ? "Brief confirmed" : "Confirm brief";
+  $("scoping-open-chat").textContent = "Open scenario chat";
+  const changesSaved = canRespond && item.scoping.responseCurrent && response?.decision === "changes_requested";
+  const responseText = !response ? ""
+    : !item.scoping.responseCurrent ? "The brief changed after your response. Review it again before confirming."
+    : response.decision === "confirmed"
+      ? dispatched ? "Brief confirmed. Continuation requested in the existing scenario agent; waiting for its next progress report."
+        : response.continuation?.status === "failed"
+          ? "Brief confirmation was saved, but continuation was not acknowledged. Select Confirm brief to retry."
+          : "Brief confirmed. Select Confirm brief to continue the normal workflow without writing a prompt."
+      : `Changes requested: ${response.changes}\n${dispatched
+        ? "Revision requested in the existing scenario agent. Waiting for the updated brief."
+        : "The revision has not been acknowledged. Select Modify brief, then Save changes to retry."}`;
+  $("scoping-response-status").textContent = scopingPendingSlug === selected ? "Saving your brief response..." : responseText;
+  if (canRespond) {
+    $("summary").textContent = confirmed ? responseText
+      : changesSaved ? responseText
+      : item.progress.summary;
+    $("next-action").textContent = confirmed
+      ? dispatched ? "The normal scenario workflow has been requested. Progress appears when the existing agent reports it."
+        : "Select Confirm brief to continue the normal workflow in the existing scenario agent. No prompt writing is needed."
+      : changesSaved ? responseText
+      : "Review the AI scoping brief above, then use Modify brief or Confirm brief at the bottom of its section.";
+  }
+  const stages = (item.stages || []).filter((stage) => !stage.id.startsWith("hack-")).map((stage) => {
+    if (stage.id !== "requirements" || stage.status !== "waiting_for_user" || (!confirmed && !changesSaved)) {
+      return stage;
+    }
+    return { ...stage, status: confirmed ? "brief_confirmed" : "changes_requested",
+      summary: confirmed
+        ? responseText
+        : "Requested changes saved. The existing scenario agent will revise the brief after the continuation is dispatched.",
+      updatedAtUtc: response.recordedAtUtc };
+  });
+  renderMilestones(stages, "stage-history", "stage-count");
 }
 function hackEligible(item) {
   if (item.approval?.approved !== true) return false;
@@ -192,8 +258,9 @@ async function select(slug) {
   await detail();
 }
 function renderMilestones(stages, listId, countId) {
-  const statuses = { completed: "Completed", running: "Running", waiting_for_user: "Awaiting approval",
+  const statuses = { completed: "Completed", running: "Running", waiting_for_user: "Waiting for your input",
     blocked: "Blocked", failed: "Failed", handed_off: "Handed off", available: "Artifacts available",
+    brief_confirmed: "Brief confirmed", changes_requested: "Changes saved - revision pending",
     not_reported: "Not started / unreported" };
   $(countId).textContent = stages.length
     ? `${stages.filter((stage) => stage.status === "completed").length} of ${stages.length} milestones completed`
@@ -233,7 +300,18 @@ async function detail() {
     ? `Last agent report: ${new Date(item.progress.updatedAtUtc).toLocaleString()}. This is reported progress, not a process monitor.`
     : "No agent progress report yet. Existing files and old portal worker errors do not establish current agent state.";
   const stages = item.stages || [];
-  renderMilestones(stages.filter((stage) => !stage.id.startsWith("hack-")), "stage-history", "stage-count");
+  $("scoping-notes").hidden = !item.scoping?.available;
+  if (item.scoping?.available) renderMarkdown($("scoping-content"), item.scoping.text);
+  else $("scoping-content").replaceChildren();
+  if (scopingDraftSlug !== selected) {
+    $("scoping-changes").value = "";
+    $("scoping-editor").hidden = true;
+    $("scoping-response-error").hidden = true;
+    $("scoping-response-error").textContent = "";
+    $("scoping-chat-status").textContent = "";
+    scopingDraftSlug = selected;
+  }
+  $("scoping-response").hidden = !item.scoping?.canRespond;
   renderMilestones(stages.filter((stage) => stage.id.startsWith("hack-")), "hack-stage-history", "hack-stage-count");
   $("steps").replaceChildren(...Object.entries(item.progress.steps || {})
     .filter(([stage]) => !stage.startsWith("hack-")).map(([stage, value]) => {
@@ -282,6 +360,7 @@ async function detail() {
   if (!actions.canCompose && item.approval?.reason && item.progress.status === "waiting_for_user") {
     $("next-action").textContent += ` Hack materials are not available: ${item.approval.reason}`;
   }
+  renderScopingResponse(item);
   $("open-agent").disabled = busy;
   $("open-composition").disabled = busy;
   const slug = selected, version = selectionVersion;
@@ -380,22 +459,66 @@ async function reopenChat(phase) {
   if (!selected) throw new Error("Select a scenario.");
   const value = await api("/api/chat-open", { projectSlug: selected, phase });
   $("scenario-chat-link-status").textContent = value.message;
+  return value;
 }
 async function openScenarioChat() {
   const item = scenarios.find((entry) => entry.projectSlug === selected);
   if (!item) throw new Error("Select a scenario.");
-  if (item.progress.status === "saved" && !item.chatLinks?.scenario) await handoff("scenario");
+  if (item.progress.status === "saved" && !item.chatLinks?.scenario) {
+    await handoff(item.intakeMode === "scope" ? "scoping" : "scenario");
+  }
   else await reopenChat("scenario");
 }
-async function action(work) {
+async function respondToScoping(decision) {
+  const slug = selected;
+  const item = scenarios.find((entry) => entry.projectSlug === selected);
+  if (!item?.scoping?.canRespond) throw new Error("Refresh and review a brief that is awaiting your response.");
+  const changes = $("scoping-changes").value.trim();
+  if (decision === "changes_requested" && !changes) throw new Error("Describe the changes you want before submitting.");
+  if (decision === "confirmed" && changes) throw new Error("Submit your requested changes or clear them before confirming.");
+  scopingPendingSlug = slug;
+  renderScopingResponse(item);
+  try {
+    const value = await api("/api/scoping-response", {
+      projectSlug: slug, fingerprint: item.scoping.fingerprint, decision, changes,
+    });
+    const current = scenarios.find((entry) => entry.projectSlug === slug);
+    if (current?.scoping) {
+      current.scoping.response = value.response;
+      current.scoping.responseCurrent = value.response.fingerprint === current.scoping.fingerprint;
+    }
+    if (selected !== slug) return;
+    $("scoping-changes").value = "";
+    $("scoping-editor").hidden = true;
+    drawBoard();
+    if (current) $("scenario-status").textContent = group(current);
+  } finally {
+    scopingPendingSlug = "";
+  }
+}
+async function action(work, scoping = false) {
   if (busy) return;
+  const slug = selected;
   busy = true;
   $("error").hidden = true;
-  for (const id of ["create", "open-agent", "open-composition"]) $(id).disabled = true;
-  try { await work(); } catch (value) { error(value); }
+  if (scoping) $("scoping-response-error").hidden = true;
+  const buttons = ["create", "refine", "open-agent", "open-composition",
+    "scoping-confirm", "scoping-modify", "scoping-request-changes", "scoping-cancel", "scoping-open-chat"];
+  for (const id of buttons) $(id).disabled = true;
+  try { await work(); } catch (value) {
+    error(value);
+    if (scoping && selected === slug) {
+      $("scoping-response-error").textContent = value.message;
+      $("scoping-response-error").hidden = false;
+      $("scoping-response-error").focus({ preventScroll: true });
+      $("scoping-response-error").scrollIntoView({ block: "nearest" });
+    }
+  }
   finally {
     busy = false;
-    for (const id of ["create", "open-agent", "open-composition"]) $(id).disabled = false;
+    for (const id of buttons) $(id).disabled = false;
+    const item = scenarios.find((entry) => entry.projectSlug === selected);
+    if (item) renderScopingResponse(item);
   }
 }
 function choices(catalog, key) {
@@ -560,8 +683,8 @@ async function runSystemCheck(identityOnly = false) {
 async function initialize() {
   const catalog = await api("/api/catalog");
   if (catalog.portalMode !== "visualizer") throw new Error("Restart the old portal to load visualization-only mode.");
-  if (!Number.isInteger(catalog.backendEngineVersion) || catalog.backendEngineVersion < 15) {
-    throw new Error("Restart the portal and refresh to enable workspace-wide System checks.");
+  if (!Number.isInteger(catalog.backendEngineVersion) || catalog.backendEngineVersion < 19) {
+    throw new Error("Restart the portal and refresh to enable automatic brief continuation and workspace-wide System checks.");
   }
   singleChoiceCards("industry", "industry", catalog.industries.map((name) => ({ id: name, name })), "");
   const patterns = catalog.agenticPatterns;
@@ -581,9 +704,10 @@ async function initialize() {
   $("system-identity").addEventListener("click", () => runSystemCheck(true));
   $("intake").addEventListener("submit", (event) => {
     event.preventDefault();
+    const scoping = event.submitter?.id === "refine";
     action(async () => {
       const value = { projectSlug: $("slug").value, industry: selectedChoice("industry"), prompt: $("prompt").value,
-        agenticPattern: selectedChoice("agenticPattern") };
+        agenticPattern: selectedChoice("agenticPattern"), intakeMode: scoping ? "scope" : "build" };
       if (!value.industry || !value.agenticPattern) throw new Error("Choose one industry and one workflow pattern.");
       for (const key of ["services", "businessUnits", "pillars", "domains"]) {
         value[key] = [...document.querySelectorAll(`input[name="${key}"]:checked`)].map((input) => input.value);
@@ -592,10 +716,45 @@ async function initialize() {
       navigate("build");
       await refresh();
       await select(value.projectSlug);
-      await handoff("scenario");
+      await handoff(scoping ? "scoping" : "scenario");
     });
   });
   $("open-agent").addEventListener("click", () => action(openScenarioChat));
+  $("scoping-changes").addEventListener("input", () => {
+    const item = scenarios.find((entry) => entry.projectSlug === selected);
+    if (item) renderScopingResponse(item);
+  });
+  $("scoping-modify").addEventListener("click", () => {
+    const item = scenarios.find((entry) => entry.projectSlug === selected);
+    if (busy || !item?.scoping?.canRespond) return;
+    const response = item.scoping.response;
+    if (!$("scoping-changes").value && item.scoping.responseCurrent
+        && response?.decision === "changes_requested" && response.continuation?.status !== "dispatched") {
+      $("scoping-changes").value = response.changes;
+    }
+    $("scoping-editor").hidden = false;
+    $("scoping-response-error").hidden = true;
+    renderScopingResponse(item);
+    $("scoping-changes").focus();
+    $("scoping-changes").scrollIntoView({ block: "nearest" });
+  });
+  $("scoping-cancel").addEventListener("click", () => {
+    if (busy) return;
+    $("scoping-changes").value = "";
+    $("scoping-editor").hidden = true;
+    $("scoping-response-error").hidden = true;
+    const item = scenarios.find((entry) => entry.projectSlug === selected);
+    if (item) renderScopingResponse(item);
+    $("scoping-modify").focus();
+  });
+  $("scoping-open-chat").addEventListener("click", () => action(async () => {
+    const slug = selected;
+    const value = await reopenChat("scenario");
+    if (selected === slug) $("scoping-chat-status").textContent = `${value.message} `
+      + "The brief controls handle continuation automatically; use this chat to review progress and decisions.";
+  }, true));
+  $("scoping-confirm").addEventListener("click", () => action(() => respondToScoping("confirmed"), true));
+  $("scoping-request-changes").addEventListener("click", () => action(() => respondToScoping("changes_requested"), true));
   $("open-package-folder").addEventListener("click", () => action(async () => {
     if (!selected) throw new Error("Select a scenario.");
     const value = await api("/api/open-package-folder", { projectSlug: selected });
@@ -605,6 +764,7 @@ async function initialize() {
   $("refresh").addEventListener("click", () => refresh().catch(error));
   $("active-project").addEventListener("change", () => select($("active-project").value).catch(error));
   $("create").disabled = false;
+  $("refine").disabled = false;
   await loadSystemPlan().catch(error);
   await refresh();
   setInterval(() => refresh().catch(error), 4000);

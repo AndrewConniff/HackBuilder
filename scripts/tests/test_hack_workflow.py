@@ -599,6 +599,24 @@ class CustomizationTests(unittest.TestCase):
                 text = (agents / filename).read_text(encoding="utf-8")
                 self.assertIn(f"name: {name}\n", text)
 
+    def test_adaptive_scoping_is_shared_without_new_agent_or_approval_context(self) -> None:
+        requirements = (ROOT / ".github" / "skills" / "az-scenario-requirements" / "SKILL.md").read_text(
+            encoding="utf-8",
+        )
+        for phrase in ("## Adaptive prompt scoping", "not a predefined question bank", "at most 5 at once",
+                       "Ask none if it is already clear", "Do not fabricate answers", "scoping.md",
+                       "not an authentication/prerequisite audit", "existing chat",
+                       "neither deployment authorization nor working-scenario suitability approval"):
+            self.assertIn(phrase, requirements)
+        for relative in (
+            ".github/agents/az-01-conductor.agent.md", ".github/skills/hack-builder-workflow/SKILL.md",
+        ):
+            with self.subTest(path=relative):
+                text = (ROOT / relative).read_text(encoding="utf-8")
+                self.assertIn("adaptive-prompt-scoping", text)
+                self.assertIn("scoping.md", text)
+                self.assertIn("same", text)
+
     def test_agent_models_are_inherited_and_visibility_is_valid(self) -> None:
         for path in (ROOT / ".github" / "agents").glob("*.agent.md"):
             with self.subTest(agent=path.name):

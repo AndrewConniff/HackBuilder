@@ -12,6 +12,8 @@ start with the [new-user how-to guide](../ABC-Builder-HOWTO.md).
 The numbered workflow navigation keeps four areas separate:
 
 - **Create scenario**: customer brief, industry, workflow pattern and optional service/business-unit selections.
+  **Refine with AI** opens scoping-only dialogue in the same real scenario agent.
+  **Start building** requests implementation.
 - **Build & validate**: scenario board, reported progress, deployment-review briefs, continuation and reference files.
 - **Create hack**: approval-dependent composition, learner/private coach ZIP exports and local package-folder browsing.
 - **System**: shared prerequisite diagnostics and existing Azure CLI/azd sign-in checks.
@@ -43,12 +45,19 @@ Completed stages stay visible beside pending or blocked stages.
 Each card shows the recorded summary and its timestamp when available; older reports retain their original summaries.
 New agent reports persist a timestamp for each stage, not just the latest overall update.
 
+For a current confirmed scoping brief, **Scenario description** shows **Brief confirmed**
+instead of the superseded input wait. Saved change requests show **Changes saved - revision pending**.
+These display-only states use the matching brief response; they do not count as completed implementation milestones.
+Changed briefs restore the agent-reported wait, and running, failed or completed work is never hidden.
+The original report remains in **Agent-reported steps**.
+Confirmation resumes the normal scenario workflow, starting with requirements and architecture artifacts.
+
 The checklist reads existing reports without rewriting scenario evidence. Existing source files without a report
 are marked **Artifacts available**, not completed or tested. Suitability uses the current fingerprint-checked approval;
 a deployment report never grants approval. Approved references move to **Scenario approved** on the board rather
 than remaining at an old review prompt. Package completion still requires a current validation receipt.
 Milestones appear as a vertical list: green checked boxes for completed stages, a spinner for running work,
-empty boxes for **Not started / unreported**, question marks for approval waits and exclamation marks for failures
+empty boxes for **Not started / unreported**, question marks for input/approval waits and exclamation marks for failures
 or blockers. Every icon has a text status; reduced-motion preferences disable spinner animation.
 An empty box means no progress was reported, not proof that no work occurred.
 Reported limitations remain visible in their original summaries.
@@ -79,8 +88,31 @@ See [the prerequisite guide](../PREREQUISITES.md).
 
 1. Start with `Start-ABCBuilder.cmd` or `python scripts\start_portal.py`.
 1. Enter the scenario prompt, project slug, industry, workflow pattern and optional services/priorities.
+1. Optionally select **Refine with AI**. The agent interprets the prompt, spots architectural gaps/edge cases,
+   and asks a few tailored questions in VS Code chat, not a predefined questionnaire in the browser.
+   It preserves the original intake and saves a concise `scoping.md` beside `request.json`.
+   Build & validate shows these agent-written notes as they are saved.
+   At the bottom of the brief, **Modify brief** reveals a comments box with **Save changes** and **Cancel**.
+   The box stays hidden until requested. **Confirm brief** records acceptance of that exact version and sends
+   a fixed continuation to the existing scenario agent, resuming the normal workflow without a typed prompt.
+   **Save changes** sends a scoping-only revision request instead; the revised brief needs fresh confirmation.
+   Neither action grants new Azure/Entra authority, deployment or suitability approval.
+   An edited brief requires a fresh confirmation. The original intake and agent-reported status are preserved.
+   Saving feedback and validation/connection errors appear beside these controls.
+   A successful confirmation updates the displayed summary and disables the **Brief confirmed** button;
+   requested changes display as saved, not as an agent-completed revision. Unsent comments are retained on failure.
+   **Confirm brief** is also the retry action for older confirmation-only receipts or failed continuations;
+   there is no separate Continue button. It stays enabled until dispatch is acknowledged.
+   Missing acknowledgement displays an error; uncertain sends are not blindly repeated.
+   For an unsent change request, **Modify brief** restores the saved comments for editing and **Save changes**.
+   **Open scenario chat** remains navigation for reviewing progress and responding to genuine decisions.
+   The portal never launches a CLI worker, replaces the conversation or weakens its permissions.
+   Architecture/deployment review and working-scenario approval remain unchanged; do not submit a duplicate project.
+   Scoping alone performs no workspace generation, prerequisite/identity audit or Azure operation.
 1. Select **Start building**. The brief is saved, and the real `az-01-conductor` agent chat opens.
 1. The agent implements requirements, architecture, diagrams, Bicep, app and tests through its existing skills.
+   Normal build requests also get a bounded gap review before architecture, without repeating answered questions
+   or forcing an interview when the brief is sufficient. Scoping confirmation is not deployment/suitability approval.
 1. Approve the architecture/deployment in that VS Code chat. The agent deploys and proves the reference.
 1. Approve the working scenario's suitability in chat and record the fingerprinted approval.
    Open `HackCreator Agent` as a separate VS Code context to derive and validate the hack.

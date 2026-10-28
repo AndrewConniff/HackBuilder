@@ -66,8 +66,8 @@
     </section>
     <section id="view-create" class="panel" aria-labelledby="intake-title">
       <h2 id="intake-title" tabindex="-1">Create a scenario</h2>
-      <p>Save your brief and start the scenario agent. Follow implementation, deployment and validation here.
-        Review questions and approvals in the agent chat when requested.</p>
+      <p>Describe your idea, then refine it with AI or start building.
+        Scoping questions and approvals happen in the scenario's agent chat.</p>
       <form id="intake">
         <label>Project name<input id="slug" required maxlength="40" pattern="[a-z0-9]+(-[a-z0-9]+)*"
           placeholder="finance-security-hack"></label>
@@ -77,9 +77,12 @@
           <div id="industry" class="selection-grid"></div>
         </fieldset>
         <label>What should the scenario achieve?
-          <textarea id="prompt" required maxlength="6000" rows="4"
+          <textarea id="prompt" required maxlength="6000" rows="4" aria-describedby="prompt-help"
             placeholder="Describe the business problem, intended users and important constraints."></textarea>
         </label>
+        <p id="prompt-help" class="muted">An initial idea is enough. Refine with AI reviews this prompt for missing
+          context, architectural trade-offs and edge cases, then asks a few tailored questions in the agent chat.
+          It does not start a build or deploy anything.</p>
         <fieldset aria-describedby="pattern-help">
           <legend>Agentic workflow pattern</legend>
           <div id="agentic-pattern" class="selection-grid"></div>
@@ -95,7 +98,10 @@
           <fieldset><legend>Well-Architected priorities</legend><div id="pillars" class="choices"></div></fieldset>
           <fieldset><legend>Technical domains</legend><div id="domains" class="choices"></div></fieldset>
         </details>
-        <button id="create" type="submit" disabled>Start building</button>
+        <div class="actions">
+          <button id="create" type="submit" disabled>Start building</button>
+          <button id="refine" type="submit" class="secondary" disabled>Refine with AI</button>
+        </div>
         <span id="handoff-status" role="status"></span>
       </form>
     </section>
@@ -112,6 +118,37 @@
       <div class="section-heading"><h2 id="scenario-title"></h2><span id="scenario-status" class="tag"></span></div>
       <p id="summary" role="status"></p>
       <p id="updated" class="muted"></p>
+      <details id="scoping-notes" hidden>
+        <summary>AI scoping notes and refined brief</summary>
+        <p class="muted">Agent-written interpretation, answers, assumptions and open points.
+          Review and respond below. These notes are not deployment or working-scenario suitability approval.</p>
+        <article id="scoping-content" class="markdown"></article>
+        <section id="scoping-response" hidden aria-labelledby="scoping-response-title">
+          <h3 id="scoping-response-title">Review this brief</h3>
+          <div class="actions">
+            <button id="scoping-modify" type="button" class="secondary"
+              aria-expanded="false" aria-controls="scoping-editor">Modify brief</button>
+            <button id="scoping-confirm" type="button">Confirm brief</button>
+            <button id="scoping-open-chat" type="button" class="secondary">Open scenario chat</button>
+          </div>
+          <div id="scoping-editor" hidden>
+            <label for="scoping-changes">Changes to the brief</label>
+            <textarea id="scoping-changes" rows="4" maxlength="8000"
+              placeholder="Describe what you want to change or clarify."></textarea>
+            <div class="actions">
+              <button id="scoping-request-changes" type="button">Save changes</button>
+              <button id="scoping-cancel" type="button" class="secondary">Cancel</button>
+            </div>
+          </div>
+          <p id="scoping-response-status" role="status"></p>
+          <p id="scoping-response-error" role="alert" tabindex="-1" hidden></p>
+          <p id="scoping-chat-status" role="status"></p>
+          <p class="muted">Confirm brief resumes the normal scenario workflow in the existing agent conversation.
+            Save changes sends a scoping-only revision request instead. No prompt writing is needed.
+            Architecture/deployment review and working-scenario suitability approval remain separate;
+            neither action grants new Azure or Entra permissions, deploys resources or starts hack composition.</p>
+        </section>
+      </details>
       <section aria-labelledby="stage-history-title">
         <div class="section-heading"><h3 id="stage-history-title">Scenario milestones</h3>
           <span id="stage-count" class="tag"></span></div>

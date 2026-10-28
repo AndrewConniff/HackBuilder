@@ -399,6 +399,38 @@
     },
     {
       "schemaVersion": 1,
+      "id": "retail-agentic",
+      "title": "Woodgrove Groceries: Agentic Order to Home Delivery",
+      "summary": "Three real Foundry prompt agents coordinate synthetic grocery ordering, fulfillment and delivery with exact customer approval for changed commitments.",
+      "industry": "Retail & Consumer Goods",
+      "businessUnits": [
+        "generic"
+      ],
+      "services": [
+        "foundry",
+        "app-service",
+        "storage",
+        "managed-identity",
+        "virtual-network"
+      ],
+      "pillars": [],
+      "domains": [],
+      "artifacts": [
+        "01-requirements.md",
+        "02-architecture-assessment.md",
+        "04-implementation-plan.md",
+        "03-architect-diagram.png",
+        "04-runtime-diagram.png",
+        "azure.yaml",
+        "infra",
+        "src"
+      ],
+      "source": null,
+      "metadataStatus": "curated",
+      "manifestDigest": "8791cfb5f60beec34086cf58678494690756a90deb244b70a8089f0c59687d94"
+    },
+    {
+      "schemaVersion": 1,
       "id": "retail-foundry-copilot",
       "title": "Lakeshore Retail grounded shopping and store-operations assistant",
       "summary": "Same existing reference: synthetic product discovery, store/SKU inventory and returns-policy guidance through a managed-identity .NET application and bounded Foundry specialists. Generic is the visible legacy business-unit fallback. Curated scope is not runtime validation or approval; historical package folders remain unchanged.",

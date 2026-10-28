@@ -370,6 +370,32 @@ For example:
 Do not include live credentials, customer personal data or secrets.
 Use synthetic data for the demonstration.
 
+### Refine a rough idea with AI
+
+Select **Refine with AI** instead of **Start building** if you want to improve the brief before implementation.
+The portal saves your original prompt and opens the real scenario agent in VS Code in **scoping-only** mode.
+It does not run a browser-side model or use a predefined set of questions.
+
+The agent gives a short interpretation, identifies missing pointers, contradictions and consequential edge cases,
+and asks a few questions tailored to your scenario, usually 2-4 and at most 5 at once.
+Questions explain what the answer would change; recommendations are labeled as proposals, not your decisions.
+Already answered details are reused. A sufficiently descriptive brief does not need an artificial interview.
+
+Answer in that same chat. The agent maintains the refined brief, actual decisions, assumptions and open points
+in `scoping.md` beside the saved `request.json`; the original intake is not overwritten.
+Select the scenario in **Build & validate** to read **AI scoping notes and refined brief** as notes are saved.
+These are agent-written context, not proof that all architectural risks have been eliminated.
+No scenario workspace, architecture, app or cloud operation is started by scoping alone.
+
+When satisfied, select **Confirm brief**. The portal sends a fixed continuation to the existing scenario chat
+and resumes the normal workflow, starting with requirements and architecture artifacts.
+No typed follow-up prompt, duplicate project or new conversation is needed.
+**Modify brief** and **Save changes** send a scoping-only revision request for a new brief review.
+Older confirmation-only receipts and failed sends use the same **Confirm brief** button to continue or retry.
+There is no separate Continue action. Uncertain sends are not blindly repeated.
+**Start building** also includes a bounded prompt gap review before architecture, asking only material open questions.
+Confirming the brief does not approve Azure deployment, working-scenario suitability or hack composition.
+
 ### Choose an agentic workflow pattern
 
 Select one of the 18 patterns or keep **Let AI decide**.

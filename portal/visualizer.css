@@ -98,7 +98,7 @@ summary { cursor: pointer; font-weight: 600; }
 pre { max-height: 550px; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere;
   padding: 16px; background: var(--surface); }
 img { max-width: 100%; }
-#error { padding: 12px; border: 2px solid #ae3250; border-radius: 6px; }
+#error, #scoping-response-error { padding: 12px; border: 2px solid #ae3250; border-radius: 6px; }
 .actions { margin: 14px 0; }
 .markdown { overflow-wrap: anywhere; }
 .markdown h1 { font-size: 23px; }

@@ -30,7 +30,21 @@ Use `generated-scenarios\{projectSlug}` without silently changing the slug.
 The normal user flow is:
 
 1. Enter the scenario brief in the portal and hand it to `az-01-conductor` in VS Code.
+   Optionally choose **Refine with AI** first: the same agent uses
+   [adaptive prompt scoping](../az-scenario-requirements/SKILL.md#adaptive-prompt-scoping)
+   to interpret the actual brief, spot architectural gaps/edge cases and ask only material follow-ups.
+   It saves the original intake unchanged and records clarified scope in `scoping.md` beside `request.json`.
+   Dedicated scoping stops before workspace creation, architecture, audits or Azure operations.
+   **Confirm brief** records acceptance of that fingerprint and sends a fixed continuation to the same scenario
+   conversation, resuming the normal workflow below. No user-authored follow-up prompt or new agent is required.
+   **Save changes** sends a scoping-only revision request and waits for fresh confirmation.
+   Older confirmation-only receipts and failed sends use the same **Confirm brief** action; no separate Continue button.
+   Never dispatch or retry automatically during polling.
+   Missing bridge acknowledgement is an explicit continuation failure, not successful execution.
+   It is not a fixed questionnaire, stage scheduler or another agent.
 1. The agent builds requirements, architecture, diagrams, Bicep, real app and tests.
+   Before architecture, apply the same adaptive gap review to normal build requests; reuse answers,
+   ask no questions when the brief is sufficient, and carry the clarified scope into requirements/design.
 1. In that VS Code chat, approve the architecture and reviewed deployment scope once.
 1. The agent deploys, repairs in-scope errors and proves real application behavior.
 1. Approve the working scenario's suitability in chat; record the reviewed fingerprint.

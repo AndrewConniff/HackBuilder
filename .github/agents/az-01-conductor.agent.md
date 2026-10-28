@@ -2,7 +2,8 @@
 name: az-01-conductor
 description: >
   Implements and proves a complete Foundry reference scenario directly in VS Code
-  through skills. Requests architecture/deployment and working-scenario approval.
+  through skills. Refines rough prompts with adaptive scoping questions before architecture.
+  Requests architecture/deployment and working-scenario approval.
 argument-hint: "Build or resume a reference scenario for an industry and business outcome"
 user-invocable: true
 agents: []
@@ -28,6 +29,20 @@ For an interactive invocation, the startup hook opens the local visualization po
 If scoped hooks are unavailable, run `python scripts\start_portal.py` once, not on every follow-up.
 For a portal handoff, the portal is already open; proceed with the attached handoff and brief.
 The portal saves intake, displays status and serves files. It does not execute or supervise you.
+
+For **Refine with AI / SCOPING ONLY**, first use the requirements skill's
+[adaptive prompt scoping](../skills/az-scenario-requirements/SKILL.md#adaptive-prompt-scoping).
+Analyze this brief for consequential omissions, ambiguity and edge cases; ask a few prompt-specific questions,
+not a standard questionnaire. Preserve the original brief, persist the refined scope and actual answers in
+`scoping.md` beside its saved `request.json`, and report the requirements stage to the portal.
+Do not create a scenario workspace, architecture, infrastructure or app; do not audit tools, discover identity,
+query Azure, deploy or compose. Stop for answers and brief confirmation.
+The portal's **Confirm brief** action sends a fixed continuation to this same conversation;
+it resumes the normal scenario workflow without requiring the user to write another prompt.
+**Save changes** sends a scoping-only revision request instead; revise the brief and wait for fresh confirmation.
+Scoping answers and brief confirmation do not grant Azure/Entra permissions, deployment or suitability approval.
+On a normal build handoff, run the same bounded gap review before architecture, reusing notes and answered
+questions; proceed without an interview when the brief is already sufficient.
 
 Use exactly `generated-scenarios\{projectSlug}` from the handoff.
 Read its saved brief under `.abcbuilder-portal\scenarios\{projectSlug}\request.json`

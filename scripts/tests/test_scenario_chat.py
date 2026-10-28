@@ -87,7 +87,7 @@ class ScenarioChatTests(unittest.TestCase):
         result = self.resolve()
         self.assertEqual(editor_id, result["editorSessionId"])
         self.assertEqual(sdk_id, result["sdkSessionId"])
-        self.assertEqual(f"agent-host-session://copilot/{editor_id}?connectionAuthority=local", result["resource"])
+        self.assertEqual(f"agent-host-session://ahp-session/{editor_id}?connectionAuthority=local", result["resource"])
         self.assertEqual(before, database.read_bytes())
         self.assertNotIn("content", json.dumps(result))
 
@@ -125,6 +125,15 @@ class ScenarioChatTests(unittest.TestCase):
         self.assertEqual(trace, result["traceId"])
         self.assertEqual("handoff-trace", result["source"])
 
+    def test_scoping_handoff_binds_to_the_same_scenario_conversation(self) -> None:
+        trace = "c" * 32
+        directory = portal_status.scenario_state(self.root, "test-scenario")
+        portal_status.write_json(directory / "scenario-chat-started.json", {"phase": "scoping", "traceId": trace})
+        expected, _ = self.add_session(phase="scoping", trace=trace)
+        self.add_session(phase="composition", trace=trace)
+        self.assertEqual(expected, self.resolve()["editorSessionId"])
+        self.assertEqual(expected, self.resolve()["editorSessionId"])
+
     def test_other_scenarios_workspaces_and_maintenance_conversations_are_excluded(self) -> None:
         self.add_session(slug="test-scenario-other")
         self.add_session(workspace=self.base / "other-workspace")
@@ -147,6 +156,62 @@ class ScenarioChatTests(unittest.TestCase):
             (portal_status.scenario_state(self.root, "test-scenario") / "chat-sessions.json").read_text()
         )
         self.assertEqual({"scenario", "composition"}, set(saved["sessions"]))
+
+    def test_legacy_generated_link_is_repaired_without_selecting_another_conversation(self) -> None:
+        editor_id, sdk_id = self.add_session()
+        selected = self.resolve()
+        filename = portal_status.scenario_state(self.root, "test-scenario") / "chat-sessions.json"
+        saved = json.loads(filename.read_text())
+        saved["sessions"]["scenario"]["resource"] = (
+            f"agent-host-session://copilot/{editor_id}?connectionAuthority=local"
+        )
+        saved["sessions"]["composition"] = {"resource": "agent-host-session://other/existing"}
+        portal_status.write_json(filename, saved)
+        self.add_session(reported="2026-10-28T00:00:00Z")
+        database = self.storage / editor_id / "session.db"
+        before = database.read_bytes()
+        result = self.resolve()
+        self.assertEqual(selected, result)
+        self.assertEqual(sdk_id, result["sdkSessionId"])
+        self.assertEqual(before, database.read_bytes())
+        self.assertEqual(result, json.loads(filename.read_text())["sessions"]["scenario"])
+        self.assertEqual(saved["sessions"]["composition"], json.loads(filename.read_text())["sessions"]["composition"])
+
+    def test_legacy_link_repair_requires_the_same_workspace_and_sdk_identity(self) -> None:
+        editor_id, _ = self.add_session()
+        self.resolve()
+        filename = portal_status.scenario_state(self.root, "test-scenario") / "chat-sessions.json"
+        saved = json.loads(filename.read_text())
+        saved["sessions"]["scenario"].update(
+            resource=f"agent-host-session://copilot/{editor_id}?connectionAuthority=local",
+            sdkSessionId=str(uuid.uuid4()),
+        )
+        portal_status.write_json(filename, saved)
+        before = filename.read_bytes()
+        with self.assertRaisesRegex(ValueError, "identity could not be verified"):
+            self.resolve()
+        self.assertEqual(before, filename.read_bytes())
+
+    def test_manually_linked_sessions_are_not_rewritten(self) -> None:
+        directory = portal_status.scenario_state(self.root, "test-scenario")
+        selected = {"resource": f"agent-host-session://copilot/{uuid.uuid4()}?connectionAuthority=local"}
+        portal_status.write_json(directory / "chat-sessions.json", {"schemaVersion": 1, "sessions": {
+            "scenario": selected,
+        }})
+        self.assertEqual(selected, self.resolve())
+
+    def test_unavailable_legacy_identity_does_not_authorize_link_repair(self) -> None:
+        directory = portal_status.scenario_state(self.root, "test-scenario")
+        editor_id = str(uuid.uuid4())
+        filename = directory / "chat-sessions.json"
+        portal_status.write_json(filename, {"schemaVersion": 1, "sessions": {"scenario": {
+            "resource": f"agent-host-session://copilot/{editor_id}?connectionAuthority=local",
+            "editorSessionId": editor_id, "source": "handoff-trace",
+        }}})
+        before = filename.read_bytes()
+        with self.assertRaisesRegex(ValueError, "identity could not be verified"):
+            self.resolve()
+        self.assertEqual(before, filename.read_bytes())
 
     def test_pre_portal_reference_attachment_requires_actual_matching_progress(self) -> None:
         reference = self.root / "generated-scenarios" / "test-scenario" / "01-requirements.md"

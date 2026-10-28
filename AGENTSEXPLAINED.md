@@ -89,6 +89,16 @@ orchestrator, not a separately discoverable `app-creation` skill.
 
 ## Agentic pattern guidance
 
+The portal's **Refine with AI** action hands the actual brief to `az-01-conductor` in scoping-only mode.
+The requirements skill's adaptive prompt review generates scenario-specific follow-ups, not a fixed question bank.
+It preserves original intake, records actual answers/refined scope in local `scoping.md` and stops for confirmation.
+**Confirm brief** sends a fixed continuation to that same scenario conversation, resuming the normal workflow.
+**Save changes** requests only a scoping revision and fresh review. Users do not write continuation prompts.
+The native bridge retains the existing agent/model/permissions; polling never sends or retries work.
+Normal build handoffs use the same gap review without forcing an interview for already complete briefs.
+This adds no agent context, model API, background worker, consent grant or scenario approval.
+Local tests can prove routing and boundaries; they cannot prove the quality of a live AI interview.
+
 On 2026-10-22, the
 [18-pattern business-scenario guide](.github/skills/az-scenario-requirements/references/agentic-patterns.md)
 was added as a requirements-skill reference, not another discoverable skill or agent.

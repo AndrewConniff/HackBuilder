@@ -26,6 +26,11 @@ workflow changes.
 
 The [local portal](portal/README.md) collects your brief, opens the real VS Code
 agent conversation, displays progress reports and provides file/package browsing.
+Use **Refine with AI** on a rough brief for prompt-specific scoping questions before building.
+The same scenario agent spots architectural gaps and edge cases, saves a refined brief and waits for confirmation.
+**Confirm brief** resumes the normal workflow in that existing conversation without a typed follow-up prompt;
+**Save changes** requests a scoping-only revision. Deployment and suitability approvals remain separate.
+No fixed questionnaire, extra agent, model credentials or cloud operation is added by refinement.
 From the repository root, start or reuse it:
 
 ```powershell
