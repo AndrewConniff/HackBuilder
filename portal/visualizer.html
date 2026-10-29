@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ABC Builder</title>
+  <link rel="stylesheet" href="/visualizer.css">
+  <script src="/markdown.js" defer></script>
+  <script src="/visualizer.js" defer></script>
+</head>
+<body>
+  <header>
+    <div><h1>ABC Builder</h1><p>Describe. Build. Explore your hack.</p></div>
+    <label class="appearance">Appearance
+      <select id="theme" aria-describedby="theme-notice">
+        <option value="system">System</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+    </label>
+  </header>
+  <div class="workspace">
+  <nav class="workflow-nav" aria-label="Workflow">
+    <a id="nav-create" href="#create" aria-current="page"><span class="nav-step">1</span>
+      <span><strong>Create scenario</strong><small>Shape the customer story</small></span></a>
+    <a id="nav-build" href="#build"><span class="nav-step">2</span>
+      <span><strong>Build &amp; validate</strong><small>Follow progress and review</small></span></a>
+    <a id="nav-hack" href="#hack"><span class="nav-step">3</span>
+      <span><strong>Create hack</strong><small>Compose and export materials</small></span></a>
+    <a id="nav-system" href="#system"><span class="nav-step">4</span>
+      <span><strong>System</strong><small id="system-nav-status">Not checked</small></span></a>
+  </nav>
+  <main>
+    <p id="theme-notice" class="muted" role="status" hidden></p>
+    <p id="error" role="alert" hidden></p>
+    <div id="project-switch" class="project-switch" hidden>
+      <label>Working scenario
+        <select id="active-project"><option value="">Choose a scenario</option></select>
+      </label>
+      <button id="open-agent" type="button" hidden>Open scenario chat</button>
+      <p id="scenario-chat-link-status" class="muted"></p>
+    </div>
+    <section id="view-system" class="panel" hidden aria-labelledby="system-title">
+      <div class="section-heading"><h2 id="system-title" tabindex="-1">System prerequisites</h2>
+        <span id="system-status" class="tag" role="status">Not checked</span></div>
+      <p>Prepare this workspace once for all supported scenarios: shared tools, a running Docker Linux engine,
+        Azure CLI and azd, and matching Azure sign-in. No scenario selection is needed.</p>
+      <p>Checks never install or update software, start Docker, sign you in or change Azure defaults.
+        Resolve reported gaps once, then recheck. Ready requires both tools and Azure authentication to pass.</p>
+      <details id="system-details">
+        <summary>Check tools and existing Azure sign-in</summary>
+        <p>The shared checklist covers all catalog services, local container builds, Azure Functions Core Tools
+          and k6 load testing. Scenario-specific packages and deployment checks remain with the scenario agent.</p>
+        <label><input id="system-consent" type="checkbox">Allow read-only local diagnostics, package-feed HTTPS
+          checks and existing CLI sign-in verification. No installation or Azure resource operations.</label>
+        <div class="actions">
+          <button id="system-check" type="button" disabled>Check prerequisites</button>
+          <button id="system-identity" type="button" class="secondary" disabled>Check Azure sign-in</button>
+        </div>
+        <p id="system-summary" role="status"></p>
+        <p id="system-identity-status" role="status">Azure CLI / azd sign-in not checked.</p>
+        <ul id="system-checks" class="system-checks"></ul>
+        <p id="system-limits" class="muted">A toolchain check is not deployment readiness or permission.
+          Scenario-specific packages, Azure quotas, RBAC and runtime behavior are validated by the scenario agent.</p>
+      </details>
+    </section>
+    <section id="view-create" class="panel" aria-labelledby="intake-title">
+      <h2 id="intake-title" tabindex="-1">Create a scenario</h2>
+      <p>Describe your idea, then refine it with AI or start building.
+        Scoping questions and approvals happen in the scenario's agent chat.</p>
+      <form id="intake">
+        <label>Project name<input id="slug" required maxlength="40" pattern="[a-z0-9]+(-[a-z0-9]+)*"
+          placeholder="finance-security-hack"></label>
+        <fieldset aria-describedby="industry-help">
+          <legend>Industry</legend>
+          <p id="industry-help" class="muted">Choose one industry for the scenario.</p>
+          <div id="industry" class="selection-grid"></div>
+        </fieldset>
+        <label>What should the scenario achieve?
+          <textarea id="prompt" required maxlength="6000" rows="4" aria-describedby="prompt-help"
+            placeholder="Describe the business problem, intended users and important constraints."></textarea>
+        </label>
+        <p id="prompt-help" class="muted">An initial idea is enough. Refine with AI reviews this prompt for missing
+          context, architectural trade-offs and edge cases, then asks a few tailored questions in the agent chat.
+          It does not start a build or deploy anything.</p>
+        <fieldset aria-describedby="pattern-help">
+          <legend>Agentic workflow pattern</legend>
+          <div id="agentic-pattern" class="selection-grid"></div>
+        </fieldset>
+        <p id="pattern-help" class="muted" role="status"></p>
+        <p class="muted">Choose one of 18 patterns, or let AI design a fitting scenario for your imaginary
+          customer and industry. Describe the customer, users and business goals above.
+          These patterns describe your solution's behavior, not additional build agents.</p>
+        <details>
+          <summary>Services, business units and architecture priorities</summary>
+          <fieldset><legend>Azure services</legend><div id="services" class="choices"></div></fieldset>
+          <fieldset><legend>Business units</legend><div id="businessUnits" class="choices"></div></fieldset>
+          <fieldset><legend>Well-Architected priorities</legend><div id="pillars" class="choices"></div></fieldset>
+          <fieldset><legend>Technical domains</legend><div id="domains" class="choices"></div></fieldset>
+        </details>
+        <div class="actions">
+          <button id="create" type="submit" disabled>Start building</button>
+          <button id="refine" type="submit" class="secondary" disabled>Refine with AI</button>
+        </div>
+        <span id="handoff-status" role="status"></span>
+      </form>
+    </section>
+    <section id="view-build" hidden aria-labelledby="build-title">
+      <h2 id="build-title" tabindex="-1">Build &amp; validate</h2>
+      <p class="muted">Select a scenario to see its progress, review decisions and browse reference files.</p>
+    <section aria-labelledby="scenarios-title">
+      <div class="section-heading"><h3 id="scenarios-title">Scenarios</h3>
+        <button id="refresh" type="button" class="secondary">Refresh</button></div>
+      <p class="muted">Status comes from the agent's JSON reports. The portal does not run or supervise agents.</p>
+      <div id="board" class="board"></div>
+    </section>
+    <section id="scenario" class="panel" hidden aria-labelledby="scenario-title">
+      <div class="section-heading"><h2 id="scenario-title"></h2><span id="scenario-status" class="tag"></span></div>
+      <p id="summary" role="status"></p>
+      <p id="updated" class="muted"></p>
+      <details id="scoping-notes" hidden>
+        <summary>AI scoping notes and refined brief</summary>
+        <p class="muted">Agent-written interpretation, answers, assumptions and open points.
+          Review and respond below. These notes are not deployment or working-scenario suitability approval.</p>
+        <article id="scoping-content" class="markdown"></article>
+        <section id="scoping-response" hidden aria-labelledby="scoping-response-title">
+          <h3 id="scoping-response-title">Review this brief</h3>
+          <div class="actions">
+            <button id="scoping-modify" type="button" class="secondary"
+              aria-expanded="false" aria-controls="scoping-editor">Modify brief</button>
+            <button id="scoping-confirm" type="button">Confirm brief</button>
+            <button id="scoping-open-chat" type="button" class="secondary">Open scenario chat</button>
+          </div>
+          <div id="scoping-editor" hidden>
+            <label for="scoping-changes">Changes to the brief</label>
+            <textarea id="scoping-changes" rows="4" maxlength="8000"
+              placeholder="Describe what you want to change or clarify."></textarea>
+            <div class="actions">
+              <button id="scoping-request-changes" type="button">Save changes</button>
+              <button id="scoping-cancel" type="button" class="secondary">Cancel</button>
+            </div>
+          </div>
+          <p id="scoping-response-status" role="status"></p>
+          <p id="scoping-response-error" role="alert" tabindex="-1" hidden></p>
+          <p id="scoping-chat-status" role="status"></p>
+          <p class="muted">Confirm brief resumes the normal scenario workflow in the existing agent conversation.
+            Save changes sends a scoping-only revision request instead. No prompt writing is needed.
+            Architecture/deployment review and working-scenario suitability approval remain separate;
+            neither action grants new Azure or Entra permissions, deploys resources or starts hack composition.</p>
+        </section>
+      </details>
+      <section aria-labelledby="stage-history-title">
+        <div class="section-heading"><h3 id="stage-history-title">Scenario milestones</h3>
+          <span id="stage-count" class="tag"></span></div>
+        <p class="muted">Completed stages remain visible as work continues. Artifact availability is not a passed test.
+          Suitability approval is separate from architecture or deployment consent.</p>
+        <ol id="stage-history" class="stage-history"></ol>
+      </section>
+      <p id="next-action" role="status"></p>
+      <div id="scenario-actions" class="actions" hidden>
+        <a id="open-hack" class="button secondary" href="#hack" hidden>Go to Create hack</a>
+      </div>
+      <section id="deployment-review" hidden aria-labelledby="deployment-review-title">
+        <h3 id="deployment-review-title">Deployment review and next decision</h3>
+        <p id="review-path" class="muted"></p>
+        <article id="review-content" class="markdown"></article>
+        <p class="muted">Use Open scenario chat above to respond in this scenario's existing conversation.
+          Copilot reuses matching prior authorization and asks only about genuinely missing or changed scope.
+          This button does not grant new permission or start deployment.
+          Continue in the existing chat instead when possible.</p>
+      </section>
+      <p id="scenario-handoff-status" role="status"></p>
+      <details><summary>Agent-reported steps</summary><ul id="steps"></ul></details>
+      <h3>Reference files</h3>
+      <div id="files" class="file-groups"></div>
+    </section>
+    </section>
+    <section id="view-hack" class="panel" hidden aria-labelledby="hack-title-heading">
+      <h2 id="hack-title-heading" tabindex="-1">Create hack</h2>
+      <p>Turn an approved, working reference into learner challenges, a minimum starter and private coach materials.</p>
+      <p class="muted">Approved, completed references move here from Build &amp; validate.
+        Follow hack authoring, validation and export readiness below.</p>
+      <div id="hack-board" class="board"></div>
+      <p id="hack-empty">Only scenarios with all reference milestones completed and current suitability approval
+        appear here. Choose an eligible scenario above, or finish the remaining stages in
+        <a href="#build">Build &amp; validate</a>.</p>
+      <div id="hack-detail" hidden>
+      <div class="section-heading"><h3 id="hack-project-title"></h3><span id="hack-status" class="tag"></span></div>
+      <p id="hack-guidance" role="status"></p>
+      <section aria-labelledby="hack-stage-history-title">
+        <div class="section-heading"><h3 id="hack-stage-history-title">Hack creation milestones</h3>
+          <span id="hack-stage-count" class="tag"></span></div>
+        <ol id="hack-stage-history" class="stage-history"></ol>
+      </section>
+      <button id="open-composition" type="button" hidden>Create hack materials</button>
+      <p id="composition-help" class="muted" hidden>Opens a separate composition chat from the approved reference.
+        Its recorded handoff trace lets follow-ups reuse that chat automatically. It does not deploy an event or publish.</p>
+      <p id="hack-handoff-status" role="status"></p>
+      <div id="export-actions" class="actions" hidden>
+        <a id="learner-zip" class="button" href="#" hidden>Export learner ZIP</a>
+        <a id="coach-zip" class="button secondary" href="#" hidden>Export private coach ZIP</a>
+      </div>
+      <p id="export-help" class="muted" hidden>Learner and coach exports are separate.
+        Never distribute private coach materials to learners.</p>
+      <div id="package-folder-actions" hidden>
+        <button id="open-package-folder" type="button" class="secondary">Open package folder</button>
+        <p><code id="package-folder-path"></code></p>
+        <p class="muted">Browse the generated files locally. The folder includes private coach materials;
+          distribute only the learner ZIP to participants.</p>
+        <p id="package-folder-status" role="status"></p>
+      </div>
+      </div>
+    </section>
+      <section id="preview" class="panel" hidden>
+        <h3 id="preview-title"></h3><article id="preview-markdown" class="markdown" hidden></article>
+        <pre id="preview-text"></pre><img id="preview-image" alt="Scenario diagram" hidden>
+      </section>
+  </main>
+  </div>
+</body>
+</html>

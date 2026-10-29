@@ -60,6 +60,15 @@ applyTo: "**/*.cs,**/*.csproj,**/Dockerfile"
 
 ### Seed Data
 
+- Derive entities, records, documents and actions from the requirements' industry,
+  `businessUnits`, personas and handoffs. Use the workflow's stable IDs; Generic
+  is exclusive and means a typical industry workflow without unit targeting.
+- For catalog adaptations, regenerate target business app/data rather than
+  relabeling source examples. Use source architecture as read-only guidance;
+  never copy deployment state, secrets, scopes, approvals, packages or runtime success.
+- Cover selected-unit workflows, cross-unit handoffs and negative cases in tests.
+- Preserve company/person CSV provenance and exact recorded identities across
+  seeds, app displays, grounding, evaluations and learner/coach fixtures.
 - JSON files with 10-20 realistic but fictional records
 - Use PascalCase property names in JSON (match C# models)
 - Include varied data (different statuses, dates, amounts)
@@ -88,6 +97,11 @@ applyTo: "**/*.cs,**/*.csproj,**/Dockerfile"
 ## Dockerfile Requirements (Container Targets)
 
 - Use multi-stage build: SDK image for build, ASP.NET image for runtime
+- Pin the SDK build stage to `--platform=$BUILDPLATFORM` to avoid emulated SDK crashes on ARM64 hosts.
+  Retain the intended target platform for the runtime stage. Portable framework-dependent IL with
+  `UseAppHost=false` does not require a target-architecture SDK. For RID-specific/native output,
+  align restore/publish runtime arguments and lock files explicitly; preserve locked restore.
+  Diagnose generated Dockerfile platform selection before requesting shared Docker/emulator repair.
 - Base images: `mcr.microsoft.com/dotnet/sdk:10.0` and `mcr.microsoft.com/dotnet/aspnet:10.0`
 - Expose port 8080 (ASP.NET Core default in containers)
 - Set `ASPNETCORE_URLS=http://+:8080`
@@ -111,9 +125,21 @@ applyTo: "**/*.cs,**/*.csproj,**/Dockerfile"
 
 - ❌ Do not use Entity Framework or any ORM — use native SDKs (`Azure.Data.Tables`, `Microsoft.Azure.Cosmos`, `Microsoft.Data.SqlClient`)
 - ❌ Do not use local JSON seed data when an Azure data service exists in the architecture
-- ❌ Do not add authentication/authorization middleware
+- ❌ Do not use consent-dependent Entra sign-in, anonymous bypasses or hard-coded shared demo passwords
 - ❌ Do not use `HttpClient` to fetch external data
 - ❌ Do not add Swagger/OpenAPI (this is a Razor Pages app, not an API)
 - ❌ Do not use `IConfiguration` for seed data paths — use `IWebHostEnvironment.ContentRootPath`
 - ❌ Do not add health check endpoints (keep the app minimal)
 - ❌ Do not store secrets in appsettings.json — use environment variables or managed identity
+
+## Sample authentication and Azure access
+
+Apply the [local-account and Azure RBAC contract](
+../skills/hack-builder-workflow/SKILL.md#sample-application-accounts-and-azure-resource-access).
+Sample apps authenticate local app accounts with salted framework password hashes, secure cookies,
+CSRF checks, bounded sessions and login lockout/throttling. Enforce server-assigned roles.
+Never use Entra ID authentication if admin consent is required.
+Record generated participant and coach credentials separately in private, gitignored deployment access files;
+public guides contain placeholders and delivery instructions, not live passwords.
+Azure runtime calls always use managed identity. Provision the reviewed least-privilege Azure control/data-plane
+roles for the deploying admin user too; operator CLI validation does not replace app managed-identity tests.

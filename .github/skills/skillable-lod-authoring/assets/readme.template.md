@@ -6,15 +6,17 @@ Build a Microsoft Foundry agent that <ONE_LINE_OUTCOME>.
 
 <UNCHANGED_SCENARIO_TEXT>
 
+**Business scope:** <APPROVED_BUSINESS_UNITS_AND_PERSONAS_OR_GENERIC_INDUSTRY_WORKFLOW>
+
 ## Schedule
 
 | Page | Time | Outcome |
 | --- | --- | --- |
-| [Secure Foundation](Instructions/<INDUSTRY_SLUG>/01-secure-foundation.md) | 25 min | Access and baseline |
-| [Build the MVP](Instructions/<INDUSTRY_SLUG>/02-build-the-agent.md) | 35 min | End-to-end response |
-| [Ground It](Instructions/<INDUSTRY_SLUG>/03-ground-it.md) | 35 min | Grounded citations |
-| [Give It Tools](Instructions/<INDUSTRY_SLUG>/04-give-it-tools.md) | 35 min | Authenticated action |
-| [Harden & Demo](Instructions/<INDUSTRY_SLUG>/05-harden-and-demo.md) | 30 min | Evaluation and demo |
+| [Secure Foundation](Instructions/<INDUSTRY_SLUG>/00-secure-foundation.md) | 25 min | Access and baseline |
+| [Build the MVP](Instructions/<INDUSTRY_SLUG>/01-build-the-agent.md) | 35 min | End-to-end response |
+| [Ground It](Instructions/<INDUSTRY_SLUG>/02-ground-it.md) | 35 min | Grounded citations |
+| [Give It Tools](Instructions/<INDUSTRY_SLUG>/03-give-it-tools.md) | 35 min | Authenticated action |
+| [Harden & Demo](Instructions/<INDUSTRY_SLUG>/04-harden-and-demo.md) | 30 min | Evaluation and demo |
 | **Build total** | **150 min** | |
 
 ## Prerequisites

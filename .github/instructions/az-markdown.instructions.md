@@ -96,49 +96,52 @@ If Mermaid is used, include a neutral theme directive for dark mode compatibilit
 When generating workflow artifacts, agents **MUST** follow the canonical templates in
 `.github/skills/az-azure-artifacts/templates/`. Key examples:
 
-| Artifact                        | Template                                 | Producing Agent |
+| Artifact                        | Template                                 | Owning procedure |
 | ------------------------------- | ---------------------------------------- | --------------- |
 | `01-requirements.md`            | `01-requirements.template.md`            | requirements    |
-| `02-architecture-assessment.md` | `02-architecture-assessment.template.md` | architect       |
-| `04-implementation-plan.md`     | `04-implementation-plan.template.md`     | bicep-plan      |
-| `06-deployment-summary.md`      | `06-deployment-summary.template.md`      | 06-Deploy       |
+| `02-architecture-assessment.md` | `02-architecture-assessment.template.md` | architecture    |
+| `04-implementation-plan.md`     | `04-implementation-plan.template.md`     | Bicep planning  |
+| `06-deployment-summary.md`      | `06-deployment-summary.template.md`      | deployment      |
 
-All 15 artifact types have corresponding templates. See `az-azure-artifacts.instructions.md`
-for the complete heading reference.
+Use the templates actually present in this repository. See
+`az-azure-artifacts.instructions.md` for the artifact heading reference.
+Hack authoring uses the separate Skillable templates only after scenario approval.
 
 **Requirements:**
 
 1. **Preserve H2 heading order**: Templates define invariant H2 sections that MUST appear in order
 2. **No embedded skeletons**: Agents must link to templates, never embed structure inline
 3. **Optional sections**: May appear after the last required H2 (anchor), with warnings if before
-4. **Validation**: All artifacts are validated by `scripts/validate-artifact-templates.mjs`
+4. **Validation**: Compare required headings with the corresponding template.
+   Use the Skillable validator for hack content and the focused tests in `AGENTS.md`.
 
 **Enforcement:**
 
-- Pre-commit hooks via Lefthook run validation on every commit
-- CI validates on PR/push via GitHub Actions
-- Auto-fix available: `npm run fix:artifact-h2`
+This checkout does not ship an artifact-template npm task, Lefthook configuration
+or `scripts/validate-artifact-templates.mjs`. Do not invoke absent tooling or claim
+CI/pre-commit enforcement that is not configured.
 
 ## Visual Styling Standards
 
 **MANDATORY**: All agent-generated documentation MUST follow the styling standards defined in:
 
-📚 **[Consolidated Skill](../skills/az-consolidated/SKILL.md)**
+**[Consolidated Skill](../skills/az-consolidated/SKILL.md)**
 
 ### Quick Reference
 
 | Element        | Usage               | Example                                        |
 | -------------- | ------------------- | ---------------------------------------------- |
 | Callouts       | Emphasis & warnings | `> [!NOTE]`, `> [!TIP]`, `> [!WARNING]`        |
-| Status Emoji   | Progress indicators | ✅ ⚠️ ❌ 💡                                    |
-| Category Icons | Resource sections   | 💻 💾 🌐 🔐 📊                                 |
+| Status         | Progress indicators | `complete`, `pending`, `warning`, `failed`      |
+| Categories     | Resource sections   | Plain-text service or resource names           |
 | Collapsible    | Long content        | `<details><summary>...</summary>...</details>` |
 | References     | Evidence links      | Microsoft Learn URLs at document bottom        |
 
 ### Callout Types
 
 Supported: `> [!NOTE]`, `> [!TIP]`, `> [!IMPORTANT]`, `> [!WARNING]`, `> [!CAUTION]`.
-Full examples and emoji tables are in the SKILL.md linked above.
+Use no decorative emoji in headings, prose or navigation. Preserve functional
+badges, Markdown checkboxes and alert callouts. Full examples are in the linked skill.
 
 ## Lists and Formatting
 

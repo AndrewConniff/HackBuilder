@@ -1,19 +1,19 @@
-# 💻 Step 5: Implementation Reference - {project-name}
+# Step 5: Implementation Reference - {project-name}
 
-📑 Implementation Reference
+Implementation Reference
 
-- [📁 IaC Templates Location](#-iac-templates-location)
-- [🗂️ File Structure](#-file-structure)
-- [✅ Validation Status](#-validation-status)
-- [🏗️ Resources Created](#-resources-created)
-- [🚀 Deployment Instructions](#-deployment-instructions)
-- [📝 Key Implementation Notes](#-key-implementation-notes)
+- [IaC Templates Location](#iac-templates-location)
+- [File Structure](#file-structure)
+- [Validation Status](#validation-status)
+- [Resources Created](#resources-created)
+- [Deployment Instructions](#deployment-instructions)
+- [Key Implementation Notes](#key-implementation-notes)
 
-## 📁 IaC Templates Location
+## IaC Templates Location
 
-📁 **Code Location**: [`infra/`](./infra/)
+**Code Location**: [`infra/`](./infra/)
 
-## 🗂️ File Structure
+## File Structure
 
 ```text
 generated-scenarios/{project-name}/infra/
@@ -23,15 +23,15 @@ generated-scenarios/{project-name}/infra/
     └── {module}.bicep      # Resource modules
 ```
 
-## ✅ Validation Status
+## Validation Status
 
 | Check         | Result       | Details                    |
 | ------------- | ------------ | -------------------------- |
-| `bicep build` | ✅ / ❌      | {details or error message} |
-| `bicep lint`  | ✅ / ⚠️ / ❌ | {details or warning count} |
-| `what-if`     | ✅ / ❌      | {resource count or error}  |
+| `bicep build` | Passed / Failed | {details or error message} |
+| `bicep lint`  | Passed / Warning / Failed | {details or warning count} |
+| `what-if`     | Passed / Failed / Not authorized | {resource count or error} |
 
-## 🏗️ Resources Created
+## Resources Created
 
 | Resource   | Bicep Type   | Module   |
 | ---------- | ------------ | -------- |
@@ -42,14 +42,14 @@ generated-scenarios/{project-name}/infra/
 graph TD
     MAIN["main.bicep"] --> MOD1["{module1}"]
     MAIN --> MOD2["{module2}"]
-    MOD1 --> R1["💻 {resource1}"]
-    MOD2 --> R2["💾 {resource2}"]
-    MOD2 --> R3["🌐 {resource3}"]
+    MOD1 --> R1["{resource1}"]
+    MOD2 --> R2["{resource2}"]
+    MOD2 --> R3["{resource3}"]
 ```
 
 > Replace with actual module and resource names from generated Bicep.
 
-## 🚀 Deployment Instructions
+## Deployment Instructions
 
 ```bash
 # Deploy with azd
@@ -62,7 +62,7 @@ azd up
 azd provision --preview
 ```
 
-## 📝 Key Implementation Notes
+## Key Implementation Notes
 
 | Note                                                 | Impact             | Reference     |
 | ---------------------------------------------------- | ------------------ | ------------- |

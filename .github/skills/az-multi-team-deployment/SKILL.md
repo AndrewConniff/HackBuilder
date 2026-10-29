@@ -8,10 +8,21 @@ description: >
 
 # Multi-Team Hack Deployment
 
-Use this skill when a user request specifies one or more hacker teams. The
-Deploy agent remains the only owner of actual Azure deployment.
+Use this skill to plan manifests after scenario approval, or to execute a
+**separate explicit event-deployment request**. Team count alone is not rollout
+consent. The scenario orchestrator remains the only owner of actual Azure deployment,
+executing deployment skills directly in its own context.
+
+Reference deployment never uses this manifest. Package authoring may finish
+with all targets `planned`; only requested event rollout requires live success.
+An application URL is required only when the minimum starter includes an app.
 
 ## Team Rules
+
+- Resolve destination subscription, tenant and region independently for coach and each participant target.
+  Never inherit reference-validation targets, `.azure` settings or eligibility evidence.
+  Packages take region from explicit destination environment parameters, not a hardcoded validation default.
+  Run subscription-specific regional/SKU/model/quota checks for each distinct destination scope before what-if.
 
 - Accept an integer team count from 1 through 20.
 - Default to one team when no count is supplied.
@@ -64,14 +75,15 @@ Validate before deployment:
 - No application URL, identifier, or status from a previous deployment is
   retained.
 
-The Conductor, HackCreator Agent, and Deploy agent must use this manifest as
+The scenario orchestrator and hack composition agent must use this manifest as
 the single source of truth for deployment state. Do not pass team count only
 in prose, and do not use this manifest to track challenge completion.
 
 ## Deployment Sequence
 
-1. Read `.github/instructions/az-default-account.instructions.md` and verify
-  Azure extension, Azure CLI, and azd contexts match it. Stop on mismatch.
+1. Verify current scenario approval and the explicit event-deployment request.
+   Confirm Azure CLI, azd and available extension contexts match the user-selected
+   subscription/tenant and any local default-account instruction. Stop on mismatch.
 2. Read and validate the deployment manifest.
 3. Build, lint, and run what-if for the coach package.
 4. Build and lint the participant package once, then run what-if for every
@@ -119,7 +131,8 @@ deployed application when the package includes one.
 For every participant group, validate:
 
 - The resource group exists and matches the manifest.
-- Expected supporting resources are healthy.
+- Only the minimum starter resources listed in the package contract are present
+  and healthy; do not require the full reference supporting infrastructure.
 - No forbidden coach-only or prebuilt Foundry resources exist when the package
   contract requires learners to create them.
 - The participant application URL is reachable when an app is included.

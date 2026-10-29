@@ -21,38 +21,38 @@ lab:
 
 **By the end of this challenge, <OBSERVABLE_OUTCOME>.**
 
-## 💡 Scenario
+## Scenario
 
 <USE_THE_UNCHANGED_SCENARIO_TEXT>
 
-## 🎯 What you will learn
+## What you will learn
 
 - <LEARNING_OUTCOME_ONE>
 - <LEARNING_OUTCOME_TWO>
 - <LEARNING_OUTCOME_THREE>
 
-## 🛠️ High-level lab steps
+## High-level lab steps
 
 1. <HIGH_LEVEL_STEP_ONE>
 1. <HIGH_LEVEL_STEP_TWO>
 1. <HIGH_LEVEL_STEP_THREE>
 
-## 🎒 Prerequisites
+## Prerequisites
 
 | Requirement | Evidence |
 | --- | --- |
 | <REQUIREMENT_ONE> | <HOW_TO_VERIFY> |
 | <REQUIREMENT_TWO> | <HOW_TO_VERIFY> |
 
-## 🎯 Goal
+## Goal
 
 <ONE_SENTENCE_OBSERVABLE_GOAL>
 
-## 💡 Why this matters
+## Why this matters
 
 <UP_TO_TWO_SENTENCES_EXPLAINING_THE_BUSINESS_VALUE>
 
-## 🧱 Build on what works
+## Build on what works
 
 **Starting checkpoint:** <OBSERVABLE_STARTING_RESULT>
 
@@ -60,7 +60,7 @@ lab:
 
 **Keep working:** <EARLIER_SUCCESS_CHECK>
 
-## 🧭 Choose your path
+## Choose your path
 
 **Path A — Foundry portal (low-code)**
 
@@ -88,14 +88,14 @@ lab:
 > [!TIP]
 > <ONE_VERIFIED_SHORTCUT>
 
-## ✅ Done when
+## Done when
 
 - [ ] <OBSERVABLE_CHECK_COMPLETED_IN_UNDER_60_SECONDS>
 - [ ] <OBSERVABLE_CHECK>
 - [ ] <NEGATIVE_OR_SAFETY_CHECK>
 - [ ] <REGRESSION_CHECK_FOR_AN_EARLIER_CAPABILITY>
 
-## 💬 Stuck?
+## Stuck?
 
 <details><summary>Hint 1 — nudge</summary><PROGRESSIVE_NUDGE></details>
 
@@ -103,11 +103,11 @@ lab:
 
 <details><summary>Hint 3 — answer</summary><MINIMUM_RECOVERY_ANSWER></details>
 
-## 🌟 Stretch goal
+## Stretch goal
 
 <OPTIONAL_ADD_ON_THAT_IS_NOT_A_LATER_PREREQUISITE>
 
-## 🔁 Fallback
+## Fallback
 
 <PRESERVE_THE_LAST_WORKING_CHECKPOINT_AND_ENABLE_THE_NEXT_CHALLENGE>
 

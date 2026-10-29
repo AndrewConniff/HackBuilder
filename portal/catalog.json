@@ -1,0 +1,277 @@
+{
+  "schemaVersion": 1,
+  "scope": "Initial editable ABC Builder intake allowlist, not a claim of subscription availability or organizational approval.",
+  "agenticPatterns": [
+    {
+      "id": "ai-decides",
+      "name": "Let AI decide",
+      "description": "Copilot proposes a fitting customer scenario and the simplest useful pattern from your description, industry and business units."
+    },
+    {
+      "id": "single-agent-tool-loop",
+      "name": "Single-Agent Tool Loop",
+      "description": "One agent uses a bounded set of tools to handle a coherent business task."
+    },
+    {
+      "id": "sequential-pipeline",
+      "name": "Sequential / Pipeline",
+      "description": "Dependent stages process a business case in a defined order."
+    },
+    {
+      "id": "concurrent-fan-out-fan-in",
+      "name": "Concurrent / Fan-Out-Fan-In",
+      "description": "Independent evidence checks run in parallel, then combine into one result."
+    },
+    {
+      "id": "routing-triage",
+      "name": "Routing / Triage",
+      "description": "Classify a request and direct it to the right authorized workflow."
+    },
+    {
+      "id": "handoff-transfer-of-control",
+      "name": "Handoff / Transfer of Control",
+      "description": "Transfer an ongoing case and its context to another responsible agent or person."
+    },
+    {
+      "id": "moderated-group-chat",
+      "name": "Moderated Group Chat",
+      "description": "A moderator guides multiple perspectives toward a bounded case review."
+    },
+    {
+      "id": "magentic-dynamic-collaboration",
+      "name": "Magentic Dynamic Collaboration",
+      "description": "A manager adjusts specialist participation as an open-ended investigation develops."
+    },
+    {
+      "id": "supervisor-hierarchical-delegation",
+      "name": "Supervisor / Hierarchical Delegation",
+      "description": "A supervisor coordinates known specialists and owns the final response."
+    },
+    {
+      "id": "orchestrator-workers",
+      "name": "Orchestrator-Workers",
+      "description": "An orchestrator divides variable-sized work into bounded assignments and reconciles the results."
+    },
+    {
+      "id": "planner-executor",
+      "name": "Planner-Executor",
+      "description": "Create an inspectable plan before executing its authorized steps."
+    },
+    {
+      "id": "deterministic-loop",
+      "name": "Deterministic Loop",
+      "description": "Repeat a bounded process until a code-defined completion condition is met."
+    },
+    {
+      "id": "evaluator-optimizer-reflection",
+      "name": "Evaluator-Optimizer / Reflection",
+      "description": "Evaluate a draft against a clear rubric and revise it within a fixed budget."
+    },
+    {
+      "id": "mixture-of-agents",
+      "name": "Mixture of Agents",
+      "description": "Generate diverse candidates and synthesize their evidence into a stronger answer."
+    },
+    {
+      "id": "event-driven-reactive-agents",
+      "name": "Event-Driven / Reactive Agents",
+      "description": "An authorized business event triggers a bounded workflow with replay and failure handling."
+    },
+    {
+      "id": "blackboard-shared-workspace",
+      "name": "Blackboard / Shared Workspace",
+      "description": "Contributors coordinate through a persistent, access-controlled case workspace."
+    },
+    {
+      "id": "swarm-peer-to-peer",
+      "name": "Swarm / Peer-to-Peer",
+      "description": "Authorized peers coordinate work without one fixed central decision-maker."
+    },
+    {
+      "id": "human-in-the-loop",
+      "name": "Human-in-the-Loop (HITL)",
+      "description": "A recorded human decision gates a consequential action within the business workflow."
+    },
+    {
+      "id": "adaptive-hybrid-composite",
+      "name": "Adaptive Hybrid / Composite Orchestration",
+      "description": "Use an explicit policy to combine a small set of patterns for different work or risk classes."
+    }
+  ],
+  "services": [
+    {
+      "id": "foundry",
+      "name": "Microsoft Foundry",
+      "category": "AI",
+      "required": true,
+      "description": "Projects, agents, models and tools",
+      "url": "https://learn.microsoft.com/azure/foundry/"
+    },
+    {
+      "id": "cosmos-db",
+      "name": "Azure Cosmos DB",
+      "category": "Data",
+      "description": "Operational data for grounded agent workflows",
+      "url": "https://learn.microsoft.com/azure/cosmos-db/"
+    },
+    {
+      "id": "ai-search",
+      "name": "Azure AI Search",
+      "category": "AI",
+      "description": "Knowledge retrieval and search",
+      "url": "https://learn.microsoft.com/azure/search/"
+    },
+    {
+      "id": "storage",
+      "name": "Azure Storage",
+      "category": "Data",
+      "description": "Documents and synthetic fixtures",
+      "url": "https://learn.microsoft.com/azure/storage/"
+    },
+    {
+      "id": "sql",
+      "name": "Azure SQL Database",
+      "category": "Data",
+      "description": "Relational business data",
+      "url": "https://learn.microsoft.com/azure/azure-sql/database/"
+    },
+    {
+      "id": "app-service",
+      "name": "Azure App Service",
+      "category": "Compute",
+      "description": "Managed web application hosting",
+      "url": "https://learn.microsoft.com/azure/app-service/"
+    },
+    {
+      "id": "container-apps",
+      "name": "Azure Container Apps",
+      "category": "Compute",
+      "description": "Containerized applications and APIs",
+      "url": "https://learn.microsoft.com/azure/container-apps/"
+    },
+    {
+      "id": "functions",
+      "name": "Azure Functions",
+      "category": "Compute",
+      "description": "Event-driven agent tools",
+      "url": "https://learn.microsoft.com/azure/azure-functions/"
+    },
+    {
+      "id": "key-vault",
+      "name": "Azure Key Vault",
+      "category": "Security",
+      "description": "Secret and certificate protection",
+      "url": "https://learn.microsoft.com/azure/key-vault/"
+    },
+    {
+      "id": "managed-identity",
+      "name": "Azure managed identities",
+      "category": "Security",
+      "description": "Secretless service authentication",
+      "url": "https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/"
+    },
+    {
+      "id": "virtual-network",
+      "name": "Azure Virtual Network",
+      "category": "Networking",
+      "description": "Private connectivity and network isolation",
+      "url": "https://learn.microsoft.com/azure/virtual-network/"
+    },
+    {
+      "id": "api-management",
+      "name": "Azure API Management",
+      "category": "Integration",
+      "description": "Governed access to agent tools and APIs",
+      "url": "https://learn.microsoft.com/azure/api-management/"
+    },
+    {
+      "id": "service-bus",
+      "name": "Azure Service Bus",
+      "category": "Integration",
+      "description": "Reliable asynchronous messaging",
+      "url": "https://learn.microsoft.com/azure/service-bus-messaging/"
+    },
+    {
+      "id": "monitor",
+      "name": "Azure Monitor",
+      "category": "Operations",
+      "description": "Application Insights, logs and diagnostics",
+      "url": "https://learn.microsoft.com/azure/azure-monitor/"
+    }
+  ],
+  "pillars": [
+    {
+      "id": "security",
+      "name": "Security",
+      "description": "Identity, access and data protection"
+    },
+    {
+      "id": "reliability",
+      "name": "Reliability",
+      "description": "Resilience, availability and recovery"
+    },
+    {
+      "id": "cost-optimization",
+      "name": "Cost Optimization",
+      "description": "Cost modeling and efficient consumption"
+    },
+    {
+      "id": "operational-excellence",
+      "name": "Operational Excellence",
+      "description": "Observability, automation and safe delivery"
+    },
+    {
+      "id": "performance-efficiency",
+      "name": "Performance Efficiency",
+      "description": "Scaling, responsiveness and load testing"
+    }
+  ],
+  "domains": [
+    {
+      "id": "identity",
+      "name": "Identity and least privilege",
+      "pillar": "security"
+    },
+    {
+      "id": "private-networking",
+      "name": "Private networking",
+      "pillar": "security"
+    },
+    {
+      "id": "data-protection",
+      "name": "Data protection",
+      "pillar": "security"
+    },
+    {
+      "id": "high-availability",
+      "name": "High availability",
+      "pillar": "reliability"
+    },
+    {
+      "id": "disaster-recovery",
+      "name": "Disaster recovery",
+      "pillar": "reliability"
+    },
+    {
+      "id": "cost-controls",
+      "name": "Budgets and cost controls",
+      "pillar": "cost-optimization"
+    },
+    {
+      "id": "observability",
+      "name": "Tracing and observability",
+      "pillar": "operational-excellence"
+    },
+    {
+      "id": "safe-delivery",
+      "name": "Deployment automation",
+      "pillar": "operational-excellence"
+    },
+    {
+      "id": "scaling",
+      "name": "Scaling and load testing",
+      "pillar": "performance-efficiency"
+    }
+  ],
+  "wafReference": "https://learn.microsoft.com/azure/well-architected/pillars"
+}

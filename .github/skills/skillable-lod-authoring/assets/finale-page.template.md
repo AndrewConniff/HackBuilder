@@ -21,6 +21,8 @@ lab:
 Use this private page to facilitate each challenge, recover blocked teams, and
 run the final debrief. Do not share this page with participants.
 
+**Business scope:** <APPROVED_INDUSTRY_BUSINESS_UNITS_PERSONAS_AND_HANDOFFS>
+
 ## Challenge 0 — <EXACT_CHALLENGE_TITLE>
 
 **Objective and expected outcome**

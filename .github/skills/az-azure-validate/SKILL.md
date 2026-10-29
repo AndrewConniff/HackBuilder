@@ -1,5 +1,5 @@
 ---
-name: azure-validate
+name: az-azure-validate
 description: "Pre-deployment and post-deployment validation patterns for Azure infrastructure. Covers authentication, template linting, what-if analysis, resource provider checks, and health verification."
 compatibility: Works with Claude Code, GitHub Copilot, VS Code, and any Agent Skills compatible tool.
 license: MIT
@@ -13,7 +13,16 @@ metadata:
 
 Pre-deployment and post-deployment validation gates that ensure Azure
 infrastructure is ready for deployment and correctly provisioned afterward.
-Used by the Deploy agent as hard gates before executing any deployment.
+Executed directly by the scenario orchestrator as hard gates before deployment.
+Use the [workflow contract](../hack-builder-workflow/SKILL.md). Initial portal
+preparation is local-only by instruction: prepare Azure check/what-if commands
+without running them unless the job explicitly authorizes that scope.
+Missing consent in noninteractive mode means persist the blocker and stop.
+
+Use the [prerequisite guide](../../../PREREQUISITES.md) to prepare shared tools before workers start.
+The baseline provides the **Azure CLI Bicep component**, not a standalone `bicep` executable.
+Use `az bicep build/lint` below. If a prerequisite is missing, report the exact gap and stop for coordinated setup;
+do not install shared SDKs or repair PATH from a scenario worker.
 
 ---
 
@@ -23,21 +32,24 @@ All gates must pass before deployment proceeds. Each gate is a hard stop —
 failure means the deployment cannot continue until the issue is resolved.
 
 > [!CAUTION]
-> **GATE FAILURE POLICY**: If a gate fails and cannot be auto-remediated,
-> **present the failure to the user and ask how to proceed**.
-> Do NOT autonomously skip deployment or generate a dry-run summary.
-> The user must explicitly decide whether to:
+> **GATE FAILURE POLICY**: A failed required check still blocks its dependent operation.
+> Diagnose and repair generated code/configuration within existing authority before requesting user input.
+> Continue independent local preparation, including a proposed repair and its cost, without another approval.
+> Apply [authorization continuity and consolidated review](
+> ../hack-builder-workflow/SKILL.md#authorization-continuity-and-consolidated-review).
 >
-> 1. Fix the issue and retry
-> 2. Skip the gate (accepting risk)
-> 3. Abort the deployment
+> Reuse actual matching grants; a later read-only grant is not itself a revocation.
+> Agent-written summaries and derived receipts are not user restrictions.
+> When missing authority, a material scope change or an observed external denial remains, present one focused
+> review with the exact failed operation, affected scope, proposed remediation and incremental/total cost.
+> Never offer to skip a required security or acceptance check, assume unknown availability, or bypass a denial.
 
 ### Gate Sequence
 
 ```text
 Gate 1: Authentication    → az login / azd auth status
 Gate 2: Subscription      → correct subscription selected
-Gate 3: Template          → bicep build + bicep lint pass
+Gate 3: Template          → az bicep build + az bicep lint pass
 Gate 4: Parameters        → required params have values
 Gate 5: Resource Providers → all needed providers registered
 Gate 6: What-If           → no unexpected destructive changes
@@ -123,22 +135,23 @@ az account set --subscription "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 
 ```powershell
 # Build main template (transpiles to ARM JSON)
-bicep build generated-scenarios/{project}/infra/main.bicep
+az bicep build --file generated-scenarios/{project}/infra/main.bicep
 
 # Build all bicep files in the directory
 Get-ChildItem generated-scenarios/{project}/infra -Recurse -Filter "*.bicep" | ForEach-Object {
     Write-Host "Building: $($_.FullName)"
-    bicep build $_.FullName
+    az bicep build --file $_.FullName
 }
 ```
 
-A successful `bicep build` produces no output. Any output indicates errors.
+Check the exit code and diagnostics from `az bicep build`; output alone is not a success/failure signal.
+Surface errors and assess warnings explicitly.
 
 ### Bicep Lint (Best Practice Check)
 
 ```powershell
 # Lint the main template
-bicep lint generated-scenarios/{project}/infra/main.bicep
+az bicep lint --file generated-scenarios/{project}/infra/main.bicep
 ```
 
 Linting checks against `bicepconfig.json` rules. Common lint warnings:
@@ -176,7 +189,7 @@ This calls the ARM validation endpoint which checks:
 
 ```powershell
 # Extract parameters from the Bicep file
-bicep build generated-scenarios/{project}/infra/main.bicep --stdout | `
+az bicep build --file generated-scenarios/{project}/infra/main.bicep --stdout | `
   ConvertFrom-Json | `
   Select-Object -ExpandProperty parameters | `
   ForEach-Object { $_.PSObject.Properties } | `
@@ -316,6 +329,51 @@ if ($whatif -match "Delete") {
 
 ## 8. Post-Deployment Validation
 
+### Private management access acceptance
+
+Apply [private-workload management access](
+../hack-builder-workflow/SKILL.md#private-workload-management-access) separately to human and automation paths.
+For private workloads, prove all of the following from the documented hosts within authorized scope:
+
+- The operator can actually enter the management VM through Bastion/VPN, or use verified equivalent connectivity.
+- The operator's browser reaches the private Foundry data-plane experience and performs an authenticated operation.
+  State whether the browser runs on the VM or on a VPN-connected client; a local portal page alone is insufficient.
+- CLI/SDK resource administration and safe data-plane read/write/manage probes succeed using the deploying user's
+  own Azure credentials, not the VM managed identity. Apply the full access matrix below.
+- Publishing/initialization and real backend agent calls succeed through their separate workload identity path.
+- Outside-network access is denied as designed. Record that as a negative case, not a successful private test.
+
+Record host, principal, endpoint/operation, timestamp, result and disposable-data cleanup without secrets.
+DNS/TLS success, a provisioned VM or Run Command success alone does not establish operator access.
+An expected outside-network browser denial does not excuse a backend agent-call 403.
+Missing or unverified human administration blocks reference completion and suitability review.
+
+### Deployment-user full scenario access acceptance
+
+Apply the hard [deployment-user full scenario access](
+../hack-builder-workflow/SKILL.md#deployment-user-full-scenario-access) requirement.
+Verify every row of the architecture's deployment-user access matrix using the confirmed user's
+Microsoft Entra credentials and the documented management-network path.
+Check effective control-plane administrative permissions and perform real data-plane list/read and safe
+create/update/delete probes with disposable data, including IoT Hub device registry/twin access when selected.
+Check service-native grants as well as Azure RBAC; a role-assignment listing alone does not prove usable access.
+Record the principal, resource scope, operation, result and test-data cleanup in the deployment summary.
+Use bounded retries for propagation; denied, unverified or incomplete user access blocks reference completion
+and suitability review. Never substitute workload-identity success, service keys or app sign-in for these checks.
+Run separate workload managed-identity acceptance too; user administration rights must not be copied to workloads.
+
+### Agentic business workflow acceptance
+
+Read the confirmed [pattern contract](../az-scenario-requirements/references/agentic-patterns.md).
+Within authorized deployment scope, invoke the real app/Foundry path and verify the
+industry/unit business result, selected roles, route/handoff/aggregation decisions,
+state, grounding/tools, deterministic controls and action receipts.
+Test one coordination-specific failure and applicable approval/recovery behavior
+against the contract's numeric limits or explicit pass/fail conditions.
+Retain correlated, redacted traces and exact results in the deployment summary;
+set `checks.agenticWorkflow` only after these checks pass. Provisioning, local tests
+and a plausible final answer alone do not prove this behavior.
+
 ### Resource Provisioning State
 
 All resources must reach `Succeeded` state:
@@ -390,20 +448,19 @@ Generate a structured validation report for the deployment summary:
 ## 10. Common Validation Failures
 
 > [!IMPORTANT]
-> For every failure below, if auto-remediation does not resolve the issue,
-> **prompt the user** with the error details and ask how to proceed.
-> Never autonomously skip deployment or generate a "blocked" summary.
+> Repair in-scope technical failures directly. Escalate only missing authority, a material design change,
+> a genuine business decision or an observed external blocker. Report all related unresolved items together.
+> Do not install shared tools, change shared defaults or register providers without applicable authorization.
 
-| Failure                           | Gate         | Auto-Fix Attempt                                                                  | If Auto-Fix Fails |
-| --------------------------------- | ------------ | --------------------------------------------------------------------------------- | ----------------- |
-| `az account show` returns nothing | Auth         | Prompt `az login`                                                                 | **Ask the user**  |
-| Wrong subscription selected       | Subscription | Run `az account set --subscription {id}`                                          | **Ask the user**  |
-| `bicep build` outputs errors      | Template     | Display errors for review                                                         | **Ask the user**  |
-| Bicep CLI not installed           | Template     | Try `az bicep install`                                                            | **Ask the user**  |
-| Azure CLI extension broken        | Auth         | Try removing broken extension                                                     | **Ask the user**  |
-| Missing parameter value           | Parameters   | Add to `.bicepparam` or set azd env variable                                      | **Ask the user**  |
-| Provider not registered           | Providers    | `az provider register --namespace {ns} --wait`                                    | **Ask the user**  |
-| What-if shows unexpected deletes  | What-If      | Review template changes; may indicate renamed resources                           | **Ask the user**  |
-| Resource stuck in `Creating`      | Post-Deploy  | Wait and retry; check Activity Log for errors                                     | **Ask the user**  |
-| `Forbidden` on resource access    | Post-Deploy  | Verify RBAC; managed identity may need role assignment propagation (up to 10 min) | **Ask the user**  |
-| Endpoint returns 404/503          | Connectivity | App may need time to start; check deployment logs                                 | **Ask the user**  |
+| Failure | Agent-owned next action | Escalation boundary |
+| --- | --- | --- |
+| Missing/mismatched sign-in or target | Reuse CLI metadata; identify the actual mismatch | User sign-in/target choice |
+| Bicep compilation error | Repair generated source and rerun local build/lint | Required design change |
+| Missing/broken CLI component | Report remedy; continue independent local work | Host setup permission |
+| Missing parameter | Resolve configuration or capture generated output | Genuine missing input |
+| Provider not registered | Include registration in scope; execute only if authorized | Missing registration authority |
+| Unexpected what-if deletes | Repair naming/source errors and rerun within authority | Intentional destructive change |
+| Resource still Creating | Inspect authorized logs/status; use bounded waits | Actual allocation/service failure |
+| Forbidden access | Inspect authorized RBAC/network evidence; check propagation | Missing rights or scope |
+| Endpoint 404/503 | Diagnose startup/configuration and repair within scope | External blocker or material change |
+| No private execution host | Prepare local design/cost; defer unauthorized discovery | New host/network scope |

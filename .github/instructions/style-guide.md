@@ -26,8 +26,8 @@ challenge or Finale template. The first Markdown heading after frontmatter is
 the single H1.
 
 ```markdown
-# 🧠 Challenge 02 — Ground Your Agent        <- H1, one per file, emoji + number + em dash
-## 🎯 Goal                                    <- H2, fixed section names
+# Challenge 02 — Ground Your Agent           <- H1, one per file, number + em dash
+## Goal                                     <- H2, fixed section names
 ### Step 1 — Create the knowledge source      <- H3, numbered steps, em dash
 #### (avoid)                                  <- do not go deeper than H3
 ```
@@ -39,29 +39,15 @@ the single H1.
 
 ---
 
-## 3. Emoji set (use only these — one per heading, never inline in body text)
+## 3. Clean participant documentation
 
-| Emoji | Reserved for |
-| --- | --- |
-| 🏟️ | Hack landing page / arena |
-| 🎯 | Goal |
-| 💡 | Scenario / why this matters |
-| 🛠️ | High-level and detailed steps |
-| 🎒 | Prerequisites |
-| 🧱 | Build progression and checkpoints |
-| ✅ | Success criteria / definition of done |
-| 🧭 | Choose your path (low-code vs code-first) |
-| 💬 | Hints / stuck? |
-| 🌟 | Stretch goal |
-| 🔁 | Fallback |
-| 📚 | Resources |
-| ⏱️ | Time budget |
-| ⚠️ | Security & confidentiality |
-| ❓ | FAQ |
-| 🏆 | Judging |
-| 🧠 🔌 🧪 🚀 | Challenge number badges (build, tools, test, ship) |
+Use plain-text headings, prose and navigation without decorative emoji.
+Keep section names and ordering from the canonical templates. Do not prepend
+icons to challenge titles, resource links, status labels or menu items.
 
-No other emoji. No emoji inside sentences, tables, or bullets.
+Preserve functional time/difficulty badges, Markdown checkboxes and GitHub alert
+callouts. They communicate timing, completion or risk rather than decoration.
+Use meaningful alt text for instructional images.
 
 ---
 
@@ -113,7 +99,7 @@ No other emoji. No emoji inside sentences, tables, or bullets.
 Always present the portal path first, code second, as collapsed tabs-by-heading:
 
 ````markdown
-## 🧭 Choose your path
+## Choose your path
 
 **Path A — Foundry portal (low-code)**
 
@@ -139,7 +125,7 @@ default and the page stays short.
 Hints are always collapsed, always progressive (3 levels, increasingly explicit):
 
 ```markdown
-## 💬 Stuck?
+## Stuck?
 
 <details><summary>Hint 1 — nudge</summary>Check where the agent's knowledge source is attached.</details>
 <details><summary>Hint 2 — narrower</summary>File Search needs the file indexed on the agent, not the thread.</details>
@@ -158,7 +144,7 @@ Never reveal an answer outside a `<details>`.
 Checklist, observable, testable in under 60 seconds each:
 
 ```markdown
-## ✅ Done when
+## Done when
 - [ ] Your agent returns an answer that cites at least one uploaded document
 - [ ] The citation appears in the response, not just in the trace
 - [ ] A question outside the knowledge base returns a graceful "I don't know"
@@ -183,7 +169,7 @@ Never write "the agent works correctly" or "the output is good quality".
 - Descriptive text, never bare URLs, never "click here".
 - Only `learn.microsoft.com`, `ai.azure.com`, `github.com/microsoft|azure-samples`,
   and `aka.ms` links. Anything else needs the user's explicit OK.
-- All resource links collect at the bottom under `## 📚 Resources`, grouped as
+- All resource links collect at the bottom under `## Resources`, grouped as
   **Docs**, **Samples**, **Community**. Inline links are allowed only for the
   single primary action of a step.
 

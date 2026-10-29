@@ -6,7 +6,8 @@
 - [ ] Both roots contain `README.md`, `index.md`, `_config.yml`, `_build.yml`,
       `resources.md`, and `Allfiles/README.md`.
 - [ ] Both roots use the same canonical `Instructions/<industry-slug>/` path.
-- [ ] Exactly five learner challenge pages use prefixes `01-` through `05-`.
+- [ ] Exactly five learner challenge pages use prefixes `00-` through `04-`.
+- [ ] Each filename prefix matches its visible H1 challenge number, 0 through 4.
 - [ ] The private coach root contains the same five files plus `99-finale.md`.
 - [ ] No learner Finale page exists.
 - [ ] The scenario root contains exactly one case-sensitive `nextsteps.MD`.
@@ -23,6 +24,10 @@
 
 - [ ] The five challenge durations total 150 minutes.
 - [ ] Every challenge uses the same scenario.
+- [ ] Industry, `businessUnits`, personas, app/data and learner/coach evidence
+      match the approved scope; Generic has no unit targeting.
+- [ ] Headings, prose and navigation have no decorative emoji; functional
+      badges, Markdown checkboxes and alert callouts are preserved.
 - [ ] Challenge 0 establishes identity, access, and a model request.
 - [ ] Challenge 1 reaches the minimal viable agent.
 - [ ] Challenges 2 and 3 add one capability each.
@@ -73,6 +78,9 @@
 - [ ] No progress-tracking or challenge-checklist application was introduced.
 
 ## Deployment and publication
+
+Local package validation completes authoring without event deployment.
+The deployment checks below apply only after a separate explicit rollout request.
 
 - [ ] Seed and installation scripts are idempotent and wired to the correct
       `azd` lifecycle hook.

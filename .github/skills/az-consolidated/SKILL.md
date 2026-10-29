@@ -1,5 +1,5 @@
 ---
-name: azd-demo-builder
+name: az-consolidated
 description: "Consolidated skill for Azure demo scenario generation: defaults, AVM-first Bicep, architecture diagrams, artifact templates, and demo guide patterns."
 compatibility: Works with Claude Code, GitHub Copilot, VS Code, and any Agent Skills compatible tool.
 license: MIT
@@ -9,21 +9,136 @@ metadata:
   category: azure-infrastructure
 ---
 
-# Azure Demo Builder — Consolidated Skill
+# ABC Builder — Consolidated Skill
 
 Single reference for all agents. Covers Azure defaults, Bicep patterns,
 architecture diagrams, artifact templates, and demo guide generation.
+
+For ABC Builder sequencing, approval and deployment scope, use
+[the workflow contract](../hack-builder-workflow/SKILL.md). This skill supplies
+technical patterns, not an alternative orchestrator.
 
 ---
 
 ## 1. Azure Defaults
 
+### Fictitious Company Identity - CSV Only
+
+The repository-root [fictitious company catalog](../../../fictitious_company_names.csv)
+is the **only** permitted source of fictitious company names. Apply this rule
+before generating business content, application branding, seed data, or
+company-derived infrastructure names. It also applies to names supplied in a
+prompt, examples in skills, and secondary fictitious organizations.
+
+1. Read the actual catalog from the ABC Builder repository, even when the
+   scenario workspace is external. Require the `Company Name` and `Domain Name*`
+   headers. Parse CSV quoting correctly; do not split lines blindly on commas.
+1. Select one valid, nonempty company entry appropriate to the scenario.
+   A user-supplied company is eligible only if its complete name matches a
+   valid catalog entry. Do not invent, expand, abbreviate, or substitute a
+   display name from memory.
+1. Reject malformed rows, including unquoted embedded commas that produce more
+   than two fields. Never accept a parser's silently truncated company name.
+   Report invalid rows; do not repair the catalog without user approval.
+1. Record `companyName`, `companyDomain`, `companySlug`, and the source catalog
+   path and record number in `01-requirements.md` and the hack package contract
+   when present. Preserve the exact parsed company name and domain values.
+   The catalog does not declare industries; do not invent an industry column.
+1. Derive `companySlug` deterministically from the selected name: lowercase,
+   replace runs of non-ASCII-alphanumeric characters with `-`, and trim outer
+   hyphens. For Azure resource names, apply the existing service-specific
+   character and length rules, prefixes, environment/team identifiers, and
+   unique suffixes. These technical derivations are not new company names.
+1. Reuse the recorded identity across app titles, chatbot instructions,
+   datasets, source documents, diagrams, resource references, and every package.
+   An app title may combine the exact company name with a workload label.
+   A technical project slug need not include the company; do not rename
+   existing projects or deployed resources merely to add branding.
+1. Before handoff, verify every fictitious company display name against a
+   complete valid catalog entry, verify company-derived identifiers against the
+   recorded slug, and check that all packages use the same primary identity.
+   Any secondary fictitious company must have its own catalog provenance.
+
+If the catalog is missing, unreadable, malformed at the header level, or has
+no eligible valid entry, stop company-dependent generation and ask the user
+to restore or correct the source or choose a valid entry. Do not fall back to
+an invented name or a hard-coded sample. Catalog domains are reference data,
+not proof of ownership, deployable endpoints, or authorization to contact them.
+
+### Fictitious People Identity - CSV Only
+
+The repository-root [fictitious people catalog](../../../fictitious_people_names.csv)
+is the **only** permitted source of person names in sample application datasets.
+This includes customers, employees, contacts, patients, clinicians, guests,
+authors, approvers, and person references embedded in free text, documents,
+chat examples, evaluation fixtures, screenshots, and demo scripts using that data.
+Names from prompts, remembered examples, Faker, or other generators are not
+alternative sources.
+
+1. Read the actual catalog from the ABC Builder repository before generating
+   person-bearing data, including when the scenario workspace is external.
+   Parse CSV with UTF-8 BOM support, quoting, and Unicode preservation.
+   Require the headers `FirstName`, `LastName`, `FullName`, `FirstNameNative`,
+   `LastNameNative`, `FullNameNative`, `Gender`, and `Language`.
+1. Select complete valid records with the expected field count and nonempty
+   fields needed by the target schema. Reject and report malformed records;
+   do not silently truncate values or repair the source without approval.
+1. Populate full-name fields from the exact parsed `FullName`, and component
+   fields from that same record's `FirstName` and `LastName`. For native-script
+   names, use the corresponding `*Native` fields from the same record.
+   Never recombine different records, reorder components, reconstruct a full
+   name, invent nicknames or initials, transliterate, or strip diacritics.
+   Store titles and roles separately from name fields.
+1. Assign people deterministically to stable entity IDs. Record the catalog
+   source, record numbers, selected name columns, and entity-to-record mapping
+   in existing generation metadata or the supporting-artifact plan; summarize
+   the selection in requirements. Keep this mapping consistent across seed
+   JSON/CSV, database loaders, API fixtures, documents, and all package copies.
+   Duplicate catalog names are not unique IDs; use separate stable entity IDs.
+1. Use only selected catalog identities in generated person-bearing text.
+   Keep first-name-only references tied to the same selected record.
+   Technical usernames or identifiers may be derived deterministically, but
+   must not replace the person's catalog display name. Email addresses and
+   other contact data remain synthetic; a catalog name is not consent to
+   identify, locate, or contact a real person.
+1. Before handoff, check every person-name field and embedded person reference
+   against its mapped source record and selected column, not just membership
+   of separate first and last names. Verify unchanged names after seed import
+   and consistency across coach, participant, learner, and demo materials.
+   Report failures and block handoff until corrected.
+
+If the source is missing, unreadable, has invalid headers, or lacks enough
+eligible records for required distinct people, stop person-dependent generation
+and ask the user to restore or correct the catalog or adjust the requirement.
+Never fall back to invented names, anonymous name placeholders, or hard-coded
+examples. Reuse valid identities only where the dataset's uniqueness rules allow.
+
+### Industry and business-unit scope
+
+The workflow owns the exact `businessUnits` IDs and Generic exclusivity.
+Record the selected industry, units, personas, outcomes and cross-unit handoffs
+in requirements before generating the app, documents or data. Generic means a
+typical industry workflow without unit targeting, not all departments.
+
+Industry model examples are schema inspiration, not a required entity roster.
+Adapt entities, fields, relationships, documents and acceptance prompts to the
+selected units. Carry the same scope into the approved hack's learner and coach
+content. Catalog adaptations treat source architecture as read-only guidance,
+regenerate target business app/data, refresh technical evidence and obtain new
+design confirmation, validation and approval; never inherit deployment state,
+secrets, scopes, approvals, packages or runtime success.
+
 ### Region Selection
 
-There is no static default Azure region. Before architecture or code
-generation, the Validation agent must authenticate to the account configured
-in `.github/instructions/az-default-account.instructions.md` and create
-`generated-scenarios/{project}/00-region-availability.json`.
+There is no static default Azure region. For local-only architecture and code,
+record a supported provisional region/model using current official documentation in
+`generated-scenarios/{project}/00-region-availability.json`. Honor supplied preferences
+and delegated choices. Mark evidence `provisional_local_design`; leave unknown subscription
+fields and `selectedRegion` null. Do not block local construction on account, quota or budget.
+
+Before authorized deployment preparation, confirm the user's target account,
+subscription and tenant (honoring a local default-account instruction if present).
+Query Azure only within explicit permission and replace provisional assumptions with live evidence.
 
 Evaluate every requested region and current supported alternatives against the
 complete resource set. For models, validate the exact model, version,
@@ -31,7 +146,7 @@ deployment type, SKU, subscription quota, and live capacity. Select one common
 region when possible; otherwise record an explicit multi-region design and the
 reason each single-region candidate failed.
 
-All downstream agents must consume this evidence unchanged. Documentation
+All downstream procedures must consume this evidence unchanged. Documentation
 examples and historical regional availability are not deployment proof.
 
 ### Required Tags
@@ -186,7 +301,7 @@ module keyVault 'br/public:avm/res/key-vault/vault:0.11.0' = {
 
 | Module                 | Issue                                       | Fix                                          |
 | ---------------------- | ------------------------------------------- | -------------------------------------------- |
-| Log Analytics          | `dailyQuotaGb` is `int`, not `string`       | Use `dailyQuotaGb: 5`                        |
+| Log Analytics | Quota types vary by pinned module version | Version 0.16.1 uses `dailyQuotaGb: '5'` |
 | Container Env          | `appLogsConfiguration` deprecated           | Use `logsConfiguration` with destination obj |
 | Container App          | `scaleSettings` is object, not array        | Check AVM schema for exact shape             |
 | SQL Server             | `sku` is typed object `{name,tier,cap}`     | Pass full SKU object                         |
@@ -421,27 +536,29 @@ resource deployerKvRole 'Microsoft.Authorization/roleAssignments@2022-04-01' = i
 generated-scenarios/{project}/
 ├── 03-architect-diagram.py              # Architecture diagram source
 ├── 03-architect-diagram.png             # Architecture diagram PNG
-├── 03-architect-runtime-diagram.py      # Runtime flow diagram source
-├── 03-architect-runtime-diagram.png     # Runtime flow diagram PNG
+├── 04-runtime-diagram.png              # Runtime flow diagram PNG
 ```
 
 ### Execution
 
-Save `.py` to `generated-scenarios/{project}/`, then execute **both**:
+The scenario orchestrator generates both diagrams directly; do not invoke a second diagram
+stage. Save and execute the architecture source and a temporary runtime source:
 
 ```bash
 python3 generated-scenarios/{project}/03-architect-diagram.py
-python3 generated-scenarios/{project}/03-architect-runtime-diagram.py
+python3 generated-scenarios/{project}/04-runtime-diagram.py
 ```
 
 Verify both PNGs exist on disk before marking Step 3 complete.
+Delete the temporary `04-runtime-diagram.py` after successful rendering.
+The standalone Diagrammer may use other names for explicitly requested ad-hoc work.
 
 ### Diagram Types
 
 | Type                     | Purpose                                             | File Prefix                    |
 | ------------------------ | --------------------------------------------------- | ------------------------------ |
 | **Architecture Diagram** | Static resource layout, boundaries, Azure hierarchy | `03-architect-diagram`         |
-| **Runtime Flow Diagram** | Data paths, request flows, auth chains at runtime   | `03-architect-runtime-diagram` |
+| **Runtime Flow Diagram** | Data paths, request flows, auth chains at runtime   | `04-runtime-diagram` |
 
 ### Runtime Flow Diagram Guidelines
 
@@ -465,10 +582,10 @@ The runtime diagram shows how data and requests move through the architecture du
 
 ### Prerequisites
 
-```bash
-pip install diagrams matplotlib pillow
-# Graphviz required: choco install graphviz (Windows)
-```
+Use the [repository prerequisite setup](../../../PREREQUISITES.md) before starting workers:
+install root `requirements.txt` in `.venv` and native Graphviz with `dot` on the new server's PATH.
+The checker performs an actual PNG render. A Python package alone does not install native Graphviz.
+Missing shared tools require a user-coordinated setup decision, not another in-worker installer attempt.
 
 ### Quick Start
 
@@ -593,28 +710,10 @@ update date and progress percentage (each step ≈ 14%).
 > [!CAUTION] — Data loss / breaking change
 ```
 
-**Status emoji:**
-
-| Purpose          | Emoji |
-| ---------------- | ----- |
-| Success/Complete | ✅    |
-| Warning          | ⚠️    |
-| Error/Critical   | ❌    |
-| Info/Tip         | 💡    |
-| Security         | 🔐    |
-| Pending          | ⏳    |
-
-**Category icons:**
-
-| Category   | Icon |
-| ---------- | ---- |
-| Compute    | 💻   |
-| Data       | 💾   |
-| Networking | 🌐   |
-| Security   | 🔐   |
-| Monitoring | 📊   |
-| Identity   | 👤   |
-| Storage    | 📦   |
+Use plain headings, prose and navigation without decorative emoji. Write status
+as words such as `complete`, `pending`, `warning` or `failed`, and name resource
+categories in text. Preserve functional time/difficulty badges, Markdown
+checkboxes, alert callouts and meaningful architecture/service images.
 
 ---
 

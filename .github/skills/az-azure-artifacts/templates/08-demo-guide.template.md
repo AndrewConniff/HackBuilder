@@ -1,6 +1,6 @@
 # Demo Guide - {project-name}
 
-📑 Demo Guide Contents
+Demo Guide Contents
 
 use the below markdown example literally as the structure, obviously updating with the scenario specicific content
 
@@ -34,6 +34,9 @@ use the below markdown example literally as the structure, obviously updating wi
 ### 1. What Resources are getting deployed
 
 {project description in max 5 lines}
+
+Business scope: {industry and exact businessUnits; Generic has no unit targeting}.
+Demonstrate {selected personas, business outcome and cross-unit handoffs}.
 
 below are just some examples, update with the actual scenario names from the templates and deployment
 

@@ -23,35 +23,35 @@ description: "MANDATORY template compliance rules for artifact generation"
 ### 01-requirements.md
 
 ```text
-## 🎯 Project Overview
-## 🚀 Functional Requirements
-## ⚡ Non-Functional Requirements (NFRs)
-## 📋 Summary for Architecture Assessment
+## Project Overview
+## Functional Requirements
+## Non-Functional Requirements (NFRs)
+## Summary for Architecture Assessment
 ```
 
 ### 02-architecture-assessment.md
 
 ```text
-## ✅ Requirements Validation
-## 📦 Resource SKU Recommendations
-## 🎯 Architecture Decision Summary
+## Requirements Validation
+## Resource SKU Recommendations
+## Architecture Decision Summary
 ```
 
 ### 05-implementation-reference.md
 
 ```text
-## 📁 IaC Templates Location
-## 🗂️ File Structure
-## ✅ Validation Status
-## 🏗️ Resources Created
-## 🚀 Deployment Instructions
-## 📝 Key Implementation Notes
+## IaC Templates Location
+## File Structure
+## Validation Status
+## Resources Created
+## Deployment Instructions
+## Key Implementation Notes
 ```
 
 ### 06-deployment-summary.md
 
 ```text
-## 📋 Deployment Details
-## 🏗️ Deployed Resources
-## 📤 Outputs (Expected)
+## Deployment Details
+## Deployed Resources
+## Outputs (Expected)
 ```

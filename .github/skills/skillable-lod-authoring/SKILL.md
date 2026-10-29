@@ -17,6 +17,11 @@ Create a public learner repository and a private coach repository from one
 scenario. Each challenge is a separate Markdown page beneath the selected
 industry folder in `Instructions`.
 
+For ABC Builder scenarios, first enforce
+[the workflow contract](../hack-builder-workflow/SKILL.md) and current recorded
+approval. This skill never bypasses scenario review. Package validation is a
+local authoring milestone; event rollout is separately requested.
+
 ## Required research
 
 Before generating content:
@@ -24,15 +29,22 @@ Before generating content:
 1. Read `.github/skills/az-consolidated/SKILL.md`.
 1. Read `.github/instructions/az-agent-research-first.instructions.md`.
 1. Read `.github/instructions/az-markdown.instructions.md`.
-1. Read `.github/instructions/hack-authoring-instructions.md`.
+1. Read `.github/instructions/hack-authoring.instructions.md`.
 1. Read `.github/instructions/style-guide.md`.
-1. Read `.github/skills/azure-foundry-hack-builder-SKILL.md` for Foundry hacks.
+1. Read `.github/skills/azure-foundry-hack-builder/SKILL.md` for Foundry hacks.
 1. Read all files in this skill's `references/` directory.
 1. Inspect the scenario requirements and package contract.
 1. Confirm the industry is in `assets/industry-catalog.json`.
 
 Do not generate Azure-specific steps until current service behavior, model
-availability, and documentation are verified by the owning workflow agents.
+availability, and documentation are verified by the scenario orchestrator.
+
+The repository `microsoft_industry_verticals.csv` is the broader intake catalog,
+not a replacement for this skill's explicitly supported industry slugs. Before authoring,
+verify the exact selected slug against `assets/industry-catalog.json`. Unsupported
+industries block composition pending an explicit decision to extend authoring
+support or revise/reapprove the scenario; never silently map to a supported slug.
+In noninteractive jobs, report the required decision and stop.
 
 ## Required inputs
 
@@ -40,6 +52,7 @@ availability, and documentation are verified by the owning workflow agents.
 | --- | --- |
 | Scenario | One unchanged business scenario across all pages |
 | Industry | One supported display name and canonical slug |
+| Business units | Approved `businessUnits` IDs and personas; Generic means no unit targeting |
 | Module title | One title shared by all page frontmatter |
 | Challenge plan | Five progressive challenges totaling 150 build minutes |
 | Coach context | Expected evidence, recovery paths, and debrief guidance |
@@ -48,6 +61,26 @@ availability, and documentation are verified by the owning workflow agents.
 
 Derive missing values from the requirements and package contract. Use visible
 placeholders only when evidence is unavailable; never invent values.
+
+Company identity is not a placeholder or free-form input. Apply the
+[CSV-only company identity rules](../az-consolidated/SKILL.md#fictitious-company-identity---csv-only)
+and verify the requirements' exact company name against the repository-root
+`fictitious_company_names.csv`. If no identity is recorded, select and record
+a valid catalog entry before authoring. Keep that identity consistent across
+all five challenges, synthetic business documents, `nextsteps.MD`, public
+materials, and private coach notes. Any secondary fictitious company must
+also come from a valid catalog entry; never invent customer or supplier brands.
+Do not copy internal source paths into public learner materials.
+
+Apply the
+[CSV-only people identity rules](../az-consolidated/SKILL.md#fictitious-people-identity---csv-only)
+to all sample-data person references in challenges, supporting documents,
+payloads, and coach notes. Source names only from valid records in the
+repository-root `fictitious_people_names.csv`; reuse the dataset's deterministic
+entity-to-record mapping rather than inventing new people while authoring.
+Record provenance in the internal supporting-artifact plan, not absolute
+workstation paths in public learner pages. Keep names identical in matching
+learner and coach content.
 
 ## Publishing boundaries
 
@@ -88,11 +121,11 @@ generated-scenarios/<project>/
     │   ├── resources.md
     │   ├── Allfiles/
     │   └── Instructions/<industry-slug>/
-    │       ├── 01-secure-foundation.md
-    │       ├── 02-build-the-agent.md
-    │       ├── 03-ground-it.md
-    │       ├── 04-give-it-tools.md
-    │       ├── 05-harden-and-demo.md
+    │       ├── 00-secure-foundation.md
+    │       ├── 01-build-the-agent.md
+    │       ├── 02-ground-it.md
+    │       ├── 03-give-it-tools.md
+    │       ├── 04-harden-and-demo.md
     │       └── media/
     └── coach-guide/
         ├── README.md
@@ -104,11 +137,11 @@ generated-scenarios/<project>/
         ├── solution-overview.md
         ├── deployment-guide.md
         └── Instructions/<industry-slug>/
-            ├── 01-secure-foundation.md
-            ├── 02-build-the-agent.md
-            ├── 03-ground-it.md
-            ├── 04-give-it-tools.md
-            ├── 05-harden-and-demo.md
+            ├── 00-secure-foundation.md
+            ├── 01-build-the-agent.md
+            ├── 02-ground-it.md
+            ├── 03-give-it-tools.md
+            ├── 04-harden-and-demo.md
             ├── 99-finale.md
             └── media/
 ```
@@ -128,6 +161,8 @@ Use exactly one of these stable slugs per scenario:
 | Retail | `retail` |
 | Energy / Oil & Gas | `energy-oil-gas` |
 | Government / Public Sector | `government-public-sector` |
+| Hospitality & Travel | `hospitality-travel` |
+| Media & Communications | `media-communications` |
 
 The catalog in `assets/industry-catalog.json` is the machine-readable source of
 truth. Do not create synonyms or alternate folder spellings.
@@ -139,6 +174,9 @@ Start from `assets/challenge-page.template.md`. Every learner page must:
 - Begin with valid `lab` YAML frontmatter.
 - Use one H1 and the required H2 sections in template order.
 - Preserve the scenario and module title across all five pages.
+- Preserve the approved business-unit scope, personas, handoffs and dataset meaning.
+- Use plain headings, prose and navigation without decorative emoji; retain
+  functional badges, checkboxes and alert callouts.
 - State the starting checkpoint, smallest useful increment, retained behavior,
   and regression check.
 - Offer the Foundry portal path first and a collapsed SDK path second.
@@ -148,6 +186,8 @@ Start from `assets/challenge-page.template.md`. Every learner page must:
   content.
 - Contain no coach answer key, completed implementation, environment state,
   credentials, tenant details, subscription IDs, or deployed endpoints.
+- Let learners select/build components from outcomes and constraints. Keep the
+  complete solution architecture and prescriptive answer steps in private Finale.
 
 Copy the completed learner pages to the coach source without editing them.
 
@@ -197,11 +237,11 @@ listed destinations, and update it to `packaged`. Release-enrichment artifacts
 may remain planned only when no required challenge or deployed acceptance path
 depends on them.
 
-Missing deployment-critical artifacts block handoff to deployment; they never
-authorize skipping deployment. The Deploy agent must still run `azd up` for the
-coach and every participant manifest entry, execute the load or installation
-hooks, run the artifact-specific Azure checks, and update successful entries to
-`azure-verified`.
+Missing deployment-critical artifacts block handoff to deployment. Package
+authoring itself stops at local validation. After a separate explicit event
+request, Deploy runs `azd up` for coach and each participant manifest entry,
+executes the applicable load hooks, runs artifact-specific Azure checks, and
+updates successful entries to `azure-verified`.
 
 Keep `nextsteps.MD` safe for GitHub. It must contain no customer or personal
 data, coach answer key, credentials, resolved endpoints, tenant IDs,
@@ -242,8 +282,9 @@ Remove every template token before publication. Preserve an organization-approve
 1. Run the validation script.
 1. Stop on missing pages, unpackaged deployment-critical artifacts, stale
   tokens, unsafe content, parity failures, or incomplete Finale mappings.
-1. Hand both deployable projects to the Deploy agent for mandatory `azd up`
-  testing; do not replace deployment with the artifact backlog.
+1. Finish with **packages validated; event not deployed**. Only a separate explicit
+  event request authorizes the scenario orchestrator to execute deployment skills
+  and run real coach/team acceptance; no agent handoff or rollout is automatic.
 
 ## Validation
 
@@ -272,11 +313,13 @@ See `references/validation-checklist.md` for manual release checks.
 - Do not rename `Instructions`, change its capitalization, or add `Labs` between
   `Instructions` and the industry folder.
 - Do not reduce the existing five-challenge progression to three.
-- Do not create a progress-tracking or challenge-checklist application.
+- Do not create an Azure-hosted progress-tracking or challenge-checklist app.
+  The repository's local authenticated CLI-launching workflow portal is tooling,
+  not a learner app, and cannot auto-approve scenarios or deploy events.
 - Preserve the real coach solution application and applications participants
   build or complete during the challenges.
 - Do not omit `nextsteps.MD`, rename it, or copy it into a documentation root.
 - Do not leave a deployment-critical artifact at `planned`, `created`, or
-  `validated` when handing packages to the Deploy agent.
+  `validated` when declaring packages locally validated.
 - Do not use planned artifact creation as a reason to skip coach or participant
-  deployment testing.
+  acceptance after an explicitly requested event rollout.

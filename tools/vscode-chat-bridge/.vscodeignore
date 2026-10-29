@@ -1,0 +1,3 @@
+bridge.test.cjs
+*.vsix
+node_modules/**

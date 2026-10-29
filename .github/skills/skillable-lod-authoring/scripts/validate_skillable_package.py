@@ -17,14 +17,16 @@ EXPECTED_INDUSTRIES = {
     "retail",
     "energy-oil-gas",
     "government-public-sector",
+    "hospitality-travel",
+    "media-communications",
 }
-CHALLENGE_PREFIXES = ("01-", "02-", "03-", "04-", "05-")
+CHALLENGE_PREFIXES = ("00-", "01-", "02-", "03-", "04-")
 EXPECTED_CHALLENGE_FILES = (
-    "01-secure-foundation.md",
-    "02-build-the-agent.md",
-    "03-ground-it.md",
-    "04-give-it-tools.md",
-    "05-harden-and-demo.md",
+    "00-secure-foundation.md",
+    "01-build-the-agent.md",
+    "02-ground-it.md",
+    "03-give-it-tools.md",
+    "04-harden-and-demo.md",
 )
 REQUIRED_LAB_KEYS = {
     "title",
@@ -36,18 +38,18 @@ REQUIRED_LAB_KEYS = {
     "primarytopics",
 }
 REQUIRED_CHALLENGE_SECTIONS = (
-    "## 💡 Scenario",
-    "## 🎯 What you will learn",
-    "## 🛠️ High-level lab steps",
-    "## 🎒 Prerequisites",
-    "## 🎯 Goal",
-    "## 💡 Why this matters",
-    "## 🧱 Build on what works",
-    "## 🧭 Choose your path",
-    "## ✅ Done when",
-    "## 💬 Stuck?",
-    "## 🌟 Stretch goal",
-    "## 🔁 Fallback",
+    "## Scenario",
+    "## What you will learn",
+    "## High-level lab steps",
+    "## Prerequisites",
+    "## Goal",
+    "## Why this matters",
+    "## Build on what works",
+    "## Choose your path",
+    "## Done when",
+    "## Stuck?",
+    "## Stretch goal",
+    "## Fallback",
     "## Summary",
 )
 COACH_NOTE_LABELS = (
@@ -383,6 +385,8 @@ def validate_challenge_page(path: Path, errors: list[str]) -> tuple[str, str, in
     validate_markdown_lines(path, text, errors)
     validate_local_images(path, text, errors)
 
+    # Existing released pages may retain decorative heading icons.
+    text = re.sub(r"^(## )[^A-Za-z0-9\n]+(?=[A-Za-z])", r"\1", text, flags=re.MULTILINE)
     for section in REQUIRED_CHALLENGE_SECTIONS:
         if section not in text:
             add_error(errors, f"{path} is missing section {section}.")
@@ -405,8 +409,14 @@ def validate_challenge_page(path: Path, errors: list[str]) -> tuple[str, str, in
     title = challenge_title(path, errors)
     if values.get("title") != title:
         add_error(errors, f"{path} lab.title must match the title after the H1 em dash.")
+    filename_number = re.match(r"^(\d{2})-", path.name)
+    heading_number = re.search(r"^#\s+.*?\bChallenge\s+(\d+)\s+—", text, re.MULTILINE)
+    if filename_number and (
+        heading_number is None or int(filename_number[1]) != int(heading_number[1])
+    ):
+        add_error(errors, f"{path} filename number must match its H1 challenge number.")
 
-    scenario = section_text(text, "## 💡 Scenario")
+    scenario = section_text(text, "## Scenario")
     if not scenario:
         add_error(errors, f"{path} has an empty Scenario section.")
 
@@ -610,7 +620,13 @@ def validate_skill() -> list[str]:
             catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
             actual_slugs = {item["slug"] for item in catalog}
             if actual_slugs != EXPECTED_INDUSTRIES:
-                add_error(errors, "Industry catalog slugs do not match the required six industries.")
+                add_error(errors, "Industry catalog slugs do not match the supported industries.")
+            hospitality = [item for item in catalog if item["slug"] == "hospitality-travel"]
+            if len(hospitality) != 1 or hospitality[0].get("displayName") != "Hospitality & Travel":
+                add_error(errors, "Hospitality & Travel must use its exact display name and hospitality-travel slug.")
+            media = [item for item in catalog if item["slug"] == "media-communications"]
+            if len(media) != 1 or media[0].get("displayName") != "Media & Communications":
+                add_error(errors, "Media & Communications must use its exact display name and media-communications slug.")
         except (OSError, UnicodeError, json.JSONDecodeError, KeyError, TypeError) as exc:
             add_error(errors, f"Cannot validate industry catalog: {exc}")
 

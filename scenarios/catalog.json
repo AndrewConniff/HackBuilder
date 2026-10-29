@@ -1,0 +1,481 @@
+{
+  "schemaVersion": 1,
+  "scenarios": [
+    {
+      "schemaVersion": 1,
+      "id": "coffee-shop",
+      "title": "Fourth Coffee store readiness and daily close",
+      "summary": "Sales-led, store-scoped inventory, human-approved replenishment and multi-agent daily managerial P&L.",
+      "industry": "Hospitality & Travel",
+      "businessUnits": [
+        "sales"
+      ],
+      "services": [
+        "foundry"
+      ],
+      "pillars": [
+        "performance-efficiency"
+      ],
+      "domains": [
+        "scaling"
+      ],
+      "artifacts": [
+        "01-requirements.md",
+        "02-architecture-assessment.md",
+        "04-implementation-plan.md",
+        "03-architect-diagram.png",
+        "04-runtime-diagram.png",
+        "azure.yaml",
+        "infra",
+        "src"
+      ],
+      "source": null,
+      "metadataStatus": "curated",
+      "manifestDigest": "3aefae14b6dbfd6cfcc0bea6d5ee4372d6fd87905b1fe0fc5ceb4ccd2359837f"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "dummy-sample",
+      "title": "Dummy sample",
+      "summary": "Locally discovered reference. Review its architecture and metadata before adapting. Source industry cell requires explicit classification review: Education; proposed focus: Higher Education",
+      "industry": null,
+      "businessUnits": [
+        "generic"
+      ],
+      "services": [],
+      "pillars": [
+        "cost-optimization",
+        "operational-excellence"
+      ],
+      "domains": [
+        "observability"
+      ],
+      "artifacts": [
+        "01-requirements.md",
+        "02-architecture-assessment.md"
+      ],
+      "source": null,
+      "metadataStatus": "needs-review",
+      "manifestDigest": "6453546489eb688bbdd9520213b952b725d0083657757e2eff962d2cc470233a"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "energy-foundy",
+      "title": "Energy shift-note assistant",
+      "summary": "A fundamental single-agent Foundry reference for drafting source-backed synthetic energy shift notes with one read-only tool and correlated Azure Monitor telemetry. Design confirmation and implementation are pending.",
+      "industry": "Energy & Resources",
+      "businessUnits": [
+        "generic"
+      ],
+      "services": [
+        "foundry",
+        "monitor"
+      ],
+      "pillars": [
+        "operational-excellence"
+      ],
+      "domains": [
+        "observability"
+      ],
+      "artifacts": [
+        "01-requirements.md",
+        "02-architecture-assessment.md"
+      ],
+      "source": null,
+      "metadataStatus": "curated",
+      "manifestDigest": "9939c53b91c4d885af9b0bfe1cea2f4907315620ecaec2c6b609ec0f5ba1c70c"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "equip-ai",
+      "title": "Washington equipment operations assistant",
+      "summary": "Site-isolated local-account support for Washington machinery using fresh, certified event telemetry.",
+      "industry": "Manufacturing & Mobility",
+      "businessUnits": [
+        "operations"
+      ],
+      "services": [
+        "foundry",
+        "storage",
+        "app-service",
+        "managed-identity",
+        "virtual-network",
+        "monitor"
+      ],
+      "pillars": [],
+      "domains": [],
+      "artifacts": [
+        "01-requirements.md",
+        "02-architecture-assessment.md",
+        "04-implementation-plan.md",
+        "03-architect-diagram.png",
+        "04-runtime-diagram.png",
+        "azure.yaml",
+        "infra",
+        "src"
+      ],
+      "source": null,
+      "metadataStatus": "curated",
+      "manifestDigest": "2e8444c7d0eb8d6d172a91f2e5d55b46ed3acea1f8ae385cc2407a11022c2248"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "feedback-campaign",
+      "title": "Feedback Campaign: human-owned media engagement",
+      "summary": "Adatum Corporation routes campaign feedback from Marketing to Sales using Foundry sentiment analysis, local role-scoped accounts, explicit human review and versioned Control rules.",
+      "industry": "Media & Communications",
+      "businessUnits": [
+        "sales",
+        "marketing"
+      ],
+      "services": [
+        "foundry",
+        "service-bus",
+        "monitor"
+      ],
+      "pillars": [],
+      "domains": [],
+      "artifacts": [
+        "01-requirements.md",
+        "02-architecture-assessment.md",
+        "04-implementation-plan.md",
+        "03-architect-diagram.png",
+        "04-runtime-diagram.png",
+        "azure.yaml",
+        "infra",
+        "src"
+      ],
+      "source": null,
+      "metadataStatus": "curated",
+      "manifestDigest": "7fcfeabac3ae5a37bec008885606f37343e6058c981b45f32a819ab1dee73df5"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "finance-security-hack",
+      "title": "Finance security hack",
+      "summary": "Locally discovered reference. Review its architecture and metadata before adapting.",
+      "industry": "Financial Services",
+      "businessUnits": [
+        "generic"
+      ],
+      "services": [
+        "foundry",
+        "container-apps",
+        "key-vault",
+        "managed-identity",
+        "api-management",
+        "storage",
+        "cosmos-db",
+        "ai-search",
+        "virtual-network",
+        "monitor"
+      ],
+      "pillars": [
+        "security",
+        "operational-excellence"
+      ],
+      "domains": [
+        "identity"
+      ],
+      "artifacts": [
+        "01-requirements.md",
+        "02-architecture-assessment.md",
+        "04-implementation-plan.md",
+        "03-architect-diagram.png",
+        "04-runtime-diagram.png",
+        "azure.yaml",
+        "infra",
+        "src"
+      ],
+      "source": null,
+      "metadataStatus": "needs-review",
+      "manifestDigest": "03cf0398f86ff00ac9b13ac80a08757c40fd30db31f84790cbec4dbf38b1377e"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "hospitality-feedback",
+      "title": "Margie's Travel multilingual hotel-service feedback",
+      "summary": "A single Foundry Basic prompt agent analyzes multilingual hotel-service feedback using Blob evidence and reliable queued ingestion. Local reference; current deployment and suitability remain unverified.",
+      "industry": "Hospitality & Travel",
+      "businessUnits": [
+        "generic"
+      ],
+      "services": [
+        "foundry",
+        "storage",
+        "app-service",
+        "managed-identity"
+      ],
+      "pillars": [],
+      "domains": [],
+      "artifacts": [
+        "01-requirements.md",
+        "02-architecture-assessment.md",
+        "04-implementation-plan.md",
+        "03-architect-diagram.png",
+        "04-runtime-diagram.png",
+        "azure.yaml",
+        "infra",
+        "src"
+      ],
+      "source": null,
+      "metadataStatus": "curated",
+      "manifestDigest": "66a2fd4c01a09d1f370002feb74c776d13559dc8c3e556d97842b512b8112482"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "itsupport-agentic",
+      "title": "Adatum Corporation IT Helpdesk Escalation",
+      "summary": "Three-tier IT helpdesk with human-gated Foundry agents, authenticated Razor application, private reference infrastructure and durable immutable-audit coordination. App/IaC checks passed, but local validation is blocked by a native owner-only temporary-directory ACL permission failure. No Azure deployment, runtime acceptance or suitability approval.",
+      "industry": "Professional & Business Services",
+      "businessUnits": [
+        "it"
+      ],
+      "services": [
+        "foundry",
+        "app-service",
+        "cosmos-db",
+        "ai-search",
+        "storage",
+        "key-vault",
+        "managed-identity",
+        "virtual-network",
+        "monitor"
+      ],
+      "pillars": [],
+      "domains": [],
+      "artifacts": [
+        "01-requirements.md",
+        "02-architecture-assessment.md",
+        "04-implementation-plan.md",
+        "03-architect-diagram.png",
+        "04-runtime-diagram.png",
+        "azure.yaml",
+        "infra",
+        "src"
+      ],
+      "source": null,
+      "metadataStatus": "curated",
+      "manifestDigest": "f4b88bd8095cc257a075afc98230fce476ed8cca9f2281c1f9af37901b4b1580"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "live-demo-project",
+      "title": "Adatum Corporation brokerage service desk",
+      "summary": "Company-only brokerage answers with exact approved citations and accountable human takeover.",
+      "industry": "Financial Services",
+      "businessUnits": [
+        "generic"
+      ],
+      "services": [
+        "foundry"
+      ],
+      "pillars": [],
+      "domains": [],
+      "artifacts": [
+        "01-requirements.md",
+        "02-architecture-assessment.md",
+        "04-implementation-plan.md",
+        "03-architect-diagram.png",
+        "04-runtime-diagram.png",
+        "azure.yaml",
+        "infra",
+        "src"
+      ],
+      "source": null,
+      "metadataStatus": "curated",
+      "manifestDigest": "14b6f716e4b41c8763f92d53ab4ef1af22cb96e02a928318cb575fa5c143359e"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "manu-multi-agent",
+      "title": "Manufacturing Sales-to-Marketing multi-agent handoff",
+      "summary": "Adventure Works Cycles Sales and Marketing reference with private keyless infrastructure, bounded three-agent application, offline validation and guarded complete-reference installation wiring. Cloud deployment and live proof remain pending.",
+      "industry": "Manufacturing & Mobility",
+      "businessUnits": [
+        "sales",
+        "marketing"
+      ],
+      "services": [
+        "foundry",
+        "container-apps",
+        "key-vault",
+        "managed-identity",
+        "api-management",
+        "storage",
+        "cosmos-db",
+        "ai-search",
+        "virtual-network",
+        "monitor"
+      ],
+      "pillars": [
+        "operational-excellence"
+      ],
+      "domains": [],
+      "artifacts": [
+        "01-requirements.md",
+        "02-architecture-assessment.md",
+        "04-implementation-plan.md",
+        "03-architect-diagram.png",
+        "04-runtime-diagram.png",
+        "azure.yaml",
+        "infra",
+        "src"
+      ],
+      "source": {
+        "scenarioId": "finance-security-hack",
+        "manifestDigest": "3e6437c1690758e70518e99e49923861949090739dd3dec0683856ee1585a831"
+      },
+      "metadataStatus": "curated",
+      "manifestDigest": "fe3ffa099ffb553e3b90e419f5d03e8dde2e803e273daf3e1230156e473baa1c"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "pharma-bot",
+      "title": "Adatum Corporation multilingual medication sales and pickup",
+      "summary": "Sales-focused English, Spanish and French medication information and confirmation-gated synthetic ordering for in-store pickup, with Microsoft Foundry and explicit prescription-review boundaries.",
+      "industry": "Healthcare / Life Sciences",
+      "businessUnits": [
+        "sales"
+      ],
+      "services": [
+        "foundry"
+      ],
+      "pillars": [],
+      "domains": [],
+      "artifacts": [
+        "01-requirements.md",
+        "02-architecture-assessment.md",
+        "04-implementation-plan.md",
+        "03-architect-diagram.png",
+        "04-runtime-diagram.png",
+        "azure.yaml",
+        "infra",
+        "src"
+      ],
+      "source": null,
+      "metadataStatus": "curated",
+      "manifestDigest": "c9eae1a0a2a709284139f33e77027ac58f5ecd0a8b4026dfc24769ef5c56b1d4"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "resto-scale-agent",
+      "title": "Fourth Coffee: five-floor restaurant agents under load",
+      "summary": "Generic Hospitality & Travel five-floor, 250-seat restaurant reference with scoped guest and staff Foundry agents, deterministic transactions, durable kitchen handoffs and separate transaction/AI scaling.",
+      "industry": "Hospitality & Travel",
+      "businessUnits": [
+        "generic"
+      ],
+      "services": [
+        "foundry",
+        "cosmos-db",
+        "container-apps",
+        "key-vault",
+        "managed-identity",
+        "service-bus",
+        "virtual-network",
+        "monitor"
+      ],
+      "pillars": [
+        "reliability",
+        "performance-efficiency"
+      ],
+      "domains": [
+        "scaling"
+      ],
+      "artifacts": [
+        "01-requirements.md",
+        "02-architecture-assessment.md",
+        "04-implementation-plan.md",
+        "03-architect-diagram.png",
+        "04-runtime-diagram.png",
+        "azure.yaml",
+        "infra",
+        "src"
+      ],
+      "source": null,
+      "metadataStatus": "curated",
+      "manifestDigest": "1806053557a664d979083ab163629543097a1727a549ffe4ec7eda41f18d4171"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "retail-agentic",
+      "title": "Woodgrove Groceries: Agentic Order to Home Delivery",
+      "summary": "Three real Foundry prompt agents coordinate synthetic grocery ordering, fulfillment and delivery with exact customer approval for changed commitments.",
+      "industry": "Retail & Consumer Goods",
+      "businessUnits": [
+        "generic"
+      ],
+      "services": [
+        "foundry",
+        "app-service",
+        "storage",
+        "managed-identity",
+        "virtual-network"
+      ],
+      "pillars": [],
+      "domains": [],
+      "artifacts": [
+        "01-requirements.md",
+        "02-architecture-assessment.md",
+        "04-implementation-plan.md",
+        "03-architect-diagram.png",
+        "04-runtime-diagram.png",
+        "azure.yaml",
+        "infra",
+        "src"
+      ],
+      "source": null,
+      "metadataStatus": "curated",
+      "manifestDigest": "8791cfb5f60beec34086cf58678494690756a90deb244b70a8089f0c59687d94"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "retail-foundry-copilot",
+      "title": "Lakeshore Retail grounded shopping and store-operations assistant",
+      "summary": "Same existing reference: synthetic product discovery, store/SKU inventory and returns-policy guidance through a managed-identity .NET application and bounded Foundry specialists. Generic is the visible legacy business-unit fallback. Curated scope is not runtime validation or approval; historical package folders remain unchanged.",
+      "industry": "Retail & Consumer Goods",
+      "businessUnits": [
+        "generic"
+      ],
+      "services": [
+        "foundry",
+        "cosmos-db",
+        "ai-search",
+        "storage",
+        "app-service",
+        "key-vault",
+        "managed-identity",
+        "virtual-network",
+        "monitor"
+      ],
+      "pillars": [
+        "security",
+        "reliability",
+        "cost-optimization",
+        "operational-excellence",
+        "performance-efficiency"
+      ],
+      "domains": [
+        "identity",
+        "private-networking",
+        "data-protection",
+        "high-availability",
+        "disaster-recovery",
+        "cost-controls",
+        "observability",
+        "safe-delivery",
+        "scaling"
+      ],
+      "artifacts": [
+        "01-requirements.md",
+        "02-architecture-assessment.md",
+        "04-implementation-plan.md",
+        "03-architect-diagram.png"
+      ],
+      "source": null,
+      "metadataStatus": "curated",
+      "manifestDigest": "278ad40465b81fbafc54fb515888d7f7b23f6e7f225d8ebd288fb50a9179ca69"
+    }
+  ]
+}

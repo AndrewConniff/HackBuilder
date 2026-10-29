@@ -2,13 +2,17 @@
 
 ## Purpose
 
-Every scenario requires a scenario-level `nextsteps.MD` that inventories the
+After explicit scenario approval, hack authoring requires `nextsteps.MD` to inventory the
 synthetic data, documents, media, contracts, evaluation sets, and installation
 scripts needed by the challenges and deployable applications.
 
-The inventory is written during HackCreator plan mode. It is updated during
+The inventory is written during post-approval HackCreator plan mode. It is updated during
 package mode and after deployment. It specifies future work without allowing a
 runtime dependency to remain missing when deployment testing begins.
+
+Phase A implements the reference's runtime fixtures without requiring this hack
+inventory. Phase B validates packages locally. Azure artifact checks and statuses
+apply during separately requested event rollout, not as a pre-approval workload.
 
 ## Artifact detail contract
 
@@ -54,8 +58,8 @@ Use `deployment-critical` when any of these statements is true:
 - The coach solution cannot prove grounding, tool use, routing, evaluation, or
   another required behavior without it.
 
-A deployment-critical entry must reach `packaged` before handoff to the Deploy
-agent. Its repository destinations must exist, and deployment must load or
+A deployment-critical entry must reach `packaged` before package validation
+completes. Its repository destinations must exist, and requested deployment must load or
 install it through an idempotent script or application initializer.
 
 Use `release-enrichment` only when the scenario deploys and passes its required
@@ -192,15 +196,17 @@ listed destination exists, not merely that a source copy was created.
 
 ## Creation, GitHub, and deployment workflow
 
-1. HackCreator plan mode creates `nextsteps.MD` with every known artifact at
+1. After scenario approval, HackCreator plan mode creates `nextsteps.MD` with every known artifact at
    `planned` status.
 1. Artifact owners create and locally validate deployment-critical files.
 1. HackCreator package mode places the files, validates parity and safety, and
    changes their status to `packaged`.
 1. The package validator blocks deployment handoff when a deployment-critical
    artifact is missing or not packaged.
-1. The Deploy agent still runs `azd up` for the coach and every participant
-   manifest entry. Load scripts run through the selected `azd` lifecycle hook.
+1. Local package validation completes authoring. Only after a separate explicit
+   event request, the scenario orchestrator executes deployment skills directly
+   and runs `azd up` for coach and every participant manifest entry.
+   Load scripts run through the selected `azd` lifecycle hook.
 1. Post-deployment checks validate Azure counts, queries, search results,
    messages, evaluations, and application behavior. Successful entries become
    `azure-verified`.
