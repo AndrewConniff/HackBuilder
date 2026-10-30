@@ -7,7 +7,7 @@ const vm = require("node:vm");
 
 async function fixture(t, { opened, link, submitError, activeChat = true, delayedChat = false,
   nativeOpener = true } = {}) {
-  const root = await fs.mkdtemp(path.join(os.tmpdir(), "abc-chat-"));
+  const root = await fs.mkdtemp(path.join(os.tmpdir(), "fbc-chat-"));
   t.after(() => fs.rm(root, { recursive: true, force: true }));
   await fs.mkdir(path.join(root, "scripts"));
   await fs.writeFile(path.join(root, "scripts", "portal_visualizer.py"), "");
@@ -67,7 +67,7 @@ async function fixture(t, { opened, link, submitError, activeChat = true, delaye
   });
   vm.runInContext(await fs.readFile(path.join(__dirname, "extension.js"), "utf8"), context);
   const bridge = context.module.exports;
-  const directory = path.join(root, ".abcbuilder-portal", "scenarios", "test-scenario");
+  const directory = path.join(root, ".fbcbuilder-portal", "scenarios", "test-scenario");
   const uri = (action, overrides = {}) => ({
     path: `/${action}`,
     query: new URLSearchParams({
@@ -123,7 +123,60 @@ test("Native activation probe acknowledges readiness without reading or opening 
   assert.equal(calls.length, 0);
   const receipt = JSON.parse(await fs.readFile(path.join(directory, "chat-open", `${"a".repeat(32)}.json`)));
   assert.equal(receipt.status, "ready");
-  assert.equal(receipt.version, "0.2.3");
+  assert.equal(receipt.version, "0.4.0");
+});
+
+async function messageFixture(t, options = {}, phase = "scenario") {
+  const value = await fixture(t, { link: `agent-host-session://copilot/${phase}`, ...options });
+  await value.bridge.handleUri(value.uri("link", { phase }));
+  const record = {
+    schemaVersion: 1, projectSlug: "test-scenario", phase, requestId: "a".repeat(32),
+    resource: `agent-host-session://copilot/${phase}`, text: "Use synthetic supplier data.", status: "dispatching",
+  };
+  const filename = path.join(value.directory, "messages", phase, `${record.requestId}.json`);
+  await fs.mkdir(path.dirname(filename), { recursive: true });
+  await fs.writeFile(filename, JSON.stringify(record));
+  return { ...value, record, filename };
+}
+
+test("Portal replies use the exact existing phase conversation once and retain native approval boundaries", async (t) => {
+  for (const phase of ["scenario", "composition"]) {
+    await t.test(phase, async (t) => {
+      const { bridge, calls, directory, uri } = await messageFixture(t, {}, phase);
+      await bridge.handleUri(uri("message", { phase }));
+      await bridge.handleUri(uri("message", { phase }));
+      assert.deepEqual(calls.map((entry) => entry[0]), ["_workbench.open", "workbench.action.chat.submit"]);
+      assert.equal(calls[0][1], `agent-host-session://copilot/${phase}`);
+      const text = calls[1][1].inputValue;
+      assert.match(text, /Use synthetic supplier data/);
+      assert.match(text, /not a workflow approval control/);
+      assert.match(text, /Keep native tool permission prompts in VS Code/);
+      assert.match(text, /portal_status\.py test-scenario/);
+      assert.equal(JSON.parse(await fs.readFile(
+        path.join(directory, "chat-open", `${"a".repeat(32)}.json`),
+      )).status, "dispatched");
+    });
+  }
+});
+
+test("Portal dispatch failures are unknown after submit and never blindly replayed", async (t) => {
+  const { bridge, calls, directory, uri } = await messageFixture(t, { submitError: new Error("Editor disconnected") });
+  await assert.rejects(bridge.handleUri(uri("message")), /Editor disconnected/);
+  assert.equal(JSON.parse(await fs.readFile(
+    path.join(directory, "chat-open", `${"a".repeat(32)}.json`),
+  )).status, "unknown");
+  await assert.rejects(bridge.handleUri(uri("message")), /already be queued/);
+  assert.equal(calls.filter((entry) => entry[0] === "workbench.action.chat.submit").length, 1);
+});
+
+test("Changed message scope, relinked sessions and invalid message records cannot dispatch", async (t) => {
+  const { bridge, calls, record, filename, uri } = await messageFixture(t);
+  for (const change of [{ phase: "composition" }, { projectSlug: "other" }, { text: "" },
+    { status: "unknown" }, { resource: "agent-host-session://copilot/other" }]) {
+    await fs.writeFile(filename, JSON.stringify({ ...record, ...change }));
+    await assert.rejects(bridge.handleUri(uri("message")), /changed|not ready/);
+  }
+  assert.equal(calls.length, 0);
 });
 
 async function briefFixture(t, options = {}) {

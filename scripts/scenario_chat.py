@@ -21,7 +21,7 @@ LOG = logging.getLogger(__name__)
 HANDOFF = re.compile(
     r"Follow the attached (scenario|scoping|composition|deployment-review) handoff for "
     r"([a-z0-9]+(?:-[a-z0-9]+)*). Report progress to portal_status\.py\."
-    r"(?: ABC Builder chat trace: ([a-f0-9]{32})\.)?"
+    r"(?: [AF]BC Builder chat trace: ([a-f0-9]{32})\.)?"
 )
 
 

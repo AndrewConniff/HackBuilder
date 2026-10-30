@@ -1,31 +1,43 @@
-# ABC Builder: a new user's how-to guide
+# FBC Builder: a new user's how-to guide
 
-ABC Builder turns a business idea into a working Microsoft Foundry reference scenario,
+FBC Builder turns a business idea into a working Microsoft Foundry reference scenario,
 then turns that reference into a hack experience **only after you approve its suitability**.
 You use a local browser app to describe the idea, follow progress and browse outputs.
 You use GitHub Copilot in VS Code to discuss the design, authorize operations and review the working solution.
 
-This guide follows the browser workflow using screenshots captured on **October 25, 2026**.
+This is the main user guide, consolidating the former FBC Builder README and HOWTO.
+The instructions cover the implementation reviewed on **October 29, 2026**, including catalog suggestions,
+source adaptation, brief continuation and the phase-specific portal conversation pane.
+For engineering handoff, see the [FBCBuilder DEV Guide](FBCBuilder-DEV-Guide.md).
+
+The illustrated walkthrough uses screenshots captured on **October 25, 2026**.
 The example is `feedback-campaign`, a Media & Communications scenario with human-reviewed engagement decisions.
 Its business rules, services, costs and timestamps are examples, not defaults for your project.
 The screenshots show successive moments, including an intentional stop for missing authorization;
 they are not a claim that every pictured stage was already complete.
+These historical captures predate the FBC rebrand and may display the former product name.
+The current portal, launcher and instructions use **FBC Builder**; the captured scenario evidence is unchanged.
 
 ## In this guide
 
 - [Understand the two-window workflow](#understand-the-two-window-workflow)
-- [Prepare your machine and open ABC Builder](#prepare-your-machine-and-open-abc-builder)
+- [Clone the repository and choose your starting route](#clone-the-repository-and-choose-your-starting-route)
+- [Prepare your machine and open FBC Builder](#prepare-your-machine-and-open-fbc-builder)
 - [Choose manual, online or cached setup](#choose-manual-online-or-cached-setup)
 - [Manual tool inventory and official downloads](#manual-tool-inventory-and-official-downloads)
 - [Navigate the browser app](#navigate-the-browser-app)
 - [Step 1: describe your scenario](#step-1-describe-your-scenario)
+- [Reuse an existing scenario without inheriting its deployment][reuse-guide]
 - [Step 2: continue in VS Code](#step-2-continue-in-vs-code)
 - [Step 3: follow Build & validate](#step-3-follow-build--validate)
+- [Use Agent conversation in the portal](#use-agent-conversation-in-the-portal)
 - [Step 4: review and authorize Azure work](#step-4-review-and-authorize-azure-work)
 - [Step 5: approve the working scenario](#step-5-approve-the-working-scenario)
 - [Step 6: create and export the hack](#step-6-create-and-export-the-hack)
 - [Find your files and return later](#find-your-files-and-return-later)
 - [Troubleshoot common situations](#troubleshoot-common-situations)
+- [Share source and protect local work](#share-source-and-protect-local-work)
+- [Branding, compatibility and further references](#branding-compatibility-and-further-references)
 - [First-run checklist](#first-run-checklist)
 
 ## Understand the two-window workflow
@@ -58,7 +70,9 @@ not additional Copilot sessions building it.
 1. After the working reference is approved, you explicitly open a separate composition context.
 
 The active browser workflow does **not** launch background Copilot CLI workers, schedule implementation stages,
-proxy your answers to the model or supervise an agent process.
+call a model itself or supervise an agent process.
+Its **Agent conversation** pane can relay an explicit message to the already linked native conversation.
+Brief confirmation and change requests use dedicated fingerprint-bound controls in that same conversation.
 The System page is an exception to display-only behavior: on request, it runs shared diagnostics,
 not scenario implementation or Azure deployment.
 
@@ -66,7 +80,51 @@ not scenario implementation or Azure deployment.
 > A browser status is the latest **reported state**, not a live process monitor.
 > Switching tabs, refreshing the board or reopening a chat does not grant permission or restart the build.
 
-## Prepare your machine and open ABC Builder
+## Clone the repository and choose your starting route
+
+You need a GitHub account with working GitHub Copilot access in VS Code, and, for deployment,
+an Azure subscription with suitable permissions and model capacity.
+Copilot access and Azure access are separate; being signed in to one does not sign you in to the other.
+Use a local Windows workspace for the documented launcher, native editor bridge and File Explorer experience.
+The automated native installer targets Windows x64; it is not an ARM64 installer.
+Do not assume WSL, Remote SSH, a browser-only editor or a container has the same local bridge/session support.
+
+If Git or VS Code is missing, install them through your approved software channel or the official downloads
+in the [manual inventory](#manual-tool-inventory-and-official-downloads).
+Then clone into a writable development location, not a protected system directory:
+
+```powershell
+git clone https://github.com/petender/HackBuilder.git
+Set-Location .\HackBuilder
+code .
+```
+
+An organization-provided source archive is also usable after extracting the complete repository.
+Keep the hidden configuration folders: the agents and skills are not just the visible root documents.
+All commands below assume the repository root is your current directory.
+Use your own clone path; the illustrated machine's paths are not required.
+
+For a first run:
+
+1. Review the repository, open it in VS Code and make your own Workspace Trust decision.
+1. Follow the setup routes below; use **Check** before deciding what needs installation.
+1. Sign in to Copilot and Azure explicitly, and start Docker's Linux engine.
+1. Install the local bridge for the full portal experience: reopening chats, confirming briefs and sending messages.
+1. Launch the portal and run both **System** diagnostics.
+1. Create a business brief, optionally refine it, and follow the existing agent conversation.
+1. Review cloud scope before deployment, then inspect the working reference before approving suitability.
+1. Open composition separately and export only the appropriate audience's validated package.
+
+You can instead start directly in VS Code by selecting **az-01-conductor** and asking:
+
+> Build me a hack for a retail business: a Foundry agent that answers product questions using approved
+> documents and checks store inventory through a tool. Prepare the design and costs before deployment.
+
+The optional `/run-conductor` manual skill enters the same workflow, not another orchestrator.
+After pulling customization changes, reload customizations or open a fresh chat so the editor can discover them.
+For existing work, resume its known chat rather than starting duplicate execution.
+
+## Prepare your machine and open FBC Builder
 
 ### Prepare once
 
@@ -82,7 +140,7 @@ Before your first scenario:
 1. Prepare Python and the repository environment, PowerShell, .NET 10, Graphviz, Azure CLI, azd and Bicep.
 1. Prepare the other tools required by the shared System profile, including a running Docker **Linux** engine.
 1. Sign in to Azure CLI and azd using the intended account and compatible tenant/subscription context.
-1. For browser-to-existing-chat navigation, install the local
+1. For browser-to-existing-chat navigation, brief confirmation and portal messages, install the local
    [Scenario Chat bridge](tools/vscode-chat-bridge/README.md) as documented there.
    The bridge requires VS Code 1.143 or later and a trusted local workspace.
 
@@ -102,7 +160,7 @@ The scripts do not bypass execution policy.
 | Download baseline | You want the same native versions locally. | Downloads every pinned tool; installs nothing. |
 | Download and install | You want one opt-in Windows x64 flow. | Verifies all downloads, then installs from cache. |
 
-**Cached/offline native installation is not fully offline ABC Builder setup.**
+**Cached/offline native installation is not fully offline FBC Builder setup.**
 The cache includes the native tools and Bicep, but does not include Python wheels, vendor dependencies, WSL images,
 VS Code extensions or generated application NuGet packages.
 Installation still needs network access for missing Python requirements.
@@ -211,7 +269,7 @@ Narrow scenario checks may require less; a narrower successful report is not a f
 | Grafana k6 | [k6 installation][k6-download] | `k6 version` |
 | Visual Studio Code | [VS Code downloads][vscode-download] | `code --version`; 1.143+ for the local bridge |
 | GitHub Copilot | [Copilot setup in VS Code][copilot-download] | Install/enable, sign in and review Workspace Trust |
-| Scenario Chat bridge | [Local bridge instructions][bridge-setup] | Optional existing-chat navigation |
+| Scenario Chat bridge | [Local bridge instructions][bridge-setup] | Required for full portal chat/brief controls |
 | Node.js LTS, npm/npx | [Node.js downloads][node-download] | Included in setup; `node --version` must be 22+ |
 | GitHub CLI | [GitHub CLI downloads][gh-download] | Included in setup; `gh --version` |
 
@@ -258,12 +316,72 @@ Scenario-specific browser tests or other extra tools must be documented separate
 [gh-download]: https://cli.github.com/
 [bridge-setup]: tools/vscode-chat-bridge/README.md
 
+### Sign in and verify the intended Azure context
+
+Sign in to GitHub Copilot using the VS Code account controls and verify that **az-01-conductor**
+and **HackCreator Agent** appear in the agent selector.
+If they do not, check the active workspace, enabled Copilot features, trust and organization policy.
+The installer does not install/sign in to Copilot for you.
+
+For Azure, inspect existing authentication before changing anything:
+
+```powershell
+az account show --output table
+azd auth login --check-status --no-prompt
+```
+
+If either CLI is not signed in, complete its interactive login yourself:
+
+```powershell
+az login
+azd auth login
+```
+
+After login, run the two verification commands again.
+Confirm the intended account, subscription and tenant in the actual output and in the agent's target review.
+If a different subscription is selected, deliberately resolve that outside the portal using your approved CLI process;
+do not assume the agent should change shared defaults.
+Never paste passwords, access tokens or authentication caches into chat.
+GitHub CLI authentication is needed only for a separately requested GitHub publication operation.
+
+Azure sign-in does not prove deployment rights, role-assignment rights, service-provider availability,
+model quota, regional capacity or permission for Entra directory changes.
+The agent must verify the exact design within your authorized scope.
+Requirements, scoping and local design can proceed before those cloud permissions are granted.
+
+### Install the local Scenario Chat bridge
+
+The complete browser experience needs the local VS Code extension, not a hosted service.
+Use bridge **0.4.0** from this repository with VS Code **1.143+**.
+Messaging was introduced in 0.3.0, but this checkout uses the new extension identity and routes from 0.4.0;
+an older installed publisher is not a compatible replacement.
+From the repository root:
+
+```powershell
+Push-Location .\tools\vscode-chat-bridge
+npx --yes @vscode/vsce package --no-dependencies --skip-license
+Pop-Location
+```
+
+Packaging fetches the packaging tool on request; it is not part of portal startup and may need network access.
+Follow organization policy for local extensions.
+In VS Code, run **Extensions: Install from VSIX** and select the VSIX just created in that folder.
+Run **Developer: Restart Extension Host**, or **Developer: Reload Window** if activation still has not occurred.
+Keep the intended repository open and trusted.
+Review any extension-URI permission prompt yourself.
+Do not distribute the locally built VSIX as part of a source-only share unless that is explicitly intended.
+
+Initial `code chat` handoff can work without the bridge, but **Confirm brief**, **Save changes**,
+**Open existing agent chat** and **Send message** depend on it.
+If delivery is uncertain, inspect the original native chat before trying again.
+See the [bridge reference][bridge-setup] for advanced association repair and technical compatibility details.
+
 ### Open the browser app
 
 From the repository root in PowerShell:
 
 ```powershell
-.\Start-ABCBuilder.cmd
+.\Start-FBCBuilder.cmd
 ```
 
 Alternatively:
@@ -276,6 +394,15 @@ The launcher starts a local server or reuses a healthy, compatible server for th
 then opens its loopback address in your browser.
 Use the address the launcher opens; do not expose the portal on a public interface.
 The normal server uses port 8765.
+
+On Windows, a separate **FBC Builder - Browser App Runtime** console hosts the server.
+Keep it open while using the browser; minimize it if desired.
+Closing that console stops the portal, not deployed Azure resources.
+Closing a browser tab does not stop the runtime console or Copilot.
+After an update, a compatible server is reused rather than automatically restarted.
+If the launcher reports an outdated backend, finish active work, identify the exact portal process,
+stop only that server and relaunch; then reload the browser.
+Never terminate all Python or VS Code processes to resolve a portal version mismatch.
 
 You can also select **az-01-conductor** directly in VS Code and ask it to build a scenario.
 Its interactive startup hook opens the portal; hosts without that hook use the helper once.
@@ -383,9 +510,15 @@ Already answered details are reused. A sufficiently descriptive brief does not n
 
 Answer in that same chat. The agent maintains the refined brief, actual decisions, assumptions and open points
 in `scoping.md` beside the saved `request.json`; the original intake is not overwritten.
-Select the scenario in **Build & validate** to read **AI scoping notes and refined brief** as notes are saved.
 These are agent-written context, not proof that all architectural risks have been eliminated.
 No scenario workspace, architecture, app or cloud operation is started by scoping alone.
+
+The latest UI shows **Your scenario brief** as an expanded paper-style document with Courier typography,
+above the milestones. There is no disclosure arrow to find.
+A border/review cue draws attention when a response or retry is needed.
+**Modify brief**, **Save changes**, **Cancel** and **Confirm brief** remain attached to that document.
+The document appears only after the agent has saved notes.
+Earlier screenshots may show the former wording or layout.
 
 When satisfied, select **Confirm brief**. The portal sends a fixed continuation to the existing scenario chat
 and resumes the normal workflow, starting with requirements and architecture artifacts.
@@ -433,6 +566,68 @@ Service selections are requirements inputs, not Azure consent or proof those ser
 If you are unsure, describe the constraint in the brief and discuss the trade-off with Copilot.
 
 When the required fields are valid, select **Start building** once.
+
+## Reuse an existing scenario without inheriting its deployment
+
+You can build fresh, accept a suggested starting point, or explicitly inspect a known local source.
+Reuse is a design/code starting point, not permission to use another deployment, credentials or approvals.
+All adaptations use a separate new project slug and require fresh target validation and suitability approval.
+
+### Automatic suggestions while drafting a new idea
+
+Keep **New scenario** selected and describe a meaningful business workflow.
+After a short typing pause or leaving the prompt field, the portal compares the draft with the local catalog.
+Up to three relevant matches can appear, including matches from other industries.
+No useful match means there is no suggestion panel; a comparison failure does not disable normal intake.
+
+Each match explains workflow/architecture overlap and differences, local file availability,
+profile freshness and whether metadata still **needs-review**.
+These are deterministic local suggestions, not AI recommendations or proof of a functioning implementation.
+A source that is not locally available is inspiration-only and cannot be selected for copying.
+A fresh clone can therefore show catalog ideas without containing the corresponding generated scenario files.
+
+1. Select **Review match** and inspect the source.
+1. Choose **Use as starting point** if it fits.
+1. Your existing target project name, prompt, industry, units, services and pattern remain unchanged.
+1. Either submit button now enters refinement before any copying/build.
+1. Ask the agent to explain what fits, what changes and what must be removed.
+1. Confirm the revised brief only after that review.
+
+**Keep my original idea** removes the attachment and dismisses suggestions for that exact draft.
+Editing the idea permits new suggestions.
+The agent can recommend reuse, partial reuse or building fresh, but must not choose a source on your behalf.
+
+### Manually start from an existing reference
+
+1. Select **Start from existing** in Create scenario.
+1. Pick an available local reference and choose **Modify brief from source**.
+1. Review the source brief shown as reference, then set a **new** project name and edit the intake.
+1. Change industry, business units, prompt, services and priorities to describe the target, not the source.
+1. Submit for scoping, answer questions in the existing scenario chat, and confirm the revised brief.
+
+This manual picker prefills source intake; automatic suggestions deliberately preserve your current intake.
+If the full source brief exceeds 6,000 characters, the editable prompt uses its original saved intake
+and labels the complete brief as reference-only.
+**Use as new idea instead**, or selecting **New scenario**, clears reuse without throwing away your edited text.
+The existing-source route requires loading a source first; it does not silently submit an unrelated new idea.
+
+### Choose or change a source during brief review
+
+If available, use **Compare catalog starting points** on the saved brief.
+A late source choice, or choosing to build fresh instead, is a scoping-only revision:
+the agent assesses it, binds a new reviewed brief and waits for fresh confirmation.
+Confirmation pauses until that assessment is recorded.
+The original saved request remains unchanged.
+If dispatch fails, use the saved change-request controls rather than recreating the project.
+
+After brief confirmation, the scenario agent prepares an allowlisted copy in an empty, isolated workspace
+and reconciles keep/change/remove decisions. Fitting implementation is preserved rather than blindly regenerated.
+Target business rules, synthetic data, personas and affected tests must be updated.
+The source remains read-only.
+Environment settings, parameter-value files, build outputs, deployment/runtime evidence, packages,
+secrets, consent records and approvals are not inherited.
+If source fingerprints change before selection/preparation, reload and inspect the source again.
+Copy/reconciliation reports are local preparation evidence, never runtime acceptance.
 
 ## Step 2: continue in VS Code
 
@@ -510,6 +705,15 @@ Each row can show a status, summary and report timestamp.
 These are evidence milestones, not a stopwatch or a rigid process scheduler.
 Copilot can repair or revisit earlier work without opening a new implementation agent.
 
+### Read confirmed and revised brief states
+
+For the currently confirmed scoping brief, **Scenario description** can display **Brief confirmed**
+instead of the superseded input wait.
+After a change request, it can show **Changes saved - revision pending**.
+These are display states, not completion of requirements, architecture or deployment.
+A changed brief needs fresh confirmation, and running/failed/completed work is not hidden.
+The original reports remain under **Agent-reported steps**.
+
 ### Understand tool permissions
 
 The next screenshot returns to VS Code while Copilot works.
@@ -520,7 +724,7 @@ The highlighted permission area belongs to the editor, not the browser.
 *Figure 7. Permission controls and model labels depend on your VS Code/Copilot installation.*
 
 **Allow all** can allow potentially destructive tool calls without further confirmation.
-It is optional, not a requirement for ABC Builder.
+It is optional, not a requirement for FBC Builder.
 Use narrowly scoped approvals where appropriate and follow your organization's policy.
 The portal cannot choose this setting for you or copy a session-only grant to another chat.
 The model shown in the screenshot is not a required or pinned model.
@@ -550,6 +754,50 @@ Timestamps are displayed in your browser's local date/time format.
 Read the summary as well as the icon: **Awaiting approval** is not an invitation to skip unresolved runtime checks.
 An outstanding failed, blocked or waiting stage takes priority over an unrelated later completion report.
 Expand **Agent-reported steps** when you need the underlying per-stage summaries.
+
+## Use Agent conversation in the portal
+
+**Build & validate** and **Create hack** have an additive **Agent conversation** pane.
+On screens at least 1,200 pixels wide it sits in a sticky right-hand column;
+on smaller screens it stacks below the selected scenario content.
+It supplements the boards, milestones and latest-status displays rather than replacing them.
+
+The pane shows:
+
+- Messages you explicitly sent through the portal.
+- Concise agent-written reports, including intermediate updates from the same stage.
+- Stage, timestamp and delivery status, with the most recent 100 entries shown.
+
+It does not mirror the complete native conversation, private reasoning or raw tool transcripts.
+Work that the agent did not report is not inferred.
+The milestone list still keeps the latest report for every stage even when older conversation entries roll off.
+
+To use it:
+
+1. Select the scenario in the correct phase.
+1. Confirm the pane identifies the expected project and **Scenario** or **Hack composition**.
+1. Enter a question, answer or correction without secrets; messages accept up to 8,000 characters.
+1. Select **Send message** once.
+1. Read the dispatch status and wait for an agent report or inspect the existing native chat.
+1. Use **Open existing agent chat** for full context, native permissions and formal decisions.
+
+Messages go to that phase's **existing** linked conversation.
+The pane cannot create a replacement chat or start composition before approval.
+Scenario and composition histories and unsent drafts are separate.
+Drafts survive navigation within the open page but not a reload; saved messages/reports survive portal restarts.
+Conversation state stays local and is excluded from learner exports.
+Reports refresh through the normal four-second poll; polling never sends or retries a message.
+
+**Sent to editor** means dispatch was acknowledged, not that Copilot ran or completed the request.
+An **uncertain/unconfirmed** result may already have reached the editor:
+check the native conversation before sending again.
+Only a proven pre-dispatch failure is safely eligible for explicit retry.
+Do not delete delivery records to force a resend.
+If the bridge is out of date, upgrade it, restart its extension host, restart the portal and reload the page.
+
+Use the dedicated **Confirm brief** and **Save changes** controls for brief responses.
+Keep formal architecture/deployment and suitability approvals, and tool permission prompts, in VS Code.
+A message receipt itself records none of those approvals and does not authorize an event rollout or publication.
 
 ## Step 4: review and authorize Azure work
 
@@ -593,6 +841,11 @@ After authorization, the conductor deploys, repairs in-scope implementation issu
 A provisioned resource or a responding homepage is not enough.
 The expected proof includes model inference, agent invocation, application chat,
 required grounding/tools and a negative case.
+It also includes the deploying user's administrative and data-plane access to every scenario component,
+not just the application's managed-identity access.
+Private workloads need a usable operator browser/CLI path as well as automation access.
+Sample application passwords are local app accounts, not Azure credentials;
+deployment-specific participant and coach access records belong in private files, not public guides.
 Use the live app URL and demonstration guide supplied by the agent to inspect the business outcome yourself.
 
 ## Step 5: approve the working scenario
@@ -687,6 +940,9 @@ Package completion means the hack is authored and locally validated, **not** tha
 If you want an event rollout, explicitly request it and provide the team count, from 1 to 20.
 The rollout uses one coach environment and isolated numbered participant environments,
 with separate resource groups and azd environments.
+Team IDs are zero-padded, and participant environments never reuse the reference or coach resource group.
+Completion requires real validation of every requested target.
+A minimum starter without an application does not need a fabricated application URL.
 Review its targets, costs and authorization separately.
 
 Likewise, exporting a ZIP does not create a GitHub repository, push content or publish Skillable instructions.
@@ -733,14 +989,15 @@ packages/
   coach-guide/    Private solution guidance and Finale
 ```
 
-Portal-local state is stored separately under `.abcbuilder-portal`,
+Portal-local state is stored separately under `.fbcbuilder-portal`,
 or the existing legacy `.hackbuilder-portal` state directory.
 It includes saved briefs, handoffs, status reports and conversation associations.
 These local state folders and generated scenarios are ignored by Git by default;
 they are not automatically published or backed up by committing repository documentation.
 
 For implementation details, see the [portal documentation](portal/README.md),
-[customization inventory](AGENTSEXPLAINED.md) and [workflow contract][workflow-contract].
+[customization inventory](AGENTSEXPLAINED.md), [workflow contract][workflow-contract]
+and [FBCBuilder DEV Guide](FBCBuilder-DEV-Guide.md).
 
 ### Resume without starting over
 
@@ -768,6 +1025,12 @@ Do not run two chats or an old legacy worker against the same scenario concurren
 | The project stays **Starting** | Inspect the chat and tool prompts. A handoff does not prove activity. |
 | **Open scenario chat** fails | Check the bridge, editor version and URI prompt; use the existing chat manually. |
 | Chat association is ambiguous | Use the bridge's repair command only for the known existing conversation. |
+| Brief/message is unacknowledged | Inspect the native chat first; do not blindly resend uncertain delivery. |
+| Send message is unavailable | Start/link that phase through normal controls; use the current 0.4.0 bridge. |
+| Recent portal features are missing | Restart an outdated backend safely, reload the page and update the bridge. |
+| Suggested source is unavailable | Metadata is not source code; restore the source separately or build fresh. |
+| Reuse says the source changed | Reload the source and review it again; do not bypass the fingerprint check. |
+| Brief confirmation pauses after choosing reuse | Wait for source assessment and a revised brief, then confirm anew. |
 | The dashboard looks stale | Select **Refresh**, read the timestamp and inspect the chat for actual activity. |
 | **Needs attention** persists | Resolve the outstanding blocked/failed stage; unrelated progress cannot clear it. |
 | Files exist but boxes are empty | Ask Copilot to verify and report results; file availability is not completion. |
@@ -784,6 +1047,60 @@ The portal intentionally reports missing or ambiguous chat identity rather than 
 It does not repair authentication, reset permissions or infer consent from an older screenshot.
 If the issue is a real host/tenant restriction, follow the approved resolution path rather than bypassing it.
 
+## Share source and protect local work
+
+Share the repository through Git or a reviewed **source-only** archive, not a ZIP of your working directory.
+Keep the canonical agents, skills, templates, catalogs, research references, bridge source,
+HOWTO and screenshots with the source.
+Each recipient installs their own dependencies and authenticates their own identities.
+The portal does not require Copilot CLI workers or a Python browser installation.
+
+Do not distribute:
+
+- Local portal state under `.fbcbuilder-portal` or `.hackbuilder-portal`.
+- Generated scenario junctions or the adjacent physical scenario folders without a separate sanitized review.
+- `.azure`, `.private`, authentication caches, passwords, keys, environment files or deployment access records.
+- Virtual environments, installer caches/reports, build outputs, test outputs or personal editor/session state.
+
+These are generally ignored by Git; ignored does not mean safe to include in a file-system archive.
+Never force-add ignored files to make a source share look complete.
+Do not delete a colleague's local evidence or deployed resources when preparing handoff.
+Git does not back up ignored scenario work or the adjacent `azd-projects` folder:
+use your approved secure backup process for those, including any needed local chat associations.
+Public catalog metadata can survive source sharing while its actual source reference remains unavailable.
+
+## Branding, compatibility and further references
+
+The product-facing name is **FBC Builder**.
+Use [Start-FBCBuilder.cmd](Start-FBCBuilder.cmd) and this HOWTO as the main entry points.
+The former overview README has been consolidated here rather than maintained as a second user manual.
+Duplicate legacy guide and launcher filenames have been removed, not retained as compatibility copies.
+
+Stable compatibility names intentionally remain unchanged:
+`az-01-conductor`, `HackCreator Agent`, canonical skill directory IDs, executable script APIs,
+and existing scenario environment variables.
+Current portal state is under `.fbcbuilder-portal`, moved in place with saved native conversation links intact.
+When upgrading another checkout, stop its portal and rename its previous product-state directory to this name;
+do not merge separate histories or alter the saved JSON records.
+The theme key is `fbcbuilder-theme`; select Light or Dark again if desired after migration.
+Bridge **0.4.0** uses extension/URI identity `fbcbuilder.scenario-chat`.
+Install the updated bridge and restart the extension host before reopening chats through the portal.
+New handoffs use FBC-branded trace labels; discovery still recognizes earlier labels.
+Existing deployments, identity ownership markers, original scenario files, consent and approval evidence
+are not rewritten for branding. Historical references inside that evidence are not current portal paths.
+The historical screenshots above are not captures of the latest controls.
+
+For deeper or task-specific detail:
+
+- [FBCBuilder DEV Guide](FBCBuilder-DEV-Guide.md): implementation, ownership, contracts and developer validation.
+- [Prerequisites](PREREQUISITES.md): tool checks, environment/PATH, NuGet and identity troubleshooting.
+- [System tools](system-tools/README.md): installer modes, catalog integrity, reports and offline limitations.
+- [Portal reference](portal/README.md): detailed local browser behavior.
+- [Scenario Chat bridge](tools/vscode-chat-bridge/README.md): packaging, session discovery and editor integration.
+- [Customization inventory](AGENTSEXPLAINED.md): discoverable agents/skills and dated execution findings.
+- [Repository conventions](AGENTS.md): contribution boundaries and actual validation commands.
+- [Workflow contract][workflow-contract]: canonical scope, evidence, approval and resumption rules.
+
 ## First-run checklist
 
 - [ ] I opened and trusted the correct repository workspace.
@@ -799,15 +1116,16 @@ If the issue is a real host/tenant restriction, follow the approved resolution p
 - [ ] I kept learner and private coach exports separate.
 - [ ] I treated event rollout, publication and cleanup as explicit scoped operations.
 
-[screen-01]: docs/images/abc-builder/01-create-scenario.png
-[screen-02]: docs/images/abc-builder/02-workflow-pattern.png
-[screen-03]: docs/images/abc-builder/03-design-priorities.png
-[screen-04]: docs/images/abc-builder/04-vscode-handoff.png
-[screen-05]: docs/images/abc-builder/05-scenario-board.png
-[screen-06]: docs/images/abc-builder/06-initial-milestones.png
-[screen-07]: docs/images/abc-builder/07-vscode-permissions.png
-[screen-08]: docs/images/abc-builder/08-reference-progress.png
-[screen-09]: docs/images/abc-builder/09-deployment-review-boundary.png
-[screen-10]: docs/images/abc-builder/10-hack-progress.png
+[screen-01]: docs/images/fbc-builder/01-create-scenario.png
+[screen-02]: docs/images/fbc-builder/02-workflow-pattern.png
+[screen-03]: docs/images/fbc-builder/03-design-priorities.png
+[screen-04]: docs/images/fbc-builder/04-vscode-handoff.png
+[screen-05]: docs/images/fbc-builder/05-scenario-board.png
+[screen-06]: docs/images/fbc-builder/06-initial-milestones.png
+[screen-07]: docs/images/fbc-builder/07-vscode-permissions.png
+[screen-08]: docs/images/fbc-builder/08-reference-progress.png
+[screen-09]: docs/images/fbc-builder/09-deployment-review-boundary.png
+[screen-10]: docs/images/fbc-builder/10-hack-progress.png
 [industry-catalog]: .github/skills/skillable-lod-authoring/references/industry-catalog.md
 [workflow-contract]: .github/skills/hack-builder-workflow/SKILL.md
+[reuse-guide]: #reuse-an-existing-scenario-without-inheriting-its-deployment

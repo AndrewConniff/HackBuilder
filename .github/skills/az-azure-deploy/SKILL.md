@@ -81,7 +81,7 @@ Do not reopen public service access or bypass a host denial to make deployment s
 > [!CAUTION]
 > **MANDATORY DEPLOYMENT POLICY**
 >
-> 1. **Respect scope and gates**: Follow the ABC Builder workflow contract.
+> 1. **Respect scope and gates**: Follow the FBC Builder workflow contract.
 >    Attempt `azd up` only for the authorized reference or event scope after
 >    authentication, policy, preflight and user-confirmation gates pass.
 >    Tooling blockers (missing CLI, extension errors, auth issues) must be resolved

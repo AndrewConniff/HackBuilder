@@ -1,0 +1,487 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "feedback-campaign",
+  "manifestDigest": "7fcfeabac3ae5a37bec008885606f37343e6058c981b45f32a819ab1dee73df5",
+  "summary": "Adatum Corporation routes campaign feedback from Marketing to Sales using Foundry sentiment analysis, local role-scoped accounts, explicit human review and versioned Control rules.",
+  "metadataStatus": "needs-review",
+  "extractedAtUtc": "2026-10-30T01:07:54.440659+00:00",
+  "extractorVersion": 2,
+  "features": {
+    "routing-triage": [
+      {
+        "path": "01-requirements.md",
+        "line": 8,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 24,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 35,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 42,
+        "basis": "design"
+      },
+      {
+        "path": "04-runtime-diagram.py",
+        "line": 1,
+        "basis": "code"
+      },
+      {
+        "path": "04-runtime-diagram.py",
+        "line": 11,
+        "basis": "code"
+      },
+      {
+        "path": "04-runtime-diagram.py",
+        "line": 17,
+        "basis": "code"
+      },
+      {
+        "path": "src/FeedbackCampaign.Web/Models/Domain.cs",
+        "line": 25,
+        "basis": "code"
+      }
+    ],
+    "human-in-the-loop": [
+      {
+        "path": "01-requirements.md",
+        "line": 14,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 35,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 86,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 6,
+        "basis": "design"
+      },
+      {
+        "path": "04-runtime-diagram.py",
+        "line": 32,
+        "basis": "code"
+      },
+      {
+        "path": "infra/main.bicep",
+        "line": 55,
+        "basis": "code"
+      },
+      {
+        "path": "src/FeedbackCampaign.Web/Models/Domain.cs",
+        "line": 69,
+        "basis": "code"
+      }
+    ],
+    "event-driven-reactive-agents": [
+      {
+        "path": "01-requirements.md",
+        "line": 16,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 36,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 64,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 90,
+        "basis": "design"
+      },
+      {
+        "path": "infra/main.bicep",
+        "line": 78,
+        "basis": "code"
+      },
+      {
+        "path": "src/FeedbackCampaign.Web/Services/QueueWorker.cs",
+        "line": 14,
+        "basis": "code"
+      },
+      {
+        "path": "src/FeedbackCampaign.Web/wwwroot/app.js",
+        "line": 25,
+        "basis": "code"
+      }
+    ],
+    "entra-identity": [
+      {
+        "path": "01-requirements.md",
+        "line": 32,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 100,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 59,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 62,
+        "basis": "design"
+      },
+      {
+        "path": "03-architect-diagram.py",
+        "line": 18,
+        "basis": "code"
+      }
+    ],
+    "case-management": [
+      {
+        "path": "01-requirements.md",
+        "line": 61,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 86,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 88,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 89,
+        "basis": "design"
+      },
+      {
+        "path": "04-runtime-diagram.py",
+        "line": 22,
+        "basis": "code"
+      },
+      {
+        "path": "src/FeedbackCampaign.Web/Models/Domain.cs",
+        "line": 67,
+        "basis": "code"
+      },
+      {
+        "path": "src/FeedbackCampaign.Web/Models/Domain.cs",
+        "line": 69,
+        "basis": "code"
+      },
+      {
+        "path": "src/FeedbackCampaign.Web/Models/Domain.cs",
+        "line": 75,
+        "basis": "code"
+      }
+    ],
+    "single-agent-tool-loop": [
+      {
+        "path": "01-requirements.md",
+        "line": 74,
+        "basis": "design"
+      }
+    ],
+    "supervisor-hierarchical-delegation": [
+      {
+        "path": "01-requirements.md",
+        "line": 76,
+        "basis": "design"
+      }
+    ],
+    "orchestrator-workers": [
+      {
+        "path": "01-requirements.md",
+        "line": 76,
+        "basis": "design"
+      }
+    ],
+    "grounded-retrieval": [
+      {
+        "path": "01-requirements.md",
+        "line": 80,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 76,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 93,
+        "basis": "design"
+      },
+      {
+        "path": "04-implementation-plan.md",
+        "line": 9,
+        "basis": "design"
+      },
+      {
+        "path": "04-runtime-diagram.py",
+        "line": 16,
+        "basis": "code"
+      },
+      {
+        "path": "src/FeedbackCampaign.Web/Models/Domain.cs",
+        "line": 38,
+        "basis": "code"
+      },
+      {
+        "path": "src/FeedbackCampaign.Web/Program.cs",
+        "line": 158,
+        "basis": "code"
+      },
+      {
+        "path": "src/FeedbackCampaign.Web/wwwroot/app.js",
+        "line": 54,
+        "basis": "code"
+      }
+    ],
+    "replay-recovery": [
+      {
+        "path": "01-requirements.md",
+        "line": 91,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 22,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 44,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 91,
+        "basis": "design"
+      }
+    ],
+    "local-identity": [
+      {
+        "path": "01-requirements.md",
+        "line": 97,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 90,
+        "basis": "design"
+      },
+      {
+        "path": "03-architect-diagram.py",
+        "line": 29,
+        "basis": "code"
+      },
+      {
+        "path": "src/FeedbackCampaign.Web/Services/LabAccountProvisioner.cs",
+        "line": 67,
+        "basis": "code"
+      },
+      {
+        "path": "src/FeedbackCampaign.Web/Services/LabAuthentication.cs",
+        "line": 18,
+        "basis": "code"
+      },
+      {
+        "path": "src/FeedbackCampaign.Web/Services/LabAuthentication.cs",
+        "line": 20,
+        "basis": "code"
+      }
+    ],
+    "telemetry": [
+      {
+        "path": "01-requirements.md",
+        "line": 110,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 24,
+        "basis": "design"
+      },
+      {
+        "path": "03-architect-diagram.py",
+        "line": 27,
+        "basis": "code"
+      },
+      {
+        "path": "src/FeedbackCampaign.Web/Services/CampaignWorkflow.cs",
+        "line": 33,
+        "basis": "code"
+      }
+    ],
+    "handoff-transfer-of-control": [
+      {
+        "path": "01-requirements.md",
+        "line": 111,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 5,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 103,
+        "basis": "design"
+      }
+    ],
+    "reconciliation": [
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 39,
+        "basis": "design"
+      }
+    ],
+    "public-ingress": [
+      {
+        "path": "infra/main.bicep",
+        "line": 35,
+        "basis": "code"
+      },
+      {
+        "path": "infra/main.bicep",
+        "line": 69,
+        "basis": "code"
+      },
+      {
+        "path": "infra/main.bicep",
+        "line": 88,
+        "basis": "code"
+      },
+      {
+        "path": "infra/main.bicep",
+        "line": 148,
+        "basis": "code"
+      }
+    ],
+    "concurrent-fan-out-fan-in": [
+      {
+        "path": "src/FeedbackCampaign.Web/Pages/Login.cshtml.cs",
+        "line": 34,
+        "basis": "code"
+      },
+      {
+        "path": "src/FeedbackCampaign.Web/Services/LabAccountProvisioner.cs",
+        "line": 77,
+        "basis": "code"
+      }
+    ]
+  },
+  "inputs": {
+    "01-requirements.md": "09677497b47e112f635d205add0845581d6a8b5ec2374ac482bccc4299ae8375",
+    "02-architecture-assessment.md": "2d967314a140c04888901f22c672bafb3b0984c2e0bd78bf6b3db12e04e967fe",
+    "03-architect-diagram.py": "4ebc471e8d9fe4277066df7a9eb1f222551e7d68fb840d713a79163e6b3f0385",
+    "04-implementation-plan.md": "306ea11f0325b58db519e3c0d2696e6bf6b45f8716613ef29218ba8f485be821",
+    "04-runtime-diagram.py": "8a061ebb13014fd202fe5fbb110ce0144493870c4e960c2de8e55c5ff4062891",
+    "azure.yaml": "b8726e219110f6b70d0b624da8e9fe7a0d8c8224daadbd5a0fcde687abe5535d",
+    "infra/main.bicep": "f767b20021c2df0f9e73ed27e7992235f266d536aadd3f1ecdaca97dd08f9aa8",
+    "infra/review.bicep": "47adbdeea2098fbfd7672f8437491461948b9d6a88e47142d1b16f38a7370dea",
+    "src/FeedbackCampaign.Web/Models/Domain.cs": "fa13db784b95c4b0f251e9e1356dc959e6541fa1ba9208957c4fd5be58698bb5",
+    "src/FeedbackCampaign.Web/Pages/Index.cshtml.cs": "7baae8cd8f4bd376ad7c032e8dacdb3ab6787804b9b26a0a15c4fe81232977d9",
+    "src/FeedbackCampaign.Web/Pages/Login.cshtml.cs": "ce9b87f7c62b54aff0802f581e1888d19f7e7128d4da2e04671cfe2707c07034",
+    "src/FeedbackCampaign.Web/Policy/campaign-policy.md": "e706c4b2f89b20247ea6b9f824c0ebf82c687f7d5e7ef2bf274c414cfe198a57",
+    "src/FeedbackCampaign.Web/Program.cs": "1ce75e52a61eb6bc3ce4b44c116f413863757518667bef77fddf08ad627a1dcc",
+    "src/FeedbackCampaign.Web/Services/CampaignWorkflow.cs": "4e68da3956a9da606655f2832d357d0e6670c55544646dec29937234365befbd",
+    "src/FeedbackCampaign.Web/Services/FoundryAgent.cs": "37bddea4675587f12c8ac0e02997b46363bd3b77aeaac54631334a281c2a9cf0",
+    "src/FeedbackCampaign.Web/Services/LabAccountProvisioner.cs": "6efa386ad6556dce4a21976e1e43c941cc8f13ac48e091468c5ed6d380fd889d",
+    "src/FeedbackCampaign.Web/Services/LabAuthentication.cs": "d95e6fda88e16eb56f3a561d7f92aa9cb6b1916fc7115fbb8a672f6389623b81",
+    "src/FeedbackCampaign.Web/Services/QueueWorker.cs": "f8ce7e6e78b439ed225c9900467600015ca7bd3b75c23956b5602cb8578b77ba",
+    "src/FeedbackCampaign.Web/Services/StateStore.cs": "8982061605018b23e627b2025792c0388d89408843eca17606e8b345435fafc4",
+    "src/FeedbackCampaign.Web/wwwroot/app.js": "e5070d93243fa94274c7c143fb2d25e6df5aa2653e317d57e98980c9f213742f"
+  },
+  "architectureSummary": "Case / ticket management; Parallel evidence checks; Entra identity; Event-driven workflow; Grounded document retrieval; Case handoff; Human decision gate; Local application accounts; Orchestrator / workers; Public ingress; Reconciliation / daily close; Replay / recovery handling; Routing / triage; Single-agent tool loop; Hierarchical supervisor; Telemetry / sensor processing",
+  "patternEvidence": {
+    "designMentioned": [
+      "case-management",
+      "entra-identity",
+      "event-driven-reactive-agents",
+      "grounded-retrieval",
+      "handoff-transfer-of-control",
+      "human-in-the-loop",
+      "local-identity",
+      "orchestrator-workers",
+      "reconciliation",
+      "replay-recovery",
+      "routing-triage",
+      "single-agent-tool-loop",
+      "supervisor-hierarchical-delegation",
+      "telemetry"
+    ],
+    "codeMentioned": [
+      "case-management",
+      "concurrent-fan-out-fan-in",
+      "entra-identity",
+      "event-driven-reactive-agents",
+      "grounded-retrieval",
+      "human-in-the-loop",
+      "local-identity",
+      "public-ingress",
+      "routing-triage",
+      "telemetry"
+    ],
+    "implemented": "unknown-until-reviewed"
+  },
+  "omittedLargeTextFiles": 0,
+  "dimensions": {
+    "businessCapabilities": [
+      "case-management",
+      "concurrent-fan-out-fan-in",
+      "event-driven-reactive-agents",
+      "grounded-retrieval",
+      "handoff-transfer-of-control",
+      "human-in-the-loop",
+      "orchestrator-workers",
+      "reconciliation",
+      "replay-recovery",
+      "routing-triage",
+      "single-agent-tool-loop",
+      "supervisor-hierarchical-delegation",
+      "telemetry"
+    ],
+    "dataPatterns": [
+      "grounded-retrieval",
+      "replay-recovery",
+      "telemetry"
+    ],
+    "integrationModes": [
+      "event-driven-reactive-agents"
+    ],
+    "humanDecisionPoints": [
+      "handoff-transfer-of-control",
+      "human-in-the-loop"
+    ],
+    "constraints": [
+      "entra-identity",
+      "local-identity",
+      "public-ingress"
+    ]
+  },
+  "limitations": [
+    "Text-derived retrieval features require review; code references are not runtime validation.",
+    "An absent feature means unknown, not unsupported. No deployment or consent evidence is included.",
+    "0 text files over 256000 bytes were omitted; environment settings and runtime evidence are excluded."
+  ]
+}

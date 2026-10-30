@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    Checks ABC Builder prerequisites and optionally installs missing local tooling on Windows.
+    Checks FBC Builder prerequisites and optionally installs missing local tooling on Windows.
 .DESCRIPTION
     Checks by default. -Install opts in to WinGet packages, a repository .venv,
     requirements.txt and the Azure CLI Bicep component. Never signs in, deploys,
@@ -100,11 +100,11 @@ function Assert-SetupIdle {
     .DESCRIPTION
         Reads both current and legacy state without killing processes or clearing leases.
     .EXAMPLE
-        Assert-SetupIdle -RepositoryRoot 'C:\ABCBuilder'
+        Assert-SetupIdle -RepositoryRoot 'C:\FBCBuilder'
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$RepositoryRoot)
-    foreach ($name in @('.abcbuilder-portal', '.hackbuilder-portal')) {
+    foreach ($name in @('.fbcbuilder-portal', '.hackbuilder-portal')) {
         $state = Join-Path $RepositoryRoot $name
         $connection = Join-Path $state 'server.json'
         if (Test-Path -LiteralPath $connection) {
@@ -132,7 +132,7 @@ function Get-SetupPython {
     .DESCRIPTION
         Does not create or replace an environment.
     .EXAMPLE
-        Get-SetupPython -RepositoryRoot 'C:\ABCBuilder' -Bootstrap 'python'
+        Get-SetupPython -RepositoryRoot 'C:\FBCBuilder' -Bootstrap 'python'
     #>
     [CmdletBinding()]
     param([string]$RepositoryRoot, [string]$Bootstrap)

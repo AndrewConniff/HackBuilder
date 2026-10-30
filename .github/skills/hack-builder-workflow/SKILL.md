@@ -1,13 +1,13 @@
 ---
 name: hack-builder-workflow
 description: >
-  Use when asked to build a hack, create a Foundry scenario, resume ABC Builder,
+  Use when asked to build a hack, create a Foundry scenario, resume FBC Builder,
   approve a scenario, author hack packages, or deploy a hack event. Defines the
   scenario-first workflow, explicit approval boundary, minimal learner starter,
   and separate optional team rollout.
 ---
 
-# ABC Builder workflow contract
+# FBC Builder workflow contract
 
 The user first needs proof that the story and technology work. A hack is derived
 from an approved deployed reference solution, not built in parallel with it.
@@ -103,7 +103,7 @@ python scripts\portal_status.py <projectSlug> --stage bicep --status running --s
 Stages are requirements, architecture, diagrams, bicep, application, local-validation,
 deployment, live-validation, review, hack-content, hack-starter, hack-coach and hack-validation.
 Statuses are running, completed, waiting_for_user, blocked and failed.
-The helper writes `.abcbuilder-portal\scenarios\<projectSlug>\status.json` atomically
+The helper writes `.fbcbuilder-portal\scenarios\<projectSlug>\status.json` atomically
 (or the existing legacy state directory). It has no leases, revisions, authorization or execution gates.
 Write truthful summaries without secrets. A completed step is not completion of the entire scenario.
 The portal shows the reported step and timestamp, not an inferred live process state.
@@ -525,9 +525,39 @@ then verify the saved manifest. Do not hand-edit catalog state or make discovery
 The portable repository index is `scenarios/catalog.json`; rebuild it through the same helper.
 Remote-only index entries remain unavailable until their reference folders and manifests are local.
 
-For an adaptation, read the source architecture as read-only guidance. Regenerate
-the business application, synthetic data, personas, grounding and tests for the
-target industry and units; a rename of source branding is not an adaptation.
+### Automatic cross-industry discovery
+
+Manifest v1 remains unchanged. Evidence-backed retrieval profiles live separately under
+`scenarios/reuse-profiles/<slug>.json`; `scenarios/reuse-profiles.json` is their rebuildable portable index.
+They are deliberately outside reference workspaces: metadata enrichment must not change approved-reference
+fingerprints or mutate source applications. Browsing never enriches, curates or writes either catalog.
+
+Use `python scripts\scenario_match.py enrich <slug>` explicitly at local preparation/technical-change checkpoints,
+or omit the slug for all available references. The bounded extractor excludes environment/configuration,
+deployment/runtime evidence and suspected credentials. Oversized text omissions are reported.
+Failed references are reported and not silently marked enriched. Extracted features remain `needs-review`,
+separating design/code mentions from unknown implemented patterns. Evidence carries relative paths, lines and hashes.
+Use `scenario_match.py review <slug> --input <review-json>` for explicit curation, and `index` to rebuild the index.
+A review supplies `profileDigest` (canonical `scenario_catalog.digest` of the current profile), `keptFeatures`,
+`implementedPatterns` and a portable `architectureSummary`; implemented patterns need inspected code references.
+No profile is a runtime-success or authorization receipt.
+
+The portal compares meaningful prompt drafts locally after a pause/blur, without dispatching AI or execution.
+Show useful workflow/architecture matches, differences, availability, freshness and review status; never force
+three results or claim a reusable percentage. Industry and common Foundry services cannot dominate matching.
+Source selection is always explicit. Suggested-source selection preserves all target intake fields, unlike the
+unchanged manual Start from existing prefill. Existing Refine with AI performs deeper fit analysis in the same context.
+After refinement, an explicit source decision stays separate from immutable intake and requires assessment plus
+a freshly confirmed revised brief. No source state, approval, runtime result or deployment authority carries over.
+
+For **start from existing scenario**, load [az-scenario-adapt](../az-scenario-adapt/SKILL.md)
+directly in the existing scenario agent. The portal preloads the source brief into editable intake and uses
+normal scoping/brief confirmation. After confirmation, prepare a separate target using the fingerprint-bound
+allowlisted source artifacts, then reconcile the copied files against the revised brief.
+Preserve fitting architecture and code; adapt the business application, synthetic data, personas, grounding
+and tests for the target industry and units. A rename of source branding is not an adaptation.
+The source remains read-only. Validate explicit keep/change/remove decisions against baseline hashes;
+do not rebuild every artifact or start a separate orchestration flow.
 Refresh current technical evidence and obtain a new design confirmation, validation
 and suitability approval. Never inherit deployment state, secrets, authorization
 scopes, approvals, packages or runtime success. Source region/quota/runtime evidence

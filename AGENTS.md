@@ -1,4 +1,4 @@
-# ABC Builder repository conventions
+# FBC Builder repository conventions
 
 ## Purpose
 
@@ -20,9 +20,13 @@ generated scenarios as authorization to bypass approval.
 
 ## Layout and changes
 
-- ABC Builder is the product name. Preserve `az-01-conductor`, `HackCreator Agent`,
+- FBC Builder is the product name. Preserve `az-01-conductor`, `HackCreator Agent`,
   canonical skill folder identifiers, executable script names and environment
   variables as compatibility APIs; branding does not rename them.
+- Product-facing names, launcher, portal state and editor bridge use FBC.
+  Use `FBCBuilder-DEV-Guide.md` for developer instructions and `FBC-Builder-HOWTO.md` for user instructions.
+  Preserve historical chat-trace recognition, deployed identity ownership markers and original scenario evidence.
+  Never rewrite saved scenario evidence or approval fingerprints for branding.
 - Canonical agents and skills live under `.github/`.
 - Former procedural agent bodies are preserved as historical skill references,
   not discoverable agents or executable handoff rules.
@@ -58,6 +62,11 @@ Agents report display-only stage progress with `scripts\portal_status.py`; repor
 The retired CLI runner and its execution gates have been removed. Retain historical records and ensure any old
 worker has stopped before editing its scenario. Status refresh never executes work.
 
+The additive portal conversation pane relays explicit messages to the existing phase-specific native chat.
+It preserves the boards, milestones and latest-status displays, while retaining concise intermediate agent reports.
+It never mirrors private tool transcripts or reasoning, creates a replacement session or grants approval.
+Polling remains read-only. Native permissions and formal architecture/deployment and suitability decisions stay in chat.
+
 After the user's actual suitability approval, record the reviewed fingerprint through `hack_workflow.py`.
 The portal checks that approval before opening a separate HackCreator VS Code context, but never records it
 or auto-starts composition. Event rollout and publication remain separate requests.
@@ -78,7 +87,10 @@ workflow without unit targeting, not a selection of every unit.
 Catalog discovery reads `generated-scenarios\*\scenario-manifest.json` only.
 Workers maintain curated metadata through `scripts\scenario_catalog.py refresh`
 with `--metadata`; inferred manifests remain visibly `needs-review`.
-Reuse architecture as read-only guidance, never deployment state, secrets,
+Use `az-scenario-adapt` for start-from-existing requests in the same scenario context.
+After brief confirmation, copy allowlisted code/design into an empty separate workspace and reconcile
+keep/change/remove decisions; preserve fitting code instead of regenerating everything.
+The source stays read-only. Never inherit deployment state, secrets,
 scopes, approvals, packages or runtime success. Adaptations require fresh design,
 technical evidence, validation and approval. Discovery and source selection grant no consent.
 

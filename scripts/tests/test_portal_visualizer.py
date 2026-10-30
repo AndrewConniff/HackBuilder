@@ -428,7 +428,7 @@ class VisualizerTests(unittest.TestCase):
     def test_handoff_preserves_both_consent_histories_without_mutating_or_inventing_approval(self) -> None:
         self.save()
         sources = []
-        for directory, kind in ((".hackbuilder-portal", "deployment"), (".abcbuilder-portal", "deployment-preparation")):
+        for directory, kind in ((".hackbuilder-portal", "deployment"), (".fbcbuilder-portal", "deployment-preparation")):
             path = self.root / directory / "projects" / "test-scenario.json"
             record = {
                 "projectSlug": "test-scenario", "request": {"deploymentAuthorized": False},
@@ -637,7 +637,7 @@ class VisualizerTests(unittest.TestCase):
         self.assertIn("portal_status.py", text)
         receipt = json.loads((state / "scenario-chat-started.json").read_text())
         self.assertRegex(receipt["traceId"], r"^[a-f0-9]{32}$")
-        self.assertIn(f"ABC Builder chat trace: {receipt['traceId']}.", command[-1])
+        self.assertIn(f"FBC Builder chat trace: {receipt['traceId']}.", command[-1])
         self.assertIn("launchedAtUtc", receipt)
 
     def test_handoff_failure_preserves_brief_and_does_not_claim_started(self) -> None:
@@ -714,7 +714,7 @@ class VisualizerTests(unittest.TestCase):
             result = self.studio.handoff("test-scenario", "deployment-review", review["fingerprint"])
         self.assertEqual("reopened", result["status"])
         self.assertEqual(1, launch.call_count)
-        self.assertTrue(launch.call_args.args[0].startswith("vscode://abcbuilder.scenario-chat/open?"))
+        self.assertTrue(launch.call_args.args[0].startswith("vscode://fbcbuilder.scenario-chat/open?"))
         self.assertIn("phase=scenario", launch.call_args.args[0])
         self.assertFalse(list((state / "chat-open").glob("*.json")))
         self.assertFalse((state / "handoff.json").exists())
@@ -752,7 +752,7 @@ class VisualizerTests(unittest.TestCase):
             patch.object(portal.subprocess, "run", return_value=Mock(returncode=1, stderr="URI rejected")),
             self.assertRaisesRegex(ValueError, "URI rejected"),
         ):
-            self.studio.open_chat_uri("vscode://abcbuilder.scenario-chat/open")
+            self.studio.open_chat_uri("vscode://fbcbuilder.scenario-chat/open")
 
     def test_later_completed_diagrams_do_not_hide_runtime_blocker_and_review_action(self) -> None:
         self.save()

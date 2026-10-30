@@ -1,4 +1,4 @@
-"""Check local ABC Builder prerequisites without installing tools or accessing Azure accounts."""
+"""Check local FBC Builder prerequisites without installing tools or accessing Azure accounts."""
 
 from __future__ import annotations
 
@@ -37,7 +37,7 @@ import matplotlib
 from PIL import Image
 from diagrams import Diagram
 from diagrams.generic.blank import Blank
-with tempfile.TemporaryDirectory(prefix="abc-diagram-check-") as directory:
+with tempfile.TemporaryDirectory(prefix="fbc-diagram-check-") as directory:
     filename = Path(directory) / "prerequisite-check"
     with Diagram("Prerequisite check", filename=str(filename), show=False, outformat="png"):
         Blank("Ready")
@@ -84,7 +84,7 @@ def execution_environment(root: Path) -> dict[str, str]:
         ):
             if not shutil.which(command, path=environment.get("PATH", "")) and candidate.is_file():
                 environment["PATH"] = environment.get("PATH", "") + os.pathsep + str(candidate.parent)
-                logging.getLogger("abcbuilder.portal").info(
+                logging.getLogger("fbcbuilder.portal").info(
                     "Using existing %s installation on the portal/worker PATH: %s", command, candidate.parent,
                 )
     return environment

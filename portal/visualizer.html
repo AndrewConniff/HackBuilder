@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ABC Builder</title>
+  <title>FBC Builder</title>
   <link rel="stylesheet" href="/visualizer.css">
   <script src="/markdown.js" defer></script>
   <script src="/visualizer.js" defer></script>
 </head>
 <body>
   <header>
-    <div><h1>ABC Builder</h1><p>Describe. Build. Explore your hack.</p></div>
+    <div><h1>FBC Builder</h1><p>Describe. Build. Explore your hack.</p></div>
     <label class="appearance">Appearance
       <select id="theme" aria-describedby="theme-notice">
         <option value="system">System</option>
@@ -68,6 +68,37 @@
       <h2 id="intake-title" tabindex="-1">Create a scenario</h2>
       <p>Describe your idea, then refine it with AI or start building.
         Scoping questions and approvals happen in the scenario's agent chat.</p>
+      <div class="scenario-entry-choices" role="group" aria-label="How would you like to start?">
+        <button id="entry-new" class="scenario-entry" type="button" aria-pressed="true" aria-controls="reuse-panel">
+          <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+            <path d="M7 3h12l6 6v20H7V3Zm12 0v7h6M11 19h10m-5-5v10"></path>
+          </svg>
+          <span><strong>New scenario</strong><small>Start fresh with your own idea.</small></span>
+        </button>
+        <button id="entry-existing" class="scenario-entry" type="button" aria-pressed="false"
+          aria-controls="reuse-panel" aria-expanded="false">
+          <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+            <path d="M3 9V5h10l4 4h12v18H3V9Zm0 4h26M11 20h10m-4-4 4 4-4 4"></path>
+          </svg>
+          <span><strong>Start from existing</strong><small>Adapt a saved scenario. Keep the original unchanged.</small></span>
+        </button>
+      </div>
+      <section id="reuse-panel" class="reuse-panel" hidden aria-labelledby="reuse-panel-title">
+        <h3 id="reuse-panel-title">Choose your starting scenario</h3>
+        <p>Modify a source brief for a new industry or business scope. The existing scenario agent will
+          reconcile reusable app, infrastructure and design files instead of rebuilding everything.
+          The source stays unchanged; approvals and deployment results do not carry over.</p>
+        <label>Source scenario<select id="reuse-source"><option value="">Choose a source</option></select></label>
+        <div class="actions">
+          <button id="reuse-load" type="button" class="secondary">Modify brief from source</button>
+          <button id="reuse-clear" type="button" class="secondary" hidden>Use as new idea instead</button>
+        </div>
+        <p id="reuse-status" role="status"></p>
+        <details id="reuse-preview" hidden>
+          <summary>Source brief</summary>
+          <article id="reuse-brief" class="markdown"></article>
+        </details>
+      </section>
       <form id="intake">
         <label>Project name<input id="slug" required maxlength="40" pattern="[a-z0-9]+(-[a-z0-9]+)*"
           placeholder="finance-security-hack"></label>
@@ -83,6 +114,17 @@
         <p id="prompt-help" class="muted">An initial idea is enough. Refine with AI reviews this prompt for missing
           context, architectural trade-offs and edge cases, then asks a few tailored questions in the agent chat.
           It does not start a build or deploy anything.</p>
+        <section id="reuse-suggestions" class="reuse-suggestions" hidden aria-labelledby="reuse-suggestions-title">
+          <div class="section-heading">
+            <h3 id="reuse-suggestions-title">Your idea may have a head start</h3>
+            <button id="reuse-dismiss" type="button" class="secondary">Keep my original idea</button>
+          </div>
+          <p id="reuse-suggestions-status" role="status"></p>
+          <p class="muted">Local catalog comparison, not AI analysis. Cross-industry matches are welcome.
+            Review evidence and differences; Refine with AI provides a deeper assessment in your existing agent.
+            Nothing is selected, copied or launched automatically.</p>
+          <div id="reuse-suggestion-cards" class="reuse-match-list"></div>
+        </section>
         <fieldset aria-describedby="pattern-help">
           <legend>Agentic workflow pattern</legend>
           <div id="agentic-pattern" class="selection-grid"></div>
@@ -118,11 +160,24 @@
       <div class="section-heading"><h2 id="scenario-title"></h2><span id="scenario-status" class="tag"></span></div>
       <p id="summary" role="status"></p>
       <p id="updated" class="muted"></p>
-      <details id="scoping-notes" hidden>
-        <summary>AI scoping notes and refined brief</summary>
+      <section id="scoping-notes" class="brief-document" hidden aria-labelledby="brief-document-title">
+        <div class="brief-document-heading">
+          <p class="brief-document-label">From the agent's typewriter</p>
+          <h3 id="brief-document-title">Your scenario brief</h3>
+          <p id="brief-review-cue" class="brief-review-cue" role="status"></p>
+        </div>
         <p class="muted">Agent-written interpretation, answers, assumptions and open points.
           Review and respond below. These notes are not deployment or working-scenario suitability approval.</p>
         <article id="scoping-content" class="markdown"></article>
+        <section class="brief-reuse" aria-labelledby="brief-reuse-title">
+          <h3 id="brief-reuse-title">Choose a starting point (optional)</h3>
+          <p id="brief-reuse-status" role="status"></p>
+          <div class="actions">
+            <button id="brief-reuse-compare" type="button" class="secondary">Compare catalog starting points</button>
+            <button id="brief-reuse-clear" type="button" class="secondary" hidden>Build fresh instead</button>
+          </div>
+          <div id="brief-reuse-cards" class="reuse-match-list"></div>
+        </section>
         <section id="scoping-response" hidden aria-labelledby="scoping-response-title">
           <h3 id="scoping-response-title">Review this brief</h3>
           <div class="actions">
@@ -148,7 +203,7 @@
             Architecture/deployment review and working-scenario suitability approval remain separate;
             neither action grants new Azure or Entra permissions, deploys resources or starts hack composition.</p>
         </section>
-      </details>
+      </section>
       <section aria-labelledby="stage-history-title">
         <div class="section-heading"><h3 id="stage-history-title">Scenario milestones</h3>
           <span id="stage-count" class="tag"></span></div>
@@ -216,6 +271,25 @@
         <pre id="preview-text"></pre><img id="preview-image" alt="Scenario diagram" hidden>
       </section>
   </main>
+      <aside id="conversation" class="panel" hidden aria-labelledby="conversation-title">
+        <div class="section-heading">
+          <h2 id="conversation-title">Agent conversation</h2>
+          <button id="conversation-open" class="secondary" type="button">Open existing agent chat</button>
+        </div>
+        <p id="conversation-context" class="muted"></p>
+        <p class="muted">Concise agent-reported feedback and your messages, not a full transcript.
+          The editor must stay open. Tool permissions and formal architecture, deployment and suitability decisions
+          remain in agent chat; use the existing brief controls for brief confirmation. Do not send secrets.</p>
+        <ol id="conversation-messages" class="conversation-messages" aria-label="Conversation history"></ol>
+        <p id="conversation-status" role="status"></p>
+        <p id="conversation-error" role="alert" hidden></p>
+        <form id="conversation-form">
+          <label for="conversation-input">Message the existing agent</label>
+          <textarea id="conversation-input" rows="3" maxlength="8000"
+            placeholder="Answer a question, clarify the scenario or ask for an update."></textarea>
+          <button id="conversation-send" type="submit" disabled>Send message</button>
+        </form>
+      </aside>
   </div>
 </body>
 </html>

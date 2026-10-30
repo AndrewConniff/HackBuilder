@@ -21,7 +21,7 @@ SPEC.loader.exec_module(workflow)
 
 class ApprovalTests(unittest.TestCase):
     def setUp(self) -> None:
-        temporary = tempfile.TemporaryDirectory(prefix="abc-workflow-test-")
+        temporary = tempfile.TemporaryDirectory(prefix="fbc-workflow-test-")
         self.addCleanup(temporary.cleanup)
         self.root = Path(temporary.name)
         for name in workflow.REQUIRED_FILES:

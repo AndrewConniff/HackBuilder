@@ -5,7 +5,7 @@ implementation, runtime evidence and post-approval hack composition. It is guida
 Azure resources support the business workflow; provisioning resources alone is not the scenario's outcome.
 
 These are **Foundry solution runtime** patterns, not permission to add Copilot agents, delegate implementation,
-or bypass design confirmation, deployment consent or suitability approval. ABC Builder still has two agent contexts.
+or bypass design confirmation, deployment consent or suitability approval. FBC Builder still has two agent contexts.
 
 ## Source and technical status
 
@@ -182,7 +182,7 @@ PDF pp. 53-55. An attributable human decision gates a risky or ambiguous busines
 This is an overlay on another pattern, not a requirement to add another model agent.
 Persist the exact proposal/version and authorized decision;
 support rejection, edit, cancellation, expiry and safe resume.
-Do not reuse a decision for a changed proposal. Business approval never grants ABC Builder deployment consent.
+Do not reuse a decision for a changed proposal. Business approval never grants FBC Builder deployment consent.
 
 ### 18. Adaptive Hybrid / Composite Orchestration
 

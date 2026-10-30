@@ -156,10 +156,12 @@ class ScenarioCatalogTests(unittest.TestCase):
         (self.source / "src" / "app.cs").write_text("// modified\n", encoding="utf-8")
         self.assertNotEqual(before, hack_workflow.reference_fingerprint(self.source))
 
-    def test_fresh_state_uses_abc_but_upgrade_keeps_existing_history(self) -> None:
-        self.assertEqual(self.root / ".abcbuilder-portal", portal_status.state_directory(self.root))
+    def test_fresh_state_uses_current_directory_and_preserves_legacy_history(self) -> None:
+        self.assertEqual(self.root / ".fbcbuilder-portal", portal_status.state_directory(self.root))
         (self.root / ".hackbuilder-portal").mkdir()
         self.assertEqual(self.root / ".hackbuilder-portal", portal_status.state_directory(self.root))
+        (self.root / ".fbcbuilder-portal").mkdir()
+        self.assertEqual(self.root / ".fbcbuilder-portal", portal_status.state_directory(self.root))
 
 
 if __name__ == "__main__":

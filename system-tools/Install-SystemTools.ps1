@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    Downloads the complete pinned ABC Builder tool baseline and optionally installs from that cache.
+    Downloads the complete pinned FBC Builder tool baseline and optionally installs from that cache.
 .DESCRIPTION
     Downloads all native tools by default, including Node.js, GitHub CLI and Azure CLI Bicep.
     Requires explicit package agreement consent. Add -Install to download, verify the entire cache,
@@ -85,7 +85,7 @@ try {
             "Preparing all $($tools.Count) pinned native tools, including Node.js and GitHub CLI. No installers run yet."
         for ($index = 0; $index -lt $tools.Count; $index++) {
             $tool = $tools[$index]
-            Write-Progress -Activity 'Preparing ABC Builder tool baseline' -Status "$($tool.name) $($tool.version)" `
+            Write-Progress -Activity 'Preparing FBC Builder tool baseline' -Status "$($tool.name) $($tool.version)" `
                 -PercentComplete ([int](100 * $index / $tools.Count))
             if ($UseCachedInstallers) {
                 $null = Get-SetupCachedInstaller -Tool $tool -Directory $CacheDirectory
@@ -97,7 +97,7 @@ try {
                 }
             }
         }
-        Write-Progress -Activity 'Preparing ABC Builder tool baseline' -Completed
+        Write-Progress -Activity 'Preparing FBC Builder tool baseline' -Completed
         if (-not $installRequested) {
             Save-SetupOutcome -Path $ReportPath -Status 'downloaded' -Report ([PSCustomObject]@{
                 nativeInstallers = @($tools | Select-Object id, version, sha256)
@@ -141,5 +141,5 @@ try {
     catch { Write-Error "Could not persist setup report: $($_.Exception.Message)" -ErrorAction Continue }
     exit 2
 } finally {
-    Write-Progress -Activity 'Preparing ABC Builder tool baseline' -Completed
+    Write-Progress -Activity 'Preparing FBC Builder tool baseline' -Completed
 }
