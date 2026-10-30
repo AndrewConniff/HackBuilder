@@ -1,0 +1,428 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "coffee-to-icecream",
+  "manifestDigest": "ea07be4dc5cf32555e6a9931482e494942c6f21dd53b98220d0e31dc32a878b4",
+  "summary": "Operations-led recipe consumption, spoilage, approved internal orders and scoped Orchestrator-Workers managerial P&L. Locally prepared; not deployed.",
+  "metadataStatus": "needs-review",
+  "extractedAtUtc": "2026-10-30T01:07:54.076153+00:00",
+  "extractorVersion": 2,
+  "features": {
+    "inventory": [
+      {
+        "path": "01-requirements.md",
+        "line": 14,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 33,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 38,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 48,
+        "basis": "design"
+      },
+      {
+        "path": "03-architect-diagram.py",
+        "line": 57,
+        "basis": "code"
+      },
+      {
+        "path": "infra/resources.bicep",
+        "line": 87,
+        "basis": "code"
+      },
+      {
+        "path": "src/CoffeeShop.Web/Models/Domain.cs",
+        "line": 5,
+        "basis": "code"
+      },
+      {
+        "path": "src/CoffeeShop.Web/Models/Domain.cs",
+        "line": 6,
+        "basis": "code"
+      }
+    ],
+    "reconciliation": [
+      {
+        "path": "01-requirements.md",
+        "line": 14,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 52,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 91,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 90,
+        "basis": "design"
+      },
+      {
+        "path": "03-architect-diagram.py",
+        "line": 54,
+        "basis": "code"
+      },
+      {
+        "path": "src/CoffeeShop.Web/Services/CloseService.cs",
+        "line": 14,
+        "basis": "code"
+      },
+      {
+        "path": "src/CoffeeShop.Web/wwwroot/js/workspace.js",
+        "line": 63,
+        "basis": "code"
+      },
+      {
+        "path": "src/CoffeeShop.Web/wwwroot/js/workspace.js",
+        "line": 120,
+        "basis": "code"
+      }
+    ],
+    "read-only": [
+      {
+        "path": "01-requirements.md",
+        "line": 15,
+        "basis": "design"
+      }
+    ],
+    "entra-identity": [
+      {
+        "path": "01-requirements.md",
+        "line": 20,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 34,
+        "basis": "design"
+      },
+      {
+        "path": "04-implementation-plan.md",
+        "line": 70,
+        "basis": "design"
+      }
+    ],
+    "human-in-the-loop": [
+      {
+        "path": "01-requirements.md",
+        "line": 20,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 51,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 61,
+        "basis": "design"
+      },
+      {
+        "path": "src/CoffeeShop.Web/Agents/close.md",
+        "line": 9,
+        "basis": "design"
+      },
+      {
+        "path": "src/CoffeeShop.Web/Services/OrderService.cs",
+        "line": 52,
+        "basis": "code"
+      },
+      {
+        "path": "src/CoffeeShop.Web/Services/Repository.cs",
+        "line": 22,
+        "basis": "code"
+      }
+    ],
+    "handoff-transfer-of-control": [
+      {
+        "path": "01-requirements.md",
+        "line": 35,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 122,
+        "basis": "design"
+      },
+      {
+        "path": "04-implementation-plan.md",
+        "line": 67,
+        "basis": "design"
+      }
+    ],
+    "telemetry": [
+      {
+        "path": "01-requirements.md",
+        "line": 37,
+        "basis": "design"
+      },
+      {
+        "path": "03-architect-diagram.py",
+        "line": 40,
+        "basis": "code"
+      }
+    ],
+    "grounded-retrieval": [
+      {
+        "path": "01-requirements.md",
+        "line": 49,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 27,
+        "basis": "design"
+      }
+    ],
+    "replay-recovery": [
+      {
+        "path": "01-requirements.md",
+        "line": 50,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 51,
+        "basis": "design"
+      },
+      {
+        "path": "03-architect-diagram.py",
+        "line": 65,
+        "basis": "code"
+      },
+      {
+        "path": "src/CoffeeShop.Web/Services/Repository.cs",
+        "line": 16,
+        "basis": "code"
+      },
+      {
+        "path": "src/CoffeeShop.Web/Services/Repository.cs",
+        "line": 59,
+        "basis": "code"
+      }
+    ],
+    "orchestrator-workers": [
+      {
+        "path": "01-requirements.md",
+        "line": 53,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 61,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 62,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 26,
+        "basis": "design"
+      },
+      {
+        "path": "03-architect-diagram.py",
+        "line": 45,
+        "basis": "code"
+      },
+      {
+        "path": "03-architect-diagram.py",
+        "line": 55,
+        "basis": "code"
+      }
+    ],
+    "single-agent-tool-loop": [
+      {
+        "path": "01-requirements.md",
+        "line": 65,
+        "basis": "design"
+      }
+    ],
+    "concurrent-fan-out-fan-in": [
+      {
+        "path": "01-requirements.md",
+        "line": 71,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 90,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 91,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 21,
+        "basis": "design"
+      },
+      {
+        "path": "src/CoffeeShop.Web/Services/LocalAccounts.cs",
+        "line": 112,
+        "basis": "code"
+      },
+      {
+        "path": "src/CoffeeShop.Web/Services/OrderService.cs",
+        "line": 27,
+        "basis": "code"
+      },
+      {
+        "path": "src/CoffeeShop.Web/Services/OrderService.cs",
+        "line": 52,
+        "basis": "code"
+      }
+    ],
+    "case-management": [
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 104,
+        "basis": "design"
+      }
+    ],
+    "local-identity": [
+      {
+        "path": "03-architect-diagram.py",
+        "line": 27,
+        "basis": "code"
+      },
+      {
+        "path": "src/CoffeeShop.Web/Services/LocalAccounts.cs",
+        "line": 64,
+        "basis": "code"
+      }
+    ],
+    "public-ingress": [
+      {
+        "path": "infra/resources.bicep",
+        "line": 64,
+        "basis": "code"
+      },
+      {
+        "path": "infra/resources.bicep",
+        "line": 102,
+        "basis": "code"
+      },
+      {
+        "path": "infra/resources.bicep",
+        "line": 142,
+        "basis": "code"
+      }
+    ]
+  },
+  "inputs": {
+    "01-requirements.md": "a5c6eeecee19683485d721a8739b9ead962372b5073dcd48504376608e3ff81c",
+    "02-architecture-assessment.md": "7a8e2f2e9a7b3eb1897641d0f339f9251b725f5421245235cb409ccf270cf6b7",
+    "03-architect-diagram.py": "727692eddbda73aaa3ce25dbd4ac204311993390102e89d8fc4f4c4c1fb70e3d",
+    "04-implementation-plan.md": "898f7c3edc4009de7587554a87c0ba2ab9d22c85e3937dd1448e92dd87415c5a",
+    "azure.yaml": "c2f866937cf9cc477b75439cc693bf4fa2572d22b8308b211839bb2c22626a43",
+    "infra/main.bicep": "079fba69f7224ac90c4b05e182c194bbbdc06f2ba6409ab777f6633f28763299",
+    "infra/resources.bicep": "020b1a0484dedaf40d61efa4990cc4d6c83f0797edb2de5046fdaa70f223423f",
+    "src/CoffeeShop.Web/Agents/close.md": "4538efe4ab642ee9c7d53cefaefe336b92e7ea2f43167d9853af8194d1898bac",
+    "src/CoffeeShop.Web/Agents/margin.md": "0035d943d0ef4741575a9276a3bd5ac56478516721496f77cd579caf4e2b49ca",
+    "src/CoffeeShop.Web/Agents/stock.md": "59b8696a60dda46f401def663fe4fe53f7986f955f3274a8f513f707e7119ee5",
+    "src/CoffeeShop.Web/Models/Domain.cs": "211071cbda8e5b930365054ae3799b4d8e38e104372659653c27d5e68d967938",
+    "src/CoffeeShop.Web/Pages/Error.cshtml.cs": "49a768a9dc7d82a8026722cce794f6e271e13a26be654a37f69fc8cf486c3c5a",
+    "src/CoffeeShop.Web/Pages/Index.cshtml.cs": "465c5a71a9f2c17f09b478871e682d951d488e249be6979a259ad5a7d2862c90",
+    "src/CoffeeShop.Web/Pages/Privacy.cshtml.cs": "27149062018e094caad8d6bd5f7d106b964f2c65311df469bf43ec7d26173173",
+    "src/CoffeeShop.Web/Program.cs": "07be3137e68e90728e2d2d07f5949ab2a91c7cb337bfe0b3d353f3676420dd97",
+    "src/CoffeeShop.Web/Services/Bootstrap.cs": "f9d18a321198fcbcb3aca11d5bf01d31220a67d099a1790deda21ed14ed2a497",
+    "src/CoffeeShop.Web/Services/CloseService.cs": "bf36ed40d75f26002db984a9e84baea94312651fe1932706a0a537aa76fc5398",
+    "src/CoffeeShop.Web/Services/DailyOperations.cs": "cdc5b25d7a36afa6f14f1a97dd8313e3f84b57ef4e10ffd369678ba3bed93cd7",
+    "src/CoffeeShop.Web/Services/FoundryGateway.cs": "fdcfad60cc7e49f059e5fa8d96f28ba869ebee9f1c502e880d8ef84df2b82db6",
+    "src/CoffeeShop.Web/Services/LocalAccounts.cs": "f985650ea5971b7a9439861c25a8e95b25562f4d94e160f1e46195a6a08a2c82",
+    "src/CoffeeShop.Web/Services/OrderService.cs": "b89088b2ec5b81828a414576eed069c66753564c14e2c9d0aca8cdbdf068b84c",
+    "src/CoffeeShop.Web/Services/Repository.cs": "1812c9c07d8d897276cde2444b308ce93007948c43e096bb217dbca5b19c996e",
+    "src/CoffeeShop.Web/Services/StoreAccess.cs": "1b22120b0424e9f64ccb567763adae2319d279db2b6ed347bacf10b7295626b9",
+    "src/CoffeeShop.Web/wwwroot/js/site.js": "8514327ed5e2bb594b5f63fd2f2f716b88072602de475b86379a9e814a1bb46a",
+    "src/CoffeeShop.Web/wwwroot/js/workspace.js": "0c45274accf5053d17de2b6ed256ec304b2fa5db771cbcdb5b9029a07d807873",
+    "src/CoffeeShop.Web/wwwroot/lib/jquery-validation/LICENSE.md": "81e1c4930fd618f75a1d0311ab91ee358f6c9e588dcd4ff2d8e5bcc9c9e1197c"
+  },
+  "architectureSummary": "Case / ticket management; Parallel evidence checks; Entra identity; Grounded document retrieval; Case handoff; Human decision gate; Stock / inventory workflow; Local application accounts; Orchestrator / workers; Public ingress; Read-only assistance; Reconciliation / daily close; Replay / recovery handling; Single-agent tool loop; Telemetry / sensor processing",
+  "patternEvidence": {
+    "designMentioned": [
+      "case-management",
+      "concurrent-fan-out-fan-in",
+      "entra-identity",
+      "grounded-retrieval",
+      "handoff-transfer-of-control",
+      "human-in-the-loop",
+      "inventory",
+      "orchestrator-workers",
+      "read-only",
+      "reconciliation",
+      "replay-recovery",
+      "single-agent-tool-loop",
+      "telemetry"
+    ],
+    "codeMentioned": [
+      "concurrent-fan-out-fan-in",
+      "human-in-the-loop",
+      "inventory",
+      "local-identity",
+      "orchestrator-workers",
+      "public-ingress",
+      "reconciliation",
+      "replay-recovery",
+      "telemetry"
+    ],
+    "implemented": "unknown-until-reviewed"
+  },
+  "omittedLargeTextFiles": 0,
+  "dimensions": {
+    "businessCapabilities": [
+      "case-management",
+      "concurrent-fan-out-fan-in",
+      "grounded-retrieval",
+      "handoff-transfer-of-control",
+      "human-in-the-loop",
+      "inventory",
+      "orchestrator-workers",
+      "read-only",
+      "reconciliation",
+      "replay-recovery",
+      "single-agent-tool-loop",
+      "telemetry"
+    ],
+    "dataPatterns": [
+      "grounded-retrieval",
+      "replay-recovery",
+      "telemetry"
+    ],
+    "integrationModes": [
+      "read-only"
+    ],
+    "humanDecisionPoints": [
+      "handoff-transfer-of-control",
+      "human-in-the-loop"
+    ],
+    "constraints": [
+      "entra-identity",
+      "local-identity",
+      "public-ingress"
+    ]
+  },
+  "limitations": [
+    "Text-derived retrieval features require review; code references are not runtime validation.",
+    "An absent feature means unknown, not unsupported. No deployment or consent evidence is included.",
+    "0 text files over 256000 bytes were omitted; environment settings and runtime evidence are excluded."
+  ]
+}

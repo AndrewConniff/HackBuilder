@@ -35,55 +35,39 @@
     },
     {
       "schemaVersion": 1,
-      "id": "dummy-sample",
-      "title": "Dummy sample",
-      "summary": "Locally discovered reference. Review its architecture and metadata before adapting. Source industry cell requires explicit classification review: Education; proposed focus: Higher Education",
-      "industry": null,
+      "id": "coffee-to-icecream",
+      "title": "Northwind Traders ice-cream stock and daily close",
+      "summary": "Operations-led recipe consumption, spoilage, approved orders and scoped Orchestrator-Workers managerial P&L. Local checks and authorized readiness/what-if passed; not deployed.",
+      "industry": "Hospitality & Travel",
       "businessUnits": [
-        "generic"
-      ],
-      "services": [],
-      "pillars": [
-        "cost-optimization",
-        "operational-excellence"
-      ],
-      "domains": [
-        "observability"
-      ],
-      "artifacts": [
-        "01-requirements.md",
-        "02-architecture-assessment.md"
-      ],
-      "source": null,
-      "metadataStatus": "needs-review",
-      "manifestDigest": "6453546489eb688bbdd9520213b952b725d0083657757e2eff962d2cc470233a"
-    },
-    {
-      "schemaVersion": 1,
-      "id": "energy-foundy",
-      "title": "Energy shift-note assistant",
-      "summary": "A fundamental single-agent Foundry reference for drafting source-backed synthetic energy shift notes with one read-only tool and correlated Azure Monitor telemetry. Design confirmation and implementation are pending.",
-      "industry": "Energy & Resources",
-      "businessUnits": [
-        "generic"
+        "operations"
       ],
       "services": [
         "foundry",
-        "monitor"
+        "app-service"
       ],
       "pillars": [
-        "operational-excellence"
+        "performance-efficiency"
       ],
       "domains": [
-        "observability"
+        "cost-controls"
       ],
       "artifacts": [
         "01-requirements.md",
-        "02-architecture-assessment.md"
+        "02-architecture-assessment.md",
+        "04-implementation-plan.md",
+        "03-architect-diagram.png",
+        "04-runtime-diagram.png",
+        "azure.yaml",
+        "infra",
+        "src"
       ],
-      "source": null,
+      "source": {
+        "scenarioId": "coffee-shop",
+        "manifestDigest": "3aefae14b6dbfd6cfcc0bea6d5ee4372d6fd87905b1fe0fc5ceb4ccd2359837f"
+      },
       "metadataStatus": "curated",
-      "manifestDigest": "9939c53b91c4d885af9b0bfe1cea2f4907315620ecaec2c6b609ec0f5ba1c70c"
+      "manifestDigest": "40039bb4e763d98170ead076b2365503a2abdaeeab7954f85d3863c806f37150"
     },
     {
       "schemaVersion": 1,
@@ -148,6 +132,37 @@
       "source": null,
       "metadataStatus": "curated",
       "manifestDigest": "7fcfeabac3ae5a37bec008885606f37343e6058c981b45f32a819ab1dee73df5"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "finance-customer-hack",
+      "title": "Adatum Corporation banking service with human-owned escalation",
+      "summary": "Financial Services reference: two saved Foundry agents route grounded policy and synthetic account questions into durable representative-owned cases. Local implementation only; Azure deployment and live acceptance pending authorization.",
+      "industry": "Financial Services",
+      "businessUnits": [
+        "generic"
+      ],
+      "services": [
+        "foundry",
+        "app-service",
+        "storage",
+        "monitor"
+      ],
+      "pillars": [],
+      "domains": [],
+      "artifacts": [
+        "01-requirements.md",
+        "02-architecture-assessment.md",
+        "04-implementation-plan.md",
+        "03-architect-diagram.png",
+        "04-runtime-diagram.png",
+        "azure.yaml",
+        "infra",
+        "src"
+      ],
+      "source": null,
+      "metadataStatus": "curated",
+      "manifestDigest": "7f10c5d27d3823d9f565ec26c36b519d22354aa77d1e9dde710bf46cc69295ed"
     },
     {
       "schemaVersion": 1,
@@ -224,42 +239,6 @@
     },
     {
       "schemaVersion": 1,
-      "id": "itsupport-agentic",
-      "title": "Adatum Corporation IT Helpdesk Escalation",
-      "summary": "Three-tier IT helpdesk with human-gated Foundry agents, authenticated Razor application, private reference infrastructure and durable immutable-audit coordination. App/IaC checks passed, but local validation is blocked by a native owner-only temporary-directory ACL permission failure. No Azure deployment, runtime acceptance or suitability approval.",
-      "industry": "Professional & Business Services",
-      "businessUnits": [
-        "it"
-      ],
-      "services": [
-        "foundry",
-        "app-service",
-        "cosmos-db",
-        "ai-search",
-        "storage",
-        "key-vault",
-        "managed-identity",
-        "virtual-network",
-        "monitor"
-      ],
-      "pillars": [],
-      "domains": [],
-      "artifacts": [
-        "01-requirements.md",
-        "02-architecture-assessment.md",
-        "04-implementation-plan.md",
-        "03-architect-diagram.png",
-        "04-runtime-diagram.png",
-        "azure.yaml",
-        "infra",
-        "src"
-      ],
-      "source": null,
-      "metadataStatus": "curated",
-      "manifestDigest": "f4b88bd8095cc257a075afc98230fce476ed8cca9f2281c1f9af37901b4b1580"
-    },
-    {
-      "schemaVersion": 1,
       "id": "live-demo-project",
       "title": "Adatum Corporation brokerage service desk",
       "summary": "Company-only brokerage answers with exact approved citations and accountable human takeover.",
@@ -328,34 +307,6 @@
       },
       "metadataStatus": "curated",
       "manifestDigest": "fe3ffa099ffb553e3b90e419f5d03e8dde2e803e273daf3e1230156e473baa1c"
-    },
-    {
-      "schemaVersion": 1,
-      "id": "pharma-bot",
-      "title": "Adatum Corporation multilingual medication sales and pickup",
-      "summary": "Sales-focused English, Spanish and French medication information and confirmation-gated synthetic ordering for in-store pickup, with Microsoft Foundry and explicit prescription-review boundaries.",
-      "industry": "Healthcare / Life Sciences",
-      "businessUnits": [
-        "sales"
-      ],
-      "services": [
-        "foundry"
-      ],
-      "pillars": [],
-      "domains": [],
-      "artifacts": [
-        "01-requirements.md",
-        "02-architecture-assessment.md",
-        "04-implementation-plan.md",
-        "03-architect-diagram.png",
-        "04-runtime-diagram.png",
-        "azure.yaml",
-        "infra",
-        "src"
-      ],
-      "source": null,
-      "metadataStatus": "curated",
-      "manifestDigest": "c9eae1a0a2a709284139f33e77027ac58f5ecd0a8b4026dfc24769ef5c56b1d4"
     },
     {
       "schemaVersion": 1,
@@ -428,6 +379,153 @@
       "source": null,
       "metadataStatus": "curated",
       "manifestDigest": "8791cfb5f60beec34086cf58678494690756a90deb244b70a8089f0c59687d94"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "tue28seven",
+      "title": "Bellows College - Teaching Material Review",
+      "summary": "Education/Generic reference preparation: two Foundry review roles support peer-teacher feedback, author revisions and version-bound lead-teacher approval. Accepted design and locally tested application; regional readiness incomplete, not deployed or suitability-approved.",
+      "industry": "Education",
+      "businessUnits": [
+        "generic"
+      ],
+      "services": [
+        "foundry",
+        "storage",
+        "app-service",
+        "managed-identity",
+        "virtual-network",
+        "monitor"
+      ],
+      "pillars": [],
+      "domains": [],
+      "artifacts": [
+        "01-requirements.md",
+        "02-architecture-assessment.md",
+        "04-implementation-plan.md",
+        "03-architect-diagram.png",
+        "04-runtime-diagram.png",
+        "src"
+      ],
+      "source": null,
+      "metadataStatus": "curated",
+      "manifestDigest": "cef5c77763a6fc806a60e3db1f6e5ce148c3160dc87b7bfa8f7775aae33c8fc3"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "dummy-sample",
+      "title": "Dummy sample",
+      "summary": "Locally discovered reference. Review its architecture and metadata before adapting. Source industry cell requires explicit classification review: Education; proposed focus: Higher Education",
+      "industry": null,
+      "businessUnits": [
+        "generic"
+      ],
+      "services": [],
+      "pillars": [
+        "cost-optimization",
+        "operational-excellence"
+      ],
+      "domains": [
+        "observability"
+      ],
+      "artifacts": [
+        "01-requirements.md",
+        "02-architecture-assessment.md"
+      ],
+      "source": null,
+      "metadataStatus": "needs-review",
+      "manifestDigest": "6453546489eb688bbdd9520213b952b725d0083657757e2eff962d2cc470233a"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "energy-foundy",
+      "title": "Energy shift-note assistant",
+      "summary": "A fundamental single-agent Foundry reference for drafting source-backed synthetic energy shift notes with one read-only tool and correlated Azure Monitor telemetry. Design confirmation and implementation are pending.",
+      "industry": "Energy & Resources",
+      "businessUnits": [
+        "generic"
+      ],
+      "services": [
+        "foundry",
+        "monitor"
+      ],
+      "pillars": [
+        "operational-excellence"
+      ],
+      "domains": [
+        "observability"
+      ],
+      "artifacts": [
+        "01-requirements.md",
+        "02-architecture-assessment.md"
+      ],
+      "source": null,
+      "metadataStatus": "curated",
+      "manifestDigest": "9939c53b91c4d885af9b0bfe1cea2f4907315620ecaec2c6b609ec0f5ba1c70c"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "itsupport-agentic",
+      "title": "Adatum Corporation IT Helpdesk Escalation",
+      "summary": "Three-tier IT helpdesk with human-gated Foundry agents, authenticated Razor application, private reference infrastructure and durable immutable-audit coordination. App/IaC checks passed, but local validation is blocked by a native owner-only temporary-directory ACL permission failure. No Azure deployment, runtime acceptance or suitability approval.",
+      "industry": "Professional & Business Services",
+      "businessUnits": [
+        "it"
+      ],
+      "services": [
+        "foundry",
+        "app-service",
+        "cosmos-db",
+        "ai-search",
+        "storage",
+        "key-vault",
+        "managed-identity",
+        "virtual-network",
+        "monitor"
+      ],
+      "pillars": [],
+      "domains": [],
+      "artifacts": [
+        "01-requirements.md",
+        "02-architecture-assessment.md",
+        "04-implementation-plan.md",
+        "03-architect-diagram.png",
+        "04-runtime-diagram.png",
+        "azure.yaml",
+        "infra",
+        "src"
+      ],
+      "source": null,
+      "metadataStatus": "curated",
+      "manifestDigest": "f4b88bd8095cc257a075afc98230fce476ed8cca9f2281c1f9af37901b4b1580"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "pharma-bot",
+      "title": "Adatum Corporation multilingual medication sales and pickup",
+      "summary": "Sales-focused English, Spanish and French medication information and confirmation-gated synthetic ordering for in-store pickup, with Microsoft Foundry and explicit prescription-review boundaries.",
+      "industry": "Healthcare / Life Sciences",
+      "businessUnits": [
+        "sales"
+      ],
+      "services": [
+        "foundry"
+      ],
+      "pillars": [],
+      "domains": [],
+      "artifacts": [
+        "01-requirements.md",
+        "02-architecture-assessment.md",
+        "04-implementation-plan.md",
+        "03-architect-diagram.png",
+        "04-runtime-diagram.png",
+        "azure.yaml",
+        "infra",
+        "src"
+      ],
+      "source": null,
+      "metadataStatus": "curated",
+      "manifestDigest": "c9eae1a0a2a709284139f33e77027ac58f5ecd0a8b4026dfc24769ef5c56b1d4"
     },
     {
       "schemaVersion": 1,

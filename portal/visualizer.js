@@ -15,6 +15,22 @@ let systemReport = null;
 let systemIdentity = null;
 let projectSignature = "";
 let viewVersion = 0;
+let reuseSource = null;
+let entryMode = "new";
+let reuseDiscoveryEnabled = false;
+let matchTimer = null;
+let matchVersion = 0;
+let dismissedMatchInput = "";
+let acceptedMatchTitle = "";
+let briefMatchContext = "";
+let completedMatchInput = "";
+let inFlightMatchInput = "";
+let inFlightMatchVersion = 0;
+const conversations = new Map();
+const conversationDrafts = new Map();
+let conversationKey = "";
+let conversationSignature = "";
+let conversationSending = "";
 const views = ["create", "build", "hack", "system"];
 const referenceStages = ["requirements", "architecture", "diagrams", "bicep", "application",
   "local-validation", "deployment", "live-validation", "review"];
@@ -51,7 +67,7 @@ function initializeNavigation() {
 }
 
 function initializeAppearance() {
-  const key = "abcbuilder-theme";
+  const key = "fbcbuilder-theme";
   const system = matchMedia("(prefers-color-scheme: dark)");
   const selector = $("theme");
   const notice = $("theme-notice");
@@ -97,7 +113,7 @@ async function api(url, body) {
     });
   } catch (value) {
     if (value.name !== "TypeError") throw value;
-    throw new Error("Cannot reach the local portal. Check that the ABC Builder runtime is running. "
+    throw new Error("Cannot reach the local portal. Check that the FBC Builder runtime is running. "
       + "Your last action was not acknowledged; check its status before retrying.");
   }
   const value = await response.json();
@@ -118,7 +134,7 @@ function group(item) {
 }
 function briefConfirmed(item) {
   return Boolean(item.scoping?.canRespond && item.scoping.responseCurrent
-    && item.scoping.response?.decision === "confirmed");
+    && item.scoping.canConfirm !== false && item.scoping.response?.decision === "confirmed");
 }
 function renderScopingResponse(item) {
   const canRespond = item.scoping?.canRespond;
@@ -126,12 +142,23 @@ function renderScopingResponse(item) {
   const editing = !$("scoping-editor").hidden;
   const draft = $("scoping-changes").value.trim();
   const response = item.scoping?.response;
+  const reusePending = item.scoping?.reuseSelection && item.scoping.canConfirm === false;
   const dispatched = Boolean(item.scoping?.responseCurrent && response?.continuation?.status === "dispatched");
   const confirmationSent = confirmed && dispatched && !draft;
+  const needsReview = Boolean(canRespond && !dispatched);
+  $("scoping-notes").dataset.attention = String(needsReview);
+  $("brief-review-cue").textContent = !canRespond ? "Saved brief / reference copy"
+    : scopingPendingSlug === selected ? "Sending your brief response..."
+    : reusePending ? "Reuse assessment pending / fresh brief confirmation required"
+    : dispatched ? confirmed ? "Brief confirmed / waiting for the agent's next update"
+      : "Changes sent / waiting for a revised brief"
+    : item.scoping?.responseCurrent && response?.continuation?.status === "failed"
+      ? "Action needed: review the brief below, then retry using its confirmation or change controls."
+      : "Ready for your review: read the brief below, then choose Modify brief or Confirm brief.";
   for (const id of ["scoping-request-changes", "scoping-open-chat", "scoping-cancel"]) $(id).disabled = busy || !canRespond;
   $("scoping-modify").disabled = busy || !canRespond || editing;
   $("scoping-modify").setAttribute("aria-expanded", String(editing));
-  $("scoping-confirm").disabled = busy || !canRespond || editing || confirmationSent;
+  $("scoping-confirm").disabled = busy || !canRespond || item.scoping?.canConfirm === false || editing || confirmationSent;
   $("scoping-confirm").textContent = confirmationSent ? "Brief confirmed" : "Confirm brief";
   $("scoping-open-chat").textContent = "Open scenario chat";
   const changesSaved = canRespond && item.scoping.responseCurrent && response?.decision === "changes_requested";
@@ -146,6 +173,21 @@ function renderScopingResponse(item) {
         ? "Revision requested in the existing scenario agent. Waiting for the updated brief."
         : "The revision has not been acknowledged. Select Modify brief, then Save changes to retry."}`;
   $("scoping-response-status").textContent = scopingPendingSlug === selected ? "Saving your brief response..." : responseText;
+  const context = `${item.projectSlug}:${item.scoping?.fingerprint}`;
+  if (briefMatchContext !== context) {
+    $("brief-reuse-cards").replaceChildren();
+    briefMatchContext = context;
+  }
+  $("brief-reuse-compare").disabled = busy || !canRespond || dispatched || !reuseDiscoveryEnabled;
+  const activeSource = item.scoping?.reuseSelection ? item.scoping.reuseSelection.source : item.reuseSource;
+  $("brief-reuse-clear").hidden = !activeSource;
+  $("brief-reuse-clear").disabled = busy || !canRespond || dispatched;
+  $("brief-reuse-status").textContent = reusePending
+    ? "Source decision saved. The agent must assess it and revise this brief before you can confirm. "
+      + "If delivery failed, review the saved changes below and use Save changes to retry."
+    : item.scoping?.reuseSelection ? "Source decision assessed. Review the revised brief before fresh confirmation."
+      : activeSource ? `This brief starts from ${activeSource.scenarioId}. Review the fit, choose another source or build fresh.`
+      : "Keep building fresh, or explicitly select a source. Your original request stays unchanged.";
   if (canRespond) {
     $("summary").textContent = confirmed ? responseText
       : changesSaved ? responseText
@@ -154,7 +196,7 @@ function renderScopingResponse(item) {
       ? dispatched ? "The normal scenario workflow has been requested. Progress appears when the existing agent reports it."
         : "Select Confirm brief to continue the normal workflow in the existing scenario agent. No prompt writing is needed."
       : changesSaved ? responseText
-      : "Review the AI scoping brief above, then use Modify brief or Confirm brief at the bottom of its section.";
+      : "Review Your scenario brief in the document box above, then choose Modify brief or Confirm brief.";
   }
   const stages = (item.stages || []).filter((stage) => !stage.id.startsWith("hack-")).map((stage) => {
     if (stage.id !== "requirements" || stage.status !== "waiting_for_user" || (!confirmed && !changesSaved)) {
@@ -187,6 +229,112 @@ function updateSelectionVisibility() {
   $("hack-detail").hidden = !eligible;
   $("open-agent").hidden = !visible;
   $("scenario-chat-link-status").hidden = !visible;
+  renderConversation();
+}
+
+function conversationScope() {
+  const item = scenarios.find((entry) => entry.projectSlug === selected);
+  if (!item || (!$("view-hack").hidden && !hackEligible(item))
+      || (!$("view-build").hidden && hackEligible(item))
+      || ($("view-build").hidden && $("view-hack").hidden)) return null;
+  const phase = $("view-hack").hidden ? "scenario" : "composition";
+  return { slug: selected, phase, key: `${selected}:${phase}` };
+}
+function renderConversation() {
+  const scope = conversationScope();
+  $("conversation").hidden = !scope;
+  if (!scope) return;
+  const current = conversations.get(scope.key);
+  const draft = conversationDrafts.get(scope.key);
+  if (conversationKey !== scope.key) {
+    $("conversation-input").value = draft?.text || "";
+    $("conversation-error").hidden = true;
+    conversationKey = scope.key;
+  }
+  $("conversation-context").textContent = `${scope.slug} / ${scope.phase === "scenario" ? "Scenario" : "Hack composition"}`;
+  const signature = JSON.stringify([scope.key, current?.messages]);
+  if (signature !== conversationSignature) {
+    const history = $("conversation-messages");
+    const nearBottom = history.scrollHeight - history.scrollTop - history.clientHeight < 48;
+    const firstRender = !conversationSignature || JSON.parse(conversationSignature)[0] !== scope.key;
+    $("conversation-messages").replaceChildren(...(current?.messages || []).map((message) => {
+      const li = document.createElement("li");
+      li.dataset.role = message.role;
+      const author = document.createElement("strong");
+      author.textContent = message.role === "user" ? "You" : `Agent report / ${message.stage}`;
+      const text = document.createElement("p");
+      text.textContent = message.text;
+      const status = document.createElement("small");
+      const labels = { dispatched: "Sent to editor; agent response not yet confirmed",
+        dispatching: "Delivery unconfirmed; check agent chat before sending again",
+        unknown: "Delivery uncertain; check agent chat before sending again",
+        failed: "Not sent; explicit retry is available", pending: "Not yet sent" };
+      status.textContent = `${labels[message.status] || message.status.replaceAll("_", " ")}`
+        + (message.updatedAtUtc ? ` / ${new Date(message.updatedAtUtc).toLocaleString()}` : "")
+        + (message.error ? ` / ${message.error}` : "");
+      li.append(author, text, status);
+      return li;
+    }));
+    if (nearBottom || firstRender) history.scrollTop = history.scrollHeight;
+    conversationSignature = signature;
+  }
+  $("conversation-status").textContent = conversationSending === scope.key
+    ? "Sending to the existing agent conversation..."
+    : current?.canSend ? "Replies go to this phase's existing conversation. Dispatch is not proof of agent execution."
+      : "Open or start this phase's conversation using the existing workflow controls before sending a message.";
+  $("conversation-input").disabled = conversationSending === scope.key;
+  $("conversation-send").disabled = busy || Boolean(conversationSending) || !current?.canSend
+    || !$("conversation-input").value.trim();
+  $("conversation-open").disabled = busy || Boolean(conversationSending);
+}
+async function loadConversation() {
+  const scope = conversationScope();
+  if (!scope) return;
+  try {
+    const value = await api(`/api/conversation?project=${encodeURIComponent(scope.slug)}&phase=${scope.phase}`);
+    conversations.set(scope.key, value);
+    if (conversationScope()?.key === scope.key) renderConversation();
+  } catch (value) {
+    conversations.delete(scope.key);
+    if (conversationScope()?.key === scope.key) {
+      renderConversation();
+      $("conversation-error").textContent = `Conversation unavailable: ${value.message}`;
+      $("conversation-error").hidden = false;
+    }
+  }
+}
+async function sendConversationMessage() {
+  const scope = conversationScope();
+  if (!scope || busy || conversationSending || !conversations.get(scope.key)?.canSend) return;
+  const text = $("conversation-input").value.trim();
+  if (!text) return;
+  const previous = conversationDrafts.get(scope.key);
+  const draft = previous?.text.trim() === text && previous.requestId ? previous
+    : { text, requestId: crypto.randomUUID().replaceAll("-", "") };
+  conversationDrafts.set(scope.key, draft);
+  conversationSending = scope.key;
+  $("conversation-error").hidden = true;
+  renderConversation();
+  try {
+    const value = await api("/api/conversation/send", {
+      projectSlug: scope.slug, phase: scope.phase, text, requestId: draft.requestId,
+    });
+    if (value.status === "dispatched") {
+      conversationDrafts.delete(scope.key);
+      if (conversationScope()?.key === scope.key) $("conversation-input").value = "";
+    } else {
+      throw new Error(value.error || "Delivery is unconfirmed. Check the existing agent chat; no automatic retry occurred.");
+    }
+  } catch (value) {
+    if (conversationScope()?.key === scope.key) {
+      $("conversation-error").textContent = value.message;
+      $("conversation-error").hidden = false;
+    }
+  } finally {
+    conversationSending = "";
+    await loadConversation();
+    renderConversation();
+  }
 }
 function drawBoard() {
   const hackItems = scenarios.filter(hackEligible);
@@ -364,6 +512,8 @@ async function detail() {
   $("open-agent").disabled = busy;
   $("open-composition").disabled = busy;
   const slug = selected, version = selectionVersion;
+  await loadConversation();
+  if (version !== selectionVersion) return;
   await showDeploymentReview(item, slug, version);
   if (version !== selectionVersion) return;
   const files = await api(`/api/files?project=${encodeURIComponent(slug)}`);
@@ -500,9 +650,10 @@ async function action(work, scoping = false) {
   if (busy) return;
   const slug = selected;
   busy = true;
+  renderConversation();
   $("error").hidden = true;
   if (scoping) $("scoping-response-error").hidden = true;
-  const buttons = ["create", "refine", "open-agent", "open-composition",
+  const buttons = ["create", "refine", "reuse-source", "reuse-load", "reuse-clear", "open-agent", "open-composition",
     "scoping-confirm", "scoping-modify", "scoping-request-changes", "scoping-cancel", "scoping-open-chat"];
   for (const id of buttons) $(id).disabled = true;
   try { await work(); } catch (value) {
@@ -519,6 +670,7 @@ async function action(work, scoping = false) {
     for (const id of buttons) $(id).disabled = false;
     const item = scenarios.find((entry) => entry.projectSlug === selected);
     if (item) renderScopingResponse(item);
+    renderConversation();
   }
 }
 function choices(catalog, key) {
@@ -680,11 +832,185 @@ async function runSystemCheck(identityOnly = false) {
     error(value);
   } finally { systemBusy = false; systemButtons(); }
 }
+async function loadReuseSources() {
+  const sources = await api("/api/reuse-sources");
+  $("reuse-source").replaceChildren(new Option("Choose a source", ""), ...sources.scenarios.map((entry) => {
+    const option = new Option(`${entry.title} (${entry.id}) - ${entry.metadataStatus}`
+      + (entry.available ? "" : " - unavailable"), entry.id);
+    option.disabled = !entry.available;
+    return option;
+  }));
+  $("reuse-status").textContent = sources.errors.length
+    ? `Some sources could not be read: ${sources.errors.map((entry) => `${entry.id}: ${entry.error}`).join("; ")}`
+    : "Select a local source, then modify its brief below. Inferred metadata still needs review.";
+}
+function matchInput() {
+  const value = { prompt: $("prompt").value.trim(), industry: selectedChoice("industry"),
+    agenticPattern: selectedChoice("agenticPattern") || "ai-decides" };
+  for (const key of ["services", "businessUnits", "pillars", "domains"]) {
+    value[key] = [...document.querySelectorAll(`input[name="${key}"]:checked`)].map((input) => input.value).sort();
+  }
+  return value;
+}
+function matchValid(version, fingerprint) {
+  return version === matchVersion && entryMode === "new" && !reuseSource
+    && fingerprint === JSON.stringify(matchInput());
+}
+function queueMatches(immediate = false) {
+  const fingerprint = JSON.stringify(matchInput());
+  // Textarea change/blur events fire while clicking a card; keep results for unchanged inputs.
+  if (entryMode === "new" && !reuseSource && (completedMatchInput === fingerprint
+      || (inFlightMatchInput === fingerprint && inFlightMatchVersion === matchVersion))) return;
+  completedMatchInput = "";
+  matchVersion++;
+  clearTimeout(matchTimer);
+  if (!reuseDiscoveryEnabled || entryMode !== "new") {
+    $("reuse-suggestions").hidden = true;
+    return;
+  }
+  if (reuseSource) return;
+  $("reuse-suggestions").hidden = true;
+  $("reuse-suggestion-cards").replaceChildren();
+  const value = matchInput();
+  if (value.prompt.length < 35 || value.prompt.split(/\s+/).length < 6
+      || JSON.stringify(value) === dismissedMatchInput) return;
+  matchTimer = setTimeout(() => { void suggestMatches(); }, immediate ? 0 : 900);
+}
+async function suggestMatches() {
+  if (!reuseDiscoveryEnabled || entryMode !== "new" || reuseSource) return;
+  const value = matchInput();
+  const fingerprint = JSON.stringify(value);
+  const version = ++matchVersion;
+  if (value.prompt.length < 35 || value.prompt.split(/\s+/).length < 6 || fingerprint === dismissedMatchInput) return;
+  inFlightMatchInput = fingerprint;
+  inFlightMatchVersion = version;
+  try {
+    const result = await api("/api/reuse-recommendations", value);
+    if (!matchValid(version, fingerprint)) return;
+    completedMatchInput = fingerprint;
+    $("reuse-suggestions").hidden = !result.matches.length && !result.errors.length;
+    $("reuse-suggestions-status").textContent = result.errors.length
+      ? `Some catalog metadata could not be read: ${result.errors.map((item) => `${item.id}: ${item.error}`).join("; ")}`
+      : "Potential matches based on workflow and architecture signals. Your idea remains unchanged.";
+    renderMatches($("reuse-suggestion-cards"), result.matches, () => matchValid(version, fingerprint));
+  } catch (value) {
+    if (!matchValid(version, fingerprint)) return;
+    $("reuse-suggestions").hidden = false;
+    $("reuse-suggestions-status").textContent = `Catalog comparison unavailable: ${value.message} `
+      + "You can still refine or build your original idea.";
+  } finally {
+    if (inFlightMatchVersion === version) inFlightMatchInput = "";
+  }
+}
+function renderMatches(host, matches, isCurrent, target = null) {
+  host.replaceChildren();
+  for (const match of matches) {
+    const card = document.createElement("article");
+    card.className = "reuse-match";
+    const heading = document.createElement("h4");
+    heading.textContent = match.title;
+    const label = document.createElement("p");
+    label.className = "muted";
+    label.textContent = `${match.fit} / ${match.available ? "Local files available" : "Inspiration only"} / `
+      + `${match.metadataStatus} / profile ${match.profileState}`;
+    const summary = document.createElement("p");
+    summary.textContent = match.summary;
+    const reasons = document.createElement("p");
+    reasons.textContent = `Why it surfaced: ${match.reasons.join("; ")}.`;
+    const differences = document.createElement("ul");
+    for (const text of match.concerns) {
+      const item = document.createElement("li");
+      item.textContent = text;
+      differences.append(item);
+    }
+    const evidence = document.createElement("p");
+    evidence.className = "muted";
+    evidence.textContent = Object.entries(match.evidence || {}).flatMap(([feature, refs]) =>
+      refs.map((ref) => `${feature}: ${ref.path}:${ref.line} (${ref.basis}, not runtime proof)`)).join("; ");
+    const review = document.createElement("button");
+    review.type = "button";
+    review.className = "secondary";
+    review.textContent = match.available ? "Review match" : "Reference files unavailable";
+    review.disabled = !match.available;
+    const preview = document.createElement("div");
+    preview.hidden = true;
+    review.addEventListener("click", () => action(async () => {
+      if (!isCurrent()) throw new Error("The target idea changed. Review the current suggestions instead.");
+      const source = await api(`/api/reuse-source?project=${encodeURIComponent(match.scenarioId)}`);
+      if (!isCurrent()) return;
+      if (source.manifestDigest !== match.manifestDigest) {
+        throw new Error("Source metadata changed. Refresh the page or edit the idea to compare current starting points.");
+      }
+      const brief = document.createElement("article");
+      brief.className = "markdown";
+      renderMarkdown(brief, source.brief);
+      const use = document.createElement("button");
+      use.type = "button";
+      use.textContent = "Use as starting point";
+      use.addEventListener("click", () => action(async () => {
+        if (!isCurrent()) throw new Error("The target brief changed. Compare the current catalog matches again.");
+        const snapshot = { scenarioId: source.scenarioId, manifestDigest: source.manifestDigest,
+          artifactsDigest: source.artifactsDigest };
+        if (target) {
+          await api("/api/reuse-selection", { ...target, reuseSource: snapshot });
+          await refresh();
+        } else {
+          reuseSource = snapshot;
+          acceptedMatchTitle = source.title;
+          matchVersion++;
+          host.replaceChildren();
+          $("reuse-suggestions-status").textContent = `Starting from ${acceptedMatchTitle}. `
+            + "Your project name, idea and selections are preserved. Both buttons refine before any copying or build.";
+          $("create").textContent = "Refine adapted brief";
+        }
+      }));
+      preview.replaceChildren(brief, use);
+      preview.hidden = false;
+    }));
+    card.append(heading, label, summary, reasons, differences, evidence, review, preview);
+    host.append(card);
+  }
+}
+async function compareBriefMatches() {
+  const item = scenarios.find((entry) => entry.projectSlug === selected);
+  const target = { projectSlug: selected, fingerprint: item?.scoping?.fingerprint };
+  const isCurrent = () => selected === target.projectSlug && scenarios.find((entry) =>
+    entry.projectSlug === selected)?.scoping?.fingerprint === target.fingerprint;
+  const result = await api("/api/reuse-recommendations", { ...target, fromBrief: true });
+  if (!isCurrent()) return;
+  $("brief-reuse-status").textContent = result.errors.length
+    ? `Some catalog metadata could not be read: ${result.errors.map((entry) => entry.error).join("; ")}`
+    : result.matches.length ? "Review a source before selecting. A selection requests a revised brief, not a build."
+      : "No useful catalog match found. Continue with the original idea.";
+  renderMatches($("brief-reuse-cards"), result.matches, isCurrent, target);
+}
+function chooseScenarioEntry(mode) {
+  completedMatchInput = "";
+  entryMode = mode;
+  $("entry-new").setAttribute("aria-pressed", String(mode === "new"));
+  $("entry-existing").setAttribute("aria-pressed", String(mode === "existing"));
+  $("entry-existing").setAttribute("aria-expanded", String(mode === "existing"));
+  $("reuse-panel").hidden = mode !== "existing";
+  if (mode === "new") {
+    reuseSource = null;
+    acceptedMatchTitle = "";
+    $("reuse-source").value = "";
+    $("reuse-preview").hidden = true;
+    $("reuse-clear").hidden = true;
+    $("create").textContent = "Start building";
+    $("reuse-status").textContent = "Source reuse cleared. The current intake is now a new idea; no files will be copied.";
+  }
+  queueMatches();
+}
 async function initialize() {
   const catalog = await api("/api/catalog");
   if (catalog.portalMode !== "visualizer") throw new Error("Restart the old portal to load visualization-only mode.");
-  if (!Number.isInteger(catalog.backendEngineVersion) || catalog.backendEngineVersion < 19) {
-    throw new Error("Restart the portal and refresh to enable automatic brief continuation and workspace-wide System checks.");
+  if (!Number.isInteger(catalog.backendEngineVersion) || catalog.backendEngineVersion < 20) {
+    throw new Error("Restart the portal and refresh to enable starting from an existing scenario.");
+  }
+  reuseDiscoveryEnabled = catalog.backendEngineVersion >= 22;
+  if (!reuseDiscoveryEnabled) {
+    $("prompt-help").textContent += " Restart the portal runtime to enable automatic catalog suggestions.";
   }
   singleChoiceCards("industry", "industry", catalog.industries.map((name) => ({ id: name, name })), "");
   const patterns = catalog.agenticPatterns;
@@ -699,19 +1025,85 @@ async function initialize() {
   })), "ai-decides", describePattern);
   describePattern(patterns.find((entry) => entry.id === "ai-decides"));
   for (const key of ["services", "businessUnits", "pillars", "domains"]) choices(catalog, key);
+  $("prompt").addEventListener("input", () => queueMatches());
+  $("prompt").addEventListener("blur", () => queueMatches(true));
+  $("intake").addEventListener("change", () => queueMatches());
+  $("reuse-dismiss").addEventListener("click", () => {
+    if (busy) return;
+    reuseSource = null;
+    acceptedMatchTitle = "";
+    $("create").textContent = "Start building";
+    dismissedMatchInput = JSON.stringify(matchInput());
+    matchVersion++;
+    clearTimeout(matchTimer);
+    $("reuse-suggestions").hidden = true;
+  });
+  $("brief-reuse-compare").addEventListener("click", () => action(compareBriefMatches));
+  $("brief-reuse-clear").addEventListener("click", () => action(async () => {
+    const item = scenarios.find((entry) => entry.projectSlug === selected);
+    await api("/api/reuse-selection", { projectSlug: selected, fingerprint: item?.scoping?.fingerprint, reuseSource: null });
+    await refresh();
+  }));
+  $("entry-new").addEventListener("click", () => { if (!busy) chooseScenarioEntry("new"); });
+  $("entry-existing").addEventListener("click", () => { if (!busy) chooseScenarioEntry("existing"); });
+  await loadReuseSources().catch((value) => {
+    $("reuse-status").textContent = `Cannot load sources: ${value.message}. Reload the page to retry.`;
+    error(value);
+  });
+  $("reuse-source").addEventListener("change", () => {
+    reuseSource = null;
+    $("reuse-preview").hidden = true;
+    $("reuse-clear").hidden = true;
+    $("create").textContent = "Start building";
+    $("reuse-status").textContent = "Load this source before editing its brief.";
+  });
+  $("reuse-load").addEventListener("click", () => action(async () => {
+    const id = $("reuse-source").value;
+    if (!id) throw new Error("Choose an available source scenario.");
+    const source = await api(`/api/reuse-source?project=${encodeURIComponent(id)}`);
+    reuseSource = { scenarioId: source.scenarioId, manifestDigest: source.manifestDigest,
+      artifactsDigest: source.artifactsDigest };
+    $("slug").value = "";
+    const editableBrief = source.brief.trim();
+    const useRefinedBrief = editableBrief.length > 0 && editableBrief.length <= 6000;
+    $("prompt").value = useRefinedBrief ? editableBrief : source.intake.prompt;
+    for (const key of ["industry", "agenticPattern", "services", "businessUnits", "pillars", "domains"]) {
+      const values = Array.isArray(source.intake[key]) ? source.intake[key] : [source.intake[key]];
+      for (const input of document.querySelectorAll(`input[name="${key}"]`)) {
+        input.checked = values.includes(input.value) || (key === "services" && input.value === "foundry");
+      }
+    }
+    describePattern(patterns.find((entry) => entry.id === source.intake.agenticPattern));
+    renderMarkdown($("reuse-brief"), source.brief);
+    $("reuse-preview").hidden = false;
+    $("reuse-preview").open = true;
+    $("reuse-clear").hidden = false;
+    $("create").textContent = "Refine adapted brief";
+    $("reuse-status").textContent = `Modifying ${source.title}. Choose a NEW project name and edit the industry, `
+      + "scope and prompt below. Both submit buttons review the adapted brief before any copying or build."
+      + (useRefinedBrief ? "" : " The full source brief is reference-only; the editable prompt uses its saved intake.");
+    $("slug").focus();
+  }));
+  $("reuse-clear").addEventListener("click", () => {
+    if (!busy) chooseScenarioEntry("new");
+  });
   $("system-consent").addEventListener("change", systemButtons);
   $("system-check").addEventListener("click", () => runSystemCheck());
   $("system-identity").addEventListener("click", () => runSystemCheck(true));
   $("intake").addEventListener("submit", (event) => {
     event.preventDefault();
-    const scoping = event.submitter?.id === "refine";
+    const scoping = event.submitter?.id === "refine" || reuseSource !== null;
     action(async () => {
+      if (entryMode === "existing" && !reuseSource) {
+        throw new Error("Choose a source scenario and select Modify brief from source before continuing.");
+      }
       const value = { projectSlug: $("slug").value, industry: selectedChoice("industry"), prompt: $("prompt").value,
         agenticPattern: selectedChoice("agenticPattern"), intakeMode: scoping ? "scope" : "build" };
       if (!value.industry || !value.agenticPattern) throw new Error("Choose one industry and one workflow pattern.");
       for (const key of ["services", "businessUnits", "pillars", "domains"]) {
         value[key] = [...document.querySelectorAll(`input[name="${key}"]:checked`)].map((input) => input.value);
       }
+      if (reuseSource) value.reuseSource = reuseSource;
       await api("/api/scenarios", value);
       navigate("build");
       await refresh();
@@ -720,6 +1112,24 @@ async function initialize() {
     });
   });
   $("open-agent").addEventListener("click", () => action(openScenarioChat));
+  $("conversation-input").addEventListener("input", () => {
+    const scope = conversationScope();
+    if (!scope) return;
+    const previous = conversationDrafts.get(scope.key);
+    const text = $("conversation-input").value;
+    conversationDrafts.set(scope.key, previous?.text.trim() === text.trim() ? { ...previous, text } : { text });
+    renderConversation();
+  });
+  $("conversation-form").addEventListener("submit", (event) => {
+    event.preventDefault();
+    void sendConversationMessage();
+  });
+  $("conversation-open").addEventListener("click", () => action(async () => {
+    const scope = conversationScope();
+    if (!scope) return;
+    await reopenChat(scope.phase);
+    await loadConversation();
+  }));
   $("scoping-changes").addEventListener("input", () => {
     const item = scenarios.find((entry) => entry.projectSlug === selected);
     if (item) renderScopingResponse(item);

@@ -1,0 +1,480 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "finance-customer-hack",
+  "manifestDigest": "7f10c5d27d3823d9f565ec26c36b519d22354aa77d1e9dde710bf46cc69295ed",
+  "summary": "Financial Services reference: two saved Foundry agents route grounded policy and synthetic account questions into durable representative-owned cases. Local implementation only; Azure deployment and live acceptance pending authorization.",
+  "metadataStatus": "needs-review",
+  "extractedAtUtc": "2026-10-30T03:21:04.250921+00:00",
+  "extractorVersion": 2,
+  "features": {
+    "handoff-transfer-of-control": [
+      {
+        "path": "01-requirements.md",
+        "line": 12,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 41,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 55,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 62,
+        "basis": "design"
+      },
+      {
+        "path": "03-architect-diagram.py",
+        "line": 58,
+        "basis": "code"
+      },
+      {
+        "path": "infra/main.bicep",
+        "line": 152,
+        "basis": "code"
+      },
+      {
+        "path": "src/BankSupport.Web/Models/Domain.cs",
+        "line": 35,
+        "basis": "code"
+      },
+      {
+        "path": "src/BankSupport.Web/Pages/Index.cshtml.cs",
+        "line": 37,
+        "basis": "code"
+      }
+    ],
+    "grounded-retrieval": [
+      {
+        "path": "01-requirements.md",
+        "line": 12,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 52,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 53,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 71,
+        "basis": "design"
+      },
+      {
+        "path": "03-architect-diagram.py",
+        "line": 42,
+        "basis": "code"
+      },
+      {
+        "path": "03-architect-diagram.py",
+        "line": 57,
+        "basis": "code"
+      },
+      {
+        "path": "infra/main.bicep",
+        "line": 152,
+        "basis": "code"
+      },
+      {
+        "path": "src/BankSupport.Web/Models/Domain.cs",
+        "line": 34,
+        "basis": "code"
+      }
+    ],
+    "case-management": [
+      {
+        "path": "01-requirements.md",
+        "line": 29,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 30,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 31,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 55,
+        "basis": "design"
+      },
+      {
+        "path": "src/BankSupport.Web/Models/Domain.cs",
+        "line": 20,
+        "basis": "code"
+      },
+      {
+        "path": "src/BankSupport.Web/Pages/Queue.cshtml.cs",
+        "line": 9,
+        "basis": "code"
+      },
+      {
+        "path": "src/BankSupport.Web/Pages/Queue.cshtml.cs",
+        "line": 13,
+        "basis": "code"
+      },
+      {
+        "path": "src/BankSupport.Web/Pages/Queue.cshtml.cs",
+        "line": 19,
+        "basis": "code"
+      }
+    ],
+    "read-only": [
+      {
+        "path": "01-requirements.md",
+        "line": 41,
+        "basis": "design"
+      },
+      {
+        "path": "src/BankSupport.Web/Models/Domain.cs",
+        "line": 8,
+        "basis": "code"
+      },
+      {
+        "path": "src/BankSupport.Web/Pages/Index.cshtml.cs",
+        "line": 14,
+        "basis": "code"
+      },
+      {
+        "path": "src/BankSupport.Web/Services/Installer.cs",
+        "line": 23,
+        "basis": "code"
+      }
+    ],
+    "entra-identity": [
+      {
+        "path": "01-requirements.md",
+        "line": 43,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 87,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 40,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 42,
+        "basis": "design"
+      },
+      {
+        "path": "03-architect-diagram.py",
+        "line": 36,
+        "basis": "code"
+      },
+      {
+        "path": "03-architect-diagram.py",
+        "line": 37,
+        "basis": "code"
+      },
+      {
+        "path": "src/BankSupport.Web/Services/DocumentStore.cs",
+        "line": 22,
+        "basis": "code"
+      }
+    ],
+    "routing-triage": [
+      {
+        "path": "01-requirements.md",
+        "line": 54,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 62,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 67,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 69,
+        "basis": "design"
+      },
+      {
+        "path": "03-architect-diagram.py",
+        "line": 42,
+        "basis": "code"
+      },
+      {
+        "path": "03-architect-diagram.py",
+        "line": 48,
+        "basis": "code"
+      },
+      {
+        "path": "03-architect-diagram.py",
+        "line": 55,
+        "basis": "code"
+      },
+      {
+        "path": "infra/main.bicep",
+        "line": 152,
+        "basis": "code"
+      }
+    ],
+    "single-agent-tool-loop": [
+      {
+        "path": "01-requirements.md",
+        "line": 65,
+        "basis": "design"
+      }
+    ],
+    "event-driven-reactive-agents": [
+      {
+        "path": "01-requirements.md",
+        "line": 81,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 107,
+        "basis": "design"
+      },
+      {
+        "path": "03-architect-diagram.py",
+        "line": 51,
+        "basis": "code"
+      },
+      {
+        "path": "04-implementation-plan.md",
+        "line": 8,
+        "basis": "design"
+      },
+      {
+        "path": "src/BankSupport.Web/Pages/Login.cshtml.cs",
+        "line": 33,
+        "basis": "code"
+      },
+      {
+        "path": "src/BankSupport.Web/Pages/Queue.cshtml.cs",
+        "line": 12,
+        "basis": "code"
+      },
+      {
+        "path": "src/BankSupport.Web/Program.cs",
+        "line": 31,
+        "basis": "code"
+      }
+    ],
+    "concurrent-fan-out-fan-in": [
+      {
+        "path": "01-requirements.md",
+        "line": 107,
+        "basis": "design"
+      }
+    ],
+    "human-in-the-loop": [
+      {
+        "path": "01-requirements.md",
+        "line": 116,
+        "basis": "design"
+      }
+    ],
+    "orchestrator-workers": [
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 16,
+        "basis": "design"
+      },
+      {
+        "path": "04-implementation-plan.md",
+        "line": 29,
+        "basis": "design"
+      }
+    ],
+    "local-identity": [
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 110,
+        "basis": "design"
+      },
+      {
+        "path": "src/BankSupport.Web/Models/Domain.cs",
+        "line": 3,
+        "basis": "code"
+      },
+      {
+        "path": "src/BankSupport.Web/Pages/Login.cshtml.cs",
+        "line": 9,
+        "basis": "code"
+      },
+      {
+        "path": "src/BankSupport.Web/Services/Installer.cs",
+        "line": 76,
+        "basis": "code"
+      },
+      {
+        "path": "src/BankSupport.Web/Services/Installer.cs",
+        "line": 106,
+        "basis": "code"
+      }
+    ],
+    "replay-recovery": [
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 122,
+        "basis": "design"
+      },
+      {
+        "path": "04-implementation-plan.md",
+        "line": 38,
+        "basis": "design"
+      },
+      {
+        "path": "src/BankSupport.Web/Services/Installer.cs",
+        "line": 37,
+        "basis": "code"
+      }
+    ],
+    "telemetry": [
+      {
+        "path": "03-architect-diagram.py",
+        "line": 36,
+        "basis": "code"
+      },
+      {
+        "path": "src/BankSupport.Web/Program.cs",
+        "line": 75,
+        "basis": "code"
+      }
+    ],
+    "inventory": [
+      {
+        "path": "04-implementation-plan.md",
+        "line": 10,
+        "basis": "design"
+      }
+    ],
+    "public-ingress": [
+      {
+        "path": "infra/main.bicep",
+        "line": 95,
+        "basis": "code"
+      },
+      {
+        "path": "infra/main.bicep",
+        "line": 125,
+        "basis": "code"
+      }
+    ]
+  },
+  "inputs": {
+    "01-requirements.md": "5a30e71e02ac661052ece192264846e5c8931473cac9d0017d64fb7ea510a638",
+    "02-architecture-assessment.md": "88a1a05b5b74bcfbac6444a4b5c13ad805cae0a8386974dd92038f87f77a6132",
+    "03-architect-diagram.py": "58d0fedd49c9197449c22a631ba2b51069f7905b6a7b53faa9bc7e8549bce015",
+    "04-implementation-plan.md": "0d54530ed77e4354ec9aef824aece1e93bc179614f15ee910e6c959ab81bd6ad",
+    "azure.yaml": "000a62ee5d263eabc8649d596356dfdd492e1003b104d3f7d25ece0f26afebb9",
+    "infra/main.bicep": "af9653eacc77381b596212a36c6b41cbc4536b92916fb6f772e3f43da33db17f",
+    "src/BankSupport.Web/Models/Domain.cs": "18e3d1343cacd2b142d9386e9c4fd5187c1097f3beb11179137378356cf37379",
+    "src/BankSupport.Web/Pages/Error.cshtml.cs": "ff6a51a8c6d5d157df7af649666476dbc4fb135afbfed85cc020e47dc70c0acf",
+    "src/BankSupport.Web/Pages/Index.cshtml.cs": "49291be496b0c465b33b52074244d6eee858d48788d121a20e4ec258987c16a8",
+    "src/BankSupport.Web/Pages/Login.cshtml.cs": "5e68029a43d7e1a9c5997b8d4db8712d08b24219becf19c52516176822fdfed2",
+    "src/BankSupport.Web/Pages/Logout.cshtml.cs": "9f48f70a88702c155e2230591de1dfbcf38ad18e0f3dac457a321b3afff78e6b",
+    "src/BankSupport.Web/Pages/Privacy.cshtml.cs": "70104ba055a113a32fb54429adecb65797062193dd60693af9d12dd409d19dee",
+    "src/BankSupport.Web/Pages/Queue.cshtml.cs": "9719d9333a19ca9dc9c1000a827020dda1275a9e2b830c10da8199c95e227e63",
+    "src/BankSupport.Web/Program.cs": "2ff4f7d132130f22abf9fb045f55406908080896ed372c6392c5f5b249cf3923",
+    "src/BankSupport.Web/Services/BankingWorkflow.cs": "a0c95e206c8ffd9977ee36e8e39abf88d66a107dc4b6a0e16d031545ba908a00",
+    "src/BankSupport.Web/Services/DocumentStore.cs": "f90b68e041beb621e65545794d1c2da16b6172c8ebbbbdc85fe22d72358bbdae",
+    "src/BankSupport.Web/Services/FoundryGateway.cs": "e82221c6f889c8e1721d74b1325be60c0b343b6b8a73ee525427d63a6bc2af5e",
+    "src/BankSupport.Web/Services/Installer.cs": "d4ef3fc0105777b8f3ab39fcbcbef1087a21b848b30b96b71354a35b9baa1bf5",
+    "src/BankSupport.Web/Services/LocalAuthentication.cs": "781bb9f59b162438cecf5400db8083678e8bb9e1faf75002769d5531c63aa1c4",
+    "src/BankSupport.Web/wwwroot/js/site.js": "8514327ed5e2bb594b5f63fd2f2f716b88072602de475b86379a9e814a1bb46a",
+    "src/BankSupport.Web/wwwroot/lib/jquery-validation/LICENSE.md": "81e1c4930fd618f75a1d0311ab91ee358f6c9e588dcd4ff2d8e5bcc9c9e1197c"
+  },
+  "architectureSummary": "Case / ticket management; Parallel evidence checks; Entra identity; Event-driven workflow; Grounded document retrieval; Case handoff; Human decision gate; Stock / inventory workflow; Local application accounts; Orchestrator / workers; Public ingress; Read-only assistance; Replay / recovery handling; Routing / triage; Single-agent tool loop; Telemetry / sensor processing",
+  "patternEvidence": {
+    "designMentioned": [
+      "case-management",
+      "concurrent-fan-out-fan-in",
+      "entra-identity",
+      "event-driven-reactive-agents",
+      "grounded-retrieval",
+      "handoff-transfer-of-control",
+      "human-in-the-loop",
+      "inventory",
+      "local-identity",
+      "orchestrator-workers",
+      "read-only",
+      "replay-recovery",
+      "routing-triage",
+      "single-agent-tool-loop"
+    ],
+    "codeMentioned": [
+      "case-management",
+      "entra-identity",
+      "event-driven-reactive-agents",
+      "grounded-retrieval",
+      "handoff-transfer-of-control",
+      "local-identity",
+      "public-ingress",
+      "read-only",
+      "replay-recovery",
+      "routing-triage",
+      "telemetry"
+    ],
+    "implemented": "unknown-until-reviewed"
+  },
+  "omittedLargeTextFiles": 0,
+  "dimensions": {
+    "businessCapabilities": [
+      "case-management",
+      "concurrent-fan-out-fan-in",
+      "event-driven-reactive-agents",
+      "grounded-retrieval",
+      "handoff-transfer-of-control",
+      "human-in-the-loop",
+      "inventory",
+      "orchestrator-workers",
+      "read-only",
+      "replay-recovery",
+      "routing-triage",
+      "single-agent-tool-loop",
+      "telemetry"
+    ],
+    "dataPatterns": [
+      "grounded-retrieval",
+      "replay-recovery",
+      "telemetry"
+    ],
+    "integrationModes": [
+      "event-driven-reactive-agents",
+      "read-only"
+    ],
+    "humanDecisionPoints": [
+      "handoff-transfer-of-control",
+      "human-in-the-loop"
+    ],
+    "constraints": [
+      "entra-identity",
+      "local-identity",
+      "public-ingress"
+    ]
+  },
+  "limitations": [
+    "Text-derived retrieval features require review; code references are not runtime validation.",
+    "An absent feature means unknown, not unsupported. No deployment or consent evidence is included.",
+    "0 text files over 256000 bytes were omitted; environment settings and runtime evidence are excluded."
+  ]
+}

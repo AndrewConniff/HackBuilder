@@ -1,4 +1,4 @@
-# ABC Builder prerequisites
+# FBC Builder prerequisites
 
 Prepare this machine before starting scenario work in VS Code. The portal itself uses Python's standard library,
 but reference generation also needs the SDKs, native diagram tooling and Python packages below.
@@ -206,7 +206,7 @@ There is no additional portal approval queue. Reuse matching saved identity and 
 ## Quick start on Windows
 
 Use the [HOWTO's manual inventory and official download links](
-ABC-Builder-HOWTO.md#manual-tool-inventory-and-official-downloads) if automated setup is not permitted.
+FBC-Builder-HOWTO.md#manual-tool-inventory-and-official-downloads) if automated setup is not permitted.
 Otherwise run the [full System-profile installer](system-tools/README.md) from the repository root.
 The default downloads every pinned native tool. Use explicit Check mode for read-only diagnostics:
 
@@ -268,7 +268,7 @@ Use `-SystemProfile` for parity, `-IncludeVSCode` for the extra editor check,
 or `-IncludeDocker` for a Docker-only addition.
 
 Open a fresh terminal after installation, rerun check-only, then double-click
-[`Start-ABCBuilder.cmd`](Start-ABCBuilder.cmd). Do not restart a portal with active workers.
+[`Start-FBCBuilder.cmd`](Start-FBCBuilder.cmd). Do not restart a portal with active workers.
 The launcher and startup helper prefer the repository `.venv` for a **new** server and put its scripts on worker PATH.
 Existing servers are reused without changing their interpreter or environment.
 

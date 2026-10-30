@@ -1,13 +1,49 @@
-# ABC Builder visualization portal
+# FBC Builder visualization portal
 
 The portal is a small local management/view layer. **The real VS Code Copilot agents do the work.**
 There is no background Copilot CLI runner, stage scheduler, Azure sign-in manager,
 portal approval engine, scenario prerequisite pipeline or worker retry loop in the normal entry point.
 
 For a screenshot-led walkthrough of setup, navigation, VS Code interaction, milestones and exports,
-start with the [new-user how-to guide](../ABC-Builder-HOWTO.md).
+start with the [new-user how-to guide](../FBC-Builder-HOWTO.md).
+For implementation, API/state contracts, native bridge integration and maintenance,
+see the [FBCBuilder DEV Guide](../FBCBuilder-DEV-Guide.md).
 
 ## Portal sections
+
+### Additive agent conversation
+
+**Build & validate** and **Create hack** include an **Agent conversation** pane for the selected scenario and phase.
+On screens at least 1200 pixels wide, it sits in a sticky right-hand column beside the scenario content.
+On narrower screens, it stacks below the content; its history remains scrollable.
+The existing boards, milestone lists, latest status, timestamps, reported steps, files and exports remain unchanged.
+The pane adds a chronological view of your messages and concise agent reports, including intermediate reports from
+the same stage that the latest-status display would otherwise replace. It shows the latest 100 conversation entries;
+the milestone checklist still retains the latest report for every stage.
+Older stage summaries remain visible without rewriting historical evidence. Unreported activity is never inferred.
+
+The existing VS Code session is still the execution backend. **Send message** relays your explicit text to that
+phase's linked native conversation through the editor bridge; it never creates another session or Copilot worker.
+**Open existing agent chat** remains available for the full conversation and native permission prompts.
+Scenario and composition histories and unsent drafts are separate. Browser drafts are not persisted across reloads;
+saved messages and reported feedback survive portal restarts in local state, outside learner exports.
+Reports refresh with the existing four-second status poll. Polling, navigation and history reads never send messages.
+
+New handoffs and portal messages ask the agent to report meaningful within-stage progress, real check results,
+blockers and actionable questions, not just milestone transitions. This is agent-reported feedback, not an automatic
+tool transcript, private reasoning stream, process monitor or guarantee that every operation is reported.
+The portal does not read conversation text from editor history to populate this pane.
+
+Brief confirmation still uses the existing fingerprint-bound controls. Formal architecture/deployment and suitability
+decisions and native tool permissions remain in VS Code. Sending text does not record these approvals, start composition,
+deploy an event or publish. The existing agent must apply its normal workflow and permission boundaries.
+No new cloud authority is inferred from message dispatch.
+
+Messaging requires [FBC Builder Scenario Chat](../tools/vscode-chat-bridge/README.md) **0.3.0 or later**.
+Upgrade the bridge and restart its extension host, then restart the portal server and reload the page.
+A receipt means only that the editor accepted the dispatch, not that the agent ran or completed work.
+Unacknowledged or interrupted delivery remains visibly uncertain and is never automatically replayed.
+Check the native conversation before sending again. Only a proven pre-dispatch failure permits an explicit retry.
 
 The numbered workflow navigation keeps four areas separate:
 
@@ -37,6 +73,12 @@ On smaller screens the left navigation becomes a compact two-column menu. Light/
 
 ### Scenario milestones
 
+When an agent-written scoping brief exists, **Your scenario brief** appears as an expanded, paper-style document
+with classic Courier typography above the milestone list. There is no disclosure arrow to find or open.
+A static review cue and highlighted border draw attention when a response or retry is needed.
+The existing **Modify brief**, **Confirm brief**, status and error controls stay with the document.
+No document box appears until a brief is available. This visual treatment does not change confirmation or approval.
+
 Select a scenario in **Build & validate** to see its always-visible, ordered reference milestone checklist:
 description, architecture, diagrams, Bicep, application, local tests, Azure deployment, runtime validation
 and suitability approval. The four hack-authoring stages appear separately in **Create hack**:
@@ -51,6 +93,63 @@ These display-only states use the matching brief response; they do not count as 
 Changed briefs restore the agent-reported wait, and running, failed or completed work is never hidden.
 The original report remains in **Agent-reported steps**.
 Confirmation resumes the normal scenario workflow, starting with requirements and architecture artifacts.
+
+### Start from an existing scenario
+
+While drafting a **New scenario**, a meaningful prompt pause or blur triggers an automatic local catalog comparison.
+Up to three useful suggestions appear below the prompt; no match means no distracting panel.
+Matches can cross industries and explain workflow/architecture overlap, differences, local availability,
+profile freshness and metadata review status. This first pass is deterministic, not an AI verdict.
+An unavailable reference is inspiration-only. Failed comparison never blocks the normal intake buttons.
+Typing or changing selections invalidates pending results; old asynchronous responses cannot replace a newer draft.
+
+Choose **Review match**, then **Use as starting point** to attach its inspected manifest/artifact snapshot.
+Your project name, prompt, industry, business units, services and pattern remain unchanged.
+Both submit buttons then refine the adapted brief before any copying/build. **Keep my original idea** removes
+the attachment and dismisses suggestions for that exact draft; editing the idea permits new suggestions.
+The separate manual **Start from existing** picker retains its original source-prefill behavior.
+
+**Refine with AI** assesses reuse/partial reuse/build fresh in the existing scenario agent and records a
+Recommended starting point in the brief, without selecting it for you or starting another model/session.
+The brief's optional **Compare catalog starting points** control supports a later source choice.
+That choice creates a separate fingerprint-bound selection and requests scoping-only revision in the same chat.
+Confirmation pauses until the agent assesses the selected source and binds a revised brief; fresh confirmation
+is then required. The original request never changes. If delivery fails, the existing Modify brief / Save changes
+controls retry the saved change request; polling never resends it. Building fresh instead is also an explicit revision.
+
+Technical profiles are portable sidecars in [scenarios/reuse-profiles](../scenarios/reuse-profiles),
+outside approved reference folders. Explicit `scenario_match.py enrich` updates them, never portal browsing.
+Extracted metadata stays `needs-review` until explicitly reviewed; code/design mentions are not runtime proof.
+The rebuildable index is [reuse-profiles.json](../scenarios/reuse-profiles.json); manifest v1 remains compatible.
+Automatic discovery requires portal backend **22**; restart the runtime and reload the page to activate it.
+No bridge upgrade is needed beyond the existing brief-continuation/messaging requirements.
+
+In **Create scenario**, two large icon buttons make the starting choice explicit:
+**New scenario** (selected initially) or **Start from existing**.
+Choose **Start from existing** to reveal the source picker, select a local reference and choose
+**Modify brief from source**. Its brief and catalog selections populate the same editable intake;
+the refined source brief (or requirements when no scoping brief exists) remains visible.
+The source file inventory stays internal for artifact validation; it is not shown in the brief editor.
+If the full brief exceeds the intake's 6000-character limit, the editable prompt uses the original saved intake
+and explicitly labels the full brief as reference-only.
+Give the target a new project name and change its industry, business units, prompt and other selections.
+**Use as new idea instead** clears source reuse while retaining the edited intake.
+Selecting **New scenario** does the same without discarding the form's current text and selections.
+Choosing either entry option never starts an agent, copies files or grants approval.
+The existing option requires loading a source before submitting, so it cannot silently create an unrelated new idea.
+
+Both submit buttons send adaptations to the existing scoping flow. Use **Modify brief** and **Confirm brief**
+as usual. No workspace or files are copied during scoping.
+After confirmation, `az-01-conductor` uses the `az-scenario-adapt` skill to prepare an isolated copy and compare
+the copied artifacts with the revised brief. It preserves fitting app/infrastructure/design files and changes
+only affected surfaces, including target-domain sample data and tests. This is not a separate agent or pipeline.
+
+Source selection is bound to the manifest, brief and reusable file hashes. If any change before save or preparation,
+reload the source and review again. Inferred metadata stays visibly `needs-review`;
+unavailable references cannot be selected. Credential-pattern matches and nested artifact links block reuse.
+Environment settings, parameter-value files, build outputs, packages, approval/consent records and runtime/deployment
+evidence are not copied. The source remains untouched, and normal target design, deployment and suitability gates apply.
+The baseline and reconciliation reports prove file-copy/change decisions only, never runtime success.
 
 The checklist reads existing reports without rewriting scenario evidence. Existing source files without a report
 are marked **Artifacts available**, not completed or tested. Suitability uses the current fingerprint-checked approval;
@@ -86,7 +185,7 @@ See [the prerequisite guide](../PREREQUISITES.md).
 
 ## User flow
 
-1. Start with `Start-ABCBuilder.cmd` or `python scripts\start_portal.py`.
+1. Start with `Start-FBCBuilder.cmd` or `python scripts\start_portal.py`.
 1. Enter the scenario prompt, project slug, industry, workflow pattern and optional services/priorities.
 1. Optionally select **Refine with AI**. The agent interprets the prompt, spots architectural gaps/edge cases,
    and asks a few tailored questions in VS Code chat, not a predefined questionnaire in the browser.
@@ -118,7 +217,7 @@ See [the prerequisite guide](../PREREQUISITES.md).
    Open `HackCreator Agent` as a separate VS Code context to derive and validate the hack.
 1. Browse scenario/learner/private coach files and download separate learner/coach ZIP exports.
 
-On Windows, a newly started portal opens a console titled **ABC Builder - Browser App Runtime**.
+On Windows, a newly started portal opens a console titled **FBC Builder - Browser App Runtime**.
 Keep that window open while using the browser app; closing it stops the portal. You can minimize it.
 The console shows a static runtime notice; diagnostic output continues to go to the portal's `server.log`.
 Opening the launcher again reuses the existing healthy runtime rather than opening another runtime console.
@@ -140,7 +239,7 @@ Missing or ambiguous evidence produces an explicit error, never an arbitrary ass
 
 Once a phase has been launched, an unlinked follow-up resolves its recorded trace instead of creating a duplicate.
 A missing extension or failed reopen never silently starts a replacement chat.
-The editor's **ABC Builder: Link Existing Chat to Scenario** command remains an optional advanced repair action.
+The editor's **FBC Builder: Link Existing Chat to Scenario** command remains an optional advanced repair action.
 The bridge acknowledges reopening; it never submits a prompt or approves anything.
 On Windows, activation uses the registered editor protocol directly, not a CLI URI relay.
 Permissions, authentication, tool execution and decisions remain in the real editor session.
@@ -183,7 +282,8 @@ Pattern selection does not approve architecture, deployment or hack authoring.
 
 Use the header's **Appearance** selector for **System**, **Light** or **Dark**.
 System follows the operating system, including changes while the page is open.
-Explicit choices reuse the existing `abcbuilder-theme` browser preference across reloads and tabs.
+Explicit choices use the `fbcbuilder-theme` browser preference across reloads and tabs.
+After the FBC migration, choose Light or Dark again if desired; the first visit follows the system theme.
 Selecting System removes the override. If browser storage is blocked, the choice still applies to the
 current tab and the portal displays a notice.
 
@@ -256,7 +356,7 @@ Changed review content or progress invalidates the display fingerprint and requi
 The fingerprint is a stale-display guard, not an authorization receipt.
 
 For the same scenario, handoffs include actual authorization and answered-decision history from **both**
-`.hackbuilder-portal/projects/<slug>.json` and `.abcbuilder-portal/projects/<slug>.json`, with source provenance.
+`.hackbuilder-portal/projects/<slug>.json` and `.fbcbuilder-portal/projects/<slug>.json`, with source provenance.
 Neither migration nor a legacy runner lease, timer or initial intake default revokes a later explicit user grant.
 The agent reconciles chronology, exact targets, operation scope and actual restrictions, then continues matching
 authorized work without routine reapproval. Later explicit restrictions, genuinely changed scope and actual
@@ -271,7 +371,7 @@ Agents write small JSON reports at stage changes:
 python scripts\portal_status.py finance-example --stage bicep --status running --summary "Creating infrastructure"
 ```
 
-The helper atomically updates `.abcbuilder-portal\scenarios\<slug>\status.json`
+The helper atomically updates `.fbcbuilder-portal\scenarios\<slug>\status.json`
 (existing installations using `.hackbuilder-portal` retain that directory).
 The same folder contains the saved request and handoff text.
 The status contains `stage`, `status`, `summary`, `updatedAtUtc` and a `steps` map.
@@ -319,7 +419,7 @@ No Azure resource or permission is changed by this migration.
 
 `portal_visualizer.py` and `visualizer.html/js/css` are the active implementation.
 The retired CLI-runner server, workflow engine, dashboard assets and runner-only tests have been removed.
-Use `start_portal.py` or `Start-ABCBuilder.cmd`; there is no alternate runner entry point.
+Use `start_portal.py` or `Start-FBCBuilder.cmd`; there is no alternate runner entry point.
 Private historical state remains local and is still read for authorization continuity, without executing old jobs.
 
 ## Validation

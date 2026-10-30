@@ -1,4 +1,4 @@
-# ABC Builder customization and execution map
+# FBC Builder customization and execution map
 
 ## One workflow, three phases
 
@@ -47,10 +47,11 @@ content lives in the authoring skill's `references/composition-procedure.md`.
 
 ## Skills: canonical procedures and resources
 
-ABC Builder is the product name. `az-01-conductor`, `HackCreator Agent`,
+FBC Builder is the product name. `az-01-conductor`, `HackCreator Agent`,
 canonical skill folder IDs, executable script names and environment variables
 remain stable compatibility APIs; branding does not rename them.
-See the [ABC Builder overview](ABC-Builder-README.md).
+See the [FBC Builder how-to guide](FBC-Builder-HOWTO.md) and
+[FBCBuilder DEV Guide](FBCBuilder-DEV-Guide.md).
 
 Canonical reusable knowledge lives under [`.github/skills/`](.github/skills/).
 Discoverable skills use `<name>/SKILL.md`, with matching folder and skill names.
@@ -301,3 +302,17 @@ deployment or deterministic LLM compliance. Test the new end-to-end agent flow
 in a fresh chat against an explicitly authorized Azure target.
 
 [foundry-setup]: https://learn.microsoft.com/azure/foundry/agents/environment-setup
+
+## Start-from-existing scenario skill
+
+The canonical [az-scenario-adapt skill](.github/skills/az-scenario-adapt/SKILL.md) runs directly inside
+`az-01-conductor`; it adds no agent context or delegation.
+The portal's source picker preloads editable intake and the source brief, then uses the existing
+scoping conversation and brief confirmation. After confirmation, the conductor prepares an isolated,
+fingerprint-bound artifact copy and reconciles keep/change/remove decisions through the normal workflow.
+Source files stay read-only; source cloud state, consent, approvals and runtime success never transfer.
+
+`scripts\scenario_adapt.py` provides read-only preview, empty-target preparation and hash-checked reconciliation.
+The new skill is discoverable and explicitly referenced by adaptation handoffs and the workflow contract.
+Local automated tests and browser checks verify these integration surfaces, not actual skill invocation,
+scenario-agent execution or cloud deployment.
