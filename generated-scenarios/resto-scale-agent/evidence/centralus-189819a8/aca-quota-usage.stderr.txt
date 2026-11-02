@@ -1,0 +1,1 @@
+ERROR: Bad Request({"error":{"code":"MissingRegistrationForResourceProvider","message":"The subscription is not in registered state for the resource provider: Microsoft.Quota."}})

@@ -1,0 +1,2755 @@
+{
+  "value": [
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/global/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "global",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 0,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/australiaeast/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/Standard",
+      "location": "australiaeast",
+      "name": "Standard",
+      "properties": {
+        "availableCapacity": 5000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "Standard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/australiaeast/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalStandard",
+      "location": "australiaeast",
+      "name": "GlobalStandard",
+      "properties": {
+        "availableCapacity": 4960,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/australiaeast/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DeveloperTier",
+      "location": "australiaeast",
+      "name": "DeveloperTier",
+      "properties": {
+        "availableCapacity": 0,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DeveloperTier"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/australiaeast/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "australiaeast",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/australiaeast/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/ProvisionedManaged",
+      "location": "australiaeast",
+      "name": "ProvisionedManaged",
+      "properties": {
+        "availableCapacity": 50,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "ProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/australiaeast/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalBatch",
+      "location": "australiaeast",
+      "name": "GlobalBatch",
+      "properties": {
+        "availableCapacity": 1000000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/brazilsouth/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalStandard",
+      "location": "brazilsouth",
+      "name": "GlobalStandard",
+      "properties": {
+        "availableCapacity": 4960,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/brazilsouth/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DeveloperTier",
+      "location": "brazilsouth",
+      "name": "DeveloperTier",
+      "properties": {
+        "availableCapacity": 0,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DeveloperTier"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/brazilsouth/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "brazilsouth",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/brazilsouth/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/ProvisionedManaged",
+      "location": "brazilsouth",
+      "name": "ProvisionedManaged",
+      "properties": {
+        "availableCapacity": 50,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "ProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/brazilsouth/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalBatch",
+      "location": "brazilsouth",
+      "name": "GlobalBatch",
+      "properties": {
+        "availableCapacity": 1000000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/westus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/Standard",
+      "location": "westus",
+      "name": "Standard",
+      "properties": {
+        "availableCapacity": 5000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "Standard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/westus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalStandard",
+      "location": "westus",
+      "name": "GlobalStandard",
+      "properties": {
+        "availableCapacity": 4960,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/westus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneStandard",
+      "location": "westus",
+      "name": "DataZoneStandard",
+      "properties": {
+        "availableCapacity": 2000,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/westus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DeveloperTier",
+      "location": "westus",
+      "name": "DeveloperTier",
+      "properties": {
+        "availableCapacity": 0,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DeveloperTier"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/westus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "westus",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/westus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/ProvisionedManaged",
+      "location": "westus",
+      "name": "ProvisionedManaged",
+      "properties": {
+        "availableCapacity": 50,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "ProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/westus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneProvisionedManaged",
+      "location": "westus",
+      "name": "DataZoneProvisionedManaged",
+      "properties": {
+        "availableCapacity": 50,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/westus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalBatch",
+      "location": "westus",
+      "name": "GlobalBatch",
+      "properties": {
+        "availableCapacity": 1000000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/westus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneBatch",
+      "location": "westus",
+      "name": "DataZoneBatch",
+      "properties": {
+        "availableCapacity": 100000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/westeurope/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/Standard",
+      "location": "westeurope",
+      "name": "Standard",
+      "properties": {
+        "availableCapacity": 5000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "Standard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/westeurope/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalStandard",
+      "location": "westeurope",
+      "name": "GlobalStandard",
+      "properties": {
+        "availableCapacity": 4960,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/westeurope/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneStandard",
+      "location": "westeurope",
+      "name": "DataZoneStandard",
+      "properties": {
+        "availableCapacity": 2000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/westeurope/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DeveloperTier",
+      "location": "westeurope",
+      "name": "DeveloperTier",
+      "properties": {
+        "availableCapacity": 0,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DeveloperTier"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/westeurope/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "westeurope",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/westeurope/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneProvisionedManaged",
+      "location": "westeurope",
+      "name": "DataZoneProvisionedManaged",
+      "properties": {
+        "availableCapacity": 50,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/westeurope/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalBatch",
+      "location": "westeurope",
+      "name": "GlobalBatch",
+      "properties": {
+        "availableCapacity": 1000000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/westeurope/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneBatch",
+      "location": "westeurope",
+      "name": "DataZoneBatch",
+      "properties": {
+        "availableCapacity": 100000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/northeurope/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "northeurope",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/southeastasia/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalStandard",
+      "location": "southeastasia",
+      "name": "GlobalStandard",
+      "properties": {
+        "availableCapacity": 4960,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/southeastasia/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DeveloperTier",
+      "location": "southeastasia",
+      "name": "DeveloperTier",
+      "properties": {
+        "availableCapacity": 0,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DeveloperTier"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/southeastasia/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "southeastasia",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/eastasia/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "eastasia",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 0,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/southcentralus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/Standard",
+      "location": "southcentralus",
+      "name": "Standard",
+      "properties": {
+        "availableCapacity": 5000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "Standard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/southcentralus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalStandard",
+      "location": "southcentralus",
+      "name": "GlobalStandard",
+      "properties": {
+        "availableCapacity": 4960,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/southcentralus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneStandard",
+      "location": "southcentralus",
+      "name": "DataZoneStandard",
+      "properties": {
+        "availableCapacity": 2000,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/southcentralus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DeveloperTier",
+      "location": "southcentralus",
+      "name": "DeveloperTier",
+      "properties": {
+        "availableCapacity": 0,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DeveloperTier"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/southcentralus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "southcentralus",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/southcentralus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/ProvisionedManaged",
+      "location": "southcentralus",
+      "name": "ProvisionedManaged",
+      "properties": {
+        "availableCapacity": 50,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "ProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/southcentralus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneProvisionedManaged",
+      "location": "southcentralus",
+      "name": "DataZoneProvisionedManaged",
+      "properties": {
+        "availableCapacity": 50,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/southcentralus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalBatch",
+      "location": "southcentralus",
+      "name": "GlobalBatch",
+      "properties": {
+        "availableCapacity": 1000000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/southcentralus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneBatch",
+      "location": "southcentralus",
+      "name": "DataZoneBatch",
+      "properties": {
+        "availableCapacity": 100000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/eastus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/Standard",
+      "location": "eastus",
+      "name": "Standard",
+      "properties": {
+        "availableCapacity": 5000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "Standard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/eastus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalStandard",
+      "location": "eastus",
+      "name": "GlobalStandard",
+      "properties": {
+        "availableCapacity": 4960,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/eastus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneStandard",
+      "location": "eastus",
+      "name": "DataZoneStandard",
+      "properties": {
+        "availableCapacity": 2000,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/eastus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DeveloperTier",
+      "location": "eastus",
+      "name": "DeveloperTier",
+      "properties": {
+        "availableCapacity": 0,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DeveloperTier"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/eastus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "eastus",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/eastus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/ProvisionedManaged",
+      "location": "eastus",
+      "name": "ProvisionedManaged",
+      "properties": {
+        "availableCapacity": 50,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "ProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/eastus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneProvisionedManaged",
+      "location": "eastus",
+      "name": "DataZoneProvisionedManaged",
+      "properties": {
+        "availableCapacity": 50,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/eastus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalBatch",
+      "location": "eastus",
+      "name": "GlobalBatch",
+      "properties": {
+        "availableCapacity": 1000000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/eastus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneBatch",
+      "location": "eastus",
+      "name": "DataZoneBatch",
+      "properties": {
+        "availableCapacity": 100000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/eastus2/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/Standard",
+      "location": "eastus2",
+      "name": "Standard",
+      "properties": {
+        "availableCapacity": 5000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "Standard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/eastus2/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalStandard",
+      "location": "eastus2",
+      "name": "GlobalStandard",
+      "properties": {
+        "availableCapacity": 4960,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/eastus2/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneStandard",
+      "location": "eastus2",
+      "name": "DataZoneStandard",
+      "properties": {
+        "availableCapacity": 2000,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/eastus2/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DeveloperTier",
+      "location": "eastus2",
+      "name": "DeveloperTier",
+      "properties": {
+        "availableCapacity": 0,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DeveloperTier"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/eastus2/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "eastus2",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/eastus2/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/ProvisionedManaged",
+      "location": "eastus2",
+      "name": "ProvisionedManaged",
+      "properties": {
+        "availableCapacity": 50,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "ProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/eastus2/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneProvisionedManaged",
+      "location": "eastus2",
+      "name": "DataZoneProvisionedManaged",
+      "properties": {
+        "availableCapacity": 50,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/eastus2/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalBatch",
+      "location": "eastus2",
+      "name": "GlobalBatch",
+      "properties": {
+        "availableCapacity": 1000000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/eastus2/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneBatch",
+      "location": "eastus2",
+      "name": "DataZoneBatch",
+      "properties": {
+        "availableCapacity": 100000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/canadacentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalStandard",
+      "location": "canadacentral",
+      "name": "GlobalStandard",
+      "properties": {
+        "availableCapacity": 0,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/canadacentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DeveloperTier",
+      "location": "canadacentral",
+      "name": "DeveloperTier",
+      "properties": {
+        "availableCapacity": 0,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DeveloperTier"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/canadacentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "canadacentral",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/japaneast/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/Standard",
+      "location": "japaneast",
+      "name": "Standard",
+      "properties": {
+        "availableCapacity": 5000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "Standard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/japaneast/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalStandard",
+      "location": "japaneast",
+      "name": "GlobalStandard",
+      "properties": {
+        "availableCapacity": 4960,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/japaneast/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DeveloperTier",
+      "location": "japaneast",
+      "name": "DeveloperTier",
+      "properties": {
+        "availableCapacity": 0,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DeveloperTier"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/japaneast/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "japaneast",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/japaneast/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/ProvisionedManaged",
+      "location": "japaneast",
+      "name": "ProvisionedManaged",
+      "properties": {
+        "availableCapacity": 50,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "ProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/japaneast/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalBatch",
+      "location": "japaneast",
+      "name": "GlobalBatch",
+      "properties": {
+        "availableCapacity": 1000000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/centralindia/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "centralindia",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 0,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/uksouth/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/Standard",
+      "location": "uksouth",
+      "name": "Standard",
+      "properties": {
+        "availableCapacity": 5000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "Standard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/uksouth/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalStandard",
+      "location": "uksouth",
+      "name": "GlobalStandard",
+      "properties": {
+        "availableCapacity": 4960,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/uksouth/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DeveloperTier",
+      "location": "uksouth",
+      "name": "DeveloperTier",
+      "properties": {
+        "availableCapacity": 0,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DeveloperTier"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/uksouth/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "uksouth",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/uksouth/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/ProvisionedManaged",
+      "location": "uksouth",
+      "name": "ProvisionedManaged",
+      "properties": {
+        "availableCapacity": 50,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "ProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/uksouth/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalBatch",
+      "location": "uksouth",
+      "name": "GlobalBatch",
+      "properties": {
+        "availableCapacity": 1000000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/koreacentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalStandard",
+      "location": "koreacentral",
+      "name": "GlobalStandard",
+      "properties": {
+        "availableCapacity": 4960,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/koreacentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DeveloperTier",
+      "location": "koreacentral",
+      "name": "DeveloperTier",
+      "properties": {
+        "availableCapacity": 0,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DeveloperTier"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/koreacentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "koreacentral",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/koreacentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/ProvisionedManaged",
+      "location": "koreacentral",
+      "name": "ProvisionedManaged",
+      "properties": {
+        "availableCapacity": 50,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "ProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/koreacentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalBatch",
+      "location": "koreacentral",
+      "name": "GlobalBatch",
+      "properties": {
+        "availableCapacity": 1000000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/francecentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/Standard",
+      "location": "francecentral",
+      "name": "Standard",
+      "properties": {
+        "availableCapacity": 5000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "Standard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/francecentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalStandard",
+      "location": "francecentral",
+      "name": "GlobalStandard",
+      "properties": {
+        "availableCapacity": 4960,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/francecentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneStandard",
+      "location": "francecentral",
+      "name": "DataZoneStandard",
+      "properties": {
+        "availableCapacity": 2000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/francecentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DeveloperTier",
+      "location": "francecentral",
+      "name": "DeveloperTier",
+      "properties": {
+        "availableCapacity": 0,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DeveloperTier"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/francecentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "francecentral",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/francecentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneProvisionedManaged",
+      "location": "francecentral",
+      "name": "DataZoneProvisionedManaged",
+      "properties": {
+        "availableCapacity": 50,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/francecentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalBatch",
+      "location": "francecentral",
+      "name": "GlobalBatch",
+      "properties": {
+        "availableCapacity": 1000000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/francecentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneBatch",
+      "location": "francecentral",
+      "name": "DataZoneBatch",
+      "properties": {
+        "availableCapacity": 100000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/northcentralus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/Standard",
+      "location": "northcentralus",
+      "name": "Standard",
+      "properties": {
+        "availableCapacity": 5000,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "Standard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/northcentralus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalStandard",
+      "location": "northcentralus",
+      "name": "GlobalStandard",
+      "properties": {
+        "availableCapacity": 4960,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/northcentralus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneStandard",
+      "location": "northcentralus",
+      "name": "DataZoneStandard",
+      "properties": {
+        "availableCapacity": 2000,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/northcentralus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DeveloperTier",
+      "location": "northcentralus",
+      "name": "DeveloperTier",
+      "properties": {
+        "availableCapacity": 0,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DeveloperTier"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/northcentralus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "northcentralus",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/northcentralus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/ProvisionedManaged",
+      "location": "northcentralus",
+      "name": "ProvisionedManaged",
+      "properties": {
+        "availableCapacity": 50,
+        "availableFinetuneCapacity": 50,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "ProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/northcentralus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneProvisionedManaged",
+      "location": "northcentralus",
+      "name": "DataZoneProvisionedManaged",
+      "properties": {
+        "availableCapacity": 50,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/northcentralus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalBatch",
+      "location": "northcentralus",
+      "name": "GlobalBatch",
+      "properties": {
+        "availableCapacity": 1000000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/northcentralus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneBatch",
+      "location": "northcentralus",
+      "name": "DataZoneBatch",
+      "properties": {
+        "availableCapacity": 100000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/centralus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalStandard",
+      "location": "centralus",
+      "name": "GlobalStandard",
+      "properties": {
+        "availableCapacity": 4960,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/centralus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneStandard",
+      "location": "centralus",
+      "name": "DataZoneStandard",
+      "properties": {
+        "availableCapacity": 2000,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/centralus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DeveloperTier",
+      "location": "centralus",
+      "name": "DeveloperTier",
+      "properties": {
+        "availableCapacity": 0,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DeveloperTier"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/centralus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "centralus",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/centralus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalBatch",
+      "location": "centralus",
+      "name": "GlobalBatch",
+      "properties": {
+        "availableCapacity": 1000000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/centralus/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneBatch",
+      "location": "centralus",
+      "name": "DataZoneBatch",
+      "properties": {
+        "availableCapacity": 100000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/southafricanorth/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalStandard",
+      "location": "southafricanorth",
+      "name": "GlobalStandard",
+      "properties": {
+        "availableCapacity": 4960,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/southafricanorth/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DeveloperTier",
+      "location": "southafricanorth",
+      "name": "DeveloperTier",
+      "properties": {
+        "availableCapacity": 0,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DeveloperTier"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/southafricanorth/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "southafricanorth",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/southafricanorth/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalBatch",
+      "location": "southafricanorth",
+      "name": "GlobalBatch",
+      "properties": {
+        "availableCapacity": 1000000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/uaenorth/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalStandard",
+      "location": "uaenorth",
+      "name": "GlobalStandard",
+      "properties": {
+        "availableCapacity": 4960,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/uaenorth/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DeveloperTier",
+      "location": "uaenorth",
+      "name": "DeveloperTier",
+      "properties": {
+        "availableCapacity": 0,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DeveloperTier"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/uaenorth/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "uaenorth",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/swedencentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/Standard",
+      "location": "swedencentral",
+      "name": "Standard",
+      "properties": {
+        "availableCapacity": 5000,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "Standard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/swedencentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalStandard",
+      "location": "swedencentral",
+      "name": "GlobalStandard",
+      "properties": {
+        "availableCapacity": 4960,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/swedencentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneStandard",
+      "location": "swedencentral",
+      "name": "DataZoneStandard",
+      "properties": {
+        "availableCapacity": 2000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/swedencentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DeveloperTier",
+      "location": "swedencentral",
+      "name": "DeveloperTier",
+      "properties": {
+        "availableCapacity": 0,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DeveloperTier"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/swedencentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "swedencentral",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/swedencentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/ProvisionedManaged",
+      "location": "swedencentral",
+      "name": "ProvisionedManaged",
+      "properties": {
+        "availableCapacity": 50,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "ProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/swedencentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneProvisionedManaged",
+      "location": "swedencentral",
+      "name": "DataZoneProvisionedManaged",
+      "properties": {
+        "availableCapacity": 50,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/swedencentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalBatch",
+      "location": "swedencentral",
+      "name": "GlobalBatch",
+      "properties": {
+        "availableCapacity": 1000000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/swedencentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneBatch",
+      "location": "swedencentral",
+      "name": "DataZoneBatch",
+      "properties": {
+        "availableCapacity": 100000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/switzerlandnorth/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/Standard",
+      "location": "switzerlandnorth",
+      "name": "Standard",
+      "properties": {
+        "availableCapacity": 5000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "Standard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/switzerlandnorth/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalStandard",
+      "location": "switzerlandnorth",
+      "name": "GlobalStandard",
+      "properties": {
+        "availableCapacity": 4960,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/switzerlandnorth/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DeveloperTier",
+      "location": "switzerlandnorth",
+      "name": "DeveloperTier",
+      "properties": {
+        "availableCapacity": 0,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DeveloperTier"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/switzerlandnorth/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "switzerlandnorth",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/switzerlandnorth/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/ProvisionedManaged",
+      "location": "switzerlandnorth",
+      "name": "ProvisionedManaged",
+      "properties": {
+        "availableCapacity": 50,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "ProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/switzerlandnorth/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalBatch",
+      "location": "switzerlandnorth",
+      "name": "GlobalBatch",
+      "properties": {
+        "availableCapacity": 1000000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/switzerlandwest/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalStandard",
+      "location": "switzerlandwest",
+      "name": "GlobalStandard",
+      "properties": {
+        "availableCapacity": 0,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/switzerlandwest/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DeveloperTier",
+      "location": "switzerlandwest",
+      "name": "DeveloperTier",
+      "properties": {
+        "availableCapacity": 0,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DeveloperTier"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/switzerlandwest/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "switzerlandwest",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/germanywestcentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalStandard",
+      "location": "germanywestcentral",
+      "name": "GlobalStandard",
+      "properties": {
+        "availableCapacity": 4960,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/germanywestcentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneStandard",
+      "location": "germanywestcentral",
+      "name": "DataZoneStandard",
+      "properties": {
+        "availableCapacity": 2000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/germanywestcentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DeveloperTier",
+      "location": "germanywestcentral",
+      "name": "DeveloperTier",
+      "properties": {
+        "availableCapacity": 0,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DeveloperTier"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/germanywestcentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "germanywestcentral",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/germanywestcentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneProvisionedManaged",
+      "location": "germanywestcentral",
+      "name": "DataZoneProvisionedManaged",
+      "properties": {
+        "availableCapacity": 50,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/germanywestcentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalBatch",
+      "location": "germanywestcentral",
+      "name": "GlobalBatch",
+      "properties": {
+        "availableCapacity": 1000000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/germanywestcentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneBatch",
+      "location": "germanywestcentral",
+      "name": "DataZoneBatch",
+      "properties": {
+        "availableCapacity": 100000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/norwayeast/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalStandard",
+      "location": "norwayeast",
+      "name": "GlobalStandard",
+      "properties": {
+        "availableCapacity": 4960,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/norwayeast/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DeveloperTier",
+      "location": "norwayeast",
+      "name": "DeveloperTier",
+      "properties": {
+        "availableCapacity": 0,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DeveloperTier"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/norwayeast/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "norwayeast",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/norwayeast/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalBatch",
+      "location": "norwayeast",
+      "name": "GlobalBatch",
+      "properties": {
+        "availableCapacity": 1000000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/westus3/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/Standard",
+      "location": "westus3",
+      "name": "Standard",
+      "properties": {
+        "availableCapacity": 5000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "Standard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/westus3/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalStandard",
+      "location": "westus3",
+      "name": "GlobalStandard",
+      "properties": {
+        "availableCapacity": 4960,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/westus3/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneStandard",
+      "location": "westus3",
+      "name": "DataZoneStandard",
+      "properties": {
+        "availableCapacity": 2000,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/westus3/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DeveloperTier",
+      "location": "westus3",
+      "name": "DeveloperTier",
+      "properties": {
+        "availableCapacity": 0,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DeveloperTier"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/westus3/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "westus3",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/westus3/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/ProvisionedManaged",
+      "location": "westus3",
+      "name": "ProvisionedManaged",
+      "properties": {
+        "availableCapacity": 50,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "ProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/westus3/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneProvisionedManaged",
+      "location": "westus3",
+      "name": "DataZoneProvisionedManaged",
+      "properties": {
+        "availableCapacity": 50,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/westus3/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalBatch",
+      "location": "westus3",
+      "name": "GlobalBatch",
+      "properties": {
+        "availableCapacity": 1000000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/westus3/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneBatch",
+      "location": "westus3",
+      "name": "DataZoneBatch",
+      "properties": {
+        "availableCapacity": 100000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/jioindiawest/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "jioindiawest",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/canadaeast/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/Standard",
+      "location": "canadaeast",
+      "name": "Standard",
+      "properties": {
+        "availableCapacity": 5000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "Standard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/canadaeast/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalStandard",
+      "location": "canadaeast",
+      "name": "GlobalStandard",
+      "properties": {
+        "availableCapacity": 4960,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/canadaeast/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DeveloperTier",
+      "location": "canadaeast",
+      "name": "DeveloperTier",
+      "properties": {
+        "availableCapacity": 0,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DeveloperTier"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/canadaeast/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "canadaeast",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/canadaeast/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalBatch",
+      "location": "canadaeast",
+      "name": "GlobalBatch",
+      "properties": {
+        "availableCapacity": 1000000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/polandcentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalStandard",
+      "location": "polandcentral",
+      "name": "GlobalStandard",
+      "properties": {
+        "availableCapacity": 4960,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/polandcentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneStandard",
+      "location": "polandcentral",
+      "name": "DataZoneStandard",
+      "properties": {
+        "availableCapacity": 2000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/polandcentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DeveloperTier",
+      "location": "polandcentral",
+      "name": "DeveloperTier",
+      "properties": {
+        "availableCapacity": 0,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DeveloperTier"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/polandcentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "polandcentral",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/polandcentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneProvisionedManaged",
+      "location": "polandcentral",
+      "name": "DataZoneProvisionedManaged",
+      "properties": {
+        "availableCapacity": 50,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/polandcentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalBatch",
+      "location": "polandcentral",
+      "name": "GlobalBatch",
+      "properties": {
+        "availableCapacity": 1000000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/polandcentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneBatch",
+      "location": "polandcentral",
+      "name": "DataZoneBatch",
+      "properties": {
+        "availableCapacity": 100000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/southindia/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/Standard",
+      "location": "southindia",
+      "name": "Standard",
+      "properties": {
+        "availableCapacity": 5000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "Standard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/southindia/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalStandard",
+      "location": "southindia",
+      "name": "GlobalStandard",
+      "properties": {
+        "availableCapacity": 4960,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/southindia/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DeveloperTier",
+      "location": "southindia",
+      "name": "DeveloperTier",
+      "properties": {
+        "availableCapacity": 0,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DeveloperTier"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/southindia/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "southindia",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/southindia/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/ProvisionedManaged",
+      "location": "southindia",
+      "name": "ProvisionedManaged",
+      "properties": {
+        "availableCapacity": 50,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "ProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/southindia/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalBatch",
+      "location": "southindia",
+      "name": "GlobalBatch",
+      "properties": {
+        "availableCapacity": 1000000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalBatch"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/italynorth/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalStandard",
+      "location": "italynorth",
+      "name": "GlobalStandard",
+      "properties": {
+        "availableCapacity": 4960,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/italynorth/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneStandard",
+      "location": "italynorth",
+      "name": "DataZoneStandard",
+      "properties": {
+        "availableCapacity": 2000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/italynorth/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DeveloperTier",
+      "location": "italynorth",
+      "name": "DeveloperTier",
+      "properties": {
+        "availableCapacity": 0,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DeveloperTier"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/italynorth/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "italynorth",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/spaincentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalStandard",
+      "location": "spaincentral",
+      "name": "GlobalStandard",
+      "properties": {
+        "availableCapacity": 4960,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/spaincentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneStandard",
+      "location": "spaincentral",
+      "name": "DataZoneStandard",
+      "properties": {
+        "availableCapacity": 2000,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneStandard"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/spaincentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DeveloperTier",
+      "location": "spaincentral",
+      "name": "DeveloperTier",
+      "properties": {
+        "availableCapacity": 0,
+        "availableFinetuneCapacity": 500,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DeveloperTier"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/spaincentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "spaincentral",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/spaincentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/DataZoneProvisionedManaged",
+      "location": "spaincentral",
+      "name": "DataZoneProvisionedManaged",
+      "properties": {
+        "availableCapacity": 50,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "DataZoneProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/jioindiacentral/models/OpenAI.gpt-4.1-mini.2025-04-14/skuCapacities/GlobalProvisionedManaged",
+      "location": "jioindiacentral",
+      "name": "GlobalProvisionedManaged",
+      "properties": {
+        "availableCapacity": 100,
+        "model": {
+          "format": "OpenAI",
+          "name": "gpt-4.1-mini",
+          "version": "2025-04-14"
+        },
+        "skuName": "GlobalProvisionedManaged"
+      },
+      "type": "Microsoft.CognitiveServices/locations/models/skuCapacities"
+    }
+  ]
+}

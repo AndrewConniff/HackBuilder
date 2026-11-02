@@ -1,0 +1,260 @@
+{
+  "checkedAtUtc": "2026-10-26T02:11:10.2886858+00:00",
+  "passed": 63,
+  "checks": [
+    {
+      "name": "unknown local account denied",
+      "passed": true
+    },
+    {
+      "name": "bad local password 1 denied",
+      "passed": true
+    },
+    {
+      "name": "bad local password 2 denied",
+      "passed": true
+    },
+    {
+      "name": "bad local password 3 denied",
+      "passed": true
+    },
+    {
+      "name": "bad local password 4 denied",
+      "passed": true
+    },
+    {
+      "name": "bad local password 5 denied",
+      "passed": true
+    },
+    {
+      "name": "correct password cannot bypass lockout",
+      "passed": true
+    },
+    {
+      "name": "local login after lockout preserves Tacoma-only role",
+      "passed": true
+    },
+    {
+      "name": "current session validated against durable account",
+      "passed": true
+    },
+    {
+      "name": "rotated account invalidates old session",
+      "passed": true
+    },
+    {
+      "name": "25 site-owned equipment records",
+      "passed": true
+    },
+    {
+      "name": "real publisher fixture has two fresh readings and one expired reading",
+      "passed": true
+    },
+    {
+      "name": "real publisher fixture uses unique message IDs",
+      "passed": true
+    },
+    {
+      "name": "only Tacoma authorized",
+      "passed": true
+    },
+    {
+      "name": "forged Spokane site denied",
+      "passed": true
+    },
+    {
+      "name": "object routed envelope",
+      "passed": true
+    },
+    {
+      "name": "base64 routed envelope",
+      "passed": true
+    },
+    {
+      "name": "payload cannot spoof device",
+      "passed": true
+    },
+    {
+      "name": "future skew over two minutes",
+      "passed": true
+    },
+    {
+      "name": "measurement range rejected",
+      "passed": true
+    },
+    {
+      "name": "exact 120-minute boundary excluded",
+      "passed": true
+    },
+    {
+      "name": "119-minute evidence included",
+      "passed": true
+    },
+    {
+      "name": "replay deduplicated",
+      "passed": true
+    },
+    {
+      "name": "conflicting replay rejected",
+      "passed": true
+    },
+    {
+      "name": "deterministic vibration trend",
+      "passed": true
+    },
+    {
+      "name": "expired event cannot alter maximum",
+      "passed": true
+    },
+    {
+      "name": "scoped expiry diagnostic reports actual excluded records",
+      "passed": true
+    },
+    {
+      "name": "cache-filtered expiry counts survive without exposing other equipment",
+      "passed": true
+    },
+    {
+      "name": "exact count and temperature",
+      "passed": true
+    },
+    {
+      "name": "five-minute stopped device is stale",
+      "passed": true
+    },
+    {
+      "name": "expired-only data reports gaps",
+      "passed": true
+    },
+    {
+      "name": "window over 120 rejected",
+      "passed": true
+    },
+    {
+      "name": "unknown device clarified",
+      "passed": true
+    },
+    {
+      "name": "verified citation accepted",
+      "passed": true
+    },
+    {
+      "name": "invented citation rejected",
+      "passed": true
+    },
+    {
+      "name": "ungrounded answer rejected",
+      "passed": true
+    },
+    {
+      "name": "final-response freshness rechecked",
+      "passed": true
+    },
+    {
+      "name": "advisory refusal permitted without fabricated readings",
+      "passed": true
+    },
+    {
+      "name": "cleanup deletes fully expired settled batch",
+      "passed": true
+    },
+    {
+      "name": "cleanup preserves active writer",
+      "passed": true
+    },
+    {
+      "name": "cleanup preserves fresh event in old batch",
+      "passed": true
+    },
+    {
+      "name": "invalid batch requires 130-minute quarantine",
+      "passed": true
+    },
+    {
+      "name": "cleanup recovers expired batch after outage",
+      "passed": true
+    },
+    {
+      "name": "unknown tool rejected without network",
+      "passed": true
+    },
+    {
+      "name": "tool site forgery rejected without network",
+      "passed": true
+    },
+    {
+      "name": "unexpected tool argument rejected",
+      "passed": true
+    },
+    {
+      "name": "specific device cannot be null",
+      "passed": true
+    },
+    {
+      "name": "array arguments rejected before network",
+      "passed": true
+    },
+    {
+      "name": "nonstring site rejected before network",
+      "passed": true
+    },
+    {
+      "name": "fractional window rejected before network",
+      "passed": true
+    },
+    {
+      "name": "oversize window rejected before retrieval",
+      "passed": true
+    },
+    {
+      "name": "cache rejects estimates above 512 MiB",
+      "passed": true
+    },
+    {
+      "name": "120k-event deterministic aggregate under 30s",
+      "passed": true
+    },
+    {
+      "name": "owned loopback server responds",
+      "passed": true
+    },
+    {
+      "name": "branded Razor homepage",
+      "passed": true
+    },
+    {
+      "name": "CSP and no-store headers",
+      "passed": true
+    },
+    {
+      "name": "unauthenticated equipment is 401",
+      "passed": true
+    },
+    {
+      "name": "unauthenticated evidence is 401",
+      "passed": true
+    },
+    {
+      "name": "unauthenticated chat is 401",
+      "passed": true
+    },
+    {
+      "name": "missing configuration visibly disables sign-in",
+      "passed": true
+    },
+    {
+      "name": "missing configuration disables agent submission",
+      "passed": true
+    },
+    {
+      "name": "no horizontal overflow at 1440px",
+      "passed": true
+    },
+    {
+      "name": "no horizontal overflow at 390px",
+      "passed": true
+    }
+  ],
+  "largeFixtureElapsedMs": 493.5608,
+  "liveAzureTested": false
+}

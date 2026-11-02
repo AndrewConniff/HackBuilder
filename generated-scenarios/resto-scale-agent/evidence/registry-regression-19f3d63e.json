@@ -1,0 +1,13 @@
+{
+  "checkedAtUtc": "2026-10-23T22:18:03.953188+00:00",
+  "templateSha256": "21a45d46fbe79e5da6b57d3c874e48bdf56bb39b1898cdf03cdb752884d4f9d7",
+  "wrapperSha256": "ff3f81896cb118d2f7ec102f9ed488f4c6d53784c83dce73266454bf80ba22fe",
+  "checks": {
+    "basicRegistryAuthenticatedPublicAccess": true,
+    "premiumNetworkRuleSetConditionFalse": true,
+    "adminAndAnonymousAccessDisabled": true,
+    "cosmosAndEnvironmentZoneRedundancyRetained": true,
+    "sameSavedEnvironmentAndRegion": true
+  },
+  "scope": "Compiled-input regression checks and wrapper generation only; no Azure operation."
+}

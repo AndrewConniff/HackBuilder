@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "scope": "local_artifact_integrity_only",
+  "checkedAtUtc": "2026-10-24T17:51:25.475674+00:00",
+  "fixtureCount": 12,
+  "checks": {
+    "catalogProvenance": true,
+    "compiledFoundryDirectProject": true,
+    "noCustomerCosmosOrHub": true,
+    "localEvidenceSeparatedFromLive": true,
+    "diagramAndScreenshotPngSignatures": true,
+    "noApprovalOrComposition": true
+  },
+  "liveAzureAcceptance": false
+}

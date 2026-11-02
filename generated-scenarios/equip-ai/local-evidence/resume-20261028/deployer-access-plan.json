@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "status": "proposed-not-deployed",
+  "evidenceDate": "2026-10-28",
+  "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+  "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+  "resourceGroup": "rg-equip-ai",
+  "region": "centralus",
+  "deployingUserObjectId": "214d672b-df87-4f3b-94fd-7863032546c1",
+  "verifiedInheritedRoles": ["Owner", "Foundry User"],
+  "newRoleAssignmentsApplied": false,
+  "newResourcesApplied": false,
+  "proposal": {
+    "reuseVm": "vm-equip-management-equip-ai",
+    "vmSkuChange": false,
+    "guestAdditions": ["xfce4", "xrdp", "browser", "Azure CLI for deploying-user administration"],
+    "entry": "Bastion Standard with native-client tunneling to Linux xrdp",
+    "newResources": ["Bastion Standard", "Standard static public IPv4 for Bastion", "AzureBastionSubnet /26"],
+    "networkChanges": [
+      "Validate a nonoverlapping additional VNet address range and /26 Bastion subnet before deployment",
+      "Allow VM TCP 3389 only from the dedicated Bastion subnet",
+      "Keep VM without public IP and preserve private Foundry/Blob/cleaner endpoints",
+      "Keep existing Run Command and authenticated staging path for unattended operations"
+    ],
+    "identityBoundary": "VM desktop credentials are separate; Azure browser and CLI use the deploying user's own Entra credentials and interactive MFA. No copied tokens, local app identities or workload MI substitute.",
+    "scopeDecisionRequired": true
+  },
+  "cost": {
+    "currency": "USD",
+    "basis": "Public Central US PAYG meters, 730 hours/month; illustration, not invoice or availability guarantee",
+    "bastionGatewayHourly": 0.29,
+    "standardStaticIpv4Hourly": 0.006,
+    "incrementalMonthly": 216.08,
+    "existingIllustrativeMonthly": 249.42,
+    "combinedIllustrativeMonthly": 465.50,
+    "excluded": ["Extra outbound transfer", "Tax", "Additional Bastion scale units"],
+    "shutdown": "VM deallocation does not stop disk, Bastion or public IP charges; delete approved access additions when no longer needed"
+  },
+  "matrix": [
+    {
+      "scope": "Resource group and all scenario resources",
+      "controlPlane": "Verified inherited Owner; do not duplicate or expand",
+      "dataPlane": "Owner does not itself establish service data access",
+      "plannedProof": "Read exact resource inventory and effective permissions; safe disposable tag create/update/delete on the scenario group",
+      "verifiedFromHumanPath": false
+    },
+    {
+      "scope": "Foundry account, direct project and equip-support model",
+      "controlPlane": "Verified inherited Owner",
+      "dataPlane": "Verified inherited Foundry User; do not duplicate",
+      "plannedProof": "Human Foundry browser access; own-user CLI list/model inference and disposable agent/version create/update/delete with owned-name checks",
+      "verifiedFromHumanPath": false
+    },
+    {
+      "scope": "Storage telemetry and accounts containers",
+      "controlPlane": "Verified inherited Owner",
+      "dataPlane": "Read back current container-scoped Storage Blob Data Contributor assignments; keep workload read/write boundaries separate",
+      "plannedProof": "Own-user private list/read and disposable blob create/update/delete in each container without reading or logging account hashes",
+      "verifiedFromHumanPath": false
+    },
+    {
+      "scope": "iot-equip-equipai-kex72v",
+      "controlPlane": "Verified inherited Owner",
+      "dataPlane": "Registry Contributor alone is incomplete; propose IoT Hub Data Contributor 4fc6c259-987e-4a07-842e-c321cc9d413f at this hub only",
+      "plannedProof": "Own-user device list, disposable device create, twin read/update, and conditional owned-device delete",
+      "verifiedFromHumanPath": false
+    },
+    {
+      "scope": "Web, cleaner, management VM, VNet, private DNS/endpoints and route identity",
+      "controlPlane": "Verified inherited Owner; preserve current identity/network settings",
+      "dataPlane": "Separate VM desktop access from interactive Azure sign-in",
+      "plannedProof": "Human Bastion entry, private browser and CLI DNS/TLS, effective administration permission readback",
+      "verifiedFromHumanPath": false
+    },
+    {
+      "scope": "Log Analytics and Application Insights",
+      "controlPlane": "Verified inherited Owner; confirm effective query operations",
+      "dataPlane": "No destructive business-log test or arbitrary purge",
+      "plannedProof": "Own-user bounded scenario log/metric query and effective administration permission readback",
+      "verifiedFromHumanPath": false
+    }
+  ],
+  "sources": [
+    "https://learn.microsoft.com/en-us/azure/bastion/native-client",
+    "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/use-remote-desktop",
+    "https://prices.azure.com/api/retail/prices",
+    "Actual scoped deploying-user assignment readback and IoT Hub Data Contributor role definition on 2026-10-28"
+  ],
+  "pending": [
+    "Explicit approval for new paid human-access/network/guest scope",
+    "Exact Bastion regional readiness, subnet overlap, what-if and desktop capacity validation",
+    "IaC and guest setup implementation after approved design",
+    "Interactive human VM and Azure sign-in",
+    "Full own-user safe CRUD acceptance and cleanup"
+  ]
+}

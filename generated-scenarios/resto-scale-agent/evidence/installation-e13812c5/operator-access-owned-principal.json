@@ -1,0 +1,9 @@
+{
+  "command": "python C:\\azd-projects\\resto-scale-agent\\evidence\\installation-e13812c5\\operator_access.py",
+  "cwd": "C:\\azd-projects\\resto-scale-agent",
+  "startedAtUtc": "2026-10-24T17:41:33.342484+00:00",
+  "checkedAtUtc": "2026-10-24T17:42:02.520705+00:00",
+  "exitCode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"C:\\azd-projects\\resto-scale-agent\\evidence\\installation-e13812c5\\operator_access.py\", line 95, in <module>\n    result = install(Installer(authorization[\"scope\"], path, True), receipt)\n  File \"C:\\azd-projects\\resto-scale-agent\\evidence\\installation-e13812c5\\operator_access.py\", line 75, in install\n    installer.graph(\"post\", \"/oauth2PermissionGrants\", {\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        \"clientId\": client, \"consentType\": \"Principal\", \"principalId\": OPERATOR,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        \"resourceId\": resource, \"scope\": \"access_as_user\",\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    })\n    ^^\n  File \"C:\\azd-projects\\resto-scale-agent\\scripts\\setup_identity.py\", line 70, in graph\n    return self.cli(arguments)\n           ~~~~~~~~^^^^^^^^^^^\n  File \"C:\\azd-projects\\resto-scale-agent\\scripts\\setup_identity.py\", line 56, in cli\n    raise RuntimeError(f\"Azure CLI failed ({result.returncode}): {result.stderr}\")\nRuntimeError: Azure CLI failed (1): ERROR: Forbidden({\"error\":{\"code\":\"Authorization_RequestDenied\",\"message\":\"Insufficient privileges to complete the operation.\",\"innerError\":{\"date\":\"2026-10-24T17:42:00\",\"request-id\":\"da04fa78-673a-4464-a535-17151194801c\",\"client-request-id\":\"da04fa78-673a-4464-a535-17151194801c\"}}})\n\n"
+}

@@ -1,0 +1,12 @@
+{
+  "stage": "architecture",
+  "status": "completed",
+  "summary": "Proposed design assessment complete: isolated transaction/chat/worker apps, three bounded Foundry prompt agents, Cosmos outbox and Premium Service Bus sessions. East US 2 / gpt-5.4-mini is provisional. Design confirmation remains required.",
+  "evidence": [
+    "generated-scenarios\\resto-scale-agent\\02-architecture-assessment.md",
+    "generated-scenarios\\resto-scale-agent\\00-region-availability.json",
+    "generated-scenarios\\resto-scale-agent\\scenario-manifest.json",
+    "python scripts\\scenario_catalog.py refresh generated-scenarios\\resto-scale-agent --metadata generated-scenarios\\resto-scale-agent\\reviewed-metadata.json: errors=[], curated reference metadata.",
+    "Local artifact checks: JSON parsed; requirements and architecture H2 headings match canonical templates; Markdown line lengths <=120."
+  ]
+}

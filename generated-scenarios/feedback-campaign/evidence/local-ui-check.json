@@ -1,0 +1,9 @@
+{
+  "checkedAtUtc": "2026-10-25T17:29:14.614244+00:00",
+  "evidenceType": "local-unauthenticated-preview",
+  "landingPageStatus": 200,
+  "anonymousCasesStatus": 401,
+  "browser": "Chromium",
+  "screenshot": "evidence/local-ui-preview.png",
+  "deployedRuntimeAcceptance": false
+}

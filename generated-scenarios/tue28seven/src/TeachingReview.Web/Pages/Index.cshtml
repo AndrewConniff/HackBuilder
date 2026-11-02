@@ -1,0 +1,64 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Material review";
+}
+<h1>Teaching material review</h1>
+<p>Synthetic secondary-school materials. AI advises; teachers decide. No formal curriculum certification.</p>
+<div asp-validation-summary="All" role="alert"></div>
+<p>@Model.Materials.Count assigned materials · @Model.Materials.Count(x => x.Stage == "Approved") approved</p>
+@if (Model.Materials.Count == 0)
+{
+    <p>No materials are assigned to your account.</p>
+}
+@foreach (var material in Model.Materials)
+{
+    <article aria-labelledby="material-@material.Id">
+        <h2 id="material-@material.Id">@material.Title</h2>
+        <p>Version @material.Version · @material.Stage · Review attempts @material.Attempts / 3</p>
+        <details><summary>Material and fictitious rubric</summary>
+            <h3>Material</h3><pre>@material.Text</pre>
+            <h3>Rubric</h3><pre>@material.Rubric</pre>
+        </details>
+        @foreach (var review in material.Reviews)
+        {
+            <h3>@review.Kind findings</h3>
+            <pre>@review.Findings</pre>
+            <p class="receipt">Agent @review.Agent · Response @review.ResponseId</p>
+        }
+        @if (material.Failure.Length > 0) { <p role="alert">@material.Failure</p> }
+        @if (material.Feedback.Length > 0) { <h3>Peer feedback</h3><pre>@material.Feedback</pre> }
+        <form method="post">
+            <input type="hidden" name="id" value="@material.Id" />
+            <input type="hidden" name="version" value="@material.Version" />
+            @if (User.IsInRole("Author"))
+            {
+                <label for="text-@material.Id">Revised material text</label>
+                <textarea id="text-@material.Id" name="text" maxlength="12000" rows="5">@material.Text</textarea>
+                <button name="action" value="Revise">Save new version</button>
+                <button name="action" value="Review">Request two AI reviews</button>
+                <button name="action" value="Recover">Recover abandoned review after three minutes</button>
+                <button name="action" value="SendToLead">Accept feedback and send this version to lead</button>
+            }
+            @if (User.IsInRole("Peer"))
+            {
+                <label for="feedback-@material.Id">Peer feedback</label>
+                <textarea id="feedback-@material.Id" name="text" maxlength="4000" rows="3"></textarea>
+                <button name="action" value="Feedback">Hand feedback to author</button>
+            }
+            @if (User.IsInRole("Lead"))
+            {
+                <button name="action" value="Approve">Approve current version for internal release</button>
+                <button name="action" value="Reject">Return for revision</button>
+            }
+        </form>
+        <details><summary>Decision history</summary>
+            <ul>@foreach (var entry in material.History)
+            {
+                <li>@entry.AtUtc.ToString("u") · actor @entry.ActorId · version @entry.Version · @entry.Action
+                    @if (entry.Evidence.Length > 0) { <pre>@entry.Evidence</pre> }
+                </li>
+            }</ul>
+        </details>
+    </article>
+}

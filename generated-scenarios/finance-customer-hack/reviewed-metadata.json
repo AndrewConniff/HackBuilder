@@ -1,0 +1,10 @@
+{
+  "title": "Adatum Corporation banking service with human-owned escalation",
+  "summary": "Financial Services reference: two saved Foundry agents route grounded policy and synthetic account questions into durable representative-owned cases. Local implementation only; Azure deployment and live acceptance pending authorization.",
+  "industry": "Financial Services",
+  "businessUnits": ["generic"],
+  "services": ["foundry", "app-service", "storage", "monitor"],
+  "pillars": [],
+  "domains": [],
+  "metadataStatus": "curated"
+}

@@ -1,0 +1,85 @@
+{
+  "checkedAtUtc": "2026-10-25T18:32:45.206203+00:00",
+  "checks": {
+    "anonymousDenial": true,
+    "invalidLogin": true,
+    "localLogin": true,
+    "wrongRoleDenial": true,
+    "csrfDenial": true,
+    "applicationChat": true,
+    "grounding": true,
+    "staleDecisionDenial": true,
+    "persistentWorkflow": true,
+    "humanReview": true,
+    "replyStream": true,
+    "agenticWorkflow": true,
+    "conflictReview": true,
+    "humanRulePromotion": true,
+    "logout": true,
+    "negativeCase": true
+  },
+  "details": {
+    "applicationChat": {
+      "responseId": "resp_07ef3f7b79cc39e7016ade4afd56b48190aa6524939c068f14",
+      "text": "Sales cannot promise a refund for this campaign. The campaign policy explicitly states that no refund entitlement or service credit is authorized. For any refund-related inquiries, Sales should respectfully request further investigation without making commitments. (campaign-policy-v1)",
+      "identity": "app managed identity"
+    },
+    "cases": [
+      {
+        "id": "3121b7d85fc8e24a87a8786408a40493f7f84d8bca1c2206258c5ff91ea48c6b",
+        "owner": "Auto",
+        "status": "Queued",
+        "responseId": "resp_0e0f7f6e453f5642016ade4b03e8ac8197acbd6916b74bd784",
+        "scores": {
+          "positive": 1,
+          "negative": 0,
+          "neutral": 0
+        }
+      },
+      {
+        "id": "8d6ada513b799d8f392cca5c0125ff9a6ace2676f8716af67bc8f74c413b06ff",
+        "owner": "ProductManager",
+        "status": "AwaitingHuman",
+        "responseId": "resp_05bd9d2f38dc0602016ade4b0fbca48194b9f7ebc8dfbfba85",
+        "scores": {
+          "positive": 0,
+          "negative": 1,
+          "neutral": 0
+        }
+      },
+      {
+        "id": "725a7b6a1fc7927e06a182184278657cccf3ea2a6571aa354ad879f4394dcc28",
+        "owner": "ProductManager",
+        "status": "AwaitingHuman",
+        "responseId": "resp_01db69da5c1f1b0f016ade4b1725e88193933915df4d2e979c",
+        "scores": {
+          "positive": 0,
+          "negative": 0.9,
+          "neutral": 0.1
+        }
+      },
+      {
+        "id": "4809653d8eb8b27f83e324b232895135239a319a0b2b8b29b0ffadb95e4a30be",
+        "owner": "ConflictResolutionSpecialist",
+        "status": "AwaitingHuman",
+        "responseId": "resp_08b5984b898131a6016ade4b2017048193afe840df5940d50b",
+        "scores": {
+          "positive": 0,
+          "negative": 0,
+          "neutral": 1
+        }
+      }
+    ],
+    "humanReview": {
+      "caseId": "8d6ada513b799d8f392cca5c0125ff9a6ace2676f8716af67bc8f74c413b06ff",
+      "reviewer": "product-manager",
+      "replyReceipt": "AcceptedByReplyStream",
+      "restartVerified": true
+    },
+    "conflictReview": {
+      "caseId": "4809653d8eb8b27f83e324b232895135239a319a0b2b8b29b0ffadb95e4a30be",
+      "replyReceipt": "AcceptedByReplyStream"
+    }
+  },
+  "completeScenarioAcceptance": true
+}

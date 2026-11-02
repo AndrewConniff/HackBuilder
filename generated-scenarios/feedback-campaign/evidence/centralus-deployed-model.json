@@ -1,0 +1,19 @@
+{
+  "model": {
+    "callRateLimit": null,
+    "format": "OpenAI",
+    "name": "gpt-4.1-mini",
+    "publisher": null,
+    "source": null,
+    "sourceAccount": null,
+    "version": "2025-04-14"
+  },
+  "sku": {
+    "capacity": 10,
+    "family": null,
+    "name": "GlobalStandard",
+    "size": null,
+    "tier": null
+  },
+  "state": "Succeeded"
+}

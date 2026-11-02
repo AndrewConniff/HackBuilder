@@ -1,0 +1,101 @@
+{
+  "changes": [
+    {
+      "after": {
+        "apiVersion": "2024-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent",
+        "location": "eastus",
+        "name": "rg-resto-scale-agent",
+        "tags": {
+          "Environment": "resto-scale-agent",
+          "ManagedBy": "Bicep",
+          "Project": "resto-scale-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Resources/resourceGroups"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-01-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi",
+        "location": "eastus",
+        "name": "sb-resto-4tvlzr5zf2rxi",
+        "properties": {
+          "disableLocalAuth": true,
+          "minimumTlsVersion": "1.2",
+          "premiumMessagingPartitions": 1,
+          "publicNetworkAccess": "Enabled",
+          "zoneRedundant": true
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "sku": {
+          "capacity": 1,
+          "name": "Premium"
+        },
+        "tags": {
+          "Environment": "resto-scale-agent",
+          "ManagedBy": "Bicep",
+          "Project": "resto-scale-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.ServiceBus/namespaces"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-01-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen",
+        "name": "kitchen",
+        "properties": {
+          "deadLetteringOnMessageExpiration": true,
+          "defaultMessageTimeToLive": "P7D",
+          "duplicateDetectionHistoryTimeWindow": "PT10M",
+          "enableBatchedOperations": true,
+          "enableExpress": false,
+          "enablePartitioning": false,
+          "lockDuration": "PT1M",
+          "maxDeliveryCount": 5,
+          "maxMessageSizeInKilobytes": "[if(equals(reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi', '2024-01-01', 'full').sku.name, 'Premium'), parameters('maxMessageSizeInKilobytes'), null())]",
+          "maxSizeInMegabytes": 1024,
+          "requiresDuplicateDetection": true,
+          "requiresSession": true,
+          "status": "Active"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "type": "Microsoft.ServiceBus/namespaces/queues"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen",
+      "symbolicName": null,
+      "unsupportedReason": null
+    }
+  ],
+  "diagnostics": null,
+  "error": null,
+  "potentialChanges": null,
+  "status": "Succeeded"
+}

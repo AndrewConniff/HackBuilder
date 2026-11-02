@@ -1,0 +1,2 @@
+Update available: 1.35.1 -> 1.37.1 (https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_1.37.1)
+To update, run `winget upgrade Microsoft.Azd`

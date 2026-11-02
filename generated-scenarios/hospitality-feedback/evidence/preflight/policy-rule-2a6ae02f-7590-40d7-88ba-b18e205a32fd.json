@@ -1,0 +1,90 @@
+{
+  "checkedAtUtc": "2026-10-22T18:21:24.9518476Z",
+  "command": "az rest --method get --url https://management.azure.com/providers/Microsoft.Authorization/policyDefinitions/2a6ae02f-7590-40d7-88ba-b18e205a32fd?api-version=2023-04-01",
+  "exitCode": 0,
+  "result": {
+    "id": "/providers/Microsoft.Authorization/policyDefinitions/2a6ae02f-7590-40d7-88ba-b18e205a32fd",
+    "name": "2a6ae02f-7590-40d7-88ba-b18e205a32fd",
+    "properties": {
+      "description": "Enable Advanced Threat Protection on your Azure database for PostgreSQL flexible servers to detect anomalous activities indicating unusual and potentially harmful attempts to access or exploit databases.",
+      "displayName": "Configure Advanced Threat Protection to be enabled on Azure database for PostgreSQL flexible servers",
+      "metadata": {
+        "category": "Security Center",
+        "version": "1.1.0"
+      },
+      "mode": "Indexed",
+      "parameters": {
+        "effect": {
+          "allowedValues": [
+            "DeployIfNotExists",
+            "Disabled"
+          ],
+          "defaultValue": "DeployIfNotExists",
+          "metadata": {
+            "description": "Enable or disable the execution of the policy",
+            "displayName": "Effect"
+          },
+          "type": "String"
+        }
+      },
+      "policyRule": {
+        "if": {
+          "equals": "Microsoft.DBforPostgreSQL/flexibleservers",
+          "field": "type"
+        },
+        "then": {
+          "details": {
+            "deployment": {
+              "properties": {
+                "mode": "incremental",
+                "parameters": {
+                  "serverName": {
+                    "value": "[field('name')]"
+                  }
+                },
+                "template": {
+                  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+                  "contentVersion": "1.0.0.0",
+                  "parameters": {
+                    "serverName": {
+                      "type": "string"
+                    }
+                  },
+                  "resources": [
+                    {
+                      "apiVersion": "2023-06-01-preview",
+                      "name": "[concat(parameters('serverName'), '/Default')]",
+                      "properties": {
+                        "state": "Enabled"
+                      },
+                      "type": "Microsoft.DBforPostgreSQL/flexibleservers/advancedThreatProtectionSettings"
+                    }
+                  ],
+                  "variables": {}
+                }
+              }
+            },
+            "evaluationDelay": "AfterProvisioningSuccess",
+            "existenceCondition": {
+              "equals": "Enabled",
+              "field": "Microsoft.DBforPostgreSQL/flexibleServers/advancedThreatProtectionSettings/state"
+            },
+            "name": "Default",
+            "roleDefinitionIds": [
+              "/providers/microsoft.authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+            ],
+            "type": "Microsoft.DBforPostgreSQL/flexibleservers/advancedThreatProtectionSettings"
+          },
+          "effect": "[parameters('effect')]"
+        }
+      },
+      "policyType": "BuiltIn",
+      "version": "1.1.0",
+      "versions": [
+        "1.1.0",
+        "1.0.0"
+      ]
+    },
+    "type": "Microsoft.Authorization/policyDefinitions"
+  }
+}

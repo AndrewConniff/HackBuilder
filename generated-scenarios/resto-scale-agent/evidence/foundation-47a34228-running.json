@@ -1,0 +1,12 @@
+{
+  "stage": "deployment",
+  "operation": "deployment",
+  "status": "running",
+  "summary": "Executing recorded Central US shared-foundation-only consent after exact-target revalidation. No directory writes, image publication, initializer or application rollout authorized.",
+  "evidence": [
+    "Canonical revision 195: deployment decision 00637ba454ef44d3b84d700f57017e3d answered Authorize Central US shared foundation only; all 16 decisions and 35 history entries reviewed.",
+    "Scope: petender@microsoft.com; subscription efd64343-6ef4-4926-951f-d3229f38bd76; tenant 16b3c013-d300-468d-ac64-7eda0820b6d3; rg-resto-scale-agent; environment resto-scale-agent; centralus.",
+    "Approved infrastructure fingerprint 1aa0c0f7d9f7518ece839c1edb8578142a922edb9ac482d2462b8fd6aa0feffc. Existing preparation, cost review and installation-dependent limits retained.",
+    "azd version 1.35.1; azd auth login --check-status --no-prompt succeeded as petender@microsoft.com. Saved backendReadiness ready true with no blocked stages; no tool installation or shared-default changes."
+  ]
+}

@@ -1,0 +1,12 @@
+@page
+@model ErrorModel
+@{
+    ViewData["Title"] = "Service error";
+}
+<h1>We could not complete that request</h1>
+<p role="alert">No successful answer or action is being claimed. Try again or contact the demonstration operator.</p>
+@if (Model.ShowRequestId)
+{
+    <p>Request reference: <code>@Model.RequestId</code></p>
+}
+<a asp-page="/Index">Return to customer support</a>

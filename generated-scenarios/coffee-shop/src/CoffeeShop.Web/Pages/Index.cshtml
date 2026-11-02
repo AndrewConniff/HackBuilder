@@ -1,0 +1,54 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Store readiness";
+}
+<header class="hero">
+    <p class="eyebrow">FOURTH COFFEE / SALES BACK OFFICE</p>
+    <h1>Ready for tomorrow.<br />Clear on today.</h1>
+    <p>Store-scoped inventory, reviewed replenishment and an evidence-led daily close.</p>
+    <form id="login">
+        <label for="username">Username</label>
+        <input id="username" name="username" autocomplete="username" required maxlength="32" />
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required maxlength="128" />
+        <button id="signin" type="submit">Sign in</button>
+    </form>
+    <button id="signout" hidden>Sign out</button>
+    <span id="identity" role="status">Authentication required for business data.</span>
+</header>
+<section class="workspace" aria-label="Store workspace">
+    <aside class="panel">
+        <p class="eyebrow">YOUR AUTHORIZED STORES</p>
+        <div id="stores"></div>
+        <p>Store managers see their own store. Area managers see assigned stores only.</p>
+        <p class="muted">Synthetic reference data · USD · 23 October 2026</p>
+    </aside>
+    <div class="panel">
+        <h2 id="store-title">Choose a store</h2>
+        <div id="metrics" class="metrics"></div>
+        <h3>Stock and sales readiness</h3>
+        <table><thead><tr><th>Item</th><th>Available</th><th>Target</th><th>Unit cost</th></tr></thead>
+            <tbody id="stock"></tbody></table>
+        <button id="draft" disabled>Create replenishment draft</button>
+        <pre id="order" aria-live="polite"></pre>
+        <button id="approve" hidden>Confirm internal order approval</button>
+        <p class="muted">Approval queues an internal order only. Nothing is sent to a supplier.</p>
+    </div>
+</section>
+<section class="panel close-panel">
+    <p class="eyebrow">BOUNDED MULTI-AGENT CLOSE</p>
+    <h2>Ask the daily-close team</h2>
+    <p>Stock and margin agents work independently; the coordinator combines their evidence.
+        Select store checkboxes to compare your assigned stores.</p>
+    <label for="question">Question</label>
+    <textarea id="question" maxlength="1500">Explain tomorrow's milk risk and today's sales margin.</textarea>
+    <button id="chat" disabled>Run grounded daily close</button>
+    <p id="status" role="status"></p>
+    <div id="answer" aria-live="polite"></div>
+    <p class="muted">Agent text is advisory. Structured decimal totals are authoritative.
+        Incomplete evidence stops the close. No autonomous ordering or financial posting.</p>
+</section>
+@section Scripts {
+    <script src="~/js/workspace.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,8 @@
+{
+  "observedAtUtc": "2026-10-28T15:09:25.598045+00:00",
+  "safeEvents": [
+    "2026-10-28T15:09:08.9549181Z {\"operation\":\"native-sdk-identity\",\"objectId\":\"95e688cf-66f0-4d71-b361-8ab5cb20a890\",\"audience\":\"https://ai.azure.com\"}",
+    "2026-10-28T15:09:17.6747204Z {\"operation\":\"native-sdk-agent-probe\",\"status\":403,\"errorType\":\"ClientResultException\"}"
+  ],
+  "operation": "Temporary --probe-agent startup; original startup restored afterward"
+}

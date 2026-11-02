@@ -1,0 +1,16 @@
+[
+  {"Id":1,"CustomerId":"customer-1","Kind":"Balance","AmountCents":245075,"Detail":"Checking balance snapshot","Date":"2026-10-28"},
+  {"Id":2,"CustomerId":"customer-2","Kind":"Balance","AmountCents":98120,"Detail":"Checking balance snapshot","Date":"2026-10-28"},
+  {"Id":101,"CustomerId":"customer-1","Kind":"Settled","AmountCents":-1825,"Detail":"Grocery purchase","Date":"2026-10-21"},
+  {"Id":102,"CustomerId":"customer-1","Kind":"Settled","AmountCents":250000,"Detail":"Salary deposit","Date":"2026-10-22"},
+  {"Id":103,"CustomerId":"customer-1","Kind":"Settled","AmountCents":-120000,"Detail":"Housing payment","Date":"2026-10-23"},
+  {"Id":104,"CustomerId":"customer-1","Kind":"Pending","AmountCents":-4200,"Detail":"Card authorization","Date":"2026-10-27"},
+  {"Id":105,"CustomerId":"customer-1","Kind":"Settled","AmountCents":-1550,"Detail":"Transit purchase","Date":"2026-10-24"},
+  {"Id":106,"CustomerId":"customer-1","Kind":"Settled","AmountCents":3500,"Detail":"Purchase refund","Date":"2026-10-26"},
+  {"Id":201,"CustomerId":"customer-2","Kind":"Settled","AmountCents":-6300,"Detail":"Utility payment","Date":"2026-10-21"},
+  {"Id":202,"CustomerId":"customer-2","Kind":"Settled","AmountCents":180000,"Detail":"Salary deposit","Date":"2026-10-22"},
+  {"Id":203,"CustomerId":"customer-2","Kind":"Settled","AmountCents":-85000,"Detail":"Housing payment","Date":"2026-10-23"},
+  {"Id":204,"CustomerId":"customer-2","Kind":"Pending","AmountCents":-2800,"Detail":"Card authorization","Date":"2026-10-27"},
+  {"Id":205,"CustomerId":"customer-2","Kind":"Settled","AmountCents":-1120,"Detail":"Transit purchase","Date":"2026-10-24"},
+  {"Id":206,"CustomerId":"customer-2","Kind":"Settled","AmountCents":1500,"Detail":"Purchase refund","Date":"2026-10-26"}
+]

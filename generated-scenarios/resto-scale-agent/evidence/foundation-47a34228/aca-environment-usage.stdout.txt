@@ -1,0 +1,31 @@
+{
+  "value": [
+    {
+      "currentValue": 0,
+      "limit": 500,
+      "name": {
+        "localizedValue": "Managed Environment General Purpose Cores",
+        "value": "ManagedEnvironmentGeneralPurposeCores"
+      },
+      "usage": 0
+    },
+    {
+      "currentValue": 0,
+      "limit": 500,
+      "name": {
+        "localizedValue": "Managed Environment Memory Optimized Cores",
+        "value": "ManagedEnvironmentMemoryOptimizedCores"
+      },
+      "usage": 0
+    },
+    {
+      "currentValue": 0,
+      "limit": 500,
+      "name": {
+        "localizedValue": "Managed Environment Consumption Cores",
+        "value": "ManagedEnvironmentConsumptionCores"
+      },
+      "usage": 0
+    }
+  ]
+}

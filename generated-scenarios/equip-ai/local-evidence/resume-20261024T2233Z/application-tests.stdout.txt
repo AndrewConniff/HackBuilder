@@ -1,0 +1,60 @@
+PASS 25 site-owned equipment records
+PASS only Tacoma authorized
+PASS forged Spokane site denied
+PASS object routed envelope
+PASS base64 routed envelope
+PASS payload cannot spoof device
+PASS future skew over two minutes
+PASS measurement range rejected
+PASS exact 120-minute boundary excluded
+PASS 119-minute evidence included
+PASS replay deduplicated
+PASS conflicting replay rejected
+PASS deterministic vibration trend
+PASS expired event cannot alter maximum
+PASS exact count and temperature
+PASS five-minute stopped device is stale
+PASS expired-only data reports gaps
+PASS window over 120 rejected
+PASS unknown device clarified
+PASS verified citation accepted
+PASS invented citation rejected
+PASS ungrounded answer rejected
+PASS final-response freshness rechecked
+PASS advisory refusal permitted without fabricated readings
+PASS cleanup deletes fully expired settled batch
+PASS cleanup preserves active writer
+PASS cleanup preserves fresh event in old batch
+PASS invalid batch requires 130-minute quarantine
+PASS cleanup recovers expired batch after outage
+PASS unknown tool rejected without network
+PASS tool site forgery rejected without network
+PASS unexpected tool argument rejected
+PASS specific device cannot be null
+PASS array arguments rejected before network
+PASS nonstring site rejected before network
+PASS fractional window rejected before network
+PASS oversize window rejected before retrieval
+PASS cache rejects estimates above 512 MiB
+PASS 120k-event deterministic aggregate under 30s
+120k-event elapsed milliseconds: 277.2
+PASS owned loopback server responds
+PASS branded Razor homepage
+PASS CSP and no-store headers
+PASS unauthenticated equipment is 401
+PASS unauthenticated evidence is 401
+PASS unauthenticated chat is 401
+PASS missing configuration visibly disables sign-in
+PASS missing configuration disables agent submission
+PASS no horizontal overflow at 1440px
+PASS no horizontal overflow at 390px
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://127.0.0.1:57862
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: C:\azd-projects\equip-ai\src\EquipAI.Web
+
+49 local checks passed; no live Azure calls or inference performed.

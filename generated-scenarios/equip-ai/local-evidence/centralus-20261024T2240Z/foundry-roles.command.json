@@ -1,0 +1,9 @@
+{
+  "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" role definition list --query \"[?starts_with(roleName, 'Foundry')]\" --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+  "cwd": "C:\\azd-projects\\equip-ai",
+  "startedAtUtc": "2026-10-24T22:38:55.523793+00:00",
+  "finishedAtUtc": "2026-10-24T22:38:59.107902+00:00",
+  "exitCode": 0,
+  "stdout": "foundry-roles.json",
+  "stderr": "foundry-roles.stderr.txt"
+}

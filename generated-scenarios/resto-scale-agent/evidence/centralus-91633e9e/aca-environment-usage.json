@@ -1,0 +1,8 @@
+{
+  "command": "az containerapp env list-usages --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --resource-group rg-resto-scale-agent --name cae-resto-4tvlzr5zf2rxi --output json",
+  "startedAtUtc": "2026-10-23T23:13:55.233360+00:00",
+  "checkedAtUtc": "2026-10-23T23:13:59.892102+00:00",
+  "exitCode": 1,
+  "stdout": "",
+  "stderr": "ERROR: (ResourceGroupNotFound) Resource group 'rg-resto-scale-agent' could not be found.\n"
+}

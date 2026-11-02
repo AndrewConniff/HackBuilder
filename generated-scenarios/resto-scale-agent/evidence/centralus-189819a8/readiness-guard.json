@@ -1,0 +1,5 @@
+{
+  "expectedRejected": true,
+  "reason": "Regional readiness is older than 15 minutes or future-dated; refresh before deployment.",
+  "checkedAtUtc": "2026-10-24T00:01:36.123697+00:00"
+}

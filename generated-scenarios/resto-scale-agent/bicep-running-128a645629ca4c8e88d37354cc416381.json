@@ -1,0 +1,10 @@
+{
+  "stage": "bicep",
+  "status": "running",
+  "summary": "Starting the next incomplete stage: verify current public AVM interfaces and resource schemas, then prepare the implementation plan and local infrastructure. All Azure discovery and deployment remain deferred without scoped authorization.",
+  "evidence": [
+    "Read-only local versions: Azure CLI 2.91.0; Bicep CLI 0.48.1 (cec7951cf6); azd 1.35.1; .NET SDK 10.0.402.",
+    "No tools were installed or upgraded; no PATH or CLI account/subscription defaults changed.",
+    "Current public Foundry AVM tag list includes 0.19.1; current project schema lists stable 2026-09-01. Exact module interface review remains pending."
+  ]
+}

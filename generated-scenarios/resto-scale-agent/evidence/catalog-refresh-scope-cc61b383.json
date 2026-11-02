@@ -1,0 +1,7 @@
+{
+  "operation": "scenario manifest refresh",
+  "issue": "The repository scenario_catalog.py refresh CLI also calls export_index and rewrote the shared scenarios\\catalog.json. This side effect was not within the worker's intended scenario-only write scope.",
+  "observation": "Concurrent index updates were observed while inspecting and attempting to remove the target entry's side effect. A full shared-index rollback was not attempted because it could overwrite another worker's changes.",
+  "subsequentRefresh": "Called the existing scenario_catalog.refresh function directly for resto-scale-agent only, without export_index. The target manifest is curated and records validationTools k6.",
+  "limitation": "The pre-call shared-index contents were not snapshotted, so this worker cannot certify restoration of that shared file to its prior state."
+}

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "scenario": "resto-scale-agent",
+  "scopeMeaning": "One reference installation only; no authorization is conveyed by this plan.",
+  "operations": [
+    "Inspect retained scenario resources and marker-owned Entra API/client pair within the reviewed exact scope.",
+    "Repair shared resources with existing azd provision and infrastructure templates after fresh incremental what-if.",
+    "Preserve API v2 delegated scope, nine business/floor roles, assignment-required principals and existing object/client IDs.",
+    "Append only the actual application HTTPS /auth.html SPA callback to the verified owned client; create no replacement identity.",
+    "Verify operator Manager/client assignments and exact Principal access_as_user consent using GET only. Never retry the denied consent write.",
+    "Verify installed environment quota for the conservative 28-vCPU rollout.",
+    "Build locally, push to the scenario registry, capture immutable digest, install synthetic fixtures and three real Foundry agent versions.",
+    "Run output-dependent runtime what-if, deploy web/internal-chat/worker with Entra-only configuration, then conduct separately recorded real acceptance within the same reference grant."
+  ],
+  "exclusions": [
+    "No retry of the historical denied consent POST, tenant-wide consent, Graph application permissions or role elevation.",
+    "No unrelated users/groups/resources, synthetic staff production fallback, cleanup, teams, composition or publication.",
+    "No private endpoints, Search, Storage, real cards, bank settlement, production migration or regional-DR claim."
+  ],
+  "cost": {
+    "currency": "USD",
+    "typicalFullReferenceMonthly": [900, 1650],
+    "sharedMonthly": [745, 1150],
+    "priceEvidence": "evidence/centralus-189819a8/cost-review.json",
+    "observedAtUtc": "2026-10-24T00:01:36.245550Z",
+    "limitations": "Historical planning estimates, not a quote/cap/invoice. Peak compute, overlap, telemetry, storage, egress, taxes and unverified Entra licensing can add cost."
+  }
+}

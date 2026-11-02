@@ -1,0 +1,34 @@
+{
+  "stage": "deployment",
+  "status": "waiting_for_user",
+  "summary": "Read-only preparation is retained; decision required before any Azure creation. Preview: 33 creates, zero modifies/deletes, 13 unresolved identity-dependent grants. Shared infrastructure is about $745-$1,150/month before app/model use; full-reference planning is about $900-$1,650/month. Nothing deployed. The proposed permission is shared infrastructure only, not application/identity setup or runtime rollout.",
+  "evidence": [
+    "06-deployment-summary.md",
+    "evidence\\what-if-subscription-c3e1750f.json",
+    "evidence\\validate-subscription-c3e1750f.json",
+    "00-region-availability.json",
+    "evidence\\prices-servicebus-c3e1750f.json; prices-aca-c3e1750f.json; prices-cosmos-c3e1750f.json; prices-model-by-meter-c3e1750f.json",
+    "Canonical scoped preparation authorization 7d18da3b02774120a79615b426323ea6; no deployment authorization."
+  ],
+  "decision": {
+    "kind": "deployment",
+    "question": "Authorize creation of only rg-resto-scale-agent and the reviewed infra\\main.bicep shared reference resources in East US 2, using petender@microsoft.com / subscription efd64343-6ef4-4926-951f-d3229f38bd76 / tenant 16b3c013-d300-468d-ac64-7eda0820b6d3 / distinct environment resto-scale-agent? Review 06-deployment-summary.md: actual what-if has 33 creates, zero modifies/deletes and 13 unresolved new-identity-dependent grants; nested provider/SKU/runtime checks are incomplete. Shared infrastructure planning is $745-$1,150/month before app/model use; full reference planning is $900-$1,650/month with stated assumptions, not a cap. This permission excludes Entra app registration, image publication, initializer/data writes, application rollout, event deployment and suitability approval. Stop on new ownership, capacity, provider or policy failures rather than bypassing them; runtime needs an actual-output preview and separate consent.",
+    "reason": "Read-only preparation consent does not permit creating the absent resource group or deploying resources. The actual preview, model capacity metadata, provider/RBAC/policy observations, costs and unresolved checks are retained. A narrow shared-infrastructure step provides real outputs for the later runtime preview without fabricating endpoints, versions or image digests. The user must explicitly review and accept or revise this scope.",
+    "choices": [
+      "Authorize shared infrastructure only",
+      "Keep the reference local only",
+      "Revise deployment preparation"
+    ],
+    "acceptChoice": "Authorize shared infrastructure only",
+    "scope": {
+      "account": "petender@microsoft.com",
+      "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+      "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+      "resourceGroup": "rg-resto-scale-agent",
+      "environment": "resto-scale-agent",
+      "region": "eastus2",
+      "whatIfEvidence": "06-deployment-summary.md; evidence\\what-if-subscription-c3e1750f.json: Succeeded, 33 creates, 0 modifies, 0 deletes, 13 unsupported role assignments dependent on new identity outputs. Shared infra\\main.bicep only; no runtime preview or rollout authorized.",
+      "estimatedCost": "USD retail planning: shared infrastructure about $745-$1,150/month before application/model usage; full reference about $900-$1,650/month at nine warm replicas and 200 turns/day, including $50.40/month model example. Burst/extra telemetry/storage/taxes may add costs; not a quote or cap. Details and raw regional rates in 06-deployment-summary.md and evidence\\prices-*-c3e1750f.json."
+    }
+  }
+}

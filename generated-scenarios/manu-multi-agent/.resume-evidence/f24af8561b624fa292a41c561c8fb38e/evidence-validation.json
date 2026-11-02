@@ -1,0 +1,16 @@
+{
+  "checkedAtUtc": "2026-10-24T20:38:38.976318+00:00",
+  "checks": {
+    "jsonParses": true,
+    "sameTemplateOnRetry": true,
+    "actualWhatIfStatusAndCounts": {
+      "Create": 72,
+      "Unsupported": 13
+    },
+    "noSelectedDeployableRegion": true,
+    "blockedNotCompleted": true,
+    "summaryTemplateHeadings": true,
+    "markdownLineLimit": true,
+    "fixedBaselineArithmetic": true
+  }
+}

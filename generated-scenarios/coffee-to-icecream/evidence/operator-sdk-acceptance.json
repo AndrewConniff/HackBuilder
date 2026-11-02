@@ -1,0 +1,57 @@
+{
+  "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+  "credential": "AzureCliCredential; exact subscription and tenant; never workload identity",
+  "status": "passed",
+  "checks": [
+    {
+      "operation": "Table list",
+      "scope": "https://sticgyhmp4vgxvkwy.table.core.windows.net",
+      "status": "passed",
+      "checkedAtUtc": "2026-10-30T04:19:09.114572+00:00",
+      "receipt": null
+    },
+    {
+      "operation": "Table create/read/update",
+      "scope": "acceptance-0c8599d5a1ac4974acee0723408b7791",
+      "status": "passed",
+      "checkedAtUtc": "2026-10-30T04:19:11.5401682+00:00",
+      "receipt": null
+    },
+    {
+      "operation": "Table delete and cleanup",
+      "scope": "acceptance-0c8599d5a1ac4974acee0723408b7791",
+      "status": "passed",
+      "checkedAtUtc": "2026-10-30T04:19:11.9359072+00:00",
+      "receipt": null
+    },
+    {
+      "operation": "Foundry create/list/read/update",
+      "scope": "coffee-to-icecream-probe-72a1b31a440a4bfa8a85615825d94f7c",
+      "status": "passed",
+      "checkedAtUtc": "2026-10-30T04:19:29.9599718+00:00",
+      "receipt": null
+    },
+    {
+      "operation": "Foundry real inference",
+      "scope": "coffee-to-icecream-probe-72a1b31a440a4bfa8a85615825d94f7c",
+      "status": "passed",
+      "checkedAtUtc": "2026-10-30T04:19:34.4228356+00:00",
+      "receipt": "resp_0f2b70e0161ba02e016ae41ad65aec8190a7cca27d12ff5ce2"
+    },
+    {
+      "operation": "Foundry delete and cleanup",
+      "scope": "coffee-to-icecream-probe-72a1b31a440a4bfa8a85615825d94f7c",
+      "status": "passed",
+      "checkedAtUtc": "2026-10-30T04:19:38.1156378+00:00",
+      "receipt": null
+    },
+    {
+      "operation": "Disposable lockout account installed privately",
+      "scope": "proofef6d077d",
+      "status": "passed",
+      "checkedAtUtc": "2026-10-30T04:19:39.0121724+00:00",
+      "receipt": null
+    }
+  ],
+  "completedAtUtc": "2026-10-30T04:19:39.0121786+00:00"
+}

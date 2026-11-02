@@ -1,0 +1,17 @@
+{
+  "stage": "application",
+  "status": "blocked",
+  "summary": "Application preparation cannot verify current NuGet dependencies: the first public package metadata request to api.nuget.org failed with TLS HandshakeFailure. No package version was selected, restored or installed. Stopped immediately without TLS/certificate bypass, alternate endpoint, proxy/PATH change, SDK installation or permission broadening. Infrastructure scaffold is locally compiled but incomplete; no Azure operations or new approval question.",
+  "blocker": {
+    "kind": "prerequisite",
+    "action": "Outside this worker, have the environment administrator restore organization-approved TLS connectivity from the actual portal worker account to api.nuget.org using existing authorized host/network configuration. Investigate the reported remote TLS HandshakeFailure; do not disable certificate validation, weaken TLS, install or upgrade shared tools in a worker, or bypass host restrictions. Verify a fresh portal worker can read the recorded NuGet package metadata endpoint successfully.",
+    "verification": "Invoke-RestMethod \"https://api.nuget.org/v3-flatcontainer/azure.identity/index.json\""
+  },
+  "evidence": [
+    "Read-only public NuGet metadata batch: $ids = @('azure.identity','microsoft.azure.cosmos','azure.messaging.servicebus','azure.security.keyvault.keys','azure.ai.projects','azure.ai.projects.agents','azure.ai.extensions.openai','microsoft.aspnetcore.authentication.jwtbearer','azure.monitor.opentelemetry.aspnetcore','xunit','microsoft.net.test.sdk','microsoft.playwright'); foreach ($id in $ids) { $r = Invoke-RestMethod \"https://api.nuget.org/v3-flatcontainer/$id/index.json\"; $versions = @($r.versions | Where-Object { $_ -notmatch '-' }); Write-Output \"$id $($versions[-1])\" }",
+    "First expanded request: Invoke-RestMethod \"https://api.nuget.org/v3-flatcontainer/azure.identity/index.json\". Exact failure: Authentication failed because the remote party sent a TLS alert: 'HandshakeFailure'. PowerShell command exit code 1. No package versions were printed.",
+    "Affected work: application dependency selection/restore/build, application-integrated infrastructure completion and subsequent local application/browser tests. The generic machine prerequisite audit passed but does not establish scenario-specific NuGet connectivity.",
+    "Prior Docker blocker f899718570e34acb8e893b56ff9911a8 was actually verified and cleared at revision 71: docker version returned both Client 29.8.2 desktop-linux and Server Docker Desktop 4.94.0 / Engine 29.8.2 linux/arm64, exit code 0.",
+    "No retry through another host, package mirror or TLS configuration; no installation, PATH modification, certificate-validation override, Azure operation, deployment, suitability approval or hack composition occurred."
+  ]
+}

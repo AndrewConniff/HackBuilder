@@ -1,0 +1,10 @@
+{
+  "stage": "requirements",
+  "status": "running",
+  "summary": "Defining the Generic Hospitality & Travel restaurant workflow, scale targets and current public evidence; local design only.",
+  "evidence": [
+    "python scripts\\portal_workflow.py read: revision 1, no prior answers or design confirmation, deploymentAuthorized=false.",
+    "scripts\\New-AzdScenarioWorkspace.ps1 -ProjectName resto-scale-agent: created external workspace and junction.",
+    "python scripts\\scenario_catalog.py refresh generated-scenarios\\resto-scale-agent: inferred needs-review manifest created."
+  ]
+}

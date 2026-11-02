@@ -1,0 +1,18 @@
+{
+  "userResponse": "Approve the proposed Bastion/desktop repair, subject to readiness and what-if",
+  "receivedDate": "2026-10-28",
+  "provenance": "Actual structured response in this VS Code conversation to the consolidated private human-administration repair review.",
+  "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+  "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+  "resourceGroup": "rg-equip-ai",
+  "region": "centralus",
+  "review": "deployer-access-plan.json",
+  "scope": "Reuse existing Ubuntu management VM; add desktop/browser/CLI and Bastion Standard native-client private RDP; dedicated /26 Bastion subnet and Standard static Bastion IPv4; preserve no VM public IP and private workload endpoints. Include hub-scoped deploying-user data administration correction and safe disposable access tests.",
+  "illustrativeIncrementalMonthlyUsd": 216.08,
+  "illustrativeTotalMonthlyUsd": 465.50,
+  "conditions": [
+    "Pass exact readiness and what-if before provisioning.",
+    "No tenant consent, broad directory roles or public workload endpoint exception.",
+    "No suitability approval, hack composition, event deployment or publication."
+  ]
+}

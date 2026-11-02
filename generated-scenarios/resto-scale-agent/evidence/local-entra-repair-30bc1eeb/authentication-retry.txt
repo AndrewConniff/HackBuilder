@@ -1,0 +1,5 @@
+Test run for C:\HackBuilder\generated-scenarios\resto-scale-agent\tests\Restaurant.Tests\bin\Debug\net10.0\Restaurant.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+Results File: C:\HackBuilder\generated-scenarios\resto-scale-agent\evidence\local-entra-repair-30bc1eeb\authentication-retry.trx
+
+Passed!  - Failed:     0, Passed:    50, Skipped:     0, Total:    50, Duration: 1 s - Restaurant.Tests.dll (net10.0)

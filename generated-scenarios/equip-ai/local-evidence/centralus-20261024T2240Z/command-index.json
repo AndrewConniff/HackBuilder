@@ -1,0 +1,413 @@
+{
+  "recordedAtUtc": "2026-10-24T22:44:00.012552+00:00",
+  "commands": [
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" account show --query {account:user.name,subscriptionId:id,tenantId:tenantId,state:state} --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:38:12.623042+00:00",
+      "finishedAtUtc": "2026-10-24T22:38:13.757194+00:00",
+      "exitCode": 0,
+      "stdout": "account.json",
+      "stderr": "account.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" rest --method get --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/permissions --url-parameters @C:\\azd-projects\\equip-ai\\local-evidence\\centralus-20261024T2240Z\\arm-permissions.query.json --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:38:53.378986+00:00",
+      "finishedAtUtc": "2026-10-24T22:38:55.523061+00:00",
+      "exitCode": 0,
+      "stdout": "arm-permissions.json",
+      "stderr": "arm-permissions.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Users\\petender\\AppData\\Local\\Programs\\Azure Dev CLI\\azd.EXE\" auth login --check-status",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:38:13.769939+00:00",
+      "finishedAtUtc": "2026-10-24T22:38:14.443904+00:00",
+      "exitCode": 0,
+      "stdout": "azd-auth.json",
+      "stderr": "azd-auth.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Users\\petender\\AppData\\Local\\Programs\\Azure Dev CLI\\azd.EXE\" env get-values --environment equip-ai --no-prompt",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:38:14.444456+00:00",
+      "finishedAtUtc": "2026-10-24T22:38:14.955638+00:00",
+      "exitCode": 0,
+      "stdout": "azd-values.json",
+      "stderr": "azd-values.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" bicep build --file C:\\azd-projects\\equip-ai\\infra\\main.bicep --outfile C:\\azd-projects\\equip-ai\\local-evidence\\centralus-20261024T2240Z\\main.json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:39:30.999994+00:00",
+      "finishedAtUtc": "2026-10-24T22:39:40.053290+00:00",
+      "exitCode": 0,
+      "stdout": "bicep-build.json",
+      "stderr": "bicep-build.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" rest --method get --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/skus --url-parameters @C:\\azd-projects\\equip-ai\\local-evidence\\centralus-20261024T2240Z\\cognitive-skus.query.json --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:38:47.705041+00:00",
+      "finishedAtUtc": "2026-10-24T22:38:49.678692+00:00",
+      "exitCode": 0,
+      "stdout": "cognitive-skus.json",
+      "stderr": "cognitive-skus.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" role definition list --query \"[?starts_with(roleName, 'Foundry')]\" --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:38:55.523793+00:00",
+      "finishedAtUtc": "2026-10-24T22:38:59.107902+00:00",
+      "exitCode": 0,
+      "stdout": "foundry-roles.json",
+      "stderr": "foundry-roles.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" group exists --name rg-equip-ai --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:38:48.282516+00:00",
+      "finishedAtUtc": "2026-10-24T22:38:50.576972+00:00",
+      "exitCode": 0,
+      "stdout": "group-exists.json",
+      "stderr": "group-exists.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" deployment sub what-if --name equip-ai-readonly-20261024T2240Z --location centralus --template-file C:\\azd-projects\\equip-ai\\local-evidence\\centralus-20261024T2240Z\\independent-preview.json --no-pretty-print --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:39:40.125837+00:00",
+      "finishedAtUtc": "2026-10-24T22:40:01.263977+00:00",
+      "exitCode": 0,
+      "stdout": "independent-whatif.json",
+      "stderr": "independent-whatif.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" rest --method get --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Devices/usages --url-parameters @C:\\azd-projects\\equip-ai\\local-evidence\\centralus-20261024T2240Z\\iot-usages.query.json --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:38:53.965711+00:00",
+      "finishedAtUtc": "2026-10-24T22:38:55.875745+00:00",
+      "exitCode": 0,
+      "stdout": "iot-usages.json",
+      "stderr": "iot-usages.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" rest --method get --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/modelCapacities --url-parameters @C:\\azd-projects\\equip-ai\\local-evidence\\centralus-20261024T2240Z\\model-capacities.query.json --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:38:41.425686+00:00",
+      "finishedAtUtc": "2026-10-24T22:38:47.703904+00:00",
+      "exitCode": 0,
+      "stdout": "model-capacities.json",
+      "stderr": "model-capacities.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" cognitiveservices model list --location centralus --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:38:33.129495+00:00",
+      "finishedAtUtc": "2026-10-24T22:38:38.815289+00:00",
+      "exitCode": 0,
+      "stdout": "model-catalog.json",
+      "stderr": "model-catalog.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" cognitiveservices usage list --location centralus --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:38:38.816042+00:00",
+      "finishedAtUtc": "2026-10-24T22:38:41.424662+00:00",
+      "exitCode": 0,
+      "stdout": "model-quota.json",
+      "stderr": "model-quota.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" network list-usages --location centralus --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:38:55.876395+00:00",
+      "finishedAtUtc": "2026-10-24T22:38:58.473370+00:00",
+      "exitCode": 0,
+      "stdout": "network-usages.json",
+      "stderr": "network-usages.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" policy assignment list --scope /subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76 --disable-scope-strict-match --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:38:59.108443+00:00",
+      "finishedAtUtc": "2026-10-24T22:39:02.087621+00:00",
+      "exitCode": 0,
+      "stdout": "policy-assignments.json",
+      "stderr": "policy-assignments.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" rest --method get --url https://management.azure.com/providers/Microsoft.Authorization/policySetDefinitions/e77fc0b3-f7e9-4c58-bc13-cb753ed8e46e --url-parameters api-version=2023-04-01 --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:39:02.099563+00:00",
+      "finishedAtUtc": "2026-10-24T22:39:04.026413+00:00",
+      "exitCode": 0,
+      "stdout": "policy-definition-0.json",
+      "stderr": "policy-definition-0.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" rest --method get --url https://management.azure.com/providers/Microsoft.Authorization/policySetDefinitions/9cb3cc7a-b39b-4b82-bc89-e5a5d9ff7b97 --url-parameters api-version=2023-04-01 --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:39:04.040438+00:00",
+      "finishedAtUtc": "2026-10-24T22:39:05.739473+00:00",
+      "exitCode": 0,
+      "stdout": "policy-definition-1.json",
+      "stderr": "policy-definition-1.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" rest --method get --url https://management.azure.com/providers/Microsoft.Authorization/policySetDefinitions/c1529623-9fc2-45bc-b84b-b14cd0b7484e --url-parameters api-version=2023-04-01 --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:39:05.753577+00:00",
+      "finishedAtUtc": "2026-10-24T22:39:07.592526+00:00",
+      "exitCode": 0,
+      "stdout": "policy-definition-2.json",
+      "stderr": "policy-definition-2.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" rest --method get --url https://management.azure.com/providers/Microsoft.Authorization/policyDefinitions/2a6ae02f-7590-40d7-88ba-b18e205a32fd --url-parameters api-version=2023-04-01 --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:39:07.609685+00:00",
+      "finishedAtUtc": "2026-10-24T22:39:09.371427+00:00",
+      "exitCode": 0,
+      "stdout": "policy-rule-0.json",
+      "stderr": "policy-rule-0.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" rest --method get --url https://management.azure.com/providers/Microsoft.Authorization/policyDefinitions/36d49e87-48c4-4f2e-beed-ba4ed02b71f5 --url-parameters api-version=2023-04-01 --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:39:09.371900+00:00",
+      "finishedAtUtc": "2026-10-24T22:39:11.205501+00:00",
+      "exitCode": 0,
+      "stdout": "policy-rule-1.json",
+      "stderr": "policy-rule-1.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" rest --method get --url https://management.azure.com/providers/Microsoft.Authorization/policyDefinitions/db048e65-913c-49f9-bb5f-1084184671d3 --url-parameters api-version=2023-04-01 --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:39:26.570888+00:00",
+      "finishedAtUtc": "2026-10-24T22:39:28.346301+00:00",
+      "exitCode": 0,
+      "stdout": "policy-rule-10.json",
+      "stderr": "policy-rule-10.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" rest --method get --url https://management.azure.com/providers/Microsoft.Authorization/policyDefinitions/3d5ed4c2-5e50-4c76-932b-8982691b68ae --url-parameters api-version=2023-04-01 --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:39:11.205966+00:00",
+      "finishedAtUtc": "2026-10-24T22:39:13.274595+00:00",
+      "exitCode": 0,
+      "stdout": "policy-rule-2.json",
+      "stderr": "policy-rule-2.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" rest --method get --url https://management.azure.com/providers/Microsoft.Authorization/policyDefinitions/65503269-6a54-4553-8a28-0065a8e6d929 --url-parameters api-version=2023-04-01 --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:39:13.275073+00:00",
+      "finishedAtUtc": "2026-10-24T22:39:15.198964+00:00",
+      "exitCode": 0,
+      "stdout": "policy-rule-3.json",
+      "stderr": "policy-rule-3.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" rest --method get --url https://management.azure.com/providers/Microsoft.Authorization/policyDefinitions/80ed5239-4122-41ed-b54a-6f1fa7552816 --url-parameters api-version=2023-04-01 --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:39:15.199515+00:00",
+      "finishedAtUtc": "2026-10-24T22:39:17.003972+00:00",
+      "exitCode": 0,
+      "stdout": "policy-rule-4.json",
+      "stderr": "policy-rule-4.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" rest --method get --url https://management.azure.com/providers/Microsoft.Authorization/policyDefinitions/813e1e44-914e-436d-a2ab-84c4529a6084 --url-parameters api-version=2023-04-01 --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:39:17.004582+00:00",
+      "finishedAtUtc": "2026-10-24T22:39:18.943208+00:00",
+      "exitCode": 0,
+      "stdout": "policy-rule-5.json",
+      "stderr": "policy-rule-5.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" rest --method get --url https://management.azure.com/providers/Microsoft.Authorization/policyDefinitions/9345b7fb-67c5-496c-9f12-eaa74f676875 --url-parameters api-version=2023-04-01 --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:39:18.943851+00:00",
+      "finishedAtUtc": "2026-10-24T22:39:20.812139+00:00",
+      "exitCode": 0,
+      "stdout": "policy-rule-6.json",
+      "stderr": "policy-rule-6.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" rest --method get --url https://management.azure.com/providers/Microsoft.Authorization/policyDefinitions/951c1558-50a5-4ca3-abb6-a93e3e2367a6 --url-parameters api-version=2023-04-01 --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:39:20.812578+00:00",
+      "finishedAtUtc": "2026-10-24T22:39:22.634456+00:00",
+      "exitCode": 0,
+      "stdout": "policy-rule-7.json",
+      "stderr": "policy-rule-7.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" rest --method get --url https://management.azure.com/providers/Microsoft.Authorization/policyDefinitions/a6cf7411-da9e-49e2-aec0-cba0250eaf8c --url-parameters api-version=2023-04-01 --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:39:22.634933+00:00",
+      "finishedAtUtc": "2026-10-24T22:39:24.568164+00:00",
+      "exitCode": 0,
+      "stdout": "policy-rule-8.json",
+      "stderr": "policy-rule-8.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" rest --method get --url https://management.azure.com/providers/Microsoft.Authorization/policyDefinitions/c5a62eb0-c65a-4220-8a4d-f70dd4ca95dd --url-parameters api-version=2023-04-01 --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:39:24.568926+00:00",
+      "finishedAtUtc": "2026-10-24T22:39:26.570282+00:00",
+      "exitCode": 0,
+      "stdout": "policy-rule-9.json",
+      "stderr": "policy-rule-9.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" provider show --namespace Microsoft.Authorization --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:38:43.725647+00:00",
+      "finishedAtUtc": "2026-10-24T22:38:46.049132+00:00",
+      "exitCode": 0,
+      "stdout": "provider-Microsoft.Authorization.json",
+      "stderr": "provider-Microsoft.Authorization.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" provider show --namespace Microsoft.CognitiveServices --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:38:30.395588+00:00",
+      "finishedAtUtc": "2026-10-24T22:38:32.697940+00:00",
+      "exitCode": 0,
+      "stdout": "provider-Microsoft.CognitiveServices.json",
+      "stderr": "provider-Microsoft.CognitiveServices.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" provider show --namespace Microsoft.Devices --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:38:27.858094+00:00",
+      "finishedAtUtc": "2026-10-24T22:38:30.394497+00:00",
+      "exitCode": 0,
+      "stdout": "provider-Microsoft.Devices.json",
+      "stderr": "provider-Microsoft.Devices.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" provider show --namespace Microsoft.Insights --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:38:41.405576+00:00",
+      "finishedAtUtc": "2026-10-24T22:38:43.725311+00:00",
+      "exitCode": 0,
+      "stdout": "provider-Microsoft.Insights.json",
+      "stderr": "provider-Microsoft.Insights.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" provider show --namespace Microsoft.ManagedIdentity --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:38:36.668286+00:00",
+      "finishedAtUtc": "2026-10-24T22:38:38.716402+00:00",
+      "exitCode": 0,
+      "stdout": "provider-Microsoft.ManagedIdentity.json",
+      "stderr": "provider-Microsoft.ManagedIdentity.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" provider show --namespace Microsoft.Network --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:38:32.698628+00:00",
+      "finishedAtUtc": "2026-10-24T22:38:36.667210+00:00",
+      "exitCode": 0,
+      "stdout": "provider-Microsoft.Network.json",
+      "stderr": "provider-Microsoft.Network.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" provider show --namespace Microsoft.OperationalInsights --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:38:38.717308+00:00",
+      "finishedAtUtc": "2026-10-24T22:38:41.404956+00:00",
+      "exitCode": 0,
+      "stdout": "provider-Microsoft.OperationalInsights.json",
+      "stderr": "provider-Microsoft.OperationalInsights.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" provider show --namespace Microsoft.Resources --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:38:46.049708+00:00",
+      "finishedAtUtc": "2026-10-24T22:38:48.281794+00:00",
+      "exitCode": 0,
+      "stdout": "provider-Microsoft.Resources.json",
+      "stderr": "provider-Microsoft.Resources.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" provider show --namespace Microsoft.Storage --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:38:25.522055+00:00",
+      "finishedAtUtc": "2026-10-24T22:38:27.857141+00:00",
+      "exitCode": 0,
+      "stdout": "provider-Microsoft.Storage.json",
+      "stderr": "provider-Microsoft.Storage.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" provider show --namespace Microsoft.Web --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:38:20.172573+00:00",
+      "finishedAtUtc": "2026-10-24T22:38:25.521170+00:00",
+      "exitCode": 0,
+      "stdout": "provider-Microsoft.Web.json",
+      "stderr": "provider-Microsoft.Web.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" rest --method get --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Storage/skus --url-parameters @C:\\azd-projects\\equip-ai\\local-evidence\\centralus-20261024T2240Z\\storage-skus.query.json --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:38:49.679579+00:00",
+      "finishedAtUtc": "2026-10-24T22:38:52.246840+00:00",
+      "exitCode": 0,
+      "stdout": "storage-skus.json",
+      "stderr": "storage-skus.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" rest --method get --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Storage/locations/centralus/usages --url-parameters @C:\\azd-projects\\equip-ai\\local-evidence\\centralus-20261024T2240Z\\storage-usages.query.json --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:38:52.248824+00:00",
+      "finishedAtUtc": "2026-10-24T22:38:53.964049+00:00",
+      "exitCode": 0,
+      "stdout": "storage-usages.json",
+      "stderr": "storage-usages.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" network vnet list --query [].{name:name,prefixes:addressSpace.addressPrefixes} --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:38:50.577548+00:00",
+      "finishedAtUtc": "2026-10-24T22:38:53.377442+00:00",
+      "exitCode": 0,
+      "stdout": "vnet-prefixes.json",
+      "stderr": "vnet-prefixes.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" appservice list-locations --sku B2 --linux-workers-enabled --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:38:25.897066+00:00",
+      "finishedAtUtc": "2026-10-24T22:38:30.157644+00:00",
+      "exitCode": 0,
+      "stdout": "web-b2-linux-regions.json",
+      "stderr": "web-b2-linux-regions.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" webapp list-runtimes --os linux --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:38:30.158103+00:00",
+      "finishedAtUtc": "2026-10-24T22:38:33.128907+00:00",
+      "exitCode": 0,
+      "stdout": "web-runtimes.json",
+      "stderr": "web-runtimes.stderr.txt"
+    },
+    {
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" rest --method get --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Web/locations/centralus/usages --url-parameters @C:\\azd-projects\\equip-ai\\local-evidence\\centralus-20261024T2240Z\\web-usages.query.json --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "cwd": "C:\\azd-projects\\equip-ai",
+      "startedAtUtc": "2026-10-24T22:38:20.180749+00:00",
+      "finishedAtUtc": "2026-10-24T22:38:25.895202+00:00",
+      "exitCode": 0,
+      "stdout": "web-usages.json",
+      "stderr": "web-usages.stderr.txt"
+    }
+  ],
+  "commandExitCodesAreNotReadinessPasses": true,
+  "additionalPublicPricingCommand": "python local-evidence/centralus-20261024T2240Z/refresh_prices.py",
+  "pricingSource": "retail-prices.json; public filters and actual response, no scenario data transmitted"
+}

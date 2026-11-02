@@ -1,0 +1,21 @@
+{
+  "retrievedAtUtc": "2026-10-24T23:36:12.515611+00:00",
+  "source": "https://azure.microsoft.com/en-us/pricing/details/azure-nat-gateway/",
+  "method": "Official raw HTML data-amount regional us-central embedded USD rates; simplified rendering hides numbers",
+  "pageSha256": "44203f2174122ebb8d4dff1eefb3a3ecc60cca71b4f8f948773f761c3ac05646",
+  "rates": [
+    {
+      "label": "Resource Hours $- per hour",
+      "centralUsUsd": 0.045
+    },
+    {
+      "label": "Data Processed $- per GB",
+      "centralUsUsd": 0.045
+    },
+    {
+      "label": "NatGatewayFlowlogsV1 $-",
+      "centralUsUsd": 4.0
+    }
+  ],
+  "retailApiRows": 0
+}

@@ -1,0 +1,439 @@
+{
+  "schemaVersion": 1,
+  "evidenceType": "authorized_readonly_preflight_incomplete",
+  "checkedAtUtc": "2026-10-24T20:37:11.4253957+00:00",
+  "publicDesignEvidenceAtUtc": "2026-10-22T23:32:01Z",
+  "subscriptionName": "MCAPS-Hybrid-REQ-152516-2026-petender",
+  "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+  "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+  "requestedRegions": [],
+  "candidateRegions": [
+    "eastus2",
+    "swedencentral"
+  ],
+  "selectedRegion": null,
+  "provisionalRegion": "eastus2",
+  "model": {
+    "name": "gpt-4.1-mini",
+    "version": "2025-04-14",
+    "format": "OpenAI",
+    "deploymentType": "GlobalStandard",
+    "sku": "GlobalStandard",
+    "status": "documented_candidate_not_live_verified",
+    "reason": "Current regional matrix lists the exact model/version for both candidate regions; Agent Service lists function tool support for this model.",
+    "quota": null,
+    "capacity": null,
+    "dataProcessingBoundary": "Global deployments may process inference in any Azure region where the model is deployed."
+  },
+  "results": [
+    {
+      "resource": "Microsoft.CognitiveServices/accounts",
+      "kind": "AIServices",
+      "sku": "S0",
+      "feature": "Foundry account and direct child project",
+      "regions": [
+        "eastus2",
+        "swedencentral"
+      ],
+      "status": "public_documentation_supported",
+      "sources": [
+        "foundry-regions",
+        "foundry-bicep"
+      ]
+    },
+    {
+      "resource": "Foundry Agent Service",
+      "feature": "Responses API, prompt agents, private VNet and client-executed function tools",
+      "regions": [
+        "eastus2",
+        "swedencentral"
+      ],
+      "status": "public_documentation_supported",
+      "sources": [
+        "agent-regions",
+        "prompt-agents",
+        "function-tools",
+        "private-standard"
+      ]
+    },
+    {
+      "resource": "Model deployment",
+      "feature": "gpt-4.1-mini 2025-04-14 GlobalStandard",
+      "regions": [
+        "eastus2",
+        "swedencentral"
+      ],
+      "status": "public_documentation_supported",
+      "sources": [
+        "model-regions",
+        "agent-regions",
+        "function-tools"
+      ],
+      "quotaCapacityStatus": "not_queried_not_authorized"
+    },
+    {
+      "resource": "Microsoft.ApiManagement/service",
+      "sku": "StandardV2, one unit",
+      "feature": "Public gateway with outbound VNet integration and MI backend authentication",
+      "regions": [
+        "eastus2"
+      ],
+      "status": "feature_documented_exact_sku_region_live_check_deferred",
+      "sources": [
+        "apim-network"
+      ]
+    },
+    {
+      "resource": "Microsoft.App/managedEnvironments and containerApps",
+      "sku": "Workload profiles environment; Consumption app, 0.5 vCPU / 1 GiB, 1-3 replicas",
+      "feature": "Internal environment with VNet-visible app ingress",
+      "regions": [
+        "eastus2"
+      ],
+      "status": "feature_documented_exact_sku_region_live_check_deferred",
+      "sources": [
+        "aca-network"
+      ]
+    },
+    {
+      "resource": "Microsoft.KeyVault/vaults",
+      "sku": "Standard",
+      "feature": "RBAC private endpoint; nonexportable software RSA signing key",
+      "regions": [
+        "eastus2"
+      ],
+      "status": "design_proposal_live_sku_policy_check_deferred",
+      "sources": [
+        "standard-resources",
+        "key-operations"
+      ]
+    },
+    {
+      "resource": "Microsoft.ManagedIdentity/userAssignedIdentities",
+      "sku": null,
+      "feature": "Distinct gateway/application identities; project system identity",
+      "regions": [
+        "eastus2"
+      ],
+      "status": "design_proposal_live_role_check_deferred",
+      "sources": [
+        "foundry-rbac",
+        "private-standard"
+      ]
+    },
+    {
+      "resource": "Microsoft.Storage/storageAccounts",
+      "sku": "Standard_LRS",
+      "feature": "Required Standard file state; separate read-only synthetic business fixtures",
+      "regions": [
+        "eastus2"
+      ],
+      "status": "required_dependency_documented_live_check_deferred",
+      "sources": [
+        "private-standard",
+        "standard-resources"
+      ]
+    },
+    {
+      "resource": "Microsoft.DocumentDB/databaseAccounts",
+      "sku": "NoSQL provisioned throughput",
+      "feature": "Required Standard conversation and agent state",
+      "regions": [
+        "eastus2"
+      ],
+      "status": "required_dependency_documented_live_check_deferred",
+      "sources": [
+        "standard-resources"
+      ],
+      "sizingCaveat": "Documentation mentions a >=3000 RU/s account limit and five 1000 RU/s containers but distinguishes two New-runtime containers. Verify exact installed topology; reserve up to 5000 RU/s in the planning envelope, not a fabricated deployed capacity."
+    },
+    {
+      "resource": "Microsoft.Search/searchServices",
+      "sku": "Standard, one partition and one replica",
+      "feature": "Required Standard vector-store dependency, not a separate business search feature",
+      "regions": [
+        "eastus2"
+      ],
+      "status": "required_dependency_documented_live_check_deferred",
+      "sources": [
+        "standard-resources"
+      ]
+    },
+    {
+      "resource": "Microsoft.ContainerRegistry/registries",
+      "sku": "Premium",
+      "feature": "Private runtime image pull, admin disabled",
+      "regions": [
+        "eastus2"
+      ],
+      "status": "design_proposal_live_sku_check_deferred",
+      "sources": [
+        "acr-private"
+      ]
+    },
+    {
+      "resource": "Microsoft.OperationalInsights/workspaces",
+      "sku": "PerGB2018",
+      "feature": "30-day redacted operational telemetry",
+      "regions": [
+        "eastus2"
+      ],
+      "status": "design_proposal_live_check_deferred",
+      "sources": []
+    },
+    {
+      "resource": "Microsoft.Network",
+      "sku": null,
+      "feature": "VNet, four dedicated subnets, NSGs, private endpoints and private DNS",
+      "regions": [
+        "eastus2"
+      ],
+      "status": "feature_documented_address_overlap_and_live_checks_deferred",
+      "sources": [
+        "private-standard",
+        "apim-network",
+        "aca-network"
+      ]
+    }
+  ],
+  "sdkDecision": {
+    "language": ".NET 10 C#",
+    "packages": [
+      "Azure.AI.Projects",
+      "Azure.AI.Projects.Agents",
+      "Azure.AI.Extensions.OpenAI",
+      "Azure.Identity"
+    ],
+    "apiFamily": "Foundry projects new; versioned prompt agents; Responses API v1",
+    "packageVersions": {
+      "Azure.AI.Projects": "2.0.1",
+      "Azure.AI.Projects.Agents": "2.0.0",
+      "Azure.AI.Extensions.OpenAI": "2.0.0",
+      "Azure.Identity": "1.21.0",
+      "Azure.Storage.Blobs": "12.30.1",
+      "Azure.Security.KeyVault.Keys": "4.10.2",
+      "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.13"
+    },
+    "versionPinning": "Exact project and transitive lock files restored through MicrosoftPackageFeedProxy; new-project prompt-agent, version-pinned Responses, function calls and installer signatures compiled. This is local compatibility evidence, not live service acceptance.",
+    "verifiedAtUtc": "2026-10-24T19:59:23.870950+00:00",
+    "verificationEvidence": ".application-evidence/validation.json",
+    "orchestration": "Application-controlled sequence of three distinct Foundry prompt agents; not Foundry workflow, hosted-agent or A2A preview dependency.",
+    "sources": [
+      "prompt-agents",
+      "function-tools"
+    ]
+  },
+  "candidateAssessment": [
+    {
+      "region": "eastus2",
+      "status": "preferred_provisional",
+      "rejectionReason": null
+    },
+    {
+      "region": "swedencentral",
+      "status": "documented_foundry_model_alternative_not_selected",
+      "rejectionReason": null,
+      "note": "Not a complete stack or live capacity validation; no automatic failover or substitution."
+    }
+  ],
+  "liveChecksPerformed": true,
+  "authorizedPreflight": {
+    "status": "blocked-workflow-error-not-deployment-ready",
+    "region": "eastus2",
+    "environment": "manu-multi-agent",
+    "resourceGroup": "rg-manu-multi-agent",
+    "decisionId": "c5b9b6e615064c5085134c1a62948c7f",
+    "evidenceDirectory": ".resume-evidence/f24af8561b624fa292a41c561c8fb38e",
+    "historicalResultsNote": "The results and source list above retain dated public design findings; current subscription observations follow. selectedRegion remains null until the complete stack is eligible.",
+    "matrix": [
+      {
+        "resource": "Foundry AIServices S0, direct project and gpt-4.1-mini 2025-04-14 GlobalStandard",
+        "status": "model-listed-quota-sufficient-capacity-unresolved",
+        "requiredCapacity": 30,
+        "quotaCurrentValue": 0,
+        "quotaLimit": 5000,
+        "capabilities": ["responses", "agentsV2"],
+        "lifecycleStatus": "Legacy",
+        "inferenceDeprecation": "2027-04-14",
+        "evidence": ["model.json", "model-usage.json", "providers.json"],
+        "limitation": "Quota is not allocation capacity. The first capacity GET lost URL parameters in Windows command quoting; the corrected command was denied by the execution host, not Azure."
+      },
+      {
+        "resource": "Cosmos DB NoSQL, nonzonal provisioned throughput",
+        "status": "subscription-region-access-passed",
+        "isSubscriptionRegionAccessAllowedForRegular": true,
+        "isSubscriptionRegionAccessAllowedForAz": false,
+        "supportsAvailabilityZone": true,
+        "serviceStatus": "Online",
+        "evidence": ["cosmos-eastus2.json"],
+        "limitation": "Existing zoneRedundant=false preserved. Zonal access fails; throughput topology still installation-dependent."
+      },
+      {
+        "resource": "API Management StandardV2, one unit",
+        "status": "exact-subscription-sku-listed-no-restrictions",
+        "capacityMinimum": 1,
+        "capacityMaximum": 10,
+        "evidence": ["apim-skus.json"],
+        "limitation": "Final workload what-if requires real installation outputs; no provisioning capacity is reserved."
+      },
+      {
+        "resource": "Container Apps internal Consumption, 0.5 vCPU / 1 GiB, 1-3 replicas",
+        "status": "environment-count-quota-passed-other-capacity-unresolved",
+        "environmentCountCurrent": 0,
+        "environmentCountLimit": 50,
+        "evidence": ["aca-usage.json", "providers.json"],
+        "limitation": "Environment-count quota does not prove Consumption core allocation or private connected-host access."
+      },
+      {
+        "resource": "Key Vault Standard; Storage Standard_LRS x2; Search Standard; ACR Premium; managed identities; Log Analytics PerGB2018; VNet/private endpoints/DNS",
+        "status": "provider-metadata-and-independent-foundation-whatif-observed-not-full-sku-eligibility",
+        "evidence": ["providers.json", "foundation-whatif-compact.json"],
+        "limitation": "All 13 queried providers registered. Regional types listed; private DNS is global. Exact capacity, authenticated private operations and policy effects remain unproven."
+      },
+      {
+        "resource": "Scenario-owned secretless backend API application and service principal",
+        "status": "member-default-app-creation-policy-allows-dependent-installation-unperformed",
+        "allowedToCreateApps": true,
+        "userType": "Member",
+        "evidence": ["directory-policy-corrected.json", "directory-user.json"],
+        "limitation": "No directory write, permission grant, admin consent or runtime authentication was performed. Actual generated IDs remain deployment outputs."
+      },
+      {
+        "resource": "Subscription actions and policies",
+        "status": "read-successful-not-an-authorization-grant",
+        "evidence": ["permissions.json", "policy-assignments.json"],
+        "limitation": "Effective ARM actions include wildcard with no exclusions in that entry; three policy assignments returned. This is not directory privilege, mutation consent or proof of every policy outcome."
+      }
+    ],
+    "whatIf": {
+      "status": "Succeeded",
+      "scope": "subscription wrapper for absent resource group and unchanged compiled foundation",
+      "create": 72,
+      "modify": 0,
+      "delete": 0,
+      "unsupported": 13,
+      "diagnostics": null,
+      "evidence": "foundation-whatif-compact.json",
+      "limitation": "Thirteen future identity/default-domain dependent role/DNS changes cannot be evaluated until deployment. Full workload depends on real identity/image/agent/key outputs. No IDs were fabricated.",
+      "retry": "Formatted wrapper exceeded ARM 4 MB. Equivalent compact 2171625-byte JSON succeeded; original failure retained."
+    },
+    "privateExecution": {
+      "host": "LAPTOP-JS6TIS5L",
+      "status": "unverified",
+      "observedRoute": "Default IPv4 route via Wi-Fi 10.0.0.1; no specific 10.84 route observed.",
+      "limitation": "No target endpoints exist. Route observation alone proves neither reachability nor its absence. Approved connected host, artifact/result channel and authenticated private operations remain required."
+    },
+    "blocker": {
+      "kind": "workflow-error",
+      "message": "Execution host denied the corrected read-only model-capacity command without identifying a permission. No retry through another route; no shared tools, defaults, trust or cloud permissions changed.",
+      "evidence": "execution-denial.json"
+    }
+  },
+  "outstandingLiveChecks": [
+    "Resolve the execution-host workflow-error and verify the denied read-only model-capacity GET under unchanged restrictions.",
+    "Finish exact supporting SKU/capacity/policy eligibility and actual private connected-host/artifact-path checks.",
+    "Foundry Agent Consumer resolved to built-in eed3b665-ab3a-47b6-8f48-c9382fb1dad6; validate invocation permissions after authorized installation.",
+    "Verify private installer/build connectivity and nonoverlapping connected VNet addresses.",
+    "Reconcile Standard setup Cosmos runtime containers and throughput against the actual API path.",
+    "Independent foundation what-if succeeded with 13 unsupported output-dependent resources; exact workload what-if awaits authorized installation outputs.",
+    "Complete missing private-network, storage, DNS, model and management-path costs before consolidated deployment consent."
+  ],
+  "recommendation": "Retain the authorized eastus2 target and exact model without substitution. Partial scoped preflight and independent what-if succeeded, but host-denied capacity checking, incomplete stack eligibility/cost and unverified private execution prevent deployment readiness. No deployment consent requested or inferred.",
+  "sources": [
+    {
+      "id": "foundry-regions",
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/reference/region-support",
+      "retrievedAtUtc": "2026-10-22T23:32:01Z",
+      "finding": "East US 2 and Sweden Central support Foundry projects; feature-specific and live capacity checks remain required."
+    },
+    {
+      "id": "agent-regions",
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/limits-quotas-regions",
+      "retrievedAtUtc": "2026-10-22T23:32:01Z",
+      "finding": "Both candidates list Responses, Agents, private VNet and Function support; gpt-4.1-mini lists Functions support."
+    },
+    {
+      "id": "model-regions",
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-region-availability",
+      "retrievedAtUtc": "2026-10-22T23:32:01Z",
+      "finding": "Global Standard tables list gpt-4.1-mini version 2025-04-14 in eastus2 and swedencentral; global processing is not region bound."
+    },
+    {
+      "id": "private-standard",
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/virtual-networks",
+      "retrievedAtUtc": "2026-10-22T23:32:01Z",
+      "finding": "Private Standard requires BYO Storage/Cosmos/Search, private endpoints and dedicated Microsoft.App/environments subnet. Capability-settings API 2026-07-15-preview differs from legacy sample capability-host provisioning."
+    },
+    {
+      "id": "standard-resources",
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/standard-agent-setup",
+      "retrievedAtUtc": "2026-10-22T23:32:01Z",
+      "finding": "Standard dependencies and separate caller/runtime roles documented; Cosmos minimum/account/container statements require API-path-specific sizing."
+    },
+    {
+      "id": "prompt-agents",
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/agents/quickstarts/prompt-agent",
+      "retrievedAtUtc": "2026-10-22T23:32:01Z",
+      "finding": "New project endpoint, C# DeclarativeAgentDefinition, CreateAgentVersion and Responses interaction; not classic Projects 1.x."
+    },
+    {
+      "id": "function-tools",
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/function-calling",
+      "retrievedAtUtc": "2026-10-22T23:32:01Z",
+      "finding": "Client executes function calls and returns tool outputs; .NET and private Standard supported; example uses gpt-4.1-mini."
+    },
+    {
+      "id": "foundry-rbac",
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/concepts/rbac-foundry",
+      "retrievedAtUtc": "2026-10-22T23:32:01Z",
+      "finding": "Foundry Agent Consumer for invocation-only application; Foundry User for separate installer. Agents in a project are not independent business-unit data-isolation boundaries."
+    },
+    {
+      "id": "apim-network",
+      "url": "https://learn.microsoft.com/en-us/azure/api-management/integrate-vnet-outbound",
+      "retrievedAtUtc": "2026-10-22T23:32:01Z",
+      "finding": "Standard v2 public gateway can reach private backends; dedicated /24 recommended subnet delegated to Microsoft.Web/serverFarms with NSG."
+    },
+    {
+      "id": "aca-network",
+      "url": "https://learn.microsoft.com/en-us/azure/container-apps/networking",
+      "retrievedAtUtc": "2026-10-22T23:32:01Z",
+      "finding": "Internal environment has no public endpoint; app external ingress in an internal environment means VNet-visible, not internet-visible."
+    },
+    {
+      "id": "acr-private",
+      "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-private-endpoints",
+      "retrievedAtUtc": "2026-10-22T23:34:57Z",
+      "finding": "Private endpoints require Premium; private image push requires network line of sight and private DNS, not a public hosted build agent."
+    },
+    {
+      "id": "key-operations",
+      "url": "https://learn.microsoft.com/en-us/azure/key-vault/keys/about-keys-details",
+      "retrievedAtUtc": "2026-10-22T23:34:57Z",
+      "finding": "RSA 2K/3K/4K keys support PS256 signing of SHA-256 digests; signatures demonstrate integrity, not factual correctness."
+    },
+    {
+      "id": "foundry-bicep",
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/how-to/create-resource-template",
+      "retrievedAtUtc": "2026-10-22T23:32:01Z",
+      "finding": "Current Foundry account/project IaC and documented private Standard sample; caller provisioning roles differ from runtime roles."
+    },
+    {
+      "id": "avm-account",
+      "url": "https://raw.githubusercontent.com/Azure/bicep-registry-modules/main/avm/res/cognitive-services/account/main.bicep",
+      "retrievedAtUtc": "2026-10-22T23:32:01Z",
+      "finding": "AVM supports AIServices S0, network injection and private endpoints; recheck released module interface/version before Bicep."
+    },
+    {
+      "id": "avm-apim",
+      "url": "https://raw.githubusercontent.com/Azure/bicep-registry-modules/main/avm/res/api-management/service/main.bicep",
+      "retrievedAtUtc": "2026-10-22T23:32:01Z",
+      "finding": "AVM service module exists; default Premium is not the proposed StandardV2 override."
+    }
+  ],
+  "researchLimitations": [
+    "A guessed agent-to-agent Learn URL returned 404; no design depends on it.",
+    "The aka.ms AVM index shortcut redirected to Bing rather than metadata; official Azure AVM source modules were inspected instead.",
+    "Public pricing pages use dynamic region/currency tables; no unverified search-summary prices were accepted as a quote."
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "resto-scale-agent",
+    "resourceGroup": "rg-resto-scale-agent",
+    "region": "centralus"
+  },
+  "checkedAtUtc": "2026-10-24T00:01:36.123697+00:00",
+  "infrastructureFingerprint": "1aa0c0f7d9f7518ece839c1edb8578142a922edb9ac482d2462b8fd6aa0feffc",
+  "actualGuardRejection": "Regional readiness is older than 15 minutes or future-dated; refresh before deployment.",
+  "result": "Historical mandatory pre-review gate claim is not current.",
+  "evidence": [
+    "AST inspection: portal_server.execute_operations contains no require_regional_readiness or validate_regional_readiness call; it runs the canonical agent through the authorized flow.",
+    "portal_workflow.Store.report accepts explicit exact-scope deployment decisions after preparation without requiring an all-passed regional receipt. Recording a decision grants no consent.",
+    "The standalone readiness validator still rejects these retained incomplete/stale observations. No deployment readiness or runtime acceptance is claimed."
+  ],
+  "notPerformed": [
+    "Canonical/backend code edits",
+    "Provider registration",
+    "Directory/resource mutations",
+    "Generated-value questionnaire",
+    "Deployment authorization"
+  ]
+}

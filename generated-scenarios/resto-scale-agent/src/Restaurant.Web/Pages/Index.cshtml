@@ -1,0 +1,78 @@
+@page
+@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fourth Coffee | Guest journey</title>
+    <link rel="stylesheet" href="/css/site.css" />
+    <script src="/js/restaurant.js" defer></script>
+</head>
+<body data-workspace="guest">
+<a class="skip" href="#main">Skip to main content</a>
+<header><span class="brand">Fourth Coffee</span><nav aria-label="Workspaces">
+    <a href="/" aria-current="page">Guest journey</a><a href="/Staff">Staff and kitchen</a>
+</nav></header>
+<main id="main">
+    <p class="eyebrow">Five floors. One connected service.</p>
+    <h1>Your visit, from reservation to feedback</h1>
+    <p>Synthetic restaurant reference. Synthetic settlement - no money charged.</p>
+    <p id="notice" role="status" aria-live="polite">Connect to a reservation to see live visit state.</p>
+    <div class="columns">
+        <section aria-labelledby="reserve-heading">
+            <h2 id="reserve-heading">Reserve a table</h2>
+            <form id="reserve">
+                <label>Service date<input name="date" type="date" required /></label>
+                <label>Meal turn<select name="turn"><option>1</option><option>2</option><option>3</option>
+                    <option>4</option><option>5</option></select></label>
+                <label>Floor<select name="floor"><option>1</option><option>2</option><option>3</option>
+                    <option>4</option><option>5</option></select></label>
+                <label>Party size<input name="seats" type="number" min="1" max="12" value="2" required /></label>
+                <p>Synthetic guest: Airi Ilves, catalog record 1. Maximum fifty seats per floor and turn.</p>
+                <button type="submit">Confirm reservation</button>
+            </form>
+            <output id="reservation-result" aria-live="polite"></output>
+            <h2>Connect to your visit</h2>
+            <form id="login">
+                <label>Visit ID<input name="visitId" required autocomplete="off" /></label>
+                <label>Reservation access code<input name="accessCode" type="password" required autocomplete="off" /></label>
+                <p>Keep your code. Reservation projection may take a few seconds; retry connection if still preparing.</p>
+                <button type="submit">Connect</button>
+            </form>
+        </section>
+        <section aria-labelledby="visit-heading">
+            <h2 id="visit-heading">Your visit</h2>
+            <button id="refresh" type="button">Refresh visit</button>
+            <div id="visit">No authenticated visit selected.</div>
+            <div class="actions">
+                <button id="checkin" type="button" disabled>Preview check-in</button>
+                <button id="cancel" type="button" disabled>Preview reservation cancellation</button>
+                <button id="settle" type="button" disabled>Preview synthetic settlement</button>
+            </div>
+            <h2>Menu and order</h2>
+            <p>Prices are USD. Ask staff about allergies; assistants cannot guarantee food suitability.</p>
+            <form id="order"><div id="menu">Loading menu from the configured data service...</div>
+                <button type="submit" disabled>Preview order</button></form>
+            <form id="survey">
+                <label>Post-visit rating<select name="rating"><option>5</option><option>4</option><option>3</option>
+                    <option>2</option><option>1</option></select></label>
+                <button type="submit" disabled>Preview feedback</button>
+            </form>
+        </section>
+    </div>
+    <section aria-labelledby="preview-heading"><h2 id="preview-heading">Review before confirming</h2>
+        <div id="previews">No pending action. An assistant suggestion never commits a transaction.</div></section>
+    <section aria-labelledby="chat-heading"><h2 id="chat-heading">Guest Concierge</h2>
+        <p>Real Foundry responses require the configured deployed agents. Orders do not depend on chat availability.</p>
+        <form id="chat"><label>Ask about the menu or your visit
+            <textarea name="message" maxlength="2000" required></textarea></label>
+            <button type="submit">Ask Concierge</button></form>
+        <div id="chat-result" role="status" aria-live="polite"></div>
+    </section>
+</main>
+<footer>Fourth Coffee | Hospitality &amp; Travel | Generic restaurant workflow</footer>
+</body>
+</html>

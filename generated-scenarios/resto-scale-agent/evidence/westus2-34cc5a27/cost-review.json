@@ -1,0 +1,91 @@
+{
+  "region": "westus2",
+  "checkedAtUtc": "2026-10-23T23:26:15.641480+00:00",
+  "currency": "USD",
+  "rates": {
+    "broker": {
+      "meterId": "176d7148-0033-48c7-8b18-7af4a9d1dca7",
+      "meterName": "Premium Messaging Unit",
+      "retailPrice": 0.9275,
+      "unitOfMeasure": "1/Hour",
+      "armRegionName": "westus2"
+    },
+    "cpuActive": {
+      "meterId": "2711ef08-ef48-5416-9ef2-f1110cd09c79",
+      "meterName": "Standard vCPU Active Usage",
+      "retailPrice": 3.4e-05,
+      "unitOfMeasure": "1 Second",
+      "armRegionName": "westus2"
+    },
+    "cpuIdle": {
+      "meterId": "8fed0c99-e333-5840-b785-a25c32d8940e",
+      "meterName": "Standard vCPU Idle Usage",
+      "retailPrice": 4e-06,
+      "unitOfMeasure": "1 Second",
+      "armRegionName": "westus2"
+    },
+    "memoryActive": {
+      "meterId": "2dbd360e-f9d9-563d-8916-844b6b27a2d7",
+      "meterName": "Standard Memory Active Usage",
+      "retailPrice": 4e-06,
+      "unitOfMeasure": "1 GiB Second",
+      "armRegionName": "westus2"
+    },
+    "memoryIdle": {
+      "meterId": "576eb6a3-4204-52cd-a016-1640251bdb77",
+      "meterName": "Standard Memory Idle Usage",
+      "retailPrice": 4e-06,
+      "unitOfMeasure": "1 GiB Second",
+      "armRegionName": "westus2"
+    },
+    "cosmosAutoscale": {
+      "meterId": "97378823-eae2-4555-9dad-29bbb0f3ad84",
+      "meterName": "AP1 100 RUs",
+      "retailPrice": 0.012,
+      "unitOfMeasure": "1/Hour",
+      "armRegionName": "westus2"
+    },
+    "cosmosStorage": {
+      "meterId": "56f07b6a-c7d9-490f-a196-a7ee08e28712",
+      "meterName": "Data Stored",
+      "retailPrice": 0.25,
+      "unitOfMeasure": "1 GB/Month",
+      "armRegionName": "westus2"
+    },
+    "continuous7Days": {
+      "meterId": "84ab4e30-50aa-5ea5-945d-24e5e8b33e8c",
+      "meterName": "Cont 7D Bkup Continuous Backup",
+      "retailPrice": 0.0,
+      "unitOfMeasure": "1 GB",
+      "armRegionName": "westus2"
+    }
+  },
+  "modelRates": null,
+  "modelPricingStatus": "Exact gpt-5.4-mini GlobalStandard meters absent; GPT 5 Chat rates not substituted.",
+  "monthlyExamples": {
+    "hours": 730,
+    "brokerOneMU": 677.08,
+    "cosmos400RU": 35.04,
+    "cosmos4000RU": 350.4,
+    "nineReplicasIdle": 141.91,
+    "nineReplicasActive": 496.69,
+    "max28ReplicasActive": 1545.26,
+    "rollout56ReplicasActive": 3090.53,
+    "model24MInput7_2MOutput": null
+  },
+  "priorPlanningAllowancesNotRequoted": {
+    "shared": [
+      745,
+      1150
+    ],
+    "fullReference": [
+      900,
+      1650
+    ]
+  },
+  "limitations": [
+    "Exact current-region base meters only; no complete current-region model/full-reference quote.",
+    "Ancillary ACR/vault/network/telemetry not individually requoted; storage/requests/egress/tax may add cost.",
+    "Maximum scale and temporary overlap can exceed prior allowances; pricing does not prove eligibility."
+  ]
+}

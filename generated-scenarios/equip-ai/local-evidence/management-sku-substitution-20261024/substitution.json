@@ -1,0 +1,54 @@
+{
+  "recordedAtUtc": "2026-10-24T23:49:46+00:00",
+  "userResponse": "substitute the vm standard_b2s with a similar vm size that is available in that region",
+  "provenance": "Actual user message in the current VS Code chat, 2026-10-24",
+  "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+  "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+  "resourceGroup": "rg-equip-ai",
+  "region": "centralus",
+  "previousSku": "Standard_B2s",
+  "selectedSku": "Standard_D2als_v7",
+  "vcpus": 2,
+  "memoryGiB": 4,
+  "restrictions": [],
+  "familyVcpuQuota": {"used": 0, "limit": 100, "required": 2},
+  "regionalVcpuQuota": {"used": 0, "limit": 100, "required": 2},
+  "vmCountQuota": {"used": 0, "limit": 25000, "required": 1},
+  "rationale": "Same vCPU/RAM as B2s, unrestricted and with sufficient quota; cheapest Linux PAYG candidate among the four priced eligible comparable sizes. No burst-credit dependency; no local temporary disk dependency.",
+  "imageCompatibility": "Retained Ubuntu 24.04 Gen2 x64 image explicitly supports NVMe and Trusted Launch. SKU requires NVMe; Azure chooses the default controller when omitted. AVM version unchanged.",
+  "securityUnchanged": true,
+  "linuxPaygHourlyUsd": 0.0804,
+  "previousLinuxPaygHourlyUsd": 0.0499,
+  "monthlyHoursAssumption": 730,
+  "vmMonthlyUsd": 58.692,
+  "monthlyIncreaseUsd": 22.265,
+  "illustrativeManagementMonthlyUsd": 97.83,
+  "illustrativeCombinedMonthlyUsd": 249.36,
+  "pricingSource": "https://prices.azure.com/api/retail/prices",
+  "pricingEvidence": "retail-prices.json",
+  "unchangedCostEvidence": "../management-repair-20261024/verified-cost.json",
+  "costLimitations": "Retained workload/730-hour/5-GB assumptions and prior exclusions apply. Not a price quote or spending ceiling. Material further changes require review.",
+  "documentation": [
+    "https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/general-purpose/dalsv7-series",
+    "https://learn.microsoft.com/en-us/azure/virtual-machines/enable-nvme-interface"
+  ],
+  "rejectedRestrictedCandidates": [
+    "Standard_B2s_v2", "Standard_B2as_v2", "Standard_B2als_v2",
+    "Standard_D2as_v5", "Standard_D2s_v5", "Standard_D2s_v6"
+  ],
+  "otherEligiblePricedCandidates": [
+    {"sku": "Standard_D2s_v3", "linuxPaygHourlyUsd": 0.11, "memoryGiB": 8},
+    {"sku": "Standard_D2s_v4", "linuxPaygHourlyUsd": 0.108, "memoryGiB": 8},
+    {"sku": "Standard_F2als_v7", "linuxPaygHourlyUsd": 0.121, "memoryGiB": 4}
+  ],
+  "eligibilityPassed": true,
+  "fullExactWhatIfExecuted": false,
+  "provisioningAttempted": false,
+  "allocationReserved": false,
+  "validation": {
+    "bicepBuildExitCode": 0,
+    "bicepLintExitCode": 0,
+    "pythonTestsPassed": 25,
+    "diagramRenderAndIntegrityPassed": true
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "finance-security-hack",
+  "title": "Finance security hack",
+  "summary": "Locally discovered reference. Review its architecture and metadata before adapting.",
+  "industry": "Financial Services",
+  "businessUnits": [
+    "generic"
+  ],
+  "services": [
+    "foundry",
+    "container-apps",
+    "key-vault",
+    "managed-identity",
+    "api-management",
+    "storage",
+    "cosmos-db",
+    "ai-search",
+    "virtual-network",
+    "monitor"
+  ],
+  "pillars": [
+    "security",
+    "operational-excellence"
+  ],
+  "domains": [
+    "identity"
+  ],
+  "artifacts": [
+    "01-requirements.md",
+    "02-architecture-assessment.md",
+    "04-implementation-plan.md",
+    "03-architect-diagram.png",
+    "04-runtime-diagram.png",
+    "azure.yaml",
+    "infra",
+    "src"
+  ],
+  "source": null,
+  "metadataStatus": "needs-review"
+}

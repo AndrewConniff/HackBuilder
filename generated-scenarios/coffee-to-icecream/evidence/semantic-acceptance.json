@@ -1,0 +1,33 @@
+{
+  "status": "failed",
+  "agentVersion": "3",
+  "source": "http-acceptance.json",
+  "inspectedReport": "f4b0524d326d40f8b5be5bec18b8fdb5",
+  "inspectionScope": "Store 001 workers and synthesis; one counterexample suffices to fail. No exhaustive review of all narratives is claimed.",
+  "checks": [
+    {
+      "name": "Exact authoritative ledger and closing stock",
+      "passed": true,
+      "observed": "NetSales 598.50, COGS 99.40, Waste 3.00, Labor 142.00, Occupancy 45.00, Profit 309.10; vanilla OnHand 11.3L"
+    },
+    {
+      "name": "Recorded spoilage already removed and expensed once",
+      "passed": true,
+      "observed": "Stock worker says 0.6L spoilage already reduced OnHand; margin and synthesis identify separately expensed Waste."
+    },
+    {
+      "name": "No unsupported cost stability claim",
+      "passed": false,
+      "observedMargin": "Labor and occupancy appear steady but should be reviewed if sales improve.",
+      "observedSynthesis": "Labor and occupancy expenses appear steady relative to sales.",
+      "reason": "Only one business-day ledger is supplied; there is no historical or planned cost comparison baseline."
+    },
+    {
+      "name": "No profit-variance language without a baseline",
+      "passed": false,
+      "observedStock": "Profit variance may be impacted by lower sales if stockouts occur.",
+      "reason": "This is hypothetical but still uses profit-variance terminology without a supplied planned or historical profit baseline."
+    }
+  ],
+  "remainingWork": "Use a more constrained, verifiable grounded-output contract rather than treating additional prompt wording as proof. Preserve real invocation and explicit failures; rerun actual acceptance before review."
+}

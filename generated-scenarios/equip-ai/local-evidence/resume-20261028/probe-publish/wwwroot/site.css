@@ -1,0 +1,21 @@
+:root { color-scheme: light; --ink: #162e2b; --accent: #086f62; --surface: #f3f6f5; --border: #607b75; }
+* { box-sizing: border-box; }
+body { margin: 0; font: 1rem/1.6 "Segoe UI", sans-serif; color: var(--ink); background: var(--surface); }
+header { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; padding: 1rem 5%; background: #143c36; color: white; }
+header button { margin-left: auto; }
+nav { padding: .6rem 5%; background: white; border-bottom: 1px solid var(--border); }
+a { color: #075c50; text-underline-offset: .3em; }
+main { max-width: 62rem; margin: 2rem auto; padding: 0 1.2rem; }
+h1 { font-size: clamp(1.7rem, 5vw, 2.5rem); line-height: 1.25; }
+h2 { font-size: 1.25rem; }
+section { border-top: 1px solid var(--border); margin-top: 1.5rem; padding-top: .8rem; }
+label { display: block; font-weight: 600; margin-top: 1.5rem; }
+textarea { width: 100%; resize: vertical; border: 1px solid var(--border); border-radius: .3rem; padding: .8rem; font: inherit; }
+input { width: 100%; max-width: 28rem; display: block; padding: .6rem; font: inherit; margin-bottom: .8rem; }
+button { padding: .6rem 1rem; border: 1px solid transparent; border-radius: .3rem; font: inherit; cursor: pointer;
+    background: var(--accent); color: white; min-height: 44px; }
+button:disabled { background: #586b66; cursor: not-allowed; }
+button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visible { outline: 3px solid #b36500; outline-offset: 3px; }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: .88rem; }
+aside { border-left: 4px solid var(--accent); padding: .6rem 1rem; margin: 1.5rem 0; background: white; }
+#status { font-weight: 600; }

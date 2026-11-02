@@ -1,0 +1,6 @@
+{
+  "command": "python scripts\\private_lifecycle.py publish",
+  "startedAtUtc": "2026-10-25T00:19:09.0486239Z",
+  "finishedAtUtc": "2026-10-25T00:20:29.9740900Z",
+  "exitCode": 1
+}

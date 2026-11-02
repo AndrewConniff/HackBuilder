@@ -1,0 +1,113 @@
+{
+  "error": null,
+  "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Resources/deployments/registry-validate-19f3d63e",
+  "location": "eastus2",
+  "name": "registry-validate-19f3d63e",
+  "properties": {
+    "correlationId": "f1e7cd6f-a40f-4725-8ce8-82dfeac9c4be",
+    "debugSetting": null,
+    "dependencies": [
+      {
+        "dependsOn": [
+          {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent",
+            "resourceName": "rg-resto-scale-agent",
+            "resourceType": "Microsoft.Resources/resourceGroups"
+          }
+        ],
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/registry-independent-19f3d63e",
+        "resourceGroup": "rg-resto-scale-agent",
+        "resourceName": "registry-independent-19f3d63e",
+        "resourceType": "Microsoft.Resources/deployments"
+      }
+    ],
+    "diagnostics": null,
+    "duration": "PT0S",
+    "error": null,
+    "extensions": [],
+    "mode": "Incremental",
+    "onErrorDeployment": null,
+    "outputResources": null,
+    "outputs": null,
+    "parameters": null,
+    "parametersLink": null,
+    "providers": [
+      {
+        "id": null,
+        "namespace": "Microsoft.Resources",
+        "providerAuthorizationConsentState": null,
+        "registrationPolicy": null,
+        "registrationState": null,
+        "resourceTypes": [
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locationMappings": null,
+            "locations": [
+              "eastus2"
+            ],
+            "properties": null,
+            "resourceType": "resourceGroups",
+            "zoneMappings": null
+          },
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locationMappings": null,
+            "locations": [
+              null
+            ],
+            "properties": null,
+            "resourceType": "deployments",
+            "zoneMappings": null
+          }
+        ]
+      }
+    ],
+    "provisioningState": "Succeeded",
+    "templateHash": "10783033179572763102",
+    "templateLink": null,
+    "timestamp": "2026-10-23T22:20:32.473041+00:00",
+    "validatedResources": [
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent",
+        "identifiers": null,
+        "resourceType": null
+      },
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi",
+        "identifiers": null,
+        "resourceGroup": "rg-resto-scale-agent",
+        "resourceType": null
+      },
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/46d3xbcp.res.containerregistry-registry.0-13-1.flg4",
+        "identifiers": null,
+        "resourceGroup": "rg-resto-scale-agent",
+        "resourceType": null
+      },
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/registry-independent-19f3d63e",
+        "identifiers": null,
+        "resourceGroup": "rg-resto-scale-agent",
+        "resourceType": null
+      }
+    ],
+    "validationLevel": null
+  },
+  "type": "Microsoft.Resources/deployments"
+}

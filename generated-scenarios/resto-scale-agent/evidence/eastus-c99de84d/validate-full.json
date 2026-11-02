@@ -1,0 +1,394 @@
+{
+  "command": "az deployment sub validate --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location eastus --name resto-validate-c99de84d --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\eastus-c99de84d\\preview-full.arm.json --output json",
+  "startedAtUtc": "2026-10-23T22:49:41.191309+00:00",
+  "checkedAtUtc": "2026-10-23T22:49:48.062552+00:00",
+  "exitCode": 0,
+  "stdout": "{\n  \"error\": null,\n  \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Resources/deployments/resto-validate-c99de84d\",\n  \"location\": \"eastus\",\n  \"name\": \"resto-validate-c99de84d\",\n  \"properties\": {\n    \"correlationId\": \"bc4c2802-580e-4fe5-ba8c-cc9b7ff7e846\",\n    \"debugSetting\": null,\n    \"dependencies\": [\n      {\n        \"dependsOn\": [\n          {\n            \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent\",\n            \"resourceName\": \"rg-resto-scale-agent\",\n            \"resourceType\": \"Microsoft.Resources/resourceGroups\"\n          }\n        ],\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/preview-full-c99de84d\",\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceName\": \"preview-full-c99de84d\",\n        \"resourceType\": \"Microsoft.Resources/deployments\"\n      }\n    ],\n    \"diagnostics\": [\n      {\n        \"additionalInfo\": null,\n        \"code\": \"NestedDeploymentShortCircuited\",\n        \"level\": \"Warning\",\n        \"message\": \"A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.\",\n        \"target\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/insights\"\n      },\n      {\n        \"additionalInfo\": null,\n        \"code\": \"NestedDeploymentShortCircuited\",\n        \"level\": \"Warning\",\n        \"message\": \"A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.\",\n        \"target\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/registry\"\n      },\n      {\n        \"additionalInfo\": null,\n        \"code\": \"NestedDeploymentShortCircuited\",\n        \"level\": \"Warning\",\n        \"message\": \"A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.\",\n        \"target\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/cosmos\"\n      },\n      {\n        \"additionalInfo\": null,\n        \"code\": \"NestedDeploymentShortCircuited\",\n        \"level\": \"Warning\",\n        \"message\": \"A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.\",\n        \"target\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/broker\"\n      },\n      {\n        \"additionalInfo\": null,\n        \"code\": \"NestedDeploymentShortCircuited\",\n        \"level\": \"Warning\",\n        \"message\": \"A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.\",\n        \"target\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/vault\"\n      },\n      {\n        \"additionalInfo\": null,\n        \"code\": \"NestedDeploymentShortCircuited\",\n        \"level\": \"Warning\",\n        \"message\": \"A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.\",\n        \"target\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/foundry\"\n      },\n      {\n        \"additionalInfo\": null,\n        \"code\": \"NestedDeploymentShortCircuited\",\n        \"level\": \"Warning\",\n        \"message\": \"A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.\",\n        \"target\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/project\"\n      },\n      {\n        \"additionalInfo\": null,\n        \"code\": \"NestedDeploymentShortCircuited\",\n        \"level\": \"Warning\",\n        \"message\": \"A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.\",\n        \"target\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/environment\"\n      }\n    ],\n    \"duration\": \"PT0S\",\n    \"error\": null,\n    \"extensions\": [],\n    \"mode\": \"Incremental\",\n    \"onErrorDeployment\": null,\n    \"outputResources\": null,\n    \"outputs\": null,\n    \"parameters\": null,\n    \"parametersLink\": null,\n    \"providers\": [\n      {\n        \"id\": null,\n        \"namespace\": \"Microsoft.Resources\",\n        \"providerAuthorizationConsentState\": null,\n        \"registrationPolicy\": null,\n        \"registrationState\": null,\n        \"resourceTypes\": [\n          {\n            \"aliases\": null,\n            \"apiProfiles\": null,\n            \"apiVersions\": null,\n            \"capabilities\": null,\n            \"defaultApiVersion\": null,\n            \"locationMappings\": null,\n            \"locations\": [\n              \"eastus\"\n            ],\n            \"properties\": null,\n            \"resourceType\": \"resourceGroups\",\n            \"zoneMappings\": null\n          },\n          {\n            \"aliases\": null,\n            \"apiProfiles\": null,\n            \"apiVersions\": null,\n            \"capabilities\": null,\n            \"defaultApiVersion\": null,\n            \"locationMappings\": null,\n            \"locations\": [\n              null\n            ],\n            \"properties\": null,\n            \"resourceType\": \"deployments\",\n            \"zoneMappings\": null\n          }\n        ]\n      }\n    ],\n    \"provisioningState\": \"Succeeded\",\n    \"templateHash\": \"6710957363543703458\",\n    \"templateLink\": null,\n    \"timestamp\": \"2026-10-23T22:49:43.221934+00:00\",\n    \"validatedResources\": [\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent\",\n        \"identifiers\": null,\n        \"resourceType\": null\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": null\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-scaler-4tvlzr5zf2rxi\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": null\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": null\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": null\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": null\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi/subnets/container-apps\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": null\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.OperationalInsights/workspaces/log-resto-4tvlzr5zf2rxi\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": null\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/46d3xbcp.res.managedidentity-userassignedidentity.0-6-0.3k3s\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": null\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/46d3xbcp.res.managedidentity-userassignedidentity.0-6-0.635b\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": null\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/46d3xbcp.res.managedidentity-userassignedidentity.0-6-0.7ifj\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": null\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/46d3xbcp.res.managedidentity-userassignedidentity.0-6-0.py7l\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": null\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/46d3xbcp.res.network-virtualnetwork.0-10-2.ilsu\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": null\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/46d3xbcp.res.operationalinsights-workspace.0-16-1.fwql\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": null\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/broker\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": null\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/cosmos\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": null\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/environment\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": null\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/foundry\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": null\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-chat\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": null\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-scaler\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": null\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-web\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": null\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-worker\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": null\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/insights\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": null\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/lgtotlbwng42c-subnet-0\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": null\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/logs\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": null\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/network\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": null\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/preview-full-c99de84d\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": null\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/project\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": null\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/registry\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": null\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/vault\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": null\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/tags/default\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": null\n      }\n    ],\n    \"validationLevel\": null\n  },\n  \"type\": \"Microsoft.Resources/deployments\"\n}\n",
+  "stderr": "",
+  "result": {
+    "error": null,
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Resources/deployments/resto-validate-c99de84d",
+    "location": "eastus",
+    "name": "resto-validate-c99de84d",
+    "properties": {
+      "correlationId": "bc4c2802-580e-4fe5-ba8c-cc9b7ff7e846",
+      "debugSetting": null,
+      "dependencies": [
+        {
+          "dependsOn": [
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent",
+              "resourceName": "rg-resto-scale-agent",
+              "resourceType": "Microsoft.Resources/resourceGroups"
+            }
+          ],
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/preview-full-c99de84d",
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceName": "preview-full-c99de84d",
+          "resourceType": "Microsoft.Resources/deployments"
+        }
+      ],
+      "diagnostics": [
+        {
+          "additionalInfo": null,
+          "code": "NestedDeploymentShortCircuited",
+          "level": "Warning",
+          "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+          "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/insights"
+        },
+        {
+          "additionalInfo": null,
+          "code": "NestedDeploymentShortCircuited",
+          "level": "Warning",
+          "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+          "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/registry"
+        },
+        {
+          "additionalInfo": null,
+          "code": "NestedDeploymentShortCircuited",
+          "level": "Warning",
+          "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+          "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/cosmos"
+        },
+        {
+          "additionalInfo": null,
+          "code": "NestedDeploymentShortCircuited",
+          "level": "Warning",
+          "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+          "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/broker"
+        },
+        {
+          "additionalInfo": null,
+          "code": "NestedDeploymentShortCircuited",
+          "level": "Warning",
+          "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+          "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/vault"
+        },
+        {
+          "additionalInfo": null,
+          "code": "NestedDeploymentShortCircuited",
+          "level": "Warning",
+          "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+          "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/foundry"
+        },
+        {
+          "additionalInfo": null,
+          "code": "NestedDeploymentShortCircuited",
+          "level": "Warning",
+          "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+          "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/project"
+        },
+        {
+          "additionalInfo": null,
+          "code": "NestedDeploymentShortCircuited",
+          "level": "Warning",
+          "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+          "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/environment"
+        }
+      ],
+      "duration": "PT0S",
+      "error": null,
+      "extensions": [],
+      "mode": "Incremental",
+      "onErrorDeployment": null,
+      "outputResources": null,
+      "outputs": null,
+      "parameters": null,
+      "parametersLink": null,
+      "providers": [
+        {
+          "id": null,
+          "namespace": "Microsoft.Resources",
+          "providerAuthorizationConsentState": null,
+          "registrationPolicy": null,
+          "registrationState": null,
+          "resourceTypes": [
+            {
+              "aliases": null,
+              "apiProfiles": null,
+              "apiVersions": null,
+              "capabilities": null,
+              "defaultApiVersion": null,
+              "locationMappings": null,
+              "locations": [
+                "eastus"
+              ],
+              "properties": null,
+              "resourceType": "resourceGroups",
+              "zoneMappings": null
+            },
+            {
+              "aliases": null,
+              "apiProfiles": null,
+              "apiVersions": null,
+              "capabilities": null,
+              "defaultApiVersion": null,
+              "locationMappings": null,
+              "locations": [
+                null
+              ],
+              "properties": null,
+              "resourceType": "deployments",
+              "zoneMappings": null
+            }
+          ]
+        }
+      ],
+      "provisioningState": "Succeeded",
+      "templateHash": "6710957363543703458",
+      "templateLink": null,
+      "timestamp": "2026-10-23T22:49:43.221934+00:00",
+      "validatedResources": [
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent",
+          "identifiers": null,
+          "resourceType": null
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": null
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-scaler-4tvlzr5zf2rxi",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": null
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": null
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": null
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": null
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi/subnets/container-apps",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": null
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.OperationalInsights/workspaces/log-resto-4tvlzr5zf2rxi",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": null
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/46d3xbcp.res.managedidentity-userassignedidentity.0-6-0.3k3s",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": null
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/46d3xbcp.res.managedidentity-userassignedidentity.0-6-0.635b",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": null
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/46d3xbcp.res.managedidentity-userassignedidentity.0-6-0.7ifj",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": null
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/46d3xbcp.res.managedidentity-userassignedidentity.0-6-0.py7l",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": null
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/46d3xbcp.res.network-virtualnetwork.0-10-2.ilsu",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": null
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/46d3xbcp.res.operationalinsights-workspace.0-16-1.fwql",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": null
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/broker",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": null
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/cosmos",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": null
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/environment",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": null
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/foundry",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": null
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-chat",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": null
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-scaler",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": null
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-web",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": null
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-worker",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": null
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/insights",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": null
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/lgtotlbwng42c-subnet-0",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": null
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/logs",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": null
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/network",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": null
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/preview-full-c99de84d",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": null
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/project",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": null
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/registry",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": null
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/vault",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": null
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/tags/default",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": null
+        }
+      ],
+      "validationLevel": null
+    },
+    "type": "Microsoft.Resources/deployments"
+  }
+}

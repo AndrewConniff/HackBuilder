@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "stage": "application",
+  "checkedAtUtc": "2026-10-23T21:34:19.666862+00:00",
+  "allCommandsPassed": true,
+  "checks": [
+    {
+      "name": "restore",
+      "command": "dotnet restore MobilityCommercial.sln --configfile C:\\HackBuilder\\NuGet.Config --locked-mode --verbosity quiet",
+      "exitCode": 0,
+      "log": ".application-evidence\\restore.log"
+    },
+    {
+      "name": "build",
+      "command": "dotnet build MobilityCommercial.sln --no-restore --verbosity quiet",
+      "exitCode": 0,
+      "log": ".application-evidence\\build.log"
+    },
+    {
+      "name": "tests",
+      "command": "dotnet test tests\\MobilityCommercial.Tests\\MobilityCommercial.Tests.csproj --no-build --no-restore --logger trx;LogFileName=application.trx --results-directory C:\\azd-projects\\manu-multi-agent\\.application-evidence\\test-results --verbosity minimal",
+      "exitCode": 0,
+      "log": ".application-evidence\\tests.log"
+    },
+    {
+      "name": "publish",
+      "command": "dotnet publish src\\MobilityCommercial.Web\\MobilityCommercial.Web.csproj --no-restore -c Release -o C:\\azd-projects\\manu-multi-agent\\.application-evidence\\publish --verbosity quiet",
+      "exitCode": 0,
+      "log": ".application-evidence\\publish.log"
+    },
+    {
+      "name": "bicep-build",
+      "command": "az bicep build --file infra\\main.bicep --outfile C:\\azd-projects\\manu-multi-agent\\.application-evidence\\main.arm.json",
+      "exitCode": 0,
+      "log": ".application-evidence\\bicep-build.log"
+    },
+    {
+      "name": "bicep-lint",
+      "command": "az bicep lint --file infra\\main.bicep",
+      "exitCode": 0,
+      "log": ".application-evidence\\bicep-lint.log"
+    },
+    {
+      "name": "infrastructure-contracts",
+      "command": "python -B -m unittest discover -s infra\\tests -p test_*.py -v",
+      "exitCode": 0,
+      "log": ".application-evidence\\infrastructure-contracts.log"
+    },
+    {
+      "name": "ui",
+      "command": "python tests\\test_browser_ui.py",
+      "exitCode": 0,
+      "log": ".application-evidence\\ui.log"
+    },
+    {
+      "name": "published-artifacts-and-documentation",
+      "command": "validate_application.py: published seed/test/license checks and Markdown line limits",
+      "exitCode": 0,
+      "errors": []
+    }
+  ],
+  "sourceSha256": {
+    "src\\agents\\handoff-coordinator.json": "9aadfb8e78ddd93b8a7c4fa2275ac83bc01a490a384257bada9d37e7c55a3011",
+    "src\\agents\\marketing-claims.json": "7d4d388a7fe760377a79845d0b00f86d584cae5f16f0448669a3a20ba3700a75",
+    "src\\agents\\sales-fit.json": "6b9d2bf6ca2de4977346655a8a747f0fb004c000215adef45c3e0d0869b4e01a",
+    "src\\MobilityCommercial.Web\\appsettings.json": "f4aa0b7d4f7208a348f5cfa54ddcd4b2424d33068a8e0f433cd816ab9254fc9b",
+    "src\\MobilityCommercial.Web\\Dockerfile": "95fc9afd5924ec35a94501822e8a303efc2d07a43cff510f589482679faa2d23",
+    "src\\MobilityCommercial.Web\\FluentIcons-LICENSE.txt": "9be360c19bf5502c7927a6ca365a7504b620b408cdf6e3e2413fa63a325bd381",
+    "src\\MobilityCommercial.Web\\MobilityCommercial.Web.csproj": "4352c13fd208d5511b332a2f2c6e829ae12af398492811c4421407960c285a90",
+    "src\\MobilityCommercial.Web\\packages.lock.json": "1432a29f6e4fcb92f040c42b6856d7bdc7cb510180ddea19b17dca239d8ea031",
+    "src\\MobilityCommercial.Web\\Program.cs": "792455b4b0869fe550324fc7f6a8458bfa90e29363252f42db9a9cff734860f6",
+    "src\\MobilityCommercial.Web\\Models\\Contracts.cs": "07a60af1f0511fc0b463f7a9ada5f85f3397e876a1140f931f8e97f38ed193b4",
+    "src\\MobilityCommercial.Web\\Pages\\Index.cshtml": "ae704bd717519c522d81f5c1b35c0d36944a3b8ec3d42f8c8e5321dc27b8bf9e",
+    "src\\MobilityCommercial.Web\\Pages\\Index.cshtml.cs": "61bdd320d00deef4fba46f263ad7ad95205205f92706670f89b3f7da5936e663",
+    "src\\MobilityCommercial.Web\\Pages\\_ViewImports.cshtml": "d2fbbdaa9d4356eb9f8ce54f7026fe38760620484b131c9266c67c000afc4a5e",
+    "src\\MobilityCommercial.Web\\SeedData\\claims.json": "9a5bfc2b267c40f3ee70f55333e6d00dd342b87711f9bad73f2ed2563397ec84",
+    "src\\MobilityCommercial.Web\\SeedData\\opportunities.json": "ad8dbd5d589888e420223f2a41724599eb1ab99eb5d14f331467edfdabf4158d",
+    "src\\MobilityCommercial.Web\\SeedData\\products.json": "723ead949e0eda0c11c7c958c8e2f7554e9afa9b425222c6bdd613d33b781b33",
+    "src\\MobilityCommercial.Web\\Services\\Fixtures.cs": "f516edcd8d937e789afe7e578540e58f2750310503eba7cad61e4e6538266349",
+    "src\\MobilityCommercial.Web\\Services\\FoundryGateway.cs": "bcbcb6bc7a7dbb42d0e6204856a5132534e52d506564429292a3cd38d77ea5de",
+    "src\\MobilityCommercial.Web\\Services\\HandoffService.cs": "135820f841a8d88274bd1193a04dca0217bfcefe82c9cdcbc4781972a67fa9f3",
+    "src\\MobilityCommercial.Web\\Services\\ReceiptSigner.cs": "90214d550789d755c869c50d4dafc118495c502cf7ba3fc21f6797a2b9e164a0",
+    "src\\MobilityCommercial.Web\\Services\\Settings.cs": "7332c742e69e115089e9a3b09b53896a958faf5e3a195e1d7c197b63e4f239d5",
+    "src\\MobilityCommercial.Web\\wwwroot\\app.css": "209122a2453beb0570d11671b6427bb24811a5c8afedb54b9b7c3e75fe10b100",
+    "src\\MobilityCommercial.Web\\wwwroot\\app.js": "5dad2e9107da243f2948dc7f933c129657d70a6b2c7811aae993bb6d065f8383",
+    "tools\\MobilityCommercial.Installer\\MobilityCommercial.Installer.csproj": "5f7beba6b982d179f4d1d5edd9097953dd3aac027960e16af83b6955b9c979e4",
+    "tools\\MobilityCommercial.Installer\\packages.lock.json": "415beae619253232bae1984c7c9d984f749e5000dc3dcfdb244cf154dfaa5cfd",
+    "tools\\MobilityCommercial.Installer\\Program.cs": "c166c3acad43af0ecd74be804b106368178dec9f6202d081a3b01000a082d094",
+    "scripts\\Initialize-BackendIdentity.ps1": "1d7392534a10c272f31449e84f4c0b7723e1e2712fb129a166e0b968162e5224",
+    "scripts\\validate_application.py": "0bcfb122817f84359924afa050a49bcdc6fa9c58035239e2bc19910ed8dbd71e",
+    "tests\\test_browser_ui.py": "7b90dfc79e45a6b49ffc46eb853f1b161043334e09d3ee9825c9c39562bfa456",
+    "tests\\MobilityCommercial.Tests\\HttpTests.cs": "c4a5a1671ca45a34424f18e2f91a65610173fdf761486b45c408225a2d5544aa",
+    "tests\\MobilityCommercial.Tests\\MobilityCommercial.Tests.csproj": "4a04006ac56141c8ba7a7774e1da276b548c9c82fa9a6a5c9e3669172082dfbf",
+    "tests\\MobilityCommercial.Tests\\packages.lock.json": "4edb9d2d6f7addc3e1ba472845d1ff00f49df06944431614afb33944d96f0646",
+    "tests\\MobilityCommercial.Tests\\WorkflowTests.cs": "120365da36c9888b210f4b69f8a60caa3e31dd1b14be710f0f2b22f902d89fac"
+  },
+  "limitations": [
+    "Offline test doubles are confined to the test assembly; no live inference or signing is claimed.",
+    "No Docker image built, container started, Azure query, identity installation or deployment performed.",
+    "Full local-validation, authorized live acceptance and suitability approval remain separate operations."
+  ]
+}

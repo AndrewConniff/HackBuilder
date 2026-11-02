@@ -1,0 +1,9 @@
+{
+  "checkedAtUtc": "2026-10-24T23:21:09.031324+00:00",
+  "url": "https://graph.microsoft.com/v1.0/roleManagement/directory/roleAssignments?%24filter=principalId+eq+%27214d672b-df87-4f3b-94fd-7863032546c1%27&%24expand=roleDefinition",
+  "httpStatus": 200,
+  "response": {
+    "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#roleManagement/directory/roleAssignments(roleDefinition())",
+    "value": []
+  }
+}

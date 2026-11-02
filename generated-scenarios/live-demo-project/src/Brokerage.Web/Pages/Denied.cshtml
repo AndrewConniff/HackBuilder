@@ -1,0 +1,8 @@
+@page
+@{
+    ViewData["Title"] = "Access denied";
+    Response.StatusCode = 403;
+}
+<h1>Access denied</h1>
+<p>Your account cannot use this part of the service desk.</p>
+<a asp-page="/Index">Return to customer support</a>

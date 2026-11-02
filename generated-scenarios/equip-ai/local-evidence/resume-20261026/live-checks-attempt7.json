@@ -1,0 +1,197 @@
+{
+  "status": "failed",
+  "checkedAtUtc": "2026-10-26T01:28:10.427434+00:00",
+  "errorType": "RuntimeError",
+  "message": "Application /api/chat: HTTP 502, expected 200; no success claimed.",
+  "checks": [
+    {
+      "name": "anonymous denial /api/equipment",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:24:46.031004+00:00"
+    },
+    {
+      "name": "anonymous denial /api/evidence/tacoma/tacoma-pump-01",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:24:47.088869+00:00"
+    },
+    {
+      "name": "anonymous chat denied",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:24:48.145766+00:00"
+    },
+    {
+      "name": "wrong local password denied",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:24:52.781646+00:00"
+    },
+    {
+      "name": "Tacoma local login",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:24:57.204308+00:00"
+    },
+    {
+      "name": "Tacoma role has exactly five site-owned devices",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:24:58.380873+00:00"
+    },
+    {
+      "name": "cross-site evidence denied before retrieval",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:24:59.487267+00:00"
+    },
+    {
+      "name": "missing CSRF denied",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:25:00.572878+00:00"
+    },
+    {
+      "name": "foreign origin denied",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:25:01.638873+00:00"
+    },
+    {
+      "name": "owned X.509 registry identity tacoma-pump-01",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:25:06.640846+00:00"
+    },
+    {
+      "name": "real MQTT certificate publication tacoma-pump-01",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:25:09.322354+00:00",
+      "deviceId": "tacoma-pump-01",
+      "messages": 3
+    },
+    {
+      "name": "owned X.509 registry identity spokane-pump-01",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:25:10.827326+00:00"
+    },
+    {
+      "name": "real MQTT certificate publication spokane-pump-01",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:25:13.407978+00:00",
+      "deviceId": "spokane-pump-01",
+      "messages": 3
+    },
+    {
+      "name": "owned X.509 registry identity tacoma-press-02",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:25:14.963397+00:00"
+    },
+    {
+      "name": "real MQTT certificate publication tacoma-press-02",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:25:17.328178+00:00",
+      "deviceId": "tacoma-press-02",
+      "messages": 1
+    },
+    {
+      "name": "50-events-per-second 60-second certified burst",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:26:19.397189+00:00",
+      "acknowledgedMessages": 3000,
+      "offeredPerSecond": [
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50
+      ],
+      "elapsedSeconds": 60.0279438
+    },
+    {
+      "name": "X.509 IoT to MI-routed Blob to app-MI evidence",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:28:06.922275+00:00"
+    },
+    {
+      "name": "exact metrics and expired-value exclusion",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:28:06.935059+00:00",
+      "evidence": {
+        "evidenceId": "aca83da81974f939d3df",
+        "deviceId": "tacoma-pump-01",
+        "siteId": "tacoma",
+        "firstObservedAtUtc": "2026-10-26T00:57:33.4692416+00:00",
+        "lastObservedAtUtc": "2026-10-26T01:26:18.8818473+00:00",
+        "count": 15014,
+        "temperatureMaxC": 73,
+        "vibrationMaxMmPerSecond": 6.1,
+        "vibrationChangeMmPerSecond": 3.0999999999999996,
+        "pressureMinBar": 8,
+        "status": "running"
+      },
+      "coverage": {
+        "expectedDevices": 1,
+        "reportingDevices": 1,
+        "missingDevices": [],
+        "expiredReadingsExcluded": 5
+      }
+    },
+    {
+      "name": "live six-minute reading is stale",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:28:07.840179+00:00"
+    },
+    {
+      "name": "missing telemetry is not healthy",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:28:09.405046+00:00"
+    }
+  ]
+}

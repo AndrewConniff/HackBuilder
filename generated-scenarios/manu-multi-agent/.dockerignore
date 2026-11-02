@@ -1,0 +1,16 @@
+**/.git
+**/bin
+**/obj
+**/TestResults
+.application-evidence
+.infra-evidence
+.diagram-evidence
+.installation
+.azure
+**/.env
+**/.env.*
+**/secrets.json
+infra
+tests
+tools
+packages

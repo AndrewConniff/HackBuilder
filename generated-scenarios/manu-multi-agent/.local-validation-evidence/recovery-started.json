@@ -1,0 +1,11 @@
+{
+  "stage": "local-validation",
+  "status": "running",
+  "summary": "Resuming only local validation with the repaired native SDK build and retained confirmed design. Verify image provenance, offline application evidence, configuration rejection and authenticated-backend behavior without cloud access.",
+  "evidence": [
+    "Canonical revision 38: design confirmed; local execution consent retained; authorizations empty; setupBlocker null.",
+    "Backend readiness 2026-10-23T21:45:07.479119+00:00 is current and owner-bound; no full audit repeated.",
+    "Retained image abcbuilder-manu-multi-agent:platform-repair inspected: linux/amd64, user 1654, sha256:6a925e45f32cdaea28d5bc51bb1161122a76bfff2ce0c55a6ebefc210e4c71aa.",
+    "Missing production settings and JWT-protected routes are intentional fail-closed controls, not an SDK, QEMU or host-permission failure. No production mock switch or anonymous route will be added."
+  ]
+}

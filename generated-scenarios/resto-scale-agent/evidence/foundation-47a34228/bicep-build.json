@@ -1,0 +1,8 @@
+{
+  "command": "az bicep build --file C:\\HackBuilder\\generated-scenarios\\resto-scale-agent\\infra\\main.bicep --outfile C:\\HackBuilder\\generated-scenarios\\resto-scale-agent\\evidence\\foundation-47a34228\\main.arm.json",
+  "startedAtUtc": "2026-10-24T00:10:45.508406+00:00",
+  "checkedAtUtc": "2026-10-24T00:10:53.925573+00:00",
+  "exitCode": 0,
+  "stdout": "",
+  "stderr": ""
+}

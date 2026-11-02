@@ -1,0 +1,4 @@
+{
+  "isSubdomainAvailable": true,
+  "subdomainName": "ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec"
+}

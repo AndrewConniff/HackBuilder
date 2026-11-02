@@ -1,0 +1,22 @@
+{
+  "stage": "diagrams",
+  "status": "waiting_for_user",
+  "summary": "Decision required: Graphviz dot is unavailable, so the required architecture/runtime PNGs cannot be rendered. The worker contract prohibits installing or upgrading shared tools. Local-tool permission and design confirmation are preserved; implementation has not advanced.",
+  "evidence": [
+    "Get-Command dot -ErrorAction SilentlyContinue: no executable found.",
+    "Python shutil.which('dot'): None.",
+    "Known installation paths checked: C:\\Program Files\\Graphviz\\bin\\dot.exe; C:\\Program Files (x86)\\Graphviz\\bin\\dot.exe; C:\\ProgramData\\chocolatey\\bin\\dot.exe; user-local Programs\\Graphviz\\bin\\dot.exe. All absent.",
+    "python .github\\skills\\az-azure-diagrams\\scripts\\verify_installation.py: exit 1. Python, diagrams library and Azure providers passed; Graphviz and actual test rendering failed because dot could not execute.",
+    "No SDK/tool installation attempted. No reference implementation, catalog metadata, Azure resources, shared CLI defaults, approvals or packages changed."
+  ],
+  "decision": {
+    "kind": "business",
+    "question": "Have an environment administrator make Graphviz dot available to portal workers, or identify an existing installation and configure its PATH, then resume this same scenario?",
+    "reason": "The required Python diagrams renderer cannot execute dot. This is a missing prerequisite, not missing local-tool consent. The worker contract requires stopping for coordination rather than installing shared tooling. Resume only after the executable is available to a new worker process; no design reconfirmation or cloud permission is implied.",
+    "choices": [
+      "Graphviz is available to portal workers; resume",
+      "Stop"
+    ],
+    "acceptChoice": "Graphviz is available to portal workers; resume"
+  }
+}

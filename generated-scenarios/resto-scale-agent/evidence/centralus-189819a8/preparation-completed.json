@@ -1,0 +1,32 @@
+{
+  "stage": "deployment",
+  "operation": "deployment-preparation",
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "resto-scale-agent",
+    "resourceGroup": "rg-resto-scale-agent",
+    "region": "centralus"
+  },
+  "status": "completed",
+  "summary": "Central US Foundry naming repaired and available; full what-if 33 creates/13 dependent Unsupported expansions, no modifies/deletes. Independent previews passed. ACA Consumption quota still unknown: Microsoft.Quota NotRegistered, direct supported APIs omit core quota. Idempotent directory installer/output consumption prepared and tested offline. Current controller permits staged consent review. Preparation finalized, not deployment-ready: refresh retained eligibility before any authorized foundation provision; runtime remains locked. No cloud mutations.",
+  "evidence": [
+    "06-deployment-summary.md: consolidated Central US preparation, exact commands/results/cost/limitations.",
+    "evidence\\centralus-189819a8\\installation-plan.json and scripts\\setup_identity.py: exact directory changes/permissions, ownership-safe retry, generated output capture; no Graph operation executed.",
+    "evidence\\centralus-189819a8\\controller-review-check.json: actual current controller inspection; historical mandatory pre-review gate claim corrected without backend edits.",
+    "az rest --method post --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/checkDomainAvailability?api-version=2024-10-01 --body @C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\foundry-domain-request.json --headers Content-Type=application/json --output json: exit 0; ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec available before preview; observed 2026-10-23T23:37:48.147950+00:00; evidence\\centralus-189819a8\\foundry-domain-availability.json",
+    "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --no-pretty-print --output json: exit 0; 33 creates, 13 identity-dependent Unsupported expansions; zero modifies/deletes; observed 2026-10-23T23:39:28.205337+00:00; evidence\\centralus-189819a8\\what-if-full.json",
+    "az deployment sub validate --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-validate-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --output json: exit 0; Succeeded but skipped insights, registry, cosmos, broker, vault, foundry, project, environment; observed 2026-10-23T23:41:15.929425+00:00; evidence\\centralus-189819a8\\validate-full.json",
+    "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/locations/centralus/usages?api-version=2025-07-01 --output json: exit 0; supported direct subscription/region API lists no Consumption core quota; observed 2026-10-23T23:38:25.093608+00:00; evidence\\centralus-189819a8\\aca-usage.json",
+    "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/locations/centralus/usages?api-version=2026-07-01 --output json: exit 0; latest supported 2026-07-01 API also lists no Consumption core quota; observed 2026-10-23T23:42:14.594721+00:00; evidence\\centralus-189819a8\\aca-usage-latest.json",
+    "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/locations/centralus/providers/Microsoft.Quota/quotas?api-version=2025-09-01 --output json: exit 1; regional Microsoft.Quota quotas GET failed MissingRegistrationForResourceProvider; observed 2026-10-23T23:35:28.863519+00:00; evidence\\centralus-189819a8\\aca-quota.json",
+    "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/locations/centralus/providers/Microsoft.Quota/usages?api-version=2025-09-01 --output json: exit 1; regional Microsoft.Quota usages GET failed MissingRegistrationForResourceProvider; observed 2026-10-23T23:35:31.085122+00:00; evidence\\centralus-189819a8\\aca-quota-usage.json",
+    "az provider show --namespace Microsoft.Quota --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --query {namespace:namespace,registrationState:registrationState} --output json: exit 0; Microsoft.Quota NotRegistered; registration is an unauthorized mutation; observed 2026-10-23T23:42:17.260970+00:00; evidence\\centralus-189819a8\\quota-provider.json",
+    "00-region-availability.json: 26-resource/SKU/feature checks with final current infrastructure hash; prior rejected-region evidence preserved. Original observation timestamps retained; unknowns stay unknown.",
+    "python -m unittest discover -s generated-scenarios\\resto-scale-agent\\validation -p test_*.py: see local-checks.json for final exact results.",
+    "local-checks.json: Python wiring 15 passed; application 26 passed; main/runtime builds and main lint passed. Original runtime lint failed without diagnostics; exact-command retry exited 0 as recorded in evidence\\resume-cbd218af-verification.json. No previous failure erased.",
+    "evidence\\centralus-189819a8\\cost-review.json: exact Central US rates refreshed; USD 745-1150 shared, 900-1650 typical full/month planning allowance; not quote/cap; usage/burst/taxes additional.",
+    "az group exists --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --name rg-resto-scale-agent --output json: exit 0; false; no owned account reused/adopted or cloud resource provisioned; observed 2026-10-23T23:41:18.736431+00:00; evidence\\centralus-189819a8\\group-exists-final.json"
+  ]
+}

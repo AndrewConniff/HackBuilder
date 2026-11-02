@@ -1,0 +1,177 @@
+[
+  {
+    "name": "ie7jezkjcx6ty-sqldb-reporting",
+    "state": "Running",
+    "timestamp": "2026-10-24T00:15:06.297678+00:00"
+  },
+  {
+    "name": "ie7jezkjcx6ty-sqldb-catalog",
+    "state": "Running",
+    "timestamp": "2026-10-24T00:15:06.253936+00:00"
+  },
+  {
+    "name": "ie7jezkjcx6ty-sqldb-transactions",
+    "state": "Running",
+    "timestamp": "2026-10-24T00:15:06.248683+00:00"
+  },
+  {
+    "name": "6bzsoysfscgdk-sqldb-restaurant",
+    "state": "Running",
+    "timestamp": "2026-10-24T00:14:48.917463+00:00"
+  },
+  {
+    "name": "peu23awlapsli-Queue-0",
+    "state": "Succeeded",
+    "timestamp": "2026-10-24T00:14:05.006756+00:00"
+  },
+  {
+    "name": "project",
+    "state": "Succeeded",
+    "timestamp": "2026-10-24T00:13:24.875715+00:00"
+  },
+  {
+    "name": "gxnreqrkxvhle-cognitiveservice-deployment-0",
+    "state": "Succeeded",
+    "timestamp": "2026-10-24T00:13:16.590350+00:00"
+  },
+  {
+    "name": "46d3xbcp.res.cognitiveservices-account.0-19-1.gxnr",
+    "state": "Succeeded",
+    "timestamp": "2026-10-24T00:12:52.666742+00:00"
+  },
+  {
+    "name": "46d3xbcp.res.keyvault-vault.0-14-2.p7nx",
+    "state": "Succeeded",
+    "timestamp": "2026-10-24T00:12:52.572624+00:00"
+  },
+  {
+    "name": "46d3xbcp.res.documentdb-databaseaccount.0-21-1.6bzs",
+    "state": "Succeeded",
+    "timestamp": "2026-10-24T00:12:50.142361+00:00"
+  },
+  {
+    "name": "46d3xbcp.res.servicebus-namespace.0-17-1.peu2",
+    "state": "Succeeded",
+    "timestamp": "2026-10-24T00:12:50.334040+00:00"
+  },
+  {
+    "name": "46d3xbcp.res.app-managedenvironment.0-16-0.h55f",
+    "state": "Succeeded",
+    "timestamp": "2026-10-24T00:12:48.968385+00:00"
+  },
+  {
+    "name": "46d3xbcp.res.insights-component.0-8-0.m532",
+    "state": "Succeeded",
+    "timestamp": "2026-10-24T00:12:49.063297+00:00"
+  },
+  {
+    "name": "cosmos",
+    "state": "Running",
+    "timestamp": "2026-10-24T00:12:47.596447+00:00"
+  },
+  {
+    "name": "vault",
+    "state": "Failed",
+    "timestamp": "2026-10-24T00:12:53.442850+00:00"
+  },
+  {
+    "name": "broker",
+    "state": "Succeeded",
+    "timestamp": "2026-10-24T00:14:06.977691+00:00"
+  },
+  {
+    "name": "environment",
+    "state": "Running",
+    "timestamp": "2026-10-24T00:12:47.191479+00:00"
+  },
+  {
+    "name": "insights",
+    "state": "Succeeded",
+    "timestamp": "2026-10-24T00:12:52.345508+00:00"
+  },
+  {
+    "name": "foundry",
+    "state": "Succeeded",
+    "timestamp": "2026-10-24T00:13:17.947206+00:00"
+  },
+  {
+    "name": "46d3xbcp.res.containerregistry-registry.0-13-1.rtle",
+    "state": "Succeeded",
+    "timestamp": "2026-10-24T00:12:31.058274+00:00"
+  },
+  {
+    "name": "registry",
+    "state": "Succeeded",
+    "timestamp": "2026-10-24T00:12:59.830612+00:00"
+  },
+  {
+    "name": "rknmobu4auvve-subnet-0",
+    "state": "Succeeded",
+    "timestamp": "2026-10-24T00:12:29.720123+00:00"
+  },
+  {
+    "name": "46d3xbcp.res.network-virtualnetwork.0-10-2.6mcz",
+    "state": "Succeeded",
+    "timestamp": "2026-10-24T00:12:24.947858+00:00"
+  },
+  {
+    "name": "46d3xbcp.res.managedidentity-userassignedidentity.0-6-0.34gq",
+    "state": "Succeeded",
+    "timestamp": "2026-10-24T00:12:25.026838+00:00"
+  },
+  {
+    "name": "46d3xbcp.res.managedidentity-userassignedidentity.0-6-0.vzjx",
+    "state": "Succeeded",
+    "timestamp": "2026-10-24T00:12:25.097523+00:00"
+  },
+  {
+    "name": "46d3xbcp.res.managedidentity-userassignedidentity.0-6-0.jjc7",
+    "state": "Succeeded",
+    "timestamp": "2026-10-24T00:12:24.647932+00:00"
+  },
+  {
+    "name": "46d3xbcp.res.operationalinsights-workspace.0-16-1.yrtc",
+    "state": "Succeeded",
+    "timestamp": "2026-10-24T00:12:24.844268+00:00"
+  },
+  {
+    "name": "46d3xbcp.res.managedidentity-userassignedidentity.0-6-0.ucqv",
+    "state": "Succeeded",
+    "timestamp": "2026-10-24T00:12:24.970246+00:00"
+  },
+  {
+    "name": "identity-web",
+    "state": "Succeeded",
+    "timestamp": "2026-10-24T00:12:25.404283+00:00"
+  },
+  {
+    "name": "logs",
+    "state": "Succeeded",
+    "timestamp": "2026-10-24T00:12:45.055602+00:00"
+  },
+  {
+    "name": "identity-worker",
+    "state": "Succeeded",
+    "timestamp": "2026-10-24T00:12:26.251651+00:00"
+  },
+  {
+    "name": "identity-chat",
+    "state": "Succeeded",
+    "timestamp": "2026-10-24T00:12:27.435520+00:00"
+  },
+  {
+    "name": "network",
+    "state": "Succeeded",
+    "timestamp": "2026-10-24T00:12:30.756177+00:00"
+  },
+  {
+    "name": "identity-scaler",
+    "state": "Succeeded",
+    "timestamp": "2026-10-24T00:12:25.998310+00:00"
+  },
+  {
+    "name": "resto-scale-agent-1792800732",
+    "state": "Running",
+    "timestamp": "2026-10-24T00:12:21.110266+00:00"
+  }
+]

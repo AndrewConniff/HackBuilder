@@ -1,0 +1,8 @@
+{
+  "command": "\"C:\\Users\\petender\\AppData\\Local\\Programs\\Azure Dev CLI\\azd.EXE\" env set AZURE_ENV_NAME=resto-scale-agent AZURE_LOCATION=centralus AZURE_SUBSCRIPTION_ID=efd64343-6ef4-4926-951f-d3229f38bd76 AZURE_TENANT_ID=16b3c013-d300-468d-ac64-7eda0820b6d3 AZURE_RESOURCE_GROUP=rg-resto-scale-agent AZURE_PRINCIPAL_ID=214d672b-df87-4f3b-94fd-7863032546c1 FOUNDRY_MODEL_NAME=gpt-5.4-mini FOUNDRY_MODEL_VERSION=2026-03-17 FOUNDRY_MODEL_DEPLOYMENT_TYPE=GlobalStandard FOUNDRY_CONSUMER_ROLE_ID=eed3b665-ab3a-47b6-8f48-c9382fb1dad6 --environment resto-scale-agent --cwd C:\\HackBuilder\\generated-scenarios\\resto-scale-agent --no-prompt",
+  "startedAtUtc": "2026-10-24T00:11:45.543777+00:00",
+  "checkedAtUtc": "2026-10-24T00:11:46.079859+00:00",
+  "exitCode": 0,
+  "stdout": "",
+  "stderr": "Update available: 1.35.1 -> 1.37.1 (https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_1.37.1)\nTo update, run `winget upgrade Microsoft.Azd`\n"
+}

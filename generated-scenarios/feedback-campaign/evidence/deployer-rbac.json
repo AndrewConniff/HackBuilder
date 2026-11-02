@@ -1,0 +1,17 @@
+[
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.ServiceBus/namespaces/fc-bus-kvjmo565tswuy/queues/posts/providers/Microsoft.Authorization/roleAssignments/57830746-0367-52af-8a4e-972ffa2292c7",
+    "role": "Azure Service Bus Data Receiver",
+    "scope": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.ServiceBus/namespaces/fc-bus-kvjmo565tswuy/queues/posts"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.ServiceBus/namespaces/fc-bus-kvjmo565tswuy/queues/posts/providers/Microsoft.Authorization/roleAssignments/faaaf28f-1291-577f-949d-2473de4f4c4e",
+    "role": "Azure Service Bus Data Sender",
+    "scope": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.ServiceBus/namespaces/fc-bus-kvjmo565tswuy/queues/posts"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.ServiceBus/namespaces/fc-bus-kvjmo565tswuy/queues/replies/providers/Microsoft.Authorization/roleAssignments/f78627eb-3efa-50ff-9fa4-a0d175193c23",
+    "role": "Azure Service Bus Data Receiver",
+    "scope": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.ServiceBus/namespaces/fc-bus-kvjmo565tswuy/queues/replies"
+  }
+]

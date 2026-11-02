@@ -1,0 +1,14 @@
+{
+  "startedAtUtc": "2026-10-22T18:23:32.5411036Z",
+  "completedAtUtc": "2026-10-22T18:23:58.1751692Z",
+  "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+  "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+  "resourceGroupName": "rg-hospitality-feedback",
+  "azdEnvironment": "hospitality-feedback",
+  "location": "eastus2",
+  "previewOnly": true,
+  "parametersFile": "infra/preview.parameters.json",
+  "command": "az deployment sub what-if --subscription <confirmed-id> --location eastus2 --template-file infra/main.bicep --parameters @infra/preview.parameters.json --name hotel-feedback-hospitality-feedback --result-format FullResourcePayloads --no-pretty-print --validation-level Provider --no-prompt true --output json",
+  "exitCode": 1,
+  "output": "ERROR: InvalidTemplateDeployment - The template deployment 'hotel-feedback-hospitality-feedback' is not valid according to the validation procedure. The following resource provider(s) - 'Microsoft.Web/serverFarms (2025-03-01)' reported preflight validation errors. Tracking id is 'c3d4195b-4daf-418b-99eb-63a8e5c6e579'. See inner errors for details.\r\nValidationForResourceFailed - Validation failed for a resource. Check 'Error.Details[0]' for more information.\r\nInternalSubscriptionIsOverQuotaForSku - Operation cannot be completed without additional quota. See https://aka.ms/antquotahelp for instructions on requesting limit increases. \r\n\r\nAdditional details - Location:  \r\n\r\nCurrent Limit (B1 VMs): 0 \r\n\r\nCurrent Usage: 0\r\n\r\nAmount required for this deployment (B1 VMs): 1 \r\n\r\n(Minimum) New Limit that you should request to enable this deployment: 1. \r\n\r\nNote that if you experience multiple scaling operations failing (in addition to this one) and need to accommodate the aggregate quota requirements of these operations, you will need to request a higher quota limit than the one currently displayed.\r\n"
+}

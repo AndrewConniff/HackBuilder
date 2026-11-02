@@ -1,0 +1,103 @@
+{
+  "synthetic": true,
+  "generationVersion": 1,
+  "companyName": "Margie's Travel",
+  "companyDomain": "margiestravel.com",
+  "companySlug": "margie-s-travel",
+  "companySource": "C:\\HackBuilder\\fictitious_company_names.csv",
+  "companyRecord": 21,
+  "rejectedCompanyRecords": [
+    7,
+    11,
+    25,
+    33
+  ],
+  "peopleSource": "C:\\HackBuilder\\fictitious_people_names.csv",
+  "peopleMapping": [
+    {
+      "guestId": "G-001",
+      "feedbackId": "HF-0001",
+      "recordNumberExcludingHeader": 1,
+      "nameColumn": "FullName",
+      "guestName": "Airi Ilves"
+    },
+    {
+      "guestId": "G-002",
+      "feedbackId": "HF-0002",
+      "recordNumberExcludingHeader": 2,
+      "nameColumn": "FullName",
+      "guestName": "Hasan Ibrahimov"
+    },
+    {
+      "guestId": "G-003",
+      "feedbackId": "HF-0003",
+      "recordNumberExcludingHeader": 3,
+      "nameColumn": "FullName",
+      "guestName": "Nemanja Milatovic"
+    },
+    {
+      "guestId": "G-004",
+      "feedbackId": "HF-0004",
+      "recordNumberExcludingHeader": 4,
+      "nameColumn": "FullName",
+      "guestName": "Nino Kapanadze"
+    },
+    {
+      "guestId": "G-005",
+      "feedbackId": "HF-0005",
+      "recordNumberExcludingHeader": 5,
+      "nameColumn": "FullName",
+      "guestName": "Petra Bartosova"
+    },
+    {
+      "guestId": "G-006",
+      "feedbackId": "HF-0006",
+      "recordNumberExcludingHeader": 6,
+      "nameColumn": "FullName",
+      "guestName": "Eesha Chatterjee"
+    },
+    {
+      "guestId": "G-007",
+      "feedbackId": "HF-0007",
+      "recordNumberExcludingHeader": 7,
+      "nameColumn": "FullName",
+      "guestName": "Aliaksei Kunets"
+    },
+    {
+      "guestId": "G-008",
+      "feedbackId": "HF-0008",
+      "recordNumberExcludingHeader": 8,
+      "nameColumn": "FullName",
+      "guestName": "Josef Cizek"
+    },
+    {
+      "guestId": "G-009",
+      "feedbackId": "HF-0009",
+      "recordNumberExcludingHeader": 9,
+      "nameColumn": "FullName",
+      "guestName": "Yonas Demeke"
+    },
+    {
+      "guestId": "G-010",
+      "feedbackId": "HF-0010",
+      "recordNumberExcludingHeader": 10,
+      "nameColumn": "FullName",
+      "guestName": "Akihito Sato"
+    },
+    {
+      "guestId": "G-011",
+      "feedbackId": "HF-0011",
+      "recordNumberExcludingHeader": 11,
+      "nameColumn": "FullName",
+      "guestName": "Josefine Karlsen"
+    },
+    {
+      "guestId": "G-012",
+      "feedbackId": "HF-0012",
+      "recordNumberExcludingHeader": 12,
+      "nameColumn": "FullName",
+      "guestName": "Stepan Vacek"
+    }
+  ],
+  "note": "All narratives are authored synthetic feedback; no real stays, identities or contact data."
+}

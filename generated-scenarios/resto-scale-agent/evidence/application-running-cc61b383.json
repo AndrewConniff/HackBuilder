@@ -1,0 +1,12 @@
+{
+  "stage": "application",
+  "status": "running",
+  "summary": "Resuming local application integration with the confirmed SDK packages, browser and k6 toolchain. Completing pinned agent configuration and scoped initializer before business import/recovery and load acceptance work. No cloud operations authorized.",
+  "evidence": [
+    "dotnet build generated-scenarios\\resto-scale-agent\\Restaurant.slnx --no-restore --verbosity quiet: passed; zero warnings/errors.",
+    "Physical workspace dotnet nuget list source: only enabled MicrosoftPackageFeedProxy at https://packagefeedproxy.microsoft.io/nuget/v3/index.json.",
+    "Get-Command k6 -ErrorAction Stop | Select-Object Source: C:\\Program Files\\k6\\k6.exe.",
+    "Test-Path C:\\Users\\petender\\AppData\\Local\\ms-playwright: True.",
+    "Required SDK package inventory: Azure.Identity 1.21.0; Cosmos 3.63.2; ServiceBus 7.21.0; KeyVault.Keys 4.10.2; Projects 2.0.1; Projects.Agents and Extensions.OpenAI 2.0.0; JwtBearer 10.0.13; ApplicationInsights.AspNetCore 3.2.0; existing xUnit/Playwright test lock file. No new dependencies or installs."
+  ]
+}

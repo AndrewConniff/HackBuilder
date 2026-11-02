@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "manu-multi-agent",
+  "title": "Manufacturing Sales-to-Marketing multi-agent handoff",
+  "summary": "Adventure Works Cycles Sales and Marketing reference with private keyless infrastructure, bounded three-agent application, offline validation and guarded complete-reference installation wiring. Cloud deployment and live proof remain pending.",
+  "industry": "Manufacturing & Mobility",
+  "businessUnits": [
+    "sales",
+    "marketing"
+  ],
+  "services": [
+    "foundry",
+    "container-apps",
+    "key-vault",
+    "managed-identity",
+    "api-management",
+    "storage",
+    "cosmos-db",
+    "ai-search",
+    "virtual-network",
+    "monitor"
+  ],
+  "pillars": [
+    "operational-excellence"
+  ],
+  "domains": [],
+  "artifacts": [
+    "01-requirements.md",
+    "02-architecture-assessment.md",
+    "04-implementation-plan.md",
+    "03-architect-diagram.png",
+    "04-runtime-diagram.png",
+    "azure.yaml",
+    "infra",
+    "src"
+  ],
+  "source": {
+    "scenarioId": "finance-security-hack",
+    "manifestDigest": "3e6437c1690758e70518e99e49923861949090739dd3dec0683856ee1585a831"
+  },
+  "metadataStatus": "curated"
+}

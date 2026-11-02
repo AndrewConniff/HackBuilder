@@ -1,0 +1,17 @@
+name: tdd-azd-finance-customer-hack
+metadata:
+  template: tddazd-finance-customer-hack@1.0.0
+infra:
+  provider: bicep
+  path: ./infra
+services:
+  web:
+    project: ./src/BankSupport.Web
+    host: appservice
+    language: csharp
+hooks:
+  predeploy:
+    shell: pwsh
+    run: ./scripts/Install-Reference.ps1
+    interactive: false
+    continueOnError: false

@@ -1,0 +1,6 @@
+{
+  "command": "python scripts\\install_identity.py assignments --authorization-file .installation\\equip-ai\\tacoma-assignments-authorization.json",
+  "startedAtUtc": "2026-10-25T00:23:40.1070872Z",
+  "finishedAtUtc": "2026-10-25T00:24:02.1441033Z",
+  "exitCode": 0
+}

@@ -1,0 +1,15 @@
+{
+  "checkedAtUtc": "2026-10-24T23:22:53.509478+00:00",
+  "status": "passed",
+  "checks": {
+    "jsonParsing": true,
+    "markdownLineLength": true,
+    "whatIfSucceededSwedenCentral": true,
+    "exactChangeCounts": {
+      "Create": 16
+    },
+    "scaleCeilingArmValidationSucceeded": true,
+    "runtimeStillNotRun": true
+  },
+  "limitation": "Preparation checks only; no deployment, directory write, runtime certification or suitability approval."
+}

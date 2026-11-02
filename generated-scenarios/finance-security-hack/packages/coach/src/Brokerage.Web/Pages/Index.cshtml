@@ -1,0 +1,33 @@
+@page
+@model Brokerage.Web.Pages.IndexModel
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Adatum Corporation | Brokerage education</title>
+    <link rel="stylesheet" href="/site.css" />
+    <script src="/chat.js" defer></script>
+</head>
+<body>
+    <header><strong>Adatum Corporation</strong><span>Brokerage education / synthetic reference</span></header>
+    <main>
+        <h1>Understand investing. Ask with confidence.</h1>
+        <p>Explore order types, investing risks, and our synthetic brokerage FAQs.</p>
+        <p class="notice">Educational demonstration only. Not investment advice. No trading or customer accounts.
+            Do not enter personal information, credentials, or portfolio details.</p>
+        <form id="chat">
+            <label for="message">Your question</label>
+            <textarea id="message" name="message" maxlength="2000" required rows="4"
+                      placeholder="How does a limit order work?"></textarea>
+            <button id="send" type="submit">Send question</button>
+        </form>
+        <section aria-live="polite" aria-busy="false" id="result">
+            <h2>Answer</h2>
+            <p id="answer">Ask a brokerage education question to begin.</p>
+            <p id="evidence"></p>
+        </section>
+    </main>
+    <footer>Anonymous chat. Private, identity-authorized backend. AI answers can be inaccurate.</footer>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "finance-customer-hack",
+  "title": "Adatum Corporation banking service with human-owned escalation",
+  "summary": "Financial Services reference: two saved Foundry agents route grounded policy and synthetic account questions into durable representative-owned cases. Local implementation only; Azure deployment and live acceptance pending authorization.",
+  "industry": "Financial Services",
+  "businessUnits": [
+    "generic"
+  ],
+  "services": [
+    "foundry",
+    "app-service",
+    "storage",
+    "monitor"
+  ],
+  "pillars": [],
+  "domains": [],
+  "artifacts": [
+    "01-requirements.md",
+    "02-architecture-assessment.md",
+    "04-implementation-plan.md",
+    "03-architect-diagram.png",
+    "04-runtime-diagram.png",
+    "azure.yaml",
+    "infra",
+    "src"
+  ],
+  "source": null,
+  "metadataStatus": "curated"
+}

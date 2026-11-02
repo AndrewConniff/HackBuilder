@@ -1,0 +1,9 @@
+{
+  "command": "az cosmosdb sql role assignment list --account-name cosmos-resto-4tvlzr5zf2rxi --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --resource-group rg-resto-scale-agent --output json",
+  "startedAtUtc": "2026-10-24T00:16:31.456632+00:00",
+  "checkedAtUtc": "2026-10-24T00:16:33.766122+00:00",
+  "exitCode": 0,
+  "stdout": "[]\n",
+  "stderr": "",
+  "result": []
+}

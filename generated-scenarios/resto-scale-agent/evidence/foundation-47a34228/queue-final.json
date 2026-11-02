@@ -1,0 +1,41 @@
+{
+  "command": "az servicebus queue show --namespace-name sb-resto-4tvlzr5zf2rxi --name kitchen --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --resource-group rg-resto-scale-agent --output json",
+  "startedAtUtc": "2026-10-24T00:16:43.635855+00:00",
+  "checkedAtUtc": "2026-10-24T00:16:45.880457+00:00",
+  "exitCode": 0,
+  "stdout": "{\n  \"accessedAt\": \"0001-01-01T00:00:00Z\",\n  \"autoDeleteOnIdle\": \"P10675199DT2H48M5.4775807S\",\n  \"countDetails\": {\n    \"activeMessageCount\": 0,\n    \"deadLetterMessageCount\": 0,\n    \"scheduledMessageCount\": 0,\n    \"transferDeadLetterMessageCount\": 0,\n    \"transferMessageCount\": 0\n  },\n  \"createdAt\": \"2026-10-24T00:14:00.1879431Z\",\n  \"deadLetteringOnMessageExpiration\": true,\n  \"defaultMessageTimeToLive\": \"P7D\",\n  \"duplicateDetectionHistoryTimeWindow\": \"PT10M\",\n  \"enableBatchedOperations\": true,\n  \"enableExpress\": false,\n  \"enablePartitioning\": false,\n  \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen\",\n  \"location\": \"centralus\",\n  \"lockDuration\": \"PT1M\",\n  \"maxDeliveryCount\": 5,\n  \"maxMessageSizeInKilobytes\": 1024,\n  \"maxSizeInMegabytes\": 1024,\n  \"messageCount\": 0,\n  \"name\": \"kitchen\",\n  \"requiresDuplicateDetection\": true,\n  \"requiresSession\": true,\n  \"resourceGroup\": \"rg-resto-scale-agent\",\n  \"sizeInBytes\": 0,\n  \"status\": \"Active\",\n  \"type\": \"Microsoft.ServiceBus/namespaces/queues\",\n  \"updatedAt\": \"2026-10-24T00:14:00.219193Z\"\n}\n",
+  "stderr": "",
+  "result": {
+    "accessedAt": "0001-01-01T00:00:00Z",
+    "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S",
+    "countDetails": {
+      "activeMessageCount": 0,
+      "deadLetterMessageCount": 0,
+      "scheduledMessageCount": 0,
+      "transferDeadLetterMessageCount": 0,
+      "transferMessageCount": 0
+    },
+    "createdAt": "2026-10-24T00:14:00.1879431Z",
+    "deadLetteringOnMessageExpiration": true,
+    "defaultMessageTimeToLive": "P7D",
+    "duplicateDetectionHistoryTimeWindow": "PT10M",
+    "enableBatchedOperations": true,
+    "enableExpress": false,
+    "enablePartitioning": false,
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen",
+    "location": "centralus",
+    "lockDuration": "PT1M",
+    "maxDeliveryCount": 5,
+    "maxMessageSizeInKilobytes": 1024,
+    "maxSizeInMegabytes": 1024,
+    "messageCount": 0,
+    "name": "kitchen",
+    "requiresDuplicateDetection": true,
+    "requiresSession": true,
+    "resourceGroup": "rg-resto-scale-agent",
+    "sizeInBytes": 0,
+    "status": "Active",
+    "type": "Microsoft.ServiceBus/namespaces/queues",
+    "updatedAt": "2026-10-24T00:14:00.219193Z"
+  }
+}

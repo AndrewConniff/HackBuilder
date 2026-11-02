@@ -1,0 +1,297 @@
+{
+  "schemaVersion": 1,
+  "ready": true,
+  "pythonExecutable": "C:\\HackBuilder\\.venv\\Scripts\\python.exe",
+  "checks": [
+    {
+      "id": "python",
+      "name": "Python 3.10+",
+      "ok": true,
+      "detail": "C:\\HackBuilder\\.venv\\Scripts\\python.exe\n3.13.16",
+      "winget": "Python.Python.3.13",
+      "state": "ready",
+      "fix": ""
+    },
+    {
+      "id": "venv",
+      "name": "Repository Python environment",
+      "ok": true,
+      "detail": "Expected C:\\HackBuilder\\.venv; current interpreter prefix is C:\\HackBuilder\\.venv.",
+      "winget": null,
+      "state": "ready",
+      "fix": ""
+    },
+    {
+      "id": "python-package:diagrams",
+      "name": "diagrams",
+      "ok": true,
+      "detail": "Installed 0.25.1; requires >= 0.23.4.",
+      "winget": null,
+      "state": "ready",
+      "fix": ""
+    },
+    {
+      "id": "python-package:matplotlib",
+      "name": "matplotlib",
+      "ok": true,
+      "detail": "Installed 3.11.2; requires >= 3.8.",
+      "winget": null,
+      "state": "ready",
+      "fix": ""
+    },
+    {
+      "id": "python-package:pillow",
+      "name": "pillow",
+      "ok": true,
+      "detail": "Installed 13.0.0; requires >= 10.0.",
+      "winget": null,
+      "state": "ready",
+      "fix": ""
+    },
+    {
+      "id": "python-package:checkov",
+      "name": "checkov",
+      "ok": true,
+      "detail": "Installed 3.3.29; requires >= 3.0.",
+      "winget": null,
+      "state": "ready",
+      "fix": ""
+    },
+    {
+      "id": "python-package:playwright",
+      "name": "playwright",
+      "ok": true,
+      "detail": "Installed 1.64.0; requires >= 1.55.",
+      "winget": null,
+      "state": "ready",
+      "fix": ""
+    },
+    {
+      "id": "pip-health",
+      "name": "Python dependency consistency",
+      "ok": true,
+      "detail": "No broken requirements found.",
+      "winget": null,
+      "state": "ready",
+      "fix": ""
+    },
+    {
+      "id": "git",
+      "name": "Git",
+      "ok": true,
+      "detail": "C:\\Program Files\\Git\\cmd\\git.EXE\ngit version 2.55.0.windows.5",
+      "winget": "Git.Git",
+      "state": "ready",
+      "fix": "",
+      "installed": true
+    },
+    {
+      "id": "copilot",
+      "name": "GitHub Copilot CLI",
+      "ok": true,
+      "detail": "C:\\Users\\petender\\AppData\\Local\\Microsoft\\WinGet\\Links\\copilot.EXE\nGitHub Copilot CLI 1.0.103.\nRun 'copilot update' to check for updates.",
+      "winget": "GitHub.Copilot",
+      "state": "ready",
+      "fix": "",
+      "installed": true
+    },
+    {
+      "id": "powershell",
+      "name": "PowerShell 7+",
+      "ok": true,
+      "detail": "C:\\Users\\petender\\AppData\\Local\\Microsoft\\WindowsApps\\Microsoft.PowerShell_8wekyb3d8bbwe\\pwsh.EXE\nPowerShell 7.6.7",
+      "winget": "Microsoft.PowerShell",
+      "state": "ready",
+      "fix": "",
+      "installed": true
+    },
+    {
+      "id": "dotnet",
+      "name": ".NET 10 SDK",
+      "ok": true,
+      "detail": "C:\\Program Files\\dotnet\\dotnet.EXE\n10.0.402 [C:\\Program Files\\dotnet\\sdk]",
+      "winget": "Microsoft.DotNet.SDK.10",
+      "state": "ready",
+      "fix": "",
+      "installed": true
+    },
+    {
+      "id": "graphviz",
+      "name": "Graphviz dot",
+      "ok": true,
+      "detail": "C:\\Program Files\\Graphviz\\bin\\dot.EXE\ndot - graphviz version 16.1.0 (20260904.0139)",
+      "winget": "Graphviz.Graphviz",
+      "state": "ready",
+      "fix": "",
+      "installed": true
+    },
+    {
+      "id": "azure-cli",
+      "name": "Azure CLI",
+      "ok": true,
+      "detail": "C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\nazure-cli                         2.91.0\n\ncore                              2.91.0\ntelemetry                          1.1.0\n\nDependencies:\nmsal                              1.39.0\nazure-mgmt-resource               24.0.0\n\nPython location 'C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\python.exe'\nConfig directory 'C:\\Users\\petender\\.azure'\nExtensions directory 'C:\\Users\\petender\\.azure\\cliextensions'\n\nPython (Windows) 3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]\n\nLegal docs and information: aka.ms/AzureCliLegal\n\n\nYour CLI is up-to-date.",
+      "winget": "Microsoft.AzureCLI",
+      "state": "ready",
+      "fix": "",
+      "installed": true
+    },
+    {
+      "id": "azd",
+      "name": "Azure Developer CLI",
+      "ok": true,
+      "detail": "C:\\Users\\petender\\AppData\\Local\\Programs\\Azure Dev CLI\\azd.EXE\nazd version 1.35.1 (commit 0651d77b568ad4914cac11fcdb7fe503d93bad10) (stable)\nUpdate available: 1.35.1 -> 1.37.1 (https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_1.37.1)\nTo update, run `winget upgrade Microsoft.Azd`",
+      "winget": "Microsoft.Azd",
+      "state": "ready",
+      "fix": "",
+      "installed": true
+    },
+    {
+      "id": "bicep",
+      "name": "Azure CLI Bicep component",
+      "ok": true,
+      "detail": "C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\nBicep CLI version 0.48.1 (cec7951cf6)",
+      "winget": null,
+      "state": "ready",
+      "fix": "",
+      "installed": true
+    },
+    {
+      "id": "docker",
+      "name": "Docker CLI and running engine",
+      "ok": true,
+      "detail": "C:\\Users\\petender\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.EXE\n29.8.2 linux",
+      "winget": "Docker.DockerDesktop",
+      "state": "ready",
+      "fix": "",
+      "installed": true
+    },
+    {
+      "id": "nuget-https",
+      "name": "NuGet package metadata HTTPS/TLS",
+      "ok": true,
+      "detail": "https://packagefeedproxy.microsoft.io/nuget/v3/index.json\nNuGet metadata HTTPS request and response validation passed.\nProbe covers Azure.Identity metadata only; configured feeds and actual restore/build still need verification.",
+      "winget": null,
+      "state": "ready",
+      "fix": ""
+    },
+    {
+      "id": "diagram-render",
+      "name": "Architecture PNG rendering smoke test",
+      "ok": true,
+      "detail": "Python diagrams and Graphviz successfully rendered and verified a PNG.",
+      "winget": null,
+      "state": "ready",
+      "fix": ""
+    }
+  ],
+  "notChecked": [
+    "Copilot/GitHub sign-in, repository trust and execution-host tool permissions",
+    "Azure account, tenant, subscription, RBAC, provider registration, model quota and region capacity",
+    "Scenario-specific packages, container configuration, deployment consent and suitability approval"
+  ],
+  "profileVersion": 1,
+  "checkedAtUtc": "2026-10-23T21:07:26.083685+00:00",
+  "services": [
+    "api-management",
+    "container-apps",
+    "foundry",
+    "key-vault",
+    "managed-identity"
+  ],
+  "buildMode": "local",
+  "localFunctions": false,
+  "loadTests": false,
+  "plan": {
+    "version": 1,
+    "services": [
+      "api-management",
+      "container-apps",
+      "foundry",
+      "key-vault",
+      "managed-identity"
+    ],
+    "buildMode": "local",
+    "localFunctions": false,
+    "loadTests": false,
+    "stages": {
+      "requirements": [],
+      "architecture": [],
+      "diagrams": [
+        "python",
+        "venv",
+        "python-package:diagrams",
+        "python-package:matplotlib",
+        "python-package:pillow",
+        "pip-health",
+        "graphviz",
+        "diagram-render"
+      ],
+      "bicep": [
+        "azure-cli",
+        "bicep",
+        "python-package:checkov",
+        "pip-health"
+      ],
+      "application": [
+        "dotnet"
+      ],
+      "local-validation": [
+        "git",
+        "powershell",
+        "dotnet",
+        "azure-cli",
+        "bicep",
+        "python-package:checkov",
+        "pip-health",
+        "nuget-https",
+        "docker"
+      ],
+      "deployment": [
+        "azure-cli",
+        "azd",
+        "powershell",
+        "docker"
+      ]
+    },
+    "serviceNotes": [
+      {
+        "id": "api-management",
+        "detail": "Infrastructure through Azure CLI/Bicep; live gateway tests are separate."
+      },
+      {
+        "id": "container-apps",
+        "detail": "Default local image build requires the Docker CLI and a responsive Linux engine."
+      },
+      {
+        "id": "foundry",
+        "detail": "Foundry agents use the repository .NET application baseline."
+      },
+      {
+        "id": "key-vault",
+        "detail": "Application SDK via NuGet restore and managed identity at runtime."
+      },
+      {
+        "id": "managed-identity",
+        "detail": "Runtime identity/RBAC validation is separate from local tooling."
+      }
+    ],
+    "conditions": [
+      "Recheck after architecture changes services, build mode or local-host requirements.",
+      "Remote builds require an explicitly chosen design and separate Azure authorization; never a failure fallback.",
+      "Generated NuGet/package dependencies are verified by actual restore/build, not machine-wide SDK installation.",
+      "The NuGet HTTPS/TLS probe checks Azure.Identity metadata using PowerShell under the audit account; it does not prove every configured feed or package download.",
+      "Local emulators, browser automation and other new design-specific tools require explicit additional checks."
+    ]
+  },
+  "blockedStages": {
+    "requirements": [],
+    "architecture": [],
+    "diagrams": [],
+    "bicep": [],
+    "application": [],
+    "local-validation": [],
+    "deployment": []
+  },
+  "projectSlug": "manu-multi-agent",
+  "runId": "270fcd7139704ecdac19e12ba2b5f2ad"
+}

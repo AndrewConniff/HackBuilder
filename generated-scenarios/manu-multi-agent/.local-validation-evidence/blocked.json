@@ -1,0 +1,18 @@
+{
+  "stage": "local-validation",
+  "status": "blocked",
+  "summary": "Local validation is blocked by actual linux/amd64 .NET SDK execution failure on the ARM64 Docker engine: QEMU SIGSEGV during locked restore (139; Docker build exit 1). All 33 application source hashes still match the retained passing receipt. No image/liveness success or cloud operation is claimed. Operator Docker setup repair is required; no additional business approval is requested.",
+  "evidence": [
+    ".local-validation-evidence\\validation.json: allCommandsPassed false; all 33 source hashes verified; prior nine application checks retained without repeating completed work.",
+    "docker build --platform linux/amd64 --tag abcbuilder-manu-multi-agent:local-validation-695b593b3222 --file src\\MobilityCommercial.Web\\Dockerfile .: exit 1; locked dotnet restore crashed under QEMU with signal 11 / exit 139; exact output in .local-validation-evidence\\image-build.log.",
+    "docker info: linux/aarch64, Docker 29.8.2; docker buildx inspect desktop-linux: running BuildKit v0.33.1 advertises amd64 but actual SDK build failed.",
+    "Read-only, network-isolated SDK probe with --pull=never: exit 125 because SDK image is not tagged in local runtime image store. No pull or shared setup change attempted.",
+    ".local-validation-evidence\\diagnosis.json: exact commands/results, failure classification and unperformed checks. Production authentication/configuration and local linux/amd64 design unchanged.",
+    "Repository container helper was not invoked because the image build failed. No deployment, live validation, suitability approval, hack package or team operation performed."
+  ],
+  "blocker": {
+    "kind": "prerequisite",
+    "action": "Outside this worker, the operator must repair and verify linux/amd64 .NET 10 execution in Docker Desktop on ARM64, or coordinate a compatible native linux/amd64 Docker engine without disrupting concurrent jobs. Make mcr.microsoft.com/dotnet/sdk:10.0 available locally for the no-pull SDK verification. Verify the scenario's exact locked-restore Docker build succeeds. Do not change the scenario to arm64/remote builds or install shared tools from a worker.",
+    "verification": "docker run --rm --pull=never --read-only --network none --platform linux/amd64 --user 1654 --env DOTNET_EnableDiagnostics=0 mcr.microsoft.com/dotnet/sdk:10.0 dotnet --info"
+  }
+}

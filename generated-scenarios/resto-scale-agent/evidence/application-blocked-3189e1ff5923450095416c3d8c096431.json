@@ -1,0 +1,17 @@
+{
+  "stage": "application",
+  "status": "blocked",
+  "summary": "Approved proxy verification and actual application dependency restore passed. Resumed application work then stopped immediately when the host denied the read-only SDK-asset and later-tool inspection. No bypass or approval question. Actual build and application implementation remain incomplete.",
+  "evidence": [
+    "Current blocker ed6ba41327544fb690084af870ad01af was cleared at revision 99 only after nuget-https ok:true and physical-workspace source verification. Historical direct-endpoint failures were not edited; the obsolete command was not executed.",
+    "dotnet restore C:\\azd-projects\\resto-scale-agent\\src\\Restaurant.Web\\Restaurant.Web.csproj --configfile C:\\HackBuilder\\NuGet.Config --packages C:\\azd-projects\\resto-scale-agent\\.packages --verbosity minimal: exit 0; Restored C:\\azd-projects\\resto-scale-agent\\src\\Restaurant.Web\\Restaurant.Web.csproj (in 15.84 sec). Exact output retained in evidence\\restore-3189e1ff5923450095416c3d8c096431.txt. This verifies restore, not compilation or runtime.",
+    "Denied command: Get-Command k6 -ErrorAction SilentlyContinue | Select-Object Source; Test-Path \"$env:LOCALAPPDATA\\ms-playwright\"; Get-ChildItem C:\\azd-projects\\resto-scale-agent\\.packages\\azure.ai.extensions.openai\\2.0.0\\lib; Get-ChildItem C:\\azd-projects\\resto-scale-agent\\.packages\\azure.ai.projects.agents\\2.0.0\\lib",
+    "Exact host failure: Permission denied because no interactive user response was available. Retry in an interactive session so the user can approve it, or try an alternative that does not require this permission.",
+    "Stopped without executing an alternative inspection, building, installing tools, changing PATH, weakening TLS, contacting direct NuGet.org, querying Azure or requesting another approval. The application project currently records restored dependencies only; it is not a working application."
+  ],
+  "blocker": {
+    "kind": "host-permission",
+    "action": "Outside this worker, have the execution-host administrator permit the exact read-only command recorded in verification for the actual noninteractive portal worker. Do not broaden permissions, install tools, change PATH or replace the denied operation with a bypass. Retain proxy-only package access; package restore already passed, while build remains unverified.",
+    "verification": "Get-Command k6 -ErrorAction SilentlyContinue | Select-Object Source; Test-Path \"$env:LOCALAPPDATA\\ms-playwright\"; Get-ChildItem C:\\azd-projects\\resto-scale-agent\\.packages\\azure.ai.extensions.openai\\2.0.0\\lib; Get-ChildItem C:\\azd-projects\\resto-scale-agent\\.packages\\azure.ai.projects.agents\\2.0.0\\lib"
+  }
+}

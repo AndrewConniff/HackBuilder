@@ -1,0 +1,20 @@
+[
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/eastus2",
+    "name": "East US 2",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Zone",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  }
+]

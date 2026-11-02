@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "evidenceType": "runtime-validation",
+  "status": "passed",
+  "scope": "Actual functional runtime acceptance only; original performance targets remain unmet.",
+  "applicationUrl": "https://web-fc-keegvmxonq3wc.azurewebsites.net/",
+  "checkedAtUtc": "2026-10-25T00:00:52.801901+00:00",
+  "checks": {
+    "deployment": true,
+    "modelInference": true,
+    "agentInvocation": true,
+    "applicationChat": true,
+    "grounding": true,
+    "negativeCase": true,
+    "agenticWorkflow": true,
+    "localLoginAndStoreIsolation": true,
+    "ordersAndReplay": true,
+    "browserDemonstration": true,
+    "branchFailureAndRecovery": true
+  },
+  "localEvidence": ["evidence/local-checks.json", "evidence/local-tests.trx"],
+  "runtimeEvidence": [
+    "evidence/azd-up-retry1-result.json",
+    "evidence/agent-endpoint-repair.json",
+    "evidence/live-checks.json",
+    "evidence/live-branch-failure.json",
+    "evidence/live-concurrency.json",
+    "evidence/browser-checks.json"
+  ],
+  "performanceAcceptance": {
+    "status": "not-met",
+    "singleCloseSeconds": 9.495997800026089,
+    "tenConcurrentReadsP95Seconds": 2.4074642000487074,
+    "readTargetSeconds": 1,
+    "tenConcurrentClosesCompleted": 2,
+    "tenConcurrentClosesRejected": 8,
+    "tenUserCloseP95Seconds": null,
+    "closeTargetSeconds": 60,
+    "evidence": "evidence/live-concurrency.json",
+    "limitation": "Ten-request smoke samples use three configured identities, not ten distinct users or sustained load. Rejections are not successful closes. Three-worker automatic scaling was not exercised."
+  },
+  "limitation": "Functional pass is not performance/SLO certification. Public authenticated endpoints, one baseline worker, demo credentials, preview SDK and legacy model remain disclosed. No directory writes or user Entra sign-in; backend managed identity remains. No suitability approval, hack composition, event rollout or publication."
+}

@@ -1,0 +1,8 @@
+{
+  "command": "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location eastus --name resto-foundry-c99de84d --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\eastus-c99de84d\\preview-foundry.arm.json --no-pretty-print --output json",
+  "startedAtUtc": "2026-10-23T22:48:07.708367+00:00",
+  "checkedAtUtc": "2026-10-23T22:48:26.781275+00:00",
+  "exitCode": 1,
+  "stdout": "",
+  "stderr": "ERROR: InvalidTemplateDeployment - The template deployment 'resto-foundry-c99de84d' is not valid according to the validation procedure. The following resource provider(s) - 'Microsoft.CognitiveServices/accounts (2025-06-01)' reported preflight validation errors. Tracking id is 'cda994e9-b3a2-4174-9674-f2edc932e32e'. See inner errors for details.\nCustomDomainInUse - Please pick a different name. The subdomain name 'ai-resto-4tvlzr5zf2rxi' is not available as it's already used by a resource. If the resource using the name was deleted in the last 48 hours, you may need to purge the deleted resource. Learn more at \"https://go.microsoft.com/fwlink/?linkid=2215493\"\n"
+}

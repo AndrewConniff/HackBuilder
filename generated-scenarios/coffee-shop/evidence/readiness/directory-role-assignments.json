@@ -1,0 +1,13 @@
+{
+  "checkedAtUtc": "2026-10-24T23:18:38.357124+00:00",
+  "arguments": [
+    "rest",
+    "--method",
+    "get",
+    "--url",
+    "https://graph.microsoft.com/v1.0/roleManagement/directory/transitiveRoleAssignments?$filter=principalId%20eq%20'214d672b-df87-4f3b-94fd-7863032546c1'"
+  ],
+  "exitCode": 1,
+  "stdout": "",
+  "stderr": "ERROR: Bad Request({\"error\":{\"code\":\"BadRequest\",\"message\":\"Resource not found for the segment 'transitiveRoleAssignments'.\",\"innerError\":{\"date\":\"2026-10-24T23:18:35\",\"request-id\":\"aa94587a-c71b-40dc-a82f-e8ff88c35a33\",\"client-request-id\":\"aa94587a-c71b-40dc-a82f-e8ff88c35a33\"}}})\n"
+}

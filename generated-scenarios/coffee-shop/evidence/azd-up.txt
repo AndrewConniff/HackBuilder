@@ -1,0 +1,54 @@
+Initialize bicep provider
+
+Provisioning and deploying (azd up)
+Packaging overlaps with provisioning for faster execution.
+
+  web: Packaging
+  web: Packaging (Publishing .NET project)
+Validating deployment
+  web: Packaging (Compressing deployment artifacts)
+Creating/Updating resources
+  You can view detailed progress in the Azure Portal:
+  https://portal.azure.com/#view/HubsExtension/DeploymentDetailsBlade/~/overview/id/%2Fsubscriptions%2Fefd64343-6ef4-4926-951f-d3229f38bd76%2Fproviders%2FMicrosoft.Resources%2Fdeployments%2Fcoffee-shop-ref-1792884881
+
+  (✓) Done: Resource group: rg-coffee-shop-ref (3.976s)
+  (✓) Done: App Service plan: plan-fc-keegvmxonq3wc (4.931s)
+  (✓) Done: Storage account: stfckeegvmxonq3wc (31.774s)
+  (✓) Done: Foundry: fc-coffee-shop-keegvmxo (25.496s)
+  (✓) Done: Azure AI Services Model Deployment: fc-coffee-shop-keegvmxo/gpt-4.1-mini (2.941s)
+  (✓) Done: Foundry project: fc-coffee-shop-keegvmxo/backoffice (44.98s)
+  (✓) Done: App Service: web-fc-keegvmxonq3wc (28.028s)
+  web: Skipped
+  web: Skipped
+
+ERROR: step "cmdhook-postprovision" failed: 'postprovision' hook failed with exit code: '1', Path: 'C:\HackBuilder\generated-scenarios\coffee-shop\scripts\Initialize-Scenario.ps1'. : exit code: 1, stdout: , stderr: Unhandled exception. Azure.RequestFailedException: This request is not authorized to perform this operation.
+RequestId:00bdd89a-3002-00eb-2810-647453000000
+Time:2026-10-24T23:36:50.6784451Z
+Status: 403 (Forbidden)
+ErrorCode: AuthorizationFailure
+
+Content:
+{"odata.error":{"code":"AuthorizationFailure","message":{"lang":"en-US","value":"This request is not authorized to perform this operation.\nRequestId:00bdd89a-3002-00eb-2810-647453000000\nTime:2026-10-24T23:36:50.6784451Z"}}}
+
+Headers:
+Transfer-Encoding: chunked
+Server: Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id: 00bdd89a-3002-00eb-2810-647453000000
+x-ms-client-request-id: 64bf5773-b981-42cb-a7b8-5581cbf42f61
+x-ms-version: REDACTED
+X-Content-Type-Options: REDACTED
+Date: Sat, 24 Oct 2026 23:36:49 GMT
+Content-Type: application/json;odata=minimalmetadata;streaming=true;charset=utf-8
+
+   at Azure.Data.Tables.TableClient.CreateIfNotExistsAsync(CancellationToken cancellationToken)
+   at CoffeeShop.Web.Services.Bootstrap.RunAsync(IServiceProvider services, IConfiguration config, String root) in C:\HackBuilder\generated-scenarios\coffee-shop\src\CoffeeShop.Web\Services\Bootstrap.cs:line 20
+   at Program.<Main>$(String[] args) in C:\HackBuilder\generated-scenarios\coffee-shop\src\CoffeeShop.Web\Program.cs:line 81
+   at Program.<Main>(String[] args)
+[31;1mException: [0mC:\HackBuilder\generated-scenarios\coffee-shop\scripts\Initialize-Scenario.ps1:21[0m
+[31;1m[0m[36;1mLine |[0m
+[31;1m[0m[36;1m[36;1m  21 | [0m … DE -ne 0) { [36;1mthrow 'Fixture/agent initialization failed; do not publis[0m …[0m
+[31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m     | [31;1m               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m     | [31;1mFixture/agent initialization failed; do not publish incomplete app.[0m
+
+Update available: 1.35.1 -> 1.37.1 (https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_1.37.1)
+To update, run `winget upgrade Microsoft.Azd`

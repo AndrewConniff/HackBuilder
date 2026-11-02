@@ -21,15 +21,8 @@
     Uses the portal's full System profile, including Docker, Functions Core Tools and k6.
 .PARAMETER IncludeVSCode
     Also checks/installs VS Code 1.143+ and its code launcher. Extensions/sign-in remain manual.
-.PARAMETER UseCachedInstallers
-    Uses only verified native installers from CacheDirectory instead of WinGet installation.
-    Includes the pinned Azure CLI Bicep binary. Python requirements still require network access.
-.PARAMETER CacheDirectory
-    Directory populated by system-tools\Install-SystemTools.ps1 -Mode Download.
 .PARAMETER ReportPath
     Optional local JSON outcome, including checks, progress events and any error. Not written with -WhatIf.
-.PARAMETER InitialEvents
-    Download events passed by the system-tools entry point for one combined outcome report.
 .PARAMETER PythonExecutable
     Bootstrap interpreter used to create .venv. Existing repository environments are preserved.
 .PARAMETER GraphvizBin
@@ -54,10 +47,7 @@ param(
     [switch]$AcceptDockerLicense,
     [switch]$SystemProfile,
     [switch]$IncludeVSCode,
-    [switch]$UseCachedInstallers,
-    [string]$CacheDirectory,
     [string]$ReportPath,
-    [object[]]$InitialEvents = @(),
     [ValidateNotNullOrEmpty()][string]$PythonExecutable = 'python',
     [string]$GraphvizBin,
     [switch]$Json
@@ -66,7 +56,6 @@ param(
 $ErrorActionPreference = 'Stop'
 $repositoryRoot = Split-Path -Path $PSScriptRoot -Parent
 $script:setupEvents = [System.Collections.Generic.List[object]]::new()
-foreach ($event in $InitialEvents) { $script:setupEvents.Add($event) }
 $script:setupRebootRequired = $false
 
 function Invoke-SetupCommand {
@@ -230,123 +219,10 @@ function Save-SetupOutcome {
     }
 }
 
-function Get-SetupCatalog {
-    <#
-    .SYNOPSIS
-        Reads the repository-owned native installer recipes.
-    .DESCRIPTION
-        Recipes are trusted repository code, never commands loaded from a downloaded receipt.
-    .EXAMPLE
-        Get-SetupCatalog
-    #>
-    [CmdletBinding()]
-    param()
-    $catalog = Get-Content -LiteralPath (Join-Path $repositoryRoot 'system-tools\tool-catalog.json') -Raw |
-        ConvertFrom-Json
-    if ($catalog.schemaVersion -ne 1 -or $catalog.architecture -ne 'x64') { throw 'Unsupported tool catalog.' }
-    foreach ($tool in $catalog.tools) {
-        if (-not $tool.version -or $tool.sha256 -notmatch '^[a-fA-F0-9]{64}$' -or
-            $tool.url -notmatch '^https://' -or $tool.id -notmatch '^[a-z0-9-]+$' -or
-            $tool.extension -notin @('.exe', '.msi')) {
-            throw "Invalid pinned installer recipe for $($tool.id). Review system-tools\tool-catalog.json."
-        }
-    }
-    return $catalog.tools
-}
-
-function Get-SetupCachedInstaller {
-    <#
-    .SYNOPSIS
-        Validates a cached native installer before reuse.
-    .DESCRIPTION
-        Requires the expected package, x64 architecture, confined file name, SHA256 and expected signature status.
-        Receipts are local integrity records, not independent proof of publisher provenance.
-    .EXAMPLE
-        Get-SetupCachedInstaller -Tool $tool -Directory '.\system-tools\cache'
-    #>
-    [CmdletBinding()]
-    param([Parameter(Mandatory)][object]$Tool, [Parameter(Mandatory)][string]$Directory)
-    $folder = Join-Path ([IO.Path]::GetFullPath($Directory)) $Tool.id
-    $receipt = Get-Content -LiteralPath (Join-Path $folder 'receipt.json') -Raw | ConvertFrom-Json
-    if ($receipt.schemaVersion -ne 1 -or $receipt.packageId -ne $Tool.packageId -or
-        $receipt.architecture -ne 'x64' -or -not $receipt.file -or
-        $receipt.file -match '[/\\:]' -or $receipt.file -ne [IO.Path]::GetFileName($receipt.file) -or
-        [IO.Path]::GetExtension($receipt.file) -ne $Tool.extension -or
-        $receipt.sha256 -ne $Tool.sha256 -or ($receipt.version -and $receipt.version -ne $Tool.version)) {
-        throw "Invalid cache receipt for $($Tool.packageId). Download into a new cache directory."
-    }
-    $file = Join-Path $folder $receipt.file
-    if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne $receipt.sha256) {
-        throw "SHA256 mismatch for $file. Do not execute it; prepare a new cache from the official source."
-    }
-    $signature = Get-AuthenticodeSignature -LiteralPath $file
-    $signed = $signature.Status -eq 'Valid' -and $receipt.signatureStatus -eq 'Valid' -and
-        $receipt.publisher -and $signature.SignerCertificate.Subject -eq $receipt.publisher
-    $unsigned = $Tool.allowUnsigned -and $signature.Status -eq 'NotSigned' -and
-        $receipt.signatureStatus -eq 'NotSigned'
-    if (-not $signed -and -not $unsigned) {
-        throw "Untrusted/changed Authenticode signature for $file. Use your approved manual installation channel."
-    }
-    if ($unsigned) { Write-Warning "$($Tool.name) is unsigned; its hash must match the repository baseline." }
-    return $file
-}
-
-function Save-SetupInstaller {
-    <#
-    .SYNOPSIS
-        Downloads one pinned native installer from its official vendor source.
-    .DESCRIPTION
-        Does not install anything. Verifies the repository-pinned SHA256 and Authenticode.
-        Only repository-catalogued open-source exceptions permit unsigned installers.
-        Existing verified receipts are reused. Dependencies are not cached; this is not an air-gapped bundle.
-    .EXAMPLE
-        Save-SetupInstaller -Tool $tool -Directory '.\system-tools\cache' -WhatIf
-    #>
-    [CmdletBinding(SupportsShouldProcess = $true)]
-    param([Parameter(Mandatory)][object]$Tool, [Parameter(Mandatory)][string]$Directory)
-    $folder = Join-Path ([IO.Path]::GetFullPath($Directory)) $Tool.id
-    if (Test-Path -LiteralPath (Join-Path $folder 'receipt.json')) {
-        $null = Get-SetupCachedInstaller -Tool $Tool -Directory $Directory
-        Write-SetupStatus $Tool.name 'cached' "Baseline $($Tool.version) hash/signature verified; no download needed."
-        return
-    }
-    if (Test-Path -LiteralPath $folder) {
-        throw "Incomplete cache at $folder. Preserve/inspect it and choose a new -CacheDirectory."
-    }
-    if ($PSCmdlet.ShouldProcess($Tool.packageId, "Download baseline $($Tool.version) x64 to $folder (no installation)")) {
-        Write-SetupStatus $Tool.name 'downloading' "Version: $($Tool.version); URL: $($Tool.url)."
-        $null = New-Item -ItemType Directory -Path $folder -Force
-        $destination = Join-Path $folder ("{0}-{1}{2}" -f $Tool.id, $Tool.version, $Tool.extension)
-        $ProgressPreference = 'SilentlyContinue'
-        Invoke-WebRequest -Uri $Tool.url -OutFile $destination -UseBasicParsing -TimeoutSec 1800 -ErrorAction Stop
-        $file = Get-Item -LiteralPath $destination
-        if ((Get-FileHash -LiteralPath $file.FullName -Algorithm SHA256).Hash -ne $Tool.sha256) {
-            throw "Baseline SHA256 mismatch for $($Tool.name) $($Tool.version). Nothing was run; inspect $folder."
-        }
-        $signature = Get-AuthenticodeSignature -LiteralPath $file.FullName
-        if ($signature.Status -ne 'Valid' -and -not ($Tool.allowUnsigned -and $signature.Status -eq 'NotSigned')) {
-            throw "No valid Authenticode signature for $($Tool.name). Use an approved manual installer."
-        }
-        $receipt = [ordered]@{
-            schemaVersion = 1; packageId = $Tool.packageId; architecture = 'x64'; version = $Tool.version
-            file = $file.Name; sha256 = (Get-FileHash -LiteralPath $file.FullName -Algorithm SHA256).Hash
-            signatureStatus = "$($signature.Status)"
-            publisher = if ($signature.SignerCertificate) { $signature.SignerCertificate.Subject } else { $null }
-            downloadedAtUtc = [DateTime]::UtcNow.ToString('o')
-            source = $Tool.url; fileVersion = $file.VersionInfo.FileVersion
-        }
-        [IO.File]::WriteAllText(
-            (Join-Path $folder 'receipt.json'), ($receipt | ConvertTo-Json), [Text.UTF8Encoding]::new($false)
-        )
-        Write-SetupStatus $Tool.name 'downloaded' `
-            "SHA256 verified; Authenticode: $($signature.Status); $($file.Name). No installer executed."
-    }
-}
-
 function Install-SetupPackage {
     <#
     .SYNOPSIS
-        Installs an explicitly approved native package online or from the verified cache.
+        Downloads and installs an explicitly approved native package through WinGet.
     .DESCRIPTION
         Uses repository-owned arguments, never auto-elevates/reboots and surfaces native errors and reboot requests.
     .EXAMPLE
@@ -370,27 +246,12 @@ function Install-SetupPackage {
         }
     }
     Write-SetupStatus $PackageId 'installing' 'This can take several minutes; -Verbose shows command output.'
-    if ($UseCachedInstallers) {
-        $tool = @(Get-SetupCatalog | Where-Object { $_.packageId -eq $PackageId })
-        if ($tool.Count -ne 1) { throw "No trusted cache recipe for $PackageId." }
-        $file = Get-SetupCachedInstaller -Tool $tool[0] -Directory $CacheDirectory
-        $arguments = $tool[0].arguments
-        if ($tool[0].extension -eq '.msi') {
-            $arguments = "/i `"$file`" $arguments"
-            $file = Join-Path $env:SystemRoot 'System32\msiexec.exe'
-        }
-        Write-Verbose "Executing cached installer: $file $arguments"
-        $process = Start-Process -FilePath $file -ArgumentList $arguments -Wait -PassThru
-        $code = $process.ExitCode
-        $output = "Cached vendor installer exited $code."
-    } else {
-        $result = Invoke-SetupCommand winget @(
-            'install', '--id', $PackageId, '--exact', '--source', 'winget',
-            '--silent', '--disable-interactivity', '--accept-package-agreements', '--accept-source-agreements'
-        )
-        $code = $result.ExitCode
-        $output = $result.Output
-    }
+    $result = Invoke-SetupCommand winget @(
+        'install', '--id', $PackageId, '--exact', '--source', 'winget',
+        '--silent', '--disable-interactivity', '--accept-package-agreements', '--accept-source-agreements'
+    )
+    $code = $result.ExitCode
+    $output = $result.Output
     # WinGet wraps vendor reboot requests in its own HRESULTs.
     if ($code -in @(3010, 1641, -1978334967, -1978334966, -1978334965)) {
         $script:setupRebootRequired = $true
@@ -439,31 +300,20 @@ function Get-SetupCheckReport {
 function Install-SetupBicep {
     <#
     .SYNOPSIS
-        Prepares the Azure CLI Bicep component from the baseline or the legacy online route.
+        Downloads the Azure CLI Bicep component online.
     .DESCRIPTION
-        Cached mode copies only the verified pinned binary into the selected Azure CLI configuration directory.
         Does not change Azure configuration, accounts or subscription defaults.
     .EXAMPLE
         Install-SetupBicep -WhatIf
     #>
     [CmdletBinding(SupportsShouldProcess = $true)]
     param()
-    if (-not $PSCmdlet.ShouldProcess('Azure CLI local Bicep component', 'Prepare cached Bicep or run az bicep install')) {
+    if (-not $PSCmdlet.ShouldProcess('Azure CLI local Bicep component', 'Run az bicep install (network required)')) {
         return
     }
-    if ($UseCachedInstallers) {
-        $tool = Get-SetupCatalog | Where-Object { $_.id -eq 'bicep' }
-        $file = Get-SetupCachedInstaller -Tool $tool -Directory $CacheDirectory
-        $configDirectory = if ($env:AZURE_CONFIG_DIR) { $env:AZURE_CONFIG_DIR } else { Join-Path $HOME '.azure' }
-        $bin = Join-Path ([IO.Path]::GetFullPath($configDirectory)) 'bin'
-        Write-SetupStatus 'Bicep' 'installing' "Copying verified Bicep $($tool.version) to $bin."
-        $null = New-Item -ItemType Directory -Path $bin -Force
-        Copy-Item -LiteralPath $file -Destination (Join-Path $bin 'bicep.exe') -Force -ErrorAction Stop
-    } else {
-        Write-SetupStatus 'Bicep' 'installing' 'Downloading the Azure CLI Bicep component (network required).'
-        $result = Invoke-SetupCommand az @('bicep', 'install')
-        if ($result.ExitCode -ne 0) { throw "Bicep installation failed: $($result.Output)" }
-    }
+    Write-SetupStatus 'Bicep' 'installing' 'Downloading the Azure CLI Bicep component (network required).'
+    $result = Invoke-SetupCommand az @('bicep', 'install')
+    if ($result.ExitCode -ne 0) { throw "Bicep installation failed: $($result.Output)" }
     Write-SetupStatus 'Bicep' 'installed-unverified' 'Final az bicep version probe must still pass.'
 }
 
@@ -474,13 +324,6 @@ try {
     if ($env:OS -ne 'Windows_NT') { throw 'This installer targets Windows. See PREREQUISITES.md for manual setup.' }
     if ($CheckOnly -and $Install) { throw 'Choose -CheckOnly or -Install, not both.' }
     if ($Json -and $Install) { throw '-Json is a check-only report option.' }
-    if ($UseCachedInstallers -and (-not $Install -or -not $CacheDirectory)) {
-        throw '-UseCachedInstallers requires -Install and -CacheDirectory.'
-    }
-    if ($UseCachedInstallers -and -not $WhatIfPreference -and
-        [Runtime.InteropServices.RuntimeInformation]::OSArchitecture -ne 'X64') {
-        throw 'Cached installer recipes target Windows x64. On ARM64 use online WinGet or official native installers.'
-    }
     if ($Install -and -not $WhatIfPreference) {
         if (-not $AcceptPackageAgreements) { throw '-Install requires explicit -AcceptPackageAgreements.' }
         Assert-SetupIdle -RepositoryRoot $repositoryRoot
@@ -505,7 +348,7 @@ try {
         if (Test-Path -LiteralPath (Join-Path $repositoryRoot '.venv')) {
             throw 'Existing .venv is incomplete or unusable. Preserve/repair it manually; setup will not replace it.'
         }
-        if (-not $UseCachedInstallers -and -not (Get-Command winget -ErrorAction SilentlyContinue)) {
+        if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
             throw 'WinGet is unavailable. Install Microsoft App Installer through your approved software channel.'
         }
         if ($PSCmdlet.ShouldProcess('Python.Python.3.13', 'Install Python bootstrap')) {
@@ -546,7 +389,7 @@ try {
                     'Review Docker subscription terms; rerun with -AcceptDockerLicense or install Docker manually.'
                 continue
             }
-            if (-not $UseCachedInstallers -and -not (Get-Command winget -ErrorAction SilentlyContinue)) {
+            if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
                 throw 'WinGet is unavailable. Install Microsoft App Installer through your approved software channel.'
             }
             if ($PSCmdlet.ShouldProcess($tool.winget, "Install/repair $($tool.name)")) {

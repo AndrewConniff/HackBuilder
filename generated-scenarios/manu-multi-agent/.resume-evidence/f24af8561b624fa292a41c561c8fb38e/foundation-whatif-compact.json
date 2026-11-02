@@ -1,0 +1,2767 @@
+{
+  "changes": [
+    {
+      "after": {
+        "apiVersion": "2024-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent",
+        "location": "eastus2",
+        "name": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Resources/resourceGroups"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2026-01-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.App/managedEnvironments/cae-mm-manu-mul-skfabr",
+        "location": "eastus2",
+        "name": "cae-mm-manu-mul-skfabr",
+        "properties": {
+          "appLogsConfiguration": {
+            "destination": "azure-monitor"
+          },
+          "customDomainConfiguration": {
+            "certificatePassword": "*******",
+            "certificateValue": "*******"
+          },
+          "daprAIConnectionString": "*******",
+          "daprAIInstrumentationKey": "*******",
+          "infrastructureResourceGroup": "rg-manu-multi-agent-aca-skfabr",
+          "peerTrafficConfiguration": {
+            "encryption": {
+              "enabled": true
+            }
+          },
+          "publicNetworkAccess": "Disabled",
+          "vnetConfiguration": {
+            "infrastructureSubnetId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/virtualNetworks/vnet-mm-manu-mul-skfabr/subnets/apps",
+            "internal": true
+          },
+          "workloadProfiles": [
+            {
+              "name": "Consumption",
+              "workloadProfileType": "Consumption"
+            }
+          ],
+          "zoneRedundant": false
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.App/managedEnvironments"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.App/managedEnvironments/cae-mm-manu-mul-skfabr",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2021-05-01-preview",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.App/managedEnvironments/cae-mm-manu-mul-skfabr/providers/Microsoft.Insights/diagnosticSettings/cae-mm-manu-mul-skfabr-diagnosticSettings",
+        "name": "cae-mm-manu-mul-skfabr-diagnosticSettings",
+        "properties": {
+          "logs": [
+            {
+              "category": "ContainerAppConsoleLogs",
+              "enabled": true
+            },
+            {
+              "category": "ContainerAppSystemLogs",
+              "enabled": true
+            }
+          ],
+          "metrics": [
+            {
+              "category": "AllMetrics",
+              "enabled": true
+            }
+          ],
+          "workspaceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.OperationalInsights/workspaces/log-mm-manu-mul-skfabr"
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Insights/diagnosticSettings"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.App/managedEnvironments/cae-mm-manu-mul-skfabr/providers/Microsoft.Insights/diagnosticSettings/cae-mm-manu-mul-skfabr-diagnosticSettings",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr",
+        "identity": {
+          "type": "SystemAssigned"
+        },
+        "kind": "AIServices",
+        "location": "eastus2",
+        "name": "aif-mm-manu-mul-skfabr",
+        "properties": {
+          "allowProjectManagement": true,
+          "customSubDomainName": "aif-mm-manu-mul-skfabr",
+          "disableLocalAuth": true,
+          "dynamicThrottlingEnabled": false,
+          "migrationToken": "*******",
+          "networkAcls": {
+            "bypass": "None",
+            "defaultAction": "Deny"
+          },
+          "networkInjections": [
+            {
+              "scenario": "agent",
+              "subnetArmId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/virtualNetworks/vnet-mm-manu-mul-skfabr/subnets/agents",
+              "useMicrosoftManagedNetwork": false
+            }
+          ],
+          "publicNetworkAccess": "Disabled",
+          "restore": false,
+          "restrictOutboundNetworkAccess": true
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "sku": {
+          "name": "S0"
+        },
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.CognitiveServices/accounts"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2026-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/deployments/gpt-4.1-mini",
+        "name": "gpt-4.1-mini",
+        "properties": {
+          "model": {
+            "format": "OpenAI",
+            "name": "gpt-4.1-mini",
+            "version": "2025-04-14"
+          },
+          "versionUpgradeOption": "NoAutoUpgrade"
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "sku": {
+          "capacity": 30,
+          "name": "GlobalStandard"
+        },
+        "type": "Microsoft.CognitiveServices/accounts/deployments"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/deployments/gpt-4.1-mini",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-04-01-preview",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial",
+        "identity": {
+          "type": "SystemAssigned"
+        },
+        "location": "eastus2",
+        "name": "mobility-commercial",
+        "properties": {
+          "description": "Three prompt agents; private Standard runtime; synthetic sales and marketing data.",
+          "displayName": "Adventure Works Cycles Sales-to-Marketing"
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.CognitiveServices/accounts/projects"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-04-01-preview",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial/capabilityHosts/standard-agents",
+        "name": "standard-agents",
+        "properties": {
+          "capabilityHostKind": "Agents",
+          "storageConnections": [
+            "stmmpskfabr7gcfhvq"
+          ],
+          "threadStorageConnections": [
+            "cosmos-mm-manu-mul-skfabr"
+          ],
+          "vectorStoreConnections": [
+            "srch-mm-manu-mul-skfabr"
+          ]
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.CognitiveServices/accounts/projects/capabilityHosts"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial/capabilityHosts/standard-agents",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-04-01-preview",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial/connections/cosmos-mm-manu-mul-skfabr",
+        "name": "cosmos-mm-manu-mul-skfabr",
+        "properties": {
+          "authType": "AAD",
+          "category": "CosmosDB",
+          "metadata": {
+            "ApiType": "Azure",
+            "ResourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-mm-manu-mul-skfabr",
+            "location": "eastus2"
+          },
+          "target": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-mm-manu-mul-skfabr', '2026-04-01-preview').documentEndpoint]"
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.CognitiveServices/accounts/projects/connections"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial/connections/cosmos-mm-manu-mul-skfabr",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-04-01-preview",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial/connections/srch-mm-manu-mul-skfabr",
+        "name": "srch-mm-manu-mul-skfabr",
+        "properties": {
+          "authType": "AAD",
+          "category": "CognitiveSearch",
+          "metadata": {
+            "ApiType": "Azure",
+            "ResourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Search/searchServices/srch-mm-manu-mul-skfabr",
+            "location": "eastus2"
+          },
+          "target": "https://srch-mm-manu-mul-skfabr.search.windows.net"
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.CognitiveServices/accounts/projects/connections"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial/connections/srch-mm-manu-mul-skfabr",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-04-01-preview",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial/connections/stmmpskfabr7gcfhvq",
+        "name": "stmmpskfabr7gcfhvq",
+        "properties": {
+          "authType": "AAD",
+          "category": "AzureStorageAccount",
+          "metadata": {
+            "ApiType": "Azure",
+            "ResourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmpskfabr7gcfhvq",
+            "location": "eastus2"
+          },
+          "target": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmpskfabr7gcfhvq', '2025-06-01').primaryEndpoints.blob]"
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.CognitiveServices/accounts/projects/connections"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial/connections/stmmpskfabr7gcfhvq",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial/providers/Microsoft.Authorization/roleAssignments/fef68488-e0c6-57a5-89eb-b88a6b6e37e8",
+        "name": "fef68488-e0c6-57a5-89eb-b88a6b6e37e8",
+        "properties": {
+          "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/53ca6127-db72-4b80-b1b0-d745d6d5456d"
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial/providers/Microsoft.Authorization/roleAssignments/fef68488-e0c6-57a5-89eb-b88a6b6e37e8",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/providers/Microsoft.Authorization/roleAssignments/3b158671-62a9-53e4-a0c1-0991297b8887",
+        "name": "3b158671-62a9-53e4-a0c1-0991297b8887",
+        "properties": {
+          "principalId": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview', 'full').identity.principalId]",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/53ca6127-db72-4b80-b1b0-d745d6d5456d"
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/providers/Microsoft.Authorization/roleAssignments/3b158671-62a9-53e4-a0c1-0991297b8887",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-06-01-preview",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.ContainerRegistry/registries/acrmmskfabr7gcfhvq",
+        "location": "eastus2",
+        "name": "acrmmskfabr7gcfhvq",
+        "properties": {
+          "adminUserEnabled": false,
+          "anonymousPullEnabled": false,
+          "dataEndpointEnabled": true,
+          "networkRuleBypassAllowedForTasks": false,
+          "networkRuleBypassOptions": "None",
+          "policies": {
+            "azureADAuthenticationAsArmPolicy": {
+              "status": "disabled"
+            },
+            "exportPolicy": {
+              "status": "disabled"
+            },
+            "quarantinePolicy": {
+              "status": "disabled"
+            },
+            "retentionPolicy": {
+              "days": 15,
+              "status": "enabled"
+            },
+            "softDeletePolicy": {
+              "retentionDays": 7,
+              "status": "disabled"
+            },
+            "trustPolicy": {
+              "status": "disabled",
+              "type": "Notary"
+            }
+          },
+          "publicNetworkAccess": "Disabled",
+          "roleAssignmentMode": "LegacyRegistryPermissions",
+          "zoneRedundancy": "Disabled"
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "sku": {
+          "name": "Premium"
+        },
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.ContainerRegistry/registries"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.ContainerRegistry/registries/acrmmskfabr7gcfhvq",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.ContainerRegistry/registries/acrmmskfabr7gcfhvq/providers/Microsoft.Authorization/roleAssignments/8abc93af-afc4-52a6-9028-31c37b81721a",
+        "name": "8abc93af-afc4-52a6-9028-31c37b81721a",
+        "properties": {
+          "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/8311e382-0749-4cb8-b61a-304f252e45ec"
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.ContainerRegistry/registries/acrmmskfabr7gcfhvq/providers/Microsoft.Authorization/roleAssignments/8abc93af-afc4-52a6-9028-31c37b81721a",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2026-04-01-preview",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-mm-manu-mul-skfabr",
+        "kind": "GlobalDocumentDB",
+        "location": "eastus2",
+        "name": "cosmos-mm-manu-mul-skfabr",
+        "properties": {
+          "backupPolicy": {
+            "continuousModeProperties": {
+              "tier": "Continuous30Days"
+            },
+            "type": "Continuous"
+          },
+          "capacity": {
+            "totalThroughputLimit": 5000
+          },
+          "capacityMode": "Provisioned",
+          "databaseAccountOfferType": "Standard",
+          "defaultIdentity": "FirstPartyIdentity",
+          "disableKeyBasedMetadataWriteAccess": true,
+          "disableLocalAuth": true,
+          "enableBurstCapacity": true,
+          "enablePartitionMerge": false,
+          "enablePerRegionPerPartitionAutoscale": false,
+          "locations": [
+            {
+              "failoverPriority": 0,
+              "isZoneRedundant": false,
+              "locationName": "eastus2"
+            }
+          ],
+          "minimalTlsVersion": "Tls12",
+          "publicNetworkAccess": "Disabled"
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.DocumentDB/databaseAccounts"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-mm-manu-mul-skfabr",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2026-04-01-preview",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-mm-manu-mul-skfabr/sqlRoleAssignments/55f8effc-ce81-5a65-8264-7dc04e7801bd",
+        "name": "55f8effc-ce81-5a65-8264-7dc04e7801bd",
+        "properties": {
+          "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-mm-manu-mul-skfabr/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002",
+          "scope": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-mm-manu-mul-skfabr"
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-mm-manu-mul-skfabr/sqlRoleAssignments/55f8effc-ce81-5a65-8264-7dc04e7801bd",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2026-02-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.KeyVault/vaults/kv-mm-manu-mul-skfabr",
+        "location": "eastus2",
+        "name": "kv-mm-manu-mul-skfabr",
+        "properties": {
+          "createMode": "default",
+          "enablePurgeProtection": true,
+          "enableRbacAuthorization": true,
+          "enableSoftDelete": true,
+          "enabledForDeployment": false,
+          "enabledForDiskEncryption": false,
+          "enabledForTemplateDeployment": false,
+          "networkAcls": {
+            "bypass": "None",
+            "defaultAction": "Deny"
+          },
+          "publicNetworkAccess": "Disabled",
+          "sku": {
+            "family": "A",
+            "name": "standard"
+          },
+          "softDeleteRetentionInDays": 90,
+          "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3"
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.KeyVault/vaults"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.KeyVault/vaults/kv-mm-manu-mul-skfabr",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2026-02-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.KeyVault/vaults/kv-mm-manu-mul-skfabr/keys/handoff-receipt",
+        "name": "handoff-receipt",
+        "properties": {
+          "attributes": {
+            "enabled": true
+          },
+          "curveName": "P-256",
+          "keyOps": [
+            "sign",
+            "verify"
+          ],
+          "keySize": 2048,
+          "kty": "RSA",
+          "rotationPolicy": {
+            "attributes": {
+              "expiryTime": "P180D"
+            },
+            "lifetimeActions": [
+              {
+                "action": {
+                  "type": "rotate"
+                },
+                "trigger": {
+                  "timeAfterCreate": "P90D"
+                }
+              }
+            ]
+          }
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.KeyVault/vaults/keys"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.KeyVault/vaults/kv-mm-manu-mul-skfabr/keys/handoff-receipt",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.KeyVault/vaults/kv-mm-manu-mul-skfabr/providers/Microsoft.Authorization/roleAssignments/32fb2a73-cecd-5d93-b024-1f2c777d0f0e",
+        "name": "32fb2a73-cecd-5d93-b024-1f2c777d0f0e",
+        "properties": {
+          "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/00482a5a-887f-4fb3-b363-3b7fe8e74483"
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.KeyVault/vaults/kv-mm-manu-mul-skfabr/providers/Microsoft.Authorization/roleAssignments/32fb2a73-cecd-5d93-b024-1f2c777d0f0e",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2021-05-01-preview",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.KeyVault/vaults/kv-mm-manu-mul-skfabr/providers/Microsoft.Insights/diagnosticSettings/kv-mm-manu-mul-skfabr-diagnosticSettings",
+        "name": "kv-mm-manu-mul-skfabr-diagnosticSettings",
+        "properties": {
+          "logs": [
+            {
+              "category": "AuditEvent",
+              "enabled": true
+            }
+          ],
+          "metrics": [
+            {
+              "category": "AllMetrics",
+              "enabled": true
+            }
+          ],
+          "workspaceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.OperationalInsights/workspaces/log-mm-manu-mul-skfabr"
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Insights/diagnosticSettings"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.KeyVault/vaults/kv-mm-manu-mul-skfabr/providers/Microsoft.Insights/diagnosticSettings/kv-mm-manu-mul-skfabr-diagnosticSettings",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-11-30",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-mm-manu-mul-skfabr-app",
+        "location": "eastus2",
+        "name": "id-mm-manu-mul-skfabr-app",
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.ManagedIdentity/userAssignedIdentities"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-mm-manu-mul-skfabr-app",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-11-30",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-mm-manu-mul-skfabr-gateway",
+        "location": "eastus2",
+        "name": "id-mm-manu-mul-skfabr-gateway",
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.ManagedIdentity/userAssignedIdentities"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-mm-manu-mul-skfabr-gateway",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-09-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/networkSecurityGroups/nsg-mm-manu-mul-skfabr-agents",
+        "location": "eastus2",
+        "name": "nsg-mm-manu-mul-skfabr-agents",
+        "properties": {
+          "flushConnection": false
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/networkSecurityGroups"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/networkSecurityGroups/nsg-mm-manu-mul-skfabr-agents",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-09-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/networkSecurityGroups/nsg-mm-manu-mul-skfabr-apim",
+        "location": "eastus2",
+        "name": "nsg-mm-manu-mul-skfabr-apim",
+        "properties": {
+          "flushConnection": false,
+          "securityRules": [
+            {
+              "name": "AllowKeyVaultDependency",
+              "properties": {
+                "access": "Allow",
+                "destinationAddressPrefix": "AzureKeyVault",
+                "destinationPortRange": "443",
+                "direction": "Outbound",
+                "priority": 100,
+                "protocol": "Tcp",
+                "sourceAddressPrefix": "VirtualNetwork",
+                "sourcePortRange": "*"
+              }
+            }
+          ]
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/networkSecurityGroups"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/networkSecurityGroups/nsg-mm-manu-mul-skfabr-apim",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-09-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/networkSecurityGroups/nsg-mm-manu-mul-skfabr-apps",
+        "location": "eastus2",
+        "name": "nsg-mm-manu-mul-skfabr-apps",
+        "properties": {
+          "flushConnection": false
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/networkSecurityGroups"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/networkSecurityGroups/nsg-mm-manu-mul-skfabr-apps",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-09-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/networkSecurityGroups/nsg-mm-manu-mul-skfabr-endpoints",
+        "location": "eastus2",
+        "name": "nsg-mm-manu-mul-skfabr-endpoints",
+        "properties": {
+          "flushConnection": false
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/networkSecurityGroups"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/networkSecurityGroups/nsg-mm-manu-mul-skfabr-endpoints",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2020-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.azurecr.io",
+        "location": "global",
+        "name": "privatelink.azurecr.io",
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateDnsZones"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.azurecr.io",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.azurecr.io/virtualNetworkLinks/scenario-skfabr7gcfhvq",
+        "location": "global",
+        "name": "scenario-skfabr7gcfhvq",
+        "properties": {
+          "registrationEnabled": false,
+          "virtualNetwork": {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/virtualNetworks/vnet-mm-manu-mul-skfabr",
+            "resourceGroup": "rg-manu-multi-agent"
+          }
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.azurecr.io/virtualNetworkLinks/scenario-skfabr7gcfhvq",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2020-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net",
+        "location": "global",
+        "name": "privatelink.blob.core.windows.net",
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateDnsZones"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net/virtualNetworkLinks/scenario-skfabr7gcfhvq",
+        "location": "global",
+        "name": "scenario-skfabr7gcfhvq",
+        "properties": {
+          "registrationEnabled": false,
+          "virtualNetwork": {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/virtualNetworks/vnet-mm-manu-mul-skfabr",
+            "resourceGroup": "rg-manu-multi-agent"
+          }
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net/virtualNetworkLinks/scenario-skfabr7gcfhvq",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2020-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.cognitiveservices.azure.com",
+        "location": "global",
+        "name": "privatelink.cognitiveservices.azure.com",
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateDnsZones"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.cognitiveservices.azure.com",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.cognitiveservices.azure.com/virtualNetworkLinks/scenario-skfabr7gcfhvq",
+        "location": "global",
+        "name": "scenario-skfabr7gcfhvq",
+        "properties": {
+          "registrationEnabled": false,
+          "virtualNetwork": {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/virtualNetworks/vnet-mm-manu-mul-skfabr",
+            "resourceGroup": "rg-manu-multi-agent"
+          }
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.cognitiveservices.azure.com/virtualNetworkLinks/scenario-skfabr7gcfhvq",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2020-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.documents.azure.com",
+        "location": "global",
+        "name": "privatelink.documents.azure.com",
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateDnsZones"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.documents.azure.com",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.documents.azure.com/virtualNetworkLinks/scenario-skfabr7gcfhvq",
+        "location": "global",
+        "name": "scenario-skfabr7gcfhvq",
+        "properties": {
+          "registrationEnabled": false,
+          "virtualNetwork": {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/virtualNetworks/vnet-mm-manu-mul-skfabr",
+            "resourceGroup": "rg-manu-multi-agent"
+          }
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.documents.azure.com/virtualNetworkLinks/scenario-skfabr7gcfhvq",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2020-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.openai.azure.com",
+        "location": "global",
+        "name": "privatelink.openai.azure.com",
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateDnsZones"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.openai.azure.com",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.openai.azure.com/virtualNetworkLinks/scenario-skfabr7gcfhvq",
+        "location": "global",
+        "name": "scenario-skfabr7gcfhvq",
+        "properties": {
+          "registrationEnabled": false,
+          "virtualNetwork": {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/virtualNetworks/vnet-mm-manu-mul-skfabr",
+            "resourceGroup": "rg-manu-multi-agent"
+          }
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.openai.azure.com/virtualNetworkLinks/scenario-skfabr7gcfhvq",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2020-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.search.windows.net",
+        "location": "global",
+        "name": "privatelink.search.windows.net",
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateDnsZones"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.search.windows.net",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.search.windows.net/virtualNetworkLinks/scenario-skfabr7gcfhvq",
+        "location": "global",
+        "name": "scenario-skfabr7gcfhvq",
+        "properties": {
+          "registrationEnabled": false,
+          "virtualNetwork": {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/virtualNetworks/vnet-mm-manu-mul-skfabr",
+            "resourceGroup": "rg-manu-multi-agent"
+          }
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.search.windows.net/virtualNetworkLinks/scenario-skfabr7gcfhvq",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2020-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.services.ai.azure.com",
+        "location": "global",
+        "name": "privatelink.services.ai.azure.com",
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateDnsZones"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.services.ai.azure.com",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.services.ai.azure.com/virtualNetworkLinks/scenario-skfabr7gcfhvq",
+        "location": "global",
+        "name": "scenario-skfabr7gcfhvq",
+        "properties": {
+          "registrationEnabled": false,
+          "virtualNetwork": {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/virtualNetworks/vnet-mm-manu-mul-skfabr",
+            "resourceGroup": "rg-manu-multi-agent"
+          }
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.services.ai.azure.com/virtualNetworkLinks/scenario-skfabr7gcfhvq",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2020-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.vaultcore.azure.net",
+        "location": "global",
+        "name": "privatelink.vaultcore.azure.net",
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateDnsZones"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.vaultcore.azure.net",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.vaultcore.azure.net/virtualNetworkLinks/scenario-skfabr7gcfhvq",
+        "location": "global",
+        "name": "scenario-skfabr7gcfhvq",
+        "properties": {
+          "registrationEnabled": false,
+          "virtualNetwork": {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/virtualNetworks/vnet-mm-manu-mul-skfabr",
+            "resourceGroup": "rg-manu-multi-agent"
+          }
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.vaultcore.azure.net/virtualNetworkLinks/scenario-skfabr7gcfhvq",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateEndpoints/pe-acrmmskfabr7gcfhvq",
+        "location": "eastus2",
+        "name": "pe-acrmmskfabr7gcfhvq",
+        "properties": {
+          "ipVersionType": "IPv4",
+          "privateLinkServiceConnections": [
+            {
+              "name": "connection-6",
+              "properties": {
+                "groupIds": [
+                  "registry"
+                ],
+                "privateLinkServiceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.ContainerRegistry/registries/acrmmskfabr7gcfhvq"
+              }
+            }
+          ],
+          "subnet": {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/virtualNetworks/vnet-mm-manu-mul-skfabr/subnets/endpoints",
+            "resourceGroup": "rg-manu-multi-agent"
+          }
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateEndpoints"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateEndpoints/pe-acrmmskfabr7gcfhvq",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateEndpoints/pe-acrmmskfabr7gcfhvq/privateDnsZoneGroups/default",
+        "name": "default",
+        "properties": {
+          "privateDnsZoneConfigs": [
+            {
+              "name": "zone-7",
+              "properties": {
+                "privateDnsZoneId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.azurecr.io"
+              }
+            }
+          ]
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateEndpoints/pe-acrmmskfabr7gcfhvq/privateDnsZoneGroups/default",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateEndpoints/pe-aif-mm-manu-mul-skfabr",
+        "location": "eastus2",
+        "name": "pe-aif-mm-manu-mul-skfabr",
+        "properties": {
+          "ipVersionType": "IPv4",
+          "privateLinkServiceConnections": [
+            {
+              "name": "connection-0",
+              "properties": {
+                "groupIds": [
+                  "account"
+                ],
+                "privateLinkServiceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr"
+              }
+            }
+          ],
+          "subnet": {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/virtualNetworks/vnet-mm-manu-mul-skfabr/subnets/endpoints",
+            "resourceGroup": "rg-manu-multi-agent"
+          }
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateEndpoints"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateEndpoints/pe-aif-mm-manu-mul-skfabr",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateEndpoints/pe-aif-mm-manu-mul-skfabr/privateDnsZoneGroups/default",
+        "name": "default",
+        "properties": {
+          "privateDnsZoneConfigs": [
+            {
+              "name": "zone-0",
+              "properties": {
+                "privateDnsZoneId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.services.ai.azure.com"
+              }
+            },
+            {
+              "name": "zone-1",
+              "properties": {
+                "privateDnsZoneId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.openai.azure.com"
+              }
+            },
+            {
+              "name": "zone-2",
+              "properties": {
+                "privateDnsZoneId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.cognitiveservices.azure.com"
+              }
+            }
+          ]
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateEndpoints/pe-aif-mm-manu-mul-skfabr/privateDnsZoneGroups/default",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateEndpoints/pe-cosmos-mm-manu-mul-skfabr",
+        "location": "eastus2",
+        "name": "pe-cosmos-mm-manu-mul-skfabr",
+        "properties": {
+          "ipVersionType": "IPv4",
+          "privateLinkServiceConnections": [
+            {
+              "name": "connection-3",
+              "properties": {
+                "groupIds": [
+                  "Sql"
+                ],
+                "privateLinkServiceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-mm-manu-mul-skfabr"
+              }
+            }
+          ],
+          "subnet": {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/virtualNetworks/vnet-mm-manu-mul-skfabr/subnets/endpoints",
+            "resourceGroup": "rg-manu-multi-agent"
+          }
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateEndpoints"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateEndpoints/pe-cosmos-mm-manu-mul-skfabr",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateEndpoints/pe-cosmos-mm-manu-mul-skfabr/privateDnsZoneGroups/default",
+        "name": "default",
+        "properties": {
+          "privateDnsZoneConfigs": [
+            {
+              "name": "zone-4",
+              "properties": {
+                "privateDnsZoneId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.documents.azure.com"
+              }
+            }
+          ]
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateEndpoints/pe-cosmos-mm-manu-mul-skfabr/privateDnsZoneGroups/default",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateEndpoints/pe-kv-mm-manu-mul-skfabr",
+        "location": "eastus2",
+        "name": "pe-kv-mm-manu-mul-skfabr",
+        "properties": {
+          "ipVersionType": "IPv4",
+          "privateLinkServiceConnections": [
+            {
+              "name": "connection-5",
+              "properties": {
+                "groupIds": [
+                  "vault"
+                ],
+                "privateLinkServiceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.KeyVault/vaults/kv-mm-manu-mul-skfabr"
+              }
+            }
+          ],
+          "subnet": {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/virtualNetworks/vnet-mm-manu-mul-skfabr/subnets/endpoints",
+            "resourceGroup": "rg-manu-multi-agent"
+          }
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateEndpoints"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateEndpoints/pe-kv-mm-manu-mul-skfabr",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateEndpoints/pe-kv-mm-manu-mul-skfabr/privateDnsZoneGroups/default",
+        "name": "default",
+        "properties": {
+          "privateDnsZoneConfigs": [
+            {
+              "name": "zone-6",
+              "properties": {
+                "privateDnsZoneId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.vaultcore.azure.net"
+              }
+            }
+          ]
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateEndpoints/pe-kv-mm-manu-mul-skfabr/privateDnsZoneGroups/default",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateEndpoints/pe-srch-mm-manu-mul-skfabr",
+        "location": "eastus2",
+        "name": "pe-srch-mm-manu-mul-skfabr",
+        "properties": {
+          "ipVersionType": "IPv4",
+          "privateLinkServiceConnections": [
+            {
+              "name": "connection-4",
+              "properties": {
+                "groupIds": [
+                  "searchService"
+                ],
+                "privateLinkServiceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Search/searchServices/srch-mm-manu-mul-skfabr"
+              }
+            }
+          ],
+          "subnet": {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/virtualNetworks/vnet-mm-manu-mul-skfabr/subnets/endpoints",
+            "resourceGroup": "rg-manu-multi-agent"
+          }
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateEndpoints"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateEndpoints/pe-srch-mm-manu-mul-skfabr",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateEndpoints/pe-srch-mm-manu-mul-skfabr/privateDnsZoneGroups/default",
+        "name": "default",
+        "properties": {
+          "privateDnsZoneConfigs": [
+            {
+              "name": "zone-5",
+              "properties": {
+                "privateDnsZoneId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.search.windows.net"
+              }
+            }
+          ]
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateEndpoints/pe-srch-mm-manu-mul-skfabr/privateDnsZoneGroups/default",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateEndpoints/pe-stmmbskfabr7gcfhvq",
+        "location": "eastus2",
+        "name": "pe-stmmbskfabr7gcfhvq",
+        "properties": {
+          "ipVersionType": "IPv4",
+          "privateLinkServiceConnections": [
+            {
+              "name": "connection-2",
+              "properties": {
+                "groupIds": [
+                  "blob"
+                ],
+                "privateLinkServiceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmbskfabr7gcfhvq"
+              }
+            }
+          ],
+          "subnet": {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/virtualNetworks/vnet-mm-manu-mul-skfabr/subnets/endpoints",
+            "resourceGroup": "rg-manu-multi-agent"
+          }
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateEndpoints"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateEndpoints/pe-stmmbskfabr7gcfhvq",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateEndpoints/pe-stmmbskfabr7gcfhvq/privateDnsZoneGroups/default",
+        "name": "default",
+        "properties": {
+          "privateDnsZoneConfigs": [
+            {
+              "name": "zone-3",
+              "properties": {
+                "privateDnsZoneId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net"
+              }
+            }
+          ]
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateEndpoints/pe-stmmbskfabr7gcfhvq/privateDnsZoneGroups/default",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateEndpoints/pe-stmmpskfabr7gcfhvq",
+        "location": "eastus2",
+        "name": "pe-stmmpskfabr7gcfhvq",
+        "properties": {
+          "ipVersionType": "IPv4",
+          "privateLinkServiceConnections": [
+            {
+              "name": "connection-1",
+              "properties": {
+                "groupIds": [
+                  "blob"
+                ],
+                "privateLinkServiceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmpskfabr7gcfhvq"
+              }
+            }
+          ],
+          "subnet": {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/virtualNetworks/vnet-mm-manu-mul-skfabr/subnets/endpoints",
+            "resourceGroup": "rg-manu-multi-agent"
+          }
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateEndpoints"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateEndpoints/pe-stmmpskfabr7gcfhvq",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateEndpoints/pe-stmmpskfabr7gcfhvq/privateDnsZoneGroups/default",
+        "name": "default",
+        "properties": {
+          "privateDnsZoneConfigs": [
+            {
+              "name": "zone-3",
+              "properties": {
+                "privateDnsZoneId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net"
+              }
+            }
+          ]
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/privateEndpoints/pe-stmmpskfabr7gcfhvq/privateDnsZoneGroups/default",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/virtualNetworks/vnet-mm-manu-mul-skfabr",
+        "location": "eastus2",
+        "name": "vnet-mm-manu-mul-skfabr",
+        "properties": {
+          "addressSpace": {
+            "addressPrefixes": [
+              "10.84.0.0/16"
+            ]
+          },
+          "enableDdosProtection": false,
+          "privateEndpointVNetPolicies": "Disabled",
+          "subnets": [
+            {
+              "name": "agents",
+              "properties": {
+                "addressPrefix": "10.84.2.0/24",
+                "delegations": [
+                  {
+                    "name": "Microsoft.App/environments",
+                    "properties": {
+                      "serviceName": "Microsoft.App/environments"
+                    }
+                  }
+                ],
+                "networkSecurityGroup": {
+                  "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/networkSecurityGroups/nsg-mm-manu-mul-skfabr-agents",
+                  "resourceGroup": "rg-manu-multi-agent"
+                }
+              }
+            },
+            {
+              "name": "apim",
+              "properties": {
+                "addressPrefix": "10.84.3.0/24",
+                "delegations": [
+                  {
+                    "name": "Microsoft.Web/serverFarms",
+                    "properties": {
+                      "serviceName": "Microsoft.Web/serverFarms"
+                    }
+                  }
+                ],
+                "networkSecurityGroup": {
+                  "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/networkSecurityGroups/nsg-mm-manu-mul-skfabr-apim",
+                  "resourceGroup": "rg-manu-multi-agent"
+                }
+              }
+            },
+            {
+              "name": "apps",
+              "properties": {
+                "addressPrefix": "10.84.0.0/23",
+                "delegations": [
+                  {
+                    "name": "Microsoft.App/environments",
+                    "properties": {
+                      "serviceName": "Microsoft.App/environments"
+                    }
+                  }
+                ],
+                "networkSecurityGroup": {
+                  "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/networkSecurityGroups/nsg-mm-manu-mul-skfabr-apps",
+                  "resourceGroup": "rg-manu-multi-agent"
+                }
+              }
+            },
+            {
+              "name": "endpoints",
+              "properties": {
+                "addressPrefix": "10.84.4.0/24",
+                "networkSecurityGroup": {
+                  "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/networkSecurityGroups/nsg-mm-manu-mul-skfabr-endpoints",
+                  "resourceGroup": "rg-manu-multi-agent"
+                },
+                "privateEndpointNetworkPolicies": "Disabled"
+              }
+            }
+          ]
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/virtualNetworks"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/virtualNetworks/vnet-mm-manu-mul-skfabr",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/virtualNetworks/vnet-mm-manu-mul-skfabr/subnets/agents",
+        "name": "agents",
+        "properties": {
+          "addressPrefix": "10.84.2.0/24",
+          "delegations": [
+            {
+              "name": "Microsoft.App/environments",
+              "properties": {
+                "serviceName": "Microsoft.App/environments"
+              }
+            }
+          ],
+          "networkSecurityGroup": {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/networkSecurityGroups/nsg-mm-manu-mul-skfabr-agents",
+            "resourceGroup": "rg-manu-multi-agent"
+          }
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Network/virtualNetworks/subnets"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/virtualNetworks/vnet-mm-manu-mul-skfabr/subnets/agents",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/virtualNetworks/vnet-mm-manu-mul-skfabr/subnets/apim",
+        "name": "apim",
+        "properties": {
+          "addressPrefix": "10.84.3.0/24",
+          "delegations": [
+            {
+              "name": "Microsoft.Web/serverFarms",
+              "properties": {
+                "serviceName": "Microsoft.Web/serverFarms"
+              }
+            }
+          ],
+          "networkSecurityGroup": {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/networkSecurityGroups/nsg-mm-manu-mul-skfabr-apim",
+            "resourceGroup": "rg-manu-multi-agent"
+          }
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Network/virtualNetworks/subnets"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/virtualNetworks/vnet-mm-manu-mul-skfabr/subnets/apim",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/virtualNetworks/vnet-mm-manu-mul-skfabr/subnets/apps",
+        "name": "apps",
+        "properties": {
+          "addressPrefix": "10.84.0.0/23",
+          "delegations": [
+            {
+              "name": "Microsoft.App/environments",
+              "properties": {
+                "serviceName": "Microsoft.App/environments"
+              }
+            }
+          ],
+          "networkSecurityGroup": {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/networkSecurityGroups/nsg-mm-manu-mul-skfabr-apps",
+            "resourceGroup": "rg-manu-multi-agent"
+          }
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Network/virtualNetworks/subnets"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/virtualNetworks/vnet-mm-manu-mul-skfabr/subnets/apps",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/virtualNetworks/vnet-mm-manu-mul-skfabr/subnets/endpoints",
+        "name": "endpoints",
+        "properties": {
+          "addressPrefix": "10.84.4.0/24",
+          "networkSecurityGroup": {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/networkSecurityGroups/nsg-mm-manu-mul-skfabr-endpoints",
+            "resourceGroup": "rg-manu-multi-agent"
+          },
+          "privateEndpointNetworkPolicies": "Disabled"
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Network/virtualNetworks/subnets"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/virtualNetworks/vnet-mm-manu-mul-skfabr/subnets/endpoints",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-07-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.OperationalInsights/workspaces/log-mm-manu-mul-skfabr",
+        "location": "eastus2",
+        "name": "log-mm-manu-mul-skfabr",
+        "properties": {
+          "forceCmkForQuery": false,
+          "publicNetworkAccessForIngestion": "Enabled",
+          "publicNetworkAccessForQuery": "Enabled",
+          "retentionInDays": 30,
+          "sku": {
+            "name": "PerGB2018"
+          },
+          "workspaceCapping": {
+            "dailyQuotaGb": 1
+          }
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.OperationalInsights/workspaces"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.OperationalInsights/workspaces/log-mm-manu-mul-skfabr",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Resources/tags/default",
+        "name": "default",
+        "properties": {
+          "tags": {
+            "Environment": "manu-multi-agent",
+            "ManagedBy": "Bicep",
+            "Project": "manu-multi-agent",
+            "SecurityControl": "Ignore"
+          }
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Resources/tags"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Resources/tags/default",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Search/searchServices/srch-mm-manu-mul-skfabr",
+        "identity": {
+          "type": "SystemAssigned"
+        },
+        "location": "eastus2",
+        "name": "srch-mm-manu-mul-skfabr",
+        "properties": {
+          "computeType": "Default",
+          "disableLocalAuth": true,
+          "encryptionWithCmk": {
+            "enforcement": "Unspecified"
+          },
+          "hostingMode": "Default",
+          "networkRuleSet": {
+            "bypass": "None"
+          },
+          "partitionCount": 1,
+          "publicNetworkAccess": "disabled",
+          "replicaCount": 1
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "sku": {
+          "name": "standard"
+        },
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Search/searchServices"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Search/searchServices/srch-mm-manu-mul-skfabr",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Search/searchServices/srch-mm-manu-mul-skfabr/providers/Microsoft.Authorization/roleAssignments/1334555e-2c61-526d-912e-1ab134c60803",
+        "name": "1334555e-2c61-526d-912e-1ab134c60803",
+        "properties": {
+          "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/8ebe5a00-799e-43f5-93ac-243d3dce84a7"
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Search/searchServices/srch-mm-manu-mul-skfabr/providers/Microsoft.Authorization/roleAssignments/1334555e-2c61-526d-912e-1ab134c60803",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmbskfabr7gcfhvq",
+        "kind": "StorageV2",
+        "location": "eastus2",
+        "name": "stmmbskfabr7gcfhvq",
+        "properties": {
+          "accessTier": "Hot",
+          "allowBlobPublicAccess": false,
+          "allowCrossTenantReplication": false,
+          "allowSharedKeyAccess": false,
+          "customDomain": {
+            "useSubDomainName": false
+          },
+          "defaultToOAuthAuthentication": true,
+          "encryption": {
+            "keySource": "Microsoft.Storage",
+            "requireInfrastructureEncryption": true
+          },
+          "isLocalUserEnabled": false,
+          "isSftpEnabled": false,
+          "largeFileSharesState": "Disabled",
+          "minimumTlsVersion": "TLS1_2",
+          "networkAcls": {
+            "bypass": "None",
+            "defaultAction": "Deny"
+          },
+          "publicNetworkAccess": "Disabled",
+          "supportsHttpsTrafficOnly": true
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "sku": {
+          "name": "Standard_LRS"
+        },
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Storage/storageAccounts"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmbskfabr7gcfhvq",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-01-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmbskfabr7gcfhvq/blobServices/default",
+        "name": "default",
+        "properties": {
+          "automaticSnapshotPolicyEnabled": false,
+          "containerDeleteRetentionPolicy": {
+            "allowPermanentDelete": false,
+            "enabled": true
+          },
+          "deleteRetentionPolicy": {
+            "days": 7,
+            "enabled": true
+          },
+          "isVersioningEnabled": true,
+          "lastAccessTimeTrackingPolicy": "[if(and(not(equals(reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmbskfabr7gcfhvq', '2025-01-01', 'full').kind, 'Storage')), empty(tryGet(reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmbskfabr7gcfhvq', '2025-01-01', 'full'), 'extendedLocation'))), createObject('enable', parameters('lastAccessTimeTrackingPolicyEnabled'), 'name', if(equals(parameters('lastAccessTimeTrackingPolicyEnabled'), true()), 'AccessTimeTracking', null()), 'trackingGranularityInDays', if(equals(parameters('lastAccessTimeTrackingPolicyEnabled'), true()), 1, null())), null())]"
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Storage/storageAccounts/blobServices"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmbskfabr7gcfhvq/blobServices/default",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-01-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmbskfabr7gcfhvq/blobServices/default/containers/synthetic-fixtures",
+        "name": "synthetic-fixtures",
+        "properties": {
+          "publicAccess": "None"
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Storage/storageAccounts/blobServices/containers"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmbskfabr7gcfhvq/blobServices/default/containers/synthetic-fixtures",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmbskfabr7gcfhvq/blobServices/default/containers/synthetic-fixtures/providers/Microsoft.Authorization/roleAssignments/395bb2de-8ff1-5221-872b-477693a8c6f1",
+        "name": "395bb2de-8ff1-5221-872b-477693a8c6f1",
+        "properties": {
+          "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/ba92f5b4-2d11-453d-a403-e96b0029c9fe"
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmbskfabr7gcfhvq/blobServices/default/containers/synthetic-fixtures/providers/Microsoft.Authorization/roleAssignments/395bb2de-8ff1-5221-872b-477693a8c6f1",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmpskfabr7gcfhvq",
+        "kind": "StorageV2",
+        "location": "eastus2",
+        "name": "stmmpskfabr7gcfhvq",
+        "properties": {
+          "accessTier": "Hot",
+          "allowBlobPublicAccess": false,
+          "allowCrossTenantReplication": false,
+          "allowSharedKeyAccess": false,
+          "customDomain": {
+            "useSubDomainName": false
+          },
+          "defaultToOAuthAuthentication": true,
+          "encryption": {
+            "keySource": "Microsoft.Storage",
+            "requireInfrastructureEncryption": true
+          },
+          "isLocalUserEnabled": false,
+          "isSftpEnabled": false,
+          "largeFileSharesState": "Disabled",
+          "minimumTlsVersion": "TLS1_2",
+          "networkAcls": {
+            "bypass": "None",
+            "defaultAction": "Deny"
+          },
+          "publicNetworkAccess": "Disabled",
+          "supportsHttpsTrafficOnly": true
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "sku": {
+          "name": "Standard_LRS"
+        },
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Storage/storageAccounts"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmpskfabr7gcfhvq",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-01-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmpskfabr7gcfhvq/blobServices/default",
+        "name": "default",
+        "properties": {
+          "automaticSnapshotPolicyEnabled": false,
+          "containerDeleteRetentionPolicy": {
+            "allowPermanentDelete": false,
+            "days": 7,
+            "enabled": true
+          },
+          "deleteRetentionPolicy": {
+            "days": 6,
+            "enabled": true
+          },
+          "isVersioningEnabled": false,
+          "lastAccessTimeTrackingPolicy": "[if(and(not(equals(reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmpskfabr7gcfhvq', '2025-01-01', 'full').kind, 'Storage')), empty(tryGet(reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmpskfabr7gcfhvq', '2025-01-01', 'full'), 'extendedLocation'))), createObject('enable', parameters('lastAccessTimeTrackingPolicyEnabled'), 'name', if(equals(parameters('lastAccessTimeTrackingPolicyEnabled'), true()), 'AccessTimeTracking', null()), 'trackingGranularityInDays', if(equals(parameters('lastAccessTimeTrackingPolicyEnabled'), true()), 1, null())), null())]"
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Storage/storageAccounts/blobServices"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmpskfabr7gcfhvq/blobServices/default",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmpskfabr7gcfhvq/providers/Microsoft.Authorization/roleAssignments/ee536380-7b2a-59aa-9c18-2a58bf21f240",
+        "name": "ee536380-7b2a-59aa-9c18-2a58bf21f240",
+        "properties": {
+          "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/ba92f5b4-2d11-453d-a403-e96b0029c9fe"
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmpskfabr7gcfhvq/providers/Microsoft.Authorization/roleAssignments/ee536380-7b2a-59aa-9c18-2a58bf21f240",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmbskfabr7gcfhvq/blobServices/default/containers/synthetic-fixtures', 'Microsoft.Authorization/roleAssignments', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmbskfabr7gcfhvq/blobServices/default/containers/synthetic-fixtures', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-mm-manu-mul-skfabr-app', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/2a2b9908-6ea1-4ae2-8e65-a410df84e7d1')))]",
+        "name": "[last(split(coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmbskfabr7gcfhvq/blobServices/default/containers/synthetic-fixtures', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-mm-manu-mul-skfabr-app', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/2a2b9908-6ea1-4ae2-8e65-a410df84e7d1')), '/'))]",
+        "properties": {
+          "condition": null,
+          "conditionVersion": null,
+          "delegatedManagedIdentityResourceId": null,
+          "description": null,
+          "principalId": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-mm-manu-mul-skfabr-app', '2024-11-30').principalId]",
+          "principalType": "ServicePrincipal",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/2a2b9908-6ea1-4ae2-8e65-a410df84e7d1"
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Unsupported",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmbskfabr7gcfhvq/blobServices/default/containers/synthetic-fixtures', 'Microsoft.Authorization/roleAssignments', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmbskfabr7gcfhvq/blobServices/default/containers/synthetic-fixtures', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-mm-manu-mul-skfabr-app', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/2a2b9908-6ea1-4ae2-8e65-a410df84e7d1')))]",
+      "symbolicName": null,
+      "unsupportedReason": "Changes to the resource declared at 'properties.template.resources[1].properties.template.resources.dependencies.properties.template.resources.businessStorage.properties.template.resources.storageAccount_blobServices.properties.template.resources.blobServices_container.properties.template.resources.container_roleAssignments' on line 1 and column 673336 cannot be analyzed because its resource ID or API version cannot be calculated until the deployment is under way. Please see https://aka.ms/WhatIfUnidentifiableResource for more guidance."
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.KeyVault/vaults/kv-mm-manu-mul-skfabr/keys/handoff-receipt', 'Microsoft.Authorization/roleAssignments', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.KeyVault/vaults/kv-mm-manu-mul-skfabr/keys/handoff-receipt', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-mm-manu-mul-skfabr-app', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/12338af0-0e69-4776-bea7-57ae8d297424')))]",
+        "name": "[last(split(coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.KeyVault/vaults/kv-mm-manu-mul-skfabr/keys/handoff-receipt', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-mm-manu-mul-skfabr-app', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/12338af0-0e69-4776-bea7-57ae8d297424')), '/'))]",
+        "properties": {
+          "condition": null,
+          "conditionVersion": null,
+          "delegatedManagedIdentityResourceId": null,
+          "description": null,
+          "principalId": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-mm-manu-mul-skfabr-app', '2024-11-30').principalId]",
+          "principalType": "ServicePrincipal",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/12338af0-0e69-4776-bea7-57ae8d297424"
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Unsupported",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.KeyVault/vaults/kv-mm-manu-mul-skfabr/keys/handoff-receipt', 'Microsoft.Authorization/roleAssignments', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.KeyVault/vaults/kv-mm-manu-mul-skfabr/keys/handoff-receipt', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-mm-manu-mul-skfabr-app', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/12338af0-0e69-4776-bea7-57ae8d297424')))]",
+      "symbolicName": null,
+      "unsupportedReason": "Changes to the resource declared at 'properties.template.resources[1].properties.template.resources.dependencies.properties.template.resources.vault.properties.template.resources.keyVault_keys.properties.template.resources.key_roleAssignments' on line 1 and column 1134328 cannot be analyzed because its resource ID or API version cannot be calculated until the deployment is under way. Please see https://aka.ms/WhatIfUnidentifiableResource for more guidance."
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.ContainerRegistry/registries/acrmmskfabr7gcfhvq', 'Microsoft.Authorization/roleAssignments', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.ContainerRegistry/registries/acrmmskfabr7gcfhvq', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-mm-manu-mul-skfabr-app', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/7f951dda-4ed3-4680-a7ca-43fe172d538d')))]",
+        "name": "[last(split(coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.ContainerRegistry/registries/acrmmskfabr7gcfhvq', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-mm-manu-mul-skfabr-app', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/7f951dda-4ed3-4680-a7ca-43fe172d538d')), '/'))]",
+        "properties": {
+          "condition": null,
+          "conditionVersion": null,
+          "delegatedManagedIdentityResourceId": null,
+          "description": null,
+          "principalId": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-mm-manu-mul-skfabr-app', '2024-11-30').principalId]",
+          "principalType": "ServicePrincipal",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/7f951dda-4ed3-4680-a7ca-43fe172d538d"
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Unsupported",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.ContainerRegistry/registries/acrmmskfabr7gcfhvq', 'Microsoft.Authorization/roleAssignments', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.ContainerRegistry/registries/acrmmskfabr7gcfhvq', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-mm-manu-mul-skfabr-app', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/7f951dda-4ed3-4680-a7ca-43fe172d538d')))]",
+      "symbolicName": null,
+      "unsupportedReason": "Changes to the resource declared at 'properties.template.resources[1].properties.template.resources.dependencies.properties.template.resources.registry.properties.template.resources.registry_roleAssignments' on line 1 and column 1212144 cannot be analyzed because its resource ID or API version cannot be calculated until the deployment is under way. Please see https://aka.ms/WhatIfUnidentifiableResource for more guidance."
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmpskfabr7gcfhvq', 'Microsoft.Authorization/roleAssignments', guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmpskfabr7gcfhvq', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview', 'full').identity.principalId, 'ba92f5b4-2d11-453d-a403-e96b0029c9fe', 'skfabr7gcfhvq'))]",
+        "name": "[last(split(guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmpskfabr7gcfhvq', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview', 'full').identity.principalId, 'ba92f5b4-2d11-453d-a403-e96b0029c9fe', 'skfabr7gcfhvq'), '/'))]",
+        "properties": {
+          "principalId": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview', 'full').identity.principalId]",
+          "principalType": "ServicePrincipal",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/ba92f5b4-2d11-453d-a403-e96b0029c9fe"
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Unsupported",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmpskfabr7gcfhvq', 'Microsoft.Authorization/roleAssignments', guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmpskfabr7gcfhvq', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview', 'full').identity.principalId, 'ba92f5b4-2d11-453d-a403-e96b0029c9fe', 'skfabr7gcfhvq'))]",
+      "symbolicName": null,
+      "unsupportedReason": "Changes to the resource declared at 'properties.template.resources[1].properties.template.resources.access.properties.template.resources[0]' on line 1 and column 1508505 cannot be analyzed because its resource ID or API version cannot be calculated until the deployment is under way. Please see https://aka.ms/WhatIfUnidentifiableResource for more guidance."
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-mm-manu-mul-skfabr', 'Microsoft.Authorization/roleAssignments', guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-mm-manu-mul-skfabr', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview', 'full').identity.principalId, '230815da-be43-4aae-9cb4-875f7bd000aa', 'skfabr7gcfhvq'))]",
+        "name": "[last(split(guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-mm-manu-mul-skfabr', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview', 'full').identity.principalId, '230815da-be43-4aae-9cb4-875f7bd000aa', 'skfabr7gcfhvq'), '/'))]",
+        "properties": {
+          "principalId": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview', 'full').identity.principalId]",
+          "principalType": "ServicePrincipal",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/230815da-be43-4aae-9cb4-875f7bd000aa"
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Unsupported",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-mm-manu-mul-skfabr', 'Microsoft.Authorization/roleAssignments', guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-mm-manu-mul-skfabr', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview', 'full').identity.principalId, '230815da-be43-4aae-9cb4-875f7bd000aa', 'skfabr7gcfhvq'))]",
+      "symbolicName": null,
+      "unsupportedReason": "Changes to the resource declared at 'properties.template.resources[1].properties.template.resources.access.properties.template.resources[1]' on line 1 and column 1509093 cannot be analyzed because its resource ID or API version cannot be calculated until the deployment is under way. Please see https://aka.ms/WhatIfUnidentifiableResource for more guidance."
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Search/searchServices/srch-mm-manu-mul-skfabr', 'Microsoft.Authorization/roleAssignments', guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Search/searchServices/srch-mm-manu-mul-skfabr', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview', 'full').identity.principalId, '7ca78c08-252a-4471-8644-bb5ff32d4ba0', 'skfabr7gcfhvq'))]",
+        "name": "[last(split(guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Search/searchServices/srch-mm-manu-mul-skfabr', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview', 'full').identity.principalId, '7ca78c08-252a-4471-8644-bb5ff32d4ba0', 'skfabr7gcfhvq'), '/'))]",
+        "properties": {
+          "principalId": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview', 'full').identity.principalId]",
+          "principalType": "ServicePrincipal",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/7ca78c08-252a-4471-8644-bb5ff32d4ba0"
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Unsupported",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Search/searchServices/srch-mm-manu-mul-skfabr', 'Microsoft.Authorization/roleAssignments', guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Search/searchServices/srch-mm-manu-mul-skfabr', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview', 'full').identity.principalId, '7ca78c08-252a-4471-8644-bb5ff32d4ba0', 'skfabr7gcfhvq'))]",
+      "symbolicName": null,
+      "unsupportedReason": "Changes to the resource declared at 'properties.template.resources[1].properties.template.resources.access.properties.template.resources[2]' on line 1 and column 1509687 cannot be analyzed because its resource ID or API version cannot be calculated until the deployment is under way. Please see https://aka.ms/WhatIfUnidentifiableResource for more guidance."
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Search/searchServices/srch-mm-manu-mul-skfabr', 'Microsoft.Authorization/roleAssignments', guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Search/searchServices/srch-mm-manu-mul-skfabr', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview', 'full').identity.principalId, '8ebe5a00-799e-43f5-93ac-243d3dce84a7', 'skfabr7gcfhvq'))]",
+        "name": "[last(split(guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Search/searchServices/srch-mm-manu-mul-skfabr', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview', 'full').identity.principalId, '8ebe5a00-799e-43f5-93ac-243d3dce84a7', 'skfabr7gcfhvq'), '/'))]",
+        "properties": {
+          "principalId": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview', 'full').identity.principalId]",
+          "principalType": "ServicePrincipal",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/8ebe5a00-799e-43f5-93ac-243d3dce84a7"
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Unsupported",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Search/searchServices/srch-mm-manu-mul-skfabr', 'Microsoft.Authorization/roleAssignments', guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Search/searchServices/srch-mm-manu-mul-skfabr', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview', 'full').identity.principalId, '8ebe5a00-799e-43f5-93ac-243d3dce84a7', 'skfabr7gcfhvq'))]",
+      "symbolicName": null,
+      "unsupportedReason": "Changes to the resource declared at 'properties.template.resources[1].properties.template.resources.access.properties.template.resources[2]' on line 1 and column 1509687 cannot be analyzed because its resource ID or API version cannot be calculated until the deployment is under way. Please see https://aka.ms/WhatIfUnidentifiableResource for more guidance."
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmpskfabr7gcfhvq', 'Microsoft.Authorization/roleAssignments', guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmpskfabr7gcfhvq', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview', 'full').identity.principalId, 'b7e6dc6d-f1e8-4753-8033-0f276bb0955b', 'skfabr7gcfhvq'))]",
+        "name": "[last(split(guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmpskfabr7gcfhvq', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview', 'full').identity.principalId, 'b7e6dc6d-f1e8-4753-8033-0f276bb0955b', 'skfabr7gcfhvq'), '/'))]",
+        "properties": {
+          "condition": "[format('((!(ActionMatches{{''Microsoft.Storage/storageAccounts/blobServices/containers/blobs/tags/read''}}) AND !(ActionMatches{{''Microsoft.Storage/storageAccounts/blobServices/containers/blobs/filter/action''}}) AND !(ActionMatches{{''Microsoft.Storage/storageAccounts/blobServices/containers/blobs/tags/write''}})) OR (@Resource[Microsoft.Storage/storageAccounts/blobServices/containers:name] StringStartsWithIgnoreCase ''{0}'' AND @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:name] StringLikeIgnoreCase ''*-azureml-agent''))', format('{0}-{1}-{2}-{3}-{4}', substring(replace(reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview').internalId, '-', ''), 0, 8), substring(replace(reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview').internalId, '-', ''), 8, 4), substring(replace(reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview').internalId, '-', ''), 12, 4), substring(replace(reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview').internalId, '-', ''), 16, 4), substring(replace(reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview').internalId, '-', ''), 20, 12)))]",
+          "conditionVersion": "2.0",
+          "principalId": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview', 'full').identity.principalId]",
+          "principalType": "ServicePrincipal",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/b7e6dc6d-f1e8-4753-8033-0f276bb0955b"
+        },
+        "resourceGroup": "rg-manu-multi-agent",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Unsupported",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmpskfabr7gcfhvq', 'Microsoft.Authorization/roleAssignments', guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Storage/storageAccounts/stmmpskfabr7gcfhvq', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview', 'full').identity.principalId, 'b7e6dc6d-f1e8-4753-8033-0f276bb0955b', 'skfabr7gcfhvq'))]",
+      "symbolicName": null,
+      "unsupportedReason": "Changes to the resource declared at 'properties.template.resources[1].properties.template.resources.capability.properties.template.resources[1]' on line 1 and column 1514419 cannot be analyzed because its resource ID or API version cannot be calculated until the deployment is under way. Please see https://aka.ms/WhatIfUnidentifiableResource for more guidance."
+    },
+    {
+      "after": {
+        "apiVersion": "2024-11-15",
+        "id": "[resourceId('efd64343-6ef4-4926-951f-d3229f38bd76', 'rg-manu-multi-agent', 'Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments', filter(split(format('{0}/{1}', 'cosmos-mm-manu-mul-skfabr', guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-mm-manu-mul-skfabr', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview', 'full').identity.principalId, 'enterprise_memory', 'skfabr7gcfhvq')), '/'), lambda('x', not(empty(lambdaVariables('x')))))[0], filter(split(format('{0}/{1}', 'cosmos-mm-manu-mul-skfabr', guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-mm-manu-mul-skfabr', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview', 'full').identity.principalId, 'enterprise_memory', 'skfabr7gcfhvq')), '/'), lambda('x', not(empty(lambdaVariables('x')))))[1])]",
+        "name": "[last(split(format('{0}/{1}', 'cosmos-mm-manu-mul-skfabr', guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-mm-manu-mul-skfabr', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview', 'full').identity.principalId, 'enterprise_memory', 'skfabr7gcfhvq')), '/'))]",
+        "properties": {
+          "principalId": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview', 'full').identity.principalId]",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-mm-manu-mul-skfabr/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002",
+          "scope": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-mm-manu-mul-skfabr/dbs/enterprise_memory"
+        },
+        "type": "Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments"
+      },
+      "before": null,
+      "changeType": "Unsupported",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "[resourceId('efd64343-6ef4-4926-951f-d3229f38bd76', 'rg-manu-multi-agent', 'Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments', filter(split(format('{0}/{1}', 'cosmos-mm-manu-mul-skfabr', guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-mm-manu-mul-skfabr', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview', 'full').identity.principalId, 'enterprise_memory', 'skfabr7gcfhvq')), '/'), lambda('x', not(empty(lambdaVariables('x')))))[0], filter(split(format('{0}/{1}', 'cosmos-mm-manu-mul-skfabr', guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-mm-manu-mul-skfabr', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.CognitiveServices/accounts/aif-mm-manu-mul-skfabr/projects/mobility-commercial', '2025-04-01-preview', 'full').identity.principalId, 'enterprise_memory', 'skfabr7gcfhvq')), '/'), lambda('x', not(empty(lambdaVariables('x')))))[1])]",
+      "symbolicName": null,
+      "unsupportedReason": "Changes to the resource declared at 'properties.template.resources[1].properties.template.resources.capability.properties.template.resources[2]' on line 1 and column 1515242 cannot be analyzed because its resource ID or API version cannot be calculated until the deployment is under way. Please see https://aka.ms/WhatIfUnidentifiableResource for more guidance."
+    },
+    {
+      "after": {
+        "apiVersion": "2020-06-01",
+        "id": "[resourceId('efd64343-6ef4-4926-951f-d3229f38bd76', 'rg-manu-multi-agent', 'Microsoft.Network/privateDnsZones', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.App/managedEnvironments/cae-mm-manu-mul-skfabr', '2026-01-01').defaultDomain)]",
+        "location": "global",
+        "name": "[last(split(reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.App/managedEnvironments/cae-mm-manu-mul-skfabr', '2026-01-01').defaultDomain, '/'))]",
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateDnsZones"
+      },
+      "before": null,
+      "changeType": "Unsupported",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "[resourceId('efd64343-6ef4-4926-951f-d3229f38bd76', 'rg-manu-multi-agent', 'Microsoft.Network/privateDnsZones', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.App/managedEnvironments/cae-mm-manu-mul-skfabr', '2026-01-01').defaultDomain)]",
+      "symbolicName": null,
+      "unsupportedReason": "Changes to the resource declared at 'properties.template.resources[1].properties.template.resources.appDns.properties.template.resources.privateDnsZone' on line 1 and column 1607295 cannot be analyzed because its resource ID or API version cannot be calculated until the deployment is under way. Please see https://aka.ms/WhatIfUnidentifiableResource for more guidance."
+    },
+    {
+      "after": {
+        "apiVersion": "2020-06-01",
+        "id": "[resourceId('efd64343-6ef4-4926-951f-d3229f38bd76', 'rg-manu-multi-agent', 'Microsoft.Network/privateDnsZones/A', filter(split(format('{0}/{1}', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.App/managedEnvironments/cae-mm-manu-mul-skfabr', '2026-01-01').defaultDomain, '@'), '/'), lambda('x', not(empty(lambdaVariables('x')))))[0], filter(split(format('{0}/{1}', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.App/managedEnvironments/cae-mm-manu-mul-skfabr', '2026-01-01').defaultDomain, '@'), '/'), lambda('x', not(empty(lambdaVariables('x')))))[1])]",
+        "name": "[last(split(format('{0}/{1}', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.App/managedEnvironments/cae-mm-manu-mul-skfabr', '2026-01-01').defaultDomain, '@'), '/'))]",
+        "properties": {
+          "aRecords": [
+            {
+              "ipv4Address": null
+            }
+          ],
+          "metadata": null,
+          "ttl": 60
+        },
+        "type": "Microsoft.Network/privateDnsZones/A"
+      },
+      "before": null,
+      "changeType": "Unsupported",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "[resourceId('efd64343-6ef4-4926-951f-d3229f38bd76', 'rg-manu-multi-agent', 'Microsoft.Network/privateDnsZones/A', filter(split(format('{0}/{1}', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.App/managedEnvironments/cae-mm-manu-mul-skfabr', '2026-01-01').defaultDomain, '@'), '/'), lambda('x', not(empty(lambdaVariables('x')))))[0], filter(split(format('{0}/{1}', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.App/managedEnvironments/cae-mm-manu-mul-skfabr', '2026-01-01').defaultDomain, '@'), '/'), lambda('x', not(empty(lambdaVariables('x')))))[1])]",
+      "symbolicName": null,
+      "unsupportedReason": "Changes to the resource declared at 'properties.template.resources[1].properties.template.resources.appDns.properties.template.resources.privateDnsZone_A.properties.template.resources.A' on line 1 and column 1617068 cannot be analyzed because its resource ID or API version cannot be calculated until the deployment is under way. Please see https://aka.ms/WhatIfUnidentifiableResource for more guidance."
+    },
+    {
+      "after": {
+        "apiVersion": "2020-06-01",
+        "id": "[resourceId('efd64343-6ef4-4926-951f-d3229f38bd76', 'rg-manu-multi-agent', 'Microsoft.Network/privateDnsZones/A', filter(split(format('{0}/{1}', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.App/managedEnvironments/cae-mm-manu-mul-skfabr', '2026-01-01').defaultDomain, '*'), '/'), lambda('x', not(empty(lambdaVariables('x')))))[0], filter(split(format('{0}/{1}', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.App/managedEnvironments/cae-mm-manu-mul-skfabr', '2026-01-01').defaultDomain, '*'), '/'), lambda('x', not(empty(lambdaVariables('x')))))[1])]",
+        "name": "[last(split(format('{0}/{1}', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.App/managedEnvironments/cae-mm-manu-mul-skfabr', '2026-01-01').defaultDomain, '*'), '/'))]",
+        "properties": {
+          "aRecords": [
+            {
+              "ipv4Address": null
+            }
+          ],
+          "metadata": null,
+          "ttl": 60
+        },
+        "type": "Microsoft.Network/privateDnsZones/A"
+      },
+      "before": null,
+      "changeType": "Unsupported",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "[resourceId('efd64343-6ef4-4926-951f-d3229f38bd76', 'rg-manu-multi-agent', 'Microsoft.Network/privateDnsZones/A', filter(split(format('{0}/{1}', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.App/managedEnvironments/cae-mm-manu-mul-skfabr', '2026-01-01').defaultDomain, '*'), '/'), lambda('x', not(empty(lambdaVariables('x')))))[0], filter(split(format('{0}/{1}', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.App/managedEnvironments/cae-mm-manu-mul-skfabr', '2026-01-01').defaultDomain, '*'), '/'), lambda('x', not(empty(lambdaVariables('x')))))[1])]",
+      "symbolicName": null,
+      "unsupportedReason": "Changes to the resource declared at 'properties.template.resources[1].properties.template.resources.appDns.properties.template.resources.privateDnsZone_A.properties.template.resources.A' on line 1 and column 1617068 cannot be analyzed because its resource ID or API version cannot be calculated until the deployment is under way. Please see https://aka.ms/WhatIfUnidentifiableResource for more guidance."
+    },
+    {
+      "after": {
+        "apiVersion": "2024-06-01",
+        "id": "[resourceId('efd64343-6ef4-4926-951f-d3229f38bd76', 'rg-manu-multi-agent', 'Microsoft.Network/privateDnsZones/virtualNetworkLinks', filter(split(format('{0}/{1}', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.App/managedEnvironments/cae-mm-manu-mul-skfabr', '2026-01-01').defaultDomain, 'apps-skfabr7gcfhvq'), '/'), lambda('x', not(empty(lambdaVariables('x')))))[0], filter(split(format('{0}/{1}', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.App/managedEnvironments/cae-mm-manu-mul-skfabr', '2026-01-01').defaultDomain, 'apps-skfabr7gcfhvq'), '/'), lambda('x', not(empty(lambdaVariables('x')))))[1])]",
+        "location": "global",
+        "name": "[last(split(format('{0}/{1}', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.App/managedEnvironments/cae-mm-manu-mul-skfabr', '2026-01-01').defaultDomain, 'apps-skfabr7gcfhvq'), '/'))]",
+        "properties": {
+          "registrationEnabled": false,
+          "resolutionPolicy": null,
+          "virtualNetwork": {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.Network/virtualNetworks/vnet-mm-manu-mul-skfabr",
+            "resourceGroup": "rg-manu-multi-agent"
+          }
+        },
+        "tags": {
+          "Environment": "manu-multi-agent",
+          "ManagedBy": "Bicep",
+          "Project": "manu-multi-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks"
+      },
+      "before": null,
+      "changeType": "Unsupported",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "[resourceId('efd64343-6ef4-4926-951f-d3229f38bd76', 'rg-manu-multi-agent', 'Microsoft.Network/privateDnsZones/virtualNetworkLinks', filter(split(format('{0}/{1}', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.App/managedEnvironments/cae-mm-manu-mul-skfabr', '2026-01-01').defaultDomain, 'apps-skfabr7gcfhvq'), '/'), lambda('x', not(empty(lambdaVariables('x')))))[0], filter(split(format('{0}/{1}', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-manu-multi-agent/providers/Microsoft.App/managedEnvironments/cae-mm-manu-mul-skfabr', '2026-01-01').defaultDomain, 'apps-skfabr7gcfhvq'), '/'), lambda('x', not(empty(lambdaVariables('x')))))[1])]",
+      "symbolicName": null,
+      "unsupportedReason": "Changes to the resource declared at 'properties.template.resources[1].properties.template.resources.appDns.properties.template.resources.privateDnsZone_virtualNetworkLinks.properties.template.resources.virtualNetworkLink' on line 1 and column 1692430 cannot be analyzed because its resource ID or API version cannot be calculated until the deployment is under way. Please see https://aka.ms/WhatIfUnidentifiableResource for more guidance."
+    }
+  ],
+  "diagnostics": null,
+  "error": null,
+  "potentialChanges": null,
+  "status": "Succeeded"
+}

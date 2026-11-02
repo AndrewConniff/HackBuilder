@@ -1,0 +1,34 @@
+Initialize bicep provider
+
+Provisioning and deploying (azd up)
+Packaging overlaps with provisioning for faster execution.
+
+  web: Packaging
+  web: Packaging (Publishing .NET project)
+Creating/Updating resources
+  web: Packaging (Compressing deployment artifacts)
+  You can view detailed progress in the Azure Portal:
+  https://portal.azure.com/#view/HubsExtension/DeploymentDetailsBlade/~/overview/id/%2Fsubscriptions%2Fefd64343-6ef4-4926-951f-d3229f38bd76%2Fproviders%2FMicrosoft.Resources%2Fdeployments%2Fcoffee-shop-ref-1792885130
+
+  (✓) Done: Resource group: rg-coffee-shop-ref (3.105s)
+  (✓) Done: App Service plan: plan-fc-keegvmxonq3wc (2.768s)
+  (✓) Done: Storage account: stfckeegvmxonq3wc (796ms)
+  (✓) Done: Foundry: fc-coffee-shop-keegvmxo (17.9s)
+  (✓) Done: Azure AI Services Model Deployment: fc-coffee-shop-keegvmxo/gpt-4.1-mini (1.303s)
+  (✓) Done: App Service: web-fc-keegvmxonq3wc (13.414s)
+  (✓) Done: Foundry project: fc-coffee-shop-keegvmxo/backoffice (36.135s)
+  web: Publishing
+  web: Deploying
+  web: Deploying (Checking deployment slots)
+  web: Deploying (Uploading deployment package)
+  web: Deploying (Running build process) [30s]
+  web: Deploying (Fetching endpoints for app service) [37s]
+  web: Done [38s]
+  - Endpoint: https://web-fc-keegvmxonq3wc.azurewebsites.net/ 
+
+
+SUCCESS: Your application was provisioned and deployed to Azure in 3 minutes 24 seconds.
+  Provisioning: 2 minutes 46 seconds
+  Deploying:    38 seconds
+Update available: 1.35.1 -> 1.37.1 (https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_1.37.1)
+To update, run `winget upgrade Microsoft.Azd`

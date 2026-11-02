@@ -1,0 +1,25 @@
+{
+  "command": "az rest --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --method get --url https://graph.microsoft.com/v1.0/servicePrincipals/20389125-423e-4b87-b837-d812149b1a02/appRoleAssignedTo --output json",
+  "cwd": "C:\\azd-projects\\resto-scale-agent",
+  "startedAtUtc": "2026-10-24T17:42:29.441208+00:00",
+  "checkedAtUtc": "2026-10-24T17:42:31.300513+00:00",
+  "exitCode": 0,
+  "stdout": "{\n  \"@odata.context\": \"https://graph.microsoft.com/v1.0/$metadata#appRoleAssignments\",\n  \"value\": [\n    {\n      \"appRoleId\": \"680f1e54-119b-5f55-966c-5bac8c2f129c\",\n      \"createdDateTime\": \"2026-10-24T17:41:45.3930884Z\",\n      \"deletedDateTime\": null,\n      \"id\": \"K2dNIYffO0-U_XhjAyVGwXxs2CNpk0NEhX65fEWTYfk\",\n      \"principalDisplayName\": \"Peter De Tender\",\n      \"principalId\": \"214d672b-df87-4f3b-94fd-7863032546c1\",\n      \"principalType\": \"User\",\n      \"resourceDisplayName\": \"resto-scale-agent-api-a80613974550a044\",\n      \"resourceId\": \"20389125-423e-4b87-b837-d812149b1a02\"\n    }\n  ]\n}\n",
+  "stderr": "",
+  "result": {
+    "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#appRoleAssignments",
+    "value": [
+      {
+        "appRoleId": "680f1e54-119b-5f55-966c-5bac8c2f129c",
+        "createdDateTime": "2026-10-24T17:41:45.3930884Z",
+        "deletedDateTime": null,
+        "id": "K2dNIYffO0-U_XhjAyVGwXxs2CNpk0NEhX65fEWTYfk",
+        "principalDisplayName": "Peter De Tender",
+        "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+        "principalType": "User",
+        "resourceDisplayName": "resto-scale-agent-api-a80613974550a044",
+        "resourceId": "20389125-423e-4b87-b837-d812149b1a02"
+      }
+    ]
+  }
+}

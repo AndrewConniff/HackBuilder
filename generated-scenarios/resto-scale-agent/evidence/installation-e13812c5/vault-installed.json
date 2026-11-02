@@ -1,0 +1,57 @@
+{
+  "command": "az keyvault show --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --resource-group rg-resto-scale-agent --name kv-resto-dc9a173f4d0b5f6 --output json",
+  "cwd": "C:\\azd-projects\\resto-scale-agent",
+  "startedAtUtc": "2026-10-24T17:40:43.593130+00:00",
+  "checkedAtUtc": "2026-10-24T17:40:46.151795+00:00",
+  "exitCode": 0,
+  "stdout": "{\n  \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-dc9a173f4d0b5f6\",\n  \"location\": \"centralus\",\n  \"name\": \"kv-resto-dc9a173f4d0b5f6\",\n  \"properties\": {\n    \"accessPolicies\": [],\n    \"createMode\": null,\n    \"enablePurgeProtection\": true,\n    \"enableRbacAuthorization\": true,\n    \"enableSoftDelete\": true,\n    \"enabledForDeployment\": false,\n    \"enabledForDiskEncryption\": false,\n    \"enabledForTemplateDeployment\": false,\n    \"hsmPoolResourceId\": null,\n    \"networkAcls\": {\n      \"bypass\": \"None\",\n      \"defaultAction\": \"Allow\",\n      \"ipRules\": [],\n      \"virtualNetworkRules\": []\n    },\n    \"privateEndpointConnections\": null,\n    \"provisioningState\": \"Succeeded\",\n    \"publicNetworkAccess\": \"Enabled\",\n    \"sku\": {\n      \"family\": \"A\",\n      \"name\": \"standard\"\n    },\n    \"softDeleteRetentionInDays\": 90,\n    \"tenantId\": \"16b3c013-d300-468d-ac64-7eda0820b6d3\",\n    \"vaultUri\": \"https://kv-resto-dc9a173f4d0b5f6.vault.azure.net/\"\n  },\n  \"resourceGroup\": \"rg-resto-scale-agent\",\n  \"systemData\": {\n    \"createdAt\": \"2026-10-24T17:35:01.513000+00:00\",\n    \"createdBy\": \"Peter.DeTender@microsoft.com\",\n    \"createdByType\": \"User\",\n    \"lastModifiedAt\": \"2026-10-24T17:35:01.513000+00:00\",\n    \"lastModifiedBy\": \"Peter.DeTender@microsoft.com\",\n    \"lastModifiedByType\": \"User\"\n  },\n  \"tags\": {\n    \"Environment\": \"resto-scale-agent\",\n    \"ManagedBy\": \"Bicep\",\n    \"Project\": \"resto-scale-agent\",\n    \"SecurityControl\": \"Ignore\"\n  },\n  \"type\": \"Microsoft.KeyVault/vaults\"\n}\n",
+  "stderr": "",
+  "result": {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-dc9a173f4d0b5f6",
+    "location": "centralus",
+    "name": "kv-resto-dc9a173f4d0b5f6",
+    "properties": {
+      "accessPolicies": [],
+      "createMode": null,
+      "enablePurgeProtection": true,
+      "enableRbacAuthorization": true,
+      "enableSoftDelete": true,
+      "enabledForDeployment": false,
+      "enabledForDiskEncryption": false,
+      "enabledForTemplateDeployment": false,
+      "hsmPoolResourceId": null,
+      "networkAcls": {
+        "bypass": "None",
+        "defaultAction": "Allow",
+        "ipRules": [],
+        "virtualNetworkRules": []
+      },
+      "privateEndpointConnections": null,
+      "provisioningState": "Succeeded",
+      "publicNetworkAccess": "Enabled",
+      "sku": {
+        "family": "A",
+        "name": "standard"
+      },
+      "softDeleteRetentionInDays": 90,
+      "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+      "vaultUri": "https://kv-resto-dc9a173f4d0b5f6.vault.azure.net/"
+    },
+    "resourceGroup": "rg-resto-scale-agent",
+    "systemData": {
+      "createdAt": "2026-10-24T17:35:01.513000+00:00",
+      "createdBy": "Peter.DeTender@microsoft.com",
+      "createdByType": "User",
+      "lastModifiedAt": "2026-10-24T17:35:01.513000+00:00",
+      "lastModifiedBy": "Peter.DeTender@microsoft.com",
+      "lastModifiedByType": "User"
+    },
+    "tags": {
+      "Environment": "resto-scale-agent",
+      "ManagedBy": "Bicep",
+      "Project": "resto-scale-agent",
+      "SecurityControl": "Ignore"
+    },
+    "type": "Microsoft.KeyVault/vaults"
+  }
+}

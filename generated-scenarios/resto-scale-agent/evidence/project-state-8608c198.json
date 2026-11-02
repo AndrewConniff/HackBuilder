@@ -1,0 +1,37 @@
+{
+  "etag": "\"0604f087-0000-0200-0000-6adbae120000\"",
+  "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-4tvlzr5zf2rxi/projects/restaurant",
+  "identity": {
+    "principalId": "e91daa4f-a71e-4f56-b548-d5b2eadfc219",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "type": "SystemAssigned"
+  },
+  "kind": "AIServices",
+  "location": "eastus2",
+  "name": "ai-resto-4tvlzr5zf2rxi/restaurant",
+  "properties": {
+    "description": "Generic Hospitality & Travel reference. Synthetic data and settlement only.",
+    "displayName": "Fourth Coffee restaurant",
+    "endpoints": {
+      "AI Foundry API": "https://ai-resto-4tvlzr5zf2rxi.services.ai.azure.com/api/projects/restaurant"
+    },
+    "internalId": "221f56983fd8418585a424ac54fdbb8b",
+    "isDefault": true,
+    "provisioningState": "Succeeded"
+  },
+  "systemData": {
+    "createdAt": "2026-10-23T18:57:21.319597Z",
+    "createdBy": "Peter.DeTender@microsoft.com",
+    "createdByType": "User",
+    "lastModifiedAt": "2026-10-23T18:57:21.319597Z",
+    "lastModifiedBy": "Peter.DeTender@microsoft.com",
+    "lastModifiedByType": "User"
+  },
+  "tags": {
+    "Environment": "resto-scale-agent",
+    "ManagedBy": "Bicep",
+    "Project": "resto-scale-agent",
+    "SecurityControl": "Ignore"
+  },
+  "type": "Microsoft.CognitiveServices/accounts/projects"
+}

@@ -1,0 +1,34 @@
+{
+  "stage": "deployment",
+  "status": "waiting_for_user",
+  "summary": "Decision required: renewed exact-target consent for Central US shared foundation only. Naming repair and independent previews retained; installation-dependent quota/grants remain unknown, not passed. No provisioning or directory writes performed.",
+  "evidence": [
+    "06-deployment-summary.md: staged foundation installation boundaries, complete later directory plan, actual preview limits, dated evidence and costs.",
+    "evidence\\centralus-189819a8\\what-if-full.json: Succeeded, 33 creates, zero modifies/deletes, 13 new-identity-dependent Unsupported expansions; eight modules skipped by full validation.",
+    "evidence\\centralus-189819a8\\what-if-registry.json, what-if-cosmos.json, what-if-broker.json, what-if-vault.json, what-if-foundry.json: independent configuration previews succeeded; excluded grants remain unverified.",
+    "evidence\\centralus-189819a8\\installation-plan.json: prepared ownership-safe two-registration installation and generated-output consumption; no Graph writes covered by the proposed foundation consent.",
+    "evidence\\centralus-189819a8\\cost-review.json and finalization-integrity.json; 00-region-availability.json: retained observation times/current infrastructure hash, 17 passed metadata checks and nine unknown dependent checks. Full runtime readiness remains false.",
+    "evidence\\centralus-189819a8\\controller-review-check.json: current agent-owned controller supports explicit staged review; no backend correction or user setup questionnaire is required."
+  ],
+  "decision": {
+    "kind": "deployment",
+    "question": "Authorize only the reviewed Central US shared foundation: create rg-resto-scale-agent and deploy infra\\main.bicep using petender@microsoft.com, subscription efd64343-6ef4-4926-951f-d3229f38bd76, tenant 16b3c013-d300-468d-ac64-7eda0820b6d3, environment resto-scale-agent, region centralus? Includes four managed identities, VNet/subnet, telemetry, Basic ACR, zonal Cosmos/database/containers, Premium Service Bus/queue, RBAC vault/signing key, Foundry account/project/model, Container Apps environment and declared scoped grants/diagnostics/tags. Actual retained preview: 33 creates, zero modifies/deletes, 13 identity-dependent unresolved grant expansions; eight modules skipped by validation. Independent provider previews succeeded but do not guarantee allocation or policy enforcement. Shared estimate $745-$1,150/month; full future reference $900-$1,650/month, not a cap. Review 06-deployment-summary.md and installation-plan.json: ACA Consumption quota and dependent outputs remain unknown; this stage does not claim runtime readiness. Before provisioning, recheck independent exact-target identity, ownership, provider/model/region eligibility and refresh stale what-if/expiry/cost as needed; return for review if scope, material cost or risk changes. Stop on new ownership, capacity, provider or policy failures. This consent excludes Graph/directory writes, staff assignment/consent, provider registration, quota changes, image publication, agent/data initialization, app rollout, cleanup, hack/event deployment, publication and suitability approval. After installation, capture actual outputs and Consumption quota; runtime remains locked until quota covers 28 rollout vCPU, dependent checks pass and its separate consent is recorded.",
+    "reason": "The saved authorization permits only read-only Central US preparation. The prior East US 2 deployment grant stopped on failure and is not reusable. The repaired foundation now has actual independent previews and an explicit staged installation plan. Foundation installation produces the environment and identity outputs needed for dependent checks; those outputs are not user inputs. A truthful foundation-only review can disclose these limits without pretending full runtime readiness or granting directory permissions. The user must explicitly authorize, retain local-only work or revise the scope.",
+    "choices": [
+      "Authorize Central US shared foundation only",
+      "Keep the reference local only",
+      "Revise deployment preparation"
+    ],
+    "acceptChoice": "Authorize Central US shared foundation only",
+    "scope": {
+      "account": "petender@microsoft.com",
+      "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+      "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+      "resourceGroup": "rg-resto-scale-agent",
+      "environment": "resto-scale-agent",
+      "region": "centralus",
+      "whatIfEvidence": "06-deployment-summary.md; evidence\\centralus-189819a8\\what-if-full.json: Succeeded; 33 creates, zero modifies/deletes, 13 unresolved new-managed-identity grant expansions. Full validation skipped eight modules; five independent service previews succeeded with declared exclusions. Evidence retains original observation times; recheck independent eligibility/preview before authorized provisioning. Exact infrastructure fingerprint: 1aa0c0f7d9f7518ece839c1edb8578142a922edb9ac482d2462b8fd6aa0feffc. Foundation infra\\main.bicep only; runtime and directory writes excluded.",
+      "estimatedCost": "Central US USD retail planning: shared foundation $745-$1,150/month; future full reference $900-$1,650/month at nine warm replicas and 200 chat turns/day. Includes $677.08/month Premium broker; model example $50.40/month. App compute at 28 active replicas $1,103.76/month, conservative 56-replica rollout $2,207.52/month if sustained. Usage, telemetry, storage, egress, taxes and ancillary costs can add charges. Not a quote, cap, budget approval or capacity reservation; exact retained meters in evidence\\centralus-189819a8\\cost-review.json."
+    }
+  }
+}

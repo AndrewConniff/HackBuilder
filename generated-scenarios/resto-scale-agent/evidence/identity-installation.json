@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "resto-scale-agent",
+    "resourceGroup": "rg-resto-scale-agent",
+    "region": "centralus"
+  },
+  "ownershipMarker": "abc-resto-scale-agent:a80613974550a044f78afcb2eb6955e95192b51876363102cf63368ed1b825d8",
+  "installed": true,
+  "api": {
+    "objectId": "0b21a253-372f-45c1-b71f-70d73bf10571",
+    "clientId": "4310055b-a107-4224-942c-01926f424ffd",
+    "servicePrincipalId": "20389125-423e-4b87-b837-d812149b1a02"
+  },
+  "client": {
+    "objectId": "3b8f9139-268d-4efa-8de9-540395edac44",
+    "clientId": "9e01b233-2898-49c8-8e9e-1c8ffc2f8ad5",
+    "servicePrincipalId": "9f0df588-c7e8-4c71-920a-677187e09e72"
+  },
+  "checkedAtUtc": "2026-10-24T17:39:53.355275+00:00",
+  "staffAudience": "4310055b-a107-4224-942c-01926f424ffd",
+  "staffTenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+  "delegatedScope": "api://4310055b-a107-4224-942c-01926f424ffd/access_as_user",
+  "roleIds": {
+    "Manager": "680f1e54-119b-5f55-966c-5bac8c2f129c",
+    "Host": "de38353b-16a9-58dd-83d5-560fbb788a3c",
+    "Server": "c9f649f1-c3ca-500c-b76f-02157623b5fa",
+    "Kitchen": "a15a2f38-033e-5eeb-8f56-86c4f81f3172",
+    "Floor.1": "17dd7a93-28a9-5a7c-bf4e-b5caf3fed397",
+    "Floor.2": "2ad1a33d-06e0-5c3d-af79-8e32c748fc9f",
+    "Floor.3": "5499cba2-58bc-59a6-b908-f744541d07ce",
+    "Floor.4": "9f5b4592-cf2b-5c98-a9df-bc1652908f13",
+    "Floor.5": "7009343f-c0c4-50ac-99a8-984f4b6d79c0"
+  },
+  "pending": [
+    "Operator-only delegated consent denied by Graph Authorization_RequestDenied at 2026-10-24T17:42:00Z; read-only grant query is empty",
+    "Real sign-in, wrong-role, cross-floor and wrong-tenant acceptance tests"
+  ],
+  "operatorAccess": {
+    "operatorId": "214d672b-df87-4f3b-94fd-7863032546c1",
+    "managerAssignmentVerified": true,
+    "defaultClientAssignmentVerified": true,
+    "consentInstalled": false,
+    "evidence": [
+      "installation-e13812c5\\api-assignments-final.json",
+      "installation-e13812c5\\client-assignments-final.json",
+      "installation-e13812c5\\consent-final.json",
+      "installation-e13812c5\\operator-access-owned-principal.stderr.txt"
+    ],
+    "installedFlagMeaning": "Registration configuration only; not consent, sign-in or live application acceptance."
+  }
+}

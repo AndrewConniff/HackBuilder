@@ -1,0 +1,165 @@
+{
+  "schemaVersion": 1,
+  "status": "installation-review-prepared",
+  "account": "petender@microsoft.com",
+  "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+  "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+  "resourceGroup": "rg-equip-ai",
+  "environment": "equip-ai",
+  "proposedResourceGroup": "rg-equip-ai",
+  "provisionalRegion": "eastus",
+  "region": "centralus",
+  "whatIfEvidence": {
+    "artifact": ".worker\\fa96363ef14f40ffa063aff3dcfd430c\\independent-whatif.json",
+    "complementaryArtifact": ".worker\\fa96363ef14f40ffa063aff3dcfd430c\\foundation-whatif.json",
+    "changeCounts": {
+      "independent": {
+        "Create": 35
+      },
+      "foundation": {
+        "Create": 34,
+        "Unsupported": 1
+      }
+    },
+    "passed": false,
+    "exactFullReferenceWhatIfPassed": false,
+    "coverage": {
+      "sourceSha256": "7e61117802d1702d2b84dcd9b0e1109cc5084d441422e2011563e62d58cb9e3e",
+      "partial": true,
+      "excludedSymbolicResources": [
+        "runtimeConfiguration"
+      ],
+      "retainedSymbolicResources": [
+        "rgTags",
+        "account",
+        "project",
+        "cleanerRole",
+        "workspace",
+        "insights",
+        "network",
+        "dns",
+        "routeIdentity",
+        "storage",
+        "routeAccess",
+        "hub",
+        "foundry",
+        "plan",
+        "apps",
+        "cleanerEndpoint",
+        "appBlobAccess",
+        "agentAccess"
+      ],
+      "identityPlaceholdersUsed": false,
+      "exactFullReferenceWhatIfPassed": false,
+      "excludedChecks": [
+        "Final runtime appsettings containing actual Entra client IDs",
+        "Installer-specific assignments: principalId empty intentionally, not a fake principal",
+        "Directory mutations, real identity propagation, sign-in and private runtime installation"
+      ]
+    },
+    "diagnostics": [
+      {
+        "additionalInfo": null,
+        "code": "NestedDeploymentShortCircuited",
+        "level": "Warning",
+        "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/telemetry-storage"
+      },
+      {
+        "additionalInfo": null,
+        "code": "NestedDeploymentShortCircuited",
+        "level": "Warning",
+        "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/iot-container-access"
+      },
+      {
+        "additionalInfo": null,
+        "code": "NestedDeploymentShortCircuited",
+        "level": "Warning",
+        "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/foundry-account"
+      },
+      {
+        "additionalInfo": null,
+        "code": "NestedDeploymentShortCircuited",
+        "level": "Warning",
+        "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/application-container-access"
+      },
+      {
+        "additionalInfo": null,
+        "code": "NestedDeploymentShortCircuited",
+        "level": "Warning",
+        "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/project-access"
+      },
+      {
+        "additionalInfo": null,
+        "code": "NestedDeploymentSkippedFromInternalExpansion",
+        "level": "Warning",
+        "message": "When nested deployments are expanded, all its inner resources are retrieved for further validation. This process is performed in batch of: '10' at a time. Nested deployments exceeding this batch count are skipped from expansion.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/dns-7ijinxo56ybbo"
+      },
+      {
+        "additionalInfo": null,
+        "code": "NestedDeploymentSkippedFromInternalExpansion",
+        "level": "Warning",
+        "message": "When nested deployments are expanded, all its inner resources are retrieved for further validation. This process is performed in batch of: '10' at a time. Nested deployments exceeding this batch count are skipped from expansion.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/dns-6fmerxwgpwjpg"
+      },
+      {
+        "additionalInfo": null,
+        "code": "NestedDeploymentSkippedFromInternalExpansion",
+        "level": "Warning",
+        "message": "When nested deployments are expanded, all its inner resources are retrieved for further validation. This process is performed in batch of: '10' at a time. Nested deployments exceeding this batch count are skipped from expansion.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/app-web"
+      },
+      {
+        "additionalInfo": null,
+        "code": "NestedDeploymentSkippedFromInternalExpansion",
+        "level": "Warning",
+        "message": "When nested deployments are expanded, all its inner resources are retrieved for further validation. This process is performed in batch of: '10' at a time. Nested deployments exceeding this batch count are skipped from expansion.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/app-cleaner"
+      }
+    ]
+  },
+  "estimatedCost": {
+    "artifact": ".worker\\fa96363ef14f40ffa063aff3dcfd430c\\cost-estimate.json",
+    "illustrativeMonthlySubtotalUsd": 151.53,
+    "fixedMonthlyUsd": 99.95,
+    "currency": "USD",
+    "finalQuote": false,
+    "deploymentConsentEligible": false
+  },
+  "authorization": {
+    "kind": "deployment-preparation",
+    "scope": {
+      "account": "petender@microsoft.com",
+      "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+      "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+      "environment": "equip-ai",
+      "resourceGroup": "rg-equip-ai",
+      "region": "centralus"
+    },
+    "deploymentAuthorized": false
+  },
+  "identityPlan": {
+    "source": "new-dedicated-scenario-registrations",
+    "decisionId": "5d67347d7f4c4e7a8ca63798ebee6fd4",
+    "artifact": "entra-registration-plan.md",
+    "apiDisplayName": "equip-ai-api",
+    "spaDisplayName": "equip-ai-spa",
+    "apiClientId": null,
+    "spaClientId": null,
+    "installationAuthorized": false,
+    "installed": false,
+    "installer": "scripts\\install_identity.py"
+  },
+  "notes": [
+    "Central US eligibility and complementary ARM previews support the retained design. Identity-dependent final settings, role propagation and Graph authority remain pending. Consolidated installation review prepared; full provisioning readiness remains unproved.",
+    "Strict provisioning guard correctly rejects pending checks: Regional check is blocked or unknown: Microsoft.Authorization/roleAssignments / not-applicable.",
+    "All generated identity values remain installation outputs; no manual ID or receipt questionnaire."
+  ],
+  "regionalReadinessArtifact": "00-region-availability.json",
+  "infrastructureFingerprint": "3e7f9c8f260ffbcd093ce5c598b40ff282e148ba39d7f54ae206f7eda1c01c9c"
+}

@@ -1,0 +1,11 @@
+{
+  "stage": "requirements",
+  "status": "completed",
+  "summary": "Recovered intake validated against current catalogs and existing requirements. Manufacturing & Mobility, Sales/Marketing, Operational Excellence and the same reference are preserved; no implementation or live completion imported.",
+  "evidence": [
+    ".resume-evidence\\5285f097a57c4e89a52c98892af3ba07\\intake-validation.json: 34 passing local checks, exact company/person record provenance, required template headings, reference path containment and null provisional targets.",
+    "01-requirements.md: reviewed F1-F8, acceptance cases A1-A9, human review, unsupported 200 km guarantee, unknown preservation, commercial-field exclusions and no campaign/order writes.",
+    "Existing requirements and architecture define a sequential three-agent pipeline with typed Sales-to-Marketing handoffs; one agent would reduce calls but would not demonstrate the explicitly requested independently versioned Sales Fit, Marketing Claims and Coordinator provenance.",
+    "Malformed company records 7, 11, 25 and 33 rejected; source catalogs unchanged. No pending/reviewing business questions exist in current portal state."
+  ]
+}

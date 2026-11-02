@@ -1,0 +1,1206 @@
+[
+  {
+    "currentValue": 0.0,
+    "limit": 10.0,
+    "name": {
+      "localizedValue": "Standard Fine-Tuned Deployments",
+      "value": "OpenAI.FineTuned.Deployments"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 100.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "One Thousand Tokens Per Minute - gpt-5.4-mini - GlobalStandard",
+      "value": "OpenAI.GlobalStandard.gpt-5.4-mini"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 100.0,
+    "name": {
+      "localizedValue": "Maximum resources for AIServices S0 sku.",
+      "value": "AIServices.S0.AccountCount"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 600.0,
+    "name": {
+      "localizedValue": "Default Quota for Model-as-a-Service Models",
+      "value": "AIServices.GlobalStandard.MaaS"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - Mistral-Large-3",
+      "value": "AIServices.GlobalStandard.Mistral-Large-3"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - Mistral-Large-3",
+      "value": "AIServices.DataZoneStandard.Mistral-Large-3"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "us",
+    "scopeType": "DataZone",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - DeepSeek-R1",
+      "value": "AIServices.GlobalStandard.DeepSeek-R1"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - DeepSeek-R1-0528",
+      "value": "AIServices.GlobalStandard.DeepSeek-R1-0528"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - DeepSeek-V3-0324",
+      "value": "AIServices.GlobalStandard.DeepSeek-V3-0324"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - DeepSeek-V3.1",
+      "value": "AIServices.GlobalStandard.DeepSeek-V3.1"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 250.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - Llama-4-Maverick-17B-128E-Instruct-FP8",
+      "value": "AIServices.GlobalStandard.Llama-4-Maverick-17B-128E-Instruct-FP8"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 250.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - Llama-3.3-70B-Instruct",
+      "value": "AIServices.GlobalStandard.Llama-3.3-70B-Instruct"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - Phi-4",
+      "value": "AIServices.GlobalStandard.Phi-4"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - Phi-4-mini-instruct",
+      "value": "AIServices.GlobalStandard.Phi-4-mini-instruct"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - Phi-4-mini-reasoning",
+      "value": "AIServices.GlobalStandard.Phi-4-mini-reasoning"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - Phi-4-multimodal-instruct",
+      "value": "AIServices.GlobalStandard.Phi-4-multimodal-instruct"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - Phi-4-reasoning",
+      "value": "AIServices.GlobalStandard.Phi-4-reasoning"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - Ministral-3B",
+      "value": "AIServices.GlobalStandard.Ministral-3B"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - mistral-medium-2505",
+      "value": "AIServices.GlobalStandard.mistral-medium-2505"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - mistral-small-2503",
+      "value": "AIServices.GlobalStandard.mistral-small-2503"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - Codestral-2501",
+      "value": "AIServices.GlobalStandard.Codestral-2501"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - Llama-4-Scout-17B-16E-Instruct",
+      "value": "AIServices.GlobalStandard.Llama-4-Scout-17B-16E-Instruct"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 100.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - Cohere-Command-A",
+      "value": "AIServices.GlobalStandard.Cohere-Command-A"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 100.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - Embed-V-4-0",
+      "value": "AIServices.GlobalStandard.Embed-V-4-0"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 5000.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - gpt-oss-120b",
+      "value": "AIServices.GlobalStandard.gpt-oss-120b"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - MAI-DS-R1",
+      "value": "AIServices.GlobalStandard.MAI-DS-R1"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 30.0,
+    "name": {
+      "localizedValue": "Requests Per Minute - FLUX-1.1-pro",
+      "value": "AIServices.GlobalStandard.FLUX-1.1-pro"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 30.0,
+    "name": {
+      "localizedValue": "Requests Per Minute - FLUX-1.1-pro",
+      "value": "AIServices.DataZoneStandard.FLUX-1.1-pro"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 30.0,
+    "name": {
+      "localizedValue": "Requests Per Minute - FLUX.1-Kontext-pro",
+      "value": "AIServices.GlobalStandard.FLUX.1-Kontext-pro"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 30.0,
+    "name": {
+      "localizedValue": "Requests Per Minute - FLUX.1-Kontext-pro",
+      "value": "AIServices.DataZoneStandard.FLUX.1-Kontext-pro"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 60.0,
+    "name": {
+      "localizedValue": "Requests Per Minute - mistral-document-ai-2505",
+      "value": "AIServices.GlobalStandard.mistral-document-ai-2505"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 60.0,
+    "name": {
+      "localizedValue": "Default DataZone Quota for mistral-document-ai-2505",
+      "value": "AIServices.DataZoneStandard.mistral-document-ai-2505"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - grok-3",
+      "value": "AIServices.GlobalStandard.grok-3"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - grok-3-mini",
+      "value": "AIServices.GlobalStandard.grok-3-mini"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 300.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - grok-3",
+      "value": "AIServices.DataZoneStandard.grok-3"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 300.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - grok-3-mini",
+      "value": "AIServices.DataZoneStandard.grok-3-mini"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - grok-4-fast-reasoning",
+      "value": "AIServices.GlobalStandard.grok-4-fast-reasoning"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - grok-4-fast-non-reasoning",
+      "value": "AIServices.GlobalStandard.grok-4-fast-non-reasoning"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 300.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - grok-4-fast-reasoning",
+      "value": "AIServices.DataZoneStandard.grok-4-fast-reasoning"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 300.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - grok-4-fast-non-reasoning",
+      "value": "AIServices.DataZoneStandard.grok-4-fast-non-reasoning"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 0.0,
+    "name": {
+      "localizedValue": "Global Provisioned Managed Throughput Unit",
+      "value": "AIServices.GlobalProvisionedManaged"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 100.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - Kimi-K2-Thinking",
+      "value": "AIServices.GlobalStandard.Kimi-K2-Thinking"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 300.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - Cohere-Rerank-V4-Fast",
+      "value": "AIServices.GlobalStandard.Cohere-Rerank-V4-Fast"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 300.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - Cohere-Rerank-V4-Pro",
+      "value": "AIServices.GlobalStandard.Cohere-Rerank-V4-Pro"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Requests Per Minute - DeepSeek-V3.2",
+      "value": "AIServices.GlobalStandard.DeepSeek-V3.2"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 4.0,
+    "name": {
+      "localizedValue": "Requests Per Minute - FLUX.2-pro",
+      "value": "AIServices.GlobalStandard.FLUX.2-pro"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 4.0,
+    "name": {
+      "localizedValue": "Requests Per Minute - FLUX.2-pro",
+      "value": "AIServices.DataZoneStandard.FLUX.2-pro"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Requests Per Minute - DeepSeek-V3.2-Speciale",
+      "value": "AIServices.GlobalStandard.DeepSeek-V3.2-Speciale"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 100.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - Kimi-K2.5",
+      "value": "AIServices.GlobalStandard.Kimi-K2.5"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 60.0,
+    "name": {
+      "localizedValue": "Requests Per Minute - mistral-document-ai-2512",
+      "value": "AIServices.GlobalStandard.mistral-document-ai-2512"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 40.0,
+    "name": {
+      "localizedValue": "Requests Per Minute - mistral-document-ai-2512",
+      "value": "AIServices.DataZoneStandard.mistral-document-ai-2512"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 4.0,
+    "name": {
+      "localizedValue": "Requests Per Minute - FLUX.2-flex",
+      "value": "AIServices.GlobalStandard.FLUX.2-flex"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - grok-4-1-fast-reasoning",
+      "value": "AIServices.GlobalStandard.grok-4-1-fast-reasoning"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - grok-4-1-fast-non-reasoning",
+      "value": "AIServices.GlobalStandard.grok-4-1-fast-non-reasoning"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 300.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - grok-4-1-fast-reasoning",
+      "value": "AIServices.DataZoneStandard.grok-4-1-fast-reasoning"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "us",
+    "scopeType": "DataZone",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 300.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - grok-4-1-fast-non-reasoning",
+      "value": "AIServices.DataZoneStandard.grok-4-1-fast-non-reasoning"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "us",
+    "scopeType": "DataZone",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - grok-4-20-non-reasoning",
+      "value": "AIServices.GlobalStandard.grok-4-20-non-reasoning"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 300.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - grok-4-20-non-reasoning",
+      "value": "AIServices.DataZoneStandard.grok-4-20-non-reasoning"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "us",
+    "scopeType": "DataZone",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - grok-4-20-reasoning",
+      "value": "AIServices.GlobalStandard.grok-4-20-reasoning"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 300.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - grok-4-20-reasoning",
+      "value": "AIServices.DataZoneStandard.grok-4-20-reasoning"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "us",
+    "scopeType": "DataZone",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 100.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - Kimi-K2.6",
+      "value": "AIServices.GlobalStandard.Kimi-K2.6"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "westus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 250.0,
+    "name": {
+      "localizedValue": "Requests Per Minute - DeepSeek-V4-Flash",
+      "value": "AIServices.GlobalStandard.DeepSeek-V4-Flash"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 250.0,
+    "name": {
+      "localizedValue": "Requests Per Minute - DeepSeek-V4-Flash",
+      "value": "AIServices.DataZoneStandard.DeepSeek-V4-Flash"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "us",
+    "scopeType": "DataZone",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - grok-4.3",
+      "value": "AIServices.GlobalStandard.grok-4.3"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 300.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - grok-4.3",
+      "value": "AIServices.DataZoneStandard.grok-4.3"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "us",
+    "scopeType": "DataZone",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Requests Per Minute - DeepSeek-V4-Pro",
+      "value": "AIServices.GlobalStandard.DeepSeek-V4-Pro"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Requests Per Minute - DeepSeek-V4-Pro",
+      "value": "AIServices.DataZoneStandard.DeepSeek-V4-Pro"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "us",
+    "scopeType": "DataZone",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 60.0,
+    "name": {
+      "localizedValue": "Requests Per Minute - mistral-ocr-4-0",
+      "value": "AIServices.GlobalStandard.mistral-ocr-4-0"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 40.0,
+    "name": {
+      "localizedValue": "Requests Per Minute - mistral-ocr-4-0",
+      "value": "AIServices.DataZoneStandard.mistral-ocr-4-0"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "us",
+    "scopeType": "DataZone",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Requests Per Minute - mistral-medium-3-5",
+      "value": "AIServices.GlobalStandard.mistral-medium-3-5"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Requests Per Minute - mistral-medium-3-5",
+      "value": "AIServices.DataZoneStandard.mistral-medium-3-5"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "us",
+    "scopeType": "DataZone",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 300.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - Cohere-command-a-plus-05-2026",
+      "value": "AIServices.GlobalStandard.Cohere-command-a-plus-05-2026"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 100.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - Kimi-K2.7-Code",
+      "value": "AIServices.GlobalStandard.Kimi-K2.7-Code"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 250.0,
+    "name": {
+      "localizedValue": "Requests Per Minute - DeepSeek-V4-Flash-0731",
+      "value": "AIServices.GlobalStandard.DeepSeek-V4-Flash-0731"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - grok-4.6",
+      "value": "AIServices.GlobalStandard.grok-4.6"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 2.0,
+    "name": {
+      "localizedValue": "Requests Per Minute - Cohere-parse-v5",
+      "value": "AIServices.GlobalStandard.Cohere-parse-v5"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "Requests Per Minute - DeepSeek-V4.1-Flash",
+      "value": "AIServices.GlobalStandard.DeepSeek-V4.1-Flash"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 100.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - Cohere-Embed-V5-Pro",
+      "value": "AIServices.GlobalStandard.Cohere-Embed-V5-Pro"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 100.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - Cohere-Embed-V5-Fast",
+      "value": "AIServices.GlobalStandard.Cohere-Embed-V5-Fast"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 80.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - grok-4.7",
+      "value": "AIServices.GlobalStandard.grok-4.7"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 80.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - grok-4.7",
+      "value": "AIServices.DataZoneStandard.grok-4.7"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "us",
+    "scopeType": "DataZone",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 2160.0,
+    "name": {
+      "localizedValue": "Requests Per Minute - Microsoft-Decision-1",
+      "value": "AIServices.DataZoneStandard.Microsoft-Decision-1"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "us",
+    "scopeType": "DataZone",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 50.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - Cohere-rerank-v5-fast",
+      "value": "AIServices.GlobalStandard.Cohere-rerank-v5-fast"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 50.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - Cohere-rerank-v5-pro",
+      "value": "AIServices.GlobalStandard.Cohere-rerank-v5-pro"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 500.0,
+    "name": {
+      "localizedValue": "Tokens Per Minute (thousands) - MAI-Thinking-1",
+      "value": "AIServices.GlobalStandard.MAI-Thinking-1"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 200.0,
+    "name": {
+      "localizedValue": "Maximum Resources per Region",
+      "value": "AccountCount"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": null,
+    "scopeType": null,
+    "status": null,
+    "unit": "Count"
+  }
+]

@@ -1,0 +1,1097 @@
+{
+  "schemaVersion": 1,
+  "projectSlug": "resto-scale-agent",
+  "revision": 158,
+  "request": {
+    "schemaVersion": 1,
+    "projectSlug": "resto-scale-agent",
+    "prompt": "A restaurant business wants to port their legacy handling system into Foundry multi-agents. There is a front-end and back-end. Front end is what the customer interacts with, from making a reservation, check in, order food, pay bill and complete survey after visit. back-end is for the restaurant management to see orders, payments, but also handling the flow of food orders to kitchen and back to the restaurant at any stage. Provide a chat interface for the customer to ask questions, but also a bot for the staff and management to interact with. Given the large scale (5 floors, 250 seats, 4 or 5 meal times per day from lunch to later dinner), they question scale and performance",
+    "industry": "Hospitality & Travel",
+    "businessUnits": [
+      "generic"
+    ],
+    "services": [
+      "foundry",
+      "cosmos-db",
+      "container-apps",
+      "key-vault",
+      "managed-identity",
+      "service-bus"
+    ],
+    "pillars": [
+      "reliability",
+      "performance-efficiency"
+    ],
+    "domains": [
+      "scaling"
+    ],
+    "phase": "scenario",
+    "deploymentAuthorized": false,
+    "scenarioApproved": false,
+    "preferences": {
+      "regionModel": "delegate-supported-provisional-choice",
+      "deploymentTarget": "defer-until-deployment-preparation",
+      "budget": "estimate-not-a-local-build-blocker"
+    }
+  },
+  "stages": {
+    "requirements": {
+      "status": "completed",
+      "summary": "Requirements defined for the Generic five-floor, 250-seat restaurant, all six requested services, synthetic settlement, role boundaries and measurable load/recovery targets. No implementation or Azure operations performed.",
+      "evidence": [
+        "generated-scenarios\\resto-scale-agent\\01-requirements.md",
+        "Repository industry catalog: exact Hospitality & Travel industry present.",
+        "CSV parser: Fourth Coffee is valid data record 14; person FullName mappings use records 1-4. Malformed company records 7, 11, 25, 33 excluded.",
+        "Current Microsoft Learn public Foundry region, Agent Service, prompt agent and model lifecycle pages fetched on 2026-10-23 UTC; evidence index to follow with architecture."
+      ],
+      "updatedAtUtc": "2026-10-23T00:04:58.859724+00:00"
+    },
+    "architecture": {
+      "status": "completed",
+      "summary": "Design ready: 250-seat/five-floor guest journey and staff/kitchen workflow; all six services; customer/staff Foundry agents with bounded kitchen specialist. Orders remain deterministic during AI failure. Targets: 50 req/s normal, 150 burst; chat measured separately. Confirm before any implementation.",
+      "evidence": [
+        "generated-scenarios\\resto-scale-agent\\01-requirements.md",
+        "generated-scenarios\\resto-scale-agent\\02-architecture-assessment.md",
+        "generated-scenarios\\resto-scale-agent\\00-region-availability.json",
+        "generated-scenarios\\resto-scale-agent\\scenario-manifest.json",
+        "No diagrams, Bicep, app implementation, Azure queries, what-if, deployment, runtime success, suitability approval or hack composition performed."
+      ],
+      "updatedAtUtc": "2026-10-23T00:08:40.540443+00:00"
+    },
+    "diagrams": {
+      "status": "completed",
+      "summary": "Generated and visually reviewed architecture and runtime PNGs for the confirmed local design, with matching retained Python sources and architecture embeds. These diagrams are design evidence only; no Azure or runtime success is claimed.",
+      "evidence": [
+        "python generated-scenarios\\resto-scale-agent\\03-architect-diagram.py && python generated-scenarios\\resto-scale-agent\\04-runtime-diagram.py: exit code 0 for both final renders.",
+        "Pillow Image.verify passed: 03-architect-diagram.png PNG 3506x2493, 455098 bytes; 04-runtime-diagram.png PNG 2198x4818, 475120 bytes.",
+        "Both final images visually inspected: fitted labels, resource boundaries, managed identity/data paths, deterministic transaction independence, bounded staff specialist and explicit failure paths agree with the confirmed architecture. No IaC exists yet; agreement must be rechecked after implementation.",
+        "02-architecture-assessment.md embeds both images with descriptive alt text and records existing portal design confirmation.",
+        "scenario_catalog.refresh scoped helper refreshed this scenario's curated scenario-manifest.json from reviewed-metadata.json. Its CLI unconditionally exports the shared repository catalog, so the helper function was used to honor the worker prohibition on canonical repository writes."
+      ],
+      "updatedAtUtc": "2026-10-23T05:21:48.582660+00:00"
+    },
+    "bicep": {
+      "status": "completed",
+      "summary": "Completed locally compiled AVM-first shared/runtime wiring, installed-agent version parameters, scoped runtime parameter generation, internal HTTPS chat routing, telemetry RBAC and signing-key expiry/rotation. No Azure deployment or policy compliance is claimed; retained static findings require target review.",
+      "evidence": [
+        "az bicep build --file generated-scenarios\\resto-scale-agent\\infra\\main.bicep --outfile generated-scenarios\\resto-scale-agent\\evidence\\main-cc61b383.arm.json: exit 0. az bicep lint --file generated-scenarios\\resto-scale-agent\\infra\\main.bicep: exit 0.",
+        "az bicep build --file generated-scenarios\\resto-scale-agent\\infra\\runtime.bicep --outfile generated-scenarios\\resto-scale-agent\\evidence\\runtime-cc61b383.arm.json: exit 0 after final internal routing correction. az bicep lint --file generated-scenarios\\resto-scale-agent\\infra\\runtime.bicep: exit 0.",
+        "python -m unittest discover -s generated-scenarios\\resto-scale-agent\\validation -p \"test_*.py\" -v: eight passed, including exact target/output/image/version guards and load profile shapes.",
+        "05-implementation-reference.md: ordered two-pass deployment preparation, initializer and runtime rollout; no cloud operation executed.",
+        "evidence\\checkov-expanded-main-cc61b383.json: eight passed, fourteen findings, zero parsing errors; conditional AVM resource definitions are not deployed resource counts. Runtime scanner has zero applicable checks and does not certify Container Apps."
+      ],
+      "updatedAtUtc": "2026-10-23T15:25:38.134692+00:00"
+    },
+    "application": {
+      "status": "completed",
+      "summary": "Completed resumed local application integration: real version-pinned agent tools with human reservation/action gates, scoped boards and manager recovery UI, synthetic legacy import, cancellation compensation, managed-identity-only runtime and shared antiforgery keys. Local compilation, domain/API/Chromium and image shell checks pass; live business/agent/broker acceptance remains unproven.",
+      "evidence": [
+        "dotnet test generated-scenarios\\resto-scale-agent\\Restaurant.slnx --no-restore --verbosity quiet --logger \"trx;LogFileName=final-tools-cc61b383.trx\" --results-directory generated-scenarios\\resto-scale-agent\\evidence\\tests: 25 passed; zero failed/skipped.",
+        "evidence\\tests\\final-tools-cc61b383.trx; evidence\\browser: actual local server and desktop/mobile Chromium evidence, not deployed business data.",
+        "docker build --platform linux/amd64 --tag resto-scale-agent-local:cc61b3835f4244bfa28667f5b641fbe9 --file generated-scenarios\\resto-scale-agent\\src\\Restaurant.Web\\Dockerfile generated-scenarios\\resto-scale-agent: passed; evidence\\container-build-final-cc61b383.txt.",
+        "python scripts\\check_container_runtime.py --image resto-scale-agent-local:cc61b3835f4244bfa28667f5b641fbe9 --marker 'Fourth Coffee' --timeout 90: ok=true, linux/amd64 user=1654, health/homepage HTTP 200, marker verified, cleanupPassed=true; evidence\\container-runtime-final-cc61b383.json.",
+        "07-webapp-summary.md: exact local scope, retained failures, scanner and workload coverage limits, no Azure authorization or fabricated runtime success."
+      ],
+      "updatedAtUtc": "2026-10-23T15:25:46.594397+00:00"
+    },
+    "local-validation": {
+      "status": "completed",
+      "summary": "Completed existing local validation and authorized read-only shared-infrastructure preparation, with retained security and preview limitations. Identity/providers/quota and names checked; ARM validation succeeded; what-if returned 33 creates, zero modifies/deletes and 13 unresolved identity-dependent grants. Nothing deployed; this is not a clean security certification or live acceptance.",
+      "evidence": [
+        "06-deployment-summary.md: exact scope, commands/results, failures, regional retail rates, estimates, unresolved nested provider/runtime checks and separate shared-infrastructure-only deployment boundary.",
+        "evidence\\what-if-subscription-c3e1750f.json: status Succeeded, error null, Create 33, Modify 0, Delete 0, Unsupported 13. The preview-only wrapper avoids creating the absent authorized group.",
+        "evidence\\validate-subscription-c3e1750f.json: properties.provisioningState Succeeded, error null; identity-dependent nested validation is not certified.",
+        "evidence\\identity-c3e1750f.json; providers-c3e1750f.json; rbac-c3e1750f.json; policy-assignments-c3e1750f.json; model-eligibility-c3e1750f.json; model-quota-c3e1750f.json; model-capacities-filtered-c3e1750f.json: exact identity match, eleven registered providers, Owner/Foundry User, model available capacity 999 versus request 100.",
+        "evidence\\acr-name-c3e1750f.json, vault-name-c3e1750f.json, broker-name-c3e1750f.json, foundry-name-c3e1750f.json: names available; cosmos-name-c3e1750f.json false means name does not exist. az group exists with explicit authorized subscription remained false after preparation.",
+        "az bicep build --file generated-scenarios\\resto-scale-agent\\infra\\main.bicep --outfile generated-scenarios\\resto-scale-agent\\evidence\\what-if-main-c3e1750f.arm.json; az bicep lint --file generated-scenarios\\resto-scale-agent\\infra\\main.bicep: both exited 0.",
+        "Unchanged application baseline reused: evidence\\tests\\final-tools-cc61b383.trx (25 passed), eight Python tooling tests, evidence\\container-runtime-final-cc61b383.json (health/homepage/cleanup passed). Fourteen static findings and allCommandsPassed:false remain retained in validation\\local-checks-cc61b383.json; matching design choices and narrowed expression findings are reviewed in the preparation summary, not suppressed.",
+        "No Azure deployment, runtime initializer, real model/agent call, staff identity setup, application rollout, scenario approval, hack composition, team deployment or publication occurred."
+      ],
+      "updatedAtUtc": "2026-10-23T15:48:43.718239+00:00"
+    },
+    "deployment": {
+      "status": "pending",
+      "summary": "Implementation owns a recovery plan, not a user selection among these technical routes. In the next authorized operation, diagnose the Basic ACR/AVM network-rule mismatch locally and prepare a correction preserving confirmed public TLS/Entra access, disabled admin access, managed identities and SKU; retain Cosmos zone redundancy and East US 2. Preserve historical failure and absent-group evidence without claiming current capacity. Route any capacity/access request, changed target, directory write, resource recreation or retry through the existing scoped authorization path; the prior stop-on-provider/capacity-failure deployment grant is not permission to retry. Reuse saved deploymentContext and applicable exact-scope preparation consent only for operations it actually covers; refresh independent what-if/cost evidence before seeking any required renewed deployment consent. If evidence later establishes that a region, reliability, service, security or material cost change is necessary, present that specific trade-off through its design/scoped consent checkpoint then, rather than choosing it now. Do not implement, make cloud calls, select an original answer, mark a stage complete or approve suitability during this classification job.",
+      "evidence": [
+        "Canonical request: Hospitality & Travel, businessUnits [generic], five floors and 250 seats; reliability and performance-efficiency; foundry, cosmos-db, container-apps, key-vault, managed-identity and service-bus.",
+        "Answered design decision 6e1e2f6962e740b99477b559807feb5f: Confirm design for local implementation; retained synthetic settlement, public TLS/Entra service endpoints and the selected reliability architecture. 02-architecture-assessment.md specifies East US 2, zone-redundant Cosmos and Container Apps, and Basic ACR with admin access disabled.",
+        "All saved decisions and history read at revision 147: preparation decision 7d18da3b02774120a79615b426323ea6 authorizes exact-scope read-only preflight/what-if; deployment decision cd856cdaeeb94dd6b6b4071e49734056 authorizes shared infrastructure only and expressly stops on capacity/provider failures. No answered recovery decision, local-only choice, changed design or suitability approval exists. The latest free-text resume grants no additional authorization.",
+        "06-deployment-summary.md and evidence\\deployment-reconciliation-24079be7.json retain historical Cosmos ServiceUnavailable for East US 2 zone-redundant allocation, ACR NetworkRuleNotSupported for Basic SKU, and subsequent ResourceGroupNotFound/group-exists false. These are saved observations, not new cloud checks or current capacity proof.",
+        "infra\\main.bicep uses AVM registry 0.13.1 and publicNetworkAccess Enabled; the confirmed Basic registry/public-authenticated design does not require adding virtual network restrictions or upgrading the SKU.",
+        "python scripts\\check_prerequisites.py --for-project --record --stage requirements --json: ready true, all listed checks passed, blockedStages empty; owner run 768df09c3fbc4206a7afd5eafd8c1e1f, checkedAtUtc 2026-10-23T22:10:08.610673+00:00. No observed prerequisite failure or execution-host denial supports an external-blocker classification."
+      ]
+    },
+    "live-validation": {
+      "status": "pending",
+      "summary": ""
+    },
+    "review": {
+      "status": "pending",
+      "summary": ""
+    },
+    "hack-plan": {
+      "status": "pending",
+      "summary": ""
+    },
+    "hack-content": {
+      "status": "pending",
+      "summary": ""
+    },
+    "hack-starter": {
+      "status": "pending",
+      "summary": ""
+    },
+    "hack-coach": {
+      "status": "pending",
+      "summary": ""
+    },
+    "hack-validation": {
+      "status": "pending",
+      "summary": ""
+    }
+  },
+  "decisions": [
+    {
+      "id": "6e1e2f6962e740b99477b559807feb5f",
+      "kind": "design",
+      "stage": "architecture",
+      "question": "Confirm this design for local implementation: full restaurant journey with explicitly synthetic settlement (no money charged), Basic Foundry using gpt-5.4-mini 2026-03-17 GlobalStandard in provisional East US 2, TLS/Entra public service endpoints, separate web/chat/worker apps, Cosmos outbox and Service Bus Premium? All six requested services are retained; supporting ACR, VNet, Entra and observability are justified. Infrastructure allowance is $980-$1,920/month plus model usage, not a quote. Confirmation permits diagrams, Bicep, app and local tests only.",
+      "reason": "The workflow requires explicit architecture confirmation before implementation. This includes payment boundaries, managed Foundry state/global inference, public networking and Premium broker cost. It grants neither Azure preparation/deployment permission nor deployed-scenario suitability approval.",
+      "choices": [
+        "Confirm design for local implementation",
+        "Revise design",
+        "Stop"
+      ],
+      "acceptChoice": "Confirm design for local implementation",
+      "scope": null,
+      "status": "answered",
+      "createdAtUtc": "2026-10-23T00:08:40.540426+00:00",
+      "answer": "Confirm design for local implementation",
+      "message": "Confirm design for local implementation",
+      "answeredAtUtc": "2026-10-23T00:14:33.786690+00:00"
+    },
+    {
+      "id": "35ebf485af604ccf9924e7d864d63d13",
+      "kind": "business",
+      "stage": "diagrams",
+      "question": "Permit the local implementation tools and public AVM/NuGet metadata downloads for resto-scale-agent, then resume the existing confirmed design? This permits local generation/build/test only, not Azure queries or deployment.",
+      "reason": "The execution host denied a required tool operation because this job cannot request interactive permission. Design confirmation does not bypass tool permissions. Grant the required tool permission through the portal before resuming; retain all existing answers and leave cloud authorizations empty.",
+      "choices": [
+        "Permit local implementation tools and resume",
+        "Stop"
+      ],
+      "acceptChoice": "Permit local implementation tools and resume",
+      "scope": null,
+      "status": "answered",
+      "createdAtUtc": "2026-10-23T00:15:59.051745+00:00",
+      "answer": "Permit local implementation tools and resume",
+      "message": "Permit local implementation tools and resume",
+      "answeredAtUtc": "2026-10-23T00:32:15.142523+00:00"
+    },
+    {
+      "id": "b01785dbd29641db87318382f571565a",
+      "kind": "business",
+      "stage": "diagrams",
+      "question": "Have an environment administrator make Graphviz dot available to portal workers, or identify an existing installation and configure its PATH, then resume this same scenario?",
+      "reason": "The required Python diagrams renderer cannot execute dot. This is a missing prerequisite, not missing local-tool consent. The worker contract requires stopping for coordination rather than installing shared tooling. Resume only after the executable is available to a new worker process; no design reconfirmation or cloud permission is implied.",
+      "choices": [
+        "Graphviz is available to portal workers; resume",
+        "Stop"
+      ],
+      "acceptChoice": "Graphviz is available to portal workers; resume",
+      "scope": null,
+      "status": "answered",
+      "createdAtUtc": "2026-10-23T00:33:12.374075+00:00",
+      "answer": "Graphviz is available to portal workers; resume",
+      "message": "Graphviz is available to portal workers; resume",
+      "answeredAtUtc": "2026-10-23T01:59:01.088666+00:00"
+    },
+    {
+      "id": "6f51063f12ef497da9401f7a329f6e13",
+      "kind": "business",
+      "stage": "diagrams",
+      "question": "Make dot.exe resolvable on PATH in a newly launched portal worker and permit the local prerequisite check in the execution host, then resume this same scenario?",
+      "reason": "The user-confirmed Graphviz availability is preserved, but the actual resumed worker reports shutil.which('dot') as None. The execution host also denied checking existing locations or persisted PATH, so the worker cannot verify or render the required diagrams. An administrator must coordinate the worker environment/tool permission; this job must not install shared tooling or bypass the denial. No design reconfirmation or cloud consent is requested.",
+      "choices": [
+        "Worker PATH and local prerequisite permission corrected; resume",
+        "Stop"
+      ],
+      "acceptChoice": "Worker PATH and local prerequisite permission corrected; resume",
+      "scope": null,
+      "status": "answered",
+      "createdAtUtc": "2026-10-23T01:59:56.269511+00:00",
+      "answer": "Worker PATH and local prerequisite permission corrected; resume",
+      "message": "Worker PATH and local prerequisite permission corrected; resume",
+      "answeredAtUtc": "2026-10-23T04:12:02.200882+00:00"
+    },
+    {
+      "id": "bc3e91ad36784733b3c466d86defbed8",
+      "kind": "business",
+      "stage": "diagrams",
+      "question": "Have the portal/environment administrator verify that a fresh noninteractive worker resolves dot.exe and is permitted to execute the local read-only prerequisite check, then resume resto-scale-agent?",
+      "reason": "The recorded correction has not reached this worker: dot remains absent from its effective PATH and the execution host still denies the prerequisite probe. Verify both conditions in the actual worker environment before another resume. The worker cannot install shared tools or bypass host permission. Existing design and local-tool consent remain valid; no new design or cloud authorization is requested.",
+      "choices": [
+        "Verified dot.exe resolution and prerequisite execution in a fresh worker; resume",
+        "Stop"
+      ],
+      "acceptChoice": "Verified dot.exe resolution and prerequisite execution in a fresh worker; resume",
+      "scope": null,
+      "status": "answered",
+      "createdAtUtc": "2026-10-23T04:13:10.549515+00:00",
+      "answer": "Verified dot.exe resolution and prerequisite execution in a fresh worker; resume",
+      "message": "Verified dot.exe resolution and prerequisite execution in a fresh worker; resume",
+      "answeredAtUtc": "2026-10-23T04:13:35.842815+00:00"
+    },
+    {
+      "id": "e7ff4d3976e042338359181084531e97",
+      "kind": "business",
+      "stage": "diagrams",
+      "question": "Have the portal/environment administrator correct and verify the actual noninteractive worker environment so Python shutil.which('dot') returns an executable path and the execution host permits the local prerequisite check, then resume this same scenario?",
+      "reason": "Despite the recorded verification, the new worker again returns null for dot and cannot execute the read-only location/PATH check. Correct the environment inherited by the portal-launched worker and its execution-host permission before resuming; repeating an affirmative answer without an effective correction cannot unblock rendering. The worker must not install shared tools or bypass a denied operation. Existing design and local-tool consent remain preserved; no cloud consent is requested.",
+      "choices": [
+        "Actual portal worker dot resolution and execution permission verified; resume",
+        "Stop"
+      ],
+      "acceptChoice": "Actual portal worker dot resolution and execution permission verified; resume",
+      "scope": null,
+      "status": "answered",
+      "createdAtUtc": "2026-10-23T04:14:29.118608+00:00",
+      "answer": "Actual portal worker dot resolution and execution permission verified; resume",
+      "message": "Actual portal worker dot resolution and execution permission verified; resume",
+      "answeredAtUtc": "2026-10-23T04:26:07.664203+00:00"
+    },
+    {
+      "id": "35318d070c4c497db6f537731bf36ffb",
+      "kind": "business",
+      "stage": "diagrams",
+      "question": "Have the portal/environment administrator verify dot resolution and execution permission inside the actual portal-launched worker before resuming this scenario?",
+      "reason": "The latest recorded verification is not effective in this worker: Python still returns null for dot and the host denies the prerequisite location/PATH check. Coordinate the portal worker environment and execution-host permission outside this job. Another affirmative answer without an effective environment correction cannot unblock diagrams. Do not install shared tooling in a scenario worker. No design reconfirmation or cloud consent is requested.",
+      "choices": [
+        "Actual worker prerequisites corrected and verified; resume",
+        "Stop"
+      ],
+      "acceptChoice": "Actual worker prerequisites corrected and verified; resume",
+      "scope": null,
+      "status": "answered",
+      "createdAtUtc": "2026-10-23T04:27:19.674350+00:00",
+      "answer": "Actual worker prerequisites corrected and verified; resume",
+      "message": "Actual worker prerequisites corrected and verified; resume",
+      "answeredAtUtc": "2026-10-23T04:28:29.576576+00:00"
+    },
+    {
+      "id": "0cd301f996304df9aadb6e9b701f9850",
+      "kind": "business",
+      "stage": "diagrams",
+      "question": "Have the environment administrator expose the existing Graphviz dot.exe on the PATH inherited by the actual portal-launched worker, verify Python resolves it to an executable path, and then resume this same scenario?",
+      "reason": "Both allowed read-only probes confirm dot is absent from this worker's executable search path despite the prior correction. Tool permission is no longer the observed blocker. Coordinate the effective worker environment outside this job; the worker must not install or upgrade shared tools. Preserve the existing design and local consent; no cloud authorization is requested.",
+      "choices": [
+        "Actual worker resolves dot.exe to an executable path; resume",
+        "Stop"
+      ],
+      "acceptChoice": "Actual worker resolves dot.exe to an executable path; resume",
+      "scope": null,
+      "status": "answered",
+      "createdAtUtc": "2026-10-23T04:29:24.381723+00:00",
+      "answer": "Actual worker resolves dot.exe to an executable path; resume",
+      "message": "Actual worker resolves dot.exe to an executable path; resume",
+      "answeredAtUtc": "2026-10-23T04:29:38.519145+00:00"
+    },
+    {
+      "id": "253b5663bef64ef7810c5a9465c8f820",
+      "kind": "business",
+      "stage": "diagrams",
+      "question": "Have the environment administrator verify executable resolution inside the actual portal-launched worker, provide the verified full dot.exe path if PATH cannot be propagated, and then resume resto-scale-agent?",
+      "reason": "The latest affirmative answer is preserved, but this worker still reports shutil.which('dot') as null and Get-Command dot finds nothing. Diagram rendering cannot proceed. Coordinate the existing Graphviz installation and inherited worker environment outside this job; the scenario worker must not install or upgrade shared tools. An explicit existing executable path can be checked on resume without changing shared PATH. No design reconfirmation or cloud permission is requested.",
+      "choices": [
+        "Actual worker dot execution verified; resume",
+        "Stop"
+      ],
+      "acceptChoice": "Actual worker dot execution verified; resume",
+      "scope": null,
+      "status": "answered",
+      "createdAtUtc": "2026-10-23T04:30:40.893927+00:00",
+      "answer": "Actual worker dot execution verified; resume",
+      "message": "Actual worker dot execution verified; resume",
+      "answeredAtUtc": "2026-10-23T04:33:52.250166+00:00"
+    },
+    {
+      "id": "866e22564ea148f3a6673fff6521411b",
+      "kind": "business",
+      "stage": "diagrams",
+      "question": "Provide the existing full dot.exe path through the portal, or correct the PATH inherited by a newly launched worker and verify dot -V there, before resuming resto-scale-agent?",
+      "reason": "The actual worker still reports no executable path. Repeating the prior affirmative answer has not corrected its inherited environment. An administrator must coordinate the existing Graphviz installation outside this worker; shared tools must not be installed or upgraded by this job. A verified explicit executable path permits a targeted check without changing shared PATH. This does not request design reconfirmation or cloud authorization.",
+      "choices": [
+        "Verified executable path supplied or actual worker PATH corrected; resume",
+        "Stop"
+      ],
+      "acceptChoice": "Verified executable path supplied or actual worker PATH corrected; resume",
+      "scope": null,
+      "status": "answered",
+      "createdAtUtc": "2026-10-23T04:34:38.755856+00:00",
+      "answer": "Verified executable path supplied or actual worker PATH corrected; resume",
+      "message": "Verified executable path supplied or actual worker PATH corrected; resume",
+      "answeredAtUtc": "2026-10-23T04:44:41.887347+00:00"
+    },
+    {
+      "id": "2c7c33b5dbca449bab235bc543cc6fbf",
+      "kind": "business",
+      "stage": "local-validation",
+      "question": "Which exact Azure account, subscription ID, tenant ID, distinct azd environment, resource group rg-{environment}, and region should be proposed for deployment preparation? Supply these details in the portal response, or keep the reference local only. Target selection alone grants no Azure permission; a separate exact-scope preparation decision is required before any Azure query.",
+      "reason": "The confirmed local-only design deliberately deferred Azure targets. Local preparation has now produced compiled infrastructure/application and retained check evidence, but Azure policy, capacity, cost/what-if and real workload/agent validation cannot proceed without selected targets and separately recorded scope authorization. This is not another local tool/setup approval.",
+      "choices": [
+        "Provide exact Azure targets in the portal response",
+        "Keep the reference local only"
+      ],
+      "acceptChoice": null,
+      "scope": null,
+      "status": "superseded",
+      "createdAtUtc": "2026-10-23T15:27:25.901472+00:00"
+    },
+    {
+      "id": "a2f64f9405c341d28bf47336c6f14b53",
+      "kind": "deployment-preparation",
+      "stage": "deployment",
+      "question": "Allow read-only Azure preflight and what-if for these proposed targets?",
+      "reason": "Identity and local configuration resolved. No resource/capacity queries or cloud mutations performed.",
+      "choices": [
+        "Allow read-only preflight & what-if",
+        "Keep the reference local only"
+      ],
+      "acceptChoice": "Allow read-only preflight & what-if",
+      "scope": {
+        "account": "petender@microsoft.com",
+        "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+        "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+        "environment": "resto-scale-agent",
+        "resourceGroup": "rg-resto-scale-agent",
+        "region": "eastus2"
+      },
+      "status": "superseded",
+      "createdAtUtc": "2026-10-23T15:38:57.133260+00:00"
+    },
+    {
+      "id": "7d18da3b02774120a79615b426323ea6",
+      "kind": "deployment-preparation",
+      "stage": "deployment",
+      "question": "Allow read-only Azure preflight and what-if for these proposed targets?",
+      "reason": "Identity and local configuration resolved. No resource/capacity queries or cloud mutations performed.",
+      "choices": [
+        "Allow read-only preflight & what-if",
+        "Keep the reference local only"
+      ],
+      "acceptChoice": "Allow read-only preflight & what-if",
+      "scope": {
+        "account": "petender@microsoft.com",
+        "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+        "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+        "environment": "resto-scale-agent",
+        "resourceGroup": "rg-resto-scale-agent",
+        "region": "eastus2"
+      },
+      "status": "answered",
+      "createdAtUtc": "2026-10-23T15:40:31.375145+00:00",
+      "answer": "Allow read-only preflight & what-if",
+      "message": "Allow read-only preflight & what-if",
+      "answeredAtUtc": "2026-10-23T15:40:41.870777+00:00"
+    },
+    {
+      "id": "cd856cdaeeb94dd6b6b4071e49734056",
+      "kind": "deployment",
+      "stage": "deployment",
+      "question": "Authorize creation of only rg-resto-scale-agent and the reviewed infra\\main.bicep shared reference resources in East US 2, using petender@microsoft.com / subscription efd64343-6ef4-4926-951f-d3229f38bd76 / tenant 16b3c013-d300-468d-ac64-7eda0820b6d3 / distinct environment resto-scale-agent? Review 06-deployment-summary.md: actual what-if has 33 creates, zero modifies/deletes and 13 unresolved new-identity-dependent grants; nested provider/SKU/runtime checks are incomplete. Shared infrastructure planning is $745-$1,150/month before app/model use; full reference planning is $900-$1,650/month with stated assumptions, not a cap. This permission excludes Entra app registration, image publication, initializer/data writes, application rollout, event deployment and suitability approval. Stop on new ownership, capacity, provider or policy failures rather than bypassing them; runtime needs an actual-output preview and separate consent.",
+      "reason": "Read-only preparation consent does not permit creating the absent resource group or deploying resources. The actual preview, model capacity metadata, provider/RBAC/policy observations, costs and unresolved checks are retained. A narrow shared-infrastructure step provides real outputs for the later runtime preview without fabricating endpoints, versions or image digests. The user must explicitly review and accept or revise this scope.",
+      "choices": [
+        "Authorize shared infrastructure only",
+        "Keep the reference local only",
+        "Revise deployment preparation"
+      ],
+      "acceptChoice": "Authorize shared infrastructure only",
+      "scope": {
+        "account": "petender@microsoft.com",
+        "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+        "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+        "resourceGroup": "rg-resto-scale-agent",
+        "environment": "resto-scale-agent",
+        "region": "eastus2",
+        "whatIfEvidence": "06-deployment-summary.md; evidence\\what-if-subscription-c3e1750f.json: Succeeded, 33 creates, 0 modifies, 0 deletes, 13 unsupported role assignments dependent on new identity outputs. Shared infra\\main.bicep only; no runtime preview or rollout authorized.",
+        "estimatedCost": "USD retail planning: shared infrastructure about $745-$1,150/month before application/model usage; full reference about $900-$1,650/month at nine warm replicas and 200 turns/day, including $50.40/month model example. Burst/extra telemetry/storage/taxes may add costs; not a quote or cap. Details and raw regional rates in 06-deployment-summary.md and evidence\\prices-*-c3e1750f.json."
+      },
+      "status": "answered",
+      "createdAtUtc": "2026-10-23T15:48:47.902699+00:00",
+      "answer": "Authorize shared infrastructure only",
+      "message": "Authorize shared infrastructure only",
+      "answeredAtUtc": "2026-10-23T18:51:27.226290+00:00"
+    },
+    {
+      "id": "b63cc2b2cba54973887c43ceccf26d78",
+      "kind": "business",
+      "stage": "deployment",
+      "question": "How should the failed reference deployment be recovered? Cosmos could not allocate the confirmed zone-redundant account in East US 2, and Basic ACR rejected a virtual network rule. The previously partially created resource group is now absent. Choose to retain the reliability design pending a regional capacity/access request, revise deployment preparation to evaluate a supported alternative and registry correction, or keep the reference local only.",
+      "reason": "The prior shared-infrastructure authorization explicitly requires stopping on new capacity/provider failures. Free-text continuation is not authorization to recreate the absent target, weaken zone redundancy, change region/SKU, or bypass the registry provider error. Azure directs Cosmos regional access requests to https://aka.ms/cosmosdbquota. Revised designs/targets require their applicable design review, fresh scoped what-if/cost evidence and deployment consent; no recovery choice itself claims capacity or deployment success.",
+      "choices": [
+        "Retain zone redundancy; arrange East US 2 capacity access before retry preparation",
+        "Revise deployment preparation for a supported alternative and registry correction",
+        "Keep the reference local only"
+      ],
+      "acceptChoice": null,
+      "scope": null,
+      "status": "superseded",
+      "createdAtUtc": "2026-10-23T21:41:06.662983+00:00",
+      "review": {
+        "disposition": "technical",
+        "reason": "The question bundles provider-error diagnosis and recovery preparation into a business questionnaire. Intake and the confirmed architecture already select reliability, zone redundancy, East US 2 and Basic ACR with authenticated public access. No new business requirement requires choosing a weaker design or abandoning cloud deployment. Preserve those choices while implementation owns diagnosis. The historical Cosmos capacity failure is real but is not a missing local prerequisite or host denial; the ACR SKU/network-rule mismatch is an implementation/provider compatibility issue. Neither permits a silent retry, security change or additional cloud authorization.",
+        "evidence": [
+          "Canonical request: Hospitality & Travel, businessUnits [generic], five floors and 250 seats; reliability and performance-efficiency; foundry, cosmos-db, container-apps, key-vault, managed-identity and service-bus.",
+          "Answered design decision 6e1e2f6962e740b99477b559807feb5f: Confirm design for local implementation; retained synthetic settlement, public TLS/Entra service endpoints and the selected reliability architecture. 02-architecture-assessment.md specifies East US 2, zone-redundant Cosmos and Container Apps, and Basic ACR with admin access disabled.",
+          "All saved decisions and history read at revision 147: preparation decision 7d18da3b02774120a79615b426323ea6 authorizes exact-scope read-only preflight/what-if; deployment decision cd856cdaeeb94dd6b6b4071e49734056 authorizes shared infrastructure only and expressly stops on capacity/provider failures. No answered recovery decision, local-only choice, changed design or suitability approval exists. The latest free-text resume grants no additional authorization.",
+          "06-deployment-summary.md and evidence\\deployment-reconciliation-24079be7.json retain historical Cosmos ServiceUnavailable for East US 2 zone-redundant allocation, ACR NetworkRuleNotSupported for Basic SKU, and subsequent ResourceGroupNotFound/group-exists false. These are saved observations, not new cloud checks or current capacity proof.",
+          "infra\\main.bicep uses AVM registry 0.13.1 and publicNetworkAccess Enabled; the confirmed Basic registry/public-authenticated design does not require adding virtual network restrictions or upgrading the SKU.",
+          "python scripts\\check_prerequisites.py --for-project --record --stage requirements --json: ready true, all listed checks passed, blockedStages empty; owner run 768df09c3fbc4206a7afd5eafd8c1e1f, checkedAtUtc 2026-10-23T22:10:08.610673+00:00. No observed prerequisite failure or execution-host denial supports an external-blocker classification."
+        ],
+        "reviewedAtUtc": "2026-10-23T22:10:53.390446+00:00",
+        "resolution": "Implementation owns a recovery plan, not a user selection among these technical routes. In the next authorized operation, diagnose the Basic ACR/AVM network-rule mismatch locally and prepare a correction preserving confirmed public TLS/Entra access, disabled admin access, managed identities and SKU; retain Cosmos zone redundancy and East US 2. Preserve historical failure and absent-group evidence without claiming current capacity. Route any capacity/access request, changed target, directory write, resource recreation or retry through the existing scoped authorization path; the prior stop-on-provider/capacity-failure deployment grant is not permission to retry. Reuse saved deploymentContext and applicable exact-scope preparation consent only for operations it actually covers; refresh independent what-if/cost evidence before seeking any required renewed deployment consent. If evidence later establishes that a region, reliability, service, security or material cost change is necessary, present that specific trade-off through its design/scoped consent checkpoint then, rather than choosing it now. Do not implement, make cloud calls, select an original answer, mark a stage complete or approve suitability during this classification job."
+      }
+    }
+  ],
+  "history": [
+    {
+      "message": "Confirm design for local implementation",
+      "choice": "Confirm design for local implementation",
+      "revise": false,
+      "recordedAtUtc": "2026-10-23T00:14:33.786719+00:00"
+    },
+    {
+      "message": "Permit local implementation tools and resume",
+      "choice": "Permit local implementation tools and resume",
+      "revise": false,
+      "recordedAtUtc": "2026-10-23T00:32:15.142542+00:00"
+    },
+    {
+      "message": "Graphviz is available to portal workers; resume",
+      "choice": "Graphviz is available to portal workers; resume",
+      "revise": false,
+      "recordedAtUtc": "2026-10-23T01:59:01.088690+00:00"
+    },
+    {
+      "message": "Worker PATH and local prerequisite permission corrected; resume",
+      "choice": "Worker PATH and local prerequisite permission corrected; resume",
+      "revise": false,
+      "recordedAtUtc": "2026-10-23T04:12:02.200913+00:00"
+    },
+    {
+      "message": "Verified dot.exe resolution and prerequisite execution in a fresh worker; resume",
+      "choice": "Verified dot.exe resolution and prerequisite execution in a fresh worker; resume",
+      "revise": false,
+      "recordedAtUtc": "2026-10-23T04:13:35.842830+00:00"
+    },
+    {
+      "message": "Actual portal worker dot resolution and execution permission verified; resume",
+      "choice": "Actual portal worker dot resolution and execution permission verified; resume",
+      "revise": false,
+      "recordedAtUtc": "2026-10-23T04:26:07.664230+00:00"
+    },
+    {
+      "message": "Actual worker prerequisites corrected and verified; resume",
+      "choice": "Actual worker prerequisites corrected and verified; resume",
+      "revise": false,
+      "recordedAtUtc": "2026-10-23T04:28:29.576615+00:00"
+    },
+    {
+      "message": "Actual worker resolves dot.exe to an executable path; resume",
+      "choice": "Actual worker resolves dot.exe to an executable path; resume",
+      "revise": false,
+      "recordedAtUtc": "2026-10-23T04:29:38.519160+00:00"
+    },
+    {
+      "message": "Actual worker dot execution verified; resume",
+      "choice": "Actual worker dot execution verified; resume",
+      "revise": false,
+      "recordedAtUtc": "2026-10-23T04:33:52.250211+00:00"
+    },
+    {
+      "message": "Verified executable path supplied or actual worker PATH corrected; resume",
+      "choice": "Verified executable path supplied or actual worker PATH corrected; resume",
+      "revise": false,
+      "recordedAtUtc": "2026-10-23T04:44:41.887378+00:00"
+    },
+    {
+      "message": "User authorized local execution for this scenario; cloud and publication excluded.",
+      "recordedAtUtc": "2026-10-23T04:44:42.158578+00:00"
+    },
+    {
+      "message": "Setup verified in the worker.",
+      "blockerId": "ddf4a2b4293c4fed9a02d7dc74d536aa",
+      "evidence": [
+        "Command: python -c \"import shutil,subprocess; dot=shutil.which('dot'); print('dot:',dot); assert dot is not None, 'Graphviz dot is not on the worker PATH'; subprocess.run([dot,'-V'],check=True)\"",
+        "Result: dot: C:\\Program Files\\Graphviz\\bin\\dot.EXE; dot - graphviz version 16.1.0 (20260904.0139); exit code 0. Python resolved the executable and the executable itself returned its version.",
+        "No tool installation, PATH change, host-permission change, Azure operation or new approval was performed."
+      ],
+      "recordedAtUtc": "2026-10-23T05:03:00.712978+00:00"
+    },
+    {
+      "message": "Setup verified in the worker.",
+      "blockerId": "37e8d0b760bf4a808bc50b3f97fb02b4",
+      "evidence": [
+        "Exact command: python -c \"import sys,importlib.metadata; import diagrams; from PIL import Image; from diagrams.azure.compute import ContainerApps; from diagrams.azure.database import CosmosDb; from diagrams.azure.integration import ServiceBus; from diagrams.azure.security import KeyVaults; print('python:',sys.executable); print('diagrams:',importlib.metadata.version('diagrams')); print('Pillow:',importlib.metadata.version('Pillow')); print('Azure diagram providers: imported')\"",
+        "Actual output: python: C:\\HackBuilder\\.venv\\Scripts\\python.exe; diagrams: 0.25.1; Pillow: 13.0.0; Azure diagram providers: imported. Exit code 0; all recorded imports and version checks were reached.",
+        "No installation, PATH modification, alternate interpreter, permission broadening or Azure operation was performed."
+      ],
+      "recordedAtUtc": "2026-10-23T05:19:40.852173+00:00"
+    },
+    {
+      "message": "Setup verified in the worker.",
+      "blockerId": "f899718570e34acb8e893b56ff9911a8",
+      "evidence": [
+        "Exact command: docker version. Exit code 0. Client: Version 29.8.2, API 1.56, windows/arm64, Context desktop-linux.",
+        "Actual Server response: Docker Desktop 4.94.0 (241994); Engine Version 29.8.2, API 1.56 (minimum 1.40), linux/arm64, Experimental false. containerd v2.3.6; runc 1.5.1; docker-init 0.19.0.",
+        "python scripts\\check_prerequisites.py --for-project --record --stage requirements --json: recorded owner-bound audit for run f18d6893f2b04e089b70318471772865 at 2026-10-23T06:02:42.396728+00:00; blockedStages empty for requirements, architecture, diagrams, bicep, application, local-validation and deployment.",
+        "No tools installed or upgraded; no Docker startup, PATH or context change, host-permission bypass, Azure query or deployment was performed."
+      ],
+      "recordedAtUtc": "2026-10-23T06:03:15.799124+00:00"
+    },
+    {
+      "message": "Setup verified in the worker.",
+      "blockerId": "ed6ba41327544fb690084af870ad01af",
+      "evidence": [
+        "Read PREREQUISITES.md and C:\\HackBuilder\\NuGet.Config: configuration clears inherited sources and enables only https://packagefeedproxy.microsoft.io/nuget/v3/index.json.",
+        "python scripts\\check_prerequisites.py --for-project --record --stage requirements --json: exit 0; checkedAtUtc 2026-10-23T06:37:39.815449+00:00; runId 3189e1ff5923450095416c3d8c096431; nuget-https ok:true; detail: https://packagefeedproxy.microsoft.io/nuget/v3/index.json; NuGet metadata HTTPS request and response validation passed. Probe covers Azure.Identity metadata only; configured feeds and actual restore/build still need verification.",
+        "Set-Location C:\\azd-projects\\resto-scale-agent; dotnet nuget list source: exit 0; Registered Sources: 1. azure-default [Enabled], https://packagefeedproxy.microsoft.io/nuget/v3/index.json. No direct NuGet.org source is registered.",
+        "The user explicitly replaced the obsolete saved direct-endpoint verification with the approved proxy audit. The obsolete command was not executed. Future restores will explicitly use C:\\HackBuilder\\NuGet.Config."
+      ],
+      "recordedAtUtc": "2026-10-23T06:38:13.371494+00:00"
+    },
+    {
+      "message": "Setup verified in the worker.",
+      "blockerId": "ccddecfcd8934d62968b76e04d6eb276",
+      "evidence": [
+        "python scripts\\check_prerequisites.py --for-project --record --stage requirements --json: exit 0; ready:true; checkedAtUtc 2026-10-23T06:57:34.414214+00:00; owner runId 568a2a2800434b88a4b673c97d1adf2d; blockedStages all empty.",
+        "Exact recorded verification: Get-Command k6 -ErrorAction SilentlyContinue | Select-Object Source; Test-Path \"$env:LOCALAPPDATA\\ms-playwright\"; Get-ChildItem C:\\azd-projects\\resto-scale-agent\\.packages\\azure.ai.extensions.openai\\2.0.0\\lib; Get-ChildItem C:\\azd-projects\\resto-scale-agent\\.packages\\azure.ai.projects.agents\\2.0.0\\lib",
+        "Actual recorded command result: exit 0; k6 Source C:\\Program Files\\k6\\k6.exe; Playwright cache True. Directory listing objects were hidden by PowerShell's Source table formatting, so each recorded SDK directory check was repeated separately.",
+        "Get-ChildItem C:\\azd-projects\\resto-scale-agent\\.packages\\azure.ai.extensions.openai\\2.0.0\\lib: exit 0; net10.0, net8.0, netstandard2.0 directories listed.",
+        "Get-ChildItem C:\\azd-projects\\resto-scale-agent\\.packages\\azure.ai.projects.agents\\2.0.0\\lib: exit 0; net10.0, net8.0, netstandard2.0 directories listed.",
+        "No installation, PATH change, permission broadening, restriction bypass or Azure operation performed."
+      ],
+      "recordedAtUtc": "2026-10-23T06:58:05.107250+00:00"
+    },
+    {
+      "message": "Setup verified in the worker.",
+      "blockerId": "13b185c049534370a1f6cdc802af4fdd",
+      "evidence": [
+        "python scripts\\check_container_runtime.py --image resto-scale-agent-local:568a2a2800434b88a4b673c97d1adf2d --marker 'Fourth Coffee' --timeout 90: ok=true; Image inspected: linux/amd64; user=1654; GET /health/live HTTP 200 on loopback; GET / HTTP 200 with marker Fourth Coffee; cleanupPassed=true; error=null; exit 0.",
+        "python scripts\\check_prerequisites.py --for-project --record --stage requirements --json: ready=true; all planned dependency checks passed; blockedStages empty; owner run cc61b3835f4244bfa28667f5b641fbe9."
+      ],
+      "recordedAtUtc": "2026-10-23T15:01:02.683514+00:00"
+    },
+    {
+      "message": "User requested identity discovery and reviewed a proposed Azure target context; no cloud consent granted.",
+      "recordedAtUtc": "2026-10-23T15:38:57.133291+00:00"
+    },
+    {
+      "message": "User requested identity discovery and reviewed a proposed Azure target context; no cloud consent granted.",
+      "recordedAtUtc": "2026-10-23T15:40:31.375171+00:00"
+    },
+    {
+      "message": "Allow read-only preflight & what-if",
+      "choice": "Allow read-only preflight & what-if",
+      "revise": false,
+      "recordedAtUtc": "2026-10-23T15:40:41.870819+00:00"
+    },
+    {
+      "message": "Authorize shared infrastructure only",
+      "choice": "Authorize shared infrastructure only",
+      "revise": false,
+      "recordedAtUtc": "2026-10-23T18:51:27.226327+00:00"
+    },
+    {
+      "message": "Resume the next incomplete step using persisted decisions and evidence.",
+      "choice": null,
+      "revise": false,
+      "recordedAtUtc": "2026-10-23T21:38:29.812304+00:00"
+    },
+    {
+      "action": "backend-question-review",
+      "decisionId": "b63cc2b2cba54973887c43ceccf26d78",
+      "disposition": "technical",
+      "reason": "The question bundles provider-error diagnosis and recovery preparation into a business questionnaire. Intake and the confirmed architecture already select reliability, zone redundancy, East US 2 and Basic ACR with authenticated public access. No new business requirement requires choosing a weaker design or abandoning cloud deployment. Preserve those choices while implementation owns diagnosis. The historical Cosmos capacity failure is real but is not a missing local prerequisite or host denial; the ACR SKU/network-rule mismatch is an implementation/provider compatibility issue. Neither permits a silent retry, security change or additional cloud authorization.",
+      "evidence": [
+        "Canonical request: Hospitality & Travel, businessUnits [generic], five floors and 250 seats; reliability and performance-efficiency; foundry, cosmos-db, container-apps, key-vault, managed-identity and service-bus.",
+        "Answered design decision 6e1e2f6962e740b99477b559807feb5f: Confirm design for local implementation; retained synthetic settlement, public TLS/Entra service endpoints and the selected reliability architecture. 02-architecture-assessment.md specifies East US 2, zone-redundant Cosmos and Container Apps, and Basic ACR with admin access disabled.",
+        "All saved decisions and history read at revision 147: preparation decision 7d18da3b02774120a79615b426323ea6 authorizes exact-scope read-only preflight/what-if; deployment decision cd856cdaeeb94dd6b6b4071e49734056 authorizes shared infrastructure only and expressly stops on capacity/provider failures. No answered recovery decision, local-only choice, changed design or suitability approval exists. The latest free-text resume grants no additional authorization.",
+        "06-deployment-summary.md and evidence\\deployment-reconciliation-24079be7.json retain historical Cosmos ServiceUnavailable for East US 2 zone-redundant allocation, ACR NetworkRuleNotSupported for Basic SKU, and subsequent ResourceGroupNotFound/group-exists false. These are saved observations, not new cloud checks or current capacity proof.",
+        "infra\\main.bicep uses AVM registry 0.13.1 and publicNetworkAccess Enabled; the confirmed Basic registry/public-authenticated design does not require adding virtual network restrictions or upgrading the SKU.",
+        "python scripts\\check_prerequisites.py --for-project --record --stage requirements --json: ready true, all listed checks passed, blockedStages empty; owner run 768df09c3fbc4206a7afd5eafd8c1e1f, checkedAtUtc 2026-10-23T22:10:08.610673+00:00. No observed prerequisite failure or execution-host denial supports an external-blocker classification."
+      ],
+      "reviewedAtUtc": "2026-10-23T22:10:53.390446+00:00",
+      "resolution": "Implementation owns a recovery plan, not a user selection among these technical routes. In the next authorized operation, diagnose the Basic ACR/AVM network-rule mismatch locally and prepare a correction preserving confirmed public TLS/Entra access, disabled admin access, managed identities and SKU; retain Cosmos zone redundancy and East US 2. Preserve historical failure and absent-group evidence without claiming current capacity. Route any capacity/access request, changed target, directory write, resource recreation or retry through the existing scoped authorization path; the prior stop-on-provider/capacity-failure deployment grant is not permission to retry. Reuse saved deploymentContext and applicable exact-scope preparation consent only for operations it actually covers; refresh independent what-if/cost evidence before seeking any required renewed deployment consent. If evidence later establishes that a region, reliability, service, security or material cost change is necessary, present that specific trade-off through its design/scoped consent checkpoint then, rather than choosing it now. Do not implement, make cloud calls, select an original answer, mark a stage complete or approve suitability during this classification job.",
+      "authorization": "Classification grants no execution, cloud, directory or suitability permission."
+    },
+    {
+      "message": "Resume saved work after backend question handling and atomic status persistence fix. Reuse artifacts and confirmed decisions; follow only the next assigned operation. No new authorization granted.",
+      "choice": null,
+      "revise": false,
+      "recordedAtUtc": "2026-10-23T22:11:55.115717+00:00"
+    },
+    {
+      "message": "Resume the next backend-owned operation with saved artifacts, decisions and scopes. Backend question classification grants no permissions. Cloud-stage technical recovery refreshes preparation under existing read-only scope and needs renewed exact-target consent before reusing an older deployment grant. Do not retry a stopped deployment based only on question classification.",
+      "choice": null,
+      "revise": false,
+      "recordedAtUtc": "2026-10-23T22:15:27.585593+00:00"
+    }
+  ],
+  "authorizations": [
+    {
+      "kind": "deployment-preparation",
+      "scope": {
+        "account": "petender@microsoft.com",
+        "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+        "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+        "environment": "resto-scale-agent",
+        "resourceGroup": "rg-resto-scale-agent",
+        "region": "eastus2"
+      },
+      "decisionId": "7d18da3b02774120a79615b426323ea6",
+      "message": "Allow read-only preflight & what-if",
+      "recordedAtUtc": "2026-10-23T15:40:41.870811+00:00"
+    },
+    {
+      "kind": "deployment",
+      "scope": {
+        "account": "petender@microsoft.com",
+        "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+        "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+        "resourceGroup": "rg-resto-scale-agent",
+        "environment": "resto-scale-agent",
+        "region": "eastus2",
+        "whatIfEvidence": "06-deployment-summary.md; evidence\\what-if-subscription-c3e1750f.json: Succeeded, 33 creates, 0 modifies, 0 deletes, 13 unsupported role assignments dependent on new identity outputs. Shared infra\\main.bicep only; no runtime preview or rollout authorized.",
+        "estimatedCost": "USD retail planning: shared infrastructure about $745-$1,150/month before application/model usage; full reference about $900-$1,650/month at nine warm replicas and 200 turns/day, including $50.40/month model example. Burst/extra telemetry/storage/taxes may add costs; not a quote or cap. Details and raw regional rates in 06-deployment-summary.md and evidence\\prices-*-c3e1750f.json."
+      },
+      "decisionId": "cd856cdaeeb94dd6b6b4071e49734056",
+      "message": "Authorize shared infrastructure only",
+      "recordedAtUtc": "2026-10-23T18:51:27.226322+00:00"
+    }
+  ],
+  "designConfirmed": true,
+  "status": "running",
+  "writer": "19f3d63e3f07411aa4bb67297ba9d6cc",
+  "latestRunId": "19f3d63e3f07411aa4bb67297ba9d6cc",
+  "updatedAtUtc": "2026-10-23T22:16:51.663466+00:00",
+  "localToolConsent": {
+    "scope": "scenario-local-execution",
+    "grantedAtUtc": "2026-10-23T04:44:42.158554+00:00"
+  },
+  "setupBlocker": null,
+  "preflightRequired": true,
+  "deploymentContext": {
+    "scope": {
+      "account": "petender@microsoft.com",
+      "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+      "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+      "environment": "resto-scale-agent",
+      "resourceGroup": "rg-resto-scale-agent",
+      "region": "eastus2"
+    },
+    "sources": {
+      "account": "Current Azure CLI identity; token metadata checked",
+      "subscriptionId": "Current Azure CLI identity; token metadata checked",
+      "tenantId": "Current Azure CLI identity; token metadata checked",
+      "environment": "Previously saved scenario target",
+      "resourceGroup": "Previously saved scenario target",
+      "region": "Previously saved scenario target"
+    },
+    "checkedAtUtc": "2026-10-23T15:40:31.373061+00:00",
+    "authentication": {
+      "azureCli": "Signed in; usable token metadata verified (token never retained)",
+      "azd": "Signed in as petender@microsoft.com",
+      "compatibility": "Account names match; azd target-tenant access still requires authorized preflight"
+    },
+    "conflicts": [],
+    "notChecked": [
+      "RBAC",
+      "provider registration",
+      "policy",
+      "regional SKU/model quota and capacity",
+      "what-if",
+      "cost"
+    ]
+  },
+  "backendReadiness": {
+    "schemaVersion": 1,
+    "ready": true,
+    "pythonExecutable": "C:\\HackBuilder\\.venv\\Scripts\\python.EXE",
+    "checks": [
+      {
+        "id": "python",
+        "name": "Python 3.10+",
+        "ok": true,
+        "detail": "C:\\HackBuilder\\.venv\\Scripts\\python.EXE\n3.13.16",
+        "winget": "Python.Python.3.13",
+        "state": "ready",
+        "fix": ""
+      },
+      {
+        "id": "venv",
+        "name": "Repository Python environment",
+        "ok": true,
+        "detail": "Expected C:\\HackBuilder\\.venv; current interpreter prefix is C:\\HackBuilder\\.venv.",
+        "winget": null,
+        "state": "ready",
+        "fix": ""
+      },
+      {
+        "id": "python-package:diagrams",
+        "name": "diagrams",
+        "ok": true,
+        "detail": "Installed 0.25.1; requires >= 0.23.4.",
+        "winget": null,
+        "state": "ready",
+        "fix": ""
+      },
+      {
+        "id": "python-package:matplotlib",
+        "name": "matplotlib",
+        "ok": true,
+        "detail": "Installed 3.11.2; requires >= 3.8.",
+        "winget": null,
+        "state": "ready",
+        "fix": ""
+      },
+      {
+        "id": "python-package:pillow",
+        "name": "pillow",
+        "ok": true,
+        "detail": "Installed 13.0.0; requires >= 10.0.",
+        "winget": null,
+        "state": "ready",
+        "fix": ""
+      },
+      {
+        "id": "python-package:checkov",
+        "name": "checkov",
+        "ok": true,
+        "detail": "Installed 3.3.29; requires >= 3.0.",
+        "winget": null,
+        "state": "ready",
+        "fix": ""
+      },
+      {
+        "id": "python-package:playwright",
+        "name": "playwright",
+        "ok": true,
+        "detail": "Installed 1.64.0; requires >= 1.55.",
+        "winget": null,
+        "state": "ready",
+        "fix": ""
+      },
+      {
+        "id": "pip-health",
+        "name": "Python dependency consistency",
+        "ok": true,
+        "detail": "No broken requirements found.",
+        "winget": null,
+        "state": "ready",
+        "fix": ""
+      },
+      {
+        "id": "git",
+        "name": "Git",
+        "ok": true,
+        "detail": "C:\\Program Files\\Git\\cmd\\git.EXE\ngit version 2.55.0.windows.5",
+        "winget": "Git.Git",
+        "state": "ready",
+        "fix": "",
+        "installed": true
+      },
+      {
+        "id": "copilot",
+        "name": "GitHub Copilot CLI",
+        "ok": true,
+        "detail": "C:\\Users\\petender\\AppData\\Local\\Microsoft\\WinGet\\Links\\copilot.EXE\nGitHub Copilot CLI 1.0.103.\nRun 'copilot update' to check for updates.",
+        "winget": "GitHub.Copilot",
+        "state": "ready",
+        "fix": "",
+        "installed": true
+      },
+      {
+        "id": "powershell",
+        "name": "PowerShell 7+",
+        "ok": true,
+        "detail": "C:\\Users\\petender\\AppData\\Local\\Microsoft\\WindowsApps\\Microsoft.PowerShell_8wekyb3d8bbwe\\pwsh.EXE\nPowerShell 7.6.7",
+        "winget": "Microsoft.PowerShell",
+        "state": "ready",
+        "fix": "",
+        "installed": true
+      },
+      {
+        "id": "dotnet",
+        "name": ".NET 10 SDK",
+        "ok": true,
+        "detail": "C:\\Program Files\\dotnet\\dotnet.EXE\n10.0.402 [C:\\Program Files\\dotnet\\sdk]",
+        "winget": "Microsoft.DotNet.SDK.10",
+        "state": "ready",
+        "fix": "",
+        "installed": true
+      },
+      {
+        "id": "graphviz",
+        "name": "Graphviz dot",
+        "ok": true,
+        "detail": "C:\\Program Files\\Graphviz\\bin\\dot.EXE\ndot - graphviz version 16.1.0 (20260904.0139)",
+        "winget": "Graphviz.Graphviz",
+        "state": "ready",
+        "fix": "",
+        "installed": true
+      },
+      {
+        "id": "azure-cli",
+        "name": "Azure CLI",
+        "ok": true,
+        "detail": "C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\nazure-cli                         2.91.0\n\ncore                              2.91.0\ntelemetry                          1.1.0\n\nDependencies:\nmsal                              1.39.0\nazure-mgmt-resource               24.0.0\n\nPython location 'C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\python.exe'\nConfig directory 'C:\\Users\\petender\\.azure'\nExtensions directory 'C:\\Users\\petender\\.azure\\cliextensions'\n\nPython (Windows) 3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]\n\nLegal docs and information: aka.ms/AzureCliLegal\n\n\nYour CLI is up-to-date.",
+        "winget": "Microsoft.AzureCLI",
+        "state": "ready",
+        "fix": "",
+        "installed": true
+      },
+      {
+        "id": "azd",
+        "name": "Azure Developer CLI",
+        "ok": true,
+        "detail": "C:\\Users\\petender\\AppData\\Local\\Programs\\Azure Dev CLI\\azd.EXE\nazd version 1.35.1 (commit 0651d77b568ad4914cac11fcdb7fe503d93bad10) (stable)\nUpdate available: 1.35.1 -> 1.37.1 (https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_1.37.1)\nTo update, run `winget upgrade Microsoft.Azd`",
+        "winget": "Microsoft.Azd",
+        "state": "ready",
+        "fix": "",
+        "installed": true
+      },
+      {
+        "id": "bicep",
+        "name": "Azure CLI Bicep component",
+        "ok": true,
+        "detail": "C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\nBicep CLI version 0.48.1 (cec7951cf6)",
+        "winget": null,
+        "state": "ready",
+        "fix": "",
+        "installed": true
+      },
+      {
+        "id": "docker",
+        "name": "Docker CLI and running engine",
+        "ok": true,
+        "detail": "C:\\Users\\petender\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.EXE\n29.8.2 linux",
+        "winget": "Docker.DockerDesktop",
+        "state": "ready",
+        "fix": "",
+        "installed": true
+      },
+      {
+        "id": "nuget-https",
+        "name": "NuGet package metadata HTTPS/TLS",
+        "ok": true,
+        "detail": "https://packagefeedproxy.microsoft.io/nuget/v3/index.json\nNuGet metadata HTTPS request and response validation passed.\nProbe covers Azure.Identity metadata only; configured feeds and actual restore/build still need verification.",
+        "winget": null,
+        "state": "ready",
+        "fix": ""
+      },
+      {
+        "id": "diagram-render",
+        "name": "Architecture PNG rendering smoke test",
+        "ok": true,
+        "detail": "Python diagrams and Graphviz successfully rendered and verified a PNG.",
+        "winget": null,
+        "state": "ready",
+        "fix": ""
+      },
+      {
+        "id": "k6",
+        "name": "k6 load-test runner",
+        "ok": true,
+        "detail": "C:\\Program Files\\k6\\k6.EXE\nk6.EXE v2.2.0 (commit/00a9a1b7f5, go1.26.5, windows/amd64)",
+        "winget": "GrafanaLabs.k6",
+        "state": "ready",
+        "fix": "",
+        "installed": true
+      },
+      {
+        "id": "chromium-runtime",
+        "name": "Playwright actual Chromium launch",
+        "ok": true,
+        "detail": "Actual headless Chromium launch and page assertions passed.\n",
+        "winget": null,
+        "state": "ready",
+        "fix": ""
+      },
+      {
+        "id": "dotnet-restore-build",
+        "name": ".NET package restore and compilation",
+        "ok": true,
+        "detail": "Temporary net10.0 project restored Azure.Identity and dependencies through repository NuGet.Config into a temporary package directory, then compiled --no-restore. Scenario packages still need their own build.",
+        "winget": null,
+        "state": "ready",
+        "fix": ""
+      },
+      {
+        "id": "worker-paths",
+        "name": "Scoped worker filesystem policy",
+        "ok": true,
+        "detail": "Approved roots resolved.",
+        "winget": null,
+        "state": "ready",
+        "fix": ""
+      },
+      {
+        "id": "azure-authentication",
+        "name": "Azure CLI and azd authentication",
+        "ok": true,
+        "detail": "petender@microsoft.com; subscription efd64343-6ef4-4926-951f-d3229f38bd76; tenant 16b3c013-d300-468d-ac64-7eda0820b6d3. Token metadata checked; no token retained.",
+        "winget": null,
+        "state": "ready",
+        "fix": ""
+      }
+    ],
+    "notChecked": [
+      "Organization tool approval rules (not overridden), design-specific packages not yet declared",
+      "Azure RBAC/policy/providers/SKU/model capacity; require exact-target preparation consent",
+      "Scenario actual restore/build, container/application/agent acceptance; verified by assigned jobs"
+    ],
+    "profileVersion": 1,
+    "checkedAtUtc": "2026-10-23T22:16:02.518903+00:00",
+    "services": [
+      "container-apps",
+      "cosmos-db",
+      "foundry",
+      "key-vault",
+      "managed-identity",
+      "service-bus"
+    ],
+    "buildMode": "local",
+    "localFunctions": false,
+    "loadTests": true,
+    "plan": {
+      "version": 1,
+      "services": [
+        "container-apps",
+        "cosmos-db",
+        "foundry",
+        "key-vault",
+        "managed-identity",
+        "service-bus"
+      ],
+      "buildMode": "local",
+      "localFunctions": false,
+      "loadTests": true,
+      "stages": {
+        "requirements": [],
+        "architecture": [],
+        "diagrams": [
+          "python",
+          "venv",
+          "python-package:diagrams",
+          "python-package:matplotlib",
+          "python-package:pillow",
+          "pip-health",
+          "graphviz",
+          "diagram-render"
+        ],
+        "bicep": [
+          "azure-cli",
+          "bicep",
+          "python-package:checkov",
+          "pip-health"
+        ],
+        "application": [
+          "dotnet"
+        ],
+        "local-validation": [
+          "git",
+          "powershell",
+          "dotnet",
+          "azure-cli",
+          "bicep",
+          "python-package:checkov",
+          "pip-health",
+          "nuget-https",
+          "docker",
+          "k6"
+        ],
+        "deployment": [
+          "azure-cli",
+          "azd",
+          "powershell",
+          "docker"
+        ]
+      },
+      "serviceNotes": [
+        {
+          "id": "container-apps",
+          "detail": "Default local image build requires the Docker CLI and a responsive Linux engine."
+        },
+        {
+          "id": "cosmos-db",
+          "detail": "Application SDK via NuGet restore; no local database emulator is required."
+        },
+        {
+          "id": "foundry",
+          "detail": "Foundry agents use the repository .NET application baseline."
+        },
+        {
+          "id": "key-vault",
+          "detail": "Application SDK via NuGet restore and managed identity at runtime."
+        },
+        {
+          "id": "managed-identity",
+          "detail": "Runtime identity/RBAC validation is separate from local tooling."
+        },
+        {
+          "id": "service-bus",
+          "detail": "Application SDK via NuGet restore; no local broker is required."
+        }
+      ],
+      "conditions": [
+        "Recheck after architecture changes services, build mode or local-host requirements.",
+        "Remote builds require an explicitly chosen design and separate Azure authorization; never a failure fallback.",
+        "Generated NuGet/package dependencies are verified by actual restore/build, not machine-wide SDK installation.",
+        "The NuGet HTTPS/TLS probe checks Azure.Identity metadata using PowerShell under the audit account; it does not prove every configured feed or package download.",
+        "Local emulators, browser automation and other new design-specific tools require explicit additional checks."
+      ]
+    },
+    "blockedStages": {
+      "requirements": [],
+      "architecture": [],
+      "diagrams": [],
+      "bicep": [],
+      "application": [],
+      "local-validation": [],
+      "deployment": []
+    },
+    "identity": {
+      "scope": {
+        "account": "petender@microsoft.com",
+        "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+        "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3"
+      },
+      "authentication": {
+        "azureCli": "Signed in; usable token metadata verified (token never retained)",
+        "azd": "Signed in as petender@microsoft.com",
+        "compatibility": "Account names match; azd target-tenant access still requires authorized preflight"
+      }
+    },
+    "source": "python-backend"
+  },
+  "deploymentPreparation": {
+    "status": "running",
+    "summary": "Continue saved recovery preparation only: correct the Basic ACR network-rule parameter, preserve East US 2 and zone redundancy, refresh read-only what-if/cost and retain capacity limitations. No deployment retry or resource mutation.",
+    "evidence": [
+      "Read all canonical decisions/history and scopes at revision 157; exact-scope read-only preparation authorization 7d18da3b02774120a79615b426323ea6 is retained.",
+      "Backend owner-bound readiness receipt 2026-10-23T22:16:02.518903+00:00: ready true, blockedStages empty; reused without another startup audit.",
+      "Retained AVM registry 0.13.1 source: default Deny plus publicNetworkAccess Enabled configures a Premium-only networkRuleSet even with no IP rules; explicit Allow with null IP rules omits it.",
+      "Historical Cosmos capacity failure and absent target group are not current capacity proof or permission to reuse the stopped deployment grant."
+    ],
+    "updatedAtUtc": "2026-10-23T22:16:51.663427+00:00",
+    "scope": {
+      "account": "petender@microsoft.com",
+      "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+      "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+      "environment": "resto-scale-agent",
+      "resourceGroup": "rg-resto-scale-agent",
+      "region": "eastus2"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" provider show --namespace Microsoft.CognitiveServices --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+  "cwd": "C:\\azd-projects\\equip-ai",
+  "startedAtUtc": "2026-10-24T22:38:30.395588+00:00",
+  "finishedAtUtc": "2026-10-24T22:38:32.697940+00:00",
+  "exitCode": 0,
+  "stdout": "provider-Microsoft.CognitiveServices.json",
+  "stderr": "provider-Microsoft.CognitiveServices.stderr.txt"
+}

@@ -1,0 +1,240 @@
+{
+  "checkedAtUtc": "2026-10-28T15:32:44.524193+00:00",
+  "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+  "resourceGroup": "rg-equip-ai",
+  "region": "centralus",
+  "bastionSubnet": "10.247.0.192/26",
+  "subnetOverlap": false,
+  "vnetExpansionRequired": false,
+  "providerRegistered": true,
+  "regionListed": true,
+  "incrementalMonthlyUsd": 216.08,
+  "combinedIllustrativeMonthlyUsd": 465.5,
+  "meters": [
+    {
+      "currencyCode": "USD",
+      "tierMinimumUnits": 0.0,
+      "retailPrice": 0.29,
+      "unitPrice": 0.29,
+      "armRegionName": "centralus",
+      "location": "US Central",
+      "effectiveStartDate": "2021-07-01T00:00:00Z",
+      "meterId": "4836590f-078a-5184-b23a-63ad1c7979cc",
+      "meterName": "Standard Gateway",
+      "productId": "DZH318Z0CB56",
+      "skuId": "DZH318Z0CB56/0051",
+      "productName": "Azure Bastion",
+      "skuName": "Standard",
+      "serviceName": "Azure Bastion",
+      "serviceId": "DZH3160859B7",
+      "serviceFamily": "Networking",
+      "unitOfMeasure": "1 Hour",
+      "type": "Consumption",
+      "isPrimaryMeterRegion": false,
+      "armSkuName": ""
+    },
+    {
+      "currencyCode": "USD",
+      "tierMinimumUnits": 0.0,
+      "retailPrice": 0.006,
+      "unitPrice": 0.006,
+      "armRegionName": "centralus",
+      "location": "US Central",
+      "effectiveStartDate": "2018-09-01T00:00:00Z",
+      "meterId": "b6b67fad-0336-4b8d-a2cd-969736dedf7a",
+      "meterName": "Standard Static IP Addresses",
+      "productId": "DZH318Z0BZ5X",
+      "skuId": "DZH318Z0BZ5X/0008",
+      "productName": "Public IP Prefix",
+      "skuName": "Standard",
+      "serviceName": "Virtual Network",
+      "serviceId": "DZH314HC0WV9",
+      "serviceFamily": "Networking",
+      "unitOfMeasure": "1 Hour",
+      "type": "Consumption",
+      "isPrimaryMeterRegion": false,
+      "armSkuName": ""
+    }
+  ],
+  "armValidation": "Succeeded",
+  "changes": [
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/microsoft.alertsmanagement/smartDetectorAlertRules/Failure Anomalies - appi-equip-equip-ai"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.CognitiveServices/accounts/ai-equip-equipai-kex72v"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.CognitiveServices/accounts/ai-equip-equipai-kex72v/projects/equipment-operations"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/RG-EQUIP-AI/providers/Microsoft.Compute/disks/vm-equip-management-equip-ai-disk-os-01"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Compute/virtualMachines/vm-equip-management-equip-ai"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Devices/IotHubs/iot-equip-equipai-kex72v"
+    },
+    {
+      "type": "Create",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Devices/IotHubs/iot-equip-equipai-kex72v/providers/Microsoft.Authorization/roleAssignments/c3773f9d-68e0-503c-ac84-ea2590d00893"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.EventGrid/systemTopics/stequipequipaikex72vu7-15aaf10d-4db6-413c-ac01-077e5f79b860"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Insights/components/appi-equip-equip-ai"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-equip-iot-equip-ai"
+    },
+    {
+      "type": "Create",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/bastionHosts/bas-equip-equip-ai"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/natGateways/nat-equip-management-equip-ai"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/networkInterfaces/nic-equip-management-equip-ai"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/networkInterfaces/pe-equip-blob-equip-ai.nic.c9695ead-e3e6-480a-bc99-ddbb2c281971"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/networkInterfaces/pe-equip-cleaner-equip-ai.nic.2f5c5ad2-005a-4ba3-be24-6731f631f8b9"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/networkInterfaces/pe-equip-foundry-equip-ai.nic.12a9c433-066a-41b4-b40a-db151ff925d3"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/networkSecurityGroups/nsg-equip-management-equip-ai"
+    },
+    {
+      "type": "Create",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/networkSecurityGroups/nsg-equip-management-equip-ai/securityRules/allow-bastion-rdp"
+    },
+    {
+      "type": "Modify",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/networkSecurityGroups/nsg-equip-management-equip-ai/securityRules/deny-all-inbound"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/networkSecurityGroups/vnet-equip-equip-ai-endpoints-nsg-centralus"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/networkSecurityGroups/vnet-equip-equip-ai-integration-nsg-centralus"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.azurewebsites.net"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.azurewebsites.net/virtualNetworkLinks/vnet-equip-equip-ai-vnetlink"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net/virtualNetworkLinks/vnet-equip-equip-ai-vnetlink"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.cognitiveservices.azure.com"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.cognitiveservices.azure.com/virtualNetworkLinks/vnet-equip-equip-ai-vnetlink"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.openai.azure.com"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.openai.azure.com/virtualNetworkLinks/vnet-equip-equip-ai-vnetlink"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.services.ai.azure.com"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.services.ai.azure.com/virtualNetworkLinks/vnet-equip-equip-ai-vnetlink"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateEndpoints/pe-equip-blob-equip-ai"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateEndpoints/pe-equip-cleaner-equip-ai"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateEndpoints/pe-equip-foundry-equip-ai"
+    },
+    {
+      "type": "Create",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/publicIPAddresses/pip-equip-bastion-equip-ai"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/publicIPAddresses/pip-equip-management-equip-ai"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/virtualNetworks/vnet-equip-equip-ai"
+    },
+    {
+      "type": "Create",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/virtualNetworks/vnet-equip-equip-ai/subnets/AzureBastionSubnet"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.OperationalInsights/workspaces/log-equip-equip-ai"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Storage/storageAccounts/stequipequipaikex72vu7"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Web/serverFarms/asp-equip-equip-ai"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Web/sites/app-equip-cleaner-equipai-kex72v"
+    },
+    {
+      "type": "Ignore",
+      "resource": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Web/sites/app-equip-web-equipai-kex72v"
+    }
+  ],
+  "deletions": [],
+  "unexpectedChanges": [],
+  "provisionedByThisCheck": false,
+  "template": "infra/human-access-repair.bicep",
+  "coreRedeploymentDeferred": "Full-source preview includes unrelated read-only/default property deltas; deploy only approved additions.",
+  "readinessIsNotAllocationGuarantee": true
+}

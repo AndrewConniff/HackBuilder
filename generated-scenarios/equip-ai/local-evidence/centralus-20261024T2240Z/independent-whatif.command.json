@@ -1,0 +1,9 @@
+{
+  "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" deployment sub what-if --name equip-ai-readonly-20261024T2240Z --location centralus --template-file C:\\azd-projects\\equip-ai\\local-evidence\\centralus-20261024T2240Z\\independent-preview.json --no-pretty-print --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+  "cwd": "C:\\azd-projects\\equip-ai",
+  "startedAtUtc": "2026-10-24T22:39:40.125837+00:00",
+  "finishedAtUtc": "2026-10-24T22:40:01.263977+00:00",
+  "exitCode": 0,
+  "stdout": "independent-whatif.json",
+  "stderr": "independent-whatif.stderr.txt"
+}

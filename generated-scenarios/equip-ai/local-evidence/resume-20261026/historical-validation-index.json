@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "evidenceType": "runtime-validation",
+  "status": "blocked",
+  "applicationUrl": "https://app-equip-web-equipai-kex72v.azurewebsites.net",
+  "checkedAtUtc": null,
+  "checks": {
+    "deployment": false,
+    "modelInference": false,
+    "agentInvocation": false,
+    "applicationChat": false,
+    "grounding": false,
+    "tools": false,
+    "negativeCase": false
+  },
+  "recordedAtUtc": "2026-10-25T00:26:58.877178+00:00",
+  "scope": "Same-target restoration approved by actual user reply yes on 2026-10-26. Fresh readiness/cost/what-if passed with disclosed nested warnings; azd is restoring the reference with local accounts. Complete runtime acceptance remains pending; no historical installation is counted as a current pass.",
+  "currentStateEvidence": "local-evidence/resume-20261026/current-state.json",
+  "currentResumeReview": "local-evidence/resume-20261026/deployment-review.md",
+  "historicalInstallationOnly": true,
+  "currentLocalInstallerTests": 29,
+  "localEvidence": "local-evidence/resume-20261024T2233Z/local-checks.json",
+  "localApplicationChecks": 49,
+  "localInstallerTests": 15,
+  "cloudOperationsPerformedThisSession": true,
+  "cloudOperationsReadOnlyExceptAuthorizedWhatIf": false,
+  "currentReadinessEvidence": "local-evidence/resume-20261026/readiness/restoration-summary.json",
+  "retainedFoundationReadinessEvidence": "local-evidence/centralus-20261024T2240Z/regional-readiness.json",
+  "readinessRecordedAtUtc": "2026-10-24T23:49:46+00:00",
+  "currentReview": "local-evidence/management-repair-20261024/deployment-review.md",
+  "currentAuthorization": "local-evidence/resume-20261026/user-approval.json",
+  "currentExecutionResult": "local-evidence/management-sku-substitution-20261024/substitution.json",
+  "currentVerifiedCost": "local-evidence/resume-20261026/readiness/restoration-summary.json",
+  "historicalReadinessEvidence": "00-region-availability.json",
+  "blockers": [
+    "Restoration and private publication are in progress; complete real runtime acceptance remains required."
+  ],
+  "historicalBlockers": [
+    "User interactive Microsoft sign-in is required for actual authenticated chat and cross-site denial testing.",
+    "IoT device registry returned 401002 Unauthorized access; existing operator roles lack device-registry data access. Temporary hub-scoped Registry Contributor permission needs approval before fixtures can be registered.",
+    "Full-source what-if executed with 14 nested expansion warnings; ARM validation and actual provisioning succeeded. Retained offline scan remains nonpassing, not relabeled."
+  ],
+  "unverifiedAcceptance": [
+    "modelInference",
+    "agentInvocation",
+    "applicationChat",
+    "groundingAndTools",
+    "iotIngress",
+    "crossSiteDenialAndStatewideRoleTransition"
+  ],
+  "suitabilityApproved": false,
+  "managementRepairEvidence": "local-evidence/management-repair-20261024/local-checks.json",
+  "managementRepairRuntimeExecuted": true,
+  "managementRepairProvisioningAttempted": true,
+  "managementReadinessPassed": true,
+  "managementPricingVerified": true,
+  "fullExactWhatIfExecuted": true,
+  "fullExactWhatIfCoverageComplete": false,
+  "observedInstallation": {
+    "deployment": "equip-ai-1792886351",
+    "agentName": "equipment-operations",
+    "agentVersion": "1",
+    "publishedApps": ["app-equip-web-equipai-kex72v", "app-equip-cleaner-equipai-kex72v"],
+    "privateDns": "passed during authenticated installation",
+    "installationReceipt": ".installation/equip-ai/private-installation.json",
+    "transport": "existing authenticated SCM data staging; SHA-256 verified; staged artifact deleted",
+    "pythonTestsPassed": 29
+  },
+  "nextAction": "Finish the approved guarded azd installation, run scripts/validate_live.py and real browser acceptance, and persist actual results before creating a suitability snapshot."
+}

@@ -1,0 +1,17 @@
+@page
+@model BankSupport.Web.Pages.LoginModel
+@{
+    ViewData["Title"] = "Sign in";
+}
+<h1>Adatum Corporation customer service</h1>
+<p class="eyebrow">Synthetic banking demonstration</p>
+<p>Sign in with your privately delivered customer or representative account.</p>
+<p role="alert">@Model.Error</p>
+<form method="post">
+    <label for="username">Username</label>
+    <input id="username" name="username" autocomplete="username" maxlength="40" required />
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" autocomplete="current-password" maxlength="256" required />
+    <button type="submit">Sign in</button>
+</form>
+<p>No real accounts, personal data or money movement. Contact your operator for access.</p>

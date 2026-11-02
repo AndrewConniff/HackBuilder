@@ -1,0 +1,298 @@
+{
+  "coach": {
+    "visibility": "private",
+    "archiveSha256": "5a5a8e73442a687cb460000247ed1779a1f9e2e927ce9e521cf6c8ac50583740",
+    "files": [
+      {
+        "path": ".dockerignore",
+        "sha256": "63d0915f56b156c80c161f0b7728100e1b0372eed47a8b6ea28dd7f14db2edd9"
+      },
+      {
+        "path": ".gitignore",
+        "sha256": "6bebd66cf2111624faeb5ae37b743544c1b4fc6da858720a193aa61c6cf4e8a2"
+      },
+      {
+        "path": "azure.yaml",
+        "sha256": "8d3f288bd2e603a18e33f6d105be32a94dfe396b4f7f80bc314df0edd03ab15b"
+      },
+      {
+        "path": "data/agent-instructions.txt",
+        "sha256": "e7eb49c7d3a1fab4891a7ff7cb01639a96d03f0dc865e26274a8c3aaf4fdd60e"
+      },
+      {
+        "path": "data/brokerage-faq.md",
+        "sha256": "7749b12f20e79013a2b83789ef543a18723373506441d29e63154b156359ec02"
+      },
+      {
+        "path": "infra/gateway-policy.xml",
+        "sha256": "51f4d8ab141e43bf05377eb9b22ad28d5b6c0f720e50f2ff78a6b55a8c0c7196"
+      },
+      {
+        "path": "infra/main.bicep",
+        "sha256": "63dbc0a1aae19cc298bc2f1b8a9fb7d32fa844b43614ae8c3065fa8b56dfd8f0"
+      },
+      {
+        "path": "infra/main.parameters.json",
+        "sha256": "cca75cdcd2065dbafc1d79dde725c91d313f4653a2bfbbb737cde0407c67e3c6"
+      },
+      {
+        "path": "infra/modules/post-host.bicep",
+        "sha256": "5914dc9a1a9f4b789857b551f942081ce7733ac82bfed7b739fe36be6f839910"
+      },
+      {
+        "path": "infra/modules/project.bicep",
+        "sha256": "c8f800fe54ce4daab825b3fa02178a1a095dde2eb31a3d134e1a45bf05f7840f"
+      },
+      {
+        "path": "infra/modules/workload.bicep",
+        "sha256": "cfd89cc4a531f9f2df3edb6cfe877545392de58e7a1513e961567a6a708397f5"
+      },
+      {
+        "path": "README.md",
+        "sha256": "46ce756d35d78ed670e25d76caf9c3d4e8ef94c2fdb201498621900ab23409d6"
+      },
+      {
+        "path": "scripts/Initialize-Reference.ps1",
+        "sha256": "cc02a80268a455bbb32298c8ea7da88c87597f74168b8552d5739122da987e31"
+      },
+      {
+        "path": "scripts/Prepare-WhatIf.ps1",
+        "sha256": "430973a5e45530533e0b71786820f3976955f3a40e31942859d472094e236fbd"
+      },
+      {
+        "path": "scripts/Test-LocalScripts.ps1",
+        "sha256": "84d1199f94083651fea7cb2f13c3d71c0546e63c0f0d635115805085f2b4d277"
+      },
+      {
+        "path": "src/Brokerage.Web/appsettings.json",
+        "sha256": "b4f096689b4787ad048262676e25c6d6c0d7443daadcde25eeab8c5a872a7090"
+      },
+      {
+        "path": "src/Brokerage.Web/AzureBrokerage.cs",
+        "sha256": "28f60e743c008c2d233bca74f204dd6251f7f19292d2e1e275007be405c33862"
+      },
+      {
+        "path": "src/Brokerage.Web/Brokerage.Web.csproj",
+        "sha256": "feb33d4c81c1098c213b07901a3fcfcc42b9f80ea6342ee604f9ba9de66d6e20"
+      },
+      {
+        "path": "src/Brokerage.Web/ChatService.cs",
+        "sha256": "43170e5e11c5343ba2b87b40f1d1abf38cff17e7899afabda7d26dbd91d368f2"
+      },
+      {
+        "path": "src/Brokerage.Web/Dockerfile",
+        "sha256": "e672913be31f30b8d729657e5adcdb6735e03f5a12d3619a705f248384c4a20a"
+      },
+      {
+        "path": "src/Brokerage.Web/Pages/Index.cshtml",
+        "sha256": "1aa9a4264ad2406bd7dbe60a315253cd35a5cfdf39617089e5d4f0488e95d142"
+      },
+      {
+        "path": "src/Brokerage.Web/Pages/Index.cshtml.cs",
+        "sha256": "1f56493b10e35824a00e1465317e45076438a345957e3a78a797cbc82eb4e054"
+      },
+      {
+        "path": "src/Brokerage.Web/Program.cs",
+        "sha256": "85ae6acf639acb3ed81b95dc277aef835010164ce648f7087bba2bc9e73a4664"
+      },
+      {
+        "path": "src/Brokerage.Web/UpstreamExceptionHandler.cs",
+        "sha256": "673d2d9c12c5bb1e8ad852afa2bca12211c902288e931d46c65a28395a86ba09"
+      },
+      {
+        "path": "src/Brokerage.Web/WorkloadSettings.cs",
+        "sha256": "a6d125609b3016ae5f56de75cfadb7b8164e3fd019852646a78a02847492a1d7"
+      },
+      {
+        "path": "src/Brokerage.Web/wwwroot/chat.js",
+        "sha256": "326f69fcaf54cc00f1af2481ecbc3015240fd1e14e244135f741c647eee8f948"
+      },
+      {
+        "path": "src/Brokerage.Web/wwwroot/site.css",
+        "sha256": "72cd8ce5cb2bcc7b9812d5e5b1ba5eeccb1d135b7d32f02be33f81b55d9c439c"
+      },
+      {
+        "path": "tests/Brokerage.Tests/Brokerage.Tests.csproj",
+        "sha256": "cfc43c0eb860583ec6667376d8d7c50fc87a4bb69306c4d628352b3111664663"
+      },
+      {
+        "path": "tests/Brokerage.Tests/ChatTests.cs",
+        "sha256": "2f2ef51e35883353598b55d41b54d7d60d55cd1f2e2276e87cc62dc828c38164"
+      }
+    ]
+  },
+  "participant": {
+    "visibility": "public-candidate",
+    "archiveSha256": "122169212a6622c3f1b44c3900d0a296c642d8f29a775f4b57ad16694ee92e9b",
+    "files": [
+      {
+        "path": "azure.yaml",
+        "sha256": "1f5775ba14b708e56aefdab0c4976dc0bde72a90936f1070305c243eb2659642"
+      },
+      {
+        "path": "data/brokerage-faq.md",
+        "sha256": "7749b12f20e79013a2b83789ef543a18723373506441d29e63154b156359ec02"
+      },
+      {
+        "path": "infra/main.bicep",
+        "sha256": "5a971a1a1584ceaca0a9456b470def6cbfd54fae7a814a2eaa83255d6ce54c88"
+      },
+      {
+        "path": "infra/main.parameters.json",
+        "sha256": "17debd4fad5478e14c261c35067775baebc413c47db6d0267ffe9a8531e1f30e"
+      },
+      {
+        "path": "README.md",
+        "sha256": "9a0445735c96c5d07a9be277d9b192e211f0db05479c24bdf59f89fe2681e90c"
+      },
+      {
+        "path": "scripts/starter_status.py",
+        "sha256": "ccaaff293905cd6dc132c9fdb3925301566d0d9bb9d49c16b5649abc2b6c95f7"
+      }
+    ]
+  },
+  "hack": {
+    "visibility": "public-candidate",
+    "archiveSha256": "7eccca366abb5ddec5707c043b41908e7a9ced213d7c1cea303678d59a6ba9c0",
+    "files": [
+      {
+        "path": "_build.yml",
+        "sha256": "52820085d54e9318ad48333dec3fdb5ed890c6f8f1699b72d62ba6ff2cd96e50"
+      },
+      {
+        "path": "_config.yml",
+        "sha256": "d49d729cb80f35eb37fe8cc1e54f8c99f820f51b81da860a09287cde3fb718cf"
+      },
+      {
+        "path": "Allfiles/api-contract.md",
+        "sha256": "cecbadc5466f3ee9f0c626f3203981d8b7f3590bf9ff9684f3d91882d14174f4"
+      },
+      {
+        "path": "Allfiles/brokerage-faq.md",
+        "sha256": "7749b12f20e79013a2b83789ef543a18723373506441d29e63154b156359ec02"
+      },
+      {
+        "path": "Allfiles/evaluation.json",
+        "sha256": "3c9152074a887ad8c34ddc5fdc249359e8f839bb5b05054c862d7c259cd1ab7e"
+      },
+      {
+        "path": "Allfiles/README.md",
+        "sha256": "7f186f92b80211f21d55e0b022f2d9ed3a3d5e7e7c066b86e316002199d2b198"
+      },
+      {
+        "path": "index.md",
+        "sha256": "e91494b610565cde60d062311ccc33a28dce34f37d00dc87ce240703339cd76c"
+      },
+      {
+        "path": "Instructions/financial-services/00-secure-foundation.md",
+        "sha256": "50c9d5a2ef0559f8439e14aada9289dbab021410c1cd3bd8c4cb48cb6ed60512"
+      },
+      {
+        "path": "Instructions/financial-services/01-build-the-agent.md",
+        "sha256": "ea03352e1157565d9bfb6c107fbfcc36894faf19d81bcb6b50322602f2999799"
+      },
+      {
+        "path": "Instructions/financial-services/02-ground-it.md",
+        "sha256": "760416d22b8959109e055f3082faa389ff57faf8aa0d9fa3ed79b8e8b862386c"
+      },
+      {
+        "path": "Instructions/financial-services/03-give-it-tools.md",
+        "sha256": "0ee2c490d0d0dab4a67a2c6381e9fce4333a90f786081399530e20d537cf248b"
+      },
+      {
+        "path": "Instructions/financial-services/04-harden-and-demo.md",
+        "sha256": "abd4d355cb5a6ed905a1db7d802e9383f815bc3fb0adf3dca92604cd58f24058"
+      },
+      {
+        "path": "README.md",
+        "sha256": "e0b773aa5b54a66ae9894bb1c30a92c2add97f3b69841d5384a6dc85a0fa9a92"
+      },
+      {
+        "path": "resources.md",
+        "sha256": "2b63eaf6c2767a22f274a20e89d4d5d44541ce586c5bb1c94da02a8baea44312"
+      }
+    ]
+  },
+  "coach-guide": {
+    "visibility": "private",
+    "archiveSha256": "8deffd261431ca5cea74736d7272a74572c6895a4d25124a742f23457fbbed8d",
+    "files": [
+      {
+        "path": "_build.yml",
+        "sha256": "c06d5642f4edd74120399237a11cf747e7ae32b5ccc86863e71fd163803cd01b"
+      },
+      {
+        "path": "_config.yml",
+        "sha256": "d49d729cb80f35eb37fe8cc1e54f8c99f820f51b81da860a09287cde3fb718cf"
+      },
+      {
+        "path": "Allfiles/api-contract.md",
+        "sha256": "cecbadc5466f3ee9f0c626f3203981d8b7f3590bf9ff9684f3d91882d14174f4"
+      },
+      {
+        "path": "Allfiles/brokerage-faq.md",
+        "sha256": "7749b12f20e79013a2b83789ef543a18723373506441d29e63154b156359ec02"
+      },
+      {
+        "path": "Allfiles/evaluation.json",
+        "sha256": "3c9152074a887ad8c34ddc5fdc249359e8f839bb5b05054c862d7c259cd1ab7e"
+      },
+      {
+        "path": "Allfiles/README.md",
+        "sha256": "7f186f92b80211f21d55e0b022f2d9ed3a3d5e7e7c066b86e316002199d2b198"
+      },
+      {
+        "path": "deployment-guide.md",
+        "sha256": "2c80450b6a45207af439cd993b094a8d0f5a4a978b9566d91a880d2d79e22b33"
+      },
+      {
+        "path": "index.md",
+        "sha256": "e91494b610565cde60d062311ccc33a28dce34f37d00dc87ce240703339cd76c"
+      },
+      {
+        "path": "Instructions/financial-services/00-secure-foundation.md",
+        "sha256": "50c9d5a2ef0559f8439e14aada9289dbab021410c1cd3bd8c4cb48cb6ed60512"
+      },
+      {
+        "path": "Instructions/financial-services/01-build-the-agent.md",
+        "sha256": "ea03352e1157565d9bfb6c107fbfcc36894faf19d81bcb6b50322602f2999799"
+      },
+      {
+        "path": "Instructions/financial-services/02-ground-it.md",
+        "sha256": "760416d22b8959109e055f3082faa389ff57faf8aa0d9fa3ed79b8e8b862386c"
+      },
+      {
+        "path": "Instructions/financial-services/03-give-it-tools.md",
+        "sha256": "0ee2c490d0d0dab4a67a2c6381e9fce4333a90f786081399530e20d537cf248b"
+      },
+      {
+        "path": "Instructions/financial-services/04-harden-and-demo.md",
+        "sha256": "abd4d355cb5a6ed905a1db7d802e9383f815bc3fb0adf3dca92604cd58f24058"
+      },
+      {
+        "path": "Instructions/financial-services/99-finale.md",
+        "sha256": "fdfccaf70adc1a7d898b80cdd3ab982757261db81104a8412a8fb59b8d3e73e2"
+      },
+      {
+        "path": "media/03-architect-diagram.png",
+        "sha256": "5288248b1164f9b2c5d3f7aee76171ba234c4b25d15d2b5d48af357737dc400c"
+      },
+      {
+        "path": "media/04-runtime-diagram.png",
+        "sha256": "0b943f7623ebfa456387208878d60115a8af2bb2d7845242219634865a6d62d6"
+      },
+      {
+        "path": "README.md",
+        "sha256": "5a9dfa83fd6d9c3ada79a9e3cf3470c7fea292840bb1b34f05b82841687a3737"
+      },
+      {
+        "path": "resources.md",
+        "sha256": "2b63eaf6c2767a22f274a20e89d4d5d44541ce586c5bb1c94da02a8baea44312"
+      },
+      {
+        "path": "solution-overview.md",
+        "sha256": "cd9bc4f1104f3df58d3c78d1fdab6a5b113d94049787086898d99386aa8936c1"
+      }
+    ]
+  }
+}

@@ -61,6 +61,9 @@ obj/
 dist/
 build/
 
+# Restorable NuGet packages (including bundled Playwright runtimes)
+.packages/
+
 # Node (if any demos use it)
 node_modules/
 
@@ -75,11 +78,6 @@ venv/
 TestResults/
 *.trx
 .workflow-test-*/
-
-# Demo Scenario folder — ignored by default so agent-generated scenarios
-# stay local. Explicit publication through az-scenario-contribution can
-# selectively include a sanitized scenario.
-generated-scenarios/
 
 # Playwright screenshot artifacts
 .playwright-mcp/

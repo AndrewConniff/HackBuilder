@@ -1,0 +1,27 @@
+{
+  "checkedAtUtc": "2026-10-22T20:26:45.451740+00:00",
+  "checks": [
+    {
+      "command": [
+        ".github/skills/skillable-lod-authoring/scripts/validate_skillable_package.py",
+        "generated-scenarios\\finance-security-hack\\packages",
+        "--industry",
+        "financial-services"
+      ],
+      "exitCode": 0,
+      "output": "PASS: generated-scenarios\\finance-security-hack\\packages is valid.\n"
+    },
+    {
+      "command": [
+        "scripts/hack_workflow.py",
+        "check-approval",
+        "generated-scenarios\\finance-security-hack"
+      ],
+      "exitCode": 0,
+      "output": "check-approval: passed for finance-security-hack\n"
+    }
+  ],
+  "rootArtifactsSaved": true,
+  "markdownLineLengthPassed": true,
+  "result": "packages validated; event not deployed"
+}

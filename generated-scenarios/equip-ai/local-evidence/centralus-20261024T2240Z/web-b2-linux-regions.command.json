@@ -1,0 +1,9 @@
+{
+  "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" appservice list-locations --sku B2 --linux-workers-enabled --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+  "cwd": "C:\\azd-projects\\equip-ai",
+  "startedAtUtc": "2026-10-24T22:38:25.897066+00:00",
+  "finishedAtUtc": "2026-10-24T22:38:30.157644+00:00",
+  "exitCode": 0,
+  "stdout": "web-b2-linux-regions.json",
+  "stderr": "web-b2-linux-regions.stderr.txt"
+}

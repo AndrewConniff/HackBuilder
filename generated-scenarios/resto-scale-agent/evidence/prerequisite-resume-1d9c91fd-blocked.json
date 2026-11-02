@@ -1,0 +1,16 @@
+{
+  "stage": "diagrams",
+  "status": "blocked",
+  "summary": "Actual worker verification failed: Python resolves no Graphviz dot executable and PowerShell finds no dot command. Existing design confirmation and local execution consent remain valid. No explicit executable path was supplied in canonical decisions/history. Diagram rendering remains blocked; no shared tools changed and no Azure operations performed.",
+  "evidence": [
+    "Canonical portal state revision 53 read in full, including all decisions/history: designConfirmed=true, scenario-local-execution consent present, authorizations=[], setupBlocker=null.",
+    "python -c \"import importlib.util,json,shutil; print(json.dumps({'dot':shutil.which('dot'),'diagramsInstalled':importlib.util.find_spec('diagrams') is not None}))\" returned {\"dot\": null, \"diagramsInstalled\": true}.",
+    "Get-Command dot -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source returned no executable path; combined prerequisite probe exited 1.",
+    "generated-scenarios\\resto-scale-agent\\evidence\\prerequisite-resume-1d9c91fd-blocked.json"
+  ],
+  "blocker": {
+    "kind": "prerequisite",
+    "action": "Outside this worker, have the environment administrator expose the existing Graphviz dot.exe on the PATH inherited by the portal-launched worker and restart the portal execution host if required for PATH propagation. Verify in that actual worker that Python resolves dot to an executable path and dot -V succeeds. Do not repeat an affirmative answer without correcting the worker environment.",
+    "verification": "python -c \"import shutil,subprocess; dot=shutil.which('dot'); print('dot:',dot); assert dot is not None, 'Graphviz dot is not on the worker PATH'; subprocess.run([dot,'-V'],check=True)\""
+  }
+}

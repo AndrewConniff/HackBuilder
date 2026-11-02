@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "scope": "local_application_and_azurite_only",
+  "applicationUrl": "http://127.0.0.1:5080",
+  "startedAtUtc": "2026-10-24T17:51:16.2423415+00:00",
+  "checkedAtUtc": "2026-10-24T17:51:22.0211079+00:00",
+  "durationSeconds": 5.777,
+  "fixturesCompleted": 12,
+  "languages": [
+    "en",
+    "es",
+    "fr",
+    "ja"
+  ],
+  "checks": {
+    "homepage": true,
+    "queuedIngestion": true,
+    "unicodeAndGuestProvenance": true,
+    "duplicateIdempotency": true,
+    "payloadConflict409": true,
+    "invalidInput400": true,
+    "missingFoundry503": true
+  },
+  "liveModelInference": false,
+  "liveAgentInvocation": false,
+  "liveManagedIdentity": false
+}

@@ -1,0 +1,1199 @@
+{
+  "changes": [
+    {
+      "after": {
+        "apiVersion": "2024-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai",
+        "location": "centralus",
+        "name": "rg-equip-ai",
+        "tags": {
+          "Environment": "equip-ai",
+          "ManagedBy": "Bicep",
+          "Project": "equip-ai",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Resources/resourceGroups"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Authorization/roleDefinitions/dc9ba5fa-4185-514f-b984-ba736fda8b98",
+        "name": "dc9ba5fa-4185-514f-b984-ba736fda8b98",
+        "properties": {
+          "assignableScopes": [
+            "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai"
+          ],
+          "description": "Read and delete volatile telemetry without blob creation or modification.",
+          "permissions": [
+            {
+              "dataActions": [
+                "Microsoft.Storage/storageAccounts/blobServices/containers/blobs/read",
+                "Microsoft.Storage/storageAccounts/blobServices/containers/blobs/delete"
+              ]
+            }
+          ],
+          "roleName": "equip-ai-expired-blob-cleaner-kex72v",
+          "type": "CustomRole"
+        },
+        "resourceGroup": "rg-equip-ai",
+        "type": "Microsoft.Authorization/roleDefinitions"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Authorization/roleDefinitions/dc9ba5fa-4185-514f-b984-ba736fda8b98",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.CognitiveServices/accounts/ai-equip-equipai-kex72v/projects/equipment-operations",
+        "identity": {
+          "type": "SystemAssigned"
+        },
+        "location": "centralus",
+        "name": "equipment-operations",
+        "properties": {
+          "description": "Bounded telemetry read tools",
+          "displayName": "Adatum Corporation equipment Operations"
+        },
+        "resourceGroup": "rg-equip-ai",
+        "tags": {
+          "Environment": "equip-ai",
+          "ManagedBy": "Bicep",
+          "Project": "equip-ai",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.CognitiveServices/accounts/projects"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.CognitiveServices/accounts/ai-equip-equipai-kex72v/projects/equipment-operations",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2023-06-30",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Devices/IotHubs/iot-equip-equipai-kex72v",
+        "identity": {
+          "type": "UserAssigned",
+          "userAssignedIdentities": {
+            "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-equip-iot-equip-ai": {}
+          }
+        },
+        "location": "centralus",
+        "name": "iot-equip-equipai-kex72v",
+        "properties": {
+          "allowedFqdnList": [
+            "stequipequipaikex72vu7.blob.core.windows.net"
+          ],
+          "disableDeviceSAS": true,
+          "disableLocalAuth": true,
+          "disableModuleSAS": true,
+          "enableDataResidency": false,
+          "enableFileUploadNotifications": false,
+          "eventHubEndpoints": {
+            "events": {
+              "partitionCount": 4,
+              "retentionTimeInDays": 1
+            }
+          },
+          "features": "None",
+          "minTlsVersion": "1.2",
+          "publicNetworkAccess": "Enabled",
+          "restrictOutboundNetworkAccess": true,
+          "routing": {
+            "endpoints": {
+              "storageContainers": [
+                {
+                  "authenticationType": "identityBased",
+                  "batchFrequencyInSeconds": 60,
+                  "containerName": "telemetry",
+                  "encoding": "JSON",
+                  "endpointUri": "https://stequipequipaikex72vu7.blob.core.windows.net",
+                  "fileNameFormat": "{YYYY}/{MM}/{DD}/{HH}/{mm}/{iothub}/{partition}",
+                  "identity": {
+                    "userAssignedIdentity": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-equip-iot-equip-ai"
+                  },
+                  "maxChunkSizeInBytes": 10485760,
+                  "name": "volatile-blob"
+                }
+              ]
+            },
+            "fallbackRoute": {
+              "endpointNames": [
+                "events"
+              ],
+              "isEnabled": false,
+              "name": "$fallback",
+              "source": "DeviceMessages"
+            },
+            "routes": [
+              {
+                "condition": "true",
+                "endpointNames": [
+                  "volatile-blob"
+                ],
+                "isEnabled": true,
+                "name": "all-certified-telemetry",
+                "source": "DeviceMessages"
+              }
+            ]
+          }
+        },
+        "resourceGroup": "rg-equip-ai",
+        "sku": {
+          "capacity": 1,
+          "name": "B2"
+        },
+        "tags": {
+          "Environment": "equip-ai",
+          "ManagedBy": "Bicep",
+          "Project": "equip-ai",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Devices/IotHubs"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Devices/IotHubs/iot-equip-equipai-kex72v",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2021-05-01-preview",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Devices/IotHubs/iot-equip-equipai-kex72v/providers/Microsoft.Insights/diagnosticSettings/iot-equip-equipai-kex72v-diagnosticSettings",
+        "name": "iot-equip-equipai-kex72v-diagnosticSettings",
+        "properties": {
+          "metrics": [
+            {
+              "category": "AllMetrics",
+              "enabled": true
+            }
+          ],
+          "workspaceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.OperationalInsights/workspaces/log-equip-equip-ai"
+        },
+        "resourceGroup": "rg-equip-ai",
+        "type": "Microsoft.Insights/diagnosticSettings"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Devices/IotHubs/iot-equip-equipai-kex72v/providers/Microsoft.Insights/diagnosticSettings/iot-equip-equipai-kex72v-diagnosticSettings",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2020-02-02",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Insights/components/appi-equip-equip-ai",
+        "location": "centralus",
+        "name": "appi-equip-equip-ai",
+        "properties": {
+          "Application_Type": "web",
+          "DisableIpMasking": true,
+          "DisableLocalAuth": false,
+          "ForceCustomerStorageForProfiler": false,
+          "RetentionInDays": 365,
+          "SamplingPercentage": 100,
+          "WorkspaceResourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.OperationalInsights/workspaces/log-equip-equip-ai",
+          "publicNetworkAccessForIngestion": "Enabled",
+          "publicNetworkAccessForQuery": "Enabled"
+        },
+        "resourceGroup": "rg-equip-ai",
+        "tags": {
+          "Environment": "equip-ai",
+          "ManagedBy": "Bicep",
+          "Project": "equip-ai",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Insights/components"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Insights/components/appi-equip-equip-ai",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-11-30",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-equip-iot-equip-ai",
+        "location": "centralus",
+        "name": "id-equip-iot-equip-ai",
+        "resourceGroup": "rg-equip-ai",
+        "tags": {
+          "Environment": "equip-ai",
+          "ManagedBy": "Bicep",
+          "Project": "equip-ai",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.ManagedIdentity/userAssignedIdentities"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-equip-iot-equip-ai",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2020-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.azurewebsites.net",
+        "location": "global",
+        "name": "privatelink.azurewebsites.net",
+        "resourceGroup": "rg-equip-ai",
+        "tags": {
+          "Environment": "equip-ai",
+          "ManagedBy": "Bicep",
+          "Project": "equip-ai",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateDnsZones"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.azurewebsites.net",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.azurewebsites.net/virtualNetworkLinks/vnet-equip-equip-ai-vnetlink",
+        "location": "global",
+        "name": "vnet-equip-equip-ai-vnetlink",
+        "properties": {
+          "registrationEnabled": false,
+          "virtualNetwork": {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/virtualNetworks/vnet-equip-equip-ai",
+            "resourceGroup": "rg-equip-ai"
+          }
+        },
+        "resourceGroup": "rg-equip-ai",
+        "tags": {
+          "Environment": "equip-ai",
+          "ManagedBy": "Bicep",
+          "Project": "equip-ai",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.azurewebsites.net/virtualNetworkLinks/vnet-equip-equip-ai-vnetlink",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2020-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net",
+        "location": "global",
+        "name": "privatelink.blob.core.windows.net",
+        "resourceGroup": "rg-equip-ai",
+        "tags": {
+          "Environment": "equip-ai",
+          "ManagedBy": "Bicep",
+          "Project": "equip-ai",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateDnsZones"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net/virtualNetworkLinks/vnet-equip-equip-ai-vnetlink",
+        "location": "global",
+        "name": "vnet-equip-equip-ai-vnetlink",
+        "properties": {
+          "registrationEnabled": false,
+          "virtualNetwork": {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/virtualNetworks/vnet-equip-equip-ai",
+            "resourceGroup": "rg-equip-ai"
+          }
+        },
+        "resourceGroup": "rg-equip-ai",
+        "tags": {
+          "Environment": "equip-ai",
+          "ManagedBy": "Bicep",
+          "Project": "equip-ai",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net/virtualNetworkLinks/vnet-equip-equip-ai-vnetlink",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2020-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.cognitiveservices.azure.com",
+        "location": "global",
+        "name": "privatelink.cognitiveservices.azure.com",
+        "resourceGroup": "rg-equip-ai",
+        "tags": {
+          "Environment": "equip-ai",
+          "ManagedBy": "Bicep",
+          "Project": "equip-ai",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateDnsZones"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.cognitiveservices.azure.com",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.cognitiveservices.azure.com/virtualNetworkLinks/vnet-equip-equip-ai-vnetlink",
+        "location": "global",
+        "name": "vnet-equip-equip-ai-vnetlink",
+        "properties": {
+          "registrationEnabled": false,
+          "virtualNetwork": {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/virtualNetworks/vnet-equip-equip-ai",
+            "resourceGroup": "rg-equip-ai"
+          }
+        },
+        "resourceGroup": "rg-equip-ai",
+        "tags": {
+          "Environment": "equip-ai",
+          "ManagedBy": "Bicep",
+          "Project": "equip-ai",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.cognitiveservices.azure.com/virtualNetworkLinks/vnet-equip-equip-ai-vnetlink",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2020-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.openai.azure.com",
+        "location": "global",
+        "name": "privatelink.openai.azure.com",
+        "resourceGroup": "rg-equip-ai",
+        "tags": {
+          "Environment": "equip-ai",
+          "ManagedBy": "Bicep",
+          "Project": "equip-ai",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateDnsZones"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.openai.azure.com",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.openai.azure.com/virtualNetworkLinks/vnet-equip-equip-ai-vnetlink",
+        "location": "global",
+        "name": "vnet-equip-equip-ai-vnetlink",
+        "properties": {
+          "registrationEnabled": false,
+          "virtualNetwork": {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/virtualNetworks/vnet-equip-equip-ai",
+            "resourceGroup": "rg-equip-ai"
+          }
+        },
+        "resourceGroup": "rg-equip-ai",
+        "tags": {
+          "Environment": "equip-ai",
+          "ManagedBy": "Bicep",
+          "Project": "equip-ai",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.openai.azure.com/virtualNetworkLinks/vnet-equip-equip-ai-vnetlink",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2020-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.services.ai.azure.com",
+        "location": "global",
+        "name": "privatelink.services.ai.azure.com",
+        "resourceGroup": "rg-equip-ai",
+        "tags": {
+          "Environment": "equip-ai",
+          "ManagedBy": "Bicep",
+          "Project": "equip-ai",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateDnsZones"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.services.ai.azure.com",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.services.ai.azure.com/virtualNetworkLinks/vnet-equip-equip-ai-vnetlink",
+        "location": "global",
+        "name": "vnet-equip-equip-ai-vnetlink",
+        "properties": {
+          "registrationEnabled": false,
+          "virtualNetwork": {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/virtualNetworks/vnet-equip-equip-ai",
+            "resourceGroup": "rg-equip-ai"
+          }
+        },
+        "resourceGroup": "rg-equip-ai",
+        "tags": {
+          "Environment": "equip-ai",
+          "ManagedBy": "Bicep",
+          "Project": "equip-ai",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.services.ai.azure.com/virtualNetworkLinks/vnet-equip-equip-ai-vnetlink",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateEndpoints/pe-equip-cleaner-equip-ai",
+        "location": "centralus",
+        "name": "pe-equip-cleaner-equip-ai",
+        "properties": {
+          "privateLinkServiceConnections": [
+            {
+              "name": "cleaner",
+              "properties": {
+                "groupIds": [
+                  "sites"
+                ],
+                "privateLinkServiceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Web/sites/app-equip-cleaner-equipai-kex72v"
+              }
+            }
+          ],
+          "subnet": {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/virtualNetworks/vnet-equip-equip-ai/subnets/endpoints",
+            "resourceGroup": "rg-equip-ai"
+          }
+        },
+        "resourceGroup": "rg-equip-ai",
+        "tags": {
+          "Environment": "equip-ai",
+          "ManagedBy": "Bicep",
+          "Project": "equip-ai",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/privateEndpoints"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateEndpoints/pe-equip-cleaner-equip-ai",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateEndpoints/pe-equip-cleaner-equip-ai/privateDnsZoneGroups/default",
+        "name": "default",
+        "properties": {
+          "privateDnsZoneConfigs": [
+            {
+              "name": "privatelink.azurewebsites.net",
+              "properties": {
+                "privateDnsZoneId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateDnsZones/privatelink.azurewebsites.net"
+              }
+            }
+          ]
+        },
+        "resourceGroup": "rg-equip-ai",
+        "type": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/privateEndpoints/pe-equip-cleaner-equip-ai/privateDnsZoneGroups/default",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/virtualNetworks/vnet-equip-equip-ai",
+        "location": "centralus",
+        "name": "vnet-equip-equip-ai",
+        "properties": {
+          "addressSpace": {
+            "addressPrefixes": [
+              "10.247.0.0/24"
+            ]
+          },
+          "enableDdosProtection": false,
+          "privateEndpointVNetPolicies": "Disabled",
+          "subnets": [
+            {
+              "name": "endpoints",
+              "properties": {
+                "addressPrefix": "10.247.0.64/26",
+                "privateEndpointNetworkPolicies": "Disabled"
+              }
+            },
+            {
+              "name": "integration",
+              "properties": {
+                "addressPrefix": "10.247.0.0/26",
+                "delegations": [
+                  {
+                    "name": "Microsoft.Web/serverFarms",
+                    "properties": {
+                      "serviceName": "Microsoft.Web/serverFarms"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "resourceGroup": "rg-equip-ai",
+        "tags": {
+          "Environment": "equip-ai",
+          "ManagedBy": "Bicep",
+          "Project": "equip-ai",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/virtualNetworks"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/virtualNetworks/vnet-equip-equip-ai",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/virtualNetworks/vnet-equip-equip-ai/subnets/endpoints",
+        "name": "endpoints",
+        "properties": {
+          "addressPrefix": "10.247.0.64/26",
+          "privateEndpointNetworkPolicies": "Disabled"
+        },
+        "resourceGroup": "rg-equip-ai",
+        "type": "Microsoft.Network/virtualNetworks/subnets"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/virtualNetworks/vnet-equip-equip-ai/subnets/endpoints",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/virtualNetworks/vnet-equip-equip-ai/subnets/integration",
+        "name": "integration",
+        "properties": {
+          "addressPrefix": "10.247.0.0/26",
+          "delegations": [
+            {
+              "name": "Microsoft.Web/serverFarms",
+              "properties": {
+                "serviceName": "Microsoft.Web/serverFarms"
+              }
+            }
+          ]
+        },
+        "resourceGroup": "rg-equip-ai",
+        "type": "Microsoft.Network/virtualNetworks/subnets"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/virtualNetworks/vnet-equip-equip-ai/subnets/integration",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-07-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.OperationalInsights/workspaces/log-equip-equip-ai",
+        "location": "centralus",
+        "name": "log-equip-equip-ai",
+        "properties": {
+          "forceCmkForQuery": true,
+          "publicNetworkAccessForIngestion": "Enabled",
+          "publicNetworkAccessForQuery": "Enabled",
+          "retentionInDays": 30,
+          "sku": {
+            "name": "PerGB2018"
+          },
+          "workspaceCapping": {
+            "dailyQuotaGb": 1
+          }
+        },
+        "resourceGroup": "rg-equip-ai",
+        "tags": {
+          "Environment": "equip-ai",
+          "ManagedBy": "Bicep",
+          "Project": "equip-ai",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.OperationalInsights/workspaces"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.OperationalInsights/workspaces/log-equip-equip-ai",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/tags/default",
+        "name": "default",
+        "properties": {
+          "tags": {
+            "Environment": "equip-ai",
+            "ManagedBy": "Bicep",
+            "Project": "equip-ai",
+            "SecurityControl": "Ignore"
+          }
+        },
+        "resourceGroup": "rg-equip-ai",
+        "type": "Microsoft.Resources/tags"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/tags/default",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Web/serverfarms/asp-equip-equip-ai",
+        "kind": "linux",
+        "location": "centralus",
+        "name": "asp-equip-equip-ai",
+        "properties": {
+          "elasticScaleEnabled": false,
+          "isCustomMode": false,
+          "perSiteScaling": false,
+          "reserved": true,
+          "targetWorkerSizeId": 0,
+          "zoneRedundant": false
+        },
+        "resourceGroup": "rg-equip-ai",
+        "sku": {
+          "capacity": 1,
+          "name": "B2"
+        },
+        "tags": {
+          "Environment": "equip-ai",
+          "ManagedBy": "Bicep",
+          "Project": "equip-ai",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Web/serverfarms"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Web/serverfarms/asp-equip-equip-ai",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Web/sites/app-equip-cleaner-equipai-kex72v",
+        "identity": "*******",
+        "kind": "app,linux",
+        "location": "centralus",
+        "name": "app-equip-cleaner-equipai-kex72v",
+        "properties": {
+          "clientAffinityEnabled": true,
+          "clientAffinityPartitioningEnabled": false,
+          "clientAffinityProxyEnabled": true,
+          "clientCertEnabled": false,
+          "clientCertMode": "Optional",
+          "enabled": true,
+          "httpsOnly": true,
+          "publicNetworkAccess": "Disabled",
+          "redundancyMode": "None",
+          "scmSiteAlsoStopped": false,
+          "serverFarmId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Web/serverfarms/asp-equip-equip-ai",
+          "siteConfig": "*******",
+          "storageAccountRequired": false,
+          "virtualNetworkSubnetId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/virtualNetworks/vnet-equip-equip-ai/subnets/integration"
+        },
+        "resourceGroup": "rg-equip-ai",
+        "tags": {
+          "Environment": "equip-ai",
+          "ManagedBy": "Bicep",
+          "Project": "equip-ai",
+          "SecurityControl": "Ignore",
+          "azd-service-name": "cleaner"
+        },
+        "type": "Microsoft.Web/sites"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Web/sites/app-equip-cleaner-equipai-kex72v",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Web/sites/app-equip-cleaner-equipai-kex72v/basicPublishingCredentialsPolicies/ftp",
+        "location": "centralus",
+        "name": "ftp",
+        "properties": {
+          "allow": false
+        },
+        "resourceGroup": "rg-equip-ai",
+        "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Web/sites/app-equip-cleaner-equipai-kex72v/basicPublishingCredentialsPolicies/ftp",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Web/sites/app-equip-cleaner-equipai-kex72v/basicPublishingCredentialsPolicies/scm",
+        "location": "centralus",
+        "name": "scm",
+        "properties": {
+          "allow": false
+        },
+        "resourceGroup": "rg-equip-ai",
+        "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Web/sites/app-equip-cleaner-equipai-kex72v/basicPublishingCredentialsPolicies/scm",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Web/sites/app-equip-cleaner-equipai-kex72v/config/logs",
+        "name": "logs",
+        "properties": {
+          "applicationLogs": {
+            "fileSystem": {
+              "level": "Information"
+            }
+          }
+        },
+        "resourceGroup": "rg-equip-ai",
+        "type": "Microsoft.Web/sites/config"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Web/sites/app-equip-cleaner-equipai-kex72v/config/logs",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2021-05-01-preview",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Web/sites/app-equip-cleaner-equipai-kex72v/providers/Microsoft.Insights/diagnosticSettings/app-equip-cleaner-equipai-kex72v-diagnosticSettings",
+        "name": "app-equip-cleaner-equipai-kex72v-diagnosticSettings",
+        "properties": {
+          "logs": [
+            {
+              "category": "AppServiceConsoleLogs",
+              "enabled": true
+            }
+          ],
+          "metrics": [
+            {
+              "category": "AllMetrics",
+              "enabled": true
+            }
+          ],
+          "workspaceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.OperationalInsights/workspaces/log-equip-equip-ai"
+        },
+        "resourceGroup": "rg-equip-ai",
+        "type": "Microsoft.Insights/diagnosticSettings"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Web/sites/app-equip-cleaner-equipai-kex72v/providers/Microsoft.Insights/diagnosticSettings/app-equip-cleaner-equipai-kex72v-diagnosticSettings",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Web/sites/app-equip-web-equipai-kex72v",
+        "identity": "*******",
+        "kind": "app,linux",
+        "location": "centralus",
+        "name": "app-equip-web-equipai-kex72v",
+        "properties": {
+          "clientAffinityEnabled": true,
+          "clientAffinityPartitioningEnabled": false,
+          "clientAffinityProxyEnabled": true,
+          "clientCertEnabled": false,
+          "clientCertMode": "Optional",
+          "enabled": true,
+          "httpsOnly": true,
+          "publicNetworkAccess": "Enabled",
+          "redundancyMode": "None",
+          "scmSiteAlsoStopped": false,
+          "serverFarmId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Web/serverfarms/asp-equip-equip-ai",
+          "siteConfig": "*******",
+          "storageAccountRequired": false,
+          "virtualNetworkSubnetId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/virtualNetworks/vnet-equip-equip-ai/subnets/integration"
+        },
+        "resourceGroup": "rg-equip-ai",
+        "tags": {
+          "Environment": "equip-ai",
+          "ManagedBy": "Bicep",
+          "Project": "equip-ai",
+          "SecurityControl": "Ignore",
+          "azd-service-name": "web"
+        },
+        "type": "Microsoft.Web/sites"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Web/sites/app-equip-web-equipai-kex72v",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Web/sites/app-equip-web-equipai-kex72v/basicPublishingCredentialsPolicies/ftp",
+        "location": "centralus",
+        "name": "ftp",
+        "properties": {
+          "allow": false
+        },
+        "resourceGroup": "rg-equip-ai",
+        "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Web/sites/app-equip-web-equipai-kex72v/basicPublishingCredentialsPolicies/ftp",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Web/sites/app-equip-web-equipai-kex72v/basicPublishingCredentialsPolicies/scm",
+        "location": "centralus",
+        "name": "scm",
+        "properties": {
+          "allow": false
+        },
+        "resourceGroup": "rg-equip-ai",
+        "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Web/sites/app-equip-web-equipai-kex72v/basicPublishingCredentialsPolicies/scm",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Web/sites/app-equip-web-equipai-kex72v/config/logs",
+        "name": "logs",
+        "properties": {
+          "applicationLogs": {
+            "fileSystem": {
+              "level": "Information"
+            }
+          }
+        },
+        "resourceGroup": "rg-equip-ai",
+        "type": "Microsoft.Web/sites/config"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Web/sites/app-equip-web-equipai-kex72v/config/logs",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2021-05-01-preview",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Web/sites/app-equip-web-equipai-kex72v/providers/Microsoft.Insights/diagnosticSettings/app-equip-web-equipai-kex72v-diagnosticSettings",
+        "name": "app-equip-web-equipai-kex72v-diagnosticSettings",
+        "properties": {
+          "logs": [
+            {
+              "category": "AppServiceConsoleLogs",
+              "enabled": true
+            }
+          ],
+          "metrics": [
+            {
+              "category": "AllMetrics",
+              "enabled": true
+            }
+          ],
+          "workspaceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.OperationalInsights/workspaces/log-equip-equip-ai"
+        },
+        "resourceGroup": "rg-equip-ai",
+        "type": "Microsoft.Insights/diagnosticSettings"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Web/sites/app-equip-web-equipai-kex72v/providers/Microsoft.Insights/diagnosticSettings/app-equip-web-equipai-kex72v-diagnosticSettings",
+      "symbolicName": null,
+      "unsupportedReason": null
+    }
+  ],
+  "diagnostics": [
+    {
+      "additionalInfo": null,
+      "code": "NestedDeploymentShortCircuited",
+      "level": "Warning",
+      "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+      "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/telemetry-storage"
+    },
+    {
+      "additionalInfo": null,
+      "code": "NestedDeploymentShortCircuited",
+      "level": "Warning",
+      "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+      "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/iot-container-access"
+    },
+    {
+      "additionalInfo": null,
+      "code": "NestedDeploymentShortCircuited",
+      "level": "Warning",
+      "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+      "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/foundry-account"
+    },
+    {
+      "additionalInfo": null,
+      "code": "NestedDeploymentShortCircuited",
+      "level": "Warning",
+      "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+      "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/application-container-access"
+    },
+    {
+      "additionalInfo": null,
+      "code": "NestedDeploymentShortCircuited",
+      "level": "Warning",
+      "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+      "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/project-access"
+    },
+    {
+      "additionalInfo": null,
+      "code": "NestedDeploymentSkippedFromInternalExpansion",
+      "level": "Warning",
+      "message": "When nested deployments are expanded, all its inner resources are retrieved for further validation. This process is performed in batch of: '10' at a time. Nested deployments exceeding this batch count are skipped from expansion.",
+      "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/dns-7ijinxo56ybbo"
+    },
+    {
+      "additionalInfo": null,
+      "code": "NestedDeploymentSkippedFromInternalExpansion",
+      "level": "Warning",
+      "message": "When nested deployments are expanded, all its inner resources are retrieved for further validation. This process is performed in batch of: '10' at a time. Nested deployments exceeding this batch count are skipped from expansion.",
+      "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/dns-6fmerxwgpwjpg"
+    },
+    {
+      "additionalInfo": null,
+      "code": "NestedDeploymentSkippedFromInternalExpansion",
+      "level": "Warning",
+      "message": "When nested deployments are expanded, all its inner resources are retrieved for further validation. This process is performed in batch of: '10' at a time. Nested deployments exceeding this batch count are skipped from expansion.",
+      "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/app-web"
+    },
+    {
+      "additionalInfo": null,
+      "code": "NestedDeploymentSkippedFromInternalExpansion",
+      "level": "Warning",
+      "message": "When nested deployments are expanded, all its inner resources are retrieved for further validation. This process is performed in batch of: '10' at a time. Nested deployments exceeding this batch count are skipped from expansion.",
+      "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/app-cleaner"
+    }
+  ],
+  "error": null,
+  "potentialChanges": null,
+  "status": "Succeeded"
+}

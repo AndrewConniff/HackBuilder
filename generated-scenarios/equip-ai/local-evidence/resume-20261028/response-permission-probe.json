@@ -1,0 +1,70 @@
+{
+  "checkedAtUtc": "2026-10-28T15:16:24.897589+00:00",
+  "scope": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.CognitiveServices/accounts/ai-equip-equipai-kex72v/projects/equipment-operations",
+  "dataAction": "Microsoft.CognitiveServices/accounts/OpenAI/responses/write",
+  "results": [
+    {
+      "attempt": 1,
+      "passed": false,
+      "applicationStatus": 502
+    },
+    {
+      "attempt": 2,
+      "passed": false,
+      "applicationStatus": 502
+    },
+    {
+      "attempt": 3,
+      "passed": false,
+      "applicationStatus": 502
+    },
+    {
+      "attempt": 4,
+      "passed": false,
+      "applicationStatus": 502
+    },
+    {
+      "attempt": 5,
+      "passed": false,
+      "applicationStatus": 502
+    },
+    {
+      "attempt": 6,
+      "passed": false,
+      "applicationStatus": 502
+    },
+    {
+      "attempt": 7,
+      "passed": false,
+      "applicationStatus": 502
+    },
+    {
+      "attempt": 8,
+      "passed": false,
+      "applicationStatus": 502
+    },
+    {
+      "attempt": 9,
+      "passed": false,
+      "applicationStatus": 502
+    },
+    {
+      "attempt": 10,
+      "passed": false,
+      "applicationStatus": 502
+    },
+    {
+      "attempt": 11,
+      "passed": false,
+      "applicationStatus": 502
+    },
+    {
+      "attempt": 12,
+      "passed": false,
+      "applicationStatus": 502
+    }
+  ],
+  "diagnosticAssignmentRemoved": true,
+  "diagnosticRoleRemoved": true,
+  "newAuthority": false
+}

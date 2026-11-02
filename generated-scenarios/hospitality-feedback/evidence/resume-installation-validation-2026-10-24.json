@@ -1,0 +1,86 @@
+{
+  "status": "passed",
+  "scope": "local_installation_and_preservation_checks_only",
+  "checkedAtUtc": "2026-10-24T17:55:33.045701+00:00",
+  "commands": [
+    {
+      "command": "python -B -m unittest discover -s tests -p test_scenario_identity.py -v",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "log": "C:\\Users\\petender\\.copilot\\session-state\\16db88b2-0b57-4f2d-9f40-11f82e708d2f\\files\\final-1.log"
+    },
+    {
+      "command": "python -B scripts\\scenario_identity.py plan",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "log": "C:\\Users\\petender\\.copilot\\session-state\\16db88b2-0b57-4f2d-9f40-11f82e708d2f\\files\\final-2.log"
+    },
+    {
+      "command": "python -B scripts\\scenario_identity.py guard",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "log": "C:\\Users\\petender\\.copilot\\session-state\\16db88b2-0b57-4f2d-9f40-11f82e708d2f\\files\\final-3.log"
+    },
+    {
+      "command": "dotnet build src\\HospitalityFeedback.Operator\\HospitalityFeedback.Operator.csproj -c Release --no-restore --nologo",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "log": "C:\\Users\\petender\\.copilot\\session-state\\16db88b2-0b57-4f2d-9f40-11f82e708d2f\\files\\final-4.log"
+    },
+    {
+      "command": "pwsh -NoProfile -File scripts\\Invoke-ReferenceHook.ps1 -Phase preprovision",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "log": "C:\\Users\\petender\\.copilot\\session-state\\16db88b2-0b57-4f2d-9f40-11f82e708d2f\\files\\final-5.log"
+    },
+    {
+      "command": "az bicep build --file infra\\main.bicep --outfile .local\\main.json",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "log": "C:\\Users\\petender\\.copilot\\session-state\\16db88b2-0b57-4f2d-9f40-11f82e708d2f\\files\\final-6.log"
+    },
+    {
+      "command": "az bicep lint --file infra\\main.bicep",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "log": "C:\\Users\\petender\\.copilot\\session-state\\16db88b2-0b57-4f2d-9f40-11f82e708d2f\\files\\final-7.log"
+    },
+    {
+      "command": "node --check src\\HospitalityFeedback.Web\\wwwroot\\js\\app.js",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "log": "C:\\Users\\petender\\.copilot\\session-state\\16db88b2-0b57-4f2d-9f40-11f82e708d2f\\files\\final-8.log"
+    }
+  ],
+  "preservedAssetSha256": {
+    "data/feedback.json": "e65b979b2306a0d8c6218875bf87728065680fe9aae1f84400dfde3422823d3f",
+    "data/provenance.json": "568b02e9f2884a7157ad384e0099977a05933465fbeefb60557e5beed545da51",
+    "infra/main.bicep": "7df66061974e12899841a2cd7ab15219864ae637694f18a4af7e15d17916414e",
+    "infra/workload.bicep": "72d086483270a0056eddd871a9333aba920d5e264d37bd6240076d30e4c8693b",
+    "src/HospitalityFeedback.Web/Services/FoundryAgent.cs": "0552269b970e6003f966d35af5319e363a066d60566a0a591afe2f22c116205e",
+    "03-architect-diagram.png": "948ef69d25114ab03c3d4ce38d24ae25eadd142939640c5929cd94a72c023de8",
+    "04-runtime-diagram.png": "4d217697165da0ab39e579bdc56987d5eef68f9237148aa0e8fea2d9535c7250"
+  },
+  "cloudOperationsExecuted": false,
+  "directoryOperationsExecuted": false,
+  "identityInstallation": "prepared_not_executed",
+  "operatorPkce": "build_verified_not_authenticated",
+  "historicalAttempts": [
+    {
+      "check": "new JWT test harness",
+      "result": "failed before early configuration/static metadata fixes"
+    },
+    {
+      "check": "emulator startup",
+      "result": "40-second timeout; owned process stopped; bounded retry passed"
+    }
+  ],
+  "manifestRefresh": "existing scenario_catalog.refresh API; no shared index export",
+  "officialSourcesReviewed": [
+    "https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/azd-extensibility",
+    "https://learn.microsoft.com/en-us/graph/api/resources/application?view=graph-rest-1.0",
+    "https://learn.microsoft.com/en-us/graph/api/application-post-applications?view=graph-rest-1.0",
+    "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-auth-code-flow",
+    "https://learn.microsoft.com/en-us/dotnet/api/azure.identity.interactivebrowsercredentialoptions"
+  ]
+}

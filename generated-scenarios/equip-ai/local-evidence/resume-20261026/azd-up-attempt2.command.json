@@ -1,0 +1,7 @@
+{
+  "startedAtUtc": "2026-10-26T00:42:11.9135107Z",
+  "repair": "Remove standalone installation-mode switches before parsing application configuration",
+  "finishedAtUtc": "2026-10-26T00:50:10.5421402Z",
+  "exitCode": 1,
+  "command": "azd up --environment equip-ai --no-prompt"
+}

@@ -1,0 +1,27 @@
+{
+  "stage": "deployment",
+  "operation": "deployment-preparation",
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "resto-scale-agent",
+    "resourceGroup": "rg-resto-scale-agent",
+    "region": "centralus"
+  },
+  "status": "completed",
+  "summary": "Completed local Cosmos ARM scope/vault naming repairs and authorized read-only preparation. Target group now absent: this is a full recreation preview, not an incremental retry. Full what-if 33 creates/13 unresolved grants, zero modifies/deletes; independent vault and real-initializer Cosmos grant previews succeeded. One consolidated remaining directory/publication/initializer/runtime scope and costs prepared. Future environment quota, directory capability and actual-output runtime checks remain unproven; no cloud mutation or runtime readiness claimed.",
+  "evidence": [
+    "06-deployment-summary.md and 00-region-availability.json repairPreparation: current scope/fingerprint and group absence supersede historical foundation existence/quota without erasing prior receipts.",
+    "evidence\\repair-6f748869\\resources-before.json: actual ResourceGroupNotFound; group-exists-reconciled.json and group-exists-final.json: false, final observation 2026-10-24T01:26:45.816296Z. Removal actor/time unknown; this worker made no deletion.",
+    "az bicep build --file generated-scenarios\\resto-scale-agent\\infra\\main.bicep --outfile generated-scenarios\\resto-scale-agent\\evidence\\repair-6f748869\\main.arm.json && az bicep lint --file generated-scenarios\\resto-scale-agent\\infra\\main.bicep: exit 0.",
+    "python -m unittest discover -s generated-scenarios\\resto-scale-agent\\validation -p test_infrastructure_repairs.py -v: 3 passed; infrastructure-tests.txt. All three grants use full account/database scope; chat excluded; other compiled resource/security inputs preserved.",
+    "evidence\\repair-6f748869\\what-if-full.json: Succeeded, Create 33, Unsupported 13, Modify/Delete 0. validate-full.json: Succeeded with eight skipped identity/output-dependent modules; no complete provider/policy certification.",
+    "evidence\\repair-6f748869\\vault-name-availability.json: true for kv-resto-dc9a173f4d0b5f6; unchanged Foundry domain available. what-if-vault.json: 3 creates; what-if-cosmos.json: 7 creates including actual initializer's corrected database-scoped grant. Exclusions retained in preview-limitations.json.",
+    "Fresh identity, Cosmos Central US AZ/regular access true, exact model quota 100/1000/additional 100, capacity 900, twelve Registered namespaces, Owner/Foundry User, policy and count quotas retained. Former Consumption 0/500 is historical; new environment core limit unknown, require 28 rollout vCPU.",
+    "evidence\\repair-6f748869\\installation-review.json: proposed single end-to-end installation scope, exact directory operations/permissions and operator assignments, output capture, dependent preview/rollout, failures/exclusions and same-day cost evidence. Existing foundation-only grant not broadened.",
+    "Costs reused with original timestamp from evidence\\centralus-189819a8\\cost-review.json: shared USD 745-1150/month, typical full 900-1650; max/rollout compute and usage can exceed allowances. Not a cap, quote, approved budget or reservation.",
+    "python generated-scenarios\\resto-scale-agent\\evidence\\repair-6f748869\\validate_evidence.py: passed; exact fingerprint 2371ff53fd0c9ff35ca3e337f30911f0bd4b4bf019dcd27f13cb0456dfb25ed7, JSON/preview scopes and counts, retained group failure, unknown future quota, regression logs, documentation templates/120-column checks and scenario-only catalog refresh verified.",
+    "No provisioning retry, Graph reads/writes, provider registration, quota changes, image publication, agent/data installation, application rollout, live validation, snapshot, suitability approval, composition, team deployment or publication."
+  ]
+}

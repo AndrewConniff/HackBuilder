@@ -1,0 +1,5 @@
+{
+  "expectedRejected": true,
+  "reason": "Regional check is blocked or unknown: Microsoft.CognitiveServices/accounts / AIServices/S0.",
+  "checkedAtUtc": "2026-10-23T23:16:55.383763+00:00"
+}

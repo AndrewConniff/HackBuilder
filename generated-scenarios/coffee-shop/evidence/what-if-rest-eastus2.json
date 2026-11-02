@@ -1,0 +1,36 @@
+{
+  "checkedAtUtc": "2026-10-24T23:19:06.675126+00:00",
+  "region": "eastus2",
+  "operation": "POST ARM whatIf, poll read-only operation to terminal state",
+  "requestUrl": "https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Resources/deployments/coffee-shop-readonly-eastus2/whatIf?api-version=2025-04-01",
+  "identityLimitation": "Empty app client ID; default empty store grants; no directory writes or deployment",
+  "responses": [
+    {
+      "httpStatus": 202,
+      "body": null,
+      "url": "https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Resources/deployments/coffee-shop-readonly-eastus2/whatIf?api-version=2025-04-01"
+    },
+    {
+      "httpStatus": 200,
+      "body": {
+        "status": "Failed",
+        "error": {
+          "code": "InvalidTemplate",
+          "message": "Deployment template language expression evaluation failed: 'Unable to parse language expression '': expected token 'Identifier' and actual 'EndOfData'.'. Please see https://aka.ms/arm-functions for usage details.",
+          "additionalInfo": [
+            {
+              "type": "TemplateViolation",
+              "info": {
+                "lineNumber": 0,
+                "linePosition": 0,
+                "path": ""
+              }
+            }
+          ]
+        }
+      },
+      "url": "https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/operationresults/eyJqb2JJZCI6IkRlcGxveW1lbnRXaGF0SWZKb2ItLUNPRkZFRToyRFNIT1A6MkRSRUFET05MWToyREVBU1RVUzItODEwRTUwNzM6MkQ5MkVDOjJENDU5RToyRDg3Q0U6MkRDNEQ1QjIyODRCNzQiLCJqb2JMb2NhdGlvbiI6ImVhc3R1czIiLCJqb2JTdG9yYWdlQWNjb3VudCI6Ii9jc20vc3RvcmFnZWFjY291bnRzL2dsb2JhbC9ycGZkbGpvYjAwcHJvZGJuMDEifQ?api-version=2025-04-01&t=639284807460495849&c=MIIHlDCCBnygAwIBAgIQEWqq0LXHm9_RoSQk3rtLtzANBgkqhkiG9w0BAQsFADA2MTQwMgYDVQQDEytDQ01FIEcxIFRMUyBSU0EgMjA0OCBTSEEyNTYgMjA0OSBXVVMyIENBIDAxMB4XDTI2MDkyMzA2MDIzOVoXDTI2MTIxODEyMDIzOVowQDE-MDwGA1UEAxM1YXN5bmNvcGVyYXRpb25zaWduaW5nY2VydGlmaWNhdGUubWFuYWdlbWVudC5henVyZS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCTL3s1G4HRJxCxQWgaa1QhZF9rCHBTzLl8phyc14DtHqFD1UEEvU8TdKIkn63TfPvm-CD5nDTQJhmqP3TQ4a1zbeIZvN26UwO-f2zs8v284_6vqmQYpp074W-XCE3yUu6xZi0c2RjrWXRE0C83U9RwiZBkm4sAg6EaNrBTlMtlbtByJMhA9KOAfS_ME_eoDeS2P_o__hD4yg538D4itpA1Yp3-XcF3vu3MgpyPUf4o8rU8J3Y9-jIPfdgYdhE-QPuKdwKQu0Aov3aNNHzv_aJivc4z22sXdAC9MeLP59Q0e1QaF_moRqk0Sr9AyE7J1ohMafagWSkQ-fj_5H83r6J9AgMBAAGjggSSMIIEjjCBnQYDVR0gBIGVMIGSMAwGCisGAQQBgjd7AQEwZgYKKwYBBAGCN3sCAjBYMFYGCCsGAQUFBwICMEoeSAAzADMAZQAwADEAOQAyADEALQA0AGQANgA0AC0ANABmADgAYwAtAGEAMAA1ADUALQA1AGIAZABhAGYAZgBkADUAZQAzADMAZDAMBgorBgEEAYI3ewMCMAwGCisGAQQBgjd7BAIwDAYDVR0TAQH_BAIwADAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwDgYDVR0PAQH_BAQDAgWgMB0GA1UdDgQWBBTI83RcASQN5gnS06-jdiNGf7b_JDAfBgNVHSMEGDAWgBSs43L6A7Jznj2VyO-HW67dG6HtaDCCAbIGA1UdHwSCAakwggGlMGmgZ6BlhmNodHRwOi8vcHJpbWFyeS1jZG4ucGtpLmNvcmUud2luZG93cy5uZXQvd2VzdHVzMi9jcmxzL2NjbWV3ZXN0dXMycGtpL2NjbWV3ZXN0dXMyaWNhMDEvOTcvY3VycmVudC5jcmwwa6BpoGeGZWh0dHA6Ly9zZWNvbmRhcnktY2RuLnBraS5jb3JlLndpbmRvd3MubmV0L3dlc3R1czIvY3Jscy9jY21ld2VzdHVzMnBraS9jY21ld2VzdHVzMmljYTAxLzk3L2N1cnJlbnQuY3JsMFqgWKBWhlRodHRwOi8vY3JsLm1pY3Jvc29mdC5jb20vd2VzdHVzMi9jcmxzL2NjbWV3ZXN0dXMycGtpL2NjbWV3ZXN0dXMyaWNhMDEvOTcvY3VycmVudC5jcmwwb6BtoGuGaWh0dHA6Ly9jY21ld2VzdHVzMnBraS53ZXN0dXMyLnBraS5jb3JlLndpbmRvd3MubmV0L2NlcnRpZmljYXRlQXV0aG9yaXRpZXMvY2NtZXdlc3R1czJpY2EwMS85Ny9jdXJyZW50LmNybDCCAbcGCCsGAQUFBwEBBIIBqTCCAaUwbAYIKwYBBQUHMAKGYGh0dHA6Ly9wcmltYXJ5LWNkbi5wa2kuY29yZS53aW5kb3dzLm5ldC93ZXN0dXMyL2NhY2VydHMvY2NtZXdlc3R1czJwa2kvY2NtZXdlc3R1czJpY2EwMS9jZXJ0LmNlcjBuBggrBgEFBQcwAoZiaHR0cDovL3NlY29uZGFyeS1jZG4ucGtpLmNvcmUud2luZG93cy5uZXQvd2VzdHVzMi9jYWNlcnRzL2NjbWV3ZXN0dXMycGtpL2NjbWV3ZXN0dXMyaWNhMDEvY2VydC5jZXIwXQYIKwYBBQUHMAKGUWh0dHA6Ly9jcmwubWljcm9zb2Z0LmNvbS93ZXN0dXMyL2NhY2VydHMvY2NtZXdlc3R1czJwa2kvY2NtZXdlc3R1czJpY2EwMS9jZXJ0LmNlcjBmBggrBgEFBQcwAoZaaHR0cDovL2NjbWV3ZXN0dXMycGtpLndlc3R1czIucGtpLmNvcmUud2luZG93cy5uZXQvY2VydGlmaWNhdGVBdXRob3JpdGllcy9jY21ld2VzdHVzMmljYTAxMA0GCSqGSIb3DQEBCwUAA4IBAQBtlTS-mdvGIKziCDp4X9OVPqRLuoH48ib0L8ZVUxxNXw-O3sl-lio6Y7V0Xqv47B1Ru94KfFJZpXsF6u0Gk7IcfpKl2PltvEAmAKSdpsOElmGW0MeH-AsmLU-uRKqaIGsDrnsyJuLqtILSJ_GCMnG1VbnaqOJFmoBMj7f_unbCkVhb6MmyJC4sd_klisVbuUnjtp_Cgp2Wc_HeRKPemyn8alnsmHVOO0NHWIR41o6dNQCt7LJ5nM5rQd2Fww6uP0eqn3jQiNE0nl_zOqY8Me96xb0gWGe9D4aRXyAG_j-B4_gTga7SVfy92csbUhBWi9huq3gKSoRRpuS_4dQqvDVj&s=c7skRuvg0KsAvYKY9I1-HUyMqM5GkB-gVLOxJScebz14Bh2KoRmfmRxZEeQNDgXdCCqJHVmeFVL4YRb6wyS0-0irg0tkfqQe5QDA5ysb5Ctpx-M0dIEVz0Yygrgn0LMtPI0ahNDOdX7azeORFu4xhAR5veOzmlKIuUjiHQLQbOI2qWy13N9uXiGXssjwxpb_KhQ8M1oNA8RJaK-n9FBf8Kn4tyAiaNqyWiXWE-6bfhMAPZIGKLCSlrvE6R8l7mRwwworubg-yP5FSaylvLohhyI4QmhunOt8WcrEEM1LSCff0Ayhn5mXsdWo8zcA-t7-MMP-OuxilgPWLTNW6nxLLA&h=3ARDXL7gnZjTlA85Av0i36oDVmO6g5WJCqDsc1sXJIk"
+    }
+  ],
+  "status": "Failed"
+}

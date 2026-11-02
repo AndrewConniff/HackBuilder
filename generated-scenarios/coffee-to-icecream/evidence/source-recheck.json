@@ -1,0 +1,12 @@
+{
+  "phase": "final-readiness-review",
+  "sourceScenario": "coffee-shop",
+  "manifestDigest": "3aefae14b6dbfd6cfcc0bea6d5ee4372d6fd87905b1fe0fc5ceb4ccd2359837f",
+  "confirmedArtifactsDigest": "926b1729c7a528cb2150cfbfbc2c018427a8452f67ed6e13d659c99839469889",
+  "currentPreviewArtifactsDigest": "2cf55f59b007af39f2c67428bd98a5f70d96940a02b38c0e588cf3c27df848e3",
+  "changedOrAddedPaths": [],
+  "missingFromCurrentPreview": ["infra/main.json"],
+  "result": "Manifest and all remaining baseline file hashes match. Source compiled ARM JSON is absent from current preview; the artifact digest is no longer identical.",
+  "targetHandling": "Original confirmation and baseline retained. No recopy or source restoration. Target compiled source JSON was already intentionally removed and target Bicep rebuilt/previewed independently.",
+  "runtimeValidated": false
+}

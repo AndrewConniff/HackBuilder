@@ -1,0 +1,34 @@
+{
+  "checkedAtUtc": "2026-10-25T18:00:54.800803+00:00",
+  "checks": {
+    "modelInference": true,
+    "agentInvocation": true,
+    "anonymousDenial": true
+  },
+  "details": {
+    "modelInference": {
+      "responseId": "resp_01767a05c44a9200016ade43cd83148196b5b630a4f9114fd6",
+      "text": "READY",
+      "identity": "authorized installer, not app MI"
+    },
+    "agentInvocation": {
+      "responseId": "resp_088b72175fd5174d016ade43d217e081969c56b3aaf1105d2e",
+      "text": "Sales cannot promise a refund for this campaign. The policy explicitly states that no refund entitlement is authorized by this document. For any negative or ambiguous feedback, Sales should respond respectfully and request further investigation without making commitments. (campaign-policy-v1)",
+      "identity": "authorized installer, not app MI"
+    },
+    "anonymousDenial": {
+      "status": 401
+    }
+  },
+  "completeScenarioAcceptance": false,
+  "pending": [
+    "Deployed ARM account/direct child project verification",
+    "App MI-backed signed-in chat",
+    "Semantic grounding review",
+    "Human review with edited reply",
+    "Real reply stream receipt",
+    "Restart persistence",
+    "Wrong-role and stale-decision denial",
+    "Error/recovery and DLQ"
+  ]
+}

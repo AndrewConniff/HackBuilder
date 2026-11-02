@@ -1,0 +1,8 @@
+{
+  "command": "az keyvault show --name kv-resto-4tvlzr5zf2rxi --resource-group rg-resto-scale-agent --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+  "startedAtUtc": "2026-10-24T00:15:40.535854+00:00",
+  "checkedAtUtc": "2026-10-24T00:15:43.426742+00:00",
+  "exitCode": 3,
+  "stdout": "",
+  "stderr": "ERROR: (ResourceNotFound) The Resource 'Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi' under resource group 'rg-resto-scale-agent' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix\nCode: ResourceNotFound\nMessage: The Resource 'Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi' under resource group 'rg-resto-scale-agent' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix\n"
+}

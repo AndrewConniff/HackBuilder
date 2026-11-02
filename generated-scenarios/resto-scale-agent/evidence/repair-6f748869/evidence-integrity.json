@@ -1,0 +1,35 @@
+{
+  "checkedAtUtc": "2026-10-24T01:31:18.682328+00:00",
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "resto-scale-agent",
+    "resourceGroup": "rg-resto-scale-agent",
+    "region": "centralus"
+  },
+  "infrastructureFingerprint": "2371ff53fd0c9ff35ca3e337f30911f0bd4b4bf019dcd27f13cb0456dfb25ed7",
+  "passed": true,
+  "whatIfCounts": {
+    "full": {
+      "Create": 33,
+      "Unsupported": 13
+    },
+    "vault": {
+      "Create": 3
+    },
+    "cosmos": {
+      "Create": 7
+    }
+  },
+  "registeredProviderNamespacesChecked": 12,
+  "groupExists": false,
+  "currentConsumptionQuota": null,
+  "compiledRegressionTestsPassed": 3,
+  "markdownTemplateAndLineLengthChecksPassed": true,
+  "scenarioOnlyCatalogRefresh": true,
+  "sharedCatalogExported": false,
+  "cloudMutations": false,
+  "liveAcceptancePassed": false,
+  "limitations": "Evidence integrity only; skipped validation, unresolved grants, directory capability, future environment quota, runtime outputs/preview and live performance/authentication remain unverified."
+}

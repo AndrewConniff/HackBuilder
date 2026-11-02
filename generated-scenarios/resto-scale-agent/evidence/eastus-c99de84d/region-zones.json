@@ -1,0 +1,8 @@
+{
+  "command": "az account list-locations --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --query [?name=='eastus'] --output json",
+  "startedAtUtc": "2026-10-23T22:47:49.273470+00:00",
+  "checkedAtUtc": "2026-10-23T22:47:50.397728+00:00",
+  "exitCode": 2,
+  "stdout": "",
+  "stderr": "ERROR: unrecognized arguments: --subscription efd64343-6ef4-4926-951f-d3229f38bd76\n\nhttps://aka.ms/cli_ref\nRead more about the command in reference docs\n"
+}

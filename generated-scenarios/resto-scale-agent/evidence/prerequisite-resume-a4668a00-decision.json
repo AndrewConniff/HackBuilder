@@ -1,0 +1,21 @@
+{
+  "stage": "diagrams",
+  "status": "waiting_for_user",
+  "summary": "Decision required: the actual resumed worker still cannot resolve dot, and the host still denies the read-only Graphviz location/PATH check. Diagram generation and local implementation remain blocked. Existing design and all prior answers are preserved; no Azure operations or shared-tool changes occurred.",
+  "evidence": [
+    "generated-scenarios\\resto-scale-agent\\evidence\\prerequisite-resume-a4668a00-running.json",
+    "Actual Python probe returned {\"dot\": null, \"diagramsInstalled\": true}; exit code 0.",
+    "Known-location/PATH probe was denied because no interactive user response was available; no permission bypass or shared-tool installation was attempted.",
+    "No scenario suitability approval, hack packages, team deployment, Azure queries or cloud authorization inferred."
+  ],
+  "decision": {
+    "kind": "business",
+    "question": "Have the portal/environment administrator verify dot resolution and execution permission inside the actual portal-launched worker before resuming this scenario?",
+    "reason": "The latest recorded verification is not effective in this worker: Python still returns null for dot and the host denies the prerequisite location/PATH check. Coordinate the portal worker environment and execution-host permission outside this job. Another affirmative answer without an effective environment correction cannot unblock diagrams. Do not install shared tooling in a scenario worker. No design reconfirmation or cloud consent is requested.",
+    "choices": [
+      "Actual worker prerequisites corrected and verified; resume",
+      "Stop"
+    ],
+    "acceptChoice": "Actual worker prerequisites corrected and verified; resume"
+  }
+}

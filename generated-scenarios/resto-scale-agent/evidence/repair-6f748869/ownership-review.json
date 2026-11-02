@@ -1,0 +1,22 @@
+{
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "resto-scale-agent",
+    "resourceGroup": "rg-resto-scale-agent",
+    "region": "centralus"
+  },
+  "checkedAtUtc": "2026-10-24T01:23:31.899555+00:00",
+  "currentGroupExists": false,
+  "currentResourcesVerified": false,
+  "priorListedResources": 13,
+  "removedBy": null,
+  "removedAtUtc": null,
+  "historicalConsumptionQuota": "0/500 on the former environment, not current allocation evidence",
+  "currentConsumptionQuota": null,
+  "replacementVaultName": "kv-resto-dc9a173f4d0b5f6",
+  "infrastructureFingerprint": "2371ff53fd0c9ff35ca3e337f30911f0bd4b4bf019dcd27f13cb0456dfb25ed7",
+  "cloudMutations": false,
+  "directoryReadsOrWrites": false
+}

@@ -1,0 +1,77 @@
+{
+  "changes": [
+    {
+      "after": {
+        "apiVersion": "2024-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent",
+        "location": "eastus2",
+        "name": "rg-resto-scale-agent",
+        "tags": {
+          "Environment": "resto-scale-agent",
+          "ManagedBy": "Bicep",
+          "Project": "resto-scale-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Resources/resourceGroups"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-06-01-preview",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi",
+        "location": "eastus2",
+        "name": "acrresto4tvlzr5zf2rxi",
+        "properties": {
+          "adminUserEnabled": false,
+          "anonymousPullEnabled": false,
+          "dataEndpointEnabled": false,
+          "networkRuleBypassAllowedForTasks": false,
+          "networkRuleBypassOptions": "AzureServices",
+          "policies": {
+            "azureADAuthenticationAsArmPolicy": {
+              "status": "disabled"
+            },
+            "softDeletePolicy": {
+              "retentionDays": 7,
+              "status": "disabled"
+            }
+          },
+          "publicNetworkAccess": "Enabled"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "sku": {
+          "name": "Basic"
+        },
+        "tags": {
+          "Environment": "resto-scale-agent",
+          "ManagedBy": "Bicep",
+          "Project": "resto-scale-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.ContainerRegistry/registries"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi",
+      "symbolicName": null,
+      "unsupportedReason": null
+    }
+  ],
+  "diagnostics": null,
+  "error": null,
+  "potentialChanges": null,
+  "status": "Succeeded"
+}

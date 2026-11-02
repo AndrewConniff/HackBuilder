@@ -1,0 +1,49 @@
+{
+  "value": [
+    {
+      "currentValue": 0,
+      "limit": 50,
+      "name": {
+        "localizedValue": "Managed Environment Count",
+        "value": "ManagedEnvironmentCount"
+      },
+      "usage": 0
+    },
+    {
+      "currentValue": 0,
+      "limit": 0,
+      "name": {
+        "localizedValue": "Subscription Dedicated NCA 100 Gpus",
+        "value": "SubscriptionDedicatedNCA100Gpus"
+      },
+      "usage": 0
+    },
+    {
+      "currentValue": 0,
+      "limit": 50,
+      "name": {
+        "localizedValue": "Session Pools",
+        "value": "SessionPools"
+      },
+      "usage": 0
+    },
+    {
+      "currentValue": 0,
+      "limit": 500,
+      "name": {
+        "localizedValue": "Express Environment Count",
+        "value": "ExpressEnvironmentCount"
+      },
+      "usage": 0
+    },
+    {
+      "currentValue": 0,
+      "limit": 20000,
+      "name": {
+        "localizedValue": "Sandbox Cores",
+        "value": "SandboxCores"
+      },
+      "usage": 0
+    }
+  ]
+}

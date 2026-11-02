@@ -1,0 +1,6 @@
+[
+  {"Id":"policy-hours-v1","Title":"Service hours","Text":"Adatum Corporation synthetic branch service is available Monday to Friday, 09:00 to 17:00 UTC. In-app human cases are queued outside these hours; this demo has no guaranteed response time."},
+  {"Id":"policy-pending-v1","Title":"Pending transactions","Text":"Pending synthetic card authorizations are not settled charges. A pending authorization can change or disappear. This demonstration cannot cancel or alter transactions. Unrecognized or disputed activity must be escalated to a human."},
+  {"Id":"policy-safety-v1","Title":"Customer protection","Text":"Never request a PIN, card security code, full card number, or password in chat. Suspected fraud, stolen cards, disputes, personal financial advice and any request to move money require human service. No real financial actions are supported."},
+  {"Id":"policy-scope-v1","Title":"Read-only account service","Text":"Customers may view only their own synthetic balance and transaction history. Balances are snapshot values in USD; do not infer overdraft eligibility or available credit. For missing or conflicting evidence, escalate to human service."}
+]

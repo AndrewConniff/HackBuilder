@@ -1,0 +1,132 @@
+{
+  "command": "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/locations/centralus/availableManagedEnvironmentsWorkloadProfileTypes?api-version=2025-07-01 --output json",
+  "startedAtUtc": "2026-10-23T23:38:25.094824+00:00",
+  "checkedAtUtc": "2026-10-23T23:38:27.243619+00:00",
+  "exitCode": 0,
+  "stdout": "{\n  \"value\": [\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes/D4\",\n      \"location\": \"centralus\",\n      \"name\": \"D4\",\n      \"properties\": {\n        \"category\": \"GeneralPurpose\",\n        \"cores\": 4,\n        \"displayName\": \"Dedicated-D4\",\n        \"memoryGiB\": 16\n      },\n      \"type\": \"Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes/D8\",\n      \"location\": \"centralus\",\n      \"name\": \"D8\",\n      \"properties\": {\n        \"category\": \"GeneralPurpose\",\n        \"cores\": 8,\n        \"displayName\": \"Dedicated-D8\",\n        \"memoryGiB\": 32\n      },\n      \"type\": \"Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes/D16\",\n      \"location\": \"centralus\",\n      \"name\": \"D16\",\n      \"properties\": {\n        \"category\": \"GeneralPurpose\",\n        \"cores\": 16,\n        \"displayName\": \"Dedicated-D16\",\n        \"memoryGiB\": 64\n      },\n      \"type\": \"Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes/D32\",\n      \"location\": \"centralus\",\n      \"name\": \"D32\",\n      \"properties\": {\n        \"category\": \"GeneralPurpose\",\n        \"cores\": 32,\n        \"displayName\": \"Dedicated-D32\",\n        \"memoryGiB\": 128\n      },\n      \"type\": \"Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes/E4\",\n      \"location\": \"centralus\",\n      \"name\": \"E4\",\n      \"properties\": {\n        \"category\": \"MemoryOptimized\",\n        \"cores\": 4,\n        \"displayName\": \"Dedicated-E4\",\n        \"memoryGiB\": 32\n      },\n      \"type\": \"Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes/E8\",\n      \"location\": \"centralus\",\n      \"name\": \"E8\",\n      \"properties\": {\n        \"category\": \"MemoryOptimized\",\n        \"cores\": 8,\n        \"displayName\": \"Dedicated-E8\",\n        \"memoryGiB\": 64\n      },\n      \"type\": \"Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes/E16\",\n      \"location\": \"centralus\",\n      \"name\": \"E16\",\n      \"properties\": {\n        \"category\": \"MemoryOptimized\",\n        \"cores\": 16,\n        \"displayName\": \"Dedicated-E16\",\n        \"memoryGiB\": 128\n      },\n      \"type\": \"Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes/E32\",\n      \"location\": \"centralus\",\n      \"name\": \"E32\",\n      \"properties\": {\n        \"category\": \"MemoryOptimized\",\n        \"cores\": 32,\n        \"displayName\": \"Dedicated-E32\",\n        \"memoryGiB\": 256\n      },\n      \"type\": \"Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes/Consumption\",\n      \"location\": \"centralus\",\n      \"name\": \"Consumption\",\n      \"properties\": {\n        \"category\": \"Consumption\",\n        \"cores\": 4,\n        \"displayName\": \"Consumption\",\n        \"memoryGiB\": 8\n      },\n      \"type\": \"Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes/Flex\",\n      \"location\": \"centralus\",\n      \"name\": \"Flex\",\n      \"properties\": {\n        \"category\": \"Consumption\",\n        \"cores\": 32,\n        \"displayName\": \"Flex\",\n        \"memoryGiB\": 128\n      },\n      \"type\": \"Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes\"\n    }\n  ]\n}\n",
+  "stderr": "",
+  "result": {
+    "value": [
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes/D4",
+        "location": "centralus",
+        "name": "D4",
+        "properties": {
+          "category": "GeneralPurpose",
+          "cores": 4,
+          "displayName": "Dedicated-D4",
+          "memoryGiB": 16
+        },
+        "type": "Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes/D8",
+        "location": "centralus",
+        "name": "D8",
+        "properties": {
+          "category": "GeneralPurpose",
+          "cores": 8,
+          "displayName": "Dedicated-D8",
+          "memoryGiB": 32
+        },
+        "type": "Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes/D16",
+        "location": "centralus",
+        "name": "D16",
+        "properties": {
+          "category": "GeneralPurpose",
+          "cores": 16,
+          "displayName": "Dedicated-D16",
+          "memoryGiB": 64
+        },
+        "type": "Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes/D32",
+        "location": "centralus",
+        "name": "D32",
+        "properties": {
+          "category": "GeneralPurpose",
+          "cores": 32,
+          "displayName": "Dedicated-D32",
+          "memoryGiB": 128
+        },
+        "type": "Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes/E4",
+        "location": "centralus",
+        "name": "E4",
+        "properties": {
+          "category": "MemoryOptimized",
+          "cores": 4,
+          "displayName": "Dedicated-E4",
+          "memoryGiB": 32
+        },
+        "type": "Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes/E8",
+        "location": "centralus",
+        "name": "E8",
+        "properties": {
+          "category": "MemoryOptimized",
+          "cores": 8,
+          "displayName": "Dedicated-E8",
+          "memoryGiB": 64
+        },
+        "type": "Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes/E16",
+        "location": "centralus",
+        "name": "E16",
+        "properties": {
+          "category": "MemoryOptimized",
+          "cores": 16,
+          "displayName": "Dedicated-E16",
+          "memoryGiB": 128
+        },
+        "type": "Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes/E32",
+        "location": "centralus",
+        "name": "E32",
+        "properties": {
+          "category": "MemoryOptimized",
+          "cores": 32,
+          "displayName": "Dedicated-E32",
+          "memoryGiB": 256
+        },
+        "type": "Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes/Consumption",
+        "location": "centralus",
+        "name": "Consumption",
+        "properties": {
+          "category": "Consumption",
+          "cores": 4,
+          "displayName": "Consumption",
+          "memoryGiB": 8
+        },
+        "type": "Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes/Flex",
+        "location": "centralus",
+        "name": "Flex",
+        "properties": {
+          "category": "Consumption",
+          "cores": 32,
+          "displayName": "Flex",
+          "memoryGiB": 128
+        },
+        "type": "Microsoft.App/availableManagedEnvironmentsWorkloadProfileTypes"
+      }
+    ]
+  }
+}

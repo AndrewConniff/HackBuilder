@@ -1,0 +1,9 @@
+{
+  "command": "python -m unittest discover -s C:\\azd-projects\\resto-scale-agent\\evidence\\installation-e13812c5 -p test_operator_access.py",
+  "cwd": "C:\\azd-projects\\resto-scale-agent",
+  "startedAtUtc": "2026-10-24T17:45:23.892722+00:00",
+  "checkedAtUtc": "2026-10-24T17:45:24.265889+00:00",
+  "exitCode": 0,
+  "stdout": "",
+  "stderr": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.005s\n\nOK\n"
+}

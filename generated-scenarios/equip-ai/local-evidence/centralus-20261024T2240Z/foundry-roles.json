@@ -1,0 +1,246 @@
+[
+  {
+    "assignableScopes": [
+      "/"
+    ],
+    "createdBy": null,
+    "createdOn": "2025-04-23T15:12:37.588061+00:00",
+    "description": "Lets you perform developer actions and management actions on Microsoft Foundry Projects. Allows for making role assignments, but limited to Cognitive Service User role.",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/eadc314b-1a2d-4efa-be10-5d325db5065e",
+    "name": "eadc314b-1a2d-4efa-be10-5d325db5065e",
+    "permissions": [
+      {
+        "actions": [
+          "Microsoft.Authorization/roleAssignments/write",
+          "Microsoft.Authorization/roleAssignments/delete",
+          "Microsoft.CognitiveServices/accounts/*/read",
+          "Microsoft.CognitiveServices/accounts/projects/*",
+          "Microsoft.CognitiveServices/locations/*/read",
+          "Microsoft.Authorization/*/read",
+          "Microsoft.Insights/alertRules/*",
+          "Microsoft.Resources/deployments/*",
+          "Microsoft.Resources/subscriptions/resourceGroups/read"
+        ],
+        "condition": "((!(ActionMatches{'Microsoft.Authorization/roleAssignments/write'})) OR (@Request[Microsoft.Authorization/roleAssignments:RoleDefinitionId] ForAnyOfAnyValues:GuidEquals{eed3b665-ab3a-47b6-8f48-c9382fb1dad6,53ca6127-db72-4b80-b1b0-d745d6d5456d})) AND ((!(ActionMatches{'Microsoft.Authorization/roleAssignments/delete'})) OR (@Resource[Microsoft.Authorization/roleAssignments:RoleDefinitionId] ForAnyOfAnyValues:GuidEquals{eed3b665-ab3a-47b6-8f48-c9382fb1dad6,53ca6127-db72-4b80-b1b0-d745d6d5456d}))",
+        "conditionVersion": "2.0",
+        "dataActions": [
+          "Microsoft.CognitiveServices/*"
+        ],
+        "notActions": [],
+        "notDataActions": [
+          "Microsoft.CognitiveServices/accounts/AIServices/agents/endpoints/UserIdentityImpersonation/action",
+          "Microsoft.CognitiveServices/accounts/OpenAI/fine-tunes-deployments/write",
+          "Microsoft.CognitiveServices/accounts/AIServices/fine_tuning_deployments/write"
+        ]
+      }
+    ],
+    "roleName": "Foundry Project Manager",
+    "roleType": "BuiltInRole",
+    "systemData": null,
+    "type": "Microsoft.Authorization/roleDefinitions",
+    "updatedBy": null,
+    "updatedOn": "2026-07-27T15:05:22.538531+00:00"
+  },
+  {
+    "assignableScopes": [
+      "/"
+    ],
+    "createdBy": null,
+    "createdOn": "2025-05-02T00:17:24.487890+00:00",
+    "description": "Grants full access to manage Foundry projects and accounts. Grants conditional assignment of the Foundry User role to other user principles.",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/e47c6f54-e4a2-4754-9501-8e0985b135e1",
+    "name": "e47c6f54-e4a2-4754-9501-8e0985b135e1",
+    "permissions": [
+      {
+        "actions": [
+          "Microsoft.Authorization/*/read",
+          "Microsoft.Authorization/roleAssignments/write",
+          "Microsoft.Authorization/roleAssignments/delete",
+          "Microsoft.CognitiveServices/*",
+          "Microsoft.Features/features/read",
+          "Microsoft.Features/providers/features/read",
+          "Microsoft.Features/providers/features/register/action",
+          "Microsoft.Insights/alertRules/*",
+          "Microsoft.Insights/diagnosticSettings/*",
+          "Microsoft.Insights/logDefinitions/read",
+          "Microsoft.Insights/metricdefinitions/read",
+          "Microsoft.Insights/metrics/read",
+          "Microsoft.ResourceHealth/availabilityStatuses/read",
+          "Microsoft.Resources/deployments/*",
+          "Microsoft.Resources/deployments/operations/read",
+          "Microsoft.Resources/subscriptions/operationresults/read",
+          "Microsoft.Resources/subscriptions/read",
+          "Microsoft.Resources/subscriptions/resourcegroups/deployments/*",
+          "Microsoft.Resources/subscriptions/resourceGroups/read",
+          "Microsoft.Support/*"
+        ],
+        "condition": "((!(ActionMatches{'Microsoft.Authorization/roleAssignments/write'})) OR (@Request[Microsoft.Authorization/roleAssignments:RoleDefinitionId] ForAnyOfAnyValues:GuidEquals{eed3b665-ab3a-47b6-8f48-c9382fb1dad6,53ca6127-db72-4b80-b1b0-d745d6d5456d,3bc748fc-213d-45c1-8d91-9da5725539b9,2a1e307c-b015-4ebd-883e-5b7698a07328,73c42c96-874c-492b-b04d-ab87d138a893})) AND ((!(ActionMatches{'Microsoft.Authorization/roleAssignments/delete'})) OR (@Resource[Microsoft.Authorization/roleAssignments:RoleDefinitionId] ForAnyOfAnyValues:GuidEquals{eed3b665-ab3a-47b6-8f48-c9382fb1dad6,53ca6127-db72-4b80-b1b0-d745d6d5456d,3bc748fc-213d-45c1-8d91-9da5725539b9,2a1e307c-b015-4ebd-883e-5b7698a07328,73c42c96-874c-492b-b04d-ab87d138a893}))",
+        "conditionVersion": "2.0",
+        "dataActions": [],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "Foundry Account Owner",
+    "roleType": "BuiltInRole",
+    "systemData": null,
+    "type": "Microsoft.Authorization/roleDefinitions",
+    "updatedBy": null,
+    "updatedOn": "2026-07-20T15:05:49.655095+00:00"
+  },
+  {
+    "assignableScopes": [
+      "/"
+    ],
+    "createdBy": null,
+    "createdOn": "2025-05-02T19:43:11.165333+00:00",
+    "description": "Grants reader access to Foundry projects, reader access to Foundry accounts, and data actions for an Foundry project.",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/53ca6127-db72-4b80-b1b0-d745d6d5456d",
+    "name": "53ca6127-db72-4b80-b1b0-d745d6d5456d",
+    "permissions": [
+      {
+        "actions": [
+          "Microsoft.Authorization/*/read",
+          "Microsoft.CognitiveServices/*/read",
+          "Microsoft.CognitiveServices/accounts/listkeys/action",
+          "Microsoft.CognitiveServices/accounts/projects/connections/listsecrets/action",
+          "Microsoft.Insights/alertRules/read",
+          "Microsoft.Insights/diagnosticSettings/read",
+          "Microsoft.Insights/logDefinitions/read",
+          "Microsoft.Insights/metricdefinitions/read",
+          "Microsoft.Insights/metrics/read",
+          "Microsoft.ResourceHealth/availabilityStatuses/read",
+          "Microsoft.Resources/deployments/*",
+          "Microsoft.Resources/subscriptions/operationresults/read",
+          "Microsoft.Resources/subscriptions/read",
+          "Microsoft.Resources/subscriptions/resourceGroups/read",
+          "Microsoft.Support/*"
+        ],
+        "condition": null,
+        "conditionVersion": null,
+        "dataActions": [
+          "Microsoft.CognitiveServices/*"
+        ],
+        "notActions": [],
+        "notDataActions": [
+          "Microsoft.CognitiveServices/accounts/AIServices/agents/endpoints/UserIdentityImpersonation/action",
+          "Microsoft.CognitiveServices/accounts/OpenAI/fine-tunes-deployments/write",
+          "Microsoft.CognitiveServices/accounts/AIServices/fine_tuning_deployments/write"
+        ]
+      }
+    ],
+    "roleName": "Foundry User",
+    "roleType": "BuiltInRole",
+    "systemData": null,
+    "type": "Microsoft.Authorization/roleDefinitions",
+    "updatedBy": null,
+    "updatedOn": "2026-09-16T15:31:47.618515+00:00"
+  },
+  {
+    "assignableScopes": [
+      "/"
+    ],
+    "createdBy": null,
+    "createdOn": "2025-12-17T16:31:25.736398+00:00",
+    "description": "Grants full to manage Foundry project and accounts. Grants reader access to Foundry projects, reader access to Foundry accounts, and data actions for a Foundry project.",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/c883944f-8b7b-4483-af10-35834be79c4a",
+    "name": "c883944f-8b7b-4483-af10-35834be79c4a",
+    "permissions": [
+      {
+        "actions": [
+          "Microsoft.AlertsManagement/actionRules/*",
+          "Microsoft.AlertsManagement/alerts/*",
+          "Microsoft.AlertsManagement/issues/*",
+          "Microsoft.AlertsManagement/prometheusRuleGroups/*",
+          "Microsoft.AlertsManagement/smartDetectorAlertRules/*",
+          "Microsoft.Authorization/*/read",
+          "Microsoft.Authorization/roleAssignments/write",
+          "Microsoft.Authorization/roleAssignments/delete",
+          "Microsoft.CognitiveServices/*",
+          "Microsoft.Insights/activityLogAlerts/*",
+          "Microsoft.Insights/metricalerts/*",
+          "Microsoft.Insights/scheduledqueryrules/*",
+          "Microsoft.ResourceHealth/availabilityStatuses/read",
+          "Microsoft.Resources/deployments/*",
+          "Microsoft.Resources/deployments/operations/read",
+          "Microsoft.Resources/subscriptions/operationresults/read",
+          "Microsoft.Resources/subscriptions/read",
+          "Microsoft.Resources/subscriptions/resourcegroups/deployments/*",
+          "Microsoft.Resources/subscriptions/resourceGroups/read",
+          "Microsoft.Support/*"
+        ],
+        "condition": "((!(ActionMatches{'Microsoft.Authorization/roleAssignments/write'})) OR (@Request[Microsoft.Authorization/roleAssignments:RoleDefinitionId] ForAnyOfAnyValues:GuidEquals{eed3b665-ab3a-47b6-8f48-c9382fb1dad6,53ca6127-db72-4b80-b1b0-d745d6d5456d,3bc748fc-213d-45c1-8d91-9da5725539b9,2a1e307c-b015-4ebd-883e-5b7698a07328,73c42c96-874c-492b-b04d-ab87d138a893})) AND ((!(ActionMatches{'Microsoft.Authorization/roleAssignments/delete'})) OR (@Resource[Microsoft.Authorization/roleAssignments:RoleDefinitionId] ForAnyOfAnyValues:GuidEquals{eed3b665-ab3a-47b6-8f48-c9382fb1dad6,53ca6127-db72-4b80-b1b0-d745d6d5456d,3bc748fc-213d-45c1-8d91-9da5725539b9,2a1e307c-b015-4ebd-883e-5b7698a07328,73c42c96-874c-492b-b04d-ab87d138a893}))",
+        "conditionVersion": "2.0",
+        "dataActions": [
+          "Microsoft.CognitiveServices/*"
+        ],
+        "notActions": [],
+        "notDataActions": [
+          "Microsoft.CognitiveServices/accounts/AIServices/agents/endpoints/UserIdentityImpersonation/action"
+        ]
+      }
+    ],
+    "roleName": "Foundry Owner",
+    "roleType": "BuiltInRole",
+    "systemData": null,
+    "type": "Microsoft.Authorization/roleDefinitions",
+    "updatedBy": null,
+    "updatedOn": "2026-07-16T16:10:13.495052+00:00"
+  },
+  {
+    "assignableScopes": [
+      "/"
+    ],
+    "createdBy": null,
+    "createdOn": "2026-06-15T15:05:27.873837+00:00",
+    "description": "Allows interacting with Foundry agents at runtime.",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/eed3b665-ab3a-47b6-8f48-c9382fb1dad6",
+    "name": "eed3b665-ab3a-47b6-8f48-c9382fb1dad6",
+    "permissions": [
+      {
+        "actions": [],
+        "condition": null,
+        "conditionVersion": null,
+        "dataActions": [
+          "Microsoft.CognitiveServices/accounts/AIServices/endpoints/interact/action"
+        ],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "Foundry Agent Consumer",
+    "roleType": "BuiltInRole",
+    "systemData": null,
+    "type": "Microsoft.Authorization/roleDefinitions",
+    "updatedBy": null,
+    "updatedOn": "2026-06-29T15:01:38.258055+00:00"
+  },
+  {
+    "assignableScopes": [
+      "/"
+    ],
+    "createdBy": null,
+    "createdOn": "2026-06-15T15:05:27.874837+00:00",
+    "description": "Allows interacting with Foundry agents at runtime with minimal required permissions.",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/142bfaed-a13f-4c2d-bed2-6db62c4a1009",
+    "name": "142bfaed-a13f-4c2d-bed2-6db62c4a1009",
+    "permissions": [
+      {
+        "actions": [],
+        "condition": null,
+        "conditionVersion": null,
+        "dataActions": [
+          "Microsoft.CognitiveServices/accounts/AIServices/responses/*"
+        ],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "Foundry Project Runtime User",
+    "roleType": "BuiltInRole",
+    "systemData": null,
+    "type": "Microsoft.Authorization/roleDefinitions",
+    "updatedBy": null,
+    "updatedOn": "2026-06-15T15:05:27.874837+00:00"
+  }
+]

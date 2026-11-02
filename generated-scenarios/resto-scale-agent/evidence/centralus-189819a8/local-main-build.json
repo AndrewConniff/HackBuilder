@@ -1,0 +1,9 @@
+{
+  "name": "main-build",
+  "command": "az bicep build --file C:\\azd-projects\\resto-scale-agent\\infra\\main.bicep --outfile C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\main.arm.json",
+  "cwd": "C:\\HackBuilder",
+  "exitCode": 0,
+  "stdout": "",
+  "stderr": "",
+  "checkedAtUtc": "2026-10-23T23:47:18.336231+00:00"
+}

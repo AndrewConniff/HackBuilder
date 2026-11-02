@@ -1,0 +1,9 @@
+{
+  "command": "\"C:\\Users\\petender\\AppData\\Local\\Programs\\Azure Dev CLI\\azd.EXE\" env get-values --environment equip-ai --no-prompt",
+  "cwd": "C:\\azd-projects\\equip-ai",
+  "startedAtUtc": "2026-10-24T22:38:14.444456+00:00",
+  "finishedAtUtc": "2026-10-24T22:38:14.955638+00:00",
+  "exitCode": 0,
+  "stdout": "azd-values.json",
+  "stderr": "azd-values.stderr.txt"
+}

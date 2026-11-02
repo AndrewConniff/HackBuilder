@@ -1,0 +1,35 @@
+[
+  {
+    "Store":{"Id":1,"StoreId":"001","Name":"Harbor","Area":"north","Manager":"Airi Ilves"},
+    "Version":"fixture-2026-10-23-v1",
+    "Stock":[
+      {"Id":1,"Sku":"beans","Unit":"kg","OnHand":8,"Target":20,"UnitCost":14.5},
+      {"Id":2,"Sku":"milk","Unit":"L","OnHand":12,"Target":40,"UnitCost":1.2},
+      {"Id":3,"Sku":"cookies","Unit":"each","OnHand":65,"Target":100,"UnitCost":0.65},
+      {"Id":4,"Sku":"oat-milk","Unit":"L","OnHand":25,"Target":20,"UnitCost":1.8}
+    ],
+    "Ledger":{"Id":1,"Date":"2026-10-23","NetSales":2400,"Cogs":720,"Labor":480,"Occupancy":160,"Waste":40,"Complete":true}
+  },
+  {
+    "Store":{"Id":2,"StoreId":"002","Name":"Station","Area":"north","Manager":"Hasan Ibrahimov"},
+    "Version":"fixture-2026-10-23-v1",
+    "Stock":[
+      {"Id":5,"Sku":"beans","Unit":"kg","OnHand":21,"Target":20,"UnitCost":14.5},
+      {"Id":6,"Sku":"milk","Unit":"L","OnHand":9,"Target":35,"UnitCost":1.2},
+      {"Id":7,"Sku":"cookies","Unit":"each","OnHand":20,"Target":80,"UnitCost":0.65},
+      {"Id":8,"Sku":"oat-milk","Unit":"L","OnHand":5,"Target":18,"UnitCost":1.8}
+    ],
+    "Ledger":{"Id":2,"Date":"2026-10-23","NetSales":1800,"Cogs":630,"Labor":450,"Occupancy":150,"Waste":85,"Complete":true}
+  },
+  {
+    "Store":{"Id":3,"StoreId":"003","Name":"Park","Area":"south","Manager":"Nino Kapanadze"},
+    "Version":"fixture-2026-10-23-v1",
+    "Stock":[
+      {"Id":9,"Sku":"beans","Unit":"kg","OnHand":6,"Target":18,"UnitCost":14.5},
+      {"Id":10,"Sku":"milk","Unit":"L","OnHand":20,"Target":30,"UnitCost":1.2},
+      {"Id":11,"Sku":"cookies","Unit":"each","OnHand":30,"Target":60,"UnitCost":0.65},
+      {"Id":12,"Sku":"oat-milk","Unit":"L","OnHand":12,"Target":12,"UnitCost":1.8}
+    ],
+    "Ledger":{"Id":3,"Date":"2026-10-23","NetSales":1200,"Cogs":420,"Labor":360,"Occupancy":140,"Waste":30,"Complete":false}
+  }
+]

@@ -1,0 +1,35 @@
+name: tdd-azd-manu-multi-agent
+metadata:
+  template: tddazd-manu-multi-agent@1.0.0
+infra:
+  provider: bicep
+  path: infra
+hooks:
+  preup:
+    shell: pwsh
+    run: python scripts\deployment_lifecycle.py reject-default-deploy
+    interactive: false
+  preprovision:
+    shell: pwsh
+    run: python scripts\deployment_lifecycle.py before
+    interactive: false
+  postprovision:
+    shell: pwsh
+    run: python scripts\deployment_lifecycle.py after
+    interactive: false
+  predeploy:
+    shell: pwsh
+    run: python scripts\deployment_lifecycle.py reject-default-deploy
+    interactive: false
+  prepublish:
+    shell: pwsh
+    run: python scripts\deployment_lifecycle.py reject-default-deploy
+    interactive: false
+services:
+  web:
+    project: src/MobilityCommercial.Web
+    host: containerapp
+    language: csharp
+    docker:
+      path: Dockerfile
+      context: ../..

@@ -1,0 +1,5 @@
+{
+  "retrievedAtUtc": "2026-10-24T23:34:57.434124+00:00",
+  "query": "serviceName eq 'NAT Gateway' and armRegionName eq 'centralus'",
+  "items": []
+}

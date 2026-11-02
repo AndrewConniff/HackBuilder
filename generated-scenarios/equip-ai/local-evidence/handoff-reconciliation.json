@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "projectSlug": "equip-ai",
+  "handoff": ".abcbuilder-portal/scenarios/equip-ai/scenario-handoff.txt",
+  "brief": ".abcbuilder-portal/projects/equip-ai.json",
+  "workspace": "generated-scenarios/equip-ai",
+  "physicalWorkspace": "C:\\azd-projects\\equip-ai",
+  "scenarioWorkerObserved": false,
+  "consentReconciliation": {
+    "history": ".abcbuilder-portal/scenarios/equip-ai/consent-history.json",
+    "historicalDeploymentGrantRetained": true,
+    "historicalDeploymentDecisionId": "157b9eb7c2f14f9e957e45e26826e35d",
+    "historicalDeploymentGrantRecordedAtUtc": "2026-10-24T00:05:54.058021+00:00",
+    "laterDerivedReceiptNotUserRevocation": "local-evidence/centralus-20261024T2240Z/authorization.json",
+    "laterRestrictionRecordedAtUtc": "2026-10-24T22:42:08.151804+00:00",
+    "effectiveScope": "Retain original Central US ARM/dedicated-directory installation grant; additional private management resources and user assignments remain unauthorized",
+    "reason": "Actual later local-design and read-only responses contain no explicit revocation. Agent-derived prohibited lists do not create a user restriction. New resources, costs and user assignments are outside the original grant.",
+    "newManagementResourcesAuthorized": false,
+    "directoryReadsLimitedToOriginallyReviewedDedicatedInstallation": true,
+    "suitabilityApproved": false
+  },
+  "retainedEvidence": {
+    "localChecks": "local-evidence/resume-20261024T2233Z/local-checks.json",
+    "localCheckCommandCount": 9,
+    "localInstallerTests": 15,
+    "localApplicationChecks": 49,
+    "readiness": "local-evidence/centralus-20261024T2240Z/regional-readiness.json",
+    "review": "local-evidence/centralus-20261024T2240Z/deployment-review.md",
+    "independentWhatIfCreates": 35,
+    "independentWhatIfWarnings": 9,
+    "fullReferenceWhatIfPassed": false,
+    "privateExecutionHostVerified": false,
+    "completeMonthlyCostUsd": null,
+    "runtimeValidation": "scenario-validation.json",
+    "runtimeStatus": "blocked",
+    "checksRerunDuringThisHandoff": false
+  },
+  "operationsDuringThisHandoff": {
+    "localInspectionAndProgressReporting": true,
+    "azureOrGraphQueries": false,
+    "deploymentOrDirectoryWrites": false,
+    "sharedDefaultsChanged": false,
+    "referenceImplementationRegenerated": false,
+    "hackCompositionStarted": false
+  },
+  "status": "decision-required",
+  "nextDecision": "Review the locally implemented Central US management addition and named current-user application-role nomination in local-evidence/management-repair-20261024/deployment-review.md. Request only this missing scope; no runner discovery-versus-design questionnaire.",
+  "currentReconciliation": "local-evidence/management-repair-20261024/authorization-reconciliation.json",
+  "historicalRetainedEvidenceNotice": "The preceding retainedEvidence block describes evidence at the earlier handoff; current repair results are in the new review."
+}

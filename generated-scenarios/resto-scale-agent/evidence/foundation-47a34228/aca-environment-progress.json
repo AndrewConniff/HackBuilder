@@ -1,0 +1,90 @@
+{
+  "command": "az containerapp env show --name cae-resto-4tvlzr5zf2rxi --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --resource-group rg-resto-scale-agent --output json",
+  "startedAtUtc": "2026-10-24T00:15:28.821305+00:00",
+  "checkedAtUtc": "2026-10-24T00:15:31.933414+00:00",
+  "exitCode": 0,
+  "stdout": "{\n  \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.App/managedEnvironments/cae-resto-4tvlzr5zf2rxi\",\n  \"location\": \"Central US\",\n  \"name\": \"cae-resto-4tvlzr5zf2rxi\",\n  \"properties\": {\n    \"appInsightsConfiguration\": null,\n    \"appLogsConfiguration\": {\n      \"destination\": \"log-analytics\",\n      \"logAnalyticsConfiguration\": {\n        \"customerId\": \"d0a4029e-990c-4f67-a7cf-2804aa8897eb\",\n        \"sharedKey\": null\n      }\n    },\n    \"customDomainConfiguration\": {\n      \"certificateKeyVaultProperties\": null,\n      \"certificatePassword\": null,\n      \"certificateValue\": null,\n      \"customDomainVerificationId\": \"A262E16A36F44907BB780F3F1F741B72ED52E69472C8164C37C258905CB562E3\",\n      \"dnsSuffix\": null,\n      \"expirationDate\": null,\n      \"subjectName\": null,\n      \"thumbprint\": null\n    },\n    \"daprAIConnectionString\": null,\n    \"daprAIInstrumentationKey\": null,\n    \"daprConfiguration\": {\n      \"version\": \"1.16.4-msft.13\"\n    },\n    \"defaultDomain\": \"ashystone-e32f76b9.centralus.azurecontainerapps.io\",\n    \"eventStreamEndpoint\": \"https://centralus.azurecontainerapps.dev/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/managedEnvironments/cae-resto-4tvlzr5zf2rxi/eventstream\",\n    \"infrastructureResourceGroup\": \"ME_cae-resto-4tvlzr5zf2rxi\",\n    \"ingressConfiguration\": null,\n    \"kedaConfiguration\": {\n      \"version\": \"2.20.2\"\n    },\n    \"openTelemetryConfiguration\": null,\n    \"peerAuthentication\": {\n      \"mtls\": {\n        \"enabled\": false\n      }\n    },\n    \"peerTrafficConfiguration\": {\n      \"encryption\": {\n        \"enabled\": true\n      }\n    },\n    \"provisioningState\": \"Succeeded\",\n    \"publicNetworkAccess\": \"Enabled\",\n    \"staticIp\": \"52.185.77.15\",\n    \"vnetConfiguration\": {\n      \"dockerBridgeCidr\": null,\n      \"infrastructureSubnetId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi/subnets/container-apps\",\n      \"internal\": false,\n      \"platformReservedCidr\": null,\n      \"platformReservedDnsIP\": null\n    },\n    \"workloadProfiles\": [\n      {\n        \"enableFips\": false,\n        \"name\": \"Consumption\",\n        \"workloadProfileType\": \"Consumption\"\n      }\n    ],\n    \"zoneRedundant\": true\n  },\n  \"resourceGroup\": \"rg-resto-scale-agent\",\n  \"systemData\": {\n    \"createdAt\": \"2026-10-24T00:12:48.7767244\",\n    \"createdBy\": \"Peter.DeTender@microsoft.com\",\n    \"createdByType\": \"User\",\n    \"lastModifiedAt\": \"2026-10-24T00:12:48.7767244\",\n    \"lastModifiedBy\": \"Peter.DeTender@microsoft.com\",\n    \"lastModifiedByType\": \"User\"\n  },\n  \"tags\": {\n    \"Environment\": \"resto-scale-agent\",\n    \"ManagedBy\": \"Bicep\",\n    \"Project\": \"resto-scale-agent\",\n    \"SecurityControl\": \"Ignore\"\n  },\n  \"type\": \"Microsoft.App/managedEnvironments\"\n}\n",
+  "stderr": "",
+  "result": {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.App/managedEnvironments/cae-resto-4tvlzr5zf2rxi",
+    "location": "Central US",
+    "name": "cae-resto-4tvlzr5zf2rxi",
+    "properties": {
+      "appInsightsConfiguration": null,
+      "appLogsConfiguration": {
+        "destination": "log-analytics",
+        "logAnalyticsConfiguration": {
+          "customerId": "d0a4029e-990c-4f67-a7cf-2804aa8897eb",
+          "sharedKey": null
+        }
+      },
+      "customDomainConfiguration": {
+        "certificateKeyVaultProperties": null,
+        "certificatePassword": null,
+        "certificateValue": null,
+        "customDomainVerificationId": "A262E16A36F44907BB780F3F1F741B72ED52E69472C8164C37C258905CB562E3",
+        "dnsSuffix": null,
+        "expirationDate": null,
+        "subjectName": null,
+        "thumbprint": null
+      },
+      "daprAIConnectionString": null,
+      "daprAIInstrumentationKey": null,
+      "daprConfiguration": {
+        "version": "1.16.4-msft.13"
+      },
+      "defaultDomain": "ashystone-e32f76b9.centralus.azurecontainerapps.io",
+      "eventStreamEndpoint": "https://centralus.azurecontainerapps.dev/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/managedEnvironments/cae-resto-4tvlzr5zf2rxi/eventstream",
+      "infrastructureResourceGroup": "ME_cae-resto-4tvlzr5zf2rxi",
+      "ingressConfiguration": null,
+      "kedaConfiguration": {
+        "version": "2.20.2"
+      },
+      "openTelemetryConfiguration": null,
+      "peerAuthentication": {
+        "mtls": {
+          "enabled": false
+        }
+      },
+      "peerTrafficConfiguration": {
+        "encryption": {
+          "enabled": true
+        }
+      },
+      "provisioningState": "Succeeded",
+      "publicNetworkAccess": "Enabled",
+      "staticIp": "52.185.77.15",
+      "vnetConfiguration": {
+        "dockerBridgeCidr": null,
+        "infrastructureSubnetId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi/subnets/container-apps",
+        "internal": false,
+        "platformReservedCidr": null,
+        "platformReservedDnsIP": null
+      },
+      "workloadProfiles": [
+        {
+          "enableFips": false,
+          "name": "Consumption",
+          "workloadProfileType": "Consumption"
+        }
+      ],
+      "zoneRedundant": true
+    },
+    "resourceGroup": "rg-resto-scale-agent",
+    "systemData": {
+      "createdAt": "2026-10-24T00:12:48.7767244",
+      "createdBy": "Peter.DeTender@microsoft.com",
+      "createdByType": "User",
+      "lastModifiedAt": "2026-10-24T00:12:48.7767244",
+      "lastModifiedBy": "Peter.DeTender@microsoft.com",
+      "lastModifiedByType": "User"
+    },
+    "tags": {
+      "Environment": "resto-scale-agent",
+      "ManagedBy": "Bicep",
+      "Project": "resto-scale-agent",
+      "SecurityControl": "Ignore"
+    },
+    "type": "Microsoft.App/managedEnvironments"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "equip-ai",
+  "title": "Washington equipment operations assistant",
+  "summary": "Site-isolated local-account support for Washington machinery using fresh, certified event telemetry.",
+  "industry": "Manufacturing & Mobility",
+  "businessUnits": [
+    "operations"
+  ],
+  "services": [
+    "foundry",
+    "storage",
+    "app-service",
+    "managed-identity",
+    "virtual-network",
+    "monitor"
+  ],
+  "pillars": [],
+  "domains": [],
+  "artifacts": [
+    "01-requirements.md",
+    "02-architecture-assessment.md",
+    "04-implementation-plan.md",
+    "03-architect-diagram.png",
+    "04-runtime-diagram.png",
+    "azure.yaml",
+    "infra",
+    "src"
+  ],
+  "source": null,
+  "metadataStatus": "curated"
+}

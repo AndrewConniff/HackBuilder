@@ -1,0 +1,31 @@
+{
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "resto-scale-agent",
+    "resourceGroup": "rg-resto-scale-agent",
+    "region": "centralus"
+  },
+  "infrastructureFingerprint": "2371ff53fd0c9ff35ca3e337f30911f0bd4b4bf019dcd27f13cb0456dfb25ed7",
+  "sharedDeployment": "Succeeded",
+  "allNestedDeploymentsSucceeded": true,
+  "resourceCount": 14,
+  "operatorAssignmentsVerified": true,
+  "consentGrantAbsent": true,
+  "actualConsentDenialRetained": true,
+  "readOnlyVerification": {
+    "passed": false,
+    "matchingApplicationGrantCount": 0,
+    "checkedAtUtc": "2026-10-24T17:45:58.552666+00:00",
+    "readOnly": true,
+    "summary": "Required operator-only consent is absent or invalid."
+  },
+  "summaryTemplateAndLineLengthsPassed": true,
+  "scenarioManifest": "refreshed locally only; no shared catalog export",
+  "operatorTests": "5 passed",
+  "scenarioPythonTests": "..................\n----------------------------------------------------------------------\nRan 18 tests in 11.582s\n\nOK\n",
+  "runtimeAcceptancePassed": false,
+  "suitabilitySnapshotCreated": false,
+  "cloudWritesAfterConsentDenial": false
+}

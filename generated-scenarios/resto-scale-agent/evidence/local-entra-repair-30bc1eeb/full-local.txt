@@ -1,0 +1,6 @@
+Test run for C:\HackBuilder\generated-scenarios\resto-scale-agent\tests\Restaurant.Tests\bin\Debug\net10.0\Restaurant.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:09.56]     Restaurant.Tests.BrowserTests.RealBrowserRendersBothWorkspacesAndExplicitUnavailableState [FAIL]
+Results File: C:\HackBuilder\generated-scenarios\resto-scale-agent\evidence\local-entra-repair-30bc1eeb\full-local.trx
+
+Failed!  - Failed:     1, Passed:    51, Skipped:     0, Total:    52, Duration: 9 s - Restaurant.Tests.dll (net10.0)

@@ -1,0 +1,43 @@
+@page
+@model HospitalityFeedback.Web.Pages.IndexModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Margie's Travel | Hotel service evidence</title>
+  <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body>
+<header><span class="badge">SYNTHETIC REFERENCE</span><h1>Margie's Travel</h1>
+  <p>Multilingual hotel service feedback · grounded evidence · observable ingestion</p></header>
+<main>
+  <section><h2>Access</h2>
+    <p>Azure mode requires an authorized Entra API token. It stays in page memory, not browser storage.</p>
+    <label>Bearer token <input id="token" type="password" autocomplete="off" /></label>
+    <p>Development-only loopback Azurite mode allows local ingestion. It does not simulate an agent.</p>
+  </section>
+  <section><h2>Ask the service-quality agent</h2>
+    <label>Question<textarea id="question" rows="3">Compare check-in complaints across languages. Cite original evidence.</textarea></label>
+    <div class="filters">
+      <label>Answer language<select id="language"><option value="en">English</option><option value="es">Español</option>
+        <option value="fr">Français</option><option value="ja">日本語</option></select></label>
+      <label>Service category<select id="category"><option value="">All categories</option><option>check-in</option>
+        <option>housekeeping</option><option>breakfast</option><option>noise</option><option>staff</option></select></label>
+    </div>
+    <button id="ask">Analyze evidence</button><p id="chatStatus" role="status"></p>
+    <pre id="answer" aria-live="polite"></pre><ul id="citations"></ul>
+    <details><summary>Auditable response envelope</summary><pre id="envelope"></pre></details>
+  </section>
+  <section><h2>Queued ingestion</h2>
+    <p>Paste one synthetic feedback JSON object. Use the supplied fixture records; do not enter personal information.</p>
+    <textarea id="feedback" rows="7" aria-label="Synthetic feedback JSON"></textarea>
+    <button id="submit">Enqueue feedback</button><button id="refresh">Refresh processing status</button>
+    <pre id="ingestResult" role="status"></pre>
+    <table><thead><tr><th>Feedback</th><th>State</th><th>Correlation</th><th>Attempts</th></tr></thead>
+      <tbody id="statuses"></tbody></table>
+  </section>
+</main>
+<footer>Source language is preserved. Recommendations are not facts. No live readiness claim without runtime acceptance.</footer>
+<script src="/js/app.js" defer></script>
+</body></html>

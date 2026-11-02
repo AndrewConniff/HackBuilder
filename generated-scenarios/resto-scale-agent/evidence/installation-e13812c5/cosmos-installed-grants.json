@@ -1,0 +1,41 @@
+{
+  "command": "az cosmosdb sql role assignment list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --resource-group rg-resto-scale-agent --account-name cosmos-resto-4tvlzr5zf2rxi --output json",
+  "cwd": "C:\\azd-projects\\resto-scale-agent",
+  "startedAtUtc": "2026-10-24T17:40:40.918140+00:00",
+  "checkedAtUtc": "2026-10-24T17:40:43.588826+00:00",
+  "exitCode": 0,
+  "stdout": "[\n  {\n    \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleAssignments/a25e9b80-241d-5153-aebf-3bf71ac7a34e\",\n    \"name\": \"a25e9b80-241d-5153-aebf-3bf71ac7a34e\",\n    \"principalId\": \"214d672b-df87-4f3b-94fd-7863032546c1\",\n    \"resourceGroup\": \"rg-resto-scale-agent\",\n    \"roleDefinitionId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002\",\n    \"scope\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/dbs/restaurant\",\n    \"systemData\": null,\n    \"type\": \"Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments\"\n  },\n  {\n    \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleAssignments/113df394-f886-53b7-89f5-bd2a604f9a20\",\n    \"name\": \"113df394-f886-53b7-89f5-bd2a604f9a20\",\n    \"principalId\": \"6043da5d-e389-46e1-bfb4-033bccfb0968\",\n    \"resourceGroup\": \"rg-resto-scale-agent\",\n    \"roleDefinitionId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002\",\n    \"scope\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/dbs/restaurant\",\n    \"systemData\": null,\n    \"type\": \"Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments\"\n  },\n  {\n    \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleAssignments/85389063-fefb-5a45-ab68-c1f826d1e9c4\",\n    \"name\": \"85389063-fefb-5a45-ab68-c1f826d1e9c4\",\n    \"principalId\": \"b9595466-4c02-44ff-8d02-d10fdc04953f\",\n    \"resourceGroup\": \"rg-resto-scale-agent\",\n    \"roleDefinitionId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002\",\n    \"scope\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/dbs/restaurant\",\n    \"systemData\": null,\n    \"type\": \"Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments\"\n  }\n]\n",
+  "stderr": "",
+  "result": [
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleAssignments/a25e9b80-241d-5153-aebf-3bf71ac7a34e",
+      "name": "a25e9b80-241d-5153-aebf-3bf71ac7a34e",
+      "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+      "resourceGroup": "rg-resto-scale-agent",
+      "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002",
+      "scope": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/dbs/restaurant",
+      "systemData": null,
+      "type": "Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleAssignments/113df394-f886-53b7-89f5-bd2a604f9a20",
+      "name": "113df394-f886-53b7-89f5-bd2a604f9a20",
+      "principalId": "6043da5d-e389-46e1-bfb4-033bccfb0968",
+      "resourceGroup": "rg-resto-scale-agent",
+      "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002",
+      "scope": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/dbs/restaurant",
+      "systemData": null,
+      "type": "Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleAssignments/85389063-fefb-5a45-ab68-c1f826d1e9c4",
+      "name": "85389063-fefb-5a45-ab68-c1f826d1e9c4",
+      "principalId": "b9595466-4c02-44ff-8d02-d10fdc04953f",
+      "resourceGroup": "rg-resto-scale-agent",
+      "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002",
+      "scope": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/dbs/restaurant",
+      "systemData": null,
+      "type": "Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "observedDateUtc": "2026-10-26",
+  "evidenceType": "exact-target-resumption-check",
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "equip-ai",
+    "resourceGroup": "rg-equip-ai",
+    "region": "centralus"
+  },
+  "observations": [
+    {
+      "check": "Azure CLI account and azd sign-in",
+      "result": "Both match the retained account and target; subscription Enabled. Shared defaults unchanged."
+    },
+    {
+      "check": "Concurrent scenario workers",
+      "result": "No matching copilot, node, python or dotnet equip-ai worker observed."
+    },
+    {
+      "command": "python -B -m unittest discover -s tests -p test_*.py",
+      "exitCode": 0,
+      "testsPassed": 29,
+      "liveAzureValidated": false
+    },
+    {
+      "check": "IoT hub scoped role-assignment inspection",
+      "result": "ResourceGroupNotFound for rg-equip-ai; no role mutation attempted."
+    },
+    {
+      "command": "az group exists --name rg-equip-ai --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+      "exitCode": 0,
+      "result": false
+    },
+    {
+      "check": "HTTPS health request to the recorded reference hostname",
+      "hostname": "app-equip-web-equipai-kex72v.azurewebsites.net",
+      "result": "DNS lookup failed: No such host is known. No HTTP or application pass claimed."
+    }
+  ],
+  "conclusion": "The recorded Azure reference is currently unavailable. Prior provisioning and agent-installation receipts remain historical; complete runtime validation never passed.",
+  "cloudWritesPerformed": false,
+  "resourceDeletionPerformed": false,
+  "suitabilityApproved": false
+}

@@ -1,0 +1,46 @@
+@page
+@model Brokerage.Web.Pages.DeskModel
+@{
+    ViewData["Title"] = "Representative desk";
+}
+<p class="eyebrow">ADATUM CORPORATION / HUMAN SUPPORT</p>
+<h1>Representative desk</h1>
+<p>Claim a case before replying. Human replies are labeled separately from approved company knowledge.</p>
+@if (Model.Error is not null)
+{
+    <p class="error" role="alert">@Model.Error</p>
+}
+@if (Model.Cases.Count == 0)
+{
+    <p>No customer has requested a representative yet.</p>
+}
+@foreach (var item in Model.Cases)
+{
+    <section aria-label="Support case">
+        <h2>Case @item.Id</h2>
+        <p>Customer: @item.CustomerId | Status: @item.Status | Owner: @(item.Owner ?? "Unassigned")</p>
+        @foreach (var message in item.Messages)
+        {
+            <article><h3>@message.Author</h3><p class="message">@message.Text</p></article>
+        }
+        @if (item.Status != "resolved")
+        {
+            <form method="post">
+                <input type="hidden" name="id" value="@item.Id" />
+                <input type="hidden" name="revision" value="@item.Revision" />
+                @if (item.Status == "waiting")
+                {
+                    <button name="action" value="claim">Claim case</button>
+                }
+                else
+                {
+                    <label for="reply-@item.Id">Representative reply</label>
+                    <textarea id="reply-@item.Id" name="text" maxlength="2000" rows="3"></textarea>
+                    <button name="action" value="reply">Send reply</button>
+                    <button name="action" value="resolve" class="secondary">Resolve case</button>
+                }
+            </form>
+        }
+    </section>
+}
+<a asp-page="/Desk">Refresh queue</a>

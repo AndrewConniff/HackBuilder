@@ -1,0 +1,1036 @@
+[
+  {
+    "name": "vgw6bxel2pguk-sqlra-1",
+    "outputs": {
+      "name": {
+        "type": "String",
+        "value": "113df394-f886-53b7-89f5-bd2a604f9a20"
+      },
+      "resourceGroupName": {
+        "type": "String",
+        "value": "rg-resto-scale-agent"
+      },
+      "resourceId": {
+        "type": "String",
+        "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleAssignments/113df394-f886-53b7-89f5-bd2a604f9a20"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "vgw6bxel2pguk-sqlra-2",
+    "outputs": {
+      "name": {
+        "type": "String",
+        "value": "a25e9b80-241d-5153-aebf-3bf71ac7a34e"
+      },
+      "resourceGroupName": {
+        "type": "String",
+        "value": "rg-resto-scale-agent"
+      },
+      "resourceId": {
+        "type": "String",
+        "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleAssignments/a25e9b80-241d-5153-aebf-3bf71ac7a34e"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "vgw6bxel2pguk-sqlra-0",
+    "outputs": {
+      "name": {
+        "type": "String",
+        "value": "85389063-fefb-5a45-ab68-c1f826d1e9c4"
+      },
+      "resourceGroupName": {
+        "type": "String",
+        "value": "rg-resto-scale-agent"
+      },
+      "resourceId": {
+        "type": "String",
+        "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleAssignments/85389063-fefb-5a45-ab68-c1f826d1e9c4"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "ie7jezkjcx6ty-sqldb-reporting",
+    "outputs": {
+      "name": {
+        "type": "String",
+        "value": "reporting"
+      },
+      "resourceGroupName": {
+        "type": "String",
+        "value": "rg-resto-scale-agent"
+      },
+      "resourceId": {
+        "type": "String",
+        "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/reporting"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "ie7jezkjcx6ty-sqldb-catalog",
+    "outputs": {
+      "name": {
+        "type": "String",
+        "value": "catalog"
+      },
+      "resourceGroupName": {
+        "type": "String",
+        "value": "rg-resto-scale-agent"
+      },
+      "resourceId": {
+        "type": "String",
+        "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/catalog"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "ie7jezkjcx6ty-sqldb-transactions",
+    "outputs": {
+      "name": {
+        "type": "String",
+        "value": "transactions"
+      },
+      "resourceGroupName": {
+        "type": "String",
+        "value": "rg-resto-scale-agent"
+      },
+      "resourceId": {
+        "type": "String",
+        "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/transactions"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "6bzsoysfscgdk-sqldb-restaurant",
+    "outputs": {
+      "name": {
+        "type": "String",
+        "value": "restaurant"
+      },
+      "resourceGroupName": {
+        "type": "String",
+        "value": "rg-resto-scale-agent"
+      },
+      "resourceId": {
+        "type": "String",
+        "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "peu23awlapsli-Queue-0",
+    "outputs": {
+      "name": {
+        "type": "String",
+        "value": "kitchen"
+      },
+      "resourceGroupName": {
+        "type": "String",
+        "value": "rg-resto-scale-agent"
+      },
+      "resourceId": {
+        "type": "String",
+        "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "project",
+    "outputs": {
+      "resourceId": {
+        "type": "String",
+        "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/projects/restaurant"
+      },
+      "resourceName": {
+        "type": "String",
+        "value": "restaurant"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "gxnreqrkxvhle-cognitiveservice-deployment-0",
+    "outputs": {
+      "name": {
+        "type": "String",
+        "value": "restaurant-model"
+      },
+      "resourceGroupName": {
+        "type": "String",
+        "value": "rg-resto-scale-agent"
+      },
+      "resourceId": {
+        "type": "String",
+        "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/deployments/restaurant-model"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "p7nxd3v3k4q6s-KeyVault-Key-0",
+    "outputs": {
+      "keyUri": {
+        "type": "String",
+        "value": "https://kv-resto-dc9a173f4d0b5f6.vault.azure.net/keys/guest-session"
+      },
+      "keyUriWithVersion": {
+        "type": "String",
+        "value": "https://kv-resto-dc9a173f4d0b5f6.vault.azure.net/keys/guest-session/fb7349ed53504a06b5f5e304c57ca356"
+      },
+      "name": {
+        "type": "String",
+        "value": "guest-session"
+      },
+      "resourceGroupName": {
+        "type": "String",
+        "value": "rg-resto-scale-agent"
+      },
+      "resourceId": {
+        "type": "String",
+        "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-dc9a173f4d0b5f6/keys/guest-session"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "46d3xbcp.res.keyvault-vault.0-14-2.p7nx",
+    "outputs": {
+      "telemetry": {
+        "type": "String",
+        "value": "For more information, see https://aka.ms/avm/TelemetryInfo"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "46d3xbcp.res.documentdb-databaseaccount.0-21-1.6bzs",
+    "outputs": {
+      "telemetry": {
+        "type": "String",
+        "value": "For more information, see https://aka.ms/avm/TelemetryInfo"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "46d3xbcp.res.cognitiveservices-account.0-19-1.gxnr",
+    "outputs": {
+      "telemetry": {
+        "type": "String",
+        "value": "For more information, see https://aka.ms/avm/TelemetryInfo"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "46d3xbcp.res.app-managedenvironment.0-16-0.h55f",
+    "outputs": {
+      "telemetry": {
+        "type": "String",
+        "value": "For more information, see https://aka.ms/avm/TelemetryInfo"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "46d3xbcp.res.servicebus-namespace.0-17-1.peu2",
+    "outputs": {
+      "telemetry": {
+        "type": "String",
+        "value": "For more information, see https://aka.ms/avm/TelemetryInfo"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "46d3xbcp.res.insights-component.0-8-0.m532",
+    "outputs": {
+      "telemetry": {
+        "type": "String",
+        "value": "For more information, see https://aka.ms/avm/TelemetryInfo"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "cosmos",
+    "outputs": {
+      "endpoint": {
+        "type": "String",
+        "value": "https://cosmos-resto-4tvlzr5zf2rxi.documents.azure.com:443/"
+      },
+      "location": {
+        "type": "String",
+        "value": "Central US"
+      },
+      "name": {
+        "type": "String",
+        "value": "cosmos-resto-4tvlzr5zf2rxi"
+      },
+      "primaryReadOnlyConnectionString": {
+        "type": "SecureString"
+      },
+      "primaryReadOnlyKey": {
+        "type": "SecureString"
+      },
+      "primaryReadWriteConnectionString": {
+        "type": "SecureString"
+      },
+      "primaryReadWriteKey": {
+        "type": "SecureString"
+      },
+      "privateEndpoints": {
+        "type": "Array",
+        "value": []
+      },
+      "resourceGroupName": {
+        "type": "String",
+        "value": "rg-resto-scale-agent"
+      },
+      "resourceId": {
+        "type": "String",
+        "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi"
+      },
+      "secondaryReadOnlyConnectionString": {
+        "type": "SecureString"
+      },
+      "secondaryReadOnlyKey": {
+        "type": "SecureString"
+      },
+      "secondaryReadWriteConnectionString": {
+        "type": "SecureString"
+      },
+      "secondaryReadWriteKey": {
+        "type": "SecureString"
+      },
+      "systemAssignedMIPrincipalId": {
+        "type": "String"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "environment",
+    "outputs": {
+      "defaultDomain": {
+        "type": "String",
+        "value": "proudsea-27880dc7.centralus.azurecontainerapps.io"
+      },
+      "domainVerificationId": {
+        "type": "String",
+        "value": "A262E16A36F44907BB780F3F1F741B72ED52E69472C8164C37C258905CB562E3"
+      },
+      "location": {
+        "type": "String",
+        "value": "Central US"
+      },
+      "name": {
+        "type": "String",
+        "value": "cae-resto-4tvlzr5zf2rxi"
+      },
+      "resourceGroupName": {
+        "type": "String",
+        "value": "rg-resto-scale-agent"
+      },
+      "resourceId": {
+        "type": "String",
+        "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.App/managedEnvironments/cae-resto-4tvlzr5zf2rxi"
+      },
+      "staticIp": {
+        "type": "String",
+        "value": "20.84.131.39"
+      },
+      "systemAssignedMIPrincipalId": {
+        "type": "String"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "vault",
+    "outputs": {
+      "keys": {
+        "type": "Array",
+        "value": [
+          {
+            "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-dc9a173f4d0b5f6/keys/guest-session",
+            "uri": "https://kv-resto-dc9a173f4d0b5f6.vault.azure.net/keys/guest-session",
+            "uriWithVersion": "https://kv-resto-dc9a173f4d0b5f6.vault.azure.net/keys/guest-session/fb7349ed53504a06b5f5e304c57ca356"
+          }
+        ]
+      },
+      "location": {
+        "type": "String",
+        "value": "centralus"
+      },
+      "name": {
+        "type": "String",
+        "value": "kv-resto-dc9a173f4d0b5f6"
+      },
+      "privateEndpoints": {
+        "type": "Array",
+        "value": []
+      },
+      "resourceGroupName": {
+        "type": "String",
+        "value": "rg-resto-scale-agent"
+      },
+      "resourceId": {
+        "type": "String",
+        "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-dc9a173f4d0b5f6"
+      },
+      "secrets": {
+        "type": "Array",
+        "value": []
+      },
+      "uri": {
+        "type": "String",
+        "value": "https://kv-resto-dc9a173f4d0b5f6.vault.azure.net/"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "broker",
+    "outputs": {
+      "location": {
+        "type": "String",
+        "value": "centralus"
+      },
+      "name": {
+        "type": "String",
+        "value": "sb-resto-4tvlzr5zf2rxi"
+      },
+      "primaryConnectionString": {
+        "type": "SecureString"
+      },
+      "primaryKey": {
+        "type": "SecureString"
+      },
+      "privateEndpoints": {
+        "type": "Array",
+        "value": []
+      },
+      "resourceGroupName": {
+        "type": "String",
+        "value": "rg-resto-scale-agent"
+      },
+      "resourceId": {
+        "type": "String",
+        "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi"
+      },
+      "secondaryConnectionString": {
+        "type": "SecureString"
+      },
+      "secondaryKey": {
+        "type": "SecureString"
+      },
+      "serviceBusEndpoint": {
+        "type": "String",
+        "value": "https://sb-resto-4tvlzr5zf2rxi.servicebus.windows.net:443/"
+      },
+      "systemAssignedMIPrincipalId": {
+        "type": "String"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "insights",
+    "outputs": {
+      "applicationId": {
+        "type": "String",
+        "value": "8da57f94-b71f-4779-af70-62ee9e73224c"
+      },
+      "connectionString": {
+        "type": "String",
+        "value": "InstrumentationKey=41edd6c7-af94-44b7-9de1-ee30aea5330f;IngestionEndpoint=https://centralus-2.in.applicationinsights.azure.com/;LiveEndpoint=https://centralus.livediagnostics.monitor.azure.com/;ApplicationId=8da57f94-b71f-4779-af70-62ee9e73224c"
+      },
+      "instrumentationKey": {
+        "type": "String",
+        "value": "41edd6c7-af94-44b7-9de1-ee30aea5330f"
+      },
+      "location": {
+        "type": "String",
+        "value": "centralus"
+      },
+      "name": {
+        "type": "String",
+        "value": "appi-resto-4tvlzr5zf2rxi"
+      },
+      "resourceGroupName": {
+        "type": "String",
+        "value": "rg-resto-scale-agent"
+      },
+      "resourceId": {
+        "type": "String",
+        "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Insights/components/appi-resto-4tvlzr5zf2rxi"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "foundry",
+    "outputs": {
+      "endpoint": {
+        "type": "String",
+        "value": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/"
+      },
+      "endpoints": {
+        "type": "Object",
+        "value": {
+          "AI Foundry API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.services.ai.azure.com/",
+          "Azure AI Model Inference API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.services.ai.azure.com/",
+          "Azure MAI Model Inference API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.services.ai.azure.com/",
+          "Azure MAI Model Inference API v1.0": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.services.ai.azure.com/",
+          "Azure MAI Realtime API v1.0": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.services.ai.azure.com/",
+          "Azure OpenAI Legacy API - Latest moniker": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/",
+          "Cohere AI API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.services.ai.azure.com/",
+          "Computer Vision": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Container": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Content Safety": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Content Understanding": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.services.ai.azure.com/",
+          "Conversational Language Understanding Authoring": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "ConversationalLURuntime": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Custom Question Answering": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Custom Question Answering Authoring": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Custom Text Authoring": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "CustomTranslator": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "DocumentTranslation": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "FormRecognizer": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "LUIS": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Language": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Language Remote MCP Server": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "MAAP Managed Deployments API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Mistral AI API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.services.ai.azure.com/",
+          "OpenAI Dall-E API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/",
+          "OpenAI Language Model Instance API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/",
+          "OpenAI Model Scaleset API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/",
+          "OpenAI Moderations API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/",
+          "OpenAI Realtime API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/",
+          "OpenAI Realtime Live WebSocket API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/",
+          "OpenAI Realtime Translation WebSocket API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/",
+          "OpenAI Response API on Websocket": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/",
+          "OpenAI Sora API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/",
+          "OpenAI Whisper API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/",
+          "ProjectA APIs": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "QnAMaker": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "QuestionAnswering": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Speech Services Audio Content Creation": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Speech Services Batch Avatar": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Speech Services Batch Text to Speech": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Speech Services Custom Avatar": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Speech Services Custom Voice": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Speech Services Custom Voice Trial": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Speech Services Podcast": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Speech Services Speaker Identification": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Speech Services Speaker Verification": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Speech Services Speech to Text": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Speech Services Speech to Text (Standard)": "https://centralus.stt.speech.microsoft.com",
+          "Speech Services Speech to Text 2024-05-15-preview": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Speech Services Speech to Text 2024-11-15": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Speech Services Speech to Text 2025-10-15": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Speech Services Speech to Text v3.2": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Speech Services Speech to Text v3.2_internal.1": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Speech Services TTS Player": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Speech Services Text to Speech (Neural)": "https://centralus.tts.speech.microsoft.com",
+          "Text Analytics": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "TextTranslation": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "TextTranslation-Global": "https://api.cognitive.microsofttranslator.com/",
+          "Token": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Token Service API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/",
+          "Turing": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Video Translation": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Voice Agent Realtime API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Voice Live Capabilities API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Voice Live Media Gateway Calls API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Voice Live Media Gateway Calls HTTP API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Voice Live Realtime API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Voice Live SIP API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+          "Voice Live SIP Calls API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/"
+        }
+      },
+      "exportedSecrets": {
+        "type": "Object",
+        "value": {}
+      },
+      "location": {
+        "type": "String",
+        "value": "centralus"
+      },
+      "name": {
+        "type": "String",
+        "value": "ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec"
+      },
+      "primaryKey": {
+        "type": "SecureString"
+      },
+      "privateEndpoints": {
+        "type": "Array",
+        "value": []
+      },
+      "resourceGroupName": {
+        "type": "String",
+        "value": "rg-resto-scale-agent"
+      },
+      "resourceId": {
+        "type": "String",
+        "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec"
+      },
+      "secondaryKey": {
+        "type": "SecureString"
+      },
+      "systemAssignedMIPrincipalId": {
+        "type": "String",
+        "value": "d938bad0-f0ef-459c-a04a-180ff271ed6c"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "46d3xbcp.res.containerregistry-registry.0-13-1.rtle",
+    "outputs": {
+      "telemetry": {
+        "type": "String",
+        "value": "For more information, see https://aka.ms/avm/TelemetryInfo"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "registry",
+    "outputs": {
+      "credentialSetsResourceIds": {
+        "type": "Array",
+        "value": []
+      },
+      "credentialSetsSystemAssignedMIPrincipalIds": {
+        "type": "Array",
+        "value": []
+      },
+      "location": {
+        "type": "String",
+        "value": "centralus"
+      },
+      "loginServer": {
+        "type": "String",
+        "value": "acrresto4tvlzr5zf2rxi.azurecr.io"
+      },
+      "name": {
+        "type": "String",
+        "value": "acrresto4tvlzr5zf2rxi"
+      },
+      "privateEndpoints": {
+        "type": "Array",
+        "value": []
+      },
+      "resourceGroupName": {
+        "type": "String",
+        "value": "rg-resto-scale-agent"
+      },
+      "resourceId": {
+        "type": "String",
+        "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi"
+      },
+      "systemAssignedMIPrincipalId": {
+        "type": "String"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "rknmobu4auvve-subnet-0",
+    "outputs": {
+      "addressPrefix": {
+        "type": "String",
+        "value": "10.74.0.0/23"
+      },
+      "addressPrefixes": {
+        "type": "Array",
+        "value": []
+      },
+      "ipamPoolPrefixAllocations": {
+        "type": "Array",
+        "value": []
+      },
+      "name": {
+        "type": "String",
+        "value": "container-apps"
+      },
+      "resourceGroupName": {
+        "type": "String",
+        "value": "rg-resto-scale-agent"
+      },
+      "resourceId": {
+        "type": "String",
+        "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi/subnets/container-apps"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "46d3xbcp.res.operationalinsights-workspace.0-16-1.yrtc",
+    "outputs": {
+      "telemetry": {
+        "type": "String",
+        "value": "For more information, see https://aka.ms/avm/TelemetryInfo"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "46d3xbcp.res.managedidentity-userassignedidentity.0-6-0.ucqv",
+    "outputs": {
+      "telemetry": {
+        "type": "String",
+        "value": "For more information, see https://aka.ms/avm/TelemetryInfo"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "46d3xbcp.res.managedidentity-userassignedidentity.0-6-0.vzjx",
+    "outputs": {
+      "telemetry": {
+        "type": "String",
+        "value": "For more information, see https://aka.ms/avm/TelemetryInfo"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "46d3xbcp.res.managedidentity-userassignedidentity.0-6-0.34gq",
+    "outputs": {
+      "telemetry": {
+        "type": "String",
+        "value": "For more information, see https://aka.ms/avm/TelemetryInfo"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "46d3xbcp.res.managedidentity-userassignedidentity.0-6-0.jjc7",
+    "outputs": {
+      "telemetry": {
+        "type": "String",
+        "value": "For more information, see https://aka.ms/avm/TelemetryInfo"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "46d3xbcp.res.network-virtualnetwork.0-10-2.6mcz",
+    "outputs": {
+      "telemetry": {
+        "type": "String",
+        "value": "For more information, see https://aka.ms/avm/TelemetryInfo"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "network",
+    "outputs": {
+      "location": {
+        "type": "String",
+        "value": "centralus"
+      },
+      "name": {
+        "type": "String",
+        "value": "vnet-resto-4tvlzr5zf2rxi"
+      },
+      "resourceGroupName": {
+        "type": "String",
+        "value": "rg-resto-scale-agent"
+      },
+      "resourceId": {
+        "type": "String",
+        "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi"
+      },
+      "subnetNames": {
+        "type": "Array",
+        "value": [
+          "container-apps"
+        ]
+      },
+      "subnetResourceIds": {
+        "type": "Array",
+        "value": [
+          "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi/subnets/container-apps"
+        ]
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "identity-web",
+    "outputs": {
+      "clientId": {
+        "type": "String",
+        "value": "fe43e3cd-f5a4-4425-b8c9-641b9ac3f08e"
+      },
+      "location": {
+        "type": "String",
+        "value": "centralus"
+      },
+      "name": {
+        "type": "String",
+        "value": "id-resto-web-4tvlzr5zf2rxi"
+      },
+      "principalId": {
+        "type": "String",
+        "value": "b9595466-4c02-44ff-8d02-d10fdc04953f"
+      },
+      "resourceGroupName": {
+        "type": "String",
+        "value": "rg-resto-scale-agent"
+      },
+      "resourceId": {
+        "type": "String",
+        "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "identity-scaler",
+    "outputs": {
+      "clientId": {
+        "type": "String",
+        "value": "d7f5f036-7f4d-47c5-bdd4-49b4a6713840"
+      },
+      "location": {
+        "type": "String",
+        "value": "centralus"
+      },
+      "name": {
+        "type": "String",
+        "value": "id-resto-scaler-4tvlzr5zf2rxi"
+      },
+      "principalId": {
+        "type": "String",
+        "value": "9acefa81-733b-4bb4-85bc-b81fc4724797"
+      },
+      "resourceGroupName": {
+        "type": "String",
+        "value": "rg-resto-scale-agent"
+      },
+      "resourceId": {
+        "type": "String",
+        "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-scaler-4tvlzr5zf2rxi"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "identity-chat",
+    "outputs": {
+      "clientId": {
+        "type": "String",
+        "value": "0ce36690-9387-4a51-a294-eb6f7f8768f9"
+      },
+      "location": {
+        "type": "String",
+        "value": "centralus"
+      },
+      "name": {
+        "type": "String",
+        "value": "id-resto-chat-4tvlzr5zf2rxi"
+      },
+      "principalId": {
+        "type": "String",
+        "value": "80387f0e-2170-4edd-b104-ad7fc3d80d2c"
+      },
+      "resourceGroupName": {
+        "type": "String",
+        "value": "rg-resto-scale-agent"
+      },
+      "resourceId": {
+        "type": "String",
+        "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "logs",
+    "outputs": {
+      "location": {
+        "type": "String",
+        "value": "centralus"
+      },
+      "logAnalyticsWorkspaceId": {
+        "type": "String",
+        "value": "654cee4a-40a5-4b77-a653-7b4b44ada661"
+      },
+      "name": {
+        "type": "String",
+        "value": "log-resto-4tvlzr5zf2rxi"
+      },
+      "primarySharedKey": {
+        "type": "SecureString"
+      },
+      "resourceGroupName": {
+        "type": "String",
+        "value": "rg-resto-scale-agent"
+      },
+      "resourceId": {
+        "type": "String",
+        "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.OperationalInsights/workspaces/log-resto-4tvlzr5zf2rxi"
+      },
+      "secondarySharedKey": {
+        "type": "SecureString"
+      },
+      "systemAssignedMIPrincipalId": {
+        "type": "String"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "identity-worker",
+    "outputs": {
+      "clientId": {
+        "type": "String",
+        "value": "ca6749d0-9d4b-494d-95b7-c01bd7020650"
+      },
+      "location": {
+        "type": "String",
+        "value": "centralus"
+      },
+      "name": {
+        "type": "String",
+        "value": "id-resto-worker-4tvlzr5zf2rxi"
+      },
+      "principalId": {
+        "type": "String",
+        "value": "6043da5d-e389-46e1-bfb4-033bccfb0968"
+      },
+      "resourceGroupName": {
+        "type": "String",
+        "value": "rg-resto-scale-agent"
+      },
+      "resourceId": {
+        "type": "String",
+        "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi"
+      }
+    },
+    "state": "Succeeded"
+  },
+  {
+    "name": "resto-scale-agent-1792863260",
+    "outputs": {
+      "applicationinsightS_CONNECTION_STRING": {
+        "type": "String",
+        "value": "InstrumentationKey=41edd6c7-af94-44b7-9de1-ee30aea5330f;IngestionEndpoint=https://centralus-2.in.applicationinsights.azure.com/;LiveEndpoint=https://centralus.livediagnostics.monitor.azure.com/;ApplicationId=8da57f94-b71f-4779-af70-62ee9e73224c"
+      },
+      "azurE_CONTAINER_APPS_ENVIRONMENT_DOMAIN": {
+        "type": "String",
+        "value": "proudsea-27880dc7.centralus.azurecontainerapps.io"
+      },
+      "azurE_CONTAINER_APPS_ENVIRONMENT_ID": {
+        "type": "String",
+        "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.App/managedEnvironments/cae-resto-4tvlzr5zf2rxi"
+      },
+      "azurE_CONTAINER_APPS_ENVIRONMENT_NAME": {
+        "type": "String",
+        "value": "cae-resto-4tvlzr5zf2rxi"
+      },
+      "azurE_CONTAINER_REGISTRY_ENDPOINT": {
+        "type": "String",
+        "value": "acrresto4tvlzr5zf2rxi.azurecr.io"
+      },
+      "azurE_CONTAINER_REGISTRY_NAME": {
+        "type": "String",
+        "value": "acrresto4tvlzr5zf2rxi"
+      },
+      "azurE_ENV_NAME": {
+        "type": "String",
+        "value": "resto-scale-agent"
+      },
+      "azurE_LOCATION": {
+        "type": "String",
+        "value": "centralus"
+      },
+      "azurE_RESOURCE_GROUP": {
+        "type": "String",
+        "value": "rg-resto-scale-agent"
+      },
+      "azurE_SUBSCRIPTION_ID": {
+        "type": "String",
+        "value": "efd64343-6ef4-4926-951f-d3229f38bd76"
+      },
+      "azurE_TENANT_ID": {
+        "type": "String",
+        "value": "16b3c013-d300-468d-ac64-7eda0820b6d3"
+      },
+      "cosmoS_ENDPOINT": {
+        "type": "String",
+        "value": "https://cosmos-resto-4tvlzr5zf2rxi.documents.azure.com:443/"
+      },
+      "foundrY_ACCOUNT_NAME": {
+        "type": "String",
+        "value": "ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec"
+      },
+      "foundrY_MODEL_DEPLOYMENT": {
+        "type": "String",
+        "value": "restaurant-model"
+      },
+      "foundrY_PROJECT_ID": {
+        "type": "String",
+        "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/projects/restaurant"
+      },
+      "foundrY_PROJECT_NAME": {
+        "type": "String",
+        "value": "restaurant"
+      },
+      "keY_VAULT_URI": {
+        "type": "String",
+        "value": "https://kv-resto-dc9a173f4d0b5f6.vault.azure.net/"
+      },
+      "resourcE_SUFFIX": {
+        "type": "String",
+        "value": "4tvlzr5zf2rxi"
+      },
+      "runtimE_IDENTITIES": {
+        "type": "Array",
+        "value": [
+          {
+            "clientId": "fe43e3cd-f5a4-4425-b8c9-641b9ac3f08e",
+            "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi",
+            "role": "web"
+          },
+          {
+            "clientId": "0ce36690-9387-4a51-a294-eb6f7f8768f9",
+            "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi",
+            "role": "chat"
+          },
+          {
+            "clientId": "ca6749d0-9d4b-494d-95b7-c01bd7020650",
+            "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi",
+            "role": "worker"
+          },
+          {
+            "clientId": "d7f5f036-7f4d-47c5-bdd4-49b4a6713840",
+            "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-scaler-4tvlzr5zf2rxi",
+            "role": "scaler"
+          }
+        ]
+      },
+      "servicE_BUS_NAMESPACE": {
+        "type": "String",
+        "value": "sb-resto-4tvlzr5zf2rxi.servicebus.windows.net"
+      }
+    },
+    "state": "Succeeded"
+  }
+]

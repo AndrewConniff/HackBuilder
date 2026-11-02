@@ -1,0 +1,110 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.48.1.52935",
+      "templateHash": "14327829374145717788"
+    }
+  },
+  "parameters": {
+    "accountName": {
+      "type": "string",
+      "metadata": {
+        "description": "AVM-created Foundry account name."
+      }
+    },
+    "location": {
+      "type": "string",
+      "metadata": {
+        "description": "Confirmed deployment region."
+      }
+    },
+    "tags": {
+      "type": "object",
+      "metadata": {
+        "description": "Required scenario tags."
+      }
+    },
+    "chatPrincipalId": {
+      "type": "string",
+      "metadata": {
+        "description": "Chat managed identity principal ID; consumption only."
+      }
+    },
+    "principalId": {
+      "type": "string",
+      "metadata": {
+        "description": "Deployer identity used to install versioned prompt agents."
+      }
+    },
+    "consumerRoleId": {
+      "type": "string",
+      "metadata": {
+        "description": "Verified Foundry Agent Consumer built-in role ID."
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.CognitiveServices/accounts/projects",
+      "apiVersion": "2026-09-01",
+      "name": "[format('{0}/{1}', parameters('accountName'), 'restaurant')]",
+      "location": "[parameters('location')]",
+      "tags": "[parameters('tags')]",
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "displayName": "Fourth Coffee restaurant",
+        "description": "Generic Hospitality & Travel reference. Synthetic data and settlement only."
+      }
+    },
+    {
+      "type": "Microsoft.Authorization/roleAssignments",
+      "apiVersion": "2022-04-01",
+      "scope": "[resourceId('Microsoft.CognitiveServices/accounts/projects', parameters('accountName'), 'restaurant')]",
+      "name": "[guid(resourceId('Microsoft.CognitiveServices/accounts/projects', parameters('accountName'), 'restaurant'), parameters('chatPrincipalId'), parameters('consumerRoleId'))]",
+      "properties": {
+        "principalId": "[parameters('chatPrincipalId')]",
+        "principalType": "ServicePrincipal",
+        "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', parameters('consumerRoleId'))]"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.CognitiveServices/accounts/projects', parameters('accountName'), 'restaurant')]"
+      ]
+    },
+    {
+      "condition": "[not(empty(parameters('principalId')))]",
+      "type": "Microsoft.Authorization/roleAssignments",
+      "apiVersion": "2022-04-01",
+      "scope": "[resourceId('Microsoft.CognitiveServices/accounts/projects', parameters('accountName'), 'restaurant')]",
+      "name": "[guid(resourceId('Microsoft.CognitiveServices/accounts/projects', parameters('accountName'), 'restaurant'), parameters('principalId'), '53ca6127-db72-4b80-b1b0-d745d6d5456d')]",
+      "properties": {
+        "principalId": "[parameters('principalId')]",
+        "principalType": "User",
+        "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '53ca6127-db72-4b80-b1b0-d745d6d5456d')]"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.CognitiveServices/accounts/projects', parameters('accountName'), 'restaurant')]"
+      ]
+    }
+  ],
+  "outputs": {
+    "resourceId": {
+      "type": "string",
+      "metadata": {
+        "description": "Direct child project ID."
+      },
+      "value": "[resourceId('Microsoft.CognitiveServices/accounts/projects', parameters('accountName'), 'restaurant')]"
+    },
+    "resourceName": {
+      "type": "string",
+      "metadata": {
+        "description": "Direct child project name."
+      },
+      "value": "restaurant"
+    }
+  }
+}

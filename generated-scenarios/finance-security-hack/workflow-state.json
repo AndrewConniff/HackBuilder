@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "phase": "hack-authoring",
+  "scenarioStatus": "ready-for-review",
+  "referenceFingerprint": "63e39364ad4e4ba55aea25ab5d1e1052d263fe7878ad83a4eecc81206b4d85b6",
+  "reviewRequestedAtUtc": "2026-10-22T20:07:45.077399+00:00",
+  "approval": {
+    "decision": "approved",
+    "message": "User explicitly answered approval=true to 'Approve the tested reference as suitable for this hack' and then true to allowing historical attestation and creating challenges, learner documentation, minimum participant starter and private coach package. User request: Can you continue with the actual hack piece now.",
+    "recordedAtUtc": "2026-10-22T20:07:45.442967+00:00",
+    "referenceFingerprint": "63e39364ad4e4ba55aea25ab5d1e1052d263fe7878ad83a4eecc81206b4d85b6"
+  },
+  "evidenceType": "historical-user-attestation"
+}

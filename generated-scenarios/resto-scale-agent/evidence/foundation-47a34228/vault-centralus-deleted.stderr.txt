@@ -1,0 +1,3 @@
+ERROR: (DeletedVaultNotFound) The specified deleted vault 'kv-resto-4tvlzr5zf2rxi' does not exist. Ensure that the vault was indeed deleted and that it is in recoverable state. If soft delete was not enabled then the vault is permanently deleted. Follow this link for more information: https://go.microsoft.com/fwlink/?linkid=2149745
+Code: DeletedVaultNotFound
+Message: The specified deleted vault 'kv-resto-4tvlzr5zf2rxi' does not exist. Ensure that the vault was indeed deleted and that it is in recoverable state. If soft delete was not enabled then the vault is permanently deleted. Follow this link for more information: https://go.microsoft.com/fwlink/?linkid=2149745

@@ -1,0 +1,50 @@
+{
+  "recordedAtUtc": "2026-10-24T23:26:12.783206+00:00",
+  "cloudResourceOrDirectoryOperations": false,
+  "checks": [
+    {
+      "command": [
+        "az",
+        "bicep",
+        "build",
+        "--file",
+        "C:\\azd-projects\\equip-ai\\infra\\main.bicep",
+        "--stdout"
+      ],
+      "startedAtUtc": "2026-10-24T23:25:36.533993+00:00",
+      "exitCode": 0,
+      "stdout": "Compiled template omitted",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "az",
+        "bicep",
+        "lint",
+        "--file",
+        "C:\\azd-projects\\equip-ai\\infra\\main.bicep"
+      ],
+      "startedAtUtc": "2026-10-24T23:25:48.113961+00:00",
+      "exitCode": 0,
+      "stdout": "\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "C:\\azd-projects\\equip-ai\\tests",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "startedAtUtc": "2026-10-24T23:25:56.361908+00:00",
+      "exitCode": 0,
+      "stdout": "{\"sha256\": \"f87f299bb7e5eac599127a4815472ae5290f0e16fd37ff3ad8f37e55166e670e\", \"bytes\": 126, \"chunks\": 1, \"minimumTransferSeconds\": 20, \"executed\": false}\n",
+      "stderr": "test_endpoint_and_auth_producer_consumer_order (test_preparation.PreparationTests.test_endpoint_and_auth_producer_consumer_order) ... ok\ntest_exact_target_and_operation_required (test_preparation.PreparationTests.test_exact_target_and_operation_required) ... ok\ntest_expired_grant_is_rejected (test_preparation.PreparationTests.test_expired_grant_is_rejected) ... ok\ntest_generated_ids_flow_to_exact_azd_environment (test_preparation.PreparationTests.test_generated_ids_flow_to_exact_azd_environment) ... ok\ntest_missing_cloud_authorization_is_not_local_consent (test_preparation.PreparationTests.test_missing_cloud_authorization_is_not_local_consent) ... ok\ntest_missing_scope_readback_blocks_preauthorization (test_preparation.PreparationTests.test_missing_scope_readback_blocks_preauthorization) ... ok\ntest_no_default_statewide_assignment (test_preparation.PreparationTests.test_no_default_statewide_assignment) ... ok\ntest_partial_creation_recovers_without_duplicate (test_preparation.PreparationTests.test_partial_creation_recovers_without_duplicate) ... ok\ntest_plaintext_azd_output_is_not_json (test_preparation.PreparationTests.test_plaintext_azd_output_is_not_json) ... ok\ntest_redirect_uses_actual_arm_output_and_readback (test_preparation.PreparationTests.test_redirect_uses_actual_arm_output_and_readback) ... ok\ntest_registration_contract_has_no_graph_permission (test_preparation.PreparationTests.test_registration_contract_has_no_graph_permission) ... ok\ntest_retry_reuses_all_real_ids (test_preparation.PreparationTests.test_retry_reuses_all_real_ids) ... ok\ntest_scope_is_persisted_before_preauthorization (test_preparation.PreparationTests.test_scope_is_persisted_before_preauthorization) ... ok\ntest_unexpected_credentials_fail_closed (test_preparation.PreparationTests.test_unexpected_credentials_fail_closed) ... ok\ntest_unowned_same_name_never_adopted (test_preparation.PreparationTests.test_unowned_same_name_never_adopted) ... ok\ntest_actual_directory_consent_without_worker_expiry (test_private_runner.PrivateRunnerTests.test_actual_directory_consent_without_worker_expiry) ... ok\ntest_chunks_reconstruct_exact_payload (test_private_runner.PrivateRunnerTests.test_chunks_reconstruct_exact_payload) ... ok\ntest_clean_requires_guest_success_marker (test_private_runner.PrivateRunnerTests.test_clean_requires_guest_success_marker) ... ok\ntest_guest_script_has_digest_verification (test_private_runner.PrivateRunnerTests.test_guest_script_has_digest_verification) ... ok\ntest_plan_never_invokes_azure (test_private_runner.PrivateRunnerTests.test_plan_never_invokes_azure) ... ok\ntest_publish_requires_new_scope_guard (test_private_runner.PrivateRunnerTests.test_publish_requires_new_scope_guard) ... ok\ntest_rejects_credentials (test_private_runner.PrivateRunnerTests.test_rejects_credentials) ... ok\ntest_rejects_hidden_files (test_private_runner.PrivateRunnerTests.test_rejects_hidden_files) ... ok\ntest_requires_self_contained_publish (test_private_runner.PrivateRunnerTests.test_requires_self_contained_publish) ... ok\n\n----------------------------------------------------------------------\nRan 24 tests in 8.624s\n\nOK\n"
+    }
+  ]
+}

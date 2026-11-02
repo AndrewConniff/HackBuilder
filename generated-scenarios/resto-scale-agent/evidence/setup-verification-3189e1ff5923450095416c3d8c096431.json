@@ -1,0 +1,15 @@
+{
+  "stage": "application",
+  "status": "pending",
+  "summary": "Approved proxy verification passed in this worker; effective physical workspace sources contain only the approved proxy. Historical direct-endpoint failures remain unchanged. Actual package restore/build are not yet verified.",
+  "setupVerification": {
+    "blockerId": "ed6ba41327544fb690084af870ad01af",
+    "passed": true
+  },
+  "evidence": [
+    "Read PREREQUISITES.md and C:\\HackBuilder\\NuGet.Config: configuration clears inherited sources and enables only https://packagefeedproxy.microsoft.io/nuget/v3/index.json.",
+    "python scripts\\check_prerequisites.py --for-project --record --stage requirements --json: exit 0; checkedAtUtc 2026-10-23T06:37:39.815449+00:00; runId 3189e1ff5923450095416c3d8c096431; nuget-https ok:true; detail: https://packagefeedproxy.microsoft.io/nuget/v3/index.json; NuGet metadata HTTPS request and response validation passed. Probe covers Azure.Identity metadata only; configured feeds and actual restore/build still need verification.",
+    "Set-Location C:\\azd-projects\\resto-scale-agent; dotnet nuget list source: exit 0; Registered Sources: 1. azure-default [Enabled], https://packagefeedproxy.microsoft.io/nuget/v3/index.json. No direct NuGet.org source is registered.",
+    "The user explicitly replaced the obsolete saved direct-endpoint verification with the approved proxy audit. The obsolete command was not executed. Future restores will explicitly use C:\\HackBuilder\\NuGet.Config."
+  ]
+}

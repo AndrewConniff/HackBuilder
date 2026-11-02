@@ -1,0 +1,5 @@
+@page
+@{ ViewData["Title"] = "Access denied"; Response.StatusCode = 403; }
+<h1>Access denied</h1>
+<p>Your local account does not have permission for this operation.</p>
+<a asp-page="/Index">Return to orders</a>

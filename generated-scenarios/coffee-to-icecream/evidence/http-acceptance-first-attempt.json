@@ -1,0 +1,476 @@
+{
+  "startedAtUtc": "2026-10-30T04:10:00.693706+00:00",
+  "endpoint": "https://web-ic-gyhmp4vgxvkwy.azurewebsites.net",
+  "checks": [
+    {
+      "name": "anonymous session",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 1.928145300000324,
+      "traceId": null
+    },
+    {
+      "name": "anonymous store denied",
+      "passed": true,
+      "expectedStatus": 401,
+      "actualStatus": 401,
+      "seconds": 1.7080790000036359,
+      "traceId": null
+    },
+    {
+      "name": "missing CSRF denied",
+      "passed": true,
+      "expectedStatus": 400,
+      "actualStatus": 400,
+      "seconds": 1.5142734999972163,
+      "traceId": null
+    },
+    {
+      "name": "signin token",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 1.7283743000007235,
+      "traceId": null
+    },
+    {
+      "name": "login store001",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 3.6997657000028994,
+      "traceId": null
+    },
+    {
+      "name": "authenticated session",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 1.9332146999950055,
+      "traceId": null
+    },
+    {
+      "name": "signin token",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 1.4931060999952024,
+      "traceId": null
+    },
+    {
+      "name": "login store002",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 1.6890734999906272,
+      "traceId": null
+    },
+    {
+      "name": "authenticated session",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 1.8147824000043329,
+      "traceId": null
+    },
+    {
+      "name": "signin token",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 1.4921559000067646,
+      "traceId": null
+    },
+    {
+      "name": "login store003",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 1.6864411999995355,
+      "traceId": null
+    },
+    {
+      "name": "authenticated session",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 1.7999808000022313,
+      "traceId": null
+    },
+    {
+      "name": "signin token",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 2.121426400000928,
+      "traceId": null
+    },
+    {
+      "name": "login store004",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 1.692319599998882,
+      "traceId": null
+    },
+    {
+      "name": "authenticated session",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 1.507642800002941,
+      "traceId": null
+    },
+    {
+      "name": "signin token",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 1.5543490999989444,
+      "traceId": null
+    },
+    {
+      "name": "login store005",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 2.1036474000138696,
+      "traceId": null
+    },
+    {
+      "name": "authenticated session",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 1.4633024999930058,
+      "traceId": null
+    },
+    {
+      "name": "signin token",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 1.6835883000021568,
+      "traceId": null
+    },
+    {
+      "name": "login store006",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 2.536812000005739,
+      "traceId": null
+    },
+    {
+      "name": "authenticated session",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 1.837869100010721,
+      "traceId": null
+    },
+    {
+      "name": "signin token",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 1.5310038000025088,
+      "traceId": null
+    },
+    {
+      "name": "login store007",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 1.6026372999913292,
+      "traceId": null
+    },
+    {
+      "name": "authenticated session",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 1.4570785000105388,
+      "traceId": null
+    },
+    {
+      "name": "signin token",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 1.4640607000037562,
+      "traceId": null
+    },
+    {
+      "name": "login store008",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 1.975610900000902,
+      "traceId": null
+    },
+    {
+      "name": "authenticated session",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 1.5087443000084022,
+      "traceId": null
+    },
+    {
+      "name": "signin token",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 1.4734980999928666,
+      "traceId": null
+    },
+    {
+      "name": "login store009",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 1.7272464999987278,
+      "traceId": null
+    },
+    {
+      "name": "authenticated session",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 1.5242448000062723,
+      "traceId": null
+    },
+    {
+      "name": "signin token",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 1.4448572999972384,
+      "traceId": null
+    },
+    {
+      "name": "login store010",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 1.6012536000052933,
+      "traceId": null
+    },
+    {
+      "name": "authenticated session",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 1.8144791000086116,
+      "traceId": null
+    },
+    {
+      "name": "cross-store read denied",
+      "passed": true,
+      "expectedStatus": 403,
+      "actualStatus": 403,
+      "seconds": 1.4934925999987172,
+      "traceId": "0HNPM7E6L0Q16:00000022"
+    },
+    {
+      "name": "cross-store work denied",
+      "passed": true,
+      "expectedStatus": 403,
+      "actualStatus": 403,
+      "seconds": 1.5081094999914058,
+      "traceId": "0HNPM7E6L0Q16:00000023"
+    },
+    {
+      "name": "duplicate assignments denied",
+      "passed": true,
+      "expectedStatus": 400,
+      "actualStatus": 400,
+      "seconds": 1.6823253999900771,
+      "traceId": "0HNPM7E6L0Q16:00000024"
+    }
+  ],
+  "reports": [],
+  "status": "failed",
+  "reads": {
+    "concurrentManagers": 10,
+    "attempted": 100,
+    "failures": 0,
+    "p95Seconds": 4.526719300003606,
+    "thresholdSeconds": 2,
+    "samples": [
+      2.167295799998101,
+      3.5852467000077013,
+      3.3836584000091534,
+      3.689835500001209,
+      3.961443300009705,
+      2.846658900001785,
+      3.6083167000033427,
+      4.17509780000546,
+      3.964505999989342,
+      3.9534598999889567,
+      2.6517721000127494,
+      2.82897079999384,
+      4.003018199990038,
+      3.527979200007394,
+      3.9213530999986688,
+      2.956857900004252,
+      3.5863000999961514,
+      4.158174600001075,
+      3.7924177999957465,
+      4.145548899992718,
+      2.795502900000429,
+      2.7559563999966485,
+      4.0764344000053825,
+      3.2229115000081947,
+      4.189634399997885,
+      2.1741184999991674,
+      1.8618559000024106,
+      3.8520148000097834,
+      4.233714699992561,
+      4.014197199998307,
+      2.377388000008068,
+      2.7672599999932572,
+      4.0979606000037165,
+      3.198062999988906,
+      4.779146800006856,
+      2.519800900001428,
+      3.656249400009983,
+      3.94471790001262,
+      3.8861080999922706,
+      4.504818399989745,
+      2.7522890999971423,
+      2.9492119000060484,
+      3.6460569000046235,
+      3.3100526000052923,
+      4.817555000001448,
+      3.8874803999933647,
+      3.854983400000492,
+      4.150972300005378,
+      4.0793494999961695,
+      4.268761400002404,
+      2.535063100003754,
+      2.725254099990707,
+      3.815439999991213,
+      3.479505600000266,
+      4.78678170000785,
+      3.8165596000035293,
+      3.867604700004449,
+      4.036896499994327,
+      4.5054232999973465,
+      3.91427890000341,
+      2.9296609000011813,
+      4.152358199993614,
+      3.8180999999894993,
+      4.8552008000115165,
+      3.7731247000047006,
+      3.5878077000088524,
+      4.39113729998644,
+      4.0686650999996345,
+      4.07841320001171,
+      3.0452539999969304,
+      3.0227353000082076,
+      4.16587170001003,
+      3.850806000002194,
+      4.4538303000008455,
+      3.502506099990569,
+      2.2954311999928905,
+      3.8001268000080017,
+      4.19264330000442,
+      4.01328569999896,
+      4.2798482999933185,
+      2.297821699990891,
+      2.7076088000030722,
+      2.2699056999990717,
+      3.8468006000039168,
+      4.526719300003606,
+      3.7759349000116345,
+      3.5928496999986237,
+      4.164040500007104,
+      4.480540599994129,
+      4.166278199991211,
+      2.144324599998072,
+      2.75124159999541,
+      2.5191884999949252,
+      3.8469770999945467,
+      4.559295500002918,
+      3.5269074000098044,
+      3.649505699999281,
+      4.069655300001614,
+      4.0909627999935765,
+      4.223659700001008
+    ]
+  },
+  "closes": {
+    "concurrentManagers": 10,
+    "attempted": 10,
+    "failures": 0,
+    "p95Seconds": 11.262886099997559,
+    "thresholdSeconds": 60,
+    "outcomes": [
+      {
+        "store": "001",
+        "status": 200,
+        "seconds": 10.169093500007875,
+        "traceId": null
+      },
+      {
+        "store": "002",
+        "status": 200,
+        "seconds": 10.684028399991803,
+        "traceId": null
+      },
+      {
+        "store": "003",
+        "status": 200,
+        "seconds": 10.127929800000857,
+        "traceId": null
+      },
+      {
+        "store": "004",
+        "status": 200,
+        "seconds": 10.96379499998875,
+        "traceId": null
+      },
+      {
+        "store": "005",
+        "status": 200,
+        "seconds": 11.171133299998473,
+        "traceId": null
+      },
+      {
+        "store": "006",
+        "status": 200,
+        "seconds": 11.238853699993342,
+        "traceId": null
+      },
+      {
+        "store": "007",
+        "status": 200,
+        "seconds": 10.36490309999499,
+        "traceId": null
+      },
+      {
+        "store": "008",
+        "status": 200,
+        "seconds": 9.829311599998618,
+        "traceId": null
+      },
+      {
+        "store": "009",
+        "status": 200,
+        "seconds": 11.262886099997559,
+        "traceId": null
+      },
+      {
+        "store": "010",
+        "status": 200,
+        "seconds": 10.747620999987703,
+        "traceId": null
+      }
+    ]
+  },
+  "error": "Read latency/failure acceptance failed",
+  "completedAtUtc": "2026-10-30T04:11:53.813319+00:00"
+}

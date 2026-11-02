@@ -1,0 +1,26 @@
+{
+  "eventDeployed": false,
+  "archives": [
+    {
+      "filename": "coffee-shop-learner.zip",
+      "sha256": "3d0fcfd4a798448fd01a282449c4b3027f20b65c4f305a3c936641a1148887b6",
+      "files": 24,
+      "roots": [
+        "participant",
+        "hack"
+      ],
+      "visibility": "public-safe"
+    },
+    {
+      "filename": "coffee-shop-private-coach.zip",
+      "sha256": "f51b7a954e5e81dd26b004f4c88054059f3c949cf4ff42a3b9d5dfdfaf9ca296",
+      "files": 123,
+      "roots": [
+        "coach",
+        "coach-guide"
+      ],
+      "visibility": "private"
+    }
+  ],
+  "limitations": "Local ZIP validation only; not published or deployed. Fresh destination readiness required."
+}

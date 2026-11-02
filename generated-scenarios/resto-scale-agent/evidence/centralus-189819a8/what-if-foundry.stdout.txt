@@ -1,0 +1,104 @@
+{
+  "changes": [
+    {
+      "after": {
+        "apiVersion": "2024-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent",
+        "location": "centralus",
+        "name": "rg-resto-scale-agent",
+        "tags": {
+          "Environment": "resto-scale-agent",
+          "ManagedBy": "Bicep",
+          "Project": "resto-scale-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Resources/resourceGroups"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec",
+        "identity": {
+          "type": "SystemAssigned"
+        },
+        "kind": "AIServices",
+        "location": "centralus",
+        "name": "ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec",
+        "properties": {
+          "allowProjectManagement": true,
+          "customSubDomainName": "ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec",
+          "disableLocalAuth": true,
+          "dynamicThrottlingEnabled": false,
+          "migrationToken": "*******",
+          "publicNetworkAccess": "Enabled",
+          "restore": false,
+          "restrictOutboundNetworkAccess": false
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "sku": {
+          "name": "S0"
+        },
+        "tags": {
+          "Environment": "resto-scale-agent",
+          "ManagedBy": "Bicep",
+          "Project": "resto-scale-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.CognitiveServices/accounts"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2026-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/deployments/restaurant-model",
+        "name": "restaurant-model",
+        "properties": {
+          "model": {
+            "format": "OpenAI",
+            "name": "gpt-5.4-mini",
+            "version": "2026-03-17"
+          },
+          "versionUpgradeOption": "NoAutoUpgrade"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "sku": {
+          "capacity": 100,
+          "name": "GlobalStandard"
+        },
+        "type": "Microsoft.CognitiveServices/accounts/deployments"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/deployments/restaurant-model",
+      "symbolicName": null,
+      "unsupportedReason": null
+    }
+  ],
+  "diagnostics": null,
+  "error": null,
+  "potentialChanges": null,
+  "status": "Succeeded"
+}

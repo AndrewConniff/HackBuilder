@@ -1,0 +1,773 @@
+{
+  "command": "az deployment group show --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --resource-group rg-resto-scale-agent --name resto-scale-agent-1792863260 --output json",
+  "cwd": "C:\\azd-projects\\resto-scale-agent",
+  "startedAtUtc": "2026-10-24T17:42:41.244695+00:00",
+  "checkedAtUtc": "2026-10-24T17:42:43.693682+00:00",
+  "exitCode": 0,
+  "stdout": "{\n  \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/resto-scale-agent-1792863260\",\n  \"location\": null,\n  \"name\": \"resto-scale-agent-1792863260\",\n  \"properties\": {\n    \"correlationId\": \"aafb0239-f312-68d4-b3e6-da2060ff17fb\",\n    \"debugSetting\": null,\n    \"dependencies\": [\n      {\n        \"dependsOn\": [\n          {\n            \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-web\",\n            \"resourceGroup\": \"rg-resto-scale-agent\",\n            \"resourceName\": \"identity-web\",\n            \"resourceType\": \"Microsoft.Resources/deployments\"\n          },\n          {\n            \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-chat\",\n            \"resourceGroup\": \"rg-resto-scale-agent\",\n            \"resourceName\": \"identity-chat\",\n            \"resourceType\": \"Microsoft.Resources/deployments\"\n          },\n          {\n            \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-worker\",\n            \"resourceGroup\": \"rg-resto-scale-agent\",\n            \"resourceName\": \"identity-worker\",\n            \"resourceType\": \"Microsoft.Resources/deployments\"\n          },\n          {\n            \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-scaler\",\n            \"resourceGroup\": \"rg-resto-scale-agent\",\n            \"resourceName\": \"identity-scaler\",\n            \"resourceType\": \"Microsoft.Resources/deployments\"\n          },\n          {\n            \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/logs\",\n            \"resourceGroup\": \"rg-resto-scale-agent\",\n            \"resourceName\": \"logs\",\n            \"resourceType\": \"Microsoft.Resources/deployments\"\n          }\n        ],\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/insights\",\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceName\": \"insights\",\n        \"resourceType\": \"Microsoft.Resources/deployments\"\n      },\n      {\n        \"dependsOn\": [\n          {\n            \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-web\",\n            \"resourceGroup\": \"rg-resto-scale-agent\",\n            \"resourceName\": \"identity-web\",\n            \"resourceType\": \"Microsoft.Resources/deployments\"\n          },\n          {\n            \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-worker\",\n            \"resourceGroup\": \"rg-resto-scale-agent\",\n            \"resourceName\": \"identity-worker\",\n            \"resourceType\": \"Microsoft.Resources/deployments\"\n          },\n          {\n            \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-chat\",\n            \"resourceGroup\": \"rg-resto-scale-agent\",\n            \"resourceName\": \"identity-chat\",\n            \"resourceType\": \"Microsoft.Resources/deployments\"\n          }\n        ],\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/registry\",\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceName\": \"registry\",\n        \"resourceType\": \"Microsoft.Resources/deployments\"\n      },\n      {\n        \"dependsOn\": [\n          {\n            \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-web\",\n            \"resourceGroup\": \"rg-resto-scale-agent\",\n            \"resourceName\": \"identity-web\",\n            \"resourceType\": \"Microsoft.Resources/deployments\"\n          },\n          {\n            \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-worker\",\n            \"resourceGroup\": \"rg-resto-scale-agent\",\n            \"resourceName\": \"identity-worker\",\n            \"resourceType\": \"Microsoft.Resources/deployments\"\n          },\n          {\n            \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/logs\",\n            \"resourceGroup\": \"rg-resto-scale-agent\",\n            \"resourceName\": \"logs\",\n            \"resourceType\": \"Microsoft.Resources/deployments\"\n          }\n        ],\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/cosmos\",\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceName\": \"cosmos\",\n        \"resourceType\": \"Microsoft.Resources/deployments\"\n      },\n      {\n        \"dependsOn\": [\n          {\n            \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-scaler\",\n            \"resourceGroup\": \"rg-resto-scale-agent\",\n            \"resourceName\": \"identity-scaler\",\n            \"resourceType\": \"Microsoft.Resources/deployments\"\n          },\n          {\n            \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-worker\",\n            \"resourceGroup\": \"rg-resto-scale-agent\",\n            \"resourceName\": \"identity-worker\",\n            \"resourceType\": \"Microsoft.Resources/deployments\"\n          },\n          {\n            \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/logs\",\n            \"resourceGroup\": \"rg-resto-scale-agent\",\n            \"resourceName\": \"logs\",\n            \"resourceType\": \"Microsoft.Resources/deployments\"\n          }\n        ],\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/broker\",\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceName\": \"broker\",\n        \"resourceType\": \"Microsoft.Resources/deployments\"\n      },\n      {\n        \"dependsOn\": [\n          {\n            \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-web\",\n            \"resourceGroup\": \"rg-resto-scale-agent\",\n            \"resourceName\": \"identity-web\",\n            \"resourceType\": \"Microsoft.Resources/deployments\"\n          },\n          {\n            \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/logs\",\n            \"resourceGroup\": \"rg-resto-scale-agent\",\n            \"resourceName\": \"logs\",\n            \"resourceType\": \"Microsoft.Resources/deployments\"\n          }\n        ],\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/vault\",\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceName\": \"vault\",\n        \"resourceType\": \"Microsoft.Resources/deployments\"\n      },\n      {\n        \"dependsOn\": [\n          {\n            \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/logs\",\n            \"resourceGroup\": \"rg-resto-scale-agent\",\n            \"resourceName\": \"logs\",\n            \"resourceType\": \"Microsoft.Resources/deployments\"\n          }\n        ],\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/foundry\",\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceName\": \"foundry\",\n        \"resourceType\": \"Microsoft.Resources/deployments\"\n      },\n      {\n        \"dependsOn\": [\n          {\n            \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/foundry\",\n            \"resourceGroup\": \"rg-resto-scale-agent\",\n            \"resourceName\": \"foundry\",\n            \"resourceType\": \"Microsoft.Resources/deployments\"\n          },\n          {\n            \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-chat\",\n            \"resourceGroup\": \"rg-resto-scale-agent\",\n            \"resourceName\": \"identity-chat\",\n            \"resourceType\": \"Microsoft.Resources/deployments\"\n          }\n        ],\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/project\",\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceName\": \"project\",\n        \"resourceType\": \"Microsoft.Resources/deployments\"\n      },\n      {\n        \"dependsOn\": [\n          {\n            \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/logs\",\n            \"resourceGroup\": \"rg-resto-scale-agent\",\n            \"resourceName\": \"logs\",\n            \"resourceType\": \"Microsoft.Resources/deployments\"\n          },\n          {\n            \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/network\",\n            \"resourceGroup\": \"rg-resto-scale-agent\",\n            \"resourceName\": \"network\",\n            \"resourceType\": \"Microsoft.Resources/deployments\"\n          }\n        ],\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/environment\",\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceName\": \"environment\",\n        \"resourceType\": \"Microsoft.Resources/deployments\"\n      }\n    ],\n    \"diagnostics\": null,\n    \"duration\": \"PT4M20.805905S\",\n    \"error\": null,\n    \"extensions\": [],\n    \"mode\": \"Incremental\",\n    \"onErrorDeployment\": null,\n    \"outputResources\": [\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.App/managedEnvironments/cae-resto-4tvlzr5zf2rxi\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.App/managedEnvironments\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.CognitiveServices/accounts\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/deployments/restaurant-model\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.CognitiveServices/accounts/deployments\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/projects/restaurant\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.CognitiveServices/accounts/projects\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/projects/restaurant/providers/Microsoft.Authorization/roleAssignments/12d7f811-620f-51d2-8c8d-632a31741688\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.Authorization/roleAssignments\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/projects/restaurant/providers/Microsoft.Authorization/roleAssignments/a82700ca-993a-53a8-9cb9-e7ed4ce608a9\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.Authorization/roleAssignments\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/providers/Microsoft.Insights/diagnosticSettings/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec-diagnosticSettings\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.Insights/diagnosticSettings\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.ContainerRegistry/registries\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi/providers/Microsoft.Authorization/roleAssignments/29e5e5e4-5983-5766-bbd0-a3276601ca84\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.Authorization/roleAssignments\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi/providers/Microsoft.Authorization/roleAssignments/33b5e64f-888c-527f-815f-0afd987a9456\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.Authorization/roleAssignments\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi/providers/Microsoft.Authorization/roleAssignments/b22cc387-756e-51c3-9413-8e97de5a8610\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.Authorization/roleAssignments\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi/providers/Microsoft.Authorization/roleAssignments/d6271fdc-45f3-561d-8f6a-fbf8e3c4b282\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.Authorization/roleAssignments\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.DocumentDB/databaseAccounts\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/providers/Microsoft.Insights/diagnosticSettings/cosmos-resto-4tvlzr5zf2rxi-diagnosticSettings\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.Insights/diagnosticSettings\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.DocumentDB/databaseAccounts/sqlDatabases\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/catalog\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/reporting\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/transactions\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleAssignments/113df394-f886-53b7-89f5-bd2a604f9a20\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleAssignments/85389063-fefb-5a45-ab68-c1f826d1e9c4\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleAssignments/a25e9b80-241d-5153-aebf-3bf71ac7a34e\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Insights/components/appi-resto-4tvlzr5zf2rxi\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.Insights/components\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Insights/components/appi-resto-4tvlzr5zf2rxi/providers/Microsoft.Authorization/roleAssignments/bd70955e-f017-5b9f-a785-cd1fc491349f\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.Authorization/roleAssignments\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Insights/components/appi-resto-4tvlzr5zf2rxi/providers/Microsoft.Authorization/roleAssignments/cc62f465-7fe9-578a-be1e-6ad41ea4a5ab\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.Authorization/roleAssignments\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Insights/components/appi-resto-4tvlzr5zf2rxi/providers/Microsoft.Authorization/roleAssignments/f961864c-b8e6-5345-89b4-d2544a78e0b6\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.Authorization/roleAssignments\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-dc9a173f4d0b5f6\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.KeyVault/vaults\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-dc9a173f4d0b5f6/keys/guest-session\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.KeyVault/vaults/keys\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-dc9a173f4d0b5f6/keys/guest-session/providers/Microsoft.Authorization/roleAssignments/bf3b8497-764b-5c67-aca4-f8ecf6f9654b\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.Authorization/roleAssignments\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-dc9a173f4d0b5f6/providers/Microsoft.Authorization/roleAssignments/d627c61a-862f-5405-abe7-d6c6fd7d7374\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.Authorization/roleAssignments\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-dc9a173f4d0b5f6/providers/Microsoft.Insights/diagnosticSettings/kv-resto-dc9a173f4d0b5f6-diagnosticSettings\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.Insights/diagnosticSettings\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.ManagedIdentity/userAssignedIdentities\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-scaler-4tvlzr5zf2rxi\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.ManagedIdentity/userAssignedIdentities\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.ManagedIdentity/userAssignedIdentities\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.ManagedIdentity/userAssignedIdentities\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.Network/virtualNetworks\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi/subnets/container-apps\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.Network/virtualNetworks/subnets\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.OperationalInsights/workspaces/log-resto-4tvlzr5zf2rxi\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.OperationalInsights/workspaces\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/tags/default\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.Resources/tags\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.ServiceBus/namespaces\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/providers/Microsoft.Authorization/roleAssignments/85cc9281-423c-50d1-93a4-2867c52cb9bc\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.Authorization/roleAssignments\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/providers/Microsoft.Insights/diagnosticSettings/sb-resto-4tvlzr5zf2rxi-diagnosticSettings\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.Insights/diagnosticSettings\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.ServiceBus/namespaces/queues\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen/providers/Microsoft.Authorization/roleAssignments/0c077651-3b39-546b-8b15-2ccb78061332\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.Authorization/roleAssignments\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen/providers/Microsoft.Authorization/roleAssignments/c3dda66c-b6ed-54b1-aaca-dd97385b9e4c\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.Authorization/roleAssignments\"\n      },\n      {\n        \"apiVersion\": null,\n        \"extension\": null,\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen/providers/Microsoft.Authorization/roleAssignments/e23194a8-ee95-57c0-8e5b-a9dccefb768a\",\n        \"identifiers\": null,\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceType\": \"Microsoft.Authorization/roleAssignments\"\n      }\n    ],\n    \"outputs\": {\n      \"applicationinsightS_CONNECTION_STRING\": {\n        \"type\": \"String\",\n        \"value\": \"InstrumentationKey=41edd6c7-af94-44b7-9de1-ee30aea5330f;IngestionEndpoint=https://centralus-2.in.applicationinsights.azure.com/;LiveEndpoint=https://centralus.livediagnostics.monitor.azure.com/;ApplicationId=8da57f94-b71f-4779-af70-62ee9e73224c\"\n      },\n      \"azurE_CONTAINER_APPS_ENVIRONMENT_DOMAIN\": {\n        \"type\": \"String\",\n        \"value\": \"proudsea-27880dc7.centralus.azurecontainerapps.io\"\n      },\n      \"azurE_CONTAINER_APPS_ENVIRONMENT_ID\": {\n        \"type\": \"String\",\n        \"value\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.App/managedEnvironments/cae-resto-4tvlzr5zf2rxi\"\n      },\n      \"azurE_CONTAINER_APPS_ENVIRONMENT_NAME\": {\n        \"type\": \"String\",\n        \"value\": \"cae-resto-4tvlzr5zf2rxi\"\n      },\n      \"azurE_CONTAINER_REGISTRY_ENDPOINT\": {\n        \"type\": \"String\",\n        \"value\": \"acrresto4tvlzr5zf2rxi.azurecr.io\"\n      },\n      \"azurE_CONTAINER_REGISTRY_NAME\": {\n        \"type\": \"String\",\n        \"value\": \"acrresto4tvlzr5zf2rxi\"\n      },\n      \"azurE_ENV_NAME\": {\n        \"type\": \"String\",\n        \"value\": \"resto-scale-agent\"\n      },\n      \"azurE_LOCATION\": {\n        \"type\": \"String\",\n        \"value\": \"centralus\"\n      },\n      \"azurE_RESOURCE_GROUP\": {\n        \"type\": \"String\",\n        \"value\": \"rg-resto-scale-agent\"\n      },\n      \"azurE_SUBSCRIPTION_ID\": {\n        \"type\": \"String\",\n        \"value\": \"efd64343-6ef4-4926-951f-d3229f38bd76\"\n      },\n      \"azurE_TENANT_ID\": {\n        \"type\": \"String\",\n        \"value\": \"16b3c013-d300-468d-ac64-7eda0820b6d3\"\n      },\n      \"cosmoS_ENDPOINT\": {\n        \"type\": \"String\",\n        \"value\": \"https://cosmos-resto-4tvlzr5zf2rxi.documents.azure.com:443/\"\n      },\n      \"foundrY_ACCOUNT_NAME\": {\n        \"type\": \"String\",\n        \"value\": \"ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec\"\n      },\n      \"foundrY_MODEL_DEPLOYMENT\": {\n        \"type\": \"String\",\n        \"value\": \"restaurant-model\"\n      },\n      \"foundrY_PROJECT_ID\": {\n        \"type\": \"String\",\n        \"value\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/projects/restaurant\"\n      },\n      \"foundrY_PROJECT_NAME\": {\n        \"type\": \"String\",\n        \"value\": \"restaurant\"\n      },\n      \"keY_VAULT_URI\": {\n        \"type\": \"String\",\n        \"value\": \"https://kv-resto-dc9a173f4d0b5f6.vault.azure.net/\"\n      },\n      \"resourcE_SUFFIX\": {\n        \"type\": \"String\",\n        \"value\": \"4tvlzr5zf2rxi\"\n      },\n      \"runtimE_IDENTITIES\": {\n        \"type\": \"Array\",\n        \"value\": [\n          {\n            \"clientId\": \"fe43e3cd-f5a4-4425-b8c9-641b9ac3f08e\",\n            \"resourceId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi\",\n            \"role\": \"web\"\n          },\n          {\n            \"clientId\": \"0ce36690-9387-4a51-a294-eb6f7f8768f9\",\n            \"resourceId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi\",\n            \"role\": \"chat\"\n          },\n          {\n            \"clientId\": \"ca6749d0-9d4b-494d-95b7-c01bd7020650\",\n            \"resourceId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi\",\n            \"role\": \"worker\"\n          },\n          {\n            \"clientId\": \"d7f5f036-7f4d-47c5-bdd4-49b4a6713840\",\n            \"resourceId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-scaler-4tvlzr5zf2rxi\",\n            \"role\": \"scaler\"\n          }\n        ]\n      },\n      \"servicE_BUS_NAMESPACE\": {\n        \"type\": \"String\",\n        \"value\": \"sb-resto-4tvlzr5zf2rxi.servicebus.windows.net\"\n      }\n    },\n    \"parameters\": {\n      \"environment\": {\n        \"type\": \"String\",\n        \"value\": \"resto-scale-agent\"\n      },\n      \"foundryConsumerRoleId\": {\n        \"type\": \"String\",\n        \"value\": \"eed3b665-ab3a-47b6-8f48-c9382fb1dad6\"\n      },\n      \"guestSigningKeyExpiration\": {\n        \"type\": \"String\",\n        \"value\": \"2027-04-22T17:34:30Z\"\n      },\n      \"location\": {\n        \"type\": \"String\",\n        \"value\": \"centralus\"\n      },\n      \"modelCapacity\": {\n        \"type\": \"Int\",\n        \"value\": 100\n      },\n      \"modelDeploymentType\": {\n        \"type\": \"String\",\n        \"value\": \"GlobalStandard\"\n      },\n      \"modelName\": {\n        \"type\": \"String\",\n        \"value\": \"gpt-5.4-mini\"\n      },\n      \"modelVersion\": {\n        \"type\": \"String\",\n        \"value\": \"2026-03-17\"\n      },\n      \"principalId\": {\n        \"type\": \"String\",\n        \"value\": \"214d672b-df87-4f3b-94fd-7863032546c1\"\n      }\n    },\n    \"parametersLink\": null,\n    \"providers\": [\n      {\n        \"id\": null,\n        \"namespace\": \"Microsoft.Resources\",\n        \"providerAuthorizationConsentState\": null,\n        \"registrationPolicy\": null,\n        \"registrationState\": null,\n        \"resourceTypes\": [\n          {\n            \"aliases\": null,\n            \"apiProfiles\": null,\n            \"apiVersions\": null,\n            \"capabilities\": null,\n            \"defaultApiVersion\": null,\n            \"locationMappings\": null,\n            \"locations\": [\n              null\n            ],\n            \"properties\": null,\n            \"resourceType\": \"tags\",\n            \"zoneMappings\": null\n          },\n          {\n            \"aliases\": null,\n            \"apiProfiles\": null,\n            \"apiVersions\": null,\n            \"capabilities\": null,\n            \"defaultApiVersion\": null,\n            \"locationMappings\": null,\n            \"locations\": [\n              null\n            ],\n            \"properties\": null,\n            \"resourceType\": \"deployments\",\n            \"zoneMappings\": null\n          }\n        ]\n      }\n    ],\n    \"provisioningState\": \"Succeeded\",\n    \"templateHash\": \"11379413270617366520\",\n    \"templateLink\": null,\n    \"timestamp\": \"2026-10-24T17:38:51.106597+00:00\",\n    \"validatedResources\": null,\n    \"validationLevel\": null\n  },\n  \"resourceGroup\": \"rg-resto-scale-agent\",\n  \"tags\": {\n    \"azd-env-name\": \"resto-scale-agent\",\n    \"azd-layer-name\": \"\",\n    \"azd-project-name\": \"tdd-azd-resto-scale-agent\",\n    \"azd-provision-param-hash\": \"86dc41965a98233246e53d87d4d15623a8cf34e3b096097647fde77509b5fc47\"\n  },\n  \"type\": \"Microsoft.Resources/deployments\"\n}\n",
+  "stderr": "",
+  "result": {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/resto-scale-agent-1792863260",
+    "location": null,
+    "name": "resto-scale-agent-1792863260",
+    "properties": {
+      "correlationId": "aafb0239-f312-68d4-b3e6-da2060ff17fb",
+      "debugSetting": null,
+      "dependencies": [
+        {
+          "dependsOn": [
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-web",
+              "resourceGroup": "rg-resto-scale-agent",
+              "resourceName": "identity-web",
+              "resourceType": "Microsoft.Resources/deployments"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-chat",
+              "resourceGroup": "rg-resto-scale-agent",
+              "resourceName": "identity-chat",
+              "resourceType": "Microsoft.Resources/deployments"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-worker",
+              "resourceGroup": "rg-resto-scale-agent",
+              "resourceName": "identity-worker",
+              "resourceType": "Microsoft.Resources/deployments"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-scaler",
+              "resourceGroup": "rg-resto-scale-agent",
+              "resourceName": "identity-scaler",
+              "resourceType": "Microsoft.Resources/deployments"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/logs",
+              "resourceGroup": "rg-resto-scale-agent",
+              "resourceName": "logs",
+              "resourceType": "Microsoft.Resources/deployments"
+            }
+          ],
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/insights",
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceName": "insights",
+          "resourceType": "Microsoft.Resources/deployments"
+        },
+        {
+          "dependsOn": [
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-web",
+              "resourceGroup": "rg-resto-scale-agent",
+              "resourceName": "identity-web",
+              "resourceType": "Microsoft.Resources/deployments"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-worker",
+              "resourceGroup": "rg-resto-scale-agent",
+              "resourceName": "identity-worker",
+              "resourceType": "Microsoft.Resources/deployments"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-chat",
+              "resourceGroup": "rg-resto-scale-agent",
+              "resourceName": "identity-chat",
+              "resourceType": "Microsoft.Resources/deployments"
+            }
+          ],
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/registry",
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceName": "registry",
+          "resourceType": "Microsoft.Resources/deployments"
+        },
+        {
+          "dependsOn": [
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-web",
+              "resourceGroup": "rg-resto-scale-agent",
+              "resourceName": "identity-web",
+              "resourceType": "Microsoft.Resources/deployments"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-worker",
+              "resourceGroup": "rg-resto-scale-agent",
+              "resourceName": "identity-worker",
+              "resourceType": "Microsoft.Resources/deployments"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/logs",
+              "resourceGroup": "rg-resto-scale-agent",
+              "resourceName": "logs",
+              "resourceType": "Microsoft.Resources/deployments"
+            }
+          ],
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/cosmos",
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceName": "cosmos",
+          "resourceType": "Microsoft.Resources/deployments"
+        },
+        {
+          "dependsOn": [
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-scaler",
+              "resourceGroup": "rg-resto-scale-agent",
+              "resourceName": "identity-scaler",
+              "resourceType": "Microsoft.Resources/deployments"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-worker",
+              "resourceGroup": "rg-resto-scale-agent",
+              "resourceName": "identity-worker",
+              "resourceType": "Microsoft.Resources/deployments"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/logs",
+              "resourceGroup": "rg-resto-scale-agent",
+              "resourceName": "logs",
+              "resourceType": "Microsoft.Resources/deployments"
+            }
+          ],
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/broker",
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceName": "broker",
+          "resourceType": "Microsoft.Resources/deployments"
+        },
+        {
+          "dependsOn": [
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-web",
+              "resourceGroup": "rg-resto-scale-agent",
+              "resourceName": "identity-web",
+              "resourceType": "Microsoft.Resources/deployments"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/logs",
+              "resourceGroup": "rg-resto-scale-agent",
+              "resourceName": "logs",
+              "resourceType": "Microsoft.Resources/deployments"
+            }
+          ],
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/vault",
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceName": "vault",
+          "resourceType": "Microsoft.Resources/deployments"
+        },
+        {
+          "dependsOn": [
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/logs",
+              "resourceGroup": "rg-resto-scale-agent",
+              "resourceName": "logs",
+              "resourceType": "Microsoft.Resources/deployments"
+            }
+          ],
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/foundry",
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceName": "foundry",
+          "resourceType": "Microsoft.Resources/deployments"
+        },
+        {
+          "dependsOn": [
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/foundry",
+              "resourceGroup": "rg-resto-scale-agent",
+              "resourceName": "foundry",
+              "resourceType": "Microsoft.Resources/deployments"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-chat",
+              "resourceGroup": "rg-resto-scale-agent",
+              "resourceName": "identity-chat",
+              "resourceType": "Microsoft.Resources/deployments"
+            }
+          ],
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/project",
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceName": "project",
+          "resourceType": "Microsoft.Resources/deployments"
+        },
+        {
+          "dependsOn": [
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/logs",
+              "resourceGroup": "rg-resto-scale-agent",
+              "resourceName": "logs",
+              "resourceType": "Microsoft.Resources/deployments"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/network",
+              "resourceGroup": "rg-resto-scale-agent",
+              "resourceName": "network",
+              "resourceType": "Microsoft.Resources/deployments"
+            }
+          ],
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/environment",
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceName": "environment",
+          "resourceType": "Microsoft.Resources/deployments"
+        }
+      ],
+      "diagnostics": null,
+      "duration": "PT4M20.805905S",
+      "error": null,
+      "extensions": [],
+      "mode": "Incremental",
+      "onErrorDeployment": null,
+      "outputResources": [
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.App/managedEnvironments/cae-resto-4tvlzr5zf2rxi",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.App/managedEnvironments"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.CognitiveServices/accounts"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/deployments/restaurant-model",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.CognitiveServices/accounts/deployments"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/projects/restaurant",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.CognitiveServices/accounts/projects"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/projects/restaurant/providers/Microsoft.Authorization/roleAssignments/12d7f811-620f-51d2-8c8d-632a31741688",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.Authorization/roleAssignments"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/projects/restaurant/providers/Microsoft.Authorization/roleAssignments/a82700ca-993a-53a8-9cb9-e7ed4ce608a9",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.Authorization/roleAssignments"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/providers/Microsoft.Insights/diagnosticSettings/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec-diagnosticSettings",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.Insights/diagnosticSettings"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.ContainerRegistry/registries"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi/providers/Microsoft.Authorization/roleAssignments/29e5e5e4-5983-5766-bbd0-a3276601ca84",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.Authorization/roleAssignments"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi/providers/Microsoft.Authorization/roleAssignments/33b5e64f-888c-527f-815f-0afd987a9456",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.Authorization/roleAssignments"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi/providers/Microsoft.Authorization/roleAssignments/b22cc387-756e-51c3-9413-8e97de5a8610",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.Authorization/roleAssignments"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi/providers/Microsoft.Authorization/roleAssignments/d6271fdc-45f3-561d-8f6a-fbf8e3c4b282",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.Authorization/roleAssignments"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.DocumentDB/databaseAccounts"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/providers/Microsoft.Insights/diagnosticSettings/cosmos-resto-4tvlzr5zf2rxi-diagnosticSettings",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.Insights/diagnosticSettings"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/catalog",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/reporting",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/transactions",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleAssignments/113df394-f886-53b7-89f5-bd2a604f9a20",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleAssignments/85389063-fefb-5a45-ab68-c1f826d1e9c4",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleAssignments/a25e9b80-241d-5153-aebf-3bf71ac7a34e",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Insights/components/appi-resto-4tvlzr5zf2rxi",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.Insights/components"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Insights/components/appi-resto-4tvlzr5zf2rxi/providers/Microsoft.Authorization/roleAssignments/bd70955e-f017-5b9f-a785-cd1fc491349f",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.Authorization/roleAssignments"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Insights/components/appi-resto-4tvlzr5zf2rxi/providers/Microsoft.Authorization/roleAssignments/cc62f465-7fe9-578a-be1e-6ad41ea4a5ab",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.Authorization/roleAssignments"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Insights/components/appi-resto-4tvlzr5zf2rxi/providers/Microsoft.Authorization/roleAssignments/f961864c-b8e6-5345-89b4-d2544a78e0b6",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.Authorization/roleAssignments"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-dc9a173f4d0b5f6",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.KeyVault/vaults"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-dc9a173f4d0b5f6/keys/guest-session",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.KeyVault/vaults/keys"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-dc9a173f4d0b5f6/keys/guest-session/providers/Microsoft.Authorization/roleAssignments/bf3b8497-764b-5c67-aca4-f8ecf6f9654b",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.Authorization/roleAssignments"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-dc9a173f4d0b5f6/providers/Microsoft.Authorization/roleAssignments/d627c61a-862f-5405-abe7-d6c6fd7d7374",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.Authorization/roleAssignments"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-dc9a173f4d0b5f6/providers/Microsoft.Insights/diagnosticSettings/kv-resto-dc9a173f4d0b5f6-diagnosticSettings",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.Insights/diagnosticSettings"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.ManagedIdentity/userAssignedIdentities"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-scaler-4tvlzr5zf2rxi",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.ManagedIdentity/userAssignedIdentities"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.ManagedIdentity/userAssignedIdentities"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.ManagedIdentity/userAssignedIdentities"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.Network/virtualNetworks"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi/subnets/container-apps",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.Network/virtualNetworks/subnets"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.OperationalInsights/workspaces/log-resto-4tvlzr5zf2rxi",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.OperationalInsights/workspaces"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/tags/default",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.Resources/tags"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.ServiceBus/namespaces"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/providers/Microsoft.Authorization/roleAssignments/85cc9281-423c-50d1-93a4-2867c52cb9bc",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.Authorization/roleAssignments"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/providers/Microsoft.Insights/diagnosticSettings/sb-resto-4tvlzr5zf2rxi-diagnosticSettings",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.Insights/diagnosticSettings"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.ServiceBus/namespaces/queues"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen/providers/Microsoft.Authorization/roleAssignments/0c077651-3b39-546b-8b15-2ccb78061332",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.Authorization/roleAssignments"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen/providers/Microsoft.Authorization/roleAssignments/c3dda66c-b6ed-54b1-aaca-dd97385b9e4c",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.Authorization/roleAssignments"
+        },
+        {
+          "apiVersion": null,
+          "extension": null,
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen/providers/Microsoft.Authorization/roleAssignments/e23194a8-ee95-57c0-8e5b-a9dccefb768a",
+          "identifiers": null,
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceType": "Microsoft.Authorization/roleAssignments"
+        }
+      ],
+      "outputs": {
+        "applicationinsightS_CONNECTION_STRING": {
+          "type": "String",
+          "value": "InstrumentationKey=41edd6c7-af94-44b7-9de1-ee30aea5330f;IngestionEndpoint=https://centralus-2.in.applicationinsights.azure.com/;LiveEndpoint=https://centralus.livediagnostics.monitor.azure.com/;ApplicationId=8da57f94-b71f-4779-af70-62ee9e73224c"
+        },
+        "azurE_CONTAINER_APPS_ENVIRONMENT_DOMAIN": {
+          "type": "String",
+          "value": "proudsea-27880dc7.centralus.azurecontainerapps.io"
+        },
+        "azurE_CONTAINER_APPS_ENVIRONMENT_ID": {
+          "type": "String",
+          "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.App/managedEnvironments/cae-resto-4tvlzr5zf2rxi"
+        },
+        "azurE_CONTAINER_APPS_ENVIRONMENT_NAME": {
+          "type": "String",
+          "value": "cae-resto-4tvlzr5zf2rxi"
+        },
+        "azurE_CONTAINER_REGISTRY_ENDPOINT": {
+          "type": "String",
+          "value": "acrresto4tvlzr5zf2rxi.azurecr.io"
+        },
+        "azurE_CONTAINER_REGISTRY_NAME": {
+          "type": "String",
+          "value": "acrresto4tvlzr5zf2rxi"
+        },
+        "azurE_ENV_NAME": {
+          "type": "String",
+          "value": "resto-scale-agent"
+        },
+        "azurE_LOCATION": {
+          "type": "String",
+          "value": "centralus"
+        },
+        "azurE_RESOURCE_GROUP": {
+          "type": "String",
+          "value": "rg-resto-scale-agent"
+        },
+        "azurE_SUBSCRIPTION_ID": {
+          "type": "String",
+          "value": "efd64343-6ef4-4926-951f-d3229f38bd76"
+        },
+        "azurE_TENANT_ID": {
+          "type": "String",
+          "value": "16b3c013-d300-468d-ac64-7eda0820b6d3"
+        },
+        "cosmoS_ENDPOINT": {
+          "type": "String",
+          "value": "https://cosmos-resto-4tvlzr5zf2rxi.documents.azure.com:443/"
+        },
+        "foundrY_ACCOUNT_NAME": {
+          "type": "String",
+          "value": "ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec"
+        },
+        "foundrY_MODEL_DEPLOYMENT": {
+          "type": "String",
+          "value": "restaurant-model"
+        },
+        "foundrY_PROJECT_ID": {
+          "type": "String",
+          "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/projects/restaurant"
+        },
+        "foundrY_PROJECT_NAME": {
+          "type": "String",
+          "value": "restaurant"
+        },
+        "keY_VAULT_URI": {
+          "type": "String",
+          "value": "https://kv-resto-dc9a173f4d0b5f6.vault.azure.net/"
+        },
+        "resourcE_SUFFIX": {
+          "type": "String",
+          "value": "4tvlzr5zf2rxi"
+        },
+        "runtimE_IDENTITIES": {
+          "type": "Array",
+          "value": [
+            {
+              "clientId": "fe43e3cd-f5a4-4425-b8c9-641b9ac3f08e",
+              "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi",
+              "role": "web"
+            },
+            {
+              "clientId": "0ce36690-9387-4a51-a294-eb6f7f8768f9",
+              "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi",
+              "role": "chat"
+            },
+            {
+              "clientId": "ca6749d0-9d4b-494d-95b7-c01bd7020650",
+              "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi",
+              "role": "worker"
+            },
+            {
+              "clientId": "d7f5f036-7f4d-47c5-bdd4-49b4a6713840",
+              "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-scaler-4tvlzr5zf2rxi",
+              "role": "scaler"
+            }
+          ]
+        },
+        "servicE_BUS_NAMESPACE": {
+          "type": "String",
+          "value": "sb-resto-4tvlzr5zf2rxi.servicebus.windows.net"
+        }
+      },
+      "parameters": {
+        "environment": {
+          "type": "String",
+          "value": "resto-scale-agent"
+        },
+        "foundryConsumerRoleId": {
+          "type": "String",
+          "value": "eed3b665-ab3a-47b6-8f48-c9382fb1dad6"
+        },
+        "guestSigningKeyExpiration": {
+          "type": "String",
+          "value": "2027-04-22T17:34:30Z"
+        },
+        "location": {
+          "type": "String",
+          "value": "centralus"
+        },
+        "modelCapacity": {
+          "type": "Int",
+          "value": 100
+        },
+        "modelDeploymentType": {
+          "type": "String",
+          "value": "GlobalStandard"
+        },
+        "modelName": {
+          "type": "String",
+          "value": "gpt-5.4-mini"
+        },
+        "modelVersion": {
+          "type": "String",
+          "value": "2026-03-17"
+        },
+        "principalId": {
+          "type": "String",
+          "value": "214d672b-df87-4f3b-94fd-7863032546c1"
+        }
+      },
+      "parametersLink": null,
+      "providers": [
+        {
+          "id": null,
+          "namespace": "Microsoft.Resources",
+          "providerAuthorizationConsentState": null,
+          "registrationPolicy": null,
+          "registrationState": null,
+          "resourceTypes": [
+            {
+              "aliases": null,
+              "apiProfiles": null,
+              "apiVersions": null,
+              "capabilities": null,
+              "defaultApiVersion": null,
+              "locationMappings": null,
+              "locations": [
+                null
+              ],
+              "properties": null,
+              "resourceType": "tags",
+              "zoneMappings": null
+            },
+            {
+              "aliases": null,
+              "apiProfiles": null,
+              "apiVersions": null,
+              "capabilities": null,
+              "defaultApiVersion": null,
+              "locationMappings": null,
+              "locations": [
+                null
+              ],
+              "properties": null,
+              "resourceType": "deployments",
+              "zoneMappings": null
+            }
+          ]
+        }
+      ],
+      "provisioningState": "Succeeded",
+      "templateHash": "11379413270617366520",
+      "templateLink": null,
+      "timestamp": "2026-10-24T17:38:51.106597+00:00",
+      "validatedResources": null,
+      "validationLevel": null
+    },
+    "resourceGroup": "rg-resto-scale-agent",
+    "tags": {
+      "azd-env-name": "resto-scale-agent",
+      "azd-layer-name": "",
+      "azd-project-name": "tdd-azd-resto-scale-agent",
+      "azd-provision-param-hash": "86dc41965a98233246e53d87d4d15623a8cf34e3b096097647fde77509b5fc47"
+    },
+    "type": "Microsoft.Resources/deployments"
+  }
+}

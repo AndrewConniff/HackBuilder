@@ -1,0 +1,32 @@
+[
+  {
+    "location": "swedencentral",
+    "name": "log-ic-gyhmp4vgxvkwy",
+    "type": "Microsoft.OperationalInsights/workspaces"
+  },
+  {
+    "location": "swedencentral",
+    "name": "ic-coffee-to-i-gyhmp4vg",
+    "type": "Microsoft.CognitiveServices/accounts"
+  },
+  {
+    "location": "swedencentral",
+    "name": "plan-ic-gyhmp4vgxvkwy",
+    "type": "Microsoft.Web/serverFarms"
+  },
+  {
+    "location": "swedencentral",
+    "name": "sticgyhmp4vgxvkwy",
+    "type": "Microsoft.Storage/storageAccounts"
+  },
+  {
+    "location": "swedencentral",
+    "name": "web-ic-gyhmp4vgxvkwy",
+    "type": "Microsoft.Web/sites"
+  },
+  {
+    "location": "swedencentral",
+    "name": "ic-coffee-to-i-gyhmp4vg/backoffice",
+    "type": "Microsoft.CognitiveServices/accounts/projects"
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" group exists --name rg-equip-ai --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+  "cwd": "C:\\azd-projects\\equip-ai",
+  "startedAtUtc": "2026-10-26T00:34:37.145291+00:00",
+  "finishedAtUtc": "2026-10-26T00:34:40.080209+00:00",
+  "exitCode": 0,
+  "stdout": "group-exists.json",
+  "stderr": "group-exists.stderr.txt"
+}

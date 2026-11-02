@@ -1,0 +1,15 @@
+@page
+@model TeachingReview.Web.Pages.LoginModel
+@{
+    ViewData["Title"] = "Teacher sign-in";
+}
+<h1>Teacher sign-in</h1>
+<p>Use your private reference account. This is not a Microsoft or student account.</p>
+<form method="post">
+    <div asp-validation-summary="All" role="alert"></div>
+    <label asp-for="Username">Username</label>
+    <input asp-for="Username" autocomplete="username" maxlength="80" required />
+    <label asp-for="Password">Password</label>
+    <input asp-for="Password" type="password" autocomplete="current-password" maxlength="200" required />
+    <button type="submit">Sign in</button>
+</form>

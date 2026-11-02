@@ -1,0 +1,201 @@
+{
+  "schemaVersion": 1,
+  "projectSlug": "retail-agentic",
+  "evidenceType": "subscription_readiness_partial",
+  "checkedAtUtc": "2026-10-28T14:27:14Z",
+  "publicEvidenceReviewedOn": "2026-10-27",
+  "subscriptionName": "MCAPS-Hybrid-REQ-152516-2026-petender",
+  "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+  "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+  "requestedRegions": [],
+  "candidateRegions": ["eastus2", "swedencentral"],
+  "selectedRegion": null,
+  "provisionalRegion": "eastus2",
+  "authorization": {
+    "userResponse": "Authorize read-only Azure readiness and install the official Bastion CLI extension",
+    "scope": ["read_only_target_readiness", "ARM_what_if", "official_Bastion_CLI_extension_install"],
+    "deploymentAuthorized": false,
+    "roleGrantsAuthorized": false,
+    "directoryChangesAuthorized": false,
+    "sharedDefaultsChanged": false
+  },
+  "targetObservations": {
+    "subscriptionState": "Enabled",
+    "cliAndAzdIdentityMatch": true,
+    "deployingHumanPrincipalResolved": true,
+    "azdEnvironments": [],
+    "proposedEnvironmentName": "retail-agentic",
+    "proposedResourceGroup": "rg-retail-agentic",
+    "resourceGroupExists": false,
+    "proposedAddressPrefix": "10.42.0.0/16",
+    "observedExistingVnetAddressPrefixes": ["10.247.0.0/24"],
+    "observedAddressConflict": false,
+    "addressCheckLimitation": "No network peering, connectivity or private DNS success is implied.",
+    "bastionCliExtension": {"version": "1.4.3", "installed": true, "nativeTunnelHelpVerified": true}
+  },
+  "model": {
+    "name": "gpt-4.1-mini",
+    "version": "2025-04-14",
+    "deploymentType": "GlobalStandard",
+    "deploymentName": "retail-reasoning",
+    "status": "quota_capacity_observed_legacy_model_review_required",
+    "lifecycleStatus": "Legacy",
+    "inferenceDeprecationUtc": "2027-04-14T00:00:00Z",
+    "requestedCapacity": 10,
+    "usageName": "OpenAI.GlobalStandard.gpt4.1-mini",
+    "quotaScope": "Global",
+    "quotaCurrentValue": 10,
+    "quotaLimit": 5000,
+    "availableCapacity": 4990,
+    "quotaUnit": "thousands_of_tokens_per_minute",
+    "quotaHeadroomSufficient": true,
+    "capacityLimitation": "Both regional observations refer to one global quota pool; not additive or reserved capacity.",
+    "rateLimitAtRequestedCapacity": {"requestsPerMinute": 10, "tokensPerMinute": 10000},
+    "configuredPreference": null,
+    "rationale": "Retain the configurable local model without silently substituting it. Live API lists it as Legacy with inference deprecation on 2027-04-14; disclose that horizon before deployment review.",
+    "residencyLimitation": "Global Standard inference is not restricted to the resource's region."
+  },
+  "agentSetup": {
+    "type": "basic",
+    "inbound": "private_endpoint",
+    "egress": "public_platform_managed",
+    "conversationStorage": "platform_managed",
+    "orchestration": "application_hosted_sequential_three_prompt_agents",
+    "tools": ["typed_client_executed_functions"]
+  },
+  "resources": [
+    {"type": "Microsoft.CognitiveServices/accounts", "sku": "S0", "kind": "AIServices", "status": "swedencentral_SKU_has_no_reported_restrictions_and_what_if_create"},
+    {"type": "Microsoft.CognitiveServices/accounts/projects", "status": "swedencentral_provider_supported_and_what_if_create"},
+    {"type": "Microsoft.CognitiveServices/accounts/deployments", "sku": "GlobalStandard", "status": "quota_capacity_sufficient_legacy_lifecycle_requires_review"},
+    {"type": "Microsoft.Web/serverfarms", "sku": "B1", "os": "Linux", "status": "eastus2_zero_quota_swedencentral_aggregate_only_and_what_if_create", "runtime": {"config": "DOTNETCORE|10.0", "support": "Active", "endOfLife": "2028-11-14"}},
+    {"type": "Microsoft.Storage/storageAccounts", "sku": "Standard_LRS", "services": ["table", "blob"], "status": "swedencentral_StorageV2_SKU_unrestricted_but_what_if_module_skipped"},
+    {"type": "Microsoft.Compute/virtualMachines", "sku": "Standard_B2ms", "count": 1, "vcpus": 2, "status": "NotAvailableForSubscription_in_both_candidates"},
+    {"type": "Microsoft.Network/bastionHosts", "sku": "Standard", "status": "swedencentral_provider_supported_what_if_create_native_tunnel_help_verified_live_access_unproven"},
+    {"type": "Microsoft.Network/natGateways", "sku": "Standard", "status": "swedencentral_provider_supported_quota_0_of_500_and_what_if_create"},
+    {"type": "Microsoft.Network/publicIPAddresses", "sku": "Standard", "count": 2, "status": "swedencentral_Standard_IPv4_quota_0_of_1000_and_two_what_if_creates"},
+    {"type": "Microsoft.Network/privateEndpoints", "targets": ["Foundry", "Storage_table", "Storage_blob"], "status": "pending_endpoint_group_and_DNS_validation"},
+    {"type": "Microsoft.Network/virtualNetworks", "status": "no_observed_prefix_conflict_but_what_if_module_skipped"},
+    {"type": "Microsoft.OperationalInsights/workspaces", "sku": "PerGB2018", "status": "swedencentral_provider_supported_and_what_if_create"},
+    {"type": "Microsoft.Insights/components", "status": "swedencentral_provider_supported_and_what_if_create"}
+  ],
+  "regionResults": [
+    {
+      "region": "eastus2",
+      "agentServicePublicSupport": true,
+      "modelGlobalStandardPublicSupport": true,
+      "exactSubscriptionEligible": false,
+      "rejectionReasons": ["Standard_B2ms has a NotAvailableForSubscription location restriction.", "Microsoft.Web B1 usage 0, limit 0; one worker required.", "Standard_D2s_v5 alternative is also location-restricted."],
+      "computeQuota": {"currentRegionalVcpus": 0, "regionalVcpuLimit": 100, "currentBSFamilyVcpus": 0, "BSFamilyVcpuLimit": 100, "currentVMs": 0, "VMLimit": 25000},
+      "modelAvailableCapacity": 4990,
+      "limitations": ["Adequate Compute quota does not override exact SKU restrictions.", "P1v3 quota is 360 but it is not the selected design or an approved cost increase."]
+    },
+    {
+      "region": "swedencentral",
+      "agentServicePublicSupport": true,
+      "modelGlobalStandardPublicSupport": true,
+      "exactSubscriptionEligible": false,
+      "rejectionReasons": ["Original Standard_B2ms has a NotAvailableForSubscription location restriction."],
+      "computeQuota": {"currentRegionalVcpus": 0, "regionalVcpuLimit": 100, "currentBSFamilyVcpus": 0, "BSFamilyVcpuLimit": 100, "currentVMs": 0, "VMLimit": 25000},
+      "appServiceQuota": {"reportedName": "*", "currentValue": 0, "limit": 10, "unit": "Instances", "exactB1QuotaReported": false},
+      "modelAvailableCapacity": 4990,
+      "limitations": ["Original design is ineligible; D2s_v5 is a separately labelled proposal, not a selected replacement.", "B1 Linux is region-listed; aggregate worker quota and what-if are not an exact B1 quota reservation.", "GlobalStandard is not EU-only inference."]
+    }
+  ],
+  "proposedAlternative": {
+    "region": "swedencentral",
+    "managementVmSize": "Standard_D2s_v5",
+    "vcpus": 2,
+    "memoryGiB": 8,
+    "hyperVGenerations": ["V1", "V2"],
+    "reportedSkuRestrictions": [],
+    "family": "standardDSv5Family",
+    "familyCurrentVcpus": 0,
+    "familyVcpuLimit": 100,
+    "windowsImage": "MicrosoftWindowsServer:WindowsServer:2022-datacenter-g2:20348.5773.261025",
+    "imageArchitecture": "x64",
+    "imageHyperVGeneration": "V2",
+    "appServiceSku": "B1",
+    "userApproved": false,
+    "pricing": {
+      "source": "https://prices.azure.com/api/retail/prices",
+      "currency": "USD",
+      "hoursPerMonth": 730,
+      "windowsD2sv5PerHour": 0.194,
+      "windowsB2msPerHour": 0.0944,
+      "incrementalVmComputePerMonth": 72.71,
+      "roughInfrastructureEnvelopePerMonth": [425, 625],
+      "limitations": "Unquoted planning envelope; model consumption, variable ingestion/egress, taxes and discounts are not included. Other component prices remain pending final review."
+    }
+  },
+  "governance": {
+    "requiredProvidersRegistered": ["Microsoft.CognitiveServices", "Microsoft.Web", "Microsoft.Storage", "Microsoft.Compute", "Microsoft.Network", "Microsoft.OperationalInsights", "Microsoft.Authorization", "Microsoft.Resources", "Microsoft.Insights"],
+    "observedInheritedRoles": ["Owner", "Foundry User"],
+    "reuseForProposal": ["human_control_plane_Owner", "human_Foundry_data_User_for_selected_agent_operations"],
+    "plannedNewHumanRoles": ["Storage Table Data Contributor", "Storage Blob Data Contributor"],
+    "roleGrantsExecuted": false,
+    "userAccessLimitation": "Inherited control/data permissions were inspected; real user-credential administration and disposable-data probes remain installation-dependent.",
+    "policyAssignments": ["OpenSourceRelationalDatabasesProtectionSecurityCenter", "DataProtectionSecurityCenter", "SqlVmAndArcSqlServersProtection"],
+    "policyDefinitionCountReviewed": 11,
+    "observedEffectivePolicyEffect": "DeployIfNotExists",
+    "policyAssessment": "All eleven observed rules target relational databases, SQL/Synapse or SQL-discovered Arc machines; no matching scenario resource type or observed deny rule. Not a guarantee against future policy changes."
+  },
+  "whatIf": {
+    "status": "incomplete_expansion_not_a_passed_gate",
+    "armStatus": "Succeeded",
+    "cliExitCode": 0,
+    "validationLevel": "Provider",
+    "region": "swedencentral",
+    "environmentName": "retail-agentic",
+    "resourceGroup": "rg-retail-agentic",
+    "managementVmSize": "Standard_D2s_v5",
+    "reuseAdminControlAccess": true,
+    "reuseAdminFoundryAccess": true,
+    "evaluatedCreates": 25,
+    "evaluatedModifications": 0,
+    "evaluatedDeletes": 0,
+    "shortCircuitedModules": ["network", "business-state", "foundry-private-access", "grocery-console", "explicit-data-and-operator-access"],
+    "internalExpansionWarnings": 7,
+    "limitation": "Unresolved module output/reference expressions prevent complete expansion. The observed 25 creates are not the complete resource inventory; dependent network, Storage, app and role changes are not validated.",
+    "ephemeralParameterFileDeleted": true,
+    "rawResult": ".private/readiness/what-if.json",
+    "deploymentExecuted": false
+  },
+  "pendingChecks": [
+    "Obtain explicit choice on the proposed Sweden Central/D2s_v5 revision and its incremental cost; do not silently select it.",
+    "Complete or explicitly bound dependent ARM what-if expansion; do not label the current result a passed gate.",
+    "Complete exact B1 SKU eligibility and supporting feature checks for the chosen proposal.",
+    "Disclose Legacy model lifecycle, 2027-04-14 inference deprecation and the 10 RPM/10000 TPM deployment limit.",
+    "Wire any approved VM/reuse parameter values through azd; current defaults deliberately retain the original local design.",
+    "Finish current regional cost and role-change review before requesting deployment/spending authority.",
+    "Select a region only after the complete proposed resource set passes required readiness.",
+    "After authorized installation, prove private browser/CLI user administration and separate managed-identity runtime paths.",
+    "Verify explicit NAT egress, signed Windows SDK/CLI bootstrap, SSH host-key pinning and private-host DNS/TLS."
+  ],
+  "sources": [
+    {
+      "url": "https://learn.microsoft.com/azure/foundry/agents/how-to/tools/function-calling",
+      "supports": "Current C# prompt agents, versioned agent administration, Responses and client-executed function tools."
+    },
+    {
+      "url": "https://learn.microsoft.com/azure/foundry/agents/concepts/networking-options",
+      "supports": "Basic private inbound with platform-managed storage and public egress; distinct from full network isolation."
+    },
+    {
+      "url": "https://learn.microsoft.com/azure/foundry/agents/concepts/limits-quotas-regions",
+      "supports": "Agent Service and function tool public regional support in East US 2 and Sweden Central."
+    },
+    {
+      "url": "https://learn.microsoft.com/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-region-availability",
+      "supports": "gpt-4.1-mini 2025-04-14 Global Standard public availability in both candidate regions."
+    },
+    {
+      "url": "https://learn.microsoft.com/azure/app-service/overview-vnet-integration",
+      "supports": "Basic tier VNet integration, outbound-only behavior and delegated subnet sizing."
+    },
+    {
+      "url": "https://learn.microsoft.com/rest/api/storageservices/performing-entity-group-transactions",
+      "supports": "Same-table, same-partition transactions; no cross-partition transaction assumption."
+    }
+  ],
+  "recommendation": "Reject the original VM SKU in both candidates and the East US 2 B1 plan. Prefer the explicitly unapproved Sweden Central/D2s_v5 proposal for remaining preparation; its what-if remains incomplete. No selected region, provisioning, spending, grants, runtime proof or suitability approval."
+}

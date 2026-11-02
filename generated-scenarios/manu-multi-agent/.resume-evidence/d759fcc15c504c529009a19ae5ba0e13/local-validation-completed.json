@@ -1,0 +1,15 @@
+{
+  "stage": "local-validation",
+  "status": "completed",
+  "summary": "Local revalidation passed for the preserved reference and guarded installation wiring. Decision required before cloud work: use the portal Azure readiness/proposed targets card and authorize exact-target read-only preparation; deployment remains separate.",
+  "evidence": [
+    "Current .NET validation: locked approved-proxy restore, solution build/publish, 35 application tests, 21 infrastructure/lifecycle contracts and eight offline desktop/mobile browser cases all passed.",
+    "local-validation.json and .resume-evidence\\d759fcc15c504c529009a19ae5ba0e13\\container\\validation.json: all seven current image/configuration/protected-backend checks passed; exact source hashes unchanged from current application receipt.",
+    "Linux amd64 image runs as user 1654. Missing production settings are explicitly rejected; isolated configured startup passes. Six routes return correlated authentication_required HTTP 401 without data; owned containers cleaned up.",
+    "Both retained diagrams decode and exactly match dated source/image hashes. Actual Bicep build/lint have no diagnostics; final azure.yaml schema, Python syntax and related line limits pass.",
+    "Curated manifest refreshed through the existing helper's scoped refresh function; shared repository index and other projects were not modified.",
+    "Actual installation guard returned expected exit 1 before Azure operations: Explicit exact targets and the matching rg-{environment} are required. See unauthorized-installation.log; this is an expected consent negative, not a host/setup blocker.",
+    ".resume-evidence\\d759fcc15c504c529009a19ae5ba0e13\\deployment-review.json: exact targets, verified connected execution path, actual what-if, tenant capability and itemized regional monetary estimate remain pending authorization/preparation. No guessed price, ID or success receipt.",
+    "No Azure resource/directory operation, deployment, live inference, suitability snapshot/approval, hack package, team rollout or publication performed."
+  ]
+}

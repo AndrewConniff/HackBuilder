@@ -1,0 +1,107 @@
+{
+  "checkedAtUtc": "2026-10-24T23:59:57.170173+00:00",
+  "applicationUrl": "https://web-fc-keegvmxonq3wc.azurewebsites.net",
+  "status": "passed",
+  "checks": {
+    "negativeCase": true,
+    "localLoginAndStoreIsolation": true,
+    "boundedAdmissionAndNoFalseSuccess": true
+  },
+  "evidence": {
+    "tenConcurrentCloses": {
+      "count": 10,
+      "completed": 2,
+      "rejected": 8,
+      "samples": [
+        {
+          "httpStatus": 409,
+          "elapsedSeconds": 3.1707548999693245,
+          "stores": [
+            "001",
+            "002"
+          ]
+        },
+        {
+          "httpStatus": 200,
+          "elapsedSeconds": 9.041984700015746,
+          "stores": [
+            "001",
+            "002"
+          ],
+          "responseIds": [
+            "resp_071193fe0def944d016add469ba480819697b07aa1531b04a5",
+            "resp_0066ffa68f706095016add469b9d188193879e0b82c93a023e",
+            "resp_0d0de644c8485978016add469dff848194895e523e16a95d77"
+          ]
+        },
+        {
+          "httpStatus": 200,
+          "elapsedSeconds": 8.595492799999192,
+          "stores": [
+            "001",
+            "002"
+          ],
+          "responseIds": [
+            "resp_00a457460707d66b016add469baa148196a64966e033cf4a85",
+            "resp_07e424c41047ef97016add469ba2188194aa057cd7da770861",
+            "resp_0bcdf3ebaec57382016add469ef9848193adf67774dd8a30f6"
+          ]
+        },
+        {
+          "httpStatus": 409,
+          "elapsedSeconds": 2.844558499986306,
+          "stores": [
+            "001",
+            "002"
+          ]
+        },
+        {
+          "httpStatus": 409,
+          "elapsedSeconds": 2.552334100008011,
+          "stores": [
+            "001"
+          ]
+        },
+        {
+          "httpStatus": 409,
+          "elapsedSeconds": 2.645765799912624,
+          "stores": [
+            "001"
+          ]
+        },
+        {
+          "httpStatus": 409,
+          "elapsedSeconds": 2.7472234000451863,
+          "stores": [
+            "001"
+          ]
+        },
+        {
+          "httpStatus": 409,
+          "elapsedSeconds": 2.3153113999869674,
+          "stores": [
+            "002"
+          ]
+        },
+        {
+          "httpStatus": 409,
+          "elapsedSeconds": 2.44192569993902,
+          "stores": [
+            "002"
+          ]
+        },
+        {
+          "httpStatus": 409,
+          "elapsedSeconds": 2.931669699959457,
+          "stores": [
+            "002"
+          ]
+        }
+      ],
+      "allUsersP95Seconds": null,
+      "targetSeconds": 60,
+      "targetPassed": false,
+      "limitation": "Admission rejections do not count as successful closes or fast latency samples."
+    }
+  }
+}

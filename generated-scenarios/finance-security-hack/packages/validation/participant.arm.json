@@ -1,0 +1,49 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.48.1.52935",
+      "templateHash": "16605068045961980308"
+    }
+  },
+  "parameters": {
+    "environmentName": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 60,
+      "metadata": {
+        "description": "Exact isolated participant environment; never the coach environment."
+      }
+    },
+    "location": {
+      "type": "string",
+      "metadata": {
+        "description": "Location selected during separately authorized event preparation."
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/resourceGroups",
+      "apiVersion": "2024-03-01",
+      "name": "[format('rg-{0}', parameters('environmentName'))]",
+      "location": "[parameters('location')]",
+      "tags": {
+        "purpose": "adatum-brokerage-learning",
+        "environment": "[parameters('environmentName')]"
+      }
+    }
+  ],
+  "outputs": {
+    "AZURE_RESOURCE_GROUP": {
+      "type": "string",
+      "value": "[format('rg-{0}', parameters('environmentName'))]"
+    },
+    "STARTER_STATUS": {
+      "type": "string",
+      "value": "not-configured"
+    }
+  }
+}

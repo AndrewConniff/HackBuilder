@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environment": {"value": "${AZURE_ENV_NAME}"},
+    "location": {"value": "${AZURE_LOCATION}"},
+    "principalId": {"value": "${AZURE_PRINCIPAL_ID}"},
+    "agentConsumerRoleId": {"value": "${EQUIP_AGENT_CONSUMER_ROLE_ID}"},
+    "agentRuntimeRoleId": {"value": "${EQUIP_AGENT_RUNTIME_ROLE_ID}"},
+    "agentInstallerRoleId": {"value": "${EQUIP_AGENT_INSTALLER_ROLE_ID}"},
+    "modelName": {"value": "${EQUIP_MODEL_NAME}"},
+    "modelVersion": {"value": "${EQUIP_MODEL_VERSION}"},
+    "modelDeploymentName": {"value": "${AZURE_MODEL_DEPLOYMENT_NAME}"},
+    "modelSku": {"value": "${EQUIP_MODEL_SKU}"},
+    "restoreFoundry": {"value": "${EQUIP_RESTORE_FOUNDRY}"},
+    "vnetPrefix": {"value": "${EQUIP_VNET_PREFIX}"},
+    "integrationPrefix": {"value": "${EQUIP_INTEGRATION_PREFIX}"},
+    "endpointPrefix": {"value": "${EQUIP_ENDPOINT_PREFIX}"},
+    "enableManagement": {"value": "${EQUIP_ENABLE_MANAGEMENT}"},
+    "enableHumanManagement": {"value": "${EQUIP_ENABLE_HUMAN_MANAGEMENT}"},
+    "managementPublicKey": {"value": "${EQUIP_MANAGEMENT_PUBLIC_KEY}"}
+  }
+}

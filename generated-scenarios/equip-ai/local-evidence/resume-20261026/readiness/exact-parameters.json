@@ -1,0 +1,51 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environment": {
+      "value": "equip-ai"
+    },
+    "location": {
+      "value": "centralus"
+    },
+    "principalId": {
+      "value": "214d672b-df87-4f3b-94fd-7863032546c1"
+    },
+    "agentConsumerRoleId": {
+      "value": "eed3b665-ab3a-47b6-8f48-c9382fb1dad6"
+    },
+    "agentRuntimeRoleId": {
+      "value": "142bfaed-a13f-4c2d-bed2-6db62c4a1009"
+    },
+    "agentInstallerRoleId": {
+      "value": "53ca6127-db72-4b80-b1b0-d745d6d5456d"
+    },
+    "modelName": {
+      "value": "gpt-4.1-mini"
+    },
+    "modelVersion": {
+      "value": "2025-04-14"
+    },
+    "modelDeploymentName": {
+      "value": "equip-support"
+    },
+    "modelSku": {
+      "value": "GlobalStandard"
+    },
+    "vnetPrefix": {
+      "value": "10.247.0.0/24"
+    },
+    "integrationPrefix": {
+      "value": "10.247.0.0/26"
+    },
+    "endpointPrefix": {
+      "value": "10.247.0.64/26"
+    },
+    "enableManagement": {
+      "value": true
+    },
+    "managementPublicKey": {
+      "value": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAGJpq/JFqDlsfGsSJUSSMgajQ5BffaI0zeGJ0Txo7Dw equip-ai-management"
+    }
+  }
+}

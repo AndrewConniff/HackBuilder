@@ -1,0 +1,13 @@
+{
+  "checkedAtUtc": "2026-10-24T23:18:32.322244+00:00",
+  "arguments": [
+    "rest",
+    "--method",
+    "get",
+    "--url",
+    "https://graph.microsoft.com/v1.0/policies/authorizationPolicy?$select=defaultUserRolePermissions"
+  ],
+  "exitCode": 0,
+  "stdout": "{\n  \"@odata.context\": \"https://graph.microsoft.com/v1.0/$metadata#policies/authorizationPolicy(defaultUserRolePermissions)/$entity\",\n  \"defaultUserRolePermissions\": {\n    \"allowedToCreateApps\": true,\n    \"allowedToCreateSecurityGroups\": true,\n    \"allowedToCreateTenants\": false,\n    \"allowedToReadBitlockerKeysForOwnedDevice\": true,\n    \"allowedToReadOtherUsers\": true,\n    \"permissionGrantPoliciesAssigned\": [\n      \"ManagePermissionGrantsForSelf.microsoft-user-default-low\"\n    ]\n  }\n}\n",
+  "stderr": ""
+}

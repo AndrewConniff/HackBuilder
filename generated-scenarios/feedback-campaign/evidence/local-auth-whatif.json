@@ -1,0 +1,1837 @@
+{
+  "changes": [
+    {
+      "after": {
+        "apiVersion": "2025-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign",
+        "location": "centralus",
+        "name": "rg-feedback-campaign",
+        "tags": {
+          "Environment": "feedback-campaign",
+          "ManagedBy": "azd",
+          "Project": "feedback-campaign",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Resources/resourceGroups"
+      },
+      "before": {
+        "apiVersion": "2025-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign",
+        "location": "centralus",
+        "name": "rg-feedback-campaign",
+        "tags": {
+          "Environment": "feedback-campaign",
+          "ManagedBy": "azd",
+          "Project": "feedback-campaign",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Resources/resourceGroups"
+      },
+      "changeType": "NoChange",
+      "delta": [],
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/microsoft.alertsmanagement/smartDetectorAlertRules/Failure Anomalies - fc-insights-kvjmo565tswuy",
+        "location": "global",
+        "name": "Failure Anomalies - fc-insights-kvjmo565tswuy",
+        "resourceGroup": "rg-feedback-campaign",
+        "type": "microsoft.alertsmanagement/smartDetectorAlertRules"
+      },
+      "before": {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/microsoft.alertsmanagement/smartDetectorAlertRules/Failure Anomalies - fc-insights-kvjmo565tswuy",
+        "location": "global",
+        "name": "Failure Anomalies - fc-insights-kvjmo565tswuy",
+        "resourceGroup": "rg-feedback-campaign",
+        "type": "microsoft.alertsmanagement/smartDetectorAlertRules"
+      },
+      "changeType": "Ignore",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/microsoft.alertsmanagement/smartDetectorAlertRules/Failure Anomalies - fc-insights-kvjmo565tswuy",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.CognitiveServices/accounts/fc-ai-kvjmo565tswuy",
+        "identity": {
+          "type": "SystemAssigned"
+        },
+        "kind": "AIServices",
+        "location": "centralus",
+        "name": "fc-ai-kvjmo565tswuy",
+        "properties": {
+          "allowProjectManagement": true,
+          "customSubDomainName": "fc-ai-kvjmo565tswuy",
+          "disableLocalAuth": true,
+          "dynamicThrottlingEnabled": false,
+          "publicNetworkAccess": "Enabled",
+          "restore": false,
+          "restrictOutboundNetworkAccess": true
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "sku": {
+          "name": "S0"
+        },
+        "tags": {
+          "Environment": "feedback-campaign",
+          "ManagedBy": "azd",
+          "Project": "feedback-campaign",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.CognitiveServices/accounts"
+      },
+      "before": {
+        "apiVersion": "2025-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.CognitiveServices/accounts/fc-ai-kvjmo565tswuy",
+        "identity": {
+          "type": "SystemAssigned"
+        },
+        "kind": "AIServices",
+        "location": "centralus",
+        "name": "fc-ai-kvjmo565tswuy",
+        "properties": {
+          "allowProjectManagement": true,
+          "associatedProjects": [
+            "campaign"
+          ],
+          "customSubDomainName": "fc-ai-kvjmo565tswuy",
+          "defaultProject": "campaign",
+          "disableLocalAuth": true,
+          "dynamicThrottlingEnabled": false,
+          "publicNetworkAccess": "Enabled",
+          "restrictOutboundNetworkAccess": true
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "sku": {
+          "name": "S0"
+        },
+        "tags": {
+          "Environment": "feedback-campaign",
+          "ManagedBy": "azd",
+          "Project": "feedback-campaign",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.CognitiveServices/accounts"
+      },
+      "changeType": "Modify",
+      "delta": [
+        {
+          "after": null,
+          "before": [
+            "campaign"
+          ],
+          "children": null,
+          "path": "properties.associatedProjects",
+          "propertyChangeType": "Delete"
+        },
+        {
+          "after": null,
+          "before": "campaign",
+          "children": null,
+          "path": "properties.defaultProject",
+          "propertyChangeType": "Delete"
+        },
+        {
+          "after": false,
+          "before": null,
+          "children": null,
+          "path": "properties.restore",
+          "propertyChangeType": "Create"
+        }
+      ],
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.CognitiveServices/accounts/fc-ai-kvjmo565tswuy",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.CognitiveServices/accounts/fc-ai-kvjmo565tswuy/deployments/campaign-model",
+        "name": "campaign-model",
+        "properties": {
+          "model": {
+            "format": "OpenAI",
+            "name": "gpt-4.1-mini",
+            "version": "2025-04-14"
+          }
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "sku": {
+          "capacity": 10,
+          "name": "GlobalStandard"
+        },
+        "type": "Microsoft.CognitiveServices/accounts/deployments"
+      },
+      "before": {
+        "apiVersion": "2025-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.CognitiveServices/accounts/fc-ai-kvjmo565tswuy/deployments/campaign-model",
+        "name": "campaign-model",
+        "properties": {
+          "currentCapacity": 10,
+          "model": {
+            "format": "OpenAI",
+            "name": "gpt-4.1-mini",
+            "version": "2025-04-14"
+          },
+          "raiPolicyName": "Microsoft.DefaultV2",
+          "versionUpgradeOption": "OnceNewDefaultVersionAvailable"
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "sku": {
+          "capacity": 10,
+          "name": "GlobalStandard"
+        },
+        "type": "Microsoft.CognitiveServices/accounts/deployments"
+      },
+      "changeType": "Modify",
+      "delta": [
+        {
+          "after": null,
+          "before": 10,
+          "children": null,
+          "path": "properties.currentCapacity",
+          "propertyChangeType": "Delete"
+        },
+        {
+          "after": null,
+          "before": "Microsoft.DefaultV2",
+          "children": null,
+          "path": "properties.raiPolicyName",
+          "propertyChangeType": "Delete"
+        },
+        {
+          "after": null,
+          "before": "OnceNewDefaultVersionAvailable",
+          "children": null,
+          "path": "properties.versionUpgradeOption",
+          "propertyChangeType": "Delete"
+        }
+      ],
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.CognitiveServices/accounts/fc-ai-kvjmo565tswuy/deployments/campaign-model",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.CognitiveServices/accounts/fc-ai-kvjmo565tswuy/projects/campaign",
+        "identity": {
+          "type": "SystemAssigned"
+        },
+        "location": "centralus",
+        "name": "campaign",
+        "properties": {
+          "description": "Marketing and Sales HITL reference",
+          "displayName": "Campaign Control"
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "tags": {
+          "Environment": "feedback-campaign",
+          "ManagedBy": "azd",
+          "Project": "feedback-campaign",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.CognitiveServices/accounts/projects"
+      },
+      "before": {
+        "apiVersion": "2025-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.CognitiveServices/accounts/fc-ai-kvjmo565tswuy/projects/campaign",
+        "identity": {
+          "type": "SystemAssigned"
+        },
+        "kind": "AIServices",
+        "location": "centralus",
+        "name": "campaign",
+        "properties": {
+          "agentIdentity": {
+            "agentIdentityBlueprintId": "f6f92fea-d11e-4e75-b91f-8303d86f2304",
+            "agentIdentityBlueprintObjectId": "e167fc62-0917-4a43-82f3-52d9460f8f5c",
+            "agentIdentityId": "47bd0d98-8c19-4a2f-a264-96f689af3a92"
+          },
+          "description": "Marketing and Sales HITL reference",
+          "displayName": "Campaign Control",
+          "endpoints": {
+            "AI Foundry API": "https://fc-ai-kvjmo565tswuy.services.ai.azure.com/api/projects/campaign"
+          },
+          "internalId": "b1b515147f2846c8ac372694f07dbcb3",
+          "isDefault": true
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "tags": {
+          "Environment": "feedback-campaign",
+          "ManagedBy": "azd",
+          "Project": "feedback-campaign",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.CognitiveServices/accounts/projects"
+      },
+      "changeType": "Modify",
+      "delta": [
+        {
+          "after": null,
+          "before": "AIServices",
+          "children": null,
+          "path": "kind",
+          "propertyChangeType": "Delete"
+        },
+        {
+          "after": null,
+          "before": {
+            "agentIdentityBlueprintId": "f6f92fea-d11e-4e75-b91f-8303d86f2304",
+            "agentIdentityBlueprintObjectId": "e167fc62-0917-4a43-82f3-52d9460f8f5c",
+            "agentIdentityId": "47bd0d98-8c19-4a2f-a264-96f689af3a92"
+          },
+          "children": null,
+          "path": "properties.agentIdentity",
+          "propertyChangeType": "Delete"
+        },
+        {
+          "after": null,
+          "before": {
+            "AI Foundry API": "https://fc-ai-kvjmo565tswuy.services.ai.azure.com/api/projects/campaign"
+          },
+          "children": null,
+          "path": "properties.endpoints",
+          "propertyChangeType": "Delete"
+        },
+        {
+          "after": null,
+          "before": "b1b515147f2846c8ac372694f07dbcb3",
+          "children": null,
+          "path": "properties.internalId",
+          "propertyChangeType": "Delete"
+        },
+        {
+          "after": null,
+          "before": true,
+          "children": null,
+          "path": "properties.isDefault",
+          "propertyChangeType": "Delete"
+        }
+      ],
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.CognitiveServices/accounts/fc-ai-kvjmo565tswuy/projects/campaign",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.CognitiveServices/accounts/fc-ai-kvjmo565tswuy/projects/campaign/providers/Microsoft.Authorization/roleAssignments/3bbcdc50-5021-5fb3-8a87-4d477fe660d9",
+        "name": "3bbcdc50-5021-5fb3-8a87-4d477fe660d9",
+        "properties": {
+          "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/53ca6127-db72-4b80-b1b0-d745d6d5456d"
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": {
+        "apiVersion": "2022-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.CognitiveServices/accounts/fc-ai-kvjmo565tswuy/projects/campaign/providers/Microsoft.Authorization/roleAssignments/3bbcdc50-5021-5fb3-8a87-4d477fe660d9",
+        "name": "3bbcdc50-5021-5fb3-8a87-4d477fe660d9",
+        "properties": {
+          "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/53ca6127-db72-4b80-b1b0-d745d6d5456d"
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "changeType": "NoChange",
+      "delta": [
+        {
+          "after": "User",
+          "before": null,
+          "children": null,
+          "path": "properties.principalType",
+          "propertyChangeType": "NoEffect"
+        }
+      ],
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.CognitiveServices/accounts/fc-ai-kvjmo565tswuy/projects/campaign/providers/Microsoft.Authorization/roleAssignments/3bbcdc50-5021-5fb3-8a87-4d477fe660d9",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.CognitiveServices/accounts/fc-ai-kvjmo565tswuy/projects/campaign/providers/Microsoft.Authorization/roleAssignments/692c5da1-4934-5a00-bd11-d4325c3b1589",
+        "name": "692c5da1-4934-5a00-bd11-d4325c3b1589",
+        "properties": {
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/53ca6127-db72-4b80-b1b0-d745d6d5456d"
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": {
+        "apiVersion": "2022-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.CognitiveServices/accounts/fc-ai-kvjmo565tswuy/projects/campaign/providers/Microsoft.Authorization/roleAssignments/692c5da1-4934-5a00-bd11-d4325c3b1589",
+        "name": "692c5da1-4934-5a00-bd11-d4325c3b1589",
+        "properties": {
+          "principalId": "53c958a5-6a16-49ee-ba15-214fdf796585",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/53ca6127-db72-4b80-b1b0-d745d6d5456d"
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "changeType": "Modify",
+      "delta": [
+        {
+          "after": null,
+          "before": "53c958a5-6a16-49ee-ba15-214fdf796585",
+          "children": null,
+          "path": "properties.principalId",
+          "propertyChangeType": "Delete"
+        },
+        {
+          "after": "ServicePrincipal",
+          "before": null,
+          "children": null,
+          "path": "properties.principalType",
+          "propertyChangeType": "NoEffect"
+        }
+      ],
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.CognitiveServices/accounts/fc-ai-kvjmo565tswuy/projects/campaign/providers/Microsoft.Authorization/roleAssignments/692c5da1-4934-5a00-bd11-d4325c3b1589",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2020-02-02",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Insights/components/fc-insights-kvjmo565tswuy",
+        "kind": "web",
+        "location": "centralus",
+        "name": "fc-insights-kvjmo565tswuy",
+        "properties": {
+          "Application_Type": "web",
+          "DisableIpMasking": true,
+          "DisableLocalAuth": false,
+          "Flow_Type": "Bluefield",
+          "ForceCustomerStorageForProfiler": false,
+          "IngestionMode": "LogAnalytics",
+          "Request_Source": "rest",
+          "RetentionInDays": 365,
+          "SamplingPercentage": 100.0,
+          "WorkspaceResourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.OperationalInsights/workspaces/fc-log-kvjmo565tswuy",
+          "publicNetworkAccessForIngestion": "Enabled",
+          "publicNetworkAccessForQuery": "Enabled"
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "tags": {
+          "Environment": "feedback-campaign",
+          "ManagedBy": "azd",
+          "Project": "feedback-campaign",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Insights/components"
+      },
+      "before": {
+        "apiVersion": "2020-02-02",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Insights/components/fc-insights-kvjmo565tswuy",
+        "kind": "web",
+        "location": "centralus",
+        "name": "fc-insights-kvjmo565tswuy",
+        "properties": {
+          "Application_Type": "web",
+          "DisableIpMasking": true,
+          "DisableLocalAuth": false,
+          "ForceCustomerStorageForProfiler": false,
+          "IngestionMode": "LogAnalytics",
+          "RetentionInDays": 365,
+          "SamplingPercentage": 100.0,
+          "WorkspaceResourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.OperationalInsights/workspaces/fc-log-kvjmo565tswuy",
+          "publicNetworkAccessForIngestion": "Enabled",
+          "publicNetworkAccessForQuery": "Enabled"
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "tags": {
+          "Environment": "feedback-campaign",
+          "ManagedBy": "azd",
+          "Project": "feedback-campaign",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Insights/components"
+      },
+      "changeType": "Modify",
+      "delta": [
+        {
+          "after": "Bluefield",
+          "before": null,
+          "children": null,
+          "path": "properties.Flow_Type",
+          "propertyChangeType": "Create"
+        },
+        {
+          "after": "rest",
+          "before": null,
+          "children": null,
+          "path": "properties.Request_Source",
+          "propertyChangeType": "Create"
+        }
+      ],
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Insights/components/fc-insights-kvjmo565tswuy",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-07-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.OperationalInsights/workspaces/fc-log-kvjmo565tswuy",
+        "location": "centralus",
+        "name": "fc-log-kvjmo565tswuy",
+        "properties": {
+          "forceCmkForQuery": true,
+          "publicNetworkAccessForIngestion": "Enabled",
+          "publicNetworkAccessForQuery": "Enabled",
+          "retentionInDays": 30,
+          "sku": {
+            "name": "PerGB2018"
+          },
+          "workspaceCapping": {
+            "dailyQuotaGb": 1.0
+          }
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "tags": {
+          "Environment": "feedback-campaign",
+          "ManagedBy": "azd",
+          "Project": "feedback-campaign",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.OperationalInsights/workspaces"
+      },
+      "before": {
+        "apiVersion": "2025-07-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.OperationalInsights/workspaces/fc-log-kvjmo565tswuy",
+        "location": "centralus",
+        "name": "fc-log-kvjmo565tswuy",
+        "properties": {
+          "forceCmkForQuery": true,
+          "publicNetworkAccessForIngestion": "Enabled",
+          "publicNetworkAccessForQuery": "Enabled",
+          "retentionInDays": 30,
+          "sku": {
+            "name": "PerGB2018"
+          },
+          "workspaceCapping": {
+            "dailyQuotaGb": 1.0
+          }
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "tags": {
+          "Environment": "feedback-campaign",
+          "ManagedBy": "azd",
+          "Project": "feedback-campaign",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.OperationalInsights/workspaces"
+      },
+      "changeType": "NoChange",
+      "delta": [
+        {
+          "after": {
+            "disableLocalAuth": true,
+            "enableDataExport": null,
+            "enableLogAccessUsingOnlyResourcePermissions": false,
+            "immediatePurgeDataOn30Days": null,
+            "searchVersion": 1
+          },
+          "before": null,
+          "children": null,
+          "path": "properties.features",
+          "propertyChangeType": "NoEffect"
+        }
+      ],
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.OperationalInsights/workspaces/fc-log-kvjmo565tswuy",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Resources/tags/default",
+        "name": "default",
+        "properties": {
+          "tags": {
+            "Environment": "feedback-campaign",
+            "ManagedBy": "azd",
+            "Project": "feedback-campaign",
+            "SecurityControl": "Ignore"
+          }
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "type": "Microsoft.Resources/tags"
+      },
+      "before": {
+        "apiVersion": "2024-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Resources/tags/default",
+        "name": "default",
+        "properties": {
+          "tags": {
+            "Environment": "feedback-campaign",
+            "ManagedBy": "azd",
+            "Project": "feedback-campaign",
+            "SecurityControl": "Ignore"
+          }
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "type": "Microsoft.Resources/tags"
+      },
+      "changeType": "NoChange",
+      "delta": [],
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Resources/tags/default",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-01-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.ServiceBus/namespaces/fc-bus-kvjmo565tswuy",
+        "location": "centralus",
+        "name": "fc-bus-kvjmo565tswuy",
+        "properties": {
+          "disableLocalAuth": true,
+          "geoDataReplication": {
+            "locations": [
+              {
+                "locationName": "centralus",
+                "replicaState": "Ready",
+                "roleType": "Primary"
+              }
+            ],
+            "maxReplicationLagDurationInSeconds": 0
+          },
+          "minimumTlsVersion": "1.2",
+          "premiumMessagingPartitions": 0,
+          "publicNetworkAccess": "Enabled",
+          "zoneRedundant": true
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "sku": {
+          "capacity": 0,
+          "name": "Standard"
+        },
+        "tags": {
+          "Environment": "feedback-campaign",
+          "ManagedBy": "azd",
+          "Project": "feedback-campaign",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.ServiceBus/namespaces"
+      },
+      "before": {
+        "apiVersion": "2024-01-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.ServiceBus/namespaces/fc-bus-kvjmo565tswuy",
+        "location": "centralus",
+        "name": "fc-bus-kvjmo565tswuy",
+        "properties": {
+          "disableLocalAuth": true,
+          "geoDataReplication": {
+            "locations": [
+              {
+                "locationName": "centralus",
+                "replicaState": "Ready",
+                "roleType": "Primary"
+              }
+            ],
+            "maxReplicationLagDurationInSeconds": 0
+          },
+          "minimumTlsVersion": "1.2",
+          "premiumMessagingPartitions": 0,
+          "publicNetworkAccess": "Enabled",
+          "zoneRedundant": true
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "sku": {
+          "name": "Standard"
+        },
+        "tags": {
+          "Environment": "feedback-campaign",
+          "ManagedBy": "azd",
+          "Project": "feedback-campaign",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.ServiceBus/namespaces"
+      },
+      "changeType": "Modify",
+      "delta": [
+        {
+          "after": 0,
+          "before": null,
+          "children": null,
+          "path": "sku.capacity",
+          "propertyChangeType": "Create"
+        }
+      ],
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.ServiceBus/namespaces/fc-bus-kvjmo565tswuy",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-01-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.ServiceBus/namespaces/fc-bus-kvjmo565tswuy/queues/posts",
+        "name": "posts",
+        "properties": {
+          "deadLetteringOnMessageExpiration": true,
+          "defaultMessageTimeToLive": "P14D",
+          "duplicateDetectionHistoryTimeWindow": "P7D",
+          "enableBatchedOperations": true,
+          "enableExpress": false,
+          "enablePartitioning": false,
+          "lockDuration": "PT1M",
+          "maxDeliveryCount": 5,
+          "maxMessageSizeInKilobytes": "[if(equals(reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.ServiceBus/namespaces/fc-bus-kvjmo565tswuy', '2024-01-01', 'full').sku.name, 'Premium'), parameters('maxMessageSizeInKilobytes'), null())]",
+          "maxSizeInMegabytes": 1024,
+          "requiresDuplicateDetection": true,
+          "requiresSession": false,
+          "status": "Active"
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "type": "Microsoft.ServiceBus/namespaces/queues"
+      },
+      "before": {
+        "apiVersion": "2024-01-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.ServiceBus/namespaces/fc-bus-kvjmo565tswuy/queues/posts",
+        "name": "posts",
+        "properties": {
+          "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S",
+          "deadLetteringOnMessageExpiration": true,
+          "defaultMessageTimeToLive": "P14D",
+          "duplicateDetectionHistoryTimeWindow": "P7D",
+          "enableBatchedOperations": true,
+          "enableExpress": false,
+          "enablePartitioning": false,
+          "lockDuration": "PT1M",
+          "maxDeliveryCount": 5,
+          "maxMessageSizeInKilobytes": 256,
+          "maxSizeInMegabytes": 1024,
+          "requiresDuplicateDetection": true,
+          "requiresSession": false,
+          "status": "Active"
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "type": "Microsoft.ServiceBus/namespaces/queues"
+      },
+      "changeType": "Modify",
+      "delta": [
+        {
+          "after": null,
+          "before": "P10675199DT2H48M5.4775807S",
+          "children": null,
+          "path": "properties.autoDeleteOnIdle",
+          "propertyChangeType": "Delete"
+        },
+        {
+          "after": "[if(equals(reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.ServiceBus/namespaces/fc-bus-kvjmo565tswuy', '2024-01-01', 'full').sku.name, 'Premium'), parameters('maxMessageSizeInKilobytes'), null())]",
+          "before": 256,
+          "children": null,
+          "path": "properties.maxMessageSizeInKilobytes",
+          "propertyChangeType": "Modify"
+        }
+      ],
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.ServiceBus/namespaces/fc-bus-kvjmo565tswuy/queues/posts",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.ServiceBus/namespaces/fc-bus-kvjmo565tswuy/queues/posts/providers/Microsoft.Authorization/roleAssignments/f6616d38-f718-5054-a055-63e12f651805",
+        "name": "f6616d38-f718-5054-a055-63e12f651805",
+        "properties": {
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/4f6d3b9b-027b-4f4c-9142-0e5a2a2247e0"
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": {
+        "apiVersion": "2022-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.ServiceBus/namespaces/fc-bus-kvjmo565tswuy/queues/posts/providers/Microsoft.Authorization/roleAssignments/f6616d38-f718-5054-a055-63e12f651805",
+        "name": "f6616d38-f718-5054-a055-63e12f651805",
+        "properties": {
+          "principalId": "53c958a5-6a16-49ee-ba15-214fdf796585",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/4f6d3b9b-027b-4f4c-9142-0e5a2a2247e0"
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "changeType": "Modify",
+      "delta": [
+        {
+          "after": null,
+          "before": "53c958a5-6a16-49ee-ba15-214fdf796585",
+          "children": null,
+          "path": "properties.principalId",
+          "propertyChangeType": "Delete"
+        },
+        {
+          "after": "ServicePrincipal",
+          "before": null,
+          "children": null,
+          "path": "properties.principalType",
+          "propertyChangeType": "NoEffect"
+        }
+      ],
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.ServiceBus/namespaces/fc-bus-kvjmo565tswuy/queues/posts/providers/Microsoft.Authorization/roleAssignments/f6616d38-f718-5054-a055-63e12f651805",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-01-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.ServiceBus/namespaces/fc-bus-kvjmo565tswuy/queues/replies",
+        "name": "replies",
+        "properties": {
+          "deadLetteringOnMessageExpiration": true,
+          "defaultMessageTimeToLive": "P14D",
+          "duplicateDetectionHistoryTimeWindow": "P7D",
+          "enableBatchedOperations": true,
+          "enableExpress": false,
+          "enablePartitioning": false,
+          "lockDuration": "PT1M",
+          "maxDeliveryCount": 5,
+          "maxMessageSizeInKilobytes": "[if(equals(reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.ServiceBus/namespaces/fc-bus-kvjmo565tswuy', '2024-01-01', 'full').sku.name, 'Premium'), parameters('maxMessageSizeInKilobytes'), null())]",
+          "maxSizeInMegabytes": 1024,
+          "requiresDuplicateDetection": true,
+          "requiresSession": false,
+          "status": "Active"
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "type": "Microsoft.ServiceBus/namespaces/queues"
+      },
+      "before": {
+        "apiVersion": "2024-01-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.ServiceBus/namespaces/fc-bus-kvjmo565tswuy/queues/replies",
+        "name": "replies",
+        "properties": {
+          "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S",
+          "deadLetteringOnMessageExpiration": true,
+          "defaultMessageTimeToLive": "P14D",
+          "duplicateDetectionHistoryTimeWindow": "P7D",
+          "enableBatchedOperations": true,
+          "enableExpress": false,
+          "enablePartitioning": false,
+          "lockDuration": "PT1M",
+          "maxDeliveryCount": 5,
+          "maxMessageSizeInKilobytes": 256,
+          "maxSizeInMegabytes": 1024,
+          "requiresDuplicateDetection": true,
+          "requiresSession": false,
+          "status": "Active"
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "type": "Microsoft.ServiceBus/namespaces/queues"
+      },
+      "changeType": "Modify",
+      "delta": [
+        {
+          "after": null,
+          "before": "P10675199DT2H48M5.4775807S",
+          "children": null,
+          "path": "properties.autoDeleteOnIdle",
+          "propertyChangeType": "Delete"
+        },
+        {
+          "after": "[if(equals(reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.ServiceBus/namespaces/fc-bus-kvjmo565tswuy', '2024-01-01', 'full').sku.name, 'Premium'), parameters('maxMessageSizeInKilobytes'), null())]",
+          "before": 256,
+          "children": null,
+          "path": "properties.maxMessageSizeInKilobytes",
+          "propertyChangeType": "Modify"
+        }
+      ],
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.ServiceBus/namespaces/fc-bus-kvjmo565tswuy/queues/replies",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.ServiceBus/namespaces/fc-bus-kvjmo565tswuy/queues/replies/providers/Microsoft.Authorization/roleAssignments/7bf5806c-4c81-549b-96ac-35d765d45d51",
+        "name": "7bf5806c-4c81-549b-96ac-35d765d45d51",
+        "properties": {
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/69a216fc-b8fb-44d8-bc22-1f3c2cd27a39"
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": {
+        "apiVersion": "2022-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.ServiceBus/namespaces/fc-bus-kvjmo565tswuy/queues/replies/providers/Microsoft.Authorization/roleAssignments/7bf5806c-4c81-549b-96ac-35d765d45d51",
+        "name": "7bf5806c-4c81-549b-96ac-35d765d45d51",
+        "properties": {
+          "principalId": "53c958a5-6a16-49ee-ba15-214fdf796585",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/69a216fc-b8fb-44d8-bc22-1f3c2cd27a39"
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "changeType": "Modify",
+      "delta": [
+        {
+          "after": null,
+          "before": "53c958a5-6a16-49ee-ba15-214fdf796585",
+          "children": null,
+          "path": "properties.principalId",
+          "propertyChangeType": "Delete"
+        },
+        {
+          "after": "ServicePrincipal",
+          "before": null,
+          "children": null,
+          "path": "properties.principalType",
+          "propertyChangeType": "NoEffect"
+        }
+      ],
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.ServiceBus/namespaces/fc-bus-kvjmo565tswuy/queues/replies/providers/Microsoft.Authorization/roleAssignments/7bf5806c-4c81-549b-96ac-35d765d45d51",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-01-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Storage/storageAccounts/stfckvjmo565tswuy",
+        "kind": "StorageV2",
+        "location": "centralus",
+        "name": "stfckvjmo565tswuy",
+        "properties": {
+          "accessTier": "Hot",
+          "allowBlobPublicAccess": false,
+          "allowCrossTenantReplication": false,
+          "allowSharedKeyAccess": false,
+          "customDomain": {
+            "useSubDomainName": false
+          },
+          "defaultToOAuthAuthentication": false,
+          "encryption": {
+            "keySource": "Microsoft.Storage",
+            "requireInfrastructureEncryption": true
+          },
+          "isLocalUserEnabled": false,
+          "isSftpEnabled": false,
+          "largeFileSharesState": "Disabled",
+          "minimumTlsVersion": "TLS1_2",
+          "networkAcls": {
+            "bypass": "None",
+            "defaultAction": "Allow"
+          },
+          "publicNetworkAccess": "Enabled",
+          "supportsHttpsTrafficOnly": true
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "sku": {
+          "name": "Standard_LRS"
+        },
+        "tags": {
+          "Environment": "feedback-campaign",
+          "ManagedBy": "azd",
+          "Project": "feedback-campaign",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Storage/storageAccounts"
+      },
+      "before": {
+        "apiVersion": "2025-01-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Storage/storageAccounts/stfckvjmo565tswuy",
+        "kind": "StorageV2",
+        "location": "centralus",
+        "name": "stfckvjmo565tswuy",
+        "properties": {
+          "accessTier": "Hot",
+          "allowBlobPublicAccess": false,
+          "allowCrossTenantReplication": false,
+          "allowSharedKeyAccess": false,
+          "defaultToOAuthAuthentication": false,
+          "encryption": {
+            "keySource": "Microsoft.Storage",
+            "requireInfrastructureEncryption": true
+          },
+          "isLocalUserEnabled": false,
+          "isSftpEnabled": false,
+          "largeFileSharesState": "Disabled",
+          "minimumTlsVersion": "TLS1_2",
+          "networkAcls": {
+            "bypass": "None",
+            "defaultAction": "Allow"
+          },
+          "publicNetworkAccess": "Enabled",
+          "supportsHttpsTrafficOnly": true
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "sku": {
+          "name": "Standard_LRS"
+        },
+        "tags": {
+          "Environment": "feedback-campaign",
+          "ManagedBy": "azd",
+          "Project": "feedback-campaign",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Storage/storageAccounts"
+      },
+      "changeType": "Modify",
+      "delta": [
+        {
+          "after": {
+            "useSubDomainName": false
+          },
+          "before": null,
+          "children": null,
+          "path": "properties.customDomain",
+          "propertyChangeType": "Create"
+        },
+        {
+          "after": {
+            "blob": {
+              "enabled": true
+            },
+            "file": {
+              "enabled": true
+            },
+            "queue": {
+              "enabled": true,
+              "keyType": null
+            },
+            "table": {
+              "enabled": true,
+              "keyType": null
+            }
+          },
+          "before": null,
+          "children": null,
+          "path": "properties.encryption.services",
+          "propertyChangeType": "NoEffect"
+        }
+      ],
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Storage/storageAccounts/stfckvjmo565tswuy",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-01-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Storage/storageAccounts/stfckvjmo565tswuy/blobServices/default",
+        "name": "default",
+        "properties": {
+          "automaticSnapshotPolicyEnabled": false,
+          "containerDeleteRetentionPolicy": {
+            "allowPermanentDelete": false,
+            "days": 7,
+            "enabled": true
+          },
+          "deleteRetentionPolicy": {
+            "days": 6,
+            "enabled": true
+          },
+          "isVersioningEnabled": false,
+          "lastAccessTimeTrackingPolicy": "[if(and(not(equals(reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Storage/storageAccounts/stfckvjmo565tswuy', '2025-01-01', 'full').kind, 'Storage')), empty(tryGet(reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Storage/storageAccounts/stfckvjmo565tswuy', '2025-01-01', 'full'), 'extendedLocation'))), createObject('enable', parameters('lastAccessTimeTrackingPolicyEnabled'), 'name', if(equals(parameters('lastAccessTimeTrackingPolicyEnabled'), true()), 'AccessTimeTracking', null()), 'trackingGranularityInDays', if(equals(parameters('lastAccessTimeTrackingPolicyEnabled'), true()), 1, null())), null())]"
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "type": "Microsoft.Storage/storageAccounts/blobServices"
+      },
+      "before": {
+        "apiVersion": "2025-01-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Storage/storageAccounts/stfckvjmo565tswuy/blobServices/default",
+        "name": "default",
+        "properties": {
+          "containerDeleteRetentionPolicy": {
+            "days": 7,
+            "enabled": true
+          },
+          "deleteRetentionPolicy": {
+            "allowPermanentDelete": false,
+            "days": 6,
+            "enabled": true
+          },
+          "isVersioningEnabled": false
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "type": "Microsoft.Storage/storageAccounts/blobServices"
+      },
+      "changeType": "Modify",
+      "delta": [
+        {
+          "after": false,
+          "before": null,
+          "children": null,
+          "path": "properties.containerDeleteRetentionPolicy.allowPermanentDelete",
+          "propertyChangeType": "Create"
+        },
+        {
+          "after": null,
+          "before": false,
+          "children": null,
+          "path": "properties.deleteRetentionPolicy.allowPermanentDelete",
+          "propertyChangeType": "Delete"
+        },
+        {
+          "after": false,
+          "before": null,
+          "children": null,
+          "path": "properties.automaticSnapshotPolicyEnabled",
+          "propertyChangeType": "Create"
+        },
+        {
+          "after": "[if(and(not(equals(reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Storage/storageAccounts/stfckvjmo565tswuy', '2025-01-01', 'full').kind, 'Storage')), empty(tryGet(reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Storage/storageAccounts/stfckvjmo565tswuy', '2025-01-01', 'full'), 'extendedLocation'))), createObject('enable', parameters('lastAccessTimeTrackingPolicyEnabled'), 'name', if(equals(parameters('lastAccessTimeTrackingPolicyEnabled'), true()), 'AccessTimeTracking', null()), 'trackingGranularityInDays', if(equals(parameters('lastAccessTimeTrackingPolicyEnabled'), true()), 1, null())), null())]",
+          "before": null,
+          "children": null,
+          "path": "properties.lastAccessTimeTrackingPolicy",
+          "propertyChangeType": "Create"
+        }
+      ],
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Storage/storageAccounts/stfckvjmo565tswuy/blobServices/default",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Storage/storageAccounts/stfckvjmo565tswuy/providers/Microsoft.Authorization/roleAssignments/3b0d84d8-1a5c-578d-80f4-e71b56abed2c",
+        "name": "3b0d84d8-1a5c-578d-80f4-e71b56abed2c",
+        "properties": {
+          "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/0a9a7e1f-b9d0-4cc4-a60d-0319b160aaa3"
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": {
+        "apiVersion": "2022-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Storage/storageAccounts/stfckvjmo565tswuy/providers/Microsoft.Authorization/roleAssignments/3b0d84d8-1a5c-578d-80f4-e71b56abed2c",
+        "name": "3b0d84d8-1a5c-578d-80f4-e71b56abed2c",
+        "properties": {
+          "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/0a9a7e1f-b9d0-4cc4-a60d-0319b160aaa3"
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "changeType": "NoChange",
+      "delta": [
+        {
+          "after": "User",
+          "before": null,
+          "children": null,
+          "path": "properties.principalType",
+          "propertyChangeType": "NoEffect"
+        }
+      ],
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Storage/storageAccounts/stfckvjmo565tswuy/providers/Microsoft.Authorization/roleAssignments/3b0d84d8-1a5c-578d-80f4-e71b56abed2c",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Storage/storageAccounts/stfckvjmo565tswuy/providers/Microsoft.Authorization/roleAssignments/d3be72e3-3573-549b-b0a7-1cff99effd13",
+        "name": "d3be72e3-3573-549b-b0a7-1cff99effd13",
+        "properties": {
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/0a9a7e1f-b9d0-4cc4-a60d-0319b160aaa3"
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": {
+        "apiVersion": "2022-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Storage/storageAccounts/stfckvjmo565tswuy/providers/Microsoft.Authorization/roleAssignments/d3be72e3-3573-549b-b0a7-1cff99effd13",
+        "name": "d3be72e3-3573-549b-b0a7-1cff99effd13",
+        "properties": {
+          "principalId": "53c958a5-6a16-49ee-ba15-214fdf796585",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/0a9a7e1f-b9d0-4cc4-a60d-0319b160aaa3"
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "changeType": "Modify",
+      "delta": [
+        {
+          "after": null,
+          "before": "53c958a5-6a16-49ee-ba15-214fdf796585",
+          "children": null,
+          "path": "properties.principalId",
+          "propertyChangeType": "Delete"
+        },
+        {
+          "after": "ServicePrincipal",
+          "before": null,
+          "children": null,
+          "path": "properties.principalType",
+          "propertyChangeType": "NoEffect"
+        }
+      ],
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Storage/storageAccounts/stfckvjmo565tswuy/providers/Microsoft.Authorization/roleAssignments/d3be72e3-3573-549b-b0a7-1cff99effd13",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-01-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Storage/storageAccounts/stfckvjmo565tswuy/tableServices/default",
+        "name": "default",
+        "resourceGroup": "rg-feedback-campaign",
+        "type": "Microsoft.Storage/storageAccounts/tableServices"
+      },
+      "before": {
+        "apiVersion": "2024-01-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Storage/storageAccounts/stfckvjmo565tswuy/tableServices/default",
+        "name": "default",
+        "resourceGroup": "rg-feedback-campaign",
+        "type": "Microsoft.Storage/storageAccounts/tableServices"
+      },
+      "changeType": "NoChange",
+      "delta": [],
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Storage/storageAccounts/stfckvjmo565tswuy/tableServices/default",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-01-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Storage/storageAccounts/stfckvjmo565tswuy/tableServices/default/tables/campaignstate",
+        "name": "campaignstate",
+        "resourceGroup": "rg-feedback-campaign",
+        "type": "Microsoft.Storage/storageAccounts/tableServices/tables"
+      },
+      "before": {
+        "apiVersion": "2024-01-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Storage/storageAccounts/stfckvjmo565tswuy/tableServices/default/tables/campaignstate",
+        "name": "campaignstate",
+        "resourceGroup": "rg-feedback-campaign",
+        "type": "Microsoft.Storage/storageAccounts/tableServices/tables"
+      },
+      "changeType": "NoChange",
+      "delta": [],
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Storage/storageAccounts/stfckvjmo565tswuy/tableServices/default/tables/campaignstate",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Web/serverFarms/fc-plan-kvjmo565tswuy",
+        "kind": "linux",
+        "location": "centralus",
+        "name": "fc-plan-kvjmo565tswuy",
+        "properties": {
+          "allowEquivalentSku": false,
+          "asyncScalingEnabled": false,
+          "createdTime": "2026-10-25T17:51:10.78",
+          "currentNumberOfZonesUtilized": 1,
+          "elasticScaleEnabled": false,
+          "hyperV": false,
+          "isCustomMode": false,
+          "isSpot": false,
+          "isXenon": false,
+          "kind": "linux",
+          "maximumNumberOfZones": 1,
+          "name": "fc-plan-kvjmo565tswuy",
+          "perSiteScaling": false,
+          "powerState": "Running",
+          "reserved": true,
+          "tags": {
+            "Environment": "feedback-campaign",
+            "ManagedBy": "azd",
+            "Project": "feedback-campaign",
+            "SecurityControl": "Ignore"
+          },
+          "targetWorkerSizeId": 0,
+          "vnetConnectionsMax": 2,
+          "vnetConnectionsUsed": 0,
+          "zoneRedundant": false
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "sku": {
+          "capacity": 1,
+          "name": "B1"
+        },
+        "tags": {
+          "Environment": "feedback-campaign",
+          "ManagedBy": "azd",
+          "Project": "feedback-campaign",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Web/serverfarms"
+      },
+      "before": {
+        "apiVersion": "2025-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Web/serverFarms/fc-plan-kvjmo565tswuy",
+        "kind": "linux",
+        "location": "centralus",
+        "name": "fc-plan-kvjmo565tswuy",
+        "properties": {
+          "allowEquivalentSku": false,
+          "asyncScalingEnabled": false,
+          "createdTime": "2026-10-25T17:51:10.78",
+          "currentNumberOfZonesUtilized": 1,
+          "elasticScaleEnabled": false,
+          "hyperV": false,
+          "isCustomMode": false,
+          "isSpot": false,
+          "isXenon": false,
+          "kind": "linux",
+          "maximumNumberOfZones": 1,
+          "name": "fc-plan-kvjmo565tswuy",
+          "perSiteScaling": false,
+          "powerState": "Running",
+          "reserved": true,
+          "tags": {
+            "Environment": "feedback-campaign",
+            "ManagedBy": "azd",
+            "Project": "feedback-campaign",
+            "SecurityControl": "Ignore"
+          },
+          "targetWorkerSizeId": 0,
+          "vnetConnectionsMax": 2,
+          "vnetConnectionsUsed": 0,
+          "zoneRedundant": false
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "sku": {
+          "capacity": 1,
+          "name": "B1"
+        },
+        "tags": {
+          "Environment": "feedback-campaign",
+          "ManagedBy": "azd",
+          "Project": "feedback-campaign",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Web/serverfarms"
+      },
+      "changeType": "NoChange",
+      "delta": [
+        {
+          "after": 1,
+          "before": null,
+          "children": null,
+          "path": "properties.maximumElasticWorkerCount",
+          "propertyChangeType": "NoEffect"
+        },
+        {
+          "after": 0,
+          "before": null,
+          "children": null,
+          "path": "properties.targetWorkerCount",
+          "propertyChangeType": "NoEffect"
+        }
+      ],
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Web/serverfarms/fc-plan-kvjmo565tswuy",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Web/sites/fc-web-kvjmo565tswuy",
+        "identity": {
+          "type": "SystemAssigned"
+        },
+        "kind": "app,linux",
+        "location": "centralus",
+        "name": "fc-web-kvjmo565tswuy",
+        "properties": {
+          "afdEnabled": false,
+          "blockPathTraversal": false,
+          "clientAffinityEnabled": true,
+          "clientAffinityPartitioningEnabled": false,
+          "clientAffinityProxyEnabled": true,
+          "clientCertEnabled": false,
+          "clientCertMode": "Optional",
+          "containerSize": 0,
+          "dailyMemoryTimeQuota": 0,
+          "eligibleLogCategories": "AppServiceAppLogs,AppServiceConsoleLogs,AppServiceHTTPLogs,AppServicePlatformLogs,ScanLogs,AppServiceAuthenticationLogs,AppServiceAuditLogs,AppServiceIPSecAuditLogs",
+          "enabled": true,
+          "endToEndEncryptionEnabled": false,
+          "ftpUsername": "fc-web-kvjmo565tswuy\\$fc-web-kvjmo565tswuy",
+          "ftpsHostName": "ftps://waws-prod-dm1-081.ftp.azurewebsites.windows.net/site/wwwroot",
+          "functionsRuntimeAdminIsolationEnabled": false,
+          "hostNamesDisabled": false,
+          "httpsOnly": true,
+          "inFlightFeatures": [
+            "SiteContainers"
+          ],
+          "inboundIpv6Address": "2603:1030:10:8::11",
+          "ipMode": "IPv4",
+          "jA4Forwarding": false,
+          "keyVaultReferenceIdentity": "SystemAssigned",
+          "maintenanceEnabled": false,
+          "name": "fc-web-kvjmo565tswuy",
+          "outboundIpv6Addresses": "2603:1030:b:13::1d9,2603:1030:b:d::185,2603:1030:b:f::163,2603:1030:b:12::18b,2603:1030:10:8::11,2603:10e1:100:2::34a5:b8aa,2603:1030:10:8::4f,2603:10e1:100:2::1476:303c",
+          "outboundVnetRouting": {
+            "allTraffic": false,
+            "applicationTraffic": false,
+            "backupRestoreTraffic": false,
+            "contentShareTraffic": false,
+            "imagePullTraffic": false,
+            "managedIdentityTraffic": false
+          },
+          "platformVersion": "110.0.7.48",
+          "possibleInboundIpv6Addresses": "2603:1030:10:8::11",
+          "possibleOutboundIpv6Addresses": "2603:1030:b:13::1d9,2603:1030:b:d::185,2603:1030:b:f::163,2603:1030:b:12::18b,2603:1030:b:8::155,2603:1030:b:13::1db,2603:1030:b:a::16b,2603:1030:b:9::15b,2603:1030:b:5::3da,2603:1030:b:f::164,2603:1030:b:e::147,2603:1030:b:b::163,2603:1030:b:7::291,2603:1030:b:9::15c,2603:1030:b:8::156,2603:1030:b:8::157,2603:1030:b:f::166,2603:1030:b:13::1dc,2603:1030:10:8::11,2603:10e1:100:2::34a5:b8aa,2603:1030:10:8::4f,2603:10e1:100:2::1476:303c",
+          "publicNetworkAccess": "Enabled",
+          "redundancyMode": "None",
+          "reserved": true,
+          "runtimeAvailabilityState": "Normal",
+          "scmSiteAlsoStopped": false,
+          "serverFarmId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Web/serverfarms/fc-plan-kvjmo565tswuy",
+          "siteConfig": {
+            "acrUseManagedIdentityCreds": false,
+            "alwaysOn": true,
+            "appSettings": "*******",
+            "clusteringEnabled": false,
+            "ftpsState": "Disabled",
+            "functionAppScaleLimit": 0,
+            "http20Enabled": true,
+            "linuxFxVersion": "DOTNETCORE|10.0",
+            "localMySqlEnabled": false,
+            "minTlsVersion": "1.2",
+            "minimumElasticInstanceCount": 0,
+            "netFrameworkVersion": "v4.6",
+            "numberOfWorkers": 1,
+            "scmMinTlsVersion": "1.2",
+            "webJobsEnabled": false
+          },
+          "siteScopedCertificatesEnabled": false,
+          "storageAccountRequired": false,
+          "storageRecoveryDefaultState": "Running",
+          "useQueryStringAffinity": false
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "tags": {
+          "Environment": "feedback-campaign",
+          "ManagedBy": "azd",
+          "Project": "feedback-campaign",
+          "SecurityControl": "Ignore",
+          "azd-service-name": "web"
+        },
+        "type": "Microsoft.Web/sites"
+      },
+      "before": {
+        "apiVersion": "2025-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Web/sites/fc-web-kvjmo565tswuy",
+        "identity": {
+          "type": "SystemAssigned"
+        },
+        "kind": "app,linux",
+        "location": "centralus",
+        "name": "fc-web-kvjmo565tswuy",
+        "properties": {
+          "afdEnabled": false,
+          "blockPathTraversal": false,
+          "clientAffinityEnabled": true,
+          "clientAffinityProxyEnabled": true,
+          "clientCertEnabled": false,
+          "clientCertMode": "Optional",
+          "containerSize": 0,
+          "dailyMemoryTimeQuota": 0,
+          "eligibleLogCategories": "AppServiceAppLogs,AppServiceConsoleLogs,AppServiceHTTPLogs,AppServicePlatformLogs,ScanLogs,AppServiceAuthenticationLogs,AppServiceAuditLogs,AppServiceIPSecAuditLogs",
+          "enabled": true,
+          "endToEndEncryptionEnabled": false,
+          "ftpUsername": "fc-web-kvjmo565tswuy\\$fc-web-kvjmo565tswuy",
+          "ftpsHostName": "ftps://waws-prod-dm1-081.ftp.azurewebsites.windows.net/site/wwwroot",
+          "functionsRuntimeAdminIsolationEnabled": false,
+          "hostNamesDisabled": false,
+          "httpsOnly": true,
+          "inFlightFeatures": [
+            "SiteContainers"
+          ],
+          "inboundIpv6Address": "2603:1030:10:8::11",
+          "ipMode": "IPv4",
+          "jA4Forwarding": false,
+          "keyVaultReferenceIdentity": "SystemAssigned",
+          "maintenanceEnabled": false,
+          "name": "fc-web-kvjmo565tswuy",
+          "outboundIpv6Addresses": "2603:1030:b:13::1d9,2603:1030:b:d::185,2603:1030:b:f::163,2603:1030:b:12::18b,2603:1030:10:8::11,2603:10e1:100:2::34a5:b8aa,2603:1030:10:8::4f,2603:10e1:100:2::1476:303c",
+          "outboundVnetRouting": {
+            "allTraffic": false,
+            "applicationTraffic": false,
+            "backupRestoreTraffic": false,
+            "contentShareTraffic": false,
+            "imagePullTraffic": false,
+            "managedIdentityTraffic": false
+          },
+          "platformVersion": "110.0.7.48",
+          "possibleInboundIpv6Addresses": "2603:1030:10:8::11",
+          "possibleOutboundIpv6Addresses": "2603:1030:b:13::1d9,2603:1030:b:d::185,2603:1030:b:f::163,2603:1030:b:12::18b,2603:1030:b:8::155,2603:1030:b:13::1db,2603:1030:b:a::16b,2603:1030:b:9::15b,2603:1030:b:5::3da,2603:1030:b:f::164,2603:1030:b:e::147,2603:1030:b:b::163,2603:1030:b:7::291,2603:1030:b:9::15c,2603:1030:b:8::156,2603:1030:b:8::157,2603:1030:b:f::166,2603:1030:b:13::1dc,2603:1030:10:8::11,2603:10e1:100:2::34a5:b8aa,2603:1030:10:8::4f,2603:10e1:100:2::1476:303c",
+          "publicNetworkAccess": "Enabled",
+          "redundancyMode": "None",
+          "reserved": true,
+          "runtimeAvailabilityState": "Normal",
+          "scmSiteAlsoStopped": false,
+          "serverFarmId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Web/serverfarms/fc-plan-kvjmo565tswuy",
+          "siteConfig": {
+            "acrUseManagedIdentityCreds": false,
+            "alwaysOn": true,
+            "appSettings": "*******",
+            "clusteringEnabled": false,
+            "functionAppScaleLimit": 0,
+            "http20Enabled": true,
+            "linuxFxVersion": "DOTNETCORE|10.0",
+            "minimumElasticInstanceCount": 0,
+            "numberOfWorkers": 1,
+            "webJobsEnabled": false
+          },
+          "siteScopedCertificatesEnabled": false,
+          "storageAccountRequired": false,
+          "storageRecoveryDefaultState": "Running",
+          "useQueryStringAffinity": false
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "tags": {
+          "Environment": "feedback-campaign",
+          "ManagedBy": "azd",
+          "Project": "feedback-campaign",
+          "SecurityControl": "Ignore",
+          "azd-service-name": "web"
+        },
+        "type": "Microsoft.Web/sites"
+      },
+      "changeType": "Modify",
+      "delta": [
+        {
+          "after": "Disabled",
+          "before": null,
+          "children": null,
+          "path": "properties.siteConfig.ftpsState",
+          "propertyChangeType": "Create"
+        },
+        {
+          "after": false,
+          "before": null,
+          "children": null,
+          "path": "properties.siteConfig.localMySqlEnabled",
+          "propertyChangeType": "Create"
+        },
+        {
+          "after": "1.2",
+          "before": null,
+          "children": null,
+          "path": "properties.siteConfig.minTlsVersion",
+          "propertyChangeType": "Create"
+        },
+        {
+          "after": "v4.6",
+          "before": null,
+          "children": null,
+          "path": "properties.siteConfig.netFrameworkVersion",
+          "propertyChangeType": "Create"
+        },
+        {
+          "after": "1.2",
+          "before": null,
+          "children": null,
+          "path": "properties.siteConfig.scmMinTlsVersion",
+          "propertyChangeType": "Create"
+        },
+        {
+          "after": false,
+          "before": null,
+          "children": null,
+          "path": "properties.clientAffinityPartitioningEnabled",
+          "propertyChangeType": "Create"
+        },
+        {
+          "after": null,
+          "before": null,
+          "children": null,
+          "path": "properties.hostNameSslStates",
+          "propertyChangeType": "NoEffect"
+        },
+        {
+          "after": null,
+          "before": null,
+          "children": null,
+          "path": "properties.hostingEnvironmentProfile",
+          "propertyChangeType": "NoEffect"
+        },
+        {
+          "after": false,
+          "before": null,
+          "children": null,
+          "path": "properties.hyperV",
+          "propertyChangeType": "NoEffect"
+        }
+      ],
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Web/sites/fc-web-kvjmo565tswuy",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Web/sites/fc-web-kvjmo565tswuy/config/authsettingsV2",
+        "location": "Central US",
+        "name": "authsettingsV2",
+        "properties": {
+          "clearInboundClaimsMapping": "false",
+          "globalValidation": {
+            "excludedPaths": [
+              "/",
+              "/site.css",
+              "/app.js",
+              "/health"
+            ],
+            "requireAuthentication": false,
+            "unauthenticatedClientAction": "Return401"
+          },
+          "httpSettings": {
+            "forwardProxy": {
+              "convention": "NoProxy"
+            },
+            "requireHttps": true,
+            "routes": {
+              "apiPrefix": "/.auth"
+            }
+          },
+          "identityProviders": {
+            "apple": {
+              "enabled": true
+            },
+            "azureActiveDirectory": {
+              "enabled": true,
+              "login": {
+                "disableWWWAuthenticate": false
+              },
+              "registration": {
+                "clientId": "d4c875fe-4e14-42aa-9ca7-b5aa0dc7e5e9",
+                "openIdIssuer": "https://login.microsoftonline.com/16b3c013-d300-468d-ac64-7eda0820b6d3/v2.0"
+              },
+              "validation": {
+                "allowedAudiences": [
+                  "d4c875fe-4e14-42aa-9ca7-b5aa0dc7e5e9"
+                ]
+              }
+            },
+            "facebook": {
+              "enabled": true
+            },
+            "gitHub": {
+              "enabled": true
+            },
+            "google": {
+              "enabled": true
+            },
+            "legacyMicrosoftAccount": {
+              "enabled": true
+            },
+            "twitter": {
+              "enabled": true
+            }
+          },
+          "login": {
+            "cookieExpiration": {
+              "convention": "FixedTime",
+              "timeToExpiration": "08:00:00"
+            },
+            "nonce": {
+              "nonceExpirationInterval": "00:05:00",
+              "validateNonce": true
+            },
+            "preserveUrlFragmentsForLogins": false,
+            "tokenStore": {
+              "enabled": false,
+              "tokenRefreshExtensionHours": 72.0
+            }
+          },
+          "platform": {
+            "enabled": false,
+            "runtimeVersion": "~1"
+          },
+          "prmConfig": {
+            "disableMetadata": false,
+            "hideAuthorizationServers": false
+          }
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "type": "Microsoft.Web/sites/config"
+      },
+      "before": {
+        "apiVersion": "2025-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Web/sites/fc-web-kvjmo565tswuy/config/authsettingsV2",
+        "location": "Central US",
+        "name": "authsettingsV2",
+        "properties": {
+          "clearInboundClaimsMapping": "false",
+          "globalValidation": {
+            "excludedPaths": [
+              "/",
+              "/site.css",
+              "/app.js",
+              "/health"
+            ],
+            "requireAuthentication": true,
+            "unauthenticatedClientAction": "Return401"
+          },
+          "httpSettings": {
+            "forwardProxy": {
+              "convention": "NoProxy"
+            },
+            "requireHttps": true,
+            "routes": {
+              "apiPrefix": "/.auth"
+            }
+          },
+          "identityProviders": {
+            "apple": {
+              "enabled": true
+            },
+            "azureActiveDirectory": {
+              "enabled": true,
+              "login": {
+                "disableWWWAuthenticate": false
+              },
+              "registration": {
+                "clientId": "d4c875fe-4e14-42aa-9ca7-b5aa0dc7e5e9",
+                "openIdIssuer": "https://login.microsoftonline.com/16b3c013-d300-468d-ac64-7eda0820b6d3/v2.0"
+              },
+              "validation": {
+                "allowedAudiences": [
+                  "d4c875fe-4e14-42aa-9ca7-b5aa0dc7e5e9"
+                ]
+              }
+            },
+            "facebook": {
+              "enabled": true
+            },
+            "gitHub": {
+              "enabled": true
+            },
+            "google": {
+              "enabled": true
+            },
+            "legacyMicrosoftAccount": {
+              "enabled": true
+            },
+            "twitter": {
+              "enabled": true
+            }
+          },
+          "login": {
+            "cookieExpiration": {
+              "convention": "FixedTime",
+              "timeToExpiration": "08:00:00"
+            },
+            "nonce": {
+              "nonceExpirationInterval": "00:05:00",
+              "validateNonce": true
+            },
+            "preserveUrlFragmentsForLogins": false,
+            "tokenStore": {
+              "enabled": false,
+              "tokenRefreshExtensionHours": 72.0
+            }
+          },
+          "platform": {
+            "enabled": true,
+            "runtimeVersion": "~1"
+          },
+          "prmConfig": {
+            "disableMetadata": false,
+            "hideAuthorizationServers": false
+          }
+        },
+        "resourceGroup": "rg-feedback-campaign",
+        "type": "Microsoft.Web/sites/config"
+      },
+      "changeType": "Modify",
+      "delta": [
+        {
+          "after": false,
+          "before": true,
+          "children": null,
+          "path": "properties.globalValidation.requireAuthentication",
+          "propertyChangeType": "Modify"
+        },
+        {
+          "after": false,
+          "before": true,
+          "children": null,
+          "path": "properties.platform.enabled",
+          "propertyChangeType": "Modify"
+        }
+      ],
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-feedback-campaign/providers/Microsoft.Web/sites/fc-web-kvjmo565tswuy/config/authsettingsV2",
+      "symbolicName": null,
+      "unsupportedReason": null
+    }
+  ],
+  "diagnostics": null,
+  "error": null,
+  "potentialChanges": null,
+  "status": "Succeeded"
+}

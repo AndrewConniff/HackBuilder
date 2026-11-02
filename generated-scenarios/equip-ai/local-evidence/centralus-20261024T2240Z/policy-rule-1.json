@@ -1,0 +1,78 @@
+{
+  "id": "/providers/Microsoft.Authorization/policyDefinitions/36d49e87-48c4-4f2e-beed-ba4ed02b71f5",
+  "name": "36d49e87-48c4-4f2e-beed-ba4ed02b71f5",
+  "properties": {
+    "description": "Enable Azure Defender on your Azure SQL Servers to detect anomalous activities indicating unusual and potentially harmful attempts to access or exploit databases.",
+    "displayName": "Configure Azure Defender to be enabled on SQL servers",
+    "metadata": {
+      "category": "SQL",
+      "version": "2.1.0"
+    },
+    "mode": "Indexed",
+    "parameters": {},
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "equals": "Microsoft.Sql/servers",
+            "field": "type"
+          },
+          {
+            "field": "kind",
+            "notContains": "analytics"
+          }
+        ]
+      },
+      "then": {
+        "details": {
+          "deployment": {
+            "properties": {
+              "mode": "incremental",
+              "parameters": {
+                "serverName": {
+                  "value": "[field('name')]"
+                }
+              },
+              "template": {
+                "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                "contentVersion": "1.0.0.0",
+                "parameters": {
+                  "serverName": {
+                    "type": "string"
+                  }
+                },
+                "resources": [
+                  {
+                    "apiVersion": "2020-11-01-preview",
+                    "name": "[concat(parameters('serverName'), '/Default')]",
+                    "properties": {
+                      "state": "Enabled"
+                    },
+                    "type": "Microsoft.Sql/servers/securityAlertPolicies"
+                  }
+                ],
+                "variables": {}
+              }
+            }
+          },
+          "existenceCondition": {
+            "equals": "Enabled",
+            "field": "Microsoft.Sql/securityAlertPolicies.state"
+          },
+          "name": "Default",
+          "roleDefinitionIds": [
+            "/providers/microsoft.authorization/roleDefinitions/056cd41c-7e88-42e1-933e-88ba6a50c9c3"
+          ],
+          "type": "Microsoft.Sql/servers/securityAlertPolicies"
+        },
+        "effect": "DeployIfNotExists"
+      }
+    },
+    "policyType": "BuiltIn",
+    "version": "2.1.0",
+    "versions": [
+      "2.1.0"
+    ]
+  },
+  "type": "Microsoft.Authorization/policyDefinitions"
+}

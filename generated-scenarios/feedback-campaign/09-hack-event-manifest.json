@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "project": "feedback-campaign",
+  "teamCount": 1,
+  "coach": {
+    "azdEnvironment": "feedback-campaign-coach",
+    "resourceGroup": "rg-feedback-campaign-coach",
+    "applicationUrl": null,
+    "deploymentStatus": "planned",
+    "subscriptionId": null,
+    "tenantId": null,
+    "location": null
+  },
+  "teams": [
+    {
+      "id": "01",
+      "displayName": "Team 01",
+      "azdEnvironment": "01-feedback-campaign-hack",
+      "resourceGroup": "rg-01-feedback-campaign-hack",
+      "applicationUrl": null,
+      "deploymentStatus": "planned",
+      "subscriptionId": null,
+      "tenantId": null,
+      "location": null
+    }
+  ]
+}

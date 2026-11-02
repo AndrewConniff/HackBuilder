@@ -1,0 +1,13 @@
+{
+  "stage": "local-validation",
+  "status": "pending",
+  "summary": "Recorded setup verification passed under unchanged host permissions: existing image is nonroot linux/amd64, health and homepage return HTTP 200 with the required marker, and owned container cleanup passed. This clears only the runtime setup blocker, not application or Azure acceptance.",
+  "setupVerification": {
+    "blockerId": "13b185c049534370a1f6cdc802af4fdd",
+    "passed": true
+  },
+  "evidence": [
+    "python scripts\\check_container_runtime.py --image resto-scale-agent-local:568a2a2800434b88a4b673c97d1adf2d --marker 'Fourth Coffee' --timeout 90: ok=true; Image inspected: linux/amd64; user=1654; GET /health/live HTTP 200 on loopback; GET / HTTP 200 with marker Fourth Coffee; cleanupPassed=true; error=null; exit 0.",
+    "python scripts\\check_prerequisites.py --for-project --record --stage requirements --json: ready=true; all planned dependency checks passed; blockedStages empty; owner run cc61b3835f4244bfa28667f5b641fbe9."
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "command": "\"C:\\Users\\petender\\AppData\\Local\\Programs\\Azure Dev CLI\\azd.EXE\" auth login --check-status",
+  "cwd": "C:\\azd-projects\\equip-ai",
+  "startedAtUtc": "2026-10-24T22:38:13.769939+00:00",
+  "finishedAtUtc": "2026-10-24T22:38:14.443904+00:00",
+  "exitCode": 0,
+  "stdout": "azd-auth.json",
+  "stderr": "azd-auth.stderr.txt"
+}

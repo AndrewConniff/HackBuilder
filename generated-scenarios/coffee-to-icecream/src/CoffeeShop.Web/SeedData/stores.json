@@ -1,0 +1,1402 @@
+[
+  {
+    "Store": {
+      "Id": 1,
+      "StoreId": "001",
+      "Name": "Northwind Traders store 001",
+      "Area": "north",
+      "Manager": "Airi Ilves"
+    },
+    "Version": "seed-20261028-001",
+    "Stock": [
+      {
+        "Id": 1,
+        "Sku": "vanilla",
+        "Unit": "L",
+        "OnHand": 11.3,
+        "Target": 20,
+        "UnitCost": 5
+      },
+      {
+        "Id": 2,
+        "Sku": "chocolate",
+        "Unit": "L",
+        "OnHand": 11.9,
+        "Target": 20,
+        "UnitCost": 6
+      },
+      {
+        "Id": 3,
+        "Sku": "cone",
+        "Unit": "unit",
+        "OnHand": 119.0,
+        "Target": 200,
+        "UnitCost": 0.2
+      },
+      {
+        "Id": 4,
+        "Sku": "cup",
+        "Unit": "unit",
+        "OnHand": 119.0,
+        "Target": 200,
+        "UnitCost": 0.1
+      }
+    ],
+    "Ledger": {
+      "Id": 1,
+      "Date": "2026-10-28",
+      "NetSales": 598.5,
+      "Cogs": 99.4,
+      "Labor": 142,
+      "Occupancy": 45,
+      "Waste": 3.0,
+      "Complete": true,
+      "PlannedSales": 650
+    },
+    "Input": {
+      "Date": "2026-10-28",
+      "Opening": [
+        {
+          "Id": 1,
+          "Sku": "vanilla",
+          "Unit": "L",
+          "OnHand": 20,
+          "Target": 20,
+          "UnitCost": 5
+        },
+        {
+          "Id": 2,
+          "Sku": "chocolate",
+          "Unit": "L",
+          "OnHand": 18,
+          "Target": 20,
+          "UnitCost": 6
+        },
+        {
+          "Id": 3,
+          "Sku": "cone",
+          "Unit": "unit",
+          "OnHand": 200,
+          "Target": 200,
+          "UnitCost": 0.2
+        },
+        {
+          "Id": 4,
+          "Sku": "cup",
+          "Unit": "unit",
+          "OnHand": 180,
+          "Target": 200,
+          "UnitCost": 0.1
+        }
+      ],
+      "Recipes": [
+        {
+          "Product": "vanilla-cone",
+          "Sku": "vanilla",
+          "Unit": "L",
+          "Quantity": 0.1
+        },
+        {
+          "Product": "vanilla-cone",
+          "Sku": "cone",
+          "Unit": "unit",
+          "Quantity": 1
+        },
+        {
+          "Product": "chocolate-cup",
+          "Sku": "chocolate",
+          "Unit": "L",
+          "Quantity": 0.1
+        },
+        {
+          "Product": "chocolate-cup",
+          "Sku": "cup",
+          "Unit": "unit",
+          "Quantity": 1
+        }
+      ],
+      "Sales": [
+        {
+          "Product": "vanilla-cone",
+          "Quantity": 81,
+          "UnitPrice": 4
+        },
+        {
+          "Product": "chocolate-cup",
+          "Quantity": 61,
+          "UnitPrice": 4.5
+        }
+      ],
+      "Spoilage": [
+        {
+          "Sku": "vanilla",
+          "Unit": "L",
+          "Quantity": 0.6
+        }
+      ],
+      "Labor": 142,
+      "Occupancy": 45,
+      "PlannedSales": 650
+    }
+  },
+  {
+    "Store": {
+      "Id": 2,
+      "StoreId": "002",
+      "Name": "Northwind Traders store 002",
+      "Area": "north",
+      "Manager": "Hasan Ibrahimov"
+    },
+    "Version": "seed-20261028-002",
+    "Stock": [
+      {
+        "Id": 1,
+        "Sku": "vanilla",
+        "Unit": "L",
+        "OnHand": 11.1,
+        "Target": 20,
+        "UnitCost": 5
+      },
+      {
+        "Id": 2,
+        "Sku": "chocolate",
+        "Unit": "L",
+        "OnHand": 11.8,
+        "Target": 20,
+        "UnitCost": 6
+      },
+      {
+        "Id": 3,
+        "Sku": "cone",
+        "Unit": "unit",
+        "OnHand": 118.0,
+        "Target": 200,
+        "UnitCost": 0.2
+      },
+      {
+        "Id": 4,
+        "Sku": "cup",
+        "Unit": "unit",
+        "OnHand": 118.0,
+        "Target": 200,
+        "UnitCost": 0.1
+      }
+    ],
+    "Ledger": {
+      "Id": 2,
+      "Date": "2026-10-28",
+      "NetSales": 607.0,
+      "Cogs": 100.8,
+      "Labor": 144,
+      "Occupancy": 45,
+      "Waste": 3.5,
+      "Complete": true,
+      "PlannedSales": 650
+    },
+    "Input": {
+      "Date": "2026-10-28",
+      "Opening": [
+        {
+          "Id": 1,
+          "Sku": "vanilla",
+          "Unit": "L",
+          "OnHand": 20,
+          "Target": 20,
+          "UnitCost": 5
+        },
+        {
+          "Id": 2,
+          "Sku": "chocolate",
+          "Unit": "L",
+          "OnHand": 18,
+          "Target": 20,
+          "UnitCost": 6
+        },
+        {
+          "Id": 3,
+          "Sku": "cone",
+          "Unit": "unit",
+          "OnHand": 200,
+          "Target": 200,
+          "UnitCost": 0.2
+        },
+        {
+          "Id": 4,
+          "Sku": "cup",
+          "Unit": "unit",
+          "OnHand": 180,
+          "Target": 200,
+          "UnitCost": 0.1
+        }
+      ],
+      "Recipes": [
+        {
+          "Product": "vanilla-cone",
+          "Sku": "vanilla",
+          "Unit": "L",
+          "Quantity": 0.1
+        },
+        {
+          "Product": "vanilla-cone",
+          "Sku": "cone",
+          "Unit": "unit",
+          "Quantity": 1
+        },
+        {
+          "Product": "chocolate-cup",
+          "Sku": "chocolate",
+          "Unit": "L",
+          "Quantity": 0.1
+        },
+        {
+          "Product": "chocolate-cup",
+          "Sku": "cup",
+          "Unit": "unit",
+          "Quantity": 1
+        }
+      ],
+      "Sales": [
+        {
+          "Product": "vanilla-cone",
+          "Quantity": 82,
+          "UnitPrice": 4
+        },
+        {
+          "Product": "chocolate-cup",
+          "Quantity": 62,
+          "UnitPrice": 4.5
+        }
+      ],
+      "Spoilage": [
+        {
+          "Sku": "vanilla",
+          "Unit": "L",
+          "Quantity": 0.7
+        }
+      ],
+      "Labor": 144,
+      "Occupancy": 45,
+      "PlannedSales": 650
+    }
+  },
+  {
+    "Store": {
+      "Id": 3,
+      "StoreId": "003",
+      "Name": "Northwind Traders store 003",
+      "Area": "north",
+      "Manager": "Nemanja Milatovic"
+    },
+    "Version": "seed-20261028-003",
+    "Stock": [
+      {
+        "Id": 1,
+        "Sku": "vanilla",
+        "Unit": "L",
+        "OnHand": 10.9,
+        "Target": 20,
+        "UnitCost": 5
+      },
+      {
+        "Id": 2,
+        "Sku": "chocolate",
+        "Unit": "L",
+        "OnHand": 11.7,
+        "Target": 20,
+        "UnitCost": 6
+      },
+      {
+        "Id": 3,
+        "Sku": "cone",
+        "Unit": "unit",
+        "OnHand": 117.0,
+        "Target": 200,
+        "UnitCost": 0.2
+      },
+      {
+        "Id": 4,
+        "Sku": "cup",
+        "Unit": "unit",
+        "OnHand": 117.0,
+        "Target": 200,
+        "UnitCost": 0.1
+      }
+    ],
+    "Ledger": {
+      "Id": 3,
+      "Date": "2026-10-28",
+      "NetSales": 615.5,
+      "Cogs": 102.2,
+      "Labor": 146,
+      "Occupancy": 45,
+      "Waste": 4.0,
+      "Complete": true,
+      "PlannedSales": 650
+    },
+    "Input": {
+      "Date": "2026-10-28",
+      "Opening": [
+        {
+          "Id": 1,
+          "Sku": "vanilla",
+          "Unit": "L",
+          "OnHand": 20,
+          "Target": 20,
+          "UnitCost": 5
+        },
+        {
+          "Id": 2,
+          "Sku": "chocolate",
+          "Unit": "L",
+          "OnHand": 18,
+          "Target": 20,
+          "UnitCost": 6
+        },
+        {
+          "Id": 3,
+          "Sku": "cone",
+          "Unit": "unit",
+          "OnHand": 200,
+          "Target": 200,
+          "UnitCost": 0.2
+        },
+        {
+          "Id": 4,
+          "Sku": "cup",
+          "Unit": "unit",
+          "OnHand": 180,
+          "Target": 200,
+          "UnitCost": 0.1
+        }
+      ],
+      "Recipes": [
+        {
+          "Product": "vanilla-cone",
+          "Sku": "vanilla",
+          "Unit": "L",
+          "Quantity": 0.1
+        },
+        {
+          "Product": "vanilla-cone",
+          "Sku": "cone",
+          "Unit": "unit",
+          "Quantity": 1
+        },
+        {
+          "Product": "chocolate-cup",
+          "Sku": "chocolate",
+          "Unit": "L",
+          "Quantity": 0.1
+        },
+        {
+          "Product": "chocolate-cup",
+          "Sku": "cup",
+          "Unit": "unit",
+          "Quantity": 1
+        }
+      ],
+      "Sales": [
+        {
+          "Product": "vanilla-cone",
+          "Quantity": 83,
+          "UnitPrice": 4
+        },
+        {
+          "Product": "chocolate-cup",
+          "Quantity": 63,
+          "UnitPrice": 4.5
+        }
+      ],
+      "Spoilage": [
+        {
+          "Sku": "vanilla",
+          "Unit": "L",
+          "Quantity": 0.8
+        }
+      ],
+      "Labor": 146,
+      "Occupancy": 45,
+      "PlannedSales": 650
+    }
+  },
+  {
+    "Store": {
+      "Id": 4,
+      "StoreId": "004",
+      "Name": "Northwind Traders store 004",
+      "Area": "north",
+      "Manager": "Nino Kapanadze"
+    },
+    "Version": "seed-20261028-004",
+    "Stock": [
+      {
+        "Id": 1,
+        "Sku": "vanilla",
+        "Unit": "L",
+        "OnHand": 10.7,
+        "Target": 20,
+        "UnitCost": 5
+      },
+      {
+        "Id": 2,
+        "Sku": "chocolate",
+        "Unit": "L",
+        "OnHand": 11.6,
+        "Target": 20,
+        "UnitCost": 6
+      },
+      {
+        "Id": 3,
+        "Sku": "cone",
+        "Unit": "unit",
+        "OnHand": 116.0,
+        "Target": 200,
+        "UnitCost": 0.2
+      },
+      {
+        "Id": 4,
+        "Sku": "cup",
+        "Unit": "unit",
+        "OnHand": 116.0,
+        "Target": 200,
+        "UnitCost": 0.1
+      }
+    ],
+    "Ledger": {
+      "Id": 4,
+      "Date": "2026-10-28",
+      "NetSales": 624.0,
+      "Cogs": 103.6,
+      "Labor": 148,
+      "Occupancy": 45,
+      "Waste": 4.5,
+      "Complete": true,
+      "PlannedSales": 650
+    },
+    "Input": {
+      "Date": "2026-10-28",
+      "Opening": [
+        {
+          "Id": 1,
+          "Sku": "vanilla",
+          "Unit": "L",
+          "OnHand": 20,
+          "Target": 20,
+          "UnitCost": 5
+        },
+        {
+          "Id": 2,
+          "Sku": "chocolate",
+          "Unit": "L",
+          "OnHand": 18,
+          "Target": 20,
+          "UnitCost": 6
+        },
+        {
+          "Id": 3,
+          "Sku": "cone",
+          "Unit": "unit",
+          "OnHand": 200,
+          "Target": 200,
+          "UnitCost": 0.2
+        },
+        {
+          "Id": 4,
+          "Sku": "cup",
+          "Unit": "unit",
+          "OnHand": 180,
+          "Target": 200,
+          "UnitCost": 0.1
+        }
+      ],
+      "Recipes": [
+        {
+          "Product": "vanilla-cone",
+          "Sku": "vanilla",
+          "Unit": "L",
+          "Quantity": 0.1
+        },
+        {
+          "Product": "vanilla-cone",
+          "Sku": "cone",
+          "Unit": "unit",
+          "Quantity": 1
+        },
+        {
+          "Product": "chocolate-cup",
+          "Sku": "chocolate",
+          "Unit": "L",
+          "Quantity": 0.1
+        },
+        {
+          "Product": "chocolate-cup",
+          "Sku": "cup",
+          "Unit": "unit",
+          "Quantity": 1
+        }
+      ],
+      "Sales": [
+        {
+          "Product": "vanilla-cone",
+          "Quantity": 84,
+          "UnitPrice": 4
+        },
+        {
+          "Product": "chocolate-cup",
+          "Quantity": 64,
+          "UnitPrice": 4.5
+        }
+      ],
+      "Spoilage": [
+        {
+          "Sku": "vanilla",
+          "Unit": "L",
+          "Quantity": 0.9
+        }
+      ],
+      "Labor": 148,
+      "Occupancy": 45,
+      "PlannedSales": 650
+    }
+  },
+  {
+    "Store": {
+      "Id": 5,
+      "StoreId": "005",
+      "Name": "Northwind Traders store 005",
+      "Area": "north",
+      "Manager": "Petra Bartosova"
+    },
+    "Version": "seed-20261028-005",
+    "Stock": [
+      {
+        "Id": 1,
+        "Sku": "vanilla",
+        "Unit": "L",
+        "OnHand": 10.5,
+        "Target": 20,
+        "UnitCost": 5
+      },
+      {
+        "Id": 2,
+        "Sku": "chocolate",
+        "Unit": "L",
+        "OnHand": 11.5,
+        "Target": 20,
+        "UnitCost": 6
+      },
+      {
+        "Id": 3,
+        "Sku": "cone",
+        "Unit": "unit",
+        "OnHand": 115.0,
+        "Target": 200,
+        "UnitCost": 0.2
+      },
+      {
+        "Id": 4,
+        "Sku": "cup",
+        "Unit": "unit",
+        "OnHand": 115.0,
+        "Target": 200,
+        "UnitCost": 0.1
+      }
+    ],
+    "Ledger": {
+      "Id": 5,
+      "Date": "2026-10-28",
+      "NetSales": 632.5,
+      "Cogs": 105.0,
+      "Labor": 150,
+      "Occupancy": 45,
+      "Waste": 5.0,
+      "Complete": true,
+      "PlannedSales": 650
+    },
+    "Input": {
+      "Date": "2026-10-28",
+      "Opening": [
+        {
+          "Id": 1,
+          "Sku": "vanilla",
+          "Unit": "L",
+          "OnHand": 20,
+          "Target": 20,
+          "UnitCost": 5
+        },
+        {
+          "Id": 2,
+          "Sku": "chocolate",
+          "Unit": "L",
+          "OnHand": 18,
+          "Target": 20,
+          "UnitCost": 6
+        },
+        {
+          "Id": 3,
+          "Sku": "cone",
+          "Unit": "unit",
+          "OnHand": 200,
+          "Target": 200,
+          "UnitCost": 0.2
+        },
+        {
+          "Id": 4,
+          "Sku": "cup",
+          "Unit": "unit",
+          "OnHand": 180,
+          "Target": 200,
+          "UnitCost": 0.1
+        }
+      ],
+      "Recipes": [
+        {
+          "Product": "vanilla-cone",
+          "Sku": "vanilla",
+          "Unit": "L",
+          "Quantity": 0.1
+        },
+        {
+          "Product": "vanilla-cone",
+          "Sku": "cone",
+          "Unit": "unit",
+          "Quantity": 1
+        },
+        {
+          "Product": "chocolate-cup",
+          "Sku": "chocolate",
+          "Unit": "L",
+          "Quantity": 0.1
+        },
+        {
+          "Product": "chocolate-cup",
+          "Sku": "cup",
+          "Unit": "unit",
+          "Quantity": 1
+        }
+      ],
+      "Sales": [
+        {
+          "Product": "vanilla-cone",
+          "Quantity": 85,
+          "UnitPrice": 4
+        },
+        {
+          "Product": "chocolate-cup",
+          "Quantity": 65,
+          "UnitPrice": 4.5
+        }
+      ],
+      "Spoilage": [
+        {
+          "Sku": "vanilla",
+          "Unit": "L",
+          "Quantity": 1.0
+        }
+      ],
+      "Labor": 150,
+      "Occupancy": 45,
+      "PlannedSales": 650
+    }
+  },
+  {
+    "Store": {
+      "Id": 6,
+      "StoreId": "006",
+      "Name": "Northwind Traders store 006",
+      "Area": "south",
+      "Manager": "Eesha Chatterjee"
+    },
+    "Version": "seed-20261028-006",
+    "Stock": [
+      {
+        "Id": 1,
+        "Sku": "vanilla",
+        "Unit": "L",
+        "OnHand": 10.3,
+        "Target": 20,
+        "UnitCost": 5
+      },
+      {
+        "Id": 2,
+        "Sku": "chocolate",
+        "Unit": "L",
+        "OnHand": 11.4,
+        "Target": 20,
+        "UnitCost": 6
+      },
+      {
+        "Id": 3,
+        "Sku": "cone",
+        "Unit": "unit",
+        "OnHand": 114.0,
+        "Target": 200,
+        "UnitCost": 0.2
+      },
+      {
+        "Id": 4,
+        "Sku": "cup",
+        "Unit": "unit",
+        "OnHand": 114.0,
+        "Target": 200,
+        "UnitCost": 0.1
+      }
+    ],
+    "Ledger": {
+      "Id": 6,
+      "Date": "2026-10-28",
+      "NetSales": 641.0,
+      "Cogs": 106.4,
+      "Labor": 152,
+      "Occupancy": 45,
+      "Waste": 5.5,
+      "Complete": true,
+      "PlannedSales": 650
+    },
+    "Input": {
+      "Date": "2026-10-28",
+      "Opening": [
+        {
+          "Id": 1,
+          "Sku": "vanilla",
+          "Unit": "L",
+          "OnHand": 20,
+          "Target": 20,
+          "UnitCost": 5
+        },
+        {
+          "Id": 2,
+          "Sku": "chocolate",
+          "Unit": "L",
+          "OnHand": 18,
+          "Target": 20,
+          "UnitCost": 6
+        },
+        {
+          "Id": 3,
+          "Sku": "cone",
+          "Unit": "unit",
+          "OnHand": 200,
+          "Target": 200,
+          "UnitCost": 0.2
+        },
+        {
+          "Id": 4,
+          "Sku": "cup",
+          "Unit": "unit",
+          "OnHand": 180,
+          "Target": 200,
+          "UnitCost": 0.1
+        }
+      ],
+      "Recipes": [
+        {
+          "Product": "vanilla-cone",
+          "Sku": "vanilla",
+          "Unit": "L",
+          "Quantity": 0.1
+        },
+        {
+          "Product": "vanilla-cone",
+          "Sku": "cone",
+          "Unit": "unit",
+          "Quantity": 1
+        },
+        {
+          "Product": "chocolate-cup",
+          "Sku": "chocolate",
+          "Unit": "L",
+          "Quantity": 0.1
+        },
+        {
+          "Product": "chocolate-cup",
+          "Sku": "cup",
+          "Unit": "unit",
+          "Quantity": 1
+        }
+      ],
+      "Sales": [
+        {
+          "Product": "vanilla-cone",
+          "Quantity": 86,
+          "UnitPrice": 4
+        },
+        {
+          "Product": "chocolate-cup",
+          "Quantity": 66,
+          "UnitPrice": 4.5
+        }
+      ],
+      "Spoilage": [
+        {
+          "Sku": "vanilla",
+          "Unit": "L",
+          "Quantity": 1.1
+        }
+      ],
+      "Labor": 152,
+      "Occupancy": 45,
+      "PlannedSales": 650
+    }
+  },
+  {
+    "Store": {
+      "Id": 7,
+      "StoreId": "007",
+      "Name": "Northwind Traders store 007",
+      "Area": "south",
+      "Manager": "Aliaksei Kunets"
+    },
+    "Version": "seed-20261028-007",
+    "Stock": [
+      {
+        "Id": 1,
+        "Sku": "vanilla",
+        "Unit": "L",
+        "OnHand": 10.1,
+        "Target": 20,
+        "UnitCost": 5
+      },
+      {
+        "Id": 2,
+        "Sku": "chocolate",
+        "Unit": "L",
+        "OnHand": 11.3,
+        "Target": 20,
+        "UnitCost": 6
+      },
+      {
+        "Id": 3,
+        "Sku": "cone",
+        "Unit": "unit",
+        "OnHand": 113.0,
+        "Target": 200,
+        "UnitCost": 0.2
+      },
+      {
+        "Id": 4,
+        "Sku": "cup",
+        "Unit": "unit",
+        "OnHand": 113.0,
+        "Target": 200,
+        "UnitCost": 0.1
+      }
+    ],
+    "Ledger": {
+      "Id": 7,
+      "Date": "2026-10-28",
+      "NetSales": 649.5,
+      "Cogs": 107.8,
+      "Labor": 154,
+      "Occupancy": 45,
+      "Waste": 6.0,
+      "Complete": true,
+      "PlannedSales": 650
+    },
+    "Input": {
+      "Date": "2026-10-28",
+      "Opening": [
+        {
+          "Id": 1,
+          "Sku": "vanilla",
+          "Unit": "L",
+          "OnHand": 20,
+          "Target": 20,
+          "UnitCost": 5
+        },
+        {
+          "Id": 2,
+          "Sku": "chocolate",
+          "Unit": "L",
+          "OnHand": 18,
+          "Target": 20,
+          "UnitCost": 6
+        },
+        {
+          "Id": 3,
+          "Sku": "cone",
+          "Unit": "unit",
+          "OnHand": 200,
+          "Target": 200,
+          "UnitCost": 0.2
+        },
+        {
+          "Id": 4,
+          "Sku": "cup",
+          "Unit": "unit",
+          "OnHand": 180,
+          "Target": 200,
+          "UnitCost": 0.1
+        }
+      ],
+      "Recipes": [
+        {
+          "Product": "vanilla-cone",
+          "Sku": "vanilla",
+          "Unit": "L",
+          "Quantity": 0.1
+        },
+        {
+          "Product": "vanilla-cone",
+          "Sku": "cone",
+          "Unit": "unit",
+          "Quantity": 1
+        },
+        {
+          "Product": "chocolate-cup",
+          "Sku": "chocolate",
+          "Unit": "L",
+          "Quantity": 0.1
+        },
+        {
+          "Product": "chocolate-cup",
+          "Sku": "cup",
+          "Unit": "unit",
+          "Quantity": 1
+        }
+      ],
+      "Sales": [
+        {
+          "Product": "vanilla-cone",
+          "Quantity": 87,
+          "UnitPrice": 4
+        },
+        {
+          "Product": "chocolate-cup",
+          "Quantity": 67,
+          "UnitPrice": 4.5
+        }
+      ],
+      "Spoilage": [
+        {
+          "Sku": "vanilla",
+          "Unit": "L",
+          "Quantity": 1.2
+        }
+      ],
+      "Labor": 154,
+      "Occupancy": 45,
+      "PlannedSales": 650
+    }
+  },
+  {
+    "Store": {
+      "Id": 8,
+      "StoreId": "008",
+      "Name": "Northwind Traders store 008",
+      "Area": "south",
+      "Manager": "Josef Cizek"
+    },
+    "Version": "seed-20261028-008",
+    "Stock": [
+      {
+        "Id": 1,
+        "Sku": "vanilla",
+        "Unit": "L",
+        "OnHand": 9.9,
+        "Target": 20,
+        "UnitCost": 5
+      },
+      {
+        "Id": 2,
+        "Sku": "chocolate",
+        "Unit": "L",
+        "OnHand": 11.2,
+        "Target": 20,
+        "UnitCost": 6
+      },
+      {
+        "Id": 3,
+        "Sku": "cone",
+        "Unit": "unit",
+        "OnHand": 112.0,
+        "Target": 200,
+        "UnitCost": 0.2
+      },
+      {
+        "Id": 4,
+        "Sku": "cup",
+        "Unit": "unit",
+        "OnHand": 112.0,
+        "Target": 200,
+        "UnitCost": 0.1
+      }
+    ],
+    "Ledger": {
+      "Id": 8,
+      "Date": "2026-10-28",
+      "NetSales": 658.0,
+      "Cogs": 109.2,
+      "Labor": 156,
+      "Occupancy": 45,
+      "Waste": 6.5,
+      "Complete": true,
+      "PlannedSales": 650
+    },
+    "Input": {
+      "Date": "2026-10-28",
+      "Opening": [
+        {
+          "Id": 1,
+          "Sku": "vanilla",
+          "Unit": "L",
+          "OnHand": 20,
+          "Target": 20,
+          "UnitCost": 5
+        },
+        {
+          "Id": 2,
+          "Sku": "chocolate",
+          "Unit": "L",
+          "OnHand": 18,
+          "Target": 20,
+          "UnitCost": 6
+        },
+        {
+          "Id": 3,
+          "Sku": "cone",
+          "Unit": "unit",
+          "OnHand": 200,
+          "Target": 200,
+          "UnitCost": 0.2
+        },
+        {
+          "Id": 4,
+          "Sku": "cup",
+          "Unit": "unit",
+          "OnHand": 180,
+          "Target": 200,
+          "UnitCost": 0.1
+        }
+      ],
+      "Recipes": [
+        {
+          "Product": "vanilla-cone",
+          "Sku": "vanilla",
+          "Unit": "L",
+          "Quantity": 0.1
+        },
+        {
+          "Product": "vanilla-cone",
+          "Sku": "cone",
+          "Unit": "unit",
+          "Quantity": 1
+        },
+        {
+          "Product": "chocolate-cup",
+          "Sku": "chocolate",
+          "Unit": "L",
+          "Quantity": 0.1
+        },
+        {
+          "Product": "chocolate-cup",
+          "Sku": "cup",
+          "Unit": "unit",
+          "Quantity": 1
+        }
+      ],
+      "Sales": [
+        {
+          "Product": "vanilla-cone",
+          "Quantity": 88,
+          "UnitPrice": 4
+        },
+        {
+          "Product": "chocolate-cup",
+          "Quantity": 68,
+          "UnitPrice": 4.5
+        }
+      ],
+      "Spoilage": [
+        {
+          "Sku": "vanilla",
+          "Unit": "L",
+          "Quantity": 1.3
+        }
+      ],
+      "Labor": 156,
+      "Occupancy": 45,
+      "PlannedSales": 650
+    }
+  },
+  {
+    "Store": {
+      "Id": 9,
+      "StoreId": "009",
+      "Name": "Northwind Traders store 009",
+      "Area": "south",
+      "Manager": "Yonas Demeke"
+    },
+    "Version": "seed-20261028-009",
+    "Stock": [
+      {
+        "Id": 1,
+        "Sku": "vanilla",
+        "Unit": "L",
+        "OnHand": 9.7,
+        "Target": 20,
+        "UnitCost": 5
+      },
+      {
+        "Id": 2,
+        "Sku": "chocolate",
+        "Unit": "L",
+        "OnHand": 11.1,
+        "Target": 20,
+        "UnitCost": 6
+      },
+      {
+        "Id": 3,
+        "Sku": "cone",
+        "Unit": "unit",
+        "OnHand": 111.0,
+        "Target": 200,
+        "UnitCost": 0.2
+      },
+      {
+        "Id": 4,
+        "Sku": "cup",
+        "Unit": "unit",
+        "OnHand": 111.0,
+        "Target": 200,
+        "UnitCost": 0.1
+      }
+    ],
+    "Ledger": {
+      "Id": 9,
+      "Date": "2026-10-28",
+      "NetSales": 666.5,
+      "Cogs": 110.6,
+      "Labor": 158,
+      "Occupancy": 45,
+      "Waste": 7.0,
+      "Complete": true,
+      "PlannedSales": 650
+    },
+    "Input": {
+      "Date": "2026-10-28",
+      "Opening": [
+        {
+          "Id": 1,
+          "Sku": "vanilla",
+          "Unit": "L",
+          "OnHand": 20,
+          "Target": 20,
+          "UnitCost": 5
+        },
+        {
+          "Id": 2,
+          "Sku": "chocolate",
+          "Unit": "L",
+          "OnHand": 18,
+          "Target": 20,
+          "UnitCost": 6
+        },
+        {
+          "Id": 3,
+          "Sku": "cone",
+          "Unit": "unit",
+          "OnHand": 200,
+          "Target": 200,
+          "UnitCost": 0.2
+        },
+        {
+          "Id": 4,
+          "Sku": "cup",
+          "Unit": "unit",
+          "OnHand": 180,
+          "Target": 200,
+          "UnitCost": 0.1
+        }
+      ],
+      "Recipes": [
+        {
+          "Product": "vanilla-cone",
+          "Sku": "vanilla",
+          "Unit": "L",
+          "Quantity": 0.1
+        },
+        {
+          "Product": "vanilla-cone",
+          "Sku": "cone",
+          "Unit": "unit",
+          "Quantity": 1
+        },
+        {
+          "Product": "chocolate-cup",
+          "Sku": "chocolate",
+          "Unit": "L",
+          "Quantity": 0.1
+        },
+        {
+          "Product": "chocolate-cup",
+          "Sku": "cup",
+          "Unit": "unit",
+          "Quantity": 1
+        }
+      ],
+      "Sales": [
+        {
+          "Product": "vanilla-cone",
+          "Quantity": 89,
+          "UnitPrice": 4
+        },
+        {
+          "Product": "chocolate-cup",
+          "Quantity": 69,
+          "UnitPrice": 4.5
+        }
+      ],
+      "Spoilage": [
+        {
+          "Sku": "vanilla",
+          "Unit": "L",
+          "Quantity": 1.4
+        }
+      ],
+      "Labor": 158,
+      "Occupancy": 45,
+      "PlannedSales": 650
+    }
+  },
+  {
+    "Store": {
+      "Id": 10,
+      "StoreId": "010",
+      "Name": "Northwind Traders store 010",
+      "Area": "south",
+      "Manager": "Akihito Sato"
+    },
+    "Version": "seed-20261028-010",
+    "Stock": [
+      {
+        "Id": 1,
+        "Sku": "vanilla",
+        "Unit": "L",
+        "OnHand": 9.5,
+        "Target": 20,
+        "UnitCost": 5
+      },
+      {
+        "Id": 2,
+        "Sku": "chocolate",
+        "Unit": "L",
+        "OnHand": 11.0,
+        "Target": 20,
+        "UnitCost": 6
+      },
+      {
+        "Id": 3,
+        "Sku": "cone",
+        "Unit": "unit",
+        "OnHand": 110.0,
+        "Target": 200,
+        "UnitCost": 0.2
+      },
+      {
+        "Id": 4,
+        "Sku": "cup",
+        "Unit": "unit",
+        "OnHand": 110.0,
+        "Target": 200,
+        "UnitCost": 0.1
+      }
+    ],
+    "Ledger": {
+      "Id": 10,
+      "Date": "2026-10-28",
+      "NetSales": 675.0,
+      "Cogs": 112.0,
+      "Labor": 160,
+      "Occupancy": 45,
+      "Waste": 7.5,
+      "Complete": true,
+      "PlannedSales": 650
+    },
+    "Input": {
+      "Date": "2026-10-28",
+      "Opening": [
+        {
+          "Id": 1,
+          "Sku": "vanilla",
+          "Unit": "L",
+          "OnHand": 20,
+          "Target": 20,
+          "UnitCost": 5
+        },
+        {
+          "Id": 2,
+          "Sku": "chocolate",
+          "Unit": "L",
+          "OnHand": 18,
+          "Target": 20,
+          "UnitCost": 6
+        },
+        {
+          "Id": 3,
+          "Sku": "cone",
+          "Unit": "unit",
+          "OnHand": 200,
+          "Target": 200,
+          "UnitCost": 0.2
+        },
+        {
+          "Id": 4,
+          "Sku": "cup",
+          "Unit": "unit",
+          "OnHand": 180,
+          "Target": 200,
+          "UnitCost": 0.1
+        }
+      ],
+      "Recipes": [
+        {
+          "Product": "vanilla-cone",
+          "Sku": "vanilla",
+          "Unit": "L",
+          "Quantity": 0.1
+        },
+        {
+          "Product": "vanilla-cone",
+          "Sku": "cone",
+          "Unit": "unit",
+          "Quantity": 1
+        },
+        {
+          "Product": "chocolate-cup",
+          "Sku": "chocolate",
+          "Unit": "L",
+          "Quantity": 0.1
+        },
+        {
+          "Product": "chocolate-cup",
+          "Sku": "cup",
+          "Unit": "unit",
+          "Quantity": 1
+        }
+      ],
+      "Sales": [
+        {
+          "Product": "vanilla-cone",
+          "Quantity": 90,
+          "UnitPrice": 4
+        },
+        {
+          "Product": "chocolate-cup",
+          "Quantity": 70,
+          "UnitPrice": 4.5
+        }
+      ],
+      "Spoilage": [
+        {
+          "Sku": "vanilla",
+          "Unit": "L",
+          "Quantity": 1.5
+        }
+      ],
+      "Labor": 160,
+      "Occupancy": 45,
+      "PlannedSales": 650
+    }
+  }
+]

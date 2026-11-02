@@ -1,0 +1,9 @@
+{
+  "command": "python C:\\azd-projects\\resto-scale-agent\\scripts\\setup_identity.py --scope C:\\azd-projects\\resto-scale-agent\\evidence\\identity-install-scope.json --receipt C:\\azd-projects\\resto-scale-agent\\evidence\\identity-installation.json --authorize-directory-install",
+  "cwd": "C:\\azd-projects\\resto-scale-agent",
+  "startedAtUtc": "2026-10-24T17:39:16.181249+00:00",
+  "checkedAtUtc": "2026-10-24T17:39:53.376803+00:00",
+  "exitCode": 0,
+  "stdout": "Owned identity outputs captured. User consent/assignments and authentication acceptance remain pending.\n",
+  "stderr": ""
+}

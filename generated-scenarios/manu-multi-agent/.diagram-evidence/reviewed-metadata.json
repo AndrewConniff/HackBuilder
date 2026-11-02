@@ -1,0 +1,10 @@
+{
+  "title": "Manufacturing Sales-to-Marketing multi-agent handoff",
+  "summary": "Confirmed private keyless Foundry design for Adventure Works Cycles: Sales Fit, Marketing Claims and Handoff Coordinator produce cited, signed human-review campaign drafts. Architecture and runtime diagrams rendered; infrastructure and application implementation pending.",
+  "industry": "Manufacturing & Mobility",
+  "businessUnits": ["sales", "marketing"],
+  "services": ["foundry", "container-apps", "key-vault", "managed-identity", "api-management"],
+  "pillars": ["operational-excellence"],
+  "domains": [],
+  "metadataStatus": "curated"
+}

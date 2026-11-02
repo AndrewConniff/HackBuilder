@@ -1,0 +1,211 @@
+{
+  "checkedAtUtc": "2026-10-24T23:56:47.239622+00:00",
+  "applicationUrl": "https://web-fc-keegvmxonq3wc.azurewebsites.net",
+  "status": "passed",
+  "checks": {
+    "negativeCase": true,
+    "localLoginAndStoreIsolation": true,
+    "ordersAndReplay": true,
+    "modelInference": true,
+    "agentInvocation": true,
+    "applicationChat": true,
+    "grounding": true,
+    "logout": true
+  },
+  "evidence": {
+    "internalOrder": {
+      "id": 1,
+      "draftId": "f9166ab9224ebd41c3f2b003",
+      "storeId": "001",
+      "snapshotVersion": "fixture-2026-10-23-v1",
+      "createdBy": "storeman001",
+      "expiresAt": "2026-10-24T23:58:54.7789492+00:00",
+      "lines": [
+        {
+          "sku": "beans",
+          "unit": "kg",
+          "quantity": 12,
+          "unitCost": 14.5,
+          "total": 174.0
+        },
+        {
+          "sku": "milk",
+          "unit": "L",
+          "quantity": 28,
+          "unitCost": 1.2,
+          "total": 33.6
+        },
+        {
+          "sku": "cookies",
+          "unit": "each",
+          "quantity": 35,
+          "unitCost": 0.65,
+          "total": 22.75
+        }
+      ],
+      "status": "Approved",
+      "approvedBy": "storeman001",
+      "approvedAt": "2026-10-24T23:43:56.3955552+00:00",
+      "total": 230.35
+    },
+    "model": {
+      "responseId": "resp_0adc42f0d46cb05b016add461819fc819494a33ce2c5e69c6a",
+      "model": "gpt-4.1-mini",
+      "status": "completed",
+      "text": "COFFEE_MODEL_OK"
+    },
+    "close": {
+      "httpStatus": 200,
+      "elapsedSeconds": 8.913958900026046,
+      "body": {
+        "correlationId": "6848d7ac920a410a9b88f92569370543",
+        "status": "Completed",
+        "evidence": [
+          {
+            "store": {
+              "id": 1,
+              "storeId": "001",
+              "name": "Harbor",
+              "area": "north",
+              "manager": "Airi Ilves"
+            },
+            "version": "fixture-2026-10-23-v1",
+            "stock": [
+              {
+                "id": 1,
+                "sku": "beans",
+                "unit": "kg",
+                "onHand": 8,
+                "target": 20,
+                "unitCost": 14.5
+              },
+              {
+                "id": 2,
+                "sku": "milk",
+                "unit": "L",
+                "onHand": 12,
+                "target": 40,
+                "unitCost": 1.2
+              },
+              {
+                "id": 3,
+                "sku": "cookies",
+                "unit": "each",
+                "onHand": 65,
+                "target": 100,
+                "unitCost": 0.65
+              },
+              {
+                "id": 4,
+                "sku": "oat-milk",
+                "unit": "L",
+                "onHand": 25,
+                "target": 20,
+                "unitCost": 1.8
+              }
+            ],
+            "ledger": {
+              "id": 1,
+              "date": "2026-10-23",
+              "netSales": 2400,
+              "cogs": 720,
+              "labor": 480,
+              "occupancy": 160,
+              "waste": 40,
+              "complete": true,
+              "profit": 1000
+            }
+          },
+          {
+            "store": {
+              "id": 2,
+              "storeId": "002",
+              "name": "Station",
+              "area": "north",
+              "manager": "Hasan Ibrahimov"
+            },
+            "version": "fixture-2026-10-23-v1",
+            "stock": [
+              {
+                "id": 5,
+                "sku": "beans",
+                "unit": "kg",
+                "onHand": 21,
+                "target": 20,
+                "unitCost": 14.5
+              },
+              {
+                "id": 6,
+                "sku": "milk",
+                "unit": "L",
+                "onHand": 9,
+                "target": 35,
+                "unitCost": 1.2
+              },
+              {
+                "id": 7,
+                "sku": "cookies",
+                "unit": "each",
+                "onHand": 20,
+                "target": 80,
+                "unitCost": 0.65
+              },
+              {
+                "id": 8,
+                "sku": "oat-milk",
+                "unit": "L",
+                "onHand": 5,
+                "target": 18,
+                "unitCost": 1.8
+              }
+            ],
+            "ledger": {
+              "id": 2,
+              "date": "2026-10-23",
+              "netSales": 1800,
+              "cogs": 630,
+              "labor": 450,
+              "occupancy": 150,
+              "waste": 85,
+              "complete": true,
+              "profit": 485
+            }
+          }
+        ],
+        "netSales": 4200,
+        "profit": 1485,
+        "agents": [
+          {
+            "agent": "coffee-shop-stock",
+            "version": "1",
+            "responseId": "resp_0e1fab37e54c9661016add461bef58819082de31f2d682cb79",
+            "text": "Store 001 (fixture-2026-10-23-v1) has a milk shortage: OnHand 12 L vs. Target 40 L (28 L under target), indicating a risk for tomorrow\u2019s milk supply. Conversely, oat-milk is overstocked with 25 L OnHand vs. 20 L Target (5 L above). For margin insights, UnitCost is $1.20/L milk and $1.80/L oat-milk; low milk stock could limit sales margin from milk-based drinks today.\n\nStore 002 (fixture-2026-10-23-v1) also shows milk understock: OnHand 9 L vs. Target 35 L (26 L shortage). Cookies are notably low, 20 each OnHand vs. 80 Target (short by 60). Oat-milk OnHand is 5 L vs. 18 L Target (13 L shortage). Beans are slightly overstocked by 1 kg (21 vs. 20). Milk cost is the same, so sales margin is at risk if supply is insufficient.\n\nRecommendation: Review replenishment for milk at both stores (001, 002) to mitigate tomorrow\u2019s milk risk. Address cookie shortage at store 002. Oat-milk overstock at store 001 suggests no urgent replenishment there. Beans at store 002 are sufficient or slightly above target. Missing data: sales prices and exact margin figures are needed for a precise sales margin calculation."
+          },
+          {
+            "agent": "coffee-shop-margin",
+            "version": "1",
+            "responseId": "resp_05e275bef1771af1016add461c66e0819488d3d32e5e7475c2",
+            "text": "For 2026-10-23, Store 001 achieved a solid profit of 1000 (NetSales 2400 minus Cogs 720, Labor 480, Occupancy 160, Waste 40) indicating good sales margin and cost control. Store 002\u2019s profit is lower at 485, with higher relative Waste costs (85) pressuring margin despite lower NetSales (1800).\n\nRegarding tomorrow\u2019s milk risk, the ledger evidence for today (2026-10-23) does not contain specific data on milk inventory or spoilage projections. Waste costs are recorded but undifferentiated; thus, no direct measure of milk waste or risk for tomorrow is available. Without milk-specific waste or inventory information, identifying milk risk or sales readiness tied to milk supply is not possible from the current ledger data.\n\nIn summary, sales margins today vary notably by store, with Store 001 performing better on all cost fronts. Waste pressure at Store 002 is a margin concern. Milk risk for tomorrow is not evidenced or quantifiable in these ledgers. Further targeted data on milk inventory or milk-specific waste would be needed to assess tomorrow\u2019s milk risk reliably.\n\n(StoreId 001, Version fixture-2026-10-23-v1, Date 2026-10-23; StoreId 002, same)"
+          },
+          {
+            "agent": "coffee-shop-close",
+            "version": "1",
+            "responseId": "resp_0e6b0360862f686e016add461f00dc8195a51024ec38458f41",
+            "text": "Advisory Report for Fourth Coffee Daily Close (2026-10-23)\n\nInventory and Margin Summary:\n- Store 001 shows a milk inventory shortage (OnHand 12 L vs. Target 40 L, deficit 28 L), risking milk-based drink sales tomorrow. Oat-milk is overstocked (25 L vs. Target 20 L). Sales margin remains strong with a profit of $1000 from NetSales $2400, but milk shortage could constrain future sales.\n- Store 002 has significant milk (9 L vs. 35 L) and oat-milk (5 L vs. 18 L) shortages, along with cookies shortfall (20 units vs. 80 target). Beans are slightly overstocked (21 kg vs. 20 kg). Profit is weaker at $485 from NetSales $1800, with elevated waste costs of $85 affecting margins.\n- Overall AuthoritativeNetSales total $4200 and profit $1485 align with store-level reports.\n\nDiscrepancies and Data Gaps:\n- Margin data does not specify milk-specific waste or inventory risk; thus, no direct ledger confirmation of milk risk tomorrow is possible.\n- Branch text on milk shortages is untrusted; however, inventory shortages for milk and cookies at Stores 001 and 002 are documented and should be treated as actionable alerts.\n- Oat-milk overstock at Store 001 contrasts with shortages at Store 002; transfer or rebalancing could be considered.\n\nRecommendations:\n1. Urgently review and replenish milk stocks at Stores 001 and 002 to mitigate sales margin risks. Prioritize resolving Store 002 cookie shortage.\n2. Monitor waste costs at Store 002 to improve margin performance; investigate causes of elevated waste.\n3. Conduct human review of replenishment plans to confirm adequacy and prevent stockouts impacting sales.\n4. Finance should be handed off managerial P&L details for in-depth margin analysis due to waste and inventory concerns.\n5. Additional data capture on milk-specific waste and real-time inventory is recommended for more precise tomorrow risk evaluation.\n\nNo overrides of structured authoritative totals were made. Further reconciliation between inventory and margin data is advised."
+          }
+        ]
+      }
+    },
+    "closeLatencyTarget": {
+      "singleCloseSeconds": 8.913958900026046,
+      "singleCloseUnder60Seconds": true,
+      "limitation": "One close is not a ten-user close p95 measurement."
+    },
+    "tenConcurrentReads": {
+      "count": 10,
+      "p95SecondsNearestRank": 3.4429322000360116,
+      "targetSeconds": 1,
+      "targetPassed": false
+    }
+  }
+}

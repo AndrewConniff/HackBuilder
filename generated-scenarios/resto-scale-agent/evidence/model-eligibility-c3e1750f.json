@@ -1,0 +1,165 @@
+[
+  {
+    "description": null,
+    "kind": "AIServices",
+    "model": {
+      "baseModel": null,
+      "callRateLimit": null,
+      "capabilities": {
+        "FineTuneTokensMaxValue": "2000000000",
+        "FineTuneTokensMaxValuePerExample": "196608",
+        "agentsV2": "true",
+        "area": "US",
+        "assistants": "true",
+        "chatCompletion": "true",
+        "datazoneFineTune": "true",
+        "priorityTierSkus": "DataZoneStandard,GlobalStandard",
+        "responses": "true"
+      },
+      "deprecation": {
+        "deprecationStatus": null,
+        "fineTune": "2027-09-21T00:00:00Z",
+        "inference": "2027-09-21T00:00:00Z"
+      },
+      "finetuneCapabilities": {
+        "FineTuneTokensMaxValue": "2000000000",
+        "FineTuneTokensMaxValuePerExample": "196608",
+        "agentsV2": "true",
+        "area": "US",
+        "assistants": "true",
+        "chatCompletion": "true",
+        "datazoneFineTune": "true",
+        "priorityTierSkus": "DataZoneStandard,GlobalStandard",
+        "responses": "true"
+      },
+      "format": "OpenAI",
+      "isDefaultVersion": true,
+      "lifecycleStatus": "GenerallyAvailable",
+      "maxCapacity": 3,
+      "modelCatalogAssetId": "azureml://registries/azure-openai/models/gpt-5.4-mini/versions/2026-03-17",
+      "name": "gpt-5.4-mini",
+      "publisher": null,
+      "replacementConfig": null,
+      "skus": [
+        {
+          "capacity": {
+            "allowedValues": null,
+            "default": 10,
+            "maximum": 10000000,
+            "minimum": null,
+            "step": null
+          },
+          "cost": null,
+          "deprecationDate": "2027-09-21T00:00:00+00:00",
+          "name": "GlobalStandard",
+          "rateLimits": [
+            {
+              "count": 1.0,
+              "renewalPeriod": 60.0,
+              "rules": null
+            },
+            {
+              "count": 1000.0,
+              "renewalPeriod": 60.0,
+              "rules": null
+            }
+          ],
+          "usageName": "OpenAI.GlobalStandard.gpt-5.4-mini"
+        },
+        {
+          "capacity": {
+            "allowedValues": null,
+            "default": 10,
+            "maximum": 10000000,
+            "minimum": null,
+            "step": null
+          },
+          "cost": null,
+          "deprecationDate": "2027-09-21T00:00:00+00:00",
+          "name": "DataZoneStandard",
+          "rateLimits": [
+            {
+              "count": 1.0,
+              "renewalPeriod": 60.0,
+              "rules": null
+            },
+            {
+              "count": 1000.0,
+              "renewalPeriod": 60.0,
+              "rules": null
+            }
+          ],
+          "usageName": "OpenAI.DataZoneStandard.gpt-5.4-mini"
+        },
+        {
+          "capacity": {
+            "allowedValues": null,
+            "default": null,
+            "maximum": 100000,
+            "minimum": 15,
+            "step": 5
+          },
+          "cost": null,
+          "deprecationDate": "2027-09-21T00:00:00+00:00",
+          "name": "DataZoneProvisionedManaged",
+          "rateLimits": null,
+          "usageName": "OpenAI.DataZoneProvisionedManaged"
+        },
+        {
+          "capacity": {
+            "allowedValues": null,
+            "default": null,
+            "maximum": 30000,
+            "minimum": 15,
+            "step": 5
+          },
+          "cost": null,
+          "deprecationDate": "2027-09-21T00:00:00+00:00",
+          "name": "GlobalProvisionedManaged",
+          "rateLimits": null,
+          "usageName": "OpenAI.GlobalProvisionedManaged"
+        },
+        {
+          "capacity": {
+            "allowedValues": null,
+            "default": 10,
+            "maximum": 100000000,
+            "minimum": null,
+            "step": null
+          },
+          "cost": null,
+          "deprecationDate": "2027-09-21T00:00:00+00:00",
+          "name": "GlobalBatch",
+          "rateLimits": null,
+          "usageName": "OpenAI.GlobalBatch.gpt-5.4-mini"
+        },
+        {
+          "capacity": {
+            "allowedValues": null,
+            "default": 10,
+            "maximum": 100000000,
+            "minimum": null,
+            "step": null
+          },
+          "cost": null,
+          "deprecationDate": "2027-09-21T00:00:00+00:00",
+          "name": "DataZoneBatch",
+          "rateLimits": null,
+          "usageName": "OpenAI.DataZoneBatch.gpt-5.4-mini"
+        }
+      ],
+      "source": null,
+      "sourceAccount": null,
+      "systemData": {
+        "createdAt": "2026-03-17T00:00:00+00:00",
+        "createdBy": "Microsoft",
+        "createdByType": "Application",
+        "lastModifiedAt": "2026-03-17T00:00:00+00:00",
+        "lastModifiedBy": "Microsoft",
+        "lastModifiedByType": "Application"
+      },
+      "version": "2026-03-17"
+    },
+    "skuName": "S0"
+  }
+]

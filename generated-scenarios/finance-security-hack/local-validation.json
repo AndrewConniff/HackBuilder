@@ -1,0 +1,151 @@
+{
+  "projectSlug": "finance-security-hack",
+  "status": "passed_local_checks",
+  "checkedAtUtc": "2026-10-22T19:12:04Z",
+  "scope": "Scenario-local compile, deterministic tests, installation-script safety and undeployed rehearsal only.",
+  "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\finance-security-hack",
+  "tools": {
+    "dotnetSdk": "10.0.402",
+    "dotnetPath": "C:\\Users\\petender\\.copilot\\session-state\\c325fe77-0030-44d6-8b42-65777dcb3064\\files\\tools\\dotnet\\dotnet.exe",
+    "bicep": "0.48.1",
+    "bicepPath": "%USERPROFILE%\\.azure\\bin\\bicep.exe",
+    "dockerClient": "29.8.2",
+    "dockerEngine": "unavailable"
+  },
+  "checks": {
+    "applicationBuild": {
+      "status": "passed",
+      "command": "& $dotnet build src/Brokerage.Web/Brokerage.Web.csproj --configuration Release --no-restore",
+      "warnings": 0,
+      "errors": 0
+    },
+    "applicationTests": {
+      "status": "passed",
+      "command": "& $dotnet test tests/Brokerage.Tests/Brokerage.Tests.csproj --configuration Release --no-restore",
+      "passed": 18,
+      "failed": 0,
+      "total": 18,
+      "externalOperations": "Replaced by in-process doubles in the test project only."
+    },
+    "localPublish": {
+      "status": "passed",
+      "command": "& $dotnet publish src/Brokerage.Web/Brokerage.Web.csproj -c Release --no-restore -o artifacts/publish /p:UseAppHost=false",
+      "fixtures": [
+        "artifacts/publish/SeedData/brokerage-faq.md",
+        "artifacts/publish/SeedData/agent-instructions.txt"
+      ]
+    },
+    "bicep": {
+      "status": "passed",
+      "mode": "Standalone build and lint --no-restore; cached public AVM modules; no Azure CLI wrapper or Azure query.",
+      "files": [
+        "infra/main.bicep",
+        "infra/modules/project.bicep",
+        "infra/modules/post-host.bicep",
+        "infra/modules/workload.bicep"
+      ],
+      "diagnostics": 0,
+      "compilerOutputs": "artifacts/bicep/"
+    },
+    "installationScripts": {
+      "status": "passed",
+      "command": ".\\scripts\\Test-LocalScripts.ps1",
+      "passed": 17,
+      "failed": 0,
+      "total": 17,
+      "realAzureCommands": 0,
+      "realInstallerInvocations": 0,
+      "syntheticTargetFixtures": "Removed by test cleanup; never real confirmations."
+    },
+    "demoRehearsal": {
+      "status": "passed_local_only",
+      "guide": "demoguide/demoguide.md",
+      "commandPattern": "& $dotnet test tests/Brokerage.Tests/Brokerage.Tests.csproj -c Release --no-restore --filter FullyQualifiedName~{testName}",
+      "tests": {
+        "GatewayTokenCanLoadUiAndSendAQuestion": 1,
+        "BackendEnforcesIdentityTokenBoundaries": 5,
+        "UpstreamFailureIsAnExplicitSanitizedHttpFailure": 1
+      },
+      "liveBrowserAttempted": false,
+      "liveScreenshots": [],
+      "fallback": "Labeled provisional diagrams, source inspection and actual local test output; no fabricated live evidence."
+    },
+    "artifactConsistency": {
+      "status": "passed",
+      "checks": [
+        "Edited README, deployment summary and demo guide local links and 120-character Markdown line limit",
+        "Deployment summary required template heading order",
+        "Region evidence, operational status, local evidence and infrastructure parameter JSON parsing",
+        "Status/evidence test counts and authorization boundaries agree",
+        "No passed live acceptance, workflow approval, review/package plan or package artifacts",
+        "Temporary synthetic target fixtures cleaned up",
+        "40 scenario source files stable across repeated hashes; no external conflicting writer observed"
+      ],
+      "diagrams": [
+        {
+          "path": "03-architect-diagram.png",
+          "dimensions": [2946, 2230],
+          "structureAndChunkCrc": "passed"
+        },
+        {
+          "path": "04-runtime-diagram.png",
+          "dimensions": [2378, 1361],
+          "structureAndChunkCrc": "passed"
+        }
+      ],
+      "scope": "Targeted local artifact checks, not a claim of markdownlint or live browser validation."
+    },
+    "docker": {
+      "status": "not_run_engine_unavailable",
+      "readinessCommand": "docker version",
+      "error": "dockerDesktopLinuxEngine named pipe not found.",
+      "imageBuildAttempted": false,
+      "containerRunAttempted": false,
+      "staticInspection": "Root build context, .NET 10 multi-stage image, included fixtures, port 8080 and non-root runtime user."
+    }
+  },
+  "changedPaths": [
+    "01-requirements.md",
+    "README.md",
+    "06-deployment-summary.md",
+    "demoguide/demoguide.md",
+    "phase-a-status.json",
+    "local-validation.json",
+    "scripts/Initialize-Reference.ps1",
+    "scripts/Prepare-WhatIf.ps1",
+    "scripts/Test-LocalScripts.ps1"
+  ],
+  "generatedLocalOutputs": [
+    "artifacts/publish/",
+    "artifacts/bicep/main.json",
+    "artifacts/bicep/project.json",
+    "artifacts/bicep/post-host.json",
+    "artifacts/bicep/workload.json",
+    "src/Brokerage.Web/bin/",
+    "src/Brokerage.Web/obj/",
+    "tests/Brokerage.Tests/bin/",
+    "tests/Brokerage.Tests/obj/"
+  ],
+  "azure": {
+    "readsExecuted": false,
+    "mutationsExecuted": false,
+    "whatIfExecuted": false,
+    "deploymentAuthorized": false,
+    "deployed": false,
+    "applicationUrl": null,
+    "liveAcceptance": "pending",
+    "modelCapacityVerified": false
+  },
+  "approval": {
+    "reviewSnapshotCreated": false,
+    "scenarioApproved": false,
+    "compositionStarted": false
+  },
+  "limitations": [
+    "Compile and deterministic tests do not establish deployability, quota, policy compliance or live runtime success.",
+    "No real model inference, agent call, runtime Blob grounding or Key Vault signature was exercised.",
+    "Exact targets, live preflight, actual what-if, itemized costs and deployment consent remain separate gates.",
+    "Container image build and execution remain unverified because the Docker engine is unavailable.",
+    "This file is not scenario-validation.json and must not be consumed as passed live acceptance."
+  ]
+}

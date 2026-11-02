@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Adatum Corporation</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header>
+        <strong>Adatum Corporation</strong>
+        <nav aria-label="Main navigation">
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            @if (User.IsInRole("Customer"))
+            { <a asp-page="/Index" aria-current="@(ViewContext.RouteData.Values["page"]?.ToString() == "/Index" ? "page" : null)">Customer service</a> }
+            @if (User.IsInRole("Representative"))
+            { <a asp-page="/Queue" aria-current="@(ViewContext.RouteData.Values["page"]?.ToString() == "/Queue" ? "page" : null)">Service queue</a> }
+            <a asp-page="/Logout">Sign out</a>
+        }
+        else { <a asp-page="/Login" aria-current="page">Sign in</a> }
+        </nav>
+    </header>
+    <main id="main">@RenderBody()</main>
+    <footer>Synthetic banking demonstration. No real financial transactions or personalized advice.</footer>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

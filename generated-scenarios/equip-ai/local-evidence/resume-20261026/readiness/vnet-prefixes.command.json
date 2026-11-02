@@ -1,0 +1,9 @@
+{
+  "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" network vnet list --query [].{name:name,prefixes:addressSpace.addressPrefixes} --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+  "cwd": "C:\\azd-projects\\equip-ai",
+  "startedAtUtc": "2026-10-26T00:34:40.080708+00:00",
+  "finishedAtUtc": "2026-10-26T00:34:43.577979+00:00",
+  "exitCode": 0,
+  "stdout": "vnet-prefixes.json",
+  "stderr": "vnet-prefixes.stderr.txt"
+}

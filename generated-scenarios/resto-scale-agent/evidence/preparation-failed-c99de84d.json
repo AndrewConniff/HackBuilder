@@ -1,0 +1,31 @@
+{
+  "stage": "deployment",
+  "operation": "deployment-preparation",
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "resto-scale-agent",
+    "resourceGroup": "rg-resto-scale-agent",
+    "region": "eastus"
+  },
+  "status": "failed",
+  "summary": "East US preparation failed: Cosmos AZ and regular subscription regional access both false; Foundry exact subdomain CustomDomainInUse. ACA Consumption core quota and dependent checks unknown. B2 rechecked under Microsoft.Web: limit 0, used 0; not an ACA/Compute quota. Full preview has 9 creates, 8 skipped modules; independent previews are partial. No cloud mutations, quota requests, directory writes or deployment retry.",
+  "evidence": [
+    "06-deployment-summary.md: East US current findings, full/partial what-if boundaries and refreshed USD cost.",
+    "00-region-availability.json: 26 per-resource/SKU/features checks, exact current scope/fingerprint, blocked/unknown findings; prior region evidence retained. evidence/eastus-c99de84d/readiness-guard.json verifies deployment guard rejects this evidence.",
+    "az cosmosdb locations list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; East US Online, zones supported, subscription AZ access FALSE and regular access FALSE. Observed 2026-10-23T22:45:28.838667+00:00; evidence/eastus-c99de84d/cosmos-locations.json",
+    "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location eastus --name resto-foundry-c99de84d --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\eastus-c99de84d\\preview-foundry.arm.json --no-pretty-print --output json: exit 1; CustomDomainInUse; ownership not inferred. Observed 2026-10-23T22:48:26.781275+00:00; evidence/eastus-c99de84d/what-if-foundry.json",
+    "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location eastus --name resto-full-c99de84d --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\eastus-c99de84d\\preview-full.arm.json --no-pretty-print --output json: exit 0; Succeeded; 9 evaluated creates, 0 modifies/deletes; 8 skipped modules. Observed 2026-10-23T22:48:07.705949+00:00; evidence/eastus-c99de84d/what-if-full.json",
+    "az cognitiveservices usage list --location eastus --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; GlobalStandard gpt-5.4-mini quota 100/1000; additional demand 100. Observed 2026-10-23T22:45:30.319290+00:00; evidence/eastus-c99de84d/model-quota.json",
+    "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/eastus/modelCapacities?api-version=2024-10-01 --output json --url-parameters modelFormat=OpenAI modelName=gpt-5.4-mini modelVersion=2026-03-17: exit 0; exact East US model/version capacity 900, not reserved. Observed 2026-10-23T22:48:49.573065+00:00; evidence/eastus-c99de84d/model-capacity-regional-corrected.json",
+    "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Web/locations/eastus/usages?api-version=2024-11-01 --output json: exit 0; actual Microsoft.Web B2 worker quota current 0/limit 0; no positive demand eligible. Observed 2026-10-23T22:45:52.283171+00:00; evidence/eastus-c99de84d/web-usage.json",
+    "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/locations/eastus/usages?api-version=2025-07-01 --output json: exit 0; environment count 0/50 does NOT establish Consumption core quota. Observed 2026-10-23T22:45:32.295938+00:00; evidence/eastus-c99de84d/aca-usage.json",
+    "az group exists --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --name rg-resto-scale-agent --output json: exit 0; false; no resources provisioned. Observed 2026-10-23T22:49:50.458802+00:00; evidence/eastus-c99de84d/group-exists-final.json",
+    "evidence/eastus-c99de84d/cost-review.json: exact East US public meters; shared estimate USD 745-1150/month, full reference USD 900-1650/month, not quote/cap; no authorization implied.",
+    "Production main.bicep location remains required; infra/main.parameters.json uses ${AZURE_LOCATION}. Only scenario-local preparation configuration set eastus; no azd environment initialized or defaults changed.",
+    "Scenario-only scenario_catalog.refresh used directly to avoid CLI export_index writing shared catalog. No packages, future hack targets or other scenario files touched.",
+    "evidence/eastus-c99de84d/local-integrity.json: exact scope and current infrastructure hash verified, all selected services covered, all evidence JSON parsed, deployment-summary headings/120-column limit checked, required AZURE_LOCATION parameterization retained; scenario-only catalog refresh passed.",
+    "python -m py_compile generated-scenarios\\resto-scale-agent\\evidence\\validate-eastus-c99de84d.py generated-scenarios\\resto-scale-agent\\evidence\\finalize-eastus-c99de84d.py: exit 0."
+  ]
+}

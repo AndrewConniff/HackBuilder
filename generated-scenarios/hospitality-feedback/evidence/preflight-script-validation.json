@@ -1,0 +1,15 @@
+{
+  "checkedAtUtc": "2026-10-22T18:29:23.5839896Z",
+  "checks": [
+    {
+      "file": "scripts/Get-TargetPreflight.ps1",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "file": "scripts/Invoke-TargetWhatIf.ps1",
+      "passed": true,
+      "errors": []
+    }
+  ]
+}

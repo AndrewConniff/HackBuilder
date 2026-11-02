@@ -1,0 +1,8 @@
+{
+  "command": "\"C:\\Users\\petender\\AppData\\Local\\Programs\\Azure Dev CLI\\azd.EXE\" env new resto-scale-agent --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --cwd C:\\HackBuilder\\generated-scenarios\\resto-scale-agent --no-prompt",
+  "startedAtUtc": "2026-10-24T00:11:44.915378+00:00",
+  "checkedAtUtc": "2026-10-24T00:11:45.539230+00:00",
+  "exitCode": 0,
+  "stdout": "New environment 'resto-scale-agent' was set as default\n",
+  "stderr": "Update available: 1.35.1 -> 1.37.1 (https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_1.37.1)\nTo update, run `winget upgrade Microsoft.Azd`\n"
+}

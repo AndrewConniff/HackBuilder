@@ -1,0 +1,15 @@
+{
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "resto-scale-agent",
+    "resourceGroup": "rg-resto-scale-agent",
+    "region": "centralus"
+  },
+  "vault": "Exact replacement name and security/key parameters; excludes future web MI and deployer grants/diagnostics.",
+  "cosmos": "Exact database controls and one real deployer grant with fully qualified database scope; excludes two uncreated managed identities and diagnostics. Not installed access or end-to-end acceptance.",
+  "runtime": "No exact preview: actual infrastructure outputs, staff receipt, image digest and agent versions do not exist. Capture outputs and run dependent preview during any future authorized coherent installation.",
+  "historicalConsumptionQuota": "0/500 applies to the former environment only; require actual new quota >=28 vCPU.",
+  "cloudMutations": false
+}

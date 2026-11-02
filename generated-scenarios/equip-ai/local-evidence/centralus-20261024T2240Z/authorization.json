@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "authorizationSource": "User message in this VS Code session reporting explicit ask_user approval",
+  "actualUserResponse": "Authorize Central US read-only checks and ARM what-if",
+  "recordedAtUtc": "2026-10-24T22:42:08.151804+00:00",
+  "timestampPrecision": "Recorded with consolidated evidence verification; original approval timestamp unavailable",
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "region": "centralus",
+    "resourceGroup": "rg-equip-ai",
+    "environment": "equip-ai"
+  },
+  "allowed": ["Subscription readiness reads preserving existing services, SKUs and security", "Independent ARM what-if"],
+  "prohibited": ["Deployment", "Entra writes", "Quota requests", "Saved-target changes", "Shared-default changes"],
+  "deploymentAuthorized": false,
+  "directoryWriteAuthorized": false,
+  "suitabilityApproved": false
+}

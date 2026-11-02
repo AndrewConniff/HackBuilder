@@ -1,0 +1,338 @@
+{
+  "command": "az deployment group show --name vault --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --resource-group rg-resto-scale-agent --output json",
+  "startedAtUtc": "2026-10-24T00:15:20.447681+00:00",
+  "checkedAtUtc": "2026-10-24T00:15:23.077826+00:00",
+  "exitCode": 0,
+  "stdout": "{\n  \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/vault\",\n  \"location\": null,\n  \"name\": \"vault\",\n  \"properties\": {\n    \"correlationId\": \"7b7c21ed-a6ed-f7c4-4314-161a2571653c\",\n    \"debugSetting\": null,\n    \"dependencies\": [\n      {\n        \"dependsOn\": [\n          {\n            \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi\",\n            \"resourceGroup\": \"rg-resto-scale-agent\",\n            \"resourceName\": \"kv-resto-4tvlzr5zf2rxi\",\n            \"resourceType\": \"Microsoft.KeyVault/vaults\"\n          }\n        ],\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi/providers/Microsoft.Insights/diagnosticSettings/kv-resto-4tvlzr5zf2rxi-diagnosticSettings\",\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceName\": \"kv-resto-4tvlzr5zf2rxi-diagnosticSettings\",\n        \"resourceType\": \"Microsoft.Insights/diagnosticSettings\"\n      },\n      {\n        \"dependsOn\": [\n          {\n            \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi\",\n            \"resourceGroup\": \"rg-resto-scale-agent\",\n            \"resourceName\": \"kv-resto-4tvlzr5zf2rxi\",\n            \"resourceType\": \"Microsoft.KeyVault/vaults\"\n          }\n        ],\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi/providers/Microsoft.Authorization/roleAssignments/6cc5e6a7-8b93-5c87-9fed-6c790f122e3c\",\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceName\": \"6cc5e6a7-8b93-5c87-9fed-6c790f122e3c\",\n        \"resourceType\": \"Microsoft.Authorization/roleAssignments\"\n      },\n      {\n        \"dependsOn\": [\n          {\n            \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi\",\n            \"resourceGroup\": \"rg-resto-scale-agent\",\n            \"resourceName\": \"kv-resto-4tvlzr5zf2rxi\",\n            \"resourceType\": \"Microsoft.KeyVault/vaults\"\n          }\n        ],\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/p7nxd3v3k4q6s-KeyVault-Key-0\",\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"resourceName\": \"p7nxd3v3k4q6s-KeyVault-Key-0\",\n        \"resourceType\": \"Microsoft.Resources/deployments\"\n      }\n    ],\n    \"diagnostics\": null,\n    \"duration\": \"PT6.0376898S\",\n    \"error\": {\n      \"additionalInfo\": null,\n      \"code\": \"DeploymentFailed\",\n      \"details\": [\n        {\n          \"additionalInfo\": null,\n          \"code\": \"VaultAlreadyExists\",\n          \"details\": null,\n          \"message\": \"The vault name 'kv-resto-4tvlzr5zf2rxi' is already in use. Vault names are globally unique so it is possible that the name is already taken. If you are sure that the vault name was not taken then it is possible that a vault with the same name was recently deleted but not purged after being placed in a recoverable state. If the vault is in a recoverable state then the vault will need to be purged before reusing the name. For more information about VaultAlreadyExists, soft delete and purging a vault follow this link https://go.microsoft.com/fwlink/?linkid=2147740.\",\n          \"target\": null\n        }\n      ],\n      \"message\": \"At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/arm-deployment-operations for usage details.\",\n      \"target\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/vault\"\n    },\n    \"extensions\": [],\n    \"mode\": \"Incremental\",\n    \"onErrorDeployment\": null,\n    \"outputResources\": null,\n    \"outputs\": null,\n    \"parameters\": {\n      \"accessPolicies\": {\n        \"type\": \"Array\"\n      },\n      \"createMode\": {\n        \"type\": \"String\",\n        \"value\": \"default\"\n      },\n      \"diagnosticSettings\": {\n        \"type\": \"Array\",\n        \"value\": [\n          {\n            \"logCategoriesAndGroups\": [\n              {\n                \"categoryGroup\": \"allLogs\"\n              }\n            ],\n            \"workspaceResourceId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.OperationalInsights/workspaces/log-resto-4tvlzr5zf2rxi\"\n          }\n        ]\n      },\n      \"enablePurgeProtection\": {\n        \"type\": \"Bool\",\n        \"value\": true\n      },\n      \"enableRbacAuthorization\": {\n        \"type\": \"Bool\",\n        \"value\": true\n      },\n      \"enableSoftDelete\": {\n        \"type\": \"Bool\",\n        \"value\": true\n      },\n      \"enableTelemetry\": {\n        \"type\": \"Bool\",\n        \"value\": true\n      },\n      \"enableVaultForDeployment\": {\n        \"type\": \"Bool\",\n        \"value\": false\n      },\n      \"enableVaultForDiskEncryption\": {\n        \"type\": \"Bool\",\n        \"value\": false\n      },\n      \"enableVaultForTemplateDeployment\": {\n        \"type\": \"Bool\",\n        \"value\": false\n      },\n      \"keys\": {\n        \"type\": \"Array\",\n        \"value\": [\n          {\n            \"attributes\": {\n              \"enabled\": true,\n              \"exp\": 1808352740\n            },\n            \"keyOps\": [\n              \"sign\",\n              \"verify\"\n            ],\n            \"keySize\": 3072,\n            \"kty\": \"RSA\",\n            \"name\": \"guest-session\",\n            \"roleAssignments\": [\n              {\n                \"principalId\": \"3dd2382a-5d1f-42e6-8a85-2efd721787a5\",\n                \"principalType\": \"ServicePrincipal\",\n                \"roleDefinitionIdOrName\": \"Key Vault Crypto User\"\n              }\n            ],\n            \"rotationPolicy\": {\n              \"attributes\": {\n                \"expiryTime\": \"P180D\"\n              },\n              \"lifetimeActions\": [\n                {\n                  \"action\": {\n                    \"type\": \"rotate\"\n                  },\n                  \"trigger\": {\n                    \"timeAfterCreate\": \"P90D\"\n                  }\n                }\n              ]\n            },\n            \"tags\": {\n              \"Environment\": \"resto-scale-agent\",\n              \"ManagedBy\": \"Bicep\",\n              \"Project\": \"resto-scale-agent\",\n              \"SecurityControl\": \"Ignore\"\n            }\n          }\n        ]\n      },\n      \"location\": {\n        \"type\": \"String\",\n        \"value\": \"centralus\"\n      },\n      \"lock\": {\n        \"type\": \"Object\"\n      },\n      \"name\": {\n        \"type\": \"String\",\n        \"value\": \"kv-resto-4tvlzr5zf2rxi\"\n      },\n      \"networkAcls\": {\n        \"type\": \"Object\",\n        \"value\": {\n          \"bypass\": \"None\",\n          \"defaultAction\": \"Allow\"\n        }\n      },\n      \"privateEndpoints\": {\n        \"type\": \"Array\"\n      },\n      \"publicNetworkAccess\": {\n        \"type\": \"String\",\n        \"value\": \"Enabled\"\n      },\n      \"roleAssignments\": {\n        \"type\": \"Array\",\n        \"value\": [\n          {\n            \"principalId\": \"214d672b-df87-4f3b-94fd-7863032546c1\",\n            \"principalType\": \"User\",\n            \"roleDefinitionIdOrName\": \"Key Vault Administrator\"\n          }\n        ]\n      },\n      \"secrets\": {\n        \"type\": \"Array\"\n      },\n      \"sku\": {\n        \"type\": \"String\",\n        \"value\": \"standard\"\n      },\n      \"softDeleteRetentionInDays\": {\n        \"type\": \"Int\",\n        \"value\": 90\n      },\n      \"tags\": {\n        \"type\": \"Object\",\n        \"value\": {\n          \"Environment\": \"resto-scale-agent\",\n          \"ManagedBy\": \"Bicep\",\n          \"Project\": \"resto-scale-agent\",\n          \"SecurityControl\": \"Ignore\"\n        }\n      }\n    },\n    \"parametersLink\": null,\n    \"providers\": [\n      {\n        \"id\": null,\n        \"namespace\": \"Microsoft.Resources\",\n        \"providerAuthorizationConsentState\": null,\n        \"registrationPolicy\": null,\n        \"registrationState\": null,\n        \"resourceTypes\": [\n          {\n            \"aliases\": null,\n            \"apiProfiles\": null,\n            \"apiVersions\": null,\n            \"capabilities\": null,\n            \"defaultApiVersion\": null,\n            \"locationMappings\": null,\n            \"locations\": [\n              null\n            ],\n            \"properties\": null,\n            \"resourceType\": \"deployments\",\n            \"zoneMappings\": null\n          }\n        ]\n      },\n      {\n        \"id\": null,\n        \"namespace\": \"Microsoft.KeyVault\",\n        \"providerAuthorizationConsentState\": null,\n        \"registrationPolicy\": null,\n        \"registrationState\": null,\n        \"resourceTypes\": [\n          {\n            \"aliases\": null,\n            \"apiProfiles\": null,\n            \"apiVersions\": null,\n            \"capabilities\": null,\n            \"defaultApiVersion\": null,\n            \"locationMappings\": null,\n            \"locations\": [\n              \"centralus\"\n            ],\n            \"properties\": null,\n            \"resourceType\": \"vaults\",\n            \"zoneMappings\": null\n          }\n        ]\n      },\n      {\n        \"id\": null,\n        \"namespace\": \"Microsoft.Insights\",\n        \"providerAuthorizationConsentState\": null,\n        \"registrationPolicy\": null,\n        \"registrationState\": null,\n        \"resourceTypes\": [\n          {\n            \"aliases\": null,\n            \"apiProfiles\": null,\n            \"apiVersions\": null,\n            \"capabilities\": null,\n            \"defaultApiVersion\": null,\n            \"locationMappings\": null,\n            \"locations\": [\n              null\n            ],\n            \"properties\": null,\n            \"resourceType\": \"diagnosticSettings\",\n            \"zoneMappings\": null\n          }\n        ]\n      },\n      {\n        \"id\": null,\n        \"namespace\": \"Microsoft.Authorization\",\n        \"providerAuthorizationConsentState\": null,\n        \"registrationPolicy\": null,\n        \"registrationState\": null,\n        \"resourceTypes\": [\n          {\n            \"aliases\": null,\n            \"apiProfiles\": null,\n            \"apiVersions\": null,\n            \"capabilities\": null,\n            \"defaultApiVersion\": null,\n            \"locationMappings\": null,\n            \"locations\": [\n              null\n            ],\n            \"properties\": null,\n            \"resourceType\": \"roleAssignments\",\n            \"zoneMappings\": null\n          }\n        ]\n      }\n    ],\n    \"provisioningState\": \"Failed\",\n    \"templateHash\": \"10484619644396317756\",\n    \"templateLink\": null,\n    \"timestamp\": \"2026-10-24T00:12:53.442850+00:00\",\n    \"validatedResources\": null,\n    \"validationLevel\": null\n  },\n  \"resourceGroup\": \"rg-resto-scale-agent\",\n  \"tags\": null,\n  \"type\": \"Microsoft.Resources/deployments\"\n}\n",
+  "stderr": "",
+  "result": {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/vault",
+    "location": null,
+    "name": "vault",
+    "properties": {
+      "correlationId": "7b7c21ed-a6ed-f7c4-4314-161a2571653c",
+      "debugSetting": null,
+      "dependencies": [
+        {
+          "dependsOn": [
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi",
+              "resourceGroup": "rg-resto-scale-agent",
+              "resourceName": "kv-resto-4tvlzr5zf2rxi",
+              "resourceType": "Microsoft.KeyVault/vaults"
+            }
+          ],
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi/providers/Microsoft.Insights/diagnosticSettings/kv-resto-4tvlzr5zf2rxi-diagnosticSettings",
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceName": "kv-resto-4tvlzr5zf2rxi-diagnosticSettings",
+          "resourceType": "Microsoft.Insights/diagnosticSettings"
+        },
+        {
+          "dependsOn": [
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi",
+              "resourceGroup": "rg-resto-scale-agent",
+              "resourceName": "kv-resto-4tvlzr5zf2rxi",
+              "resourceType": "Microsoft.KeyVault/vaults"
+            }
+          ],
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi/providers/Microsoft.Authorization/roleAssignments/6cc5e6a7-8b93-5c87-9fed-6c790f122e3c",
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceName": "6cc5e6a7-8b93-5c87-9fed-6c790f122e3c",
+          "resourceType": "Microsoft.Authorization/roleAssignments"
+        },
+        {
+          "dependsOn": [
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi",
+              "resourceGroup": "rg-resto-scale-agent",
+              "resourceName": "kv-resto-4tvlzr5zf2rxi",
+              "resourceType": "Microsoft.KeyVault/vaults"
+            }
+          ],
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/p7nxd3v3k4q6s-KeyVault-Key-0",
+          "resourceGroup": "rg-resto-scale-agent",
+          "resourceName": "p7nxd3v3k4q6s-KeyVault-Key-0",
+          "resourceType": "Microsoft.Resources/deployments"
+        }
+      ],
+      "diagnostics": null,
+      "duration": "PT6.0376898S",
+      "error": {
+        "additionalInfo": null,
+        "code": "DeploymentFailed",
+        "details": [
+          {
+            "additionalInfo": null,
+            "code": "VaultAlreadyExists",
+            "details": null,
+            "message": "The vault name 'kv-resto-4tvlzr5zf2rxi' is already in use. Vault names are globally unique so it is possible that the name is already taken. If you are sure that the vault name was not taken then it is possible that a vault with the same name was recently deleted but not purged after being placed in a recoverable state. If the vault is in a recoverable state then the vault will need to be purged before reusing the name. For more information about VaultAlreadyExists, soft delete and purging a vault follow this link https://go.microsoft.com/fwlink/?linkid=2147740.",
+            "target": null
+          }
+        ],
+        "message": "At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/arm-deployment-operations for usage details.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/vault"
+      },
+      "extensions": [],
+      "mode": "Incremental",
+      "onErrorDeployment": null,
+      "outputResources": null,
+      "outputs": null,
+      "parameters": {
+        "accessPolicies": {
+          "type": "Array"
+        },
+        "createMode": {
+          "type": "String",
+          "value": "default"
+        },
+        "diagnosticSettings": {
+          "type": "Array",
+          "value": [
+            {
+              "logCategoriesAndGroups": [
+                {
+                  "categoryGroup": "allLogs"
+                }
+              ],
+              "workspaceResourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.OperationalInsights/workspaces/log-resto-4tvlzr5zf2rxi"
+            }
+          ]
+        },
+        "enablePurgeProtection": {
+          "type": "Bool",
+          "value": true
+        },
+        "enableRbacAuthorization": {
+          "type": "Bool",
+          "value": true
+        },
+        "enableSoftDelete": {
+          "type": "Bool",
+          "value": true
+        },
+        "enableTelemetry": {
+          "type": "Bool",
+          "value": true
+        },
+        "enableVaultForDeployment": {
+          "type": "Bool",
+          "value": false
+        },
+        "enableVaultForDiskEncryption": {
+          "type": "Bool",
+          "value": false
+        },
+        "enableVaultForTemplateDeployment": {
+          "type": "Bool",
+          "value": false
+        },
+        "keys": {
+          "type": "Array",
+          "value": [
+            {
+              "attributes": {
+                "enabled": true,
+                "exp": 1808352740
+              },
+              "keyOps": [
+                "sign",
+                "verify"
+              ],
+              "keySize": 3072,
+              "kty": "RSA",
+              "name": "guest-session",
+              "roleAssignments": [
+                {
+                  "principalId": "3dd2382a-5d1f-42e6-8a85-2efd721787a5",
+                  "principalType": "ServicePrincipal",
+                  "roleDefinitionIdOrName": "Key Vault Crypto User"
+                }
+              ],
+              "rotationPolicy": {
+                "attributes": {
+                  "expiryTime": "P180D"
+                },
+                "lifetimeActions": [
+                  {
+                    "action": {
+                      "type": "rotate"
+                    },
+                    "trigger": {
+                      "timeAfterCreate": "P90D"
+                    }
+                  }
+                ]
+              },
+              "tags": {
+                "Environment": "resto-scale-agent",
+                "ManagedBy": "Bicep",
+                "Project": "resto-scale-agent",
+                "SecurityControl": "Ignore"
+              }
+            }
+          ]
+        },
+        "location": {
+          "type": "String",
+          "value": "centralus"
+        },
+        "lock": {
+          "type": "Object"
+        },
+        "name": {
+          "type": "String",
+          "value": "kv-resto-4tvlzr5zf2rxi"
+        },
+        "networkAcls": {
+          "type": "Object",
+          "value": {
+            "bypass": "None",
+            "defaultAction": "Allow"
+          }
+        },
+        "privateEndpoints": {
+          "type": "Array"
+        },
+        "publicNetworkAccess": {
+          "type": "String",
+          "value": "Enabled"
+        },
+        "roleAssignments": {
+          "type": "Array",
+          "value": [
+            {
+              "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+              "principalType": "User",
+              "roleDefinitionIdOrName": "Key Vault Administrator"
+            }
+          ]
+        },
+        "secrets": {
+          "type": "Array"
+        },
+        "sku": {
+          "type": "String",
+          "value": "standard"
+        },
+        "softDeleteRetentionInDays": {
+          "type": "Int",
+          "value": 90
+        },
+        "tags": {
+          "type": "Object",
+          "value": {
+            "Environment": "resto-scale-agent",
+            "ManagedBy": "Bicep",
+            "Project": "resto-scale-agent",
+            "SecurityControl": "Ignore"
+          }
+        }
+      },
+      "parametersLink": null,
+      "providers": [
+        {
+          "id": null,
+          "namespace": "Microsoft.Resources",
+          "providerAuthorizationConsentState": null,
+          "registrationPolicy": null,
+          "registrationState": null,
+          "resourceTypes": [
+            {
+              "aliases": null,
+              "apiProfiles": null,
+              "apiVersions": null,
+              "capabilities": null,
+              "defaultApiVersion": null,
+              "locationMappings": null,
+              "locations": [
+                null
+              ],
+              "properties": null,
+              "resourceType": "deployments",
+              "zoneMappings": null
+            }
+          ]
+        },
+        {
+          "id": null,
+          "namespace": "Microsoft.KeyVault",
+          "providerAuthorizationConsentState": null,
+          "registrationPolicy": null,
+          "registrationState": null,
+          "resourceTypes": [
+            {
+              "aliases": null,
+              "apiProfiles": null,
+              "apiVersions": null,
+              "capabilities": null,
+              "defaultApiVersion": null,
+              "locationMappings": null,
+              "locations": [
+                "centralus"
+              ],
+              "properties": null,
+              "resourceType": "vaults",
+              "zoneMappings": null
+            }
+          ]
+        },
+        {
+          "id": null,
+          "namespace": "Microsoft.Insights",
+          "providerAuthorizationConsentState": null,
+          "registrationPolicy": null,
+          "registrationState": null,
+          "resourceTypes": [
+            {
+              "aliases": null,
+              "apiProfiles": null,
+              "apiVersions": null,
+              "capabilities": null,
+              "defaultApiVersion": null,
+              "locationMappings": null,
+              "locations": [
+                null
+              ],
+              "properties": null,
+              "resourceType": "diagnosticSettings",
+              "zoneMappings": null
+            }
+          ]
+        },
+        {
+          "id": null,
+          "namespace": "Microsoft.Authorization",
+          "providerAuthorizationConsentState": null,
+          "registrationPolicy": null,
+          "registrationState": null,
+          "resourceTypes": [
+            {
+              "aliases": null,
+              "apiProfiles": null,
+              "apiVersions": null,
+              "capabilities": null,
+              "defaultApiVersion": null,
+              "locationMappings": null,
+              "locations": [
+                null
+              ],
+              "properties": null,
+              "resourceType": "roleAssignments",
+              "zoneMappings": null
+            }
+          ]
+        }
+      ],
+      "provisioningState": "Failed",
+      "templateHash": "10484619644396317756",
+      "templateLink": null,
+      "timestamp": "2026-10-24T00:12:53.442850+00:00",
+      "validatedResources": null,
+      "validationLevel": null
+    },
+    "resourceGroup": "rg-resto-scale-agent",
+    "tags": null,
+    "type": "Microsoft.Resources/deployments"
+  }
+}

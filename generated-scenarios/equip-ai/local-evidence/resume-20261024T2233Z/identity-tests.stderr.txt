@@ -1,0 +1,20 @@
+test_endpoint_and_auth_producer_consumer_order (test_preparation.PreparationTests.test_endpoint_and_auth_producer_consumer_order) ... ok
+test_exact_target_and_operation_required (test_preparation.PreparationTests.test_exact_target_and_operation_required) ... ok
+test_expired_grant_is_rejected (test_preparation.PreparationTests.test_expired_grant_is_rejected) ... ok
+test_generated_ids_flow_to_exact_azd_environment (test_preparation.PreparationTests.test_generated_ids_flow_to_exact_azd_environment) ... ok
+test_missing_cloud_authorization_is_not_local_consent (test_preparation.PreparationTests.test_missing_cloud_authorization_is_not_local_consent) ... ok
+test_missing_scope_readback_blocks_preauthorization (test_preparation.PreparationTests.test_missing_scope_readback_blocks_preauthorization) ... ok
+test_no_default_statewide_assignment (test_preparation.PreparationTests.test_no_default_statewide_assignment) ... ok
+test_partial_creation_recovers_without_duplicate (test_preparation.PreparationTests.test_partial_creation_recovers_without_duplicate) ... ok
+test_plaintext_azd_output_is_not_json (test_preparation.PreparationTests.test_plaintext_azd_output_is_not_json) ... ok
+test_redirect_uses_actual_arm_output_and_readback (test_preparation.PreparationTests.test_redirect_uses_actual_arm_output_and_readback) ... ok
+test_registration_contract_has_no_graph_permission (test_preparation.PreparationTests.test_registration_contract_has_no_graph_permission) ... ok
+test_retry_reuses_all_real_ids (test_preparation.PreparationTests.test_retry_reuses_all_real_ids) ... ok
+test_scope_is_persisted_before_preauthorization (test_preparation.PreparationTests.test_scope_is_persisted_before_preauthorization) ... ok
+test_unexpected_credentials_fail_closed (test_preparation.PreparationTests.test_unexpected_credentials_fail_closed) ... ok
+test_unowned_same_name_never_adopted (test_preparation.PreparationTests.test_unowned_same_name_never_adopted) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 9.025s
+
+OK

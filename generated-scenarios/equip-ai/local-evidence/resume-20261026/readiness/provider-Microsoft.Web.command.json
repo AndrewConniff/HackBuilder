@@ -1,0 +1,9 @@
+{
+  "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" provider show --namespace Microsoft.Web --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+  "cwd": "C:\\azd-projects\\equip-ai",
+  "startedAtUtc": "2026-10-26T00:34:03.908146+00:00",
+  "finishedAtUtc": "2026-10-26T00:34:07.932864+00:00",
+  "exitCode": 0,
+  "stdout": "provider-Microsoft.Web.json",
+  "stderr": "provider-Microsoft.Web.stderr.txt"
+}

@@ -1,0 +1,23 @@
+{
+  "stage": "architecture",
+  "status": "waiting_for_user",
+  "summary": "Design ready: 250-seat/five-floor guest journey and staff/kitchen workflow; all six services; customer/staff Foundry agents with bounded kitchen specialist. Orders remain deterministic during AI failure. Targets: 50 req/s normal, 150 burst; chat measured separately. Confirm before any implementation.",
+  "evidence": [
+    "generated-scenarios\\resto-scale-agent\\01-requirements.md",
+    "generated-scenarios\\resto-scale-agent\\02-architecture-assessment.md",
+    "generated-scenarios\\resto-scale-agent\\00-region-availability.json",
+    "generated-scenarios\\resto-scale-agent\\scenario-manifest.json",
+    "No diagrams, Bicep, app implementation, Azure queries, what-if, deployment, runtime success, suitability approval or hack composition performed."
+  ],
+  "decision": {
+    "kind": "design",
+    "question": "Confirm this design for local implementation: full restaurant journey with explicitly synthetic settlement (no money charged), Basic Foundry using gpt-5.4-mini 2026-03-17 GlobalStandard in provisional East US 2, TLS/Entra public service endpoints, separate web/chat/worker apps, Cosmos outbox and Service Bus Premium? All six requested services are retained; supporting ACR, VNet, Entra and observability are justified. Infrastructure allowance is $980-$1,920/month plus model usage, not a quote. Confirmation permits diagrams, Bicep, app and local tests only.",
+    "reason": "The workflow requires explicit architecture confirmation before implementation. This includes payment boundaries, managed Foundry state/global inference, public networking and Premium broker cost. It grants neither Azure preparation/deployment permission nor deployed-scenario suitability approval.",
+    "choices": [
+      "Confirm design for local implementation",
+      "Revise design",
+      "Stop"
+    ],
+    "acceptChoice": "Confirm design for local implementation"
+  }
+}

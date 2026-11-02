@@ -1,0 +1,179 @@
+{
+  "command": "az resource list --query [].{id:id,name:name,type:type,location:location,state:properties.provisioningState,tags:tags} --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --resource-group rg-resto-scale-agent --output json",
+  "startedAtUtc": "2026-10-24T00:15:25.858856+00:00",
+  "checkedAtUtc": "2026-10-24T00:15:28.820094+00:00",
+  "exitCode": 0,
+  "stdout": "[\n  {\n    \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-scaler-4tvlzr5zf2rxi\",\n    \"location\": \"centralus\",\n    \"name\": \"id-resto-scaler-4tvlzr5zf2rxi\",\n    \"state\": null,\n    \"tags\": {\n      \"Environment\": \"resto-scale-agent\",\n      \"ManagedBy\": \"Bicep\",\n      \"Project\": \"resto-scale-agent\",\n      \"SecurityControl\": \"Ignore\"\n    },\n    \"type\": \"Microsoft.ManagedIdentity/userAssignedIdentities\"\n  },\n  {\n    \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi\",\n    \"location\": \"centralus\",\n    \"name\": \"id-resto-web-4tvlzr5zf2rxi\",\n    \"state\": null,\n    \"tags\": {\n      \"Environment\": \"resto-scale-agent\",\n      \"ManagedBy\": \"Bicep\",\n      \"Project\": \"resto-scale-agent\",\n      \"SecurityControl\": \"Ignore\"\n    },\n    \"type\": \"Microsoft.ManagedIdentity/userAssignedIdentities\"\n  },\n  {\n    \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi\",\n    \"location\": \"centralus\",\n    \"name\": \"id-resto-worker-4tvlzr5zf2rxi\",\n    \"state\": null,\n    \"tags\": {\n      \"Environment\": \"resto-scale-agent\",\n      \"ManagedBy\": \"Bicep\",\n      \"Project\": \"resto-scale-agent\",\n      \"SecurityControl\": \"Ignore\"\n    },\n    \"type\": \"Microsoft.ManagedIdentity/userAssignedIdentities\"\n  },\n  {\n    \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.OperationalInsights/workspaces/log-resto-4tvlzr5zf2rxi\",\n    \"location\": \"centralus\",\n    \"name\": \"log-resto-4tvlzr5zf2rxi\",\n    \"state\": null,\n    \"tags\": {\n      \"Environment\": \"resto-scale-agent\",\n      \"ManagedBy\": \"Bicep\",\n      \"Project\": \"resto-scale-agent\",\n      \"SecurityControl\": \"Ignore\"\n    },\n    \"type\": \"Microsoft.OperationalInsights/workspaces\"\n  },\n  {\n    \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi\",\n    \"location\": \"centralus\",\n    \"name\": \"id-resto-chat-4tvlzr5zf2rxi\",\n    \"state\": null,\n    \"tags\": {\n      \"Environment\": \"resto-scale-agent\",\n      \"ManagedBy\": \"Bicep\",\n      \"Project\": \"resto-scale-agent\",\n      \"SecurityControl\": \"Ignore\"\n    },\n    \"type\": \"Microsoft.ManagedIdentity/userAssignedIdentities\"\n  },\n  {\n    \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi\",\n    \"location\": \"centralus\",\n    \"name\": \"vnet-resto-4tvlzr5zf2rxi\",\n    \"state\": null,\n    \"tags\": {\n      \"Environment\": \"resto-scale-agent\",\n      \"ManagedBy\": \"Bicep\",\n      \"Project\": \"resto-scale-agent\",\n      \"SecurityControl\": \"Ignore\"\n    },\n    \"type\": \"Microsoft.Network/virtualNetworks\"\n  },\n  {\n    \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi\",\n    \"location\": \"centralus\",\n    \"name\": \"acrresto4tvlzr5zf2rxi\",\n    \"state\": null,\n    \"tags\": {\n      \"Environment\": \"resto-scale-agent\",\n      \"ManagedBy\": \"Bicep\",\n      \"Project\": \"resto-scale-agent\",\n      \"SecurityControl\": \"Ignore\"\n    },\n    \"type\": \"Microsoft.ContainerRegistry/registries\"\n  },\n  {\n    \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Insights/components/appi-resto-4tvlzr5zf2rxi\",\n    \"location\": \"centralus\",\n    \"name\": \"appi-resto-4tvlzr5zf2rxi\",\n    \"state\": null,\n    \"tags\": {\n      \"Environment\": \"resto-scale-agent\",\n      \"ManagedBy\": \"Bicep\",\n      \"Project\": \"resto-scale-agent\",\n      \"SecurityControl\": \"Ignore\"\n    },\n    \"type\": \"Microsoft.Insights/components\"\n  },\n  {\n    \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.App/managedEnvironments/cae-resto-4tvlzr5zf2rxi\",\n    \"location\": \"centralus\",\n    \"name\": \"cae-resto-4tvlzr5zf2rxi\",\n    \"state\": null,\n    \"tags\": {\n      \"Environment\": \"resto-scale-agent\",\n      \"ManagedBy\": \"Bicep\",\n      \"Project\": \"resto-scale-agent\",\n      \"SecurityControl\": \"Ignore\"\n    },\n    \"type\": \"Microsoft.App/managedEnvironments\"\n  },\n  {\n    \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi\",\n    \"location\": \"centralus\",\n    \"name\": \"sb-resto-4tvlzr5zf2rxi\",\n    \"state\": null,\n    \"tags\": {\n      \"Environment\": \"resto-scale-agent\",\n      \"ManagedBy\": \"Bicep\",\n      \"Project\": \"resto-scale-agent\",\n      \"SecurityControl\": \"Ignore\"\n    },\n    \"type\": \"Microsoft.ServiceBus/namespaces\"\n  },\n  {\n    \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi\",\n    \"location\": \"centralus\",\n    \"name\": \"cosmos-resto-4tvlzr5zf2rxi\",\n    \"state\": null,\n    \"tags\": {\n      \"Environment\": \"resto-scale-agent\",\n      \"ManagedBy\": \"Bicep\",\n      \"Project\": \"resto-scale-agent\",\n      \"SecurityControl\": \"Ignore\"\n    },\n    \"type\": \"Microsoft.DocumentDB/databaseAccounts\"\n  },\n  {\n    \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec\",\n    \"location\": \"centralus\",\n    \"name\": \"ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec\",\n    \"state\": null,\n    \"tags\": {\n      \"Environment\": \"resto-scale-agent\",\n      \"ManagedBy\": \"Bicep\",\n      \"Project\": \"resto-scale-agent\",\n      \"SecurityControl\": \"Ignore\"\n    },\n    \"type\": \"Microsoft.CognitiveServices/accounts\"\n  },\n  {\n    \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/projects/restaurant\",\n    \"location\": \"centralus\",\n    \"name\": \"ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/restaurant\",\n    \"state\": null,\n    \"tags\": {\n      \"Environment\": \"resto-scale-agent\",\n      \"ManagedBy\": \"Bicep\",\n      \"Project\": \"resto-scale-agent\",\n      \"SecurityControl\": \"Ignore\"\n    },\n    \"type\": \"Microsoft.CognitiveServices/accounts/projects\"\n  }\n]\n",
+  "stderr": "",
+  "result": [
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-scaler-4tvlzr5zf2rxi",
+      "location": "centralus",
+      "name": "id-resto-scaler-4tvlzr5zf2rxi",
+      "state": null,
+      "tags": {
+        "Environment": "resto-scale-agent",
+        "ManagedBy": "Bicep",
+        "Project": "resto-scale-agent",
+        "SecurityControl": "Ignore"
+      },
+      "type": "Microsoft.ManagedIdentity/userAssignedIdentities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi",
+      "location": "centralus",
+      "name": "id-resto-web-4tvlzr5zf2rxi",
+      "state": null,
+      "tags": {
+        "Environment": "resto-scale-agent",
+        "ManagedBy": "Bicep",
+        "Project": "resto-scale-agent",
+        "SecurityControl": "Ignore"
+      },
+      "type": "Microsoft.ManagedIdentity/userAssignedIdentities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi",
+      "location": "centralus",
+      "name": "id-resto-worker-4tvlzr5zf2rxi",
+      "state": null,
+      "tags": {
+        "Environment": "resto-scale-agent",
+        "ManagedBy": "Bicep",
+        "Project": "resto-scale-agent",
+        "SecurityControl": "Ignore"
+      },
+      "type": "Microsoft.ManagedIdentity/userAssignedIdentities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.OperationalInsights/workspaces/log-resto-4tvlzr5zf2rxi",
+      "location": "centralus",
+      "name": "log-resto-4tvlzr5zf2rxi",
+      "state": null,
+      "tags": {
+        "Environment": "resto-scale-agent",
+        "ManagedBy": "Bicep",
+        "Project": "resto-scale-agent",
+        "SecurityControl": "Ignore"
+      },
+      "type": "Microsoft.OperationalInsights/workspaces"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi",
+      "location": "centralus",
+      "name": "id-resto-chat-4tvlzr5zf2rxi",
+      "state": null,
+      "tags": {
+        "Environment": "resto-scale-agent",
+        "ManagedBy": "Bicep",
+        "Project": "resto-scale-agent",
+        "SecurityControl": "Ignore"
+      },
+      "type": "Microsoft.ManagedIdentity/userAssignedIdentities"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi",
+      "location": "centralus",
+      "name": "vnet-resto-4tvlzr5zf2rxi",
+      "state": null,
+      "tags": {
+        "Environment": "resto-scale-agent",
+        "ManagedBy": "Bicep",
+        "Project": "resto-scale-agent",
+        "SecurityControl": "Ignore"
+      },
+      "type": "Microsoft.Network/virtualNetworks"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi",
+      "location": "centralus",
+      "name": "acrresto4tvlzr5zf2rxi",
+      "state": null,
+      "tags": {
+        "Environment": "resto-scale-agent",
+        "ManagedBy": "Bicep",
+        "Project": "resto-scale-agent",
+        "SecurityControl": "Ignore"
+      },
+      "type": "Microsoft.ContainerRegistry/registries"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Insights/components/appi-resto-4tvlzr5zf2rxi",
+      "location": "centralus",
+      "name": "appi-resto-4tvlzr5zf2rxi",
+      "state": null,
+      "tags": {
+        "Environment": "resto-scale-agent",
+        "ManagedBy": "Bicep",
+        "Project": "resto-scale-agent",
+        "SecurityControl": "Ignore"
+      },
+      "type": "Microsoft.Insights/components"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.App/managedEnvironments/cae-resto-4tvlzr5zf2rxi",
+      "location": "centralus",
+      "name": "cae-resto-4tvlzr5zf2rxi",
+      "state": null,
+      "tags": {
+        "Environment": "resto-scale-agent",
+        "ManagedBy": "Bicep",
+        "Project": "resto-scale-agent",
+        "SecurityControl": "Ignore"
+      },
+      "type": "Microsoft.App/managedEnvironments"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi",
+      "location": "centralus",
+      "name": "sb-resto-4tvlzr5zf2rxi",
+      "state": null,
+      "tags": {
+        "Environment": "resto-scale-agent",
+        "ManagedBy": "Bicep",
+        "Project": "resto-scale-agent",
+        "SecurityControl": "Ignore"
+      },
+      "type": "Microsoft.ServiceBus/namespaces"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi",
+      "location": "centralus",
+      "name": "cosmos-resto-4tvlzr5zf2rxi",
+      "state": null,
+      "tags": {
+        "Environment": "resto-scale-agent",
+        "ManagedBy": "Bicep",
+        "Project": "resto-scale-agent",
+        "SecurityControl": "Ignore"
+      },
+      "type": "Microsoft.DocumentDB/databaseAccounts"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec",
+      "location": "centralus",
+      "name": "ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec",
+      "state": null,
+      "tags": {
+        "Environment": "resto-scale-agent",
+        "ManagedBy": "Bicep",
+        "Project": "resto-scale-agent",
+        "SecurityControl": "Ignore"
+      },
+      "type": "Microsoft.CognitiveServices/accounts"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/projects/restaurant",
+      "location": "centralus",
+      "name": "ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/restaurant",
+      "state": null,
+      "tags": {
+        "Environment": "resto-scale-agent",
+        "ManagedBy": "Bicep",
+        "Project": "resto-scale-agent",
+        "SecurityControl": "Ignore"
+      },
+      "type": "Microsoft.CognitiveServices/accounts/projects"
+    }
+  ]
+}

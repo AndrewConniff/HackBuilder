@@ -1,0 +1,28 @@
+{
+  "checkedAtUtc": "2026-10-24T19:53:32.574703+00:00",
+  "status": "passed",
+  "checks": [
+    {
+      "name": "03-architect-diagram",
+      "sourceHashUnchanged": true,
+      "pngHashUnchanged": true,
+      "pngDecode": "passed",
+      "dimensions": [
+        4013,
+        4921
+      ]
+    },
+    {
+      "name": "04-runtime-diagram",
+      "sourceHashUnchanged": true,
+      "pngHashUnchanged": true,
+      "pngDecode": "passed",
+      "dimensions": [
+        2394,
+        5627
+      ]
+    }
+  ],
+  "diagramGeneration": "Reused unchanged source and dated rendered images; no regeneration",
+  "liveEvidence": false
+}

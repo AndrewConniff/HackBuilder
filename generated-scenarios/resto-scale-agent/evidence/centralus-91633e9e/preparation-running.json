@@ -1,0 +1,19 @@
+{
+  "stage": "deployment",
+  "operation": "deployment-preparation",
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "resto-scale-agent",
+    "resourceGroup": "rg-resto-scale-agent",
+    "region": "centralus"
+  },
+  "status": "running",
+  "summary": "Refreshing only Central US complete reference eligibility, quotas and actual what-if under the saved read-only scope. Retaining prior regional rejections and unchanged production security/SKUs; no provisioning.",
+  "evidence": [
+    "Canonical revision 171: full decisions/history read; writer 91633e9ec7ee49478d8432ab7949e163; exact Central US preparation authorization present; no deployment authorization.",
+    "az account show --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --query \"{account:user.name,subscriptionId:id,tenantId:tenantId,state:state}\" --output json: exit 0; petender@microsoft.com, exact authorized subscription/tenant, Enabled.",
+    "Backend owner-bound prerequisite receipt checkedAtUtc 2026-10-23T23:08:30.543463+00:00 reused; no repeated full audit."
+  ]
+}

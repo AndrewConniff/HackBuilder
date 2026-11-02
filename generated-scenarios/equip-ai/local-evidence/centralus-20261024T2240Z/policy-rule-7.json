@@ -1,0 +1,84 @@
+{
+  "id": "/providers/Microsoft.Authorization/policyDefinitions/951c1558-50a5-4ca3-abb6-a93e3e2367a6",
+  "name": "951c1558-50a5-4ca3-abb6-a93e3e2367a6",
+  "properties": {
+    "description": "Enable Microsoft Defender for SQL on your Azure Synapse workspaces to detect anomalous activities indicating unusual and potentially harmful attempts to access or exploit SQL databases.",
+    "displayName": "Configure Microsoft Defender for SQL to be enabled on Synapse workspaces",
+    "metadata": {
+      "category": "Security Center",
+      "version": "1.0.0"
+    },
+    "mode": "Indexed",
+    "parameters": {
+      "effect": {
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "defaultValue": "DeployIfNotExists",
+        "metadata": {
+          "description": "Enable or disable the execution of the policy",
+          "displayName": "Effect"
+        },
+        "type": "String"
+      }
+    },
+    "policyRule": {
+      "if": {
+        "equals": "Microsoft.Synapse/workspaces",
+        "field": "type"
+      },
+      "then": {
+        "details": {
+          "deployment": {
+            "properties": {
+              "mode": "incremental",
+              "parameters": {
+                "workspaceName": {
+                  "value": "[field('name')]"
+                }
+              },
+              "template": {
+                "$schema": "http://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+                "contentVersion": "1.0.0.0",
+                "parameters": {
+                  "workspaceName": {
+                    "type": "string"
+                  }
+                },
+                "resources": [
+                  {
+                    "apiVersion": "2021-06-01",
+                    "name": "[concat(parameters('workspaceName'), '/Default')]",
+                    "properties": {
+                      "state": "Enabled"
+                    },
+                    "type": "Microsoft.Synapse/workspaces/securityAlertPolicies"
+                  }
+                ],
+                "variables": {}
+              }
+            }
+          },
+          "evaluationDelay": "AfterProvisioning",
+          "existenceCondition": {
+            "equals": "Enabled",
+            "field": "Microsoft.Synapse/workspaces/securityAlertPolicies/state"
+          },
+          "name": "Default",
+          "roleDefinitionIds": [
+            "/providers/microsoft.authorization/roleDefinitions/056cd41c-7e88-42e1-933e-88ba6a50c9c3"
+          ],
+          "type": "Microsoft.Synapse/workspaces/securityAlertPolicies"
+        },
+        "effect": "[parameters('effect')]"
+      }
+    },
+    "policyType": "BuiltIn",
+    "version": "1.0.0",
+    "versions": [
+      "1.0.0"
+    ]
+  },
+  "type": "Microsoft.Authorization/policyDefinitions"
+}

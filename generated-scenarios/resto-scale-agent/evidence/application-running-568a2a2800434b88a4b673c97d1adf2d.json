@@ -1,0 +1,14 @@
+{
+  "stage": "application",
+  "status": "running",
+  "summary": "Setup verification actually passed and was recorded at revision 110. Resume confirmed local implementation, starting with dependency inventory and restore for the existing SDK project and required xUnit/Playwright validation. No Azure authorization exists.",
+  "evidence": [
+    "Retained designConfirmed:true and scenario-local-execution consent; all existing decisions read; authorizations:[]; no cloud operations permitted.",
+    "python scripts\\check_prerequisites.py --for-project --record --stage application --load-tests --json: ready:true; checkedAtUtc 2026-10-23T06:58:45.281824+00:00; owner runId 568a2a2800434b88a4b673c97d1adf2d; all planned stage gates pass including k6.",
+    "Set-Location C:\\azd-projects\\resto-scale-agent; dotnet nuget list source: only enabled azure-default, https://packagefeedproxy.microsoft.io/nuget/v3/index.json. Explicit repository NuGet.Config will be used for restore.",
+    "Required runtime packages are pinned in src\\Restaurant.Web\\Restaurant.Web.csproj and already present in scenario .packages: Azure.Identity 1.21.0, Cosmos 3.63.2, ServiceBus 7.21.0, KeyVault.Keys 4.10.2, Projects 2.0.1, Projects.Agents 2.0.0, Extensions.OpenAI 2.0.0, JwtBearer 10.0.13, ApplicationInsights.AspNetCore 3.2.0.",
+    "Required validation inventory: .NET 10.0.402; xUnit, test SDK, ASP.NET test host, Playwright browser journeys, k6, Bicep/checkov, and local Docker build. Approved proxy service index and its advertised PackageBaseAddress metadata verified stable versions xunit 2.9.3, xunit.runner.visualstudio 4.0.1, Microsoft.NET.Test.Sdk 18.11.0, Microsoft.AspNetCore.Mvc.Testing 10.0.13, Microsoft.Playwright 1.64.1. Actual restore/build/browser compatibility still require checks.",
+    "k6 version: exit 0; v2.2.0. Approved Playwright cache inventory: chromium-1248, chromium_headless_shell-1248, ffmpeg-1013, winldd-1007. Presence is not a browser execution result.",
+    "Exact company CSV entry Fourth Coffee / fourthcoffee.com and person FullName records 1-4 verified unchanged. No shared tooling installation or PATH change performed."
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "stage": "deployment",
+  "status": "running",
+  "summary": "Resuming the repaired reference installation under the recorded consolidated Central US grant; checking exact identity, ownership, current eligibility and preview before writes.",
+  "evidence": [
+    "Canonical revision 206: decision 3f3d19a20079404991c95dfe6d23b93f answered Authorize consolidated Central US reference installation at 2026-10-24T10:30:12.89764-07:00.",
+    "Exact scope: petender@microsoft.com; subscription efd64343-6ef4-4926-951f-d3229f38bd76; tenant 16b3c013-d300-468d-ac64-7eda0820b6d3; rg-resto-scale-agent; environment resto-scale-agent; centralus.",
+    "Reusing evidence\\repair-6f748869\\installation-review.json and approved infrastructure fingerprint 2371ff53fd0c9ff35ca3e337f30911f0bd4b4bf019dcd27f13cb0456dfb25ed7. No suitability approval, composition, teams or publication authorized."
+  ]
+}

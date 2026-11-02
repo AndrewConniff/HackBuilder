@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "C:\azd-projects\resto-scale-agent\evidence\installation-e13812c5\operator_access.py", line 92, in <module>
+    result = install(Installer(authorization["scope"], path, True), receipt)
+  File "C:\azd-projects\resto-scale-agent\evidence\installation-e13812c5\operator_access.py", line 26, in install
+    raise ValueError("Current Graph operator differs from the expressly authorized assignment user.")
+ValueError: Current Graph operator differs from the expressly authorized assignment user.

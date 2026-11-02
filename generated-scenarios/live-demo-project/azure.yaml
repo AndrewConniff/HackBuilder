@@ -1,0 +1,24 @@
+name: tdd-azd-live-demo-project
+metadata:
+  template: tddazd-live-demo-project@1.0.0
+infra:
+  provider: bicep
+  path: ./infra
+services:
+  web:
+    project: ./src/Brokerage.Web
+    host: appservice
+    language: csharp
+hooks:
+  preup:
+    shell: pwsh
+    run: ./scripts/Initialize-Deployment.ps1
+    interactive: false
+  preprovision:
+    shell: pwsh
+    run: ./scripts/Initialize-Deployment.ps1
+    interactive: false
+  postprovision:
+    shell: pwsh
+    run: ./scripts/Install-PrivateAgent.ps1
+    interactive: false

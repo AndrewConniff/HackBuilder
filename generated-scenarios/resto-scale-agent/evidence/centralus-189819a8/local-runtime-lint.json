@@ -1,0 +1,9 @@
+{
+  "name": "runtime-lint",
+  "command": "az bicep lint --file C:\\azd-projects\\resto-scale-agent\\infra\\runtime.bicep",
+  "cwd": "C:\\HackBuilder",
+  "exitCode": 4294967295,
+  "stdout": "",
+  "stderr": "",
+  "checkedAtUtc": "2026-10-23T23:47:32.031069+00:00"
+}

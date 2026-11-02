@@ -1,0 +1,46 @@
+@page
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Adatum Corporation | Equipment Operations</title>
+    <link rel="stylesheet" href="/site.css" />
+    <script src="/app.js" defer></script>
+</head>
+<body>
+    <header><strong>Adatum Corporation</strong><span>Equipment Operations</span>
+        <button id="logout" type="button" hidden>Sign out</button></header>
+    <nav aria-label="Primary"><a href="/" aria-current="page">Equipment support</a></nav>
+    <main>
+        <h1>Washington equipment support</h1>
+        <p>Fresh evidence for human-led triage. No machine controls or automated repairs.</p>
+        <p id="status" role="status">Checking local account session...</p>
+        <form id="login-form">
+            <label for="username">Local Operations username</label>
+            <input id="username" name="username" autocomplete="username" maxlength="80" required />
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" autocomplete="current-password" maxlength="256" required />
+            <button id="login">Sign in</button>
+        </form>
+        <section aria-labelledby="equipment-title">
+            <h2 id="equipment-title">Your authorized equipment</h2>
+            <p id="equipment">Sign in to view assigned Operations sites.</p>
+        </section>
+        <form id="chat">
+            <label for="question">Ask about equipment</label>
+            <textarea id="question" maxlength="2000" rows="4" required
+                placeholder="Which Tacoma machines have rising vibration in the last 30 minutes?"></textarea>
+            <button id="send" disabled>Ask support agent</button>
+        </form>
+        <section aria-labelledby="answer-title" aria-live="polite">
+            <h2 id="answer-title">Support response</h2>
+            <p id="answer">No question submitted. No equipment status has been inferred.</p>
+            <pre id="evidence" aria-label="Verified measurement evidence"></pre>
+            <p id="trace"></p>
+        </section>
+        <aside>Evidence older than two hours is excluded from new answers.
+            No recent reading means missing or stale, not healthy. Operations owns inspection decisions.</aside>
+    </main>
+</body>
+</html>

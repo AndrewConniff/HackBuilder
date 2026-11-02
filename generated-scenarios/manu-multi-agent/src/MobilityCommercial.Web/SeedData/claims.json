@@ -1,0 +1,17 @@
+[
+  {
+    "Id": 1, "SourceId": "claim-range-01", "Version": "1", "ProductId": "product-commuter-01",
+    "PermittedWording": "Adventure Works Cycles Commuter C120: up to 120 km in synthetic controlled test conditions.",
+    "Caveat": "Range varies with load, terrain and conditions; no guaranteed range."
+  },
+  {
+    "Id": 2, "SourceId": "claim-positioning-01", "Version": "1", "ProductId": "product-commuter-01",
+    "PermittedWording": "Adventure Works Cycles Commuter C120 is positioned for daily urban commuting.",
+    "Caveat": "Synthetic positioning only; not a safety, certification or fitness guarantee."
+  },
+  {
+    "Id": 3, "SourceId": "claim-warranty-01", "Version": "1", "ProductId": "product-commuter-01",
+    "PermittedWording": "Request the Adventure Works Cycles synthetic warranty terms before making a commitment.",
+    "Caveat": "No warranty duration or coverage is approved in this synthetic claim corpus."
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "stage": "architecture",
+  "status": "running",
+  "summary": "Assessing separate transaction/chat scaling, durable kitchen handoffs, bounded multi-agent invocation, provisional model/region, service SKUs, security and cost for the design checkpoint.",
+  "evidence": [
+    "generated-scenarios\\resto-scale-agent\\01-requirements.md",
+    "Microsoft Learn: East US 2 supports projects, Responses API, agents and function tools; gpt-5.4-mini 2026-03-17 supports Functions and is listed for Global Standard."
+  ]
+}

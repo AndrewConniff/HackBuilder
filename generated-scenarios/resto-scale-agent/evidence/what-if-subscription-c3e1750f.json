@@ -1,0 +1,1429 @@
+{
+  "changes": [
+    {
+      "after": {
+        "apiVersion": "2024-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent",
+        "location": "eastus2",
+        "name": "rg-resto-scale-agent",
+        "tags": {
+          "Environment": "resto-scale-agent",
+          "ManagedBy": "Bicep",
+          "Project": "resto-scale-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Resources/resourceGroups"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2026-01-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.App/managedEnvironments/cae-resto-4tvlzr5zf2rxi",
+        "location": "eastus2",
+        "name": "cae-resto-4tvlzr5zf2rxi",
+        "properties": {
+          "appLogsConfiguration": {
+            "destination": "log-analytics",
+            "logAnalyticsConfiguration": {
+              "customerId": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.OperationalInsights/workspaces/log-resto-4tvlzr5zf2rxi', '2025-02-01').customerId]",
+              "sharedKey": "*******"
+            }
+          },
+          "customDomainConfiguration": {
+            "certificatePassword": "*******",
+            "certificateValue": "*******"
+          },
+          "daprAIConnectionString": "*******",
+          "daprAIInstrumentationKey": "*******",
+          "infrastructureResourceGroup": "ME_cae-resto-4tvlzr5zf2rxi",
+          "peerTrafficConfiguration": {
+            "encryption": {
+              "enabled": true
+            }
+          },
+          "publicNetworkAccess": "Enabled",
+          "vnetConfiguration": {
+            "infrastructureSubnetId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi/subnets/container-apps",
+            "internal": false
+          },
+          "workloadProfiles": [
+            {
+              "name": "Consumption",
+              "workloadProfileType": "Consumption"
+            }
+          ],
+          "zoneRedundant": true
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "tags": {
+          "Environment": "resto-scale-agent",
+          "ManagedBy": "Bicep",
+          "Project": "resto-scale-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.App/managedEnvironments"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.App/managedEnvironments/cae-resto-4tvlzr5zf2rxi",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-4tvlzr5zf2rxi",
+        "identity": {
+          "type": "SystemAssigned"
+        },
+        "kind": "AIServices",
+        "location": "eastus2",
+        "name": "ai-resto-4tvlzr5zf2rxi",
+        "properties": {
+          "allowProjectManagement": true,
+          "customSubDomainName": "ai-resto-4tvlzr5zf2rxi",
+          "disableLocalAuth": true,
+          "dynamicThrottlingEnabled": false,
+          "migrationToken": "*******",
+          "publicNetworkAccess": "Enabled",
+          "restore": false,
+          "restrictOutboundNetworkAccess": false
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "sku": {
+          "name": "S0"
+        },
+        "tags": {
+          "Environment": "resto-scale-agent",
+          "ManagedBy": "Bicep",
+          "Project": "resto-scale-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.CognitiveServices/accounts"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-4tvlzr5zf2rxi",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2026-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-4tvlzr5zf2rxi/deployments/restaurant-model",
+        "name": "restaurant-model",
+        "properties": {
+          "model": {
+            "format": "OpenAI",
+            "name": "gpt-5.4-mini",
+            "version": "2026-03-17"
+          },
+          "versionUpgradeOption": "NoAutoUpgrade"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "sku": {
+          "capacity": 100,
+          "name": "GlobalStandard"
+        },
+        "type": "Microsoft.CognitiveServices/accounts/deployments"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-4tvlzr5zf2rxi/deployments/restaurant-model",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2026-09-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-4tvlzr5zf2rxi/projects/restaurant",
+        "identity": {
+          "type": "SystemAssigned"
+        },
+        "location": "eastus2",
+        "name": "restaurant",
+        "properties": {
+          "description": "Generic Hospitality & Travel reference. Synthetic data and settlement only.",
+          "displayName": "Fourth Coffee restaurant"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "tags": {
+          "Environment": "resto-scale-agent",
+          "ManagedBy": "Bicep",
+          "Project": "resto-scale-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.CognitiveServices/accounts/projects"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-4tvlzr5zf2rxi/projects/restaurant",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-4tvlzr5zf2rxi/projects/restaurant/providers/Microsoft.Authorization/roleAssignments/513edca7-e51e-55c6-98fd-39bc193b0824",
+        "name": "513edca7-e51e-55c6-98fd-39bc193b0824",
+        "properties": {
+          "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/53ca6127-db72-4b80-b1b0-d745d6d5456d"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-4tvlzr5zf2rxi/projects/restaurant/providers/Microsoft.Authorization/roleAssignments/513edca7-e51e-55c6-98fd-39bc193b0824",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2021-05-01-preview",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-4tvlzr5zf2rxi/providers/Microsoft.Insights/diagnosticSettings/ai-resto-4tvlzr5zf2rxi-diagnosticSettings",
+        "name": "ai-resto-4tvlzr5zf2rxi-diagnosticSettings",
+        "properties": {
+          "logs": [
+            {
+              "categoryGroup": "allLogs",
+              "enabled": true
+            }
+          ],
+          "workspaceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.OperationalInsights/workspaces/log-resto-4tvlzr5zf2rxi"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "type": "Microsoft.Insights/diagnosticSettings"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-4tvlzr5zf2rxi/providers/Microsoft.Insights/diagnosticSettings/ai-resto-4tvlzr5zf2rxi-diagnosticSettings",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-06-01-preview",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi",
+        "location": "eastus2",
+        "name": "acrresto4tvlzr5zf2rxi",
+        "properties": {
+          "adminUserEnabled": false,
+          "anonymousPullEnabled": false,
+          "dataEndpointEnabled": false,
+          "networkRuleBypassAllowedForTasks": false,
+          "networkRuleBypassOptions": "AzureServices",
+          "networkRuleSet": {
+            "defaultAction": "Deny"
+          },
+          "policies": {
+            "azureADAuthenticationAsArmPolicy": {
+              "status": "disabled"
+            },
+            "softDeletePolicy": {
+              "retentionDays": 7,
+              "status": "disabled"
+            }
+          },
+          "publicNetworkAccess": "Enabled"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "sku": {
+          "name": "Basic"
+        },
+        "tags": {
+          "Environment": "resto-scale-agent",
+          "ManagedBy": "Bicep",
+          "Project": "resto-scale-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.ContainerRegistry/registries"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi/providers/Microsoft.Authorization/roleAssignments/b22cc387-756e-51c3-9413-8e97de5a8610",
+        "name": "b22cc387-756e-51c3-9413-8e97de5a8610",
+        "properties": {
+          "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/8311e382-0749-4cb8-b61a-304f252e45ec"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi/providers/Microsoft.Authorization/roleAssignments/b22cc387-756e-51c3-9413-8e97de5a8610",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2026-04-01-preview",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi",
+        "kind": "GlobalDocumentDB",
+        "location": "eastus2",
+        "name": "cosmos-resto-4tvlzr5zf2rxi",
+        "properties": {
+          "backupPolicy": {
+            "continuousModeProperties": {
+              "tier": "Continuous7Days"
+            },
+            "type": "Continuous"
+          },
+          "capacity": {
+            "totalThroughputLimit": -1
+          },
+          "capacityMode": "Provisioned",
+          "consistencyPolicy": {
+            "defaultConsistencyLevel": "Session"
+          },
+          "databaseAccountOfferType": "Standard",
+          "defaultIdentity": "FirstPartyIdentity",
+          "disableKeyBasedMetadataWriteAccess": true,
+          "disableLocalAuth": true,
+          "enableAnalyticalStorage": false,
+          "enableAutomaticFailover": false,
+          "enableBurstCapacity": true,
+          "enableFreeTier": false,
+          "enableMultipleWriteLocations": false,
+          "enablePartitionMerge": false,
+          "enablePerRegionPerPartitionAutoscale": false,
+          "isVirtualNetworkFilterEnabled": false,
+          "locations": [
+            {
+              "failoverPriority": 0,
+              "isZoneRedundant": true,
+              "locationName": "eastus2"
+            }
+          ],
+          "minimalTlsVersion": "Tls12",
+          "networkAclBypass": "None",
+          "publicNetworkAccess": "Enabled"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "tags": {
+          "Environment": "resto-scale-agent",
+          "ManagedBy": "Bicep",
+          "Project": "resto-scale-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.DocumentDB/databaseAccounts"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2021-05-01-preview",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/providers/Microsoft.Insights/diagnosticSettings/cosmos-resto-4tvlzr5zf2rxi-diagnosticSettings",
+        "name": "cosmos-resto-4tvlzr5zf2rxi-diagnosticSettings",
+        "properties": {
+          "logs": [
+            {
+              "categoryGroup": "allLogs",
+              "enabled": true
+            }
+          ],
+          "metrics": [
+            {
+              "category": "Requests",
+              "enabled": true
+            }
+          ],
+          "workspaceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.OperationalInsights/workspaces/log-resto-4tvlzr5zf2rxi"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "type": "Microsoft.Insights/diagnosticSettings"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/providers/Microsoft.Insights/diagnosticSettings/cosmos-resto-4tvlzr5zf2rxi-diagnosticSettings",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2026-04-01-preview",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant",
+        "name": "restaurant",
+        "properties": {
+          "options": {
+            "autoscaleSettings": {
+              "maxThroughput": 4000
+            }
+          },
+          "resource": {
+            "id": "restaurant"
+          }
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2026-04-01-preview",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/catalog",
+        "name": "catalog",
+        "properties": {
+          "resource": {
+            "id": "catalog",
+            "partitionKey": {
+              "kind": "Hash",
+              "paths": [
+                "/aggregateKey"
+              ],
+              "version": 2
+            }
+          }
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/catalog",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2026-04-01-preview",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/reporting",
+        "name": "reporting",
+        "properties": {
+          "resource": {
+            "id": "reporting",
+            "partitionKey": {
+              "kind": "Hash",
+              "paths": [
+                "/aggregateKey"
+              ],
+              "version": 2
+            }
+          }
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/reporting",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2026-04-01-preview",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/transactions",
+        "name": "transactions",
+        "properties": {
+          "resource": {
+            "id": "transactions",
+            "partitionKey": {
+              "kind": "Hash",
+              "paths": [
+                "/aggregateKey"
+              ],
+              "version": 2
+            }
+          }
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/transactions",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2026-04-01-preview",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleAssignments/2aa9ec6f-a798-5335-be0a-9a88fcfb0893",
+        "name": "2aa9ec6f-a798-5335-be0a-9a88fcfb0893",
+        "properties": {
+          "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002",
+          "scope": "/dbs/restaurant"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "type": "Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleAssignments/2aa9ec6f-a798-5335-be0a-9a88fcfb0893",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2020-02-02",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Insights/components/appi-resto-4tvlzr5zf2rxi",
+        "location": "eastus2",
+        "name": "appi-resto-4tvlzr5zf2rxi",
+        "properties": {
+          "Application_Type": "web",
+          "DisableIpMasking": false,
+          "DisableLocalAuth": true,
+          "ForceCustomerStorageForProfiler": false,
+          "RetentionInDays": 30,
+          "SamplingPercentage": 20,
+          "WorkspaceResourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.OperationalInsights/workspaces/log-resto-4tvlzr5zf2rxi",
+          "publicNetworkAccessForIngestion": "Enabled",
+          "publicNetworkAccessForQuery": "Enabled"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "tags": {
+          "Environment": "resto-scale-agent",
+          "ManagedBy": "Bicep",
+          "Project": "resto-scale-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Insights/components"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Insights/components/appi-resto-4tvlzr5zf2rxi",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2026-02-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi",
+        "location": "eastus2",
+        "name": "kv-resto-4tvlzr5zf2rxi",
+        "properties": {
+          "createMode": "default",
+          "enablePurgeProtection": true,
+          "enableRbacAuthorization": true,
+          "enableSoftDelete": true,
+          "enabledForDeployment": false,
+          "enabledForDiskEncryption": false,
+          "enabledForTemplateDeployment": false,
+          "networkAcls": {
+            "bypass": "None",
+            "defaultAction": "Allow"
+          },
+          "publicNetworkAccess": "Enabled",
+          "sku": {
+            "family": "A",
+            "name": "standard"
+          },
+          "softDeleteRetentionInDays": 90,
+          "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "tags": {
+          "Environment": "resto-scale-agent",
+          "ManagedBy": "Bicep",
+          "Project": "resto-scale-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.KeyVault/vaults"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2026-02-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi/keys/guest-session",
+        "name": "guest-session",
+        "properties": {
+          "attributes": {
+            "enabled": true,
+            "exp": 1808322300
+          },
+          "curveName": "P-256",
+          "keyOps": [
+            "sign",
+            "verify"
+          ],
+          "keySize": 3072,
+          "kty": "RSA",
+          "rotationPolicy": {
+            "attributes": {
+              "expiryTime": "P180D"
+            },
+            "lifetimeActions": [
+              {
+                "action": {
+                  "type": "rotate"
+                },
+                "trigger": {
+                  "timeAfterCreate": "P90D"
+                }
+              }
+            ]
+          }
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "tags": {
+          "Environment": "resto-scale-agent",
+          "ManagedBy": "Bicep",
+          "Project": "resto-scale-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.KeyVault/vaults/keys"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi/keys/guest-session",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi/providers/Microsoft.Authorization/roleAssignments/6cc5e6a7-8b93-5c87-9fed-6c790f122e3c",
+        "name": "6cc5e6a7-8b93-5c87-9fed-6c790f122e3c",
+        "properties": {
+          "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/00482a5a-887f-4fb3-b363-3b7fe8e74483"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi/providers/Microsoft.Authorization/roleAssignments/6cc5e6a7-8b93-5c87-9fed-6c790f122e3c",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2021-05-01-preview",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi/providers/Microsoft.Insights/diagnosticSettings/kv-resto-4tvlzr5zf2rxi-diagnosticSettings",
+        "name": "kv-resto-4tvlzr5zf2rxi-diagnosticSettings",
+        "properties": {
+          "logs": [
+            {
+              "categoryGroup": "allLogs",
+              "enabled": true
+            }
+          ],
+          "workspaceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.OperationalInsights/workspaces/log-resto-4tvlzr5zf2rxi"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "type": "Microsoft.Insights/diagnosticSettings"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi/providers/Microsoft.Insights/diagnosticSettings/kv-resto-4tvlzr5zf2rxi-diagnosticSettings",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-11-30",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi",
+        "location": "eastus2",
+        "name": "id-resto-chat-4tvlzr5zf2rxi",
+        "resourceGroup": "rg-resto-scale-agent",
+        "tags": {
+          "Environment": "resto-scale-agent",
+          "ManagedBy": "Bicep",
+          "Project": "resto-scale-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.ManagedIdentity/userAssignedIdentities"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-11-30",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-scaler-4tvlzr5zf2rxi",
+        "location": "eastus2",
+        "name": "id-resto-scaler-4tvlzr5zf2rxi",
+        "resourceGroup": "rg-resto-scale-agent",
+        "tags": {
+          "Environment": "resto-scale-agent",
+          "ManagedBy": "Bicep",
+          "Project": "resto-scale-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.ManagedIdentity/userAssignedIdentities"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-scaler-4tvlzr5zf2rxi",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-11-30",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi",
+        "location": "eastus2",
+        "name": "id-resto-web-4tvlzr5zf2rxi",
+        "resourceGroup": "rg-resto-scale-agent",
+        "tags": {
+          "Environment": "resto-scale-agent",
+          "ManagedBy": "Bicep",
+          "Project": "resto-scale-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.ManagedIdentity/userAssignedIdentities"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-11-30",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi",
+        "location": "eastus2",
+        "name": "id-resto-worker-4tvlzr5zf2rxi",
+        "resourceGroup": "rg-resto-scale-agent",
+        "tags": {
+          "Environment": "resto-scale-agent",
+          "ManagedBy": "Bicep",
+          "Project": "resto-scale-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.ManagedIdentity/userAssignedIdentities"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi",
+        "location": "eastus2",
+        "name": "vnet-resto-4tvlzr5zf2rxi",
+        "properties": {
+          "addressSpace": {
+            "addressPrefixes": [
+              "10.74.0.0/22"
+            ]
+          },
+          "enableDdosProtection": false,
+          "privateEndpointVNetPolicies": "Disabled",
+          "subnets": [
+            {
+              "name": "container-apps",
+              "properties": {
+                "addressPrefix": "10.74.0.0/23",
+                "delegations": [
+                  {
+                    "name": "Microsoft.App/environments",
+                    "properties": {
+                      "serviceName": "Microsoft.App/environments"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "tags": {
+          "Environment": "resto-scale-agent",
+          "ManagedBy": "Bicep",
+          "Project": "resto-scale-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Network/virtualNetworks"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi/subnets/container-apps",
+        "name": "container-apps",
+        "properties": {
+          "addressPrefix": "10.74.0.0/23",
+          "delegations": [
+            {
+              "name": "Microsoft.App/environments",
+              "properties": {
+                "serviceName": "Microsoft.App/environments"
+              }
+            }
+          ]
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "type": "Microsoft.Network/virtualNetworks/subnets"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi/subnets/container-apps",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-07-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.OperationalInsights/workspaces/log-resto-4tvlzr5zf2rxi",
+        "location": "eastus2",
+        "name": "log-resto-4tvlzr5zf2rxi",
+        "properties": {
+          "forceCmkForQuery": false,
+          "publicNetworkAccessForIngestion": "Enabled",
+          "publicNetworkAccessForQuery": "Enabled",
+          "retentionInDays": 30,
+          "sku": {
+            "name": "PerGB2018"
+          },
+          "workspaceCapping": {
+            "dailyQuotaGb": -1
+          }
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "tags": {
+          "Environment": "resto-scale-agent",
+          "ManagedBy": "Bicep",
+          "Project": "resto-scale-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.OperationalInsights/workspaces"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.OperationalInsights/workspaces/log-resto-4tvlzr5zf2rxi",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/tags/default",
+        "name": "default",
+        "properties": {
+          "tags": {
+            "Environment": "resto-scale-agent",
+            "ManagedBy": "Bicep",
+            "Project": "resto-scale-agent",
+            "SecurityControl": "Ignore"
+          }
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "type": "Microsoft.Resources/tags"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/tags/default",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-01-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi",
+        "location": "eastus2",
+        "name": "sb-resto-4tvlzr5zf2rxi",
+        "properties": {
+          "disableLocalAuth": true,
+          "minimumTlsVersion": "1.2",
+          "premiumMessagingPartitions": 1,
+          "publicNetworkAccess": "Enabled",
+          "zoneRedundant": true
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "sku": {
+          "capacity": 1,
+          "name": "Premium"
+        },
+        "tags": {
+          "Environment": "resto-scale-agent",
+          "ManagedBy": "Bicep",
+          "Project": "resto-scale-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.ServiceBus/namespaces"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/providers/Microsoft.Authorization/roleAssignments/85cc9281-423c-50d1-93a4-2867c52cb9bc",
+        "name": "85cc9281-423c-50d1-93a4-2867c52cb9bc",
+        "properties": {
+          "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/090c5cfd-751d-490a-894a-3ce6f1109419"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/providers/Microsoft.Authorization/roleAssignments/85cc9281-423c-50d1-93a4-2867c52cb9bc",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2021-05-01-preview",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/providers/Microsoft.Insights/diagnosticSettings/sb-resto-4tvlzr5zf2rxi-diagnosticSettings",
+        "name": "sb-resto-4tvlzr5zf2rxi-diagnosticSettings",
+        "properties": {
+          "logs": [
+            {
+              "categoryGroup": "allLogs",
+              "enabled": true
+            }
+          ],
+          "workspaceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.OperationalInsights/workspaces/log-resto-4tvlzr5zf2rxi"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "type": "Microsoft.Insights/diagnosticSettings"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/providers/Microsoft.Insights/diagnosticSettings/sb-resto-4tvlzr5zf2rxi-diagnosticSettings",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2024-01-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen",
+        "name": "kitchen",
+        "properties": {
+          "deadLetteringOnMessageExpiration": true,
+          "defaultMessageTimeToLive": "P7D",
+          "duplicateDetectionHistoryTimeWindow": "PT10M",
+          "enableBatchedOperations": true,
+          "enableExpress": false,
+          "enablePartitioning": false,
+          "lockDuration": "PT1M",
+          "maxDeliveryCount": 5,
+          "maxMessageSizeInKilobytes": "[if(equals(reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi', '2024-01-01', 'full').sku.name, 'Premium'), parameters('maxMessageSizeInKilobytes'), null())]",
+          "maxSizeInMegabytes": 1024,
+          "requiresDuplicateDetection": true,
+          "requiresSession": true,
+          "status": "Active"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "type": "Microsoft.ServiceBus/namespaces/queues"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Insights/components/appi-resto-4tvlzr5zf2rxi', 'Microsoft.Authorization/roleAssignments', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Insights/components/appi-resto-4tvlzr5zf2rxi', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/3913510d-42f4-4e42-8a64-420c390055eb')))]",
+        "name": "[last(split(coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Insights/components/appi-resto-4tvlzr5zf2rxi', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/3913510d-42f4-4e42-8a64-420c390055eb')), '/'))]",
+        "properties": {
+          "condition": null,
+          "conditionVersion": null,
+          "delegatedManagedIdentityResourceId": null,
+          "description": null,
+          "principalId": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi', '2024-11-30').principalId]",
+          "principalType": "ServicePrincipal",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/3913510d-42f4-4e42-8a64-420c390055eb"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Unsupported",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Insights/components/appi-resto-4tvlzr5zf2rxi', 'Microsoft.Authorization/roleAssignments', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Insights/components/appi-resto-4tvlzr5zf2rxi', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/3913510d-42f4-4e42-8a64-420c390055eb')))]",
+      "symbolicName": null,
+      "unsupportedReason": "Changes to the resource declared at 'properties.template.resources[1].properties.template.resources.insights.properties.template.resources.appInsights_roleAssignments' on line 1 and column 127450 cannot be analyzed because its resource ID or API version cannot be calculated until the deployment is under way. Please see https://aka.ms/WhatIfUnidentifiableResource for more guidance."
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Insights/components/appi-resto-4tvlzr5zf2rxi', 'Microsoft.Authorization/roleAssignments', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Insights/components/appi-resto-4tvlzr5zf2rxi', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/3913510d-42f4-4e42-8a64-420c390055eb')))]",
+        "name": "[last(split(coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Insights/components/appi-resto-4tvlzr5zf2rxi', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/3913510d-42f4-4e42-8a64-420c390055eb')), '/'))]",
+        "properties": {
+          "condition": null,
+          "conditionVersion": null,
+          "delegatedManagedIdentityResourceId": null,
+          "description": null,
+          "principalId": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi', '2024-11-30').principalId]",
+          "principalType": "ServicePrincipal",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/3913510d-42f4-4e42-8a64-420c390055eb"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Unsupported",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Insights/components/appi-resto-4tvlzr5zf2rxi', 'Microsoft.Authorization/roleAssignments', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Insights/components/appi-resto-4tvlzr5zf2rxi', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/3913510d-42f4-4e42-8a64-420c390055eb')))]",
+      "symbolicName": null,
+      "unsupportedReason": "Changes to the resource declared at 'properties.template.resources[1].properties.template.resources.insights.properties.template.resources.appInsights_roleAssignments' on line 1 and column 127450 cannot be analyzed because its resource ID or API version cannot be calculated until the deployment is under way. Please see https://aka.ms/WhatIfUnidentifiableResource for more guidance."
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Insights/components/appi-resto-4tvlzr5zf2rxi', 'Microsoft.Authorization/roleAssignments', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Insights/components/appi-resto-4tvlzr5zf2rxi', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/3913510d-42f4-4e42-8a64-420c390055eb')))]",
+        "name": "[last(split(coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Insights/components/appi-resto-4tvlzr5zf2rxi', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/3913510d-42f4-4e42-8a64-420c390055eb')), '/'))]",
+        "properties": {
+          "condition": null,
+          "conditionVersion": null,
+          "delegatedManagedIdentityResourceId": null,
+          "description": null,
+          "principalId": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi', '2024-11-30').principalId]",
+          "principalType": "ServicePrincipal",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/3913510d-42f4-4e42-8a64-420c390055eb"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Unsupported",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Insights/components/appi-resto-4tvlzr5zf2rxi', 'Microsoft.Authorization/roleAssignments', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Insights/components/appi-resto-4tvlzr5zf2rxi', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/3913510d-42f4-4e42-8a64-420c390055eb')))]",
+      "symbolicName": null,
+      "unsupportedReason": "Changes to the resource declared at 'properties.template.resources[1].properties.template.resources.insights.properties.template.resources.appInsights_roleAssignments' on line 1 and column 127450 cannot be analyzed because its resource ID or API version cannot be calculated until the deployment is under way. Please see https://aka.ms/WhatIfUnidentifiableResource for more guidance."
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi', 'Microsoft.Authorization/roleAssignments', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/7f951dda-4ed3-4680-a7ca-43fe172d538d')))]",
+        "name": "[last(split(coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/7f951dda-4ed3-4680-a7ca-43fe172d538d')), '/'))]",
+        "properties": {
+          "condition": null,
+          "conditionVersion": null,
+          "delegatedManagedIdentityResourceId": null,
+          "description": null,
+          "principalId": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi', '2024-11-30').principalId]",
+          "principalType": "ServicePrincipal",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/7f951dda-4ed3-4680-a7ca-43fe172d538d"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Unsupported",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi', 'Microsoft.Authorization/roleAssignments', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/7f951dda-4ed3-4680-a7ca-43fe172d538d')))]",
+      "symbolicName": null,
+      "unsupportedReason": "Changes to the resource declared at 'properties.template.resources[1].properties.template.resources.registry.properties.template.resources.registry_roleAssignments' on line 1 and column 186172 cannot be analyzed because its resource ID or API version cannot be calculated until the deployment is under way. Please see https://aka.ms/WhatIfUnidentifiableResource for more guidance."
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi', 'Microsoft.Authorization/roleAssignments', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/7f951dda-4ed3-4680-a7ca-43fe172d538d')))]",
+        "name": "[last(split(coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/7f951dda-4ed3-4680-a7ca-43fe172d538d')), '/'))]",
+        "properties": {
+          "condition": null,
+          "conditionVersion": null,
+          "delegatedManagedIdentityResourceId": null,
+          "description": null,
+          "principalId": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi', '2024-11-30').principalId]",
+          "principalType": "ServicePrincipal",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/7f951dda-4ed3-4680-a7ca-43fe172d538d"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Unsupported",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi', 'Microsoft.Authorization/roleAssignments', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/7f951dda-4ed3-4680-a7ca-43fe172d538d')))]",
+      "symbolicName": null,
+      "unsupportedReason": "Changes to the resource declared at 'properties.template.resources[1].properties.template.resources.registry.properties.template.resources.registry_roleAssignments' on line 1 and column 186172 cannot be analyzed because its resource ID or API version cannot be calculated until the deployment is under way. Please see https://aka.ms/WhatIfUnidentifiableResource for more guidance."
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi', 'Microsoft.Authorization/roleAssignments', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/7f951dda-4ed3-4680-a7ca-43fe172d538d')))]",
+        "name": "[last(split(coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/7f951dda-4ed3-4680-a7ca-43fe172d538d')), '/'))]",
+        "properties": {
+          "condition": null,
+          "conditionVersion": null,
+          "delegatedManagedIdentityResourceId": null,
+          "description": null,
+          "principalId": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi', '2024-11-30').principalId]",
+          "principalType": "ServicePrincipal",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/7f951dda-4ed3-4680-a7ca-43fe172d538d"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Unsupported",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi', 'Microsoft.Authorization/roleAssignments', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/7f951dda-4ed3-4680-a7ca-43fe172d538d')))]",
+      "symbolicName": null,
+      "unsupportedReason": "Changes to the resource declared at 'properties.template.resources[1].properties.template.resources.registry.properties.template.resources.registry_roleAssignments' on line 1 and column 186172 cannot be analyzed because its resource ID or API version cannot be calculated until the deployment is under way. Please see https://aka.ms/WhatIfUnidentifiableResource for more guidance."
+    },
+    {
+      "after": {
+        "apiVersion": "2026-04-01-preview",
+        "id": "[resourceId('efd64343-6ef4-4926-951f-d3229f38bd76', 'rg-resto-scale-agent', 'Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments', filter(split(format('{0}/{1}', 'cosmos-resto-4tvlzr5zf2rxi', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi', '2024-11-30').principalId, '/dbs/restaurant'))), '/'), lambda('x', not(empty(lambdaVariables('x')))))[0], filter(split(format('{0}/{1}', 'cosmos-resto-4tvlzr5zf2rxi', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi', '2024-11-30').principalId, '/dbs/restaurant'))), '/'), lambda('x', not(empty(lambdaVariables('x')))))[1])]",
+        "name": "[last(split(format('{0}/{1}', 'cosmos-resto-4tvlzr5zf2rxi', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi', '2024-11-30').principalId, '/dbs/restaurant'))), '/'))]",
+        "properties": {
+          "principalId": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi', '2024-11-30').principalId]",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002",
+          "scope": "/dbs/restaurant"
+        },
+        "type": "Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments"
+      },
+      "before": null,
+      "changeType": "Unsupported",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "[resourceId('efd64343-6ef4-4926-951f-d3229f38bd76', 'rg-resto-scale-agent', 'Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments', filter(split(format('{0}/{1}', 'cosmos-resto-4tvlzr5zf2rxi', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi', '2024-11-30').principalId, '/dbs/restaurant'))), '/'), lambda('x', not(empty(lambdaVariables('x')))))[0], filter(split(format('{0}/{1}', 'cosmos-resto-4tvlzr5zf2rxi', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi', '2024-11-30').principalId, '/dbs/restaurant'))), '/'), lambda('x', not(empty(lambdaVariables('x')))))[1])]",
+      "symbolicName": null,
+      "unsupportedReason": "Changes to the resource declared at 'properties.template.resources[1].properties.template.resources.cosmos.properties.template.resources.databaseAccount_sqlRoleAssignments.properties.template.resources.sqlRoleAssignment' on line 1 and column 428631 cannot be analyzed because its resource ID or API version cannot be calculated until the deployment is under way. Please see https://aka.ms/WhatIfUnidentifiableResource for more guidance."
+    },
+    {
+      "after": {
+        "apiVersion": "2026-04-01-preview",
+        "id": "[resourceId('efd64343-6ef4-4926-951f-d3229f38bd76', 'rg-resto-scale-agent', 'Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments', filter(split(format('{0}/{1}', 'cosmos-resto-4tvlzr5zf2rxi', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi', '2024-11-30').principalId, '/dbs/restaurant'))), '/'), lambda('x', not(empty(lambdaVariables('x')))))[0], filter(split(format('{0}/{1}', 'cosmos-resto-4tvlzr5zf2rxi', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi', '2024-11-30').principalId, '/dbs/restaurant'))), '/'), lambda('x', not(empty(lambdaVariables('x')))))[1])]",
+        "name": "[last(split(format('{0}/{1}', 'cosmos-resto-4tvlzr5zf2rxi', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi', '2024-11-30').principalId, '/dbs/restaurant'))), '/'))]",
+        "properties": {
+          "principalId": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi', '2024-11-30').principalId]",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002",
+          "scope": "/dbs/restaurant"
+        },
+        "type": "Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments"
+      },
+      "before": null,
+      "changeType": "Unsupported",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "[resourceId('efd64343-6ef4-4926-951f-d3229f38bd76', 'rg-resto-scale-agent', 'Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments', filter(split(format('{0}/{1}', 'cosmos-resto-4tvlzr5zf2rxi', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi', '2024-11-30').principalId, '/dbs/restaurant'))), '/'), lambda('x', not(empty(lambdaVariables('x')))))[0], filter(split(format('{0}/{1}', 'cosmos-resto-4tvlzr5zf2rxi', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi', '2024-11-30').principalId, '/dbs/restaurant'))), '/'), lambda('x', not(empty(lambdaVariables('x')))))[1])]",
+      "symbolicName": null,
+      "unsupportedReason": "Changes to the resource declared at 'properties.template.resources[1].properties.template.resources.cosmos.properties.template.resources.databaseAccount_sqlRoleAssignments.properties.template.resources.sqlRoleAssignment' on line 1 and column 428631 cannot be analyzed because its resource ID or API version cannot be calculated until the deployment is under way. Please see https://aka.ms/WhatIfUnidentifiableResource for more guidance."
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen', 'Microsoft.Authorization/roleAssignments', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/69a216fc-b8fb-44d8-bc22-1f3c2cd27a39')))]",
+        "name": "[last(split(coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/69a216fc-b8fb-44d8-bc22-1f3c2cd27a39')), '/'))]",
+        "properties": {
+          "condition": null,
+          "conditionVersion": null,
+          "delegatedManagedIdentityResourceId": null,
+          "description": null,
+          "principalId": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi', '2024-11-30').principalId]",
+          "principalType": "ServicePrincipal",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/69a216fc-b8fb-44d8-bc22-1f3c2cd27a39"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Unsupported",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen', 'Microsoft.Authorization/roleAssignments', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/69a216fc-b8fb-44d8-bc22-1f3c2cd27a39')))]",
+      "symbolicName": null,
+      "unsupportedReason": "Changes to the resource declared at 'properties.template.resources[1].properties.template.resources.broker.properties.template.resources.serviceBusNamespace_queues.properties.template.resources.queue_roleAssignments' on line 1 and column 608748 cannot be analyzed because its resource ID or API version cannot be calculated until the deployment is under way. Please see https://aka.ms/WhatIfUnidentifiableResource for more guidance."
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen', 'Microsoft.Authorization/roleAssignments', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/4f6d3b9b-027b-4f4c-9142-0e5a2a2247e0')))]",
+        "name": "[last(split(coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/4f6d3b9b-027b-4f4c-9142-0e5a2a2247e0')), '/'))]",
+        "properties": {
+          "condition": null,
+          "conditionVersion": null,
+          "delegatedManagedIdentityResourceId": null,
+          "description": null,
+          "principalId": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi', '2024-11-30').principalId]",
+          "principalType": "ServicePrincipal",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/4f6d3b9b-027b-4f4c-9142-0e5a2a2247e0"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Unsupported",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen', 'Microsoft.Authorization/roleAssignments', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/4f6d3b9b-027b-4f4c-9142-0e5a2a2247e0')))]",
+      "symbolicName": null,
+      "unsupportedReason": "Changes to the resource declared at 'properties.template.resources[1].properties.template.resources.broker.properties.template.resources.serviceBusNamespace_queues.properties.template.resources.queue_roleAssignments' on line 1 and column 608748 cannot be analyzed because its resource ID or API version cannot be calculated until the deployment is under way. Please see https://aka.ms/WhatIfUnidentifiableResource for more guidance."
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen', 'Microsoft.Authorization/roleAssignments', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-scaler-4tvlzr5zf2rxi', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/4f6d3b9b-027b-4f4c-9142-0e5a2a2247e0')))]",
+        "name": "[last(split(coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-scaler-4tvlzr5zf2rxi', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/4f6d3b9b-027b-4f4c-9142-0e5a2a2247e0')), '/'))]",
+        "properties": {
+          "condition": null,
+          "conditionVersion": null,
+          "delegatedManagedIdentityResourceId": null,
+          "description": null,
+          "principalId": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-scaler-4tvlzr5zf2rxi', '2024-11-30').principalId]",
+          "principalType": "ServicePrincipal",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/4f6d3b9b-027b-4f4c-9142-0e5a2a2247e0"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Unsupported",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen', 'Microsoft.Authorization/roleAssignments', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-scaler-4tvlzr5zf2rxi', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/4f6d3b9b-027b-4f4c-9142-0e5a2a2247e0')))]",
+      "symbolicName": null,
+      "unsupportedReason": "Changes to the resource declared at 'properties.template.resources[1].properties.template.resources.broker.properties.template.resources.serviceBusNamespace_queues.properties.template.resources.queue_roleAssignments' on line 1 and column 608748 cannot be analyzed because its resource ID or API version cannot be calculated until the deployment is under way. Please see https://aka.ms/WhatIfUnidentifiableResource for more guidance."
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi/keys/guest-session', 'Microsoft.Authorization/roleAssignments', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi/keys/guest-session', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/12338af0-0e69-4776-bea7-57ae8d297424')))]",
+        "name": "[last(split(coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi/keys/guest-session', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/12338af0-0e69-4776-bea7-57ae8d297424')), '/'))]",
+        "properties": {
+          "condition": null,
+          "conditionVersion": null,
+          "delegatedManagedIdentityResourceId": null,
+          "description": null,
+          "principalId": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi', '2024-11-30').principalId]",
+          "principalType": "ServicePrincipal",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/12338af0-0e69-4776-bea7-57ae8d297424"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Unsupported",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi/keys/guest-session', 'Microsoft.Authorization/roleAssignments', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi/keys/guest-session', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/12338af0-0e69-4776-bea7-57ae8d297424')))]",
+      "symbolicName": null,
+      "unsupportedReason": "Changes to the resource declared at 'properties.template.resources[1].properties.template.resources.vault.properties.template.resources.keyVault_keys.properties.template.resources.key_roleAssignments' on line 1 and column 762631 cannot be analyzed because its resource ID or API version cannot be calculated until the deployment is under way. Please see https://aka.ms/WhatIfUnidentifiableResource for more guidance."
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-4tvlzr5zf2rxi/projects/restaurant', 'Microsoft.Authorization/roleAssignments', guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-4tvlzr5zf2rxi/projects/restaurant', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi', '2024-11-30').principalId, 'eed3b665-ab3a-47b6-8f48-c9382fb1dad6'))]",
+        "name": "[last(split(guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-4tvlzr5zf2rxi/projects/restaurant', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi', '2024-11-30').principalId, 'eed3b665-ab3a-47b6-8f48-c9382fb1dad6'), '/'))]",
+        "properties": {
+          "principalId": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi', '2024-11-30').principalId]",
+          "principalType": "ServicePrincipal",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/eed3b665-ab3a-47b6-8f48-c9382fb1dad6"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Unsupported",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-4tvlzr5zf2rxi/projects/restaurant', 'Microsoft.Authorization/roleAssignments', guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-4tvlzr5zf2rxi/projects/restaurant', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi', '2024-11-30').principalId, 'eed3b665-ab3a-47b6-8f48-c9382fb1dad6'))]",
+      "symbolicName": null,
+      "unsupportedReason": "Changes to the resource declared at 'properties.template.resources[1].properties.template.resources.project.properties.template.resources[1]' on line 1 and column 882609 cannot be analyzed because its resource ID or API version cannot be calculated until the deployment is under way. Please see https://aka.ms/WhatIfUnidentifiableResource for more guidance."
+    }
+  ],
+  "diagnostics": null,
+  "error": null,
+  "potentialChanges": null,
+  "status": "Succeeded"
+}

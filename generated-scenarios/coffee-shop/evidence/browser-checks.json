@@ -1,0 +1,19 @@
+{
+  "checkedAtUtc": "2026-10-24T23:59:34.584905+00:00",
+  "applicationUrl": "https://web-fc-keegvmxonq3wc.azurewebsites.net/",
+  "status": "passed",
+  "checks": {
+    "storeUiAndCrossStoreDenial": true,
+    "areaUiAndRealAgentClose": true
+  },
+  "screenshots": [
+    "evidence/browser-login.png",
+    "evidence/browser-store001.png",
+    "evidence/browser-area-close.png"
+  ],
+  "agentReceipts": [
+    "Response resp_06a669936633d073016add466b9b508194a255e339f6d67919",
+    "Response resp_0780467c1774a72f016add466ba5148193aeb674489df1368f",
+    "Response resp_07653cb0966564e1016add466e73908190a1b61d4d1dcf19c1"
+  ]
+}

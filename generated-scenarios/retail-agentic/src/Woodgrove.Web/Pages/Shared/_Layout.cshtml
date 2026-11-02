@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Woodgrove Groceries</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header>
+        <a asp-page="/Index" class="brand">Woodgrove Groceries</a>
+        <nav aria-label="Main navigation">
+            <a asp-page="/Index" aria-current="@(ViewContext.RouteData.Values["page"]?.ToString() == "/Index" ? "page" : null)">
+                <img class="fluent-icon" src="~/icons/cart.svg" alt="" aria-hidden="true" /> Grocery orders
+            </a>
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <span>@User.Identity.Name</span>
+                <form method="post" asp-page="/Logout"><button class="secondary" type="submit">Sign out</button></form>
+            }
+        </nav>
+    </header>
+    <main id="main">@RenderBody()</main>
+    <footer>Woodgrove Groceries &middot; Retail &amp; Consumer Goods &middot; Synthetic reference</footer>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

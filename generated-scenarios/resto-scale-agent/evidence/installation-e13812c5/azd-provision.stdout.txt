@@ -1,0 +1,31 @@
+
+Provisioning Azure resources (azd provision)
+Provisioning Azure resources can take some time.
+
+Initialize bicep provider
+Reading subscription and location from environment...
+Subscription: MCAPS-Hybrid-REQ-152516-2026-petender (efd64343-6ef4-4926-951f-d3229f38bd76)
+Location: Central US
+
+Creating a deployment plan
+Comparing deployment state
+Validating deployment
+Creating/Updating resources
+  You can view detailed progress in the Azure Portal:
+  https://portal.azure.com/#view/HubsExtension/DeploymentDetailsBlade/~/overview/id/%2Fsubscriptions%2Fefd64343-6ef4-4926-951f-d3229f38bd76%2FresourceGroups%2Frg-resto-scale-agent%2Fproviders%2FMicrosoft.Resources%2Fdeployments%2Fresto-scale-agent-1792863260
+
+  (✓) Done: Virtual Network: vnet-resto-4tvlzr5zf2rxi (3.773s)
+  (✓) Done: Log Analytics workspace: log-resto-4tvlzr5zf2rxi (21.393s)
+  (✓) Done: Container Registry: acrresto4tvlzr5zf2rxi (14.552s)
+  (✓) Done: Application Insights: appi-resto-4tvlzr5zf2rxi (3.634s)
+  (✓) Done: Foundry: ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec (19.806s)
+  (✓) Done: Key Vault: kv-resto-dc9a173f4d0b5f6 (18.821s)
+  (✓) Done: Azure AI Services Model Deployment: ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/restaurant-model (1.715s)
+  (✓) Done: Foundry project: ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/restaurant (1.644s)
+  (✓) Done: Service Bus Namespace: sb-resto-4tvlzr5zf2rxi (1m22.855s)
+  (✓) Done: Azure Cosmos DB: cosmos-resto-4tvlzr5zf2rxi (1m58.64s)
+  (✓) Done: Container Apps Environment: cae-resto-4tvlzr5zf2rxi (2m48.087s)
+
+SUCCESS: Your application was provisioned in Azure in 4 minutes 52 seconds.
+You can view the resources created under the resource group rg-resto-scale-agent in Azure Portal:
+https://portal.azure.com/#@/resource/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/overview

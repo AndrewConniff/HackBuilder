@@ -1,0 +1,90 @@
+{
+  "projectSlug": "finance-security-hack",
+  "scenarioPath": "generated-scenarios\\finance-security-hack",
+  "workspacePath": "C:\\HackBuilder\\generated-scenarios\\finance-security-hack",
+  "physicalPath": "C:\\azd-projects\\finance-security-hack",
+  "phase": "A",
+  "status": "local_implementation_complete",
+  "phaseAComplete": false,
+  "updatedAtUtc": "2026-10-22T19:12:04Z",
+  "scope": "Noninteractive continuation of the existing reference; scenario-local work only.",
+  "authorization": {
+    "localImplementationTools": true,
+    "azureReads": false,
+    "azureMutations": false,
+    "whatIfExecution": false,
+    "deployment": false,
+    "scenarioApproval": false,
+    "composition": false,
+    "eventDeployment": false
+  },
+  "decisions": {
+    "D1": "Existing Azure context is deferred to exact-target deployment reconciliation; not a local blocker.",
+    "D2": "User delegated a suitable provisional region/model; eastus2/gpt-4.1-mini/2025-04-14/GlobalStandard selected for local design only.",
+    "D3": "No budget blocker for local construction; dated itemized costs and spending consent remain deployment gates.",
+    "D4": "Anonymous customer chat. Future optional authentication authoring intent recorded only; nothing authored.",
+    "D5": "Private backend networking and documented platform exceptions confirmed.",
+    "D6": "Required Standard dependencies, private image delivery, diagnostics and signing use confirmed."
+  },
+  "completed": [
+    "Reused the exact existing junction workspace without creating another project",
+    "Reused persisted public-document evidence and verified industry/company catalog provenance",
+    "Reconciled requirements, README and deployment summary with resolved local decisions and implemented artifacts",
+    "Preserved real .NET 10 application, synthetic fixtures, private AVM-first Bicep and design diagrams",
+    "Built application with SDK 10.0.402: zero warnings and errors",
+    "Passed 18 of 18 deterministic application/HTTP tests",
+    "Published application locally with both source and instruction installation fixtures",
+    "Built and linted root plus three Bicep modules offline with standalone Bicep 0.48.1 and cached AVM modules",
+    "Hardened initializer account checks, no-Azure WhatIf behavior, tenant restoration and explicit SDK path",
+    "Hardened command-only preview boolean/GUID/target validation and PowerShell path quoting",
+    "Passed 17 local PowerShell parser/script-guard checks using synthetic targets and command doubles",
+    "Added undeployed demo rehearsal and ran its focused HTTP flow, token boundary and upstream-error tests",
+    "Persisted scenario-local validation evidence and stopped without live acceptance or approval"
+  ],
+  "localValidation": {
+    "evidenceFile": "local-validation.json",
+    "applicationTestsPassed": 18,
+    "applicationTestsTotal": 18,
+    "scriptChecksPassed": 17,
+    "scriptChecksTotal": 17,
+    "bicepFilesBuiltAndLinted": 4,
+    "focusedDemoTestsPassed": 7,
+    "artifactConsistencyChecks": "Passed JSON parsing, status/count consistency, required summary headings, local links, edited Markdown line lengths, PNG structure/CRC and absence of live-success/approval/package files.",
+    "docker": "Optional build/run not performed: local Docker Linux engine named pipe unavailable."
+  },
+  "localBlockers": [],
+  "remainingGates": [
+    "Separate authorization for Azure preflight and exact existing account/subscription/tenant/cloud/RG/azd environment reconciliation",
+    "Live feature/model/version/SKU/quota/capacity/provider/policy checks",
+    "Consumer role GUID, Entra backend audience and private operator/DNS/network verification",
+    "Authorized actual what-if review and dated itemized costs before explicit staged deployment consent",
+    "Foundation provisioning, private image delivery, FAQ/agent installation and workload deployment",
+    "Real model inference, pinned agent invocation, application chat, grounding, signing and live negative cases",
+    "Actual live demo evidence and screenshots, then review snapshot and explicit suitability decision"
+  ],
+  "deployment": {
+    "status": "not_authorized_not_deployed",
+    "applicationUrl": null,
+    "azureOperationsExecutedThisJob": 0,
+    "whatIfExecuted": false,
+    "liveAcceptance": "pending",
+    "reviewSnapshotCreated": false,
+    "scenarioApproved": false
+  },
+  "ownership": {
+    "scenarioLocalOnly": true,
+    "externalConflictingWriterDetected": false,
+    "sharedPortalStatusModified": false,
+    "portalLaunched": false,
+    "delegationUsed": false
+  },
+  "supersedes": {
+    "checkpointUpdatedAtUtc": "2026-10-22T18:44:16.378Z",
+    "formerStatus": "decision_required",
+    "reason": "The explicit continuation supplies D1-D6 decisions and authorizes local completion only; former intake blockers are cleared for that scope."
+  },
+  "nextGate": "decision_required_for_any_azure_operations",
+  "nextAction": "No further local action required. If deployment is later requested, separately authorize exact-target Azure preflight; review actual what-if/costs and confirm exact deployment targets before deployment. Do not self-approve or compose.",
+  "workflowHelperActionsExecuted": [],
+  "note": "Operational checkpoint only. Phase A deployed reference review is incomplete; local test success is not runtime validation, a review snapshot, suitability approval or spending consent."
+}

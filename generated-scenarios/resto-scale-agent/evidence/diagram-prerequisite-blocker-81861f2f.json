@@ -1,0 +1,16 @@
+{
+  "stage": "diagrams",
+  "status": "blocked",
+  "summary": "Graphviz verification passed and the previous blocker was cleared. Resuming the diagrams stage failed its Python prerequisite check with ModuleNotFoundError: No module named 'PIL' (exit code 1). Pillow is unavailable to the worker's current Python interpreter. Stopped without installation, PATH changes, alternate-interpreter bypass, Azure operations or another approval question.",
+  "evidence": [
+    "Previous setup blocker ddf4a2b4293c4fed9a02d7dc74d536aa was cleared by the verified pending-stage report at revision 60.",
+    "Exact command: python -c \"import sys,importlib.metadata; import diagrams; from PIL import Image; from diagrams.azure.compute import ContainerApps; from diagrams.azure.database import CosmosDb; from diagrams.azure.integration import ServiceBus; from diagrams.azure.security import KeyVaults; print('python:',sys.executable); print('diagrams:',importlib.metadata.version('diagrams')); print('Pillow:',importlib.metadata.version('Pillow')); print('Azure diagram providers: imported')\"",
+    "Actual result: ModuleNotFoundError: No module named 'PIL'; exit code 1. The diagrams import succeeded before the Pillow import failed; Azure provider imports and version print statements were not reached.",
+    "Existing architecture confirmation, all prior answers and scenario-local-execution consent are preserved. No cloud authorizations exist. No diagrams or implementation success is claimed."
+  ],
+  "blocker": {
+    "kind": "prerequisite",
+    "action": "Outside this worker, have the environment administrator repair the approved portal worker Python environment so the interpreter invoked by python has the repository-required Pillow package and diagram providers available. Follow PREREQUISITES.md and requirements.txt through the approved setup process while affected workers are idle. Ensure the actual portal-launched worker inherits that prepared environment; restart its execution host only when safe. This worker must not install packages, change PATH or bypass host restrictions.",
+    "verification": "python -c \"import sys,importlib.metadata; import diagrams; from PIL import Image; from diagrams.azure.compute import ContainerApps; from diagrams.azure.database import CosmosDb; from diagrams.azure.integration import ServiceBus; from diagrams.azure.security import KeyVaults; print('python:',sys.executable); print('diagrams:',importlib.metadata.version('diagrams')); print('Pillow:',importlib.metadata.version('Pillow')); print('Azure diagram providers: imported')\""
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "correction": "Use version-selected agent endpoint Responses routes with existing Consumer role; no RBAC expansion",
+  "command": "Initialize-Scenario.ps1; azd deploy --no-prompt",
+  "exitCode": 0,
+  "checkedAtUtc": "2026-10-24T23:51:10.7816046+00:00"
+}

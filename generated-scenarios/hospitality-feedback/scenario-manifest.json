@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "hospitality-feedback",
+  "title": "Margie's Travel multilingual hotel-service feedback",
+  "summary": "A single Foundry Basic prompt agent analyzes multilingual hotel-service feedback using Blob evidence and reliable queued ingestion. Local reference; current deployment and suitability remain unverified.",
+  "industry": "Hospitality & Travel",
+  "businessUnits": [
+    "generic"
+  ],
+  "services": [
+    "foundry",
+    "storage",
+    "app-service",
+    "managed-identity"
+  ],
+  "pillars": [],
+  "domains": [],
+  "artifacts": [
+    "01-requirements.md",
+    "02-architecture-assessment.md",
+    "04-implementation-plan.md",
+    "03-architect-diagram.png",
+    "04-runtime-diagram.png",
+    "azure.yaml",
+    "infra",
+    "src"
+  ],
+  "source": null,
+  "metadataStatus": "curated"
+}

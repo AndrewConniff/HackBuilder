@@ -1,0 +1,35 @@
+{
+  "checkedAtUtc": "2026-10-24T23:12:10.524328+00:00",
+  "evidenceType": "identity-and-proposed-target-only",
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "coffee-shop-ref",
+    "resourceGroup": "rg-coffee-shop-ref",
+    "region": "eastus2"
+  },
+  "sources": {
+    "account": "Current Azure CLI identity; token metadata checked",
+    "subscriptionId": "Current Azure CLI identity; token metadata checked",
+    "tenantId": "Current Azure CLI identity; token metadata checked",
+    "environment": "Existing scenario deployment-review proposal; not yet user-authorized",
+    "resourceGroup": "Existing scenario deployment-review proposal; not yet user-authorized",
+    "region": "Scenario architecture region evidence"
+  },
+  "authentication": {
+    "azureCli": "Signed in; usable token metadata verified (token never retained)",
+    "azd": "Signed in as petender@microsoft.com",
+    "compatibility": "Account names match; azd target-tenant access still requires authorized preflight"
+  },
+  "conflicts": [],
+  "notChecked": [
+    "RBAC",
+    "provider registration",
+    "policy",
+    "regional SKU/model quota and capacity",
+    "what-if",
+    "cost"
+  ],
+  "authorization": "No subscription resource queries, ARM what-if, provisioning or directory writes authorized or executed."
+}

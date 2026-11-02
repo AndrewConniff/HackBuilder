@@ -1,0 +1,1 @@
+ERROR: (ResourceGroupNotFound) Resource group 'rg-resto-scale-agent' could not be found.

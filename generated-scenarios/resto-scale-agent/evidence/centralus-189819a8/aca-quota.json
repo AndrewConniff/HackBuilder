@@ -1,0 +1,8 @@
+{
+  "command": "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/locations/centralus/providers/Microsoft.Quota/quotas?api-version=2025-09-01 --output json",
+  "startedAtUtc": "2026-10-23T23:35:26.421691+00:00",
+  "checkedAtUtc": "2026-10-23T23:35:28.863519+00:00",
+  "exitCode": 1,
+  "stdout": "",
+  "stderr": "ERROR: Bad Request({\"error\":{\"code\":\"MissingRegistrationForResourceProvider\",\"message\":\"The subscription is not in registered state for the resource provider: Microsoft.Quota.\"}})\n"
+}

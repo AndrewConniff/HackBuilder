@@ -1,0 +1,11 @@
+{
+  "command": "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/westus2/modelCapacities?api-version=2024-10-01 --output json --url-parameters modelFormat=OpenAI modelName=gpt-5.4-mini modelVersion=2026-03-17",
+  "startedAtUtc": "2026-10-23T23:20:58.995283+00:00",
+  "checkedAtUtc": "2026-10-23T23:21:01.171095+00:00",
+  "exitCode": 0,
+  "stdout": "{\n  \"value\": []\n}\n",
+  "stderr": "",
+  "result": {
+    "value": []
+  }
+}

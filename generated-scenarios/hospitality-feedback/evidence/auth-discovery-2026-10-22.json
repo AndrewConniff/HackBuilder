@@ -1,0 +1,765 @@
+{
+  "checkedAtUtc": "2026-10-22T18:36:06.466400+00:00",
+  "status": "decision_required",
+  "scope": "read-only",
+  "queries": [
+    {
+      "startedAtUtc": "2026-10-22T18:35:54.802702+00:00",
+      "completedAtUtc": "2026-10-22T18:35:55.730117+00:00",
+      "command": [
+        "az",
+        "account",
+        "show",
+        "--query",
+        "{subscription:id,name:name,tenant:tenantId,user:user,state:state}",
+        "-o",
+        "json"
+      ],
+      "exitCode": 0,
+      "result": {
+        "name": "MCAPS-Hybrid-REQ-152516-2026-petender",
+        "state": "Enabled",
+        "subscription": "efd64343-6ef4-4926-951f-d3229f38bd76",
+        "tenant": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+        "user": {
+          "name": "petender@microsoft.com",
+          "type": "user"
+        }
+      }
+    },
+    {
+      "startedAtUtc": "2026-10-22T18:35:55.730162+00:00",
+      "completedAtUtc": "2026-10-22T18:35:57.382213+00:00",
+      "command": [
+        "az",
+        "ad",
+        "signed-in-user",
+        "show",
+        "--query",
+        "{id:id,userPrincipalName:userPrincipalName}",
+        "-o",
+        "json"
+      ],
+      "exitCode": 0,
+      "result": {
+        "id": "214d672b-df87-4f3b-94fd-7863032546c1",
+        "userPrincipalName": "petender_microsoft.com#EXT#@fdpo.onmicrosoft.com"
+      }
+    },
+    {
+      "startedAtUtc": "2026-10-22T18:35:57.382255+00:00",
+      "completedAtUtc": "2026-10-22T18:35:58.427828+00:00",
+      "command": [
+        "azd",
+        "auth",
+        "token",
+        "--tenant-id",
+        "16b3c013-d300-468d-ac64-7eda0820b6d3",
+        "--scope",
+        "https://management.azure.com/.default",
+        "--no-prompt",
+        "-o",
+        "json"
+      ],
+      "exitCode": 0,
+      "identityClaims": {
+        "tid": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+        "oid": "214d672b-df87-4f3b-94fd-7863032546c1",
+        "aud": "https://management.azure.com",
+        "exp": 1792697368
+      },
+      "note": "Decoded identity alignment only, not signature validation or API token acceptance."
+    },
+    {
+      "startedAtUtc": "2026-10-22T18:35:58.427934+00:00",
+      "completedAtUtc": "2026-10-22T18:36:00.084178+00:00",
+      "command": [
+        "az",
+        "ad",
+        "app",
+        "list",
+        "--filter",
+        "startswith(displayName,'hospitality') or startswith(displayName,'hotel') or startswith(displayName,'Margie') or startswith(displayName,'feedback')",
+        "--query",
+        "[].{id:id,appId:appId,displayName:displayName,identifierUris:identifierUris,signInAudience:signInAudience,api:api,appRoles:appRoles}",
+        "-o",
+        "json"
+      ],
+      "exitCode": 0,
+      "result": [
+        {
+          "api": {
+            "acceptMappedClaims": null,
+            "knownClientApplications": [],
+            "oauth2PermissionScopes": [],
+            "preAuthorizedApplications": [],
+            "requestedAccessTokenVersion": 2
+          },
+          "appId": "2d98ba8c-6147-47d9-af12-4a874dbe7f68",
+          "appRoles": [],
+          "displayName": "feedback-mcp-resource-feedback-mcp-AgentIdentityBlueprint",
+          "id": "2d98ba8c-6147-47d9-af12-4a874dbe7f68",
+          "identifierUris": [],
+          "signInAudience": "AzureADMyOrg"
+        },
+        {
+          "api": {
+            "acceptMappedClaims": null,
+            "knownClientApplications": [],
+            "oauth2PermissionScopes": [
+              {
+                "adminConsentDescription": "Allow the application to access the Feedback API on behalf of the signed-in user.",
+                "adminConsentDisplayName": "Access Feedback API",
+                "id": "b31fae70-6a48-4de7-ad9b-53d49456cb34",
+                "isEnabled": true,
+                "type": "User",
+                "userConsentDescription": "Allow the application to access the Feedback API on your behalf.",
+                "userConsentDisplayName": "Access Feedback API",
+                "value": "user_impersonation"
+              }
+            ],
+            "preAuthorizedApplications": [
+              {
+                "appId": "04b07795-8ddb-461a-bbee-02f9e1bf7b46",
+                "delegatedPermissionIds": [
+                  "b31fae70-6a48-4de7-ad9b-53d49456cb34"
+                ]
+              }
+            ],
+            "requestedAccessTokenVersion": 2
+          },
+          "appId": "2cca1d9d-2ce5-4d21-8598-84c542834a84",
+          "appRoles": [
+            {
+              "allowedMemberTypes": [
+                "User",
+                "Application"
+              ],
+              "description": "Read feedback events",
+              "displayName": "Feedback Read",
+              "id": "02b84eb6-3d36-4698-92bf-3b4ad7b2ae6a",
+              "isEnabled": true,
+              "origin": "Application",
+              "value": "Feedback.Read"
+            },
+            {
+              "allowedMemberTypes": [
+                "User",
+                "Application"
+              ],
+              "description": "Submit feedback events",
+              "displayName": "Feedback Ingest",
+              "id": "cbaff787-4f35-44f9-8879-3b1b595c515c",
+              "isEnabled": true,
+              "origin": "Application",
+              "value": "Feedback.Ingest"
+            }
+          ],
+          "displayName": "Feedback API (local dev)",
+          "id": "db99481d-ec0a-4c68-b5e2-a2488befc4e1",
+          "identifierUris": [
+            "api://2cca1d9d-2ce5-4d21-8598-84c542834a84"
+          ],
+          "signInAudience": "AzureADMyOrg"
+        },
+        {
+          "api": {
+            "acceptMappedClaims": null,
+            "knownClientApplications": [],
+            "oauth2PermissionScopes": [],
+            "preAuthorizedApplications": [],
+            "requestedAccessTokenVersion": null
+          },
+          "appId": "a5663899-70ba-41a7-ae52-eac429f680de",
+          "appRoles": [],
+          "displayName": "Feedbackbot",
+          "id": "b5ef09cc-9652-4375-9305-27ff1a72aff6",
+          "identifierUris": [],
+          "signInAudience": "AzureADMyOrg"
+        },
+        {
+          "api": {
+            "acceptMappedClaims": null,
+            "knownClientApplications": [],
+            "oauth2PermissionScopes": [],
+            "preAuthorizedApplications": [],
+            "requestedAccessTokenVersion": null
+          },
+          "appId": "f21683e1-9689-4854-8a91-b759528c0934",
+          "appRoles": [],
+          "displayName": "Feedbackbot",
+          "id": "b12a8e3b-7ce0-46ae-9cae-38fbc9d1a1f3",
+          "identifierUris": [],
+          "signInAudience": "AzureADMyOrg"
+        },
+        {
+          "api": {
+            "acceptMappedClaims": null,
+            "knownClientApplications": [],
+            "oauth2PermissionScopes": [],
+            "preAuthorizedApplications": [],
+            "requestedAccessTokenVersion": null
+          },
+          "appId": "493d0a8c-e0c4-4133-8622-586b8add45c3",
+          "appRoles": [],
+          "displayName": "FeedbackBot",
+          "id": "4ec5e337-b45d-44cf-82bf-36b9a4f56f47",
+          "identifierUris": [],
+          "signInAudience": "AzureADMyOrg"
+        },
+        {
+          "api": {
+            "acceptMappedClaims": null,
+            "knownClientApplications": [],
+            "oauth2PermissionScopes": [],
+            "preAuthorizedApplications": [],
+            "requestedAccessTokenVersion": 2
+          },
+          "appId": "b9524c13-7f09-4d32-9aeb-eab7ba43b81e",
+          "appRoles": [],
+          "displayName": "Hotel-Demo",
+          "id": "cee67e27-12d1-4459-8bcb-a13cf4d01afd",
+          "identifierUris": [],
+          "signInAudience": "AzureADMyOrg"
+        },
+        {
+          "api": {
+            "acceptMappedClaims": null,
+            "knownClientApplications": [],
+            "oauth2PermissionScopes": [],
+            "preAuthorizedApplications": [],
+            "requestedAccessTokenVersion": null
+          },
+          "appId": "5fd3a4f0-4f4b-435b-8c77-6bf1ce416ec0",
+          "appRoles": [],
+          "displayName": "hotel-sample",
+          "id": "497303c6-7611-4588-8b6e-6dc804fd1b49",
+          "identifierUris": [],
+          "signInAudience": "AzureADMyOrg"
+        },
+        {
+          "api": {
+            "acceptMappedClaims": null,
+            "knownClientApplications": [],
+            "oauth2PermissionScopes": [],
+            "preAuthorizedApplications": [],
+            "requestedAccessTokenVersion": 2
+          },
+          "appId": "559d9ae3-be6e-4cc3-9fd5-c1bcb0d372b4",
+          "appRoles": [],
+          "displayName": "hotelbooking-hotelbooking-FrontDesk-482b8-AgentIdentityBlueprint",
+          "id": "559d9ae3-be6e-4cc3-9fd5-c1bcb0d372b4",
+          "identifierUris": [],
+          "signInAudience": "AzureADMyOrg"
+        },
+        {
+          "api": {
+            "acceptMappedClaims": null,
+            "knownClientApplications": [],
+            "oauth2PermissionScopes": [],
+            "preAuthorizedApplications": [],
+            "requestedAccessTokenVersion": 2
+          },
+          "appId": "73618878-2298-4917-9fc1-b946026e72d8",
+          "appRoles": [],
+          "displayName": "hotelbooking-hotelbooking-RoomBooking-55842-AgentIdentityBlueprint",
+          "id": "73618878-2298-4917-9fc1-b946026e72d8",
+          "identifierUris": [],
+          "signInAudience": "AzureADMyOrg"
+        },
+        {
+          "api": {
+            "acceptMappedClaims": null,
+            "knownClientApplications": [],
+            "oauth2PermissionScopes": [],
+            "preAuthorizedApplications": [],
+            "requestedAccessTokenVersion": null
+          },
+          "appId": "e2f344db-41a6-4402-99d1-34c172e132eb",
+          "appRoles": [],
+          "displayName": "hotelrecommendationengine",
+          "id": "3024e006-f89a-4f9b-8a6f-66c2d8cac79b",
+          "identifierUris": [],
+          "signInAudience": "AzureADMyOrg"
+        },
+        {
+          "api": {
+            "acceptMappedClaims": null,
+            "knownClientApplications": [],
+            "oauth2PermissionScopes": [],
+            "preAuthorizedApplications": [],
+            "requestedAccessTokenVersion": null
+          },
+          "appId": "ec9d6a39-6f1d-4162-a4cc-0a1ff2a15555",
+          "appRoles": [],
+          "displayName": "margiestraveltlp",
+          "id": "dd679577-bc14-4f24-a5c5-57c7b07f256e",
+          "identifierUris": [],
+          "signInAudience": "AzureADMyOrg"
+        },
+        {
+          "api": {
+            "acceptMappedClaims": null,
+            "knownClientApplications": [],
+            "oauth2PermissionScopes": [],
+            "preAuthorizedApplications": [],
+            "requestedAccessTokenVersion": null
+          },
+          "appId": "81063785-62de-4611-9d4b-f43b304890d8",
+          "appRoles": [],
+          "displayName": "MargiesTravelWinnieLiCDCDemo",
+          "id": "9c651c50-79e1-40e0-93a4-44dc711e5222",
+          "identifierUris": [],
+          "signInAudience": "AzureADMyOrg"
+        }
+      ]
+    },
+    {
+      "startedAtUtc": "2026-10-22T18:36:00.084262+00:00",
+      "completedAtUtc": "2026-10-22T18:36:01.598705+00:00",
+      "command": [
+        "az",
+        "ad",
+        "sp",
+        "list",
+        "--filter",
+        "startswith(displayName,'hospitality') or startswith(displayName,'hotel') or startswith(displayName,'Margie') or startswith(displayName,'feedback')",
+        "--query",
+        "[].{id:id,appId:appId,displayName:displayName,appOwnerOrganizationId:appOwnerOrganizationId,accountEnabled:accountEnabled,servicePrincipalNames:servicePrincipalNames,oauth2PermissionScopes:oauth2PermissionScopes,appRoles:appRoles}",
+        "-o",
+        "json"
+      ],
+      "exitCode": 0,
+      "result": [
+        {
+          "accountEnabled": true,
+          "appId": "5a85b71d-dc7d-4b24-acac-bd817b80dbe2",
+          "appOwnerOrganizationId": null,
+          "appRoles": [],
+          "displayName": "feedback-agent-app",
+          "id": "47ca0318-fab0-4db3-99c0-7feb964375b4",
+          "oauth2PermissionScopes": [],
+          "servicePrincipalNames": [
+            "5a85b71d-dc7d-4b24-acac-bd817b80dbe2",
+            "https://identity.azure.net/TfTT4OOoiruoq6JfGyFOIQIWkc6U73BDprf70mgexpQ="
+          ]
+        },
+        {
+          "accountEnabled": true,
+          "appId": "7649cea5-4205-4d3e-b0f9-4091852174ac",
+          "appOwnerOrganizationId": null,
+          "appRoles": [],
+          "displayName": "feedback-manager-model",
+          "id": "bb048abe-f8a6-4698-bab5-4994d16d0790",
+          "oauth2PermissionScopes": [],
+          "servicePrincipalNames": [
+            "7649cea5-4205-4d3e-b0f9-4091852174ac",
+            "https://identity.azure.net/7AvCpy2zsrpTkxeHnjou+yP4sEYqmPZojIaFybvmHnA="
+          ]
+        },
+        {
+          "accountEnabled": true,
+          "appId": "65c7f32e-6200-46ed-9a53-afe6b9da0364",
+          "appOwnerOrganizationId": null,
+          "appRoles": [],
+          "displayName": "feedback-manager-model/projects/feedback-manager-project",
+          "id": "69890057-7011-4f1f-b42a-5a27e56c61b5",
+          "oauth2PermissionScopes": [],
+          "servicePrincipalNames": [
+            "65c7f32e-6200-46ed-9a53-afe6b9da0364",
+            "https://identity.azure.net/hBaKS4hYLXRa09fQCMbD2hOObDAdwf7d4g1a5K2v9N4="
+          ]
+        },
+        {
+          "accountEnabled": true,
+          "appId": "ee6c933a-0602-4b73-a196-40e6c2923d8d",
+          "appOwnerOrganizationId": null,
+          "appRoles": [],
+          "displayName": "feedback-mcp-resource",
+          "id": "86e0b385-ae3c-4660-87a8-5fd5f57e75f7",
+          "oauth2PermissionScopes": [],
+          "servicePrincipalNames": [
+            "ee6c933a-0602-4b73-a196-40e6c2923d8d",
+            "https://identity.azure.net/ALGNM2FPLIcBfTpy5KUDIOszIGi0G5+KzDo84Uhwk5U="
+          ]
+        },
+        {
+          "accountEnabled": true,
+          "appId": "fd9ee4be-3996-4e0b-9ad1-eb74066536c6",
+          "appOwnerOrganizationId": null,
+          "appRoles": [],
+          "displayName": "feedback-mcp-resource-feedback-mcp-AgentIdentity",
+          "id": "fd9ee4be-3996-4e0b-9ad1-eb74066536c6",
+          "oauth2PermissionScopes": [],
+          "servicePrincipalNames": [
+            "fd9ee4be-3996-4e0b-9ad1-eb74066536c6"
+          ]
+        },
+        {
+          "accountEnabled": true,
+          "appId": "2d98ba8c-6147-47d9-af12-4a874dbe7f68",
+          "appOwnerOrganizationId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+          "appRoles": [],
+          "displayName": "feedback-mcp-resource-feedback-mcp-AgentIdentityBlueprint",
+          "id": "e06ae4e1-d175-4cf3-864f-c534e9d15509",
+          "oauth2PermissionScopes": [],
+          "servicePrincipalNames": [
+            "2d98ba8c-6147-47d9-af12-4a874dbe7f68"
+          ]
+        },
+        {
+          "accountEnabled": true,
+          "appId": "27212cf7-9e18-4c9b-831c-fad00a237ac4",
+          "appOwnerOrganizationId": null,
+          "appRoles": [],
+          "displayName": "feedback-mcp-resource/projects/feedback-mcp",
+          "id": "5da54748-8f8c-48a8-8b41-5f1b594b8c6b",
+          "oauth2PermissionScopes": [],
+          "servicePrincipalNames": [
+            "27212cf7-9e18-4c9b-831c-fad00a237ac4",
+            "https://identity.azure.net/t8DTvgVYKfzAPpEnWMi02/Hekq21QGEeJ6lr6p39D2s="
+          ]
+        },
+        {
+          "accountEnabled": true,
+          "appId": "d1ae2446-0711-4dee-8019-1d343b0e9a6d",
+          "appOwnerOrganizationId": null,
+          "appRoles": [],
+          "displayName": "feedback-mcp-server",
+          "id": "d58df216-600e-4cf1-be1e-502eaa183035",
+          "oauth2PermissionScopes": [],
+          "servicePrincipalNames": [
+            "d1ae2446-0711-4dee-8019-1d343b0e9a6d",
+            "https://identity.azure.net/HZnFBxV4ptJa1maWMFk0Ig++HQCNbrVe2YUWmNxrw8s="
+          ]
+        },
+        {
+          "accountEnabled": true,
+          "appId": "2cca1d9d-2ce5-4d21-8598-84c542834a84",
+          "appOwnerOrganizationId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+          "appRoles": [
+            {
+              "allowedMemberTypes": [
+                "User",
+                "Application"
+              ],
+              "description": "Read feedback events",
+              "displayName": "Feedback Read",
+              "id": "02b84eb6-3d36-4698-92bf-3b4ad7b2ae6a",
+              "isEnabled": true,
+              "origin": "Application",
+              "value": "Feedback.Read"
+            },
+            {
+              "allowedMemberTypes": [
+                "User",
+                "Application"
+              ],
+              "description": "Submit feedback events",
+              "displayName": "Feedback Ingest",
+              "id": "cbaff787-4f35-44f9-8879-3b1b595c515c",
+              "isEnabled": true,
+              "origin": "Application",
+              "value": "Feedback.Ingest"
+            }
+          ],
+          "displayName": "Feedback API (local dev)",
+          "id": "4f3c2bde-39b7-4a41-8313-a45044fa1a95",
+          "oauth2PermissionScopes": [
+            {
+              "adminConsentDescription": "Allow the application to access the Feedback API on behalf of the signed-in user.",
+              "adminConsentDisplayName": "Access Feedback API",
+              "id": "b31fae70-6a48-4de7-ad9b-53d49456cb34",
+              "isEnabled": true,
+              "type": "User",
+              "userConsentDescription": "Allow the application to access the Feedback API on your behalf.",
+              "userConsentDisplayName": "Access Feedback API",
+              "value": "user_impersonation"
+            }
+          ],
+          "servicePrincipalNames": [
+            "api://2cca1d9d-2ce5-4d21-8598-84c542834a84",
+            "2cca1d9d-2ce5-4d21-8598-84c542834a84"
+          ]
+        },
+        {
+          "accountEnabled": true,
+          "appId": "c3e9b18e-9d50-4480-bcc6-4f03723dddf7",
+          "appOwnerOrganizationId": null,
+          "appRoles": [],
+          "displayName": "Feedback_Test",
+          "id": "fa117a93-44b5-4d61-b1ff-2b1087cd1bd8",
+          "oauth2PermissionScopes": [],
+          "servicePrincipalNames": [
+            "c3e9b18e-9d50-4480-bcc6-4f03723dddf7",
+            "https://identity.azure.net/o9xuWE655CpaTJOEWg4pFZJK4F3b+9p/Fz6rq2KNevU="
+          ]
+        },
+        {
+          "accountEnabled": true,
+          "appId": "493d0a8c-e0c4-4133-8622-586b8add45c3",
+          "appOwnerOrganizationId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+          "appRoles": [],
+          "displayName": "FeedbackBot",
+          "id": "0ea52f20-62b7-4026-ad6d-8ffceef9c256",
+          "oauth2PermissionScopes": [],
+          "servicePrincipalNames": [
+            "493d0a8c-e0c4-4133-8622-586b8add45c3"
+          ]
+        },
+        {
+          "accountEnabled": true,
+          "appId": "9a453e59-b221-45ef-a444-204c7c581d32",
+          "appOwnerOrganizationId": null,
+          "appRoles": [],
+          "displayName": "hotel-auth-application",
+          "id": "bcd3613a-bee9-438c-b77e-cf01f10ca969",
+          "oauth2PermissionScopes": [],
+          "servicePrincipalNames": [
+            "9a453e59-b221-45ef-a444-204c7c581d32",
+            "https://identity.azure.net/lRzcYGeS6dKNxqKayDAmtrAsv/QkpE/Pet+Sw+5sI58="
+          ]
+        },
+        {
+          "accountEnabled": false,
+          "appId": "5fd3a4f0-4f4b-435b-8c77-6bf1ce416ec0",
+          "appOwnerOrganizationId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+          "appRoles": [],
+          "displayName": "hotel-sample",
+          "id": "4fd920c7-a41a-4d7d-a155-9a553b2b5e8c",
+          "oauth2PermissionScopes": [],
+          "servicePrincipalNames": [
+            "5fd3a4f0-4f4b-435b-8c77-6bf1ce416ec0"
+          ]
+        },
+        {
+          "accountEnabled": true,
+          "appId": "19452ca6-106a-4d26-b87a-963831628eaa",
+          "appOwnerOrganizationId": null,
+          "appRoles": [],
+          "displayName": "hotelbooking",
+          "id": "9bcffd17-0d32-431e-a109-1b68a4dfca08",
+          "oauth2PermissionScopes": [],
+          "servicePrincipalNames": [
+            "19452ca6-106a-4d26-b87a-963831628eaa",
+            "https://identity.azure.net/uI/uL7b2IJY+Ii26wIvUOSfiYBVXOKN4l8rfz23cY8E="
+          ]
+        },
+        {
+          "accountEnabled": true,
+          "appId": "559d9ae3-be6e-4cc3-9fd5-c1bcb0d372b4",
+          "appOwnerOrganizationId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+          "appRoles": [],
+          "displayName": "hotelbooking-hotelbooking-FrontDesk-482b8-AgentIdentityBlueprint",
+          "id": "57783cc0-f238-4ec5-abab-bca3ce0c9ac1",
+          "oauth2PermissionScopes": [],
+          "servicePrincipalNames": [
+            "559d9ae3-be6e-4cc3-9fd5-c1bcb0d372b4"
+          ]
+        },
+        {
+          "accountEnabled": true,
+          "appId": "73618878-2298-4917-9fc1-b946026e72d8",
+          "appOwnerOrganizationId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+          "appRoles": [],
+          "displayName": "hotelbooking-hotelbooking-RoomBooking-55842-AgentIdentityBlueprint",
+          "id": "5ad45ee6-5802-4e94-8b26-e923dd47dfa7",
+          "oauth2PermissionScopes": [],
+          "servicePrincipalNames": [
+            "73618878-2298-4917-9fc1-b946026e72d8"
+          ]
+        },
+        {
+          "accountEnabled": true,
+          "appId": "addde5e6-0bc9-4eda-aede-0e166b79ef68",
+          "appOwnerOrganizationId": null,
+          "appRoles": [],
+          "displayName": "hotelreview",
+          "id": "d199d961-1fa6-49c0-8635-7ab57b312d59",
+          "oauth2PermissionScopes": [],
+          "servicePrincipalNames": [
+            "addde5e6-0bc9-4eda-aede-0e166b79ef68",
+            "https://identity.azure.net/13UdPabNT1yjnuZ7MzN8pr4kS4hSQoK3+IdE5K+Qxl0="
+          ]
+        },
+        {
+          "accountEnabled": true,
+          "appId": "e1f337ae-0395-463c-a203-f8255ba41fd6",
+          "appOwnerOrganizationId": null,
+          "appRoles": [],
+          "displayName": "hotelreview/projects/firstProject",
+          "id": "ecbf03b6-7992-4bb8-9939-1da21a322357",
+          "oauth2PermissionScopes": [],
+          "servicePrincipalNames": [
+            "e1f337ae-0395-463c-a203-f8255ba41fd6",
+            "https://identity.azure.net/UEFPEQiwbOWvbwx4zPVJHVakL8kqbtFc5GKlJZ2qles="
+          ]
+        },
+        {
+          "accountEnabled": true,
+          "appId": "d6e4f953-d190-4deb-a0f1-0e073c7f0383",
+          "appOwnerOrganizationId": null,
+          "appRoles": [],
+          "displayName": "hotelsdb",
+          "id": "dd0d7e71-019b-4be8-b8b5-5b1cc99b2009",
+          "oauth2PermissionScopes": [],
+          "servicePrincipalNames": [
+            "d6e4f953-d190-4deb-a0f1-0e073c7f0383",
+            "https://identity.azure.net/MCIVO0RO9q5oWH5s460pPh1jawyjuEHBCGCh6akLrWM="
+          ]
+        },
+        {
+          "accountEnabled": true,
+          "appId": "391698b1-fc21-4cb6-bebc-7bb02a5c1ca0",
+          "appOwnerOrganizationId": null,
+          "appRoles": [],
+          "displayName": "hotelsearch-foundry",
+          "id": "0d27618f-f254-4488-8ded-08e0a1f2c5ef",
+          "oauth2PermissionScopes": [],
+          "servicePrincipalNames": [
+            "391698b1-fc21-4cb6-bebc-7bb02a5c1ca0",
+            "https://identity.azure.net/RDWpn+efQU7TU2QFSqyKCFoYZpHbhjdyczIDK5dBV20="
+          ]
+        },
+        {
+          "accountEnabled": true,
+          "appId": "83ea1089-4f72-496b-b8c4-b994493f6d78",
+          "appOwnerOrganizationId": null,
+          "appRoles": [],
+          "displayName": "hotelsearch-uami",
+          "id": "9f5db890-ac05-44b6-bbb5-0f4d65d1dff4",
+          "oauth2PermissionScopes": [],
+          "servicePrincipalNames": [
+            "83ea1089-4f72-496b-b8c4-b994493f6d78",
+            "https://identity.azure.net/Bg8bsiAVR59HvZpCZmuNbjQ4p1C6dkyDAVVGS42nExw="
+          ]
+        },
+        {
+          "accountEnabled": true,
+          "appId": "e8d171de-e8b2-4be2-811b-a2d3c972c382",
+          "appOwnerOrganizationId": null,
+          "appRoles": [],
+          "displayName": "margies-travels",
+          "id": "b7b898b6-2448-4216-b5bb-0440d09c4177",
+          "oauth2PermissionScopes": [],
+          "servicePrincipalNames": [
+            "e8d171de-e8b2-4be2-811b-a2d3c972c382",
+            "https://identity.azure.net/DP3Kx6j8JrdW/tWtmtgMKfNhdvJCKJpVrLAOmnbmGa0="
+          ]
+        },
+        {
+          "accountEnabled": true,
+          "appId": "a3e2b98a-7cb1-4715-b1b7-127d76c212f6",
+          "appOwnerOrganizationId": null,
+          "appRoles": [],
+          "displayName": "Margiestravelchatbot",
+          "id": "556a8969-1ed7-42bf-9ab6-03afe45174b6",
+          "oauth2PermissionScopes": [],
+          "servicePrincipalNames": [
+            "a3e2b98a-7cb1-4715-b1b7-127d76c212f6",
+            "https://identity.azure.net/xHZkCLf2nDiqN2Oba/0qWe9f/CTIEtpQdhjNSokyZRo="
+          ]
+        },
+        {
+          "accountEnabled": true,
+          "appId": "ce01ac9c-147f-4bbb-91ea-993392d9f988",
+          "appOwnerOrganizationId": null,
+          "appRoles": [],
+          "displayName": "MargiesTravelTest",
+          "id": "98b0d447-66ea-425a-8b79-13408b808fa3",
+          "oauth2PermissionScopes": [],
+          "servicePrincipalNames": [
+            "https://identity.azure.net/CxlgW6P/ZdZR1wirA2hfgzZdGtST97hQhSw2Dr4KCG8=",
+            "ce01ac9c-147f-4bbb-91ea-993392d9f988"
+          ]
+        },
+        {
+          "accountEnabled": true,
+          "appId": "09a806e8-e06a-447b-a4b5-1f48456c74c6",
+          "appOwnerOrganizationId": null,
+          "appRoles": [],
+          "displayName": "margiestraveltlp",
+          "id": "5e7600dd-4f54-43de-ad9f-8560147c330c",
+          "oauth2PermissionScopes": [],
+          "servicePrincipalNames": [
+            "09a806e8-e06a-447b-a4b5-1f48456c74c6",
+            "https://identity.azure.net/m9bR0zOHHYa3wUHXsTMAoBACkjekMJeWzl2wmpvlzjg="
+          ]
+        },
+        {
+          "accountEnabled": true,
+          "appId": "ec9d6a39-6f1d-4162-a4cc-0a1ff2a15555",
+          "appOwnerOrganizationId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+          "appRoles": [],
+          "displayName": "margiestraveltlp",
+          "id": "cec468dc-cb98-469c-ba19-3854c09bb9b7",
+          "oauth2PermissionScopes": [],
+          "servicePrincipalNames": [
+            "ec9d6a39-6f1d-4162-a4cc-0a1ff2a15555"
+          ]
+        },
+        {
+          "accountEnabled": false,
+          "appId": "81063785-62de-4611-9d4b-f43b304890d8",
+          "appOwnerOrganizationId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+          "appRoles": [],
+          "displayName": "MargiesTravelWinnieLiCDCDemo",
+          "id": "a2864272-69b2-448c-87bf-7beadcf659aa",
+          "oauth2PermissionScopes": [],
+          "servicePrincipalNames": [
+            "81063785-62de-4611-9d4b-f43b304890d8"
+          ]
+        },
+        {
+          "accountEnabled": true,
+          "appId": "b72500bb-385f-434d-a109-215c761c5ee9",
+          "appOwnerOrganizationId": null,
+          "appRoles": [],
+          "displayName": "margieswebapp",
+          "id": "c7cc7fb4-dd75-4b69-b992-c24dcd4905bc",
+          "oauth2PermissionScopes": [],
+          "servicePrincipalNames": [
+            "b72500bb-385f-434d-a109-215c761c5ee9",
+            "https://identity.azure.net/HGAtNHd9eM3LoYwPzi6yL8QsWk8p3QUjMfzroIWChCI="
+          ]
+        },
+        {
+          "accountEnabled": true,
+          "appId": "cbe55ae2-05d1-4dfd-a11f-7c7e0dd4c7ea",
+          "appOwnerOrganizationId": null,
+          "appRoles": [],
+          "displayName": "margieswithaistudio",
+          "id": "a1ca1ac3-2d6f-47b9-a364-6fb1f8602bf1",
+          "oauth2PermissionScopes": [],
+          "servicePrincipalNames": [
+            "cbe55ae2-05d1-4dfd-a11f-7c7e0dd4c7ea",
+            "https://identity.azure.net/ubXRyz8ruOnsjGRvfwSaeWNczbYRvkY3wNF/fFql44A="
+          ]
+        }
+      ]
+    },
+    {
+      "startedAtUtc": "2026-10-22T18:36:01.598853+00:00",
+      "completedAtUtc": "2026-10-22T18:36:06.466367+00:00",
+      "command": [
+        "az",
+        "group",
+        "exists",
+        "--name",
+        "rg-hospitality-feedback",
+        "--subscription",
+        "efd64343-6ef4-4926-951f-d3229f38bd76",
+        "-o",
+        "json"
+      ],
+      "exitCode": 0,
+      "result": false
+    }
+  ],
+  "limitations": [
+    "Prefix-filtered discovery only; not proof that no suitable registration exists elsewhere in the tenant.",
+    "Display names are not evidence of intended reuse or consent.",
+    "No suitable scenario-intended registration established; no consent or API token readiness asserted.",
+    "No API token requested, no Entra/RBAC/resource writes, no refreshed model capacity claim."
+  ]
+}

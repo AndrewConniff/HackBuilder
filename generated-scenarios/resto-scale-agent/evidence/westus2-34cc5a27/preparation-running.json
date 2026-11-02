@@ -1,0 +1,19 @@
+{
+  "stage": "deployment",
+  "operation": "deployment-preparation",
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "resto-scale-agent",
+    "resourceGroup": "rg-resto-scale-agent",
+    "region": "westus2"
+  },
+  "status": "running",
+  "summary": "Refreshing the entire unchanged reference dependency set in the saved West US 2 read-only scope; no provisioning, directory writes, default changes or other-region evaluation.",
+  "evidence": [
+    "python scripts\\portal_workflow.py read: revision 178, current writer 34cc5a27f7374154be9dd0f27740e0dd; exact West US 2 preparation authorization recorded 2026-10-23T23:17:59.423750+00:00.",
+    "All canonical decisions and history read; confirmed architecture, completed local artifacts and prior East US 2, East US and Central US rejection evidence retained.",
+    "Fresh backend owner-bound prerequisite receipt checkedAtUtc 2026-10-23T23:18:19.744313+00:00 reused; no redundant full audit or shared installation."
+  ]
+}

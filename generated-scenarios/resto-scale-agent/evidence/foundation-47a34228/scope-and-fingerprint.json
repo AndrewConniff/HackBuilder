@@ -1,0 +1,18 @@
+{
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "resto-scale-agent",
+    "resourceGroup": "rg-resto-scale-agent",
+    "region": "centralus"
+  },
+  "infrastructureFingerprint": "1aa0c0f7d9f7518ece839c1edb8578142a922edb9ac482d2462b8fd6aa0feffc",
+  "checkedAtUtc": "2026-10-24T00:10:14.441840+00:00",
+  "productionLocation": "${AZURE_LOCATION}",
+  "noMutations": true,
+  "notApplicable": {
+    "Microsoft.Compute/virtualMachines": "No VM or VMSS planned; no VM-family quota demand.",
+    "Microsoft.Web/serverfarms": "No App Service/Functions plan planned; no B2 worker demand."
+  }
+}

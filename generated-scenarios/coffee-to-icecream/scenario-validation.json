@@ -1,0 +1,31 @@
+{
+  "status": "failed",
+  "checkedAtUtc": "2026-10-30T04:43:14.336928+00:00",
+  "applicationUrl": "https://web-ic-gyhmp4vgxvkwy.azurewebsites.net/",
+  "checks": {
+    "deployment": true,
+    "modelInference": true,
+    "agentInvocation": true,
+    "applicationChat": true,
+    "negativeCase": true,
+    "grounding": false,
+    "agenticWorkflow": true,
+    "performance": false,
+    "authenticatedBrowser": false
+  },
+  "limitations": [
+    "Version-3 read p95 3.4644 seconds fails the strict 2-second threshold despite zero HTTP failures.",
+    "Actual server timings confirm a synchronized multi-second request spike; root cause remains unresolved.",
+    "Structured totals are exact, but version-3 narratives still invent steady-cost commentary without a comparison baseline.",
+    "Authenticated browser walkthrough has not been performed.",
+    "No review snapshot or working-scenario suitability approval; composition remains prohibited."
+  ],
+  "evidence": [
+    "evidence/http-acceptance.json",
+    "evidence/worker-recovery-acceptance.json",
+    "evidence/read-latency-server-observation.json",
+    "evidence/operator-sdk-acceptance.json",
+    "evidence/operator-arm-acceptance.json",
+    "evidence/lockout-acceptance.json"
+  ]
+}

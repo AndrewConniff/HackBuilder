@@ -1,0 +1,9 @@
+{
+  "stage": "diagrams",
+  "status": "running",
+  "summary": "Resuming the confirmed design at the existing Graphviz prerequisite checkpoint; all persisted decisions and history retained. Checking worker prerequisites only, with no Azure authorization.",
+  "evidence": [
+    "Canonical portal revision 23 read in full; designConfirmed=true, all four prior decisions answered affirmatively, authorizations=[]; writer=446463a4a34d493d87c304e16d4bb4bf.",
+    "Existing scenario requirements, architecture and evidence inventory inspected; no reference implementation exists yet."
+  ]
+}

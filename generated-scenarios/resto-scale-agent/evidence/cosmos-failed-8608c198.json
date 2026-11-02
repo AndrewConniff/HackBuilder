@@ -1,0 +1,132 @@
+{
+  "analyticalStorageConfiguration": {
+    "schemaType": "WellDefined"
+  },
+  "apiProperties": null,
+  "backupPolicy": {
+    "continuousModeProperties": {
+      "tier": "Continuous7Days"
+    },
+    "migrationState": null,
+    "type": "Continuous"
+  },
+  "capabilities": [],
+  "capacity": {
+    "totalThroughputLimit": -1
+  },
+  "connectorOffer": null,
+  "consistencyPolicy": {
+    "defaultConsistencyLevel": "Session",
+    "maxIntervalInSeconds": 5,
+    "maxStalenessPrefix": 100
+  },
+  "cors": [],
+  "createMode": "Default",
+  "customerManagedKeyStatus": null,
+  "databaseAccountOfferType": "Standard",
+  "defaultIdentity": "FirstPartyIdentity",
+  "defaultPriorityLevel": "High",
+  "disableKeyBasedMetadataWriteAccess": true,
+  "disableLocalAuth": true,
+  "documentEndpoint": null,
+  "enableAnalyticalStorage": false,
+  "enableAutomaticFailover": false,
+  "enableBurstCapacity": true,
+  "enableCassandraConnector": null,
+  "enableFreeTier": false,
+  "enableMultipleWriteLocations": false,
+  "enablePartitionMerge": false,
+  "enablePerRegionPerPartitionAutoscale": true,
+  "enablePriorityBasedExecution": false,
+  "enforceHierarchicalPartitionKeyIdLastLevel": false,
+  "failoverPolicies": [
+    {
+      "failoverPriority": 0,
+      "id": "cosmos-resto-4tvlzr5zf2rxi-eastus2",
+      "locationName": "East US 2"
+    }
+  ],
+  "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi",
+  "identity": {
+    "principalId": null,
+    "tenantId": null,
+    "type": "None",
+    "userAssignedIdentities": null
+  },
+  "instanceId": "b9de6ba1-3a3c-4770-9dc4-30568cb97345",
+  "ipRules": [],
+  "isVirtualNetworkFilterEnabled": false,
+  "keyVaultKeyUri": null,
+  "keyVaultKeyUriVersion": null,
+  "keysMetadata": {
+    "primaryMasterKey": {
+      "generationTime": "2026-10-23T18:56:20.361902+00:00"
+    },
+    "primaryReadonlyMasterKey": {
+      "generationTime": "2026-10-23T18:56:20.361902+00:00"
+    },
+    "secondaryMasterKey": {
+      "generationTime": "2026-10-23T18:56:20.361902+00:00"
+    },
+    "secondaryReadonlyMasterKey": {
+      "generationTime": "2026-10-23T18:56:20.361902+00:00"
+    }
+  },
+  "kind": "GlobalDocumentDB",
+  "location": "East US 2",
+  "locations": [
+    {
+      "documentEndpoint": null,
+      "failoverPriority": 0,
+      "id": "cosmos-resto-4tvlzr5zf2rxi-eastus2",
+      "isZoneRedundant": true,
+      "locationName": "East US 2",
+      "provisioningState": "Failed"
+    }
+  ],
+  "minimalTlsVersion": "Tls12",
+  "name": "cosmos-resto-4tvlzr5zf2rxi",
+  "networkAclBypass": "None",
+  "networkAclBypassResourceIds": [],
+  "privateEndpointConnections": null,
+  "provisioningState": "Failed",
+  "publicNetworkAccess": "Enabled",
+  "readLocations": [
+    {
+      "documentEndpoint": null,
+      "failoverPriority": 0,
+      "id": "cosmos-resto-4tvlzr5zf2rxi-eastus2",
+      "isZoneRedundant": true,
+      "locationName": "East US 2",
+      "provisioningState": "Failed"
+    }
+  ],
+  "resourceGroup": "rg-resto-scale-agent",
+  "restoreParameters": null,
+  "systemData": {
+    "createdAt": "2026-10-23T18:56:20.361902+00:00",
+    "createdBy": null,
+    "createdByType": null,
+    "lastModifiedAt": null,
+    "lastModifiedBy": null,
+    "lastModifiedByType": null
+  },
+  "tags": {
+    "Environment": "resto-scale-agent",
+    "ManagedBy": "Bicep",
+    "Project": "resto-scale-agent",
+    "SecurityControl": "Ignore"
+  },
+  "type": "Microsoft.DocumentDB/databaseAccounts",
+  "virtualNetworkRules": [],
+  "writeLocations": [
+    {
+      "documentEndpoint": null,
+      "failoverPriority": 0,
+      "id": "cosmos-resto-4tvlzr5zf2rxi-eastus2",
+      "isZoneRedundant": true,
+      "locationName": "East US 2",
+      "provisioningState": "Failed"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "stage": "deployment",
+  "operation": "deployment-preparation",
+  "status": "blocked",
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "resto-scale-agent",
+    "resourceGroup": "rg-resto-scale-agent",
+    "region": "eastus2"
+  },
+  "summary": "Registry correction independently previewed and validated without changing Basic SKU or authenticated public access. Fresh read-only preparation found Cosmos East US 2 zone access unavailable for this subscription. Retain zone redundancy and region; no deployment retry. Regional access must be granted and verified before refreshed preparation and renewed exact-target deployment consent.",
+  "blocker": {
+    "kind": "prerequisite",
+    "action": "Outside this read-only worker, obtain Azure Cosmos DB availability-zone regional access for subscription efd64343-6ef4-4926-951f-d3229f38bd76 in East US 2 through https://aka.ms/cosmosdbquota / Azure support. Current regional metadata has supportsAvailabilityZone=true but isSubscriptionRegionAccessAllowedForAz=false. Do not install tools, change Azure defaults, downgrade zone redundancy or recreate resources. Verify actual access is true before retry preparation; do not reuse the stopped deployment grant.",
+    "verification": "az cosmosdb locations list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --query \"[?name=='East US 2'].properties.isSubscriptionRegionAccessAllowedForAz | [0]\" --output tsv ; required result: true (false, missing data or CLI failure does not pass)"
+  },
+  "evidence": [
+    "06-deployment-summary.md: current recovery preparation, commands, actual findings, limits and separate historical deployment evidence. 00-region-availability.json: deploymentReady false; no suitability or runtime success.",
+    "az account show --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --query \"{account:user.name,subscriptionId:id,tenantId:tenantId,state:state}\" --output json: exit 0; exact account, subscription and tenant match; Enabled. evidence\\identity-19f3d63e.json.",
+    "az bicep build --file generated-scenarios\\resto-scale-agent\\infra\\main.bicep --outfile generated-scenarios\\resto-scale-agent\\evidence\\what-if-main-19f3d63e.arm.json && az bicep lint --file generated-scenarios\\resto-scale-agent\\infra\\main.bicep: exit 0, no diagnostics.",
+    "python generated-scenarios\\resto-scale-agent\\evidence\\prepare-what-if-19f3d63e.py: exit 0; compiled Basic/authenticated-public/no-admin/no-anonymous controls verified; Premium networkRuleSet condition false; Cosmos and ACA zone redundancy retained. evidence\\registry-regression-19f3d63e.json.",
+    "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location eastus2 --name resto-scale-agent-preflight-19f3d63e --template-file generated-scenarios\\resto-scale-agent\\evidence\\what-if-subscription-19f3d63e.arm.json --no-pretty-print --output json: exit 0; status Succeeded, error null, 9 evaluated creates, 0 modifies/deletes, eight NestedDeploymentShortCircuited warnings. Skipped insights/registry/cosmos/broker/vault/foundry/project/environment are not validated; prior 33-create evidence is historical.",
+    "az deployment sub validate --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location eastus2 --name resto-scale-agent-validate-19f3d63e --template-file generated-scenarios\\resto-scale-agent\\evidence\\what-if-subscription-19f3d63e.arm.json --output json: exit 0, Succeeded with the same eight skipped-module warnings; not whole-solution capacity/provider/policy acceptance.",
+    "python generated-scenarios\\resto-scale-agent\\evidence\\prepare-registry-preview-19f3d63e.py: exit 0; compiled AVM independent registry wrapper for the exact saved name/group; all four grants excluded rather than fabricated.",
+    "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location eastus2 --name registry-independent-19f3d63e --template-file generated-scenarios\\resto-scale-agent\\evidence\\registry-independent-19f3d63e.arm.json --no-pretty-print --output json: exit 0; Succeeded, 2 creates (group + registry), no diagnostics. Actual registry has Basic SKU, no networkRuleSet, publicNetworkAccess Enabled, adminUserEnabled false and anonymousPullEnabled false.",
+    "az deployment sub validate --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location eastus2 --name registry-validate-19f3d63e --template-file generated-scenarios\\resto-scale-agent\\evidence\\registry-independent-19f3d63e.arm.json --output json: exit 0; Succeeded, error null, no diagnostics. Independent provider validation excludes grants and is not full deployment acceptance.",
+    "az cosmosdb locations list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --query \"[?name=='East US 2']\" --output json: exit 0; one exact region, Online, supportsAvailabilityZone true, isSubscriptionRegionAccessAllowedForAz false, regular access true. evidence\\cosmos-region-19f3d63e.json. Official Locations API defines the AZ flag as subscription regional access.",
+    "Recorded blocker verification command executed under the same restrictions: exit 0, output false; access prerequisite FAILED, not inferred from CLI exit. evidence\\cosmos-zone-access-verification-19f3d63e.txt.",
+    "Fresh providers/RBAC/policy metadata: all eleven selected providers Registered, Owner and Foundry User retained, three policy assignments inspected. Model quota used 100 of 1000, GlobalStandard capacity 900 versus requested 100; metadata is not reserved allocation or inference proof. Matching evidence\\*-19f3d63e.json files retained.",
+    "python generated-scenarios\\resto-scale-agent\\evidence\\refresh-cost-19f3d63e.py: exit 0; eight exact regional public meters refreshed, no pagination, selected rates unchanged. Shared allowance USD 745-1150/month; full reference USD 900-1650/month; not a quote, approved budget or cap. Ancillary allowance not individually requoted. evidence\\cost-review-19f3d63e.json.",
+    "az group exists --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --name rg-resto-scale-agent --output json: exit 0, false both before and after preparation. Registry check-name reports available. No resource mutations, support requests, deployment retry, directory writes, runtime rollout, hack composition or teams.",
+    "Scoped scenario_catalog.refresh updated only this workspace's curated manifest after the reference change; no shared repository catalog exported. Updated JSON parses; Markdown lines <=120 and deployment-summary required headings match the canonical template."
+  ]
+}

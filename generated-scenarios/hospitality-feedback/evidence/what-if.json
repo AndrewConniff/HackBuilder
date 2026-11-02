@@ -1,0 +1,721 @@
+{
+  "startedAtUtc": "2026-10-22T18:25:04.1856663Z",
+  "completedAtUtc": "2026-10-22T18:25:30.0432814Z",
+  "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+  "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+  "resourceGroupName": "rg-hospitality-feedback",
+  "azdEnvironment": "hospitality-feedback",
+  "location": "westus3",
+  "previewOnly": true,
+  "parametersFile": "infra/preview.parameters.json",
+  "command": "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus3 --template-file infra/main.bicep --parameters @infra/preview.parameters.json --name hotel-feedback-hospitality-feedback --result-format FullResourcePayloads --no-pretty-print --validation-level Provider --no-prompt true --output json",
+  "exitCode": 0,
+  "result": {
+    "changes": [
+      {
+        "after": {
+          "apiVersion": "2025-04-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback",
+          "location": "westus3",
+          "name": "rg-hospitality-feedback",
+          "tags": {
+            "Environment": "hospitality-feedback",
+            "ManagedBy": "Bicep",
+            "Project": "hospitality-feedback",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.Resources/resourceGroups"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2025-06-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.CognitiveServices/accounts/ai-hotel-mb7gxn7hdgig",
+          "identity": {
+            "type": "SystemAssigned"
+          },
+          "kind": "AIServices",
+          "location": "westus3",
+          "name": "ai-hotel-mb7gxn7hdgig",
+          "properties": {
+            "allowProjectManagement": true,
+            "customSubDomainName": "ai-hotel-mb7gxn7hdgig",
+            "disableLocalAuth": true,
+            "dynamicThrottlingEnabled": false,
+            "migrationToken": "*******",
+            "publicNetworkAccess": "Enabled",
+            "restore": false,
+            "restrictOutboundNetworkAccess": false
+          },
+          "resourceGroup": "rg-hospitality-feedback",
+          "sku": {
+            "name": "S0"
+          },
+          "tags": {
+            "Environment": "hospitality-feedback",
+            "ManagedBy": "Bicep",
+            "Project": "hospitality-feedback",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.CognitiveServices/accounts"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.CognitiveServices/accounts/ai-hotel-mb7gxn7hdgig",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2026-05-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.CognitiveServices/accounts/ai-hotel-mb7gxn7hdgig/deployments/hotel-analysis",
+          "name": "hotel-analysis",
+          "properties": {
+            "model": {
+              "format": "OpenAI",
+              "name": "gpt-4.1-mini",
+              "version": "2025-04-14"
+            },
+            "versionUpgradeOption": "NoAutoUpgrade"
+          },
+          "resourceGroup": "rg-hospitality-feedback",
+          "sku": {
+            "capacity": 10,
+            "name": "Standard"
+          },
+          "type": "Microsoft.CognitiveServices/accounts/deployments"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.CognitiveServices/accounts/ai-hotel-mb7gxn7hdgig/deployments/hotel-analysis",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2025-06-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.CognitiveServices/accounts/ai-hotel-mb7gxn7hdgig/projects/hotel-feedback",
+          "identity": {
+            "type": "SystemAssigned"
+          },
+          "location": "westus3",
+          "name": "hotel-feedback",
+          "properties": {
+            "description": "Synthetic multilingual hotel feedback; Basic agent state managed by Microsoft.",
+            "displayName": "Hotel service feedback"
+          },
+          "resourceGroup": "rg-hospitality-feedback",
+          "tags": {
+            "Environment": "hospitality-feedback",
+            "ManagedBy": "Bicep",
+            "Project": "hospitality-feedback",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.CognitiveServices/accounts/projects"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.CognitiveServices/accounts/ai-hotel-mb7gxn7hdgig/projects/hotel-feedback",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2022-04-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.CognitiveServices/accounts/ai-hotel-mb7gxn7hdgig/projects/hotel-feedback/providers/Microsoft.Authorization/roleAssignments/88c37fbb-c908-512e-a116-7027ea973f01",
+          "name": "88c37fbb-c908-512e-a116-7027ea973f01",
+          "properties": {
+            "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+            "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/53ca6127-db72-4b80-b1b0-d745d6d5456d"
+          },
+          "resourceGroup": "rg-hospitality-feedback",
+          "type": "Microsoft.Authorization/roleAssignments"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.CognitiveServices/accounts/ai-hotel-mb7gxn7hdgig/projects/hotel-feedback/providers/Microsoft.Authorization/roleAssignments/88c37fbb-c908-512e-a116-7027ea973f01",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2022-04-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.CognitiveServices/accounts/ai-hotel-mb7gxn7hdgig/projects/hotel-feedback/providers/Microsoft.Authorization/roleAssignments/a91dcf96-e75c-5a94-a49b-131d5cbc7426",
+          "name": "a91dcf96-e75c-5a94-a49b-131d5cbc7426",
+          "properties": {
+            "principalId": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-hotel-mb7gxn7hdg', '2024-11-30').principalId]",
+            "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/53ca6127-db72-4b80-b1b0-d745d6d5456d"
+          },
+          "resourceGroup": "rg-hospitality-feedback",
+          "type": "Microsoft.Authorization/roleAssignments"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.CognitiveServices/accounts/ai-hotel-mb7gxn7hdgig/projects/hotel-feedback/providers/Microsoft.Authorization/roleAssignments/a91dcf96-e75c-5a94-a49b-131d5cbc7426",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2024-11-30",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-hotel-mb7gxn7hdg",
+          "location": "westus3",
+          "name": "id-hotel-mb7gxn7hdg",
+          "resourceGroup": "rg-hospitality-feedback",
+          "tags": {
+            "Environment": "hospitality-feedback",
+            "ManagedBy": "Bicep",
+            "Project": "hospitality-feedback",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.ManagedIdentity/userAssignedIdentities"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-hotel-mb7gxn7hdg",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2025-06-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi",
+          "kind": "StorageV2",
+          "location": "westus3",
+          "name": "sthotelmb7gxn7hdgigi",
+          "properties": {
+            "accessTier": "Hot",
+            "allowBlobPublicAccess": false,
+            "allowCrossTenantReplication": false,
+            "allowSharedKeyAccess": false,
+            "customDomain": {
+              "useSubDomainName": false
+            },
+            "defaultToOAuthAuthentication": true,
+            "encryption": {
+              "keySource": "Microsoft.Storage",
+              "requireInfrastructureEncryption": true
+            },
+            "isLocalUserEnabled": false,
+            "isSftpEnabled": false,
+            "largeFileSharesState": "Disabled",
+            "minimumTlsVersion": "TLS1_2",
+            "networkAcls": {
+              "bypass": "None",
+              "defaultAction": "Allow"
+            },
+            "publicNetworkAccess": "Enabled",
+            "supportsHttpsTrafficOnly": true
+          },
+          "resourceGroup": "rg-hospitality-feedback",
+          "sku": {
+            "name": "Standard_LRS"
+          },
+          "tags": {
+            "Environment": "hospitality-feedback",
+            "ManagedBy": "Bicep",
+            "Project": "hospitality-feedback",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.Storage/storageAccounts"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2025-01-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi/blobServices/default",
+          "name": "default",
+          "properties": {
+            "automaticSnapshotPolicyEnabled": false,
+            "containerDeleteRetentionPolicy": {
+              "allowPermanentDelete": false,
+              "days": 7,
+              "enabled": true
+            },
+            "deleteRetentionPolicy": {
+              "days": 7,
+              "enabled": true
+            },
+            "isVersioningEnabled": true,
+            "lastAccessTimeTrackingPolicy": "[if(and(not(equals(reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi', '2025-01-01', 'full').kind, 'Storage')), empty(tryGet(reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi', '2025-01-01', 'full'), 'extendedLocation'))), createObject('enable', parameters('lastAccessTimeTrackingPolicyEnabled'), 'name', if(equals(parameters('lastAccessTimeTrackingPolicyEnabled'), true()), 'AccessTimeTracking', null()), 'trackingGranularityInDays', if(equals(parameters('lastAccessTimeTrackingPolicyEnabled'), true()), 1, null())), null())]"
+          },
+          "resourceGroup": "rg-hospitality-feedback",
+          "type": "Microsoft.Storage/storageAccounts/blobServices"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi/blobServices/default",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2025-01-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi/blobServices/default/containers/audit",
+          "name": "audit",
+          "properties": {
+            "publicAccess": "None"
+          },
+          "resourceGroup": "rg-hospitality-feedback",
+          "type": "Microsoft.Storage/storageAccounts/blobServices/containers"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi/blobServices/default/containers/audit",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2025-01-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi/blobServices/default/containers/processed",
+          "name": "processed",
+          "properties": {
+            "publicAccess": "None"
+          },
+          "resourceGroup": "rg-hospitality-feedback",
+          "type": "Microsoft.Storage/storageAccounts/blobServices/containers"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi/blobServices/default/containers/processed",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2025-01-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi/blobServices/default/containers/raw",
+          "name": "raw",
+          "properties": {
+            "publicAccess": "None"
+          },
+          "resourceGroup": "rg-hospitality-feedback",
+          "type": "Microsoft.Storage/storageAccounts/blobServices/containers"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi/blobServices/default/containers/raw",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2025-01-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi/blobServices/default/containers/status",
+          "name": "status",
+          "properties": {
+            "publicAccess": "None"
+          },
+          "resourceGroup": "rg-hospitality-feedback",
+          "type": "Microsoft.Storage/storageAccounts/blobServices/containers"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi/blobServices/default/containers/status",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2022-04-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi/providers/Microsoft.Authorization/roleAssignments/1b3a2e8c-db71-57bc-b924-3d9fa4aec0cd",
+          "name": "1b3a2e8c-db71-57bc-b924-3d9fa4aec0cd",
+          "properties": {
+            "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+            "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/974c5e8b-45b9-4653-ba55-5f855dd0fb88"
+          },
+          "resourceGroup": "rg-hospitality-feedback",
+          "type": "Microsoft.Authorization/roleAssignments"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi/providers/Microsoft.Authorization/roleAssignments/1b3a2e8c-db71-57bc-b924-3d9fa4aec0cd",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2022-04-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi/providers/Microsoft.Authorization/roleAssignments/afb44b5c-91b2-5a3d-8e12-02d247dd4341",
+          "name": "afb44b5c-91b2-5a3d-8e12-02d247dd4341",
+          "properties": {
+            "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+            "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/ba92f5b4-2d11-453d-a403-e96b0029c9fe"
+          },
+          "resourceGroup": "rg-hospitality-feedback",
+          "type": "Microsoft.Authorization/roleAssignments"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi/providers/Microsoft.Authorization/roleAssignments/afb44b5c-91b2-5a3d-8e12-02d247dd4341",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2025-06-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi/queueServices/default",
+          "name": "default",
+          "resourceGroup": "rg-hospitality-feedback",
+          "type": "Microsoft.Storage/storageAccounts/queueServices"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi/queueServices/default",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2025-06-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi/queueServices/default/queues/feedback-ingest",
+          "name": "feedback-ingest",
+          "resourceGroup": "rg-hospitality-feedback",
+          "type": "Microsoft.Storage/storageAccounts/queueServices/queues"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi/queueServices/default/queues/feedback-ingest",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2025-06-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi/queueServices/default/queues/feedback-poison",
+          "name": "feedback-poison",
+          "resourceGroup": "rg-hospitality-feedback",
+          "type": "Microsoft.Storage/storageAccounts/queueServices/queues"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi/queueServices/default/queues/feedback-poison",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2025-03-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Web/serverfarms/plan-hotel-mb7gxn7hdg",
+          "kind": "linux",
+          "location": "westus3",
+          "name": "plan-hotel-mb7gxn7hdg",
+          "properties": {
+            "elasticScaleEnabled": false,
+            "isCustomMode": false,
+            "perSiteScaling": false,
+            "reserved": true,
+            "targetWorkerSizeId": 0,
+            "zoneRedundant": false
+          },
+          "resourceGroup": "rg-hospitality-feedback",
+          "sku": {
+            "capacity": 1,
+            "name": "B1"
+          },
+          "tags": {
+            "Environment": "hospitality-feedback",
+            "ManagedBy": "Bicep",
+            "Project": "hospitality-feedback",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.Web/serverfarms"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Web/serverfarms/plan-hotel-mb7gxn7hdg",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2025-03-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Web/sites/app-hotel-mb7gxn7hdgig",
+          "identity": "*******",
+          "kind": "app,linux",
+          "location": "westus3",
+          "name": "app-hotel-mb7gxn7hdgig",
+          "properties": {
+            "clientAffinityEnabled": true,
+            "clientAffinityPartitioningEnabled": false,
+            "clientAffinityProxyEnabled": true,
+            "clientCertEnabled": false,
+            "clientCertMode": "Optional",
+            "enabled": true,
+            "httpsOnly": true,
+            "publicNetworkAccess": "Enabled",
+            "redundancyMode": "None",
+            "scmSiteAlsoStopped": false,
+            "serverFarmId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Web/serverfarms/plan-hotel-mb7gxn7hdg",
+            "siteConfig": "*******",
+            "storageAccountRequired": false
+          },
+          "resourceGroup": "rg-hospitality-feedback",
+          "tags": {
+            "Environment": "hospitality-feedback",
+            "ManagedBy": "Bicep",
+            "Project": "hospitality-feedback",
+            "SecurityControl": "Ignore",
+            "azd-service-name": "web"
+          },
+          "type": "Microsoft.Web/sites"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Web/sites/app-hotel-mb7gxn7hdgig",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2025-03-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Web/sites/app-hotel-mb7gxn7hdgig/basicPublishingCredentialsPolicies/ftp",
+          "location": "westus3",
+          "name": "ftp",
+          "properties": {
+            "allow": false
+          },
+          "resourceGroup": "rg-hospitality-feedback",
+          "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Web/sites/app-hotel-mb7gxn7hdgig/basicPublishingCredentialsPolicies/ftp",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2025-03-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Web/sites/app-hotel-mb7gxn7hdgig/basicPublishingCredentialsPolicies/scm",
+          "location": "westus3",
+          "name": "scm",
+          "properties": {
+            "allow": false
+          },
+          "resourceGroup": "rg-hospitality-feedback",
+          "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Web/sites/app-hotel-mb7gxn7hdgig/basicPublishingCredentialsPolicies/scm",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2025-03-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Web/sites/app-hotel-mb7gxn7hdgig/config/appsettings",
+          "name": "appsettings",
+          "properties": "[union(list('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Web/sites/app-hotel-mb7gxn7hdgig/config/appsettings', '2023-12-01').properties, createObject('ASPNETCORE_ENVIRONMENT', 'Production', 'AZURE_CLIENT_ID', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-hotel-mb7gxn7hdg', '2024-11-30').clientId, 'Feedback__UseAzurite', 'false', 'Feedback__LocalAnonymous', 'false', 'Feedback__BlobEndpoint', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi', '2025-06-01').primaryEndpoints.blob, 'Feedback__QueueEndpoint', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi', '2025-06-01').primaryEndpoints.queue, 'Feedback__ProjectEndpoint', 'https://ai-hotel-mb7gxn7hdgig.services.ai.azure.com/api/projects/hotel-feedback', 'Feedback__ModelDeployment', 'hotel-analysis', 'Feedback__AgentName', 'hotel-feedback-pfe6ons2ei', 'Feedback__TenantId', '16b3c013-d300-468d-ac64-7eda0820b6d3', 'Feedback__Audience', 'urn:hospitality-feedback:preview-only-unresolved-audience', 'Feedback__MaxEvidenceRecords', '100', 'Feedback__MaxDeliveryAttempts', '5', 'WEBSITE_RUN_FROM_PACKAGE', '1', 'Feedback__OperatorObjectIds__0', '214d672b-df87-4f3b-94fd-7863032546c1'), createObject(), createObject())]",
+          "resourceGroup": "rg-hospitality-feedback",
+          "type": "Microsoft.Web/sites/config"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Web/sites/app-hotel-mb7gxn7hdgig/config/appsettings",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2025-03-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Web/sites/app-hotel-mb7gxn7hdgig/config/logs",
+          "name": "logs",
+          "properties": {
+            "applicationLogs": {
+              "fileSystem": {
+                "level": "Information"
+              }
+            },
+            "detailedErrorMessages": {
+              "enabled": false
+            },
+            "failedRequestsTracing": {
+              "enabled": false
+            },
+            "httpLogs": {
+              "fileSystem": {
+                "enabled": true,
+                "retentionInDays": 3,
+                "retentionInMb": 25
+              }
+            }
+          },
+          "resourceGroup": "rg-hospitality-feedback",
+          "type": "Microsoft.Web/sites/config"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Web/sites/app-hotel-mb7gxn7hdgig/config/logs",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2022-04-01",
+          "id": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi', 'Microsoft.Authorization/roleAssignments', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-hotel-mb7gxn7hdg', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/ba92f5b4-2d11-453d-a403-e96b0029c9fe')))]",
+          "name": "[last(split(coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-hotel-mb7gxn7hdg', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/ba92f5b4-2d11-453d-a403-e96b0029c9fe')), '/'))]",
+          "properties": {
+            "condition": null,
+            "conditionVersion": null,
+            "delegatedManagedIdentityResourceId": null,
+            "description": null,
+            "principalId": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-hotel-mb7gxn7hdg', '2024-11-30').principalId]",
+            "principalType": "ServicePrincipal",
+            "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/ba92f5b4-2d11-453d-a403-e96b0029c9fe"
+          },
+          "resourceGroup": "rg-hospitality-feedback",
+          "type": "Microsoft.Authorization/roleAssignments"
+        },
+        "before": null,
+        "changeType": "Unsupported",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi', 'Microsoft.Authorization/roleAssignments', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-hotel-mb7gxn7hdg', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/ba92f5b4-2d11-453d-a403-e96b0029c9fe')))]",
+        "symbolicName": null,
+        "unsupportedReason": "Changes to the resource declared at 'properties.template.resources[1].properties.template.resources.storage.properties.template.resources.storageAccount_roleAssignments' on line 1 and column 111483 cannot be analyzed because its resource ID or API version cannot be calculated until the deployment is under way. Please see https://aka.ms/WhatIfUnidentifiableResource for more guidance."
+      },
+      {
+        "after": {
+          "apiVersion": "2022-04-01",
+          "id": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi', 'Microsoft.Authorization/roleAssignments', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-hotel-mb7gxn7hdg', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/974c5e8b-45b9-4653-ba55-5f855dd0fb88')))]",
+          "name": "[last(split(coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-hotel-mb7gxn7hdg', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/974c5e8b-45b9-4653-ba55-5f855dd0fb88')), '/'))]",
+          "properties": {
+            "condition": null,
+            "conditionVersion": null,
+            "delegatedManagedIdentityResourceId": null,
+            "description": null,
+            "principalId": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-hotel-mb7gxn7hdg', '2024-11-30').principalId]",
+            "principalType": "ServicePrincipal",
+            "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/974c5e8b-45b9-4653-ba55-5f855dd0fb88"
+          },
+          "resourceGroup": "rg-hospitality-feedback",
+          "type": "Microsoft.Authorization/roleAssignments"
+        },
+        "before": null,
+        "changeType": "Unsupported",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "[extensionResourceId('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi', 'Microsoft.Authorization/roleAssignments', coalesce(null(), guid('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.Storage/storageAccounts/sthotelmb7gxn7hdgigi', reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-hospitality-feedback/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-hotel-mb7gxn7hdg', '2024-11-30').principalId, '/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/974c5e8b-45b9-4653-ba55-5f855dd0fb88')))]",
+        "symbolicName": null,
+        "unsupportedReason": "Changes to the resource declared at 'properties.template.resources[1].properties.template.resources.storage.properties.template.resources.storageAccount_roleAssignments' on line 1 and column 111483 cannot be analyzed because its resource ID or API version cannot be calculated until the deployment is under way. Please see https://aka.ms/WhatIfUnidentifiableResource for more guidance."
+      }
+    ],
+    "diagnostics": null,
+    "error": null,
+    "potentialChanges": null,
+    "status": "Succeeded"
+  }
+}

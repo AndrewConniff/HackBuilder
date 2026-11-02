@@ -1,0 +1,14 @@
+name: tdd-azd-finance-security-hack
+metadata:
+  template: tddazd-finance-security-hack@1.0.0
+infra:
+  provider: bicep
+  path: ./infra
+services:
+  web:
+    project: .
+    host: containerapp
+    language: docker
+    docker:
+      path: ./src/Brokerage.Web/Dockerfile
+      context: .

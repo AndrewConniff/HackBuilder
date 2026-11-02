@@ -1,0 +1,7 @@
+{
+  "command": "python scripts\\private_lifecycle.py publish",
+  "startedAtUtc": "2026-10-25T00:16:25.6176169Z",
+  "finishedAtUtc": "2026-10-25T00:18:01.7995850Z",
+  "exitCode": 1,
+  "transport": "existing authenticated web SCM data staging plus private VM Run Command"
+}

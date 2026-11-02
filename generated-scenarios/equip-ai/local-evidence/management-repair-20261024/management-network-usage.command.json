@@ -1,0 +1,17 @@
+{
+  "command": [
+    "az",
+    "network",
+    "list-usages",
+    "--location",
+    "centralus",
+    "--subscription",
+    "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "--output",
+    "json"
+  ],
+  "startedAtUtc": "2026-10-24T23:36:24.806713+00:00",
+  "finishedAtUtc": "2026-10-24T23:36:27.478272+00:00",
+  "exitCode": 0,
+  "stderr": ""
+}

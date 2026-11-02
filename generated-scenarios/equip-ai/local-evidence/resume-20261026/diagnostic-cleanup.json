@@ -1,0 +1,13 @@
+{
+  "checkedAtUtc": "2026-10-26T02:12:20.658959+00:00",
+  "temporaryAccountScopeAssignmentRemoved": true,
+  "originalWebProjectRolesVerified": true,
+  "documentedProjectIdentityParentRoleVerified": true,
+  "temporaryExceptionCaptureRemoved": true,
+  "applicationReadiness": {
+    "status": "process-running",
+    "cloudValidated": false,
+    "buildId": "512c825620fbac8a15ff72693f6c6271bf9ba9e6e733fa7c03847b354eeba04a",
+    "agentVersion": "1"
+  }
+}

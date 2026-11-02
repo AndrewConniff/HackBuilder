@@ -1,0 +1,11 @@
+{
+  "source": "https://prices.azure.com/api/retail/prices?%24filter=armRegionName+eq+%27eastus%27+and+%28meterId+eq+%27fa5f9dcf-3bf0-50ea-8c22-7daa13474f66%27+or+meterId+eq+%275d711bbe-b247-5277-891f-a99e24468d2d%27%29",
+  "response": {
+    "BillingCurrency": "USD",
+    "CustomerEntityId": "Default",
+    "CustomerEntityType": "Retail",
+    "Items": [],
+    "NextPageLink": null,
+    "Count": 0
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "stage": "diagrams",
+  "status": "completed",
+  "summary": "Generated and visually reviewed architecture and runtime PNGs for the confirmed local design, with matching retained Python sources and architecture embeds. These diagrams are design evidence only; no Azure or runtime success is claimed.",
+  "evidence": [
+    "python generated-scenarios\\resto-scale-agent\\03-architect-diagram.py && python generated-scenarios\\resto-scale-agent\\04-runtime-diagram.py: exit code 0 for both final renders.",
+    "Pillow Image.verify passed: 03-architect-diagram.png PNG 3506x2493, 455098 bytes; 04-runtime-diagram.png PNG 2198x4818, 475120 bytes.",
+    "Both final images visually inspected: fitted labels, resource boundaries, managed identity/data paths, deterministic transaction independence, bounded staff specialist and explicit failure paths agree with the confirmed architecture. No IaC exists yet; agreement must be rechecked after implementation.",
+    "02-architecture-assessment.md embeds both images with descriptive alt text and records existing portal design confirmation.",
+    "scenario_catalog.refresh scoped helper refreshed this scenario's curated scenario-manifest.json from reviewed-metadata.json. Its CLI unconditionally exports the shared repository catalog, so the helper function was used to honor the worker prohibition on canonical repository writes."
+  ]
+}

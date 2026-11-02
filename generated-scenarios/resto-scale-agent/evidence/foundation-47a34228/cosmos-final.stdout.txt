@@ -1,0 +1,132 @@
+{
+  "analyticalStorageConfiguration": {
+    "schemaType": "WellDefined"
+  },
+  "apiProperties": null,
+  "backupPolicy": {
+    "continuousModeProperties": {
+      "tier": "Continuous7Days"
+    },
+    "migrationState": null,
+    "type": "Continuous"
+  },
+  "capabilities": [],
+  "capacity": {
+    "totalThroughputLimit": -1
+  },
+  "connectorOffer": null,
+  "consistencyPolicy": {
+    "defaultConsistencyLevel": "Session",
+    "maxIntervalInSeconds": 5,
+    "maxStalenessPrefix": 100
+  },
+  "cors": [],
+  "createMode": "Default",
+  "customerManagedKeyStatus": null,
+  "databaseAccountOfferType": "Standard",
+  "defaultIdentity": "FirstPartyIdentity",
+  "defaultPriorityLevel": "High",
+  "disableKeyBasedMetadataWriteAccess": true,
+  "disableLocalAuth": true,
+  "documentEndpoint": "https://cosmos-resto-4tvlzr5zf2rxi.documents.azure.com:443/",
+  "enableAnalyticalStorage": false,
+  "enableAutomaticFailover": false,
+  "enableBurstCapacity": true,
+  "enableCassandraConnector": null,
+  "enableFreeTier": false,
+  "enableMultipleWriteLocations": false,
+  "enablePartitionMerge": false,
+  "enablePerRegionPerPartitionAutoscale": true,
+  "enablePriorityBasedExecution": false,
+  "enforceHierarchicalPartitionKeyIdLastLevel": false,
+  "failoverPolicies": [
+    {
+      "failoverPriority": 0,
+      "id": "cosmos-resto-4tvlzr5zf2rxi-centralus",
+      "locationName": "Central US"
+    }
+  ],
+  "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi",
+  "identity": {
+    "principalId": null,
+    "tenantId": null,
+    "type": "None",
+    "userAssignedIdentities": null
+  },
+  "instanceId": "15466a37-aeb3-4213-8a9a-8aa66925497d",
+  "ipRules": [],
+  "isVirtualNetworkFilterEnabled": false,
+  "keyVaultKeyUri": null,
+  "keyVaultKeyUriVersion": null,
+  "keysMetadata": {
+    "primaryMasterKey": {
+      "generationTime": "2026-10-24T00:14:21.512780+00:00"
+    },
+    "primaryReadonlyMasterKey": {
+      "generationTime": "2026-10-24T00:14:21.512780+00:00"
+    },
+    "secondaryMasterKey": {
+      "generationTime": "2026-10-24T00:14:21.512780+00:00"
+    },
+    "secondaryReadonlyMasterKey": {
+      "generationTime": "2026-10-24T00:14:21.512780+00:00"
+    }
+  },
+  "kind": "GlobalDocumentDB",
+  "location": "Central US",
+  "locations": [
+    {
+      "documentEndpoint": "https://cosmos-resto-4tvlzr5zf2rxi-centralus.documents.azure.com:443/",
+      "failoverPriority": 0,
+      "id": "cosmos-resto-4tvlzr5zf2rxi-centralus",
+      "isZoneRedundant": true,
+      "locationName": "Central US",
+      "provisioningState": "Succeeded"
+    }
+  ],
+  "minimalTlsVersion": "Tls12",
+  "name": "cosmos-resto-4tvlzr5zf2rxi",
+  "networkAclBypass": "None",
+  "networkAclBypassResourceIds": [],
+  "privateEndpointConnections": null,
+  "provisioningState": "Succeeded",
+  "publicNetworkAccess": "Enabled",
+  "readLocations": [
+    {
+      "documentEndpoint": "https://cosmos-resto-4tvlzr5zf2rxi-centralus.documents.azure.com:443/",
+      "failoverPriority": 0,
+      "id": "cosmos-resto-4tvlzr5zf2rxi-centralus",
+      "isZoneRedundant": true,
+      "locationName": "Central US",
+      "provisioningState": "Succeeded"
+    }
+  ],
+  "resourceGroup": "rg-resto-scale-agent",
+  "restoreParameters": null,
+  "systemData": {
+    "createdAt": "2026-10-24T00:14:21.512780+00:00",
+    "createdBy": null,
+    "createdByType": null,
+    "lastModifiedAt": null,
+    "lastModifiedBy": null,
+    "lastModifiedByType": null
+  },
+  "tags": {
+    "Environment": "resto-scale-agent",
+    "ManagedBy": "Bicep",
+    "Project": "resto-scale-agent",
+    "SecurityControl": "Ignore"
+  },
+  "type": "Microsoft.DocumentDB/databaseAccounts",
+  "virtualNetworkRules": [],
+  "writeLocations": [
+    {
+      "documentEndpoint": "https://cosmos-resto-4tvlzr5zf2rxi-centralus.documents.azure.com:443/",
+      "failoverPriority": 0,
+      "id": "cosmos-resto-4tvlzr5zf2rxi-centralus",
+      "isZoneRedundant": true,
+      "locationName": "Central US",
+      "provisioningState": "Succeeded"
+    }
+  ]
+}

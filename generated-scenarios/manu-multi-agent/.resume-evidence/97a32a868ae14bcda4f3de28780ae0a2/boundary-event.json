@@ -1,0 +1,13 @@
+{
+  "stage": "local-validation",
+  "status": "completed",
+  "summary": "Decision required: exact-target deployment preparation remains the next incomplete step. All persisted decisions/history were read and 34 retained source hashes match. Reuse the supplied shared Azure identity; no sign-in questionnaire is needed. Canonical authorizations are empty and deploymentContext is absent. In this project's Azure readiness and proposed targets card, review resource group, azd environment and region, then select Allow read-only preflight & what-if. No cloud operation was performed.",
+  "evidence": [
+    "Canonical revision 35: designConfirmed=true; scenario-local-execution retained; authorizations=[]; deploymentContext absent; no pending business decisions or setup blocker.",
+    ".resume-evidence\\97a32a868ae14bcda4f3de28780ae0a2\\resume-boundary.json: actual SHA-256 verification of all 34 local-validation.json source files passed with zero mismatches, exit 0. Runtime tests were not rerun.",
+    "local-validation.json retains passed offline evidence dated 2026-10-24T19:59:52.091203+00:00; existing design and implementation are unchanged.",
+    ".resume-evidence\\d759fcc15c504c529009a19ae5ba0e13\\deployment-review.json retains the coherent installation, directory changes, private execution and cost inventory. Actual target pricing and what-if await preparation consent.",
+    "Backend-supplied petender@microsoft.com identity for subscription efd64343-6ef4-4926-951f-d3229f38bd76 and tenant 16b3c013-d300-468d-ac64-7eda0820b6d3 is reused as tool identity, not resource consent.",
+    "No Azure operation, deployment, live acceptance, suitability approval, composition, team rollout or publication performed. Missing targets are routed to the portal context card, not invented or requested as a business ID questionnaire."
+  ]
+}

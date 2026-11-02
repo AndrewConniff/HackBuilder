@@ -1,0 +1,1291 @@
+[
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/brazilsoutheast",
+    "name": "Brazil Southeast",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": false
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/centralus",
+    "name": "Central US",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Zone",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": true,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/australiasoutheast",
+    "name": "Australia Southeast",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Zone",
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": true,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/canadacentral",
+    "name": "Canada Central",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local",
+        "Zone"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": false,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/centralindia",
+    "name": "Central India",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local",
+        "Zone"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/southeastasia",
+    "name": "Southeast Asia",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local",
+        "Zone"
+      ],
+      "isResidencyRestricted": true,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/switzerlandnorth",
+    "name": "Switzerland North",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local",
+        "Zone"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": true,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/uaenorth",
+    "name": "UAE North",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local",
+        "Zone"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": false,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/eastasia",
+    "name": "East Asia",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local",
+        "Zone"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": true,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/ukwest",
+    "name": "UK West",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": false
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/switzerlandwest",
+    "name": "Switzerland West",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": false
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/westeurope",
+    "name": "West Europe",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Zone",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": false,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/eastus2",
+    "name": "East US 2",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Zone",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/westus",
+    "name": "West US",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": false
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/eastus",
+    "name": "East US",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Zone",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": false,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/westus3",
+    "name": "West US 3",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local",
+        "Zone"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/australiaeast",
+    "name": "Australia East",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Zone",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": true,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/brazilsouth",
+    "name": "Brazil South",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local",
+        "Zone"
+      ],
+      "isResidencyRestricted": true,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/germanywestcentral",
+    "name": "Germany West Central",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local",
+        "Zone"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": true,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/francecentral",
+    "name": "France Central",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Zone",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": true,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/japaneast",
+    "name": "Japan East",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Zone",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/japanwest",
+    "name": "Japan West",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Zone",
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": true,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/koreasouth",
+    "name": "Korea South",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": false
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/germanynorth",
+    "name": "Germany North",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": false
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/francesouth",
+    "name": "France South",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": false
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/australiacentral",
+    "name": "Australia Central",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": false
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/southcentralus",
+    "name": "South Central US",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local",
+        "Zone"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": false,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/southafricanorth",
+    "name": "South Africa North",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Zone",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": true,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/koreacentral",
+    "name": "Korea Central",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local",
+        "Zone"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": true,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/southindia",
+    "name": "South India",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": false
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/norwayeast",
+    "name": "Norway East",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local",
+        "Zone"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": false,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/canadaeast",
+    "name": "Canada East",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": false,
+      "status": "Online",
+      "supportsAvailabilityZone": false
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/northcentralus",
+    "name": "North Central US",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local",
+        "Zone"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": true,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/norwaywest",
+    "name": "Norway West",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": false
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/northeurope",
+    "name": "North Europe",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Zone",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": false,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/southafricawest",
+    "name": "South Africa West",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": false
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/australiacentral2",
+    "name": "Australia Central 2",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": false
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/uaecentral",
+    "name": "UAE Central",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": false
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/uksouth",
+    "name": "UK South",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Zone",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/westcentralus",
+    "name": "West Central US",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": false
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/westindia",
+    "name": "West India",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": false,
+      "status": "Online",
+      "supportsAvailabilityZone": false
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/westus2",
+    "name": "West US 2",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Zone",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/jioindiawest",
+    "name": "Jio India West",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": false,
+      "status": "Online",
+      "supportsAvailabilityZone": false
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/jioindiacentral",
+    "name": "Jio India Central",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": false
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/swedencentral",
+    "name": "Sweden Central",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local",
+        "Zone"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": true,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/swedensouth",
+    "name": "Sweden South",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": false
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/qatarcentral",
+    "name": "Qatar Central",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Local",
+        "Zone"
+      ],
+      "isResidencyRestricted": true,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": false,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/polandcentral",
+    "name": "Poland Central",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Local",
+        "Zone"
+      ],
+      "isResidencyRestricted": true,
+      "isSubscriptionRegionAccessAllowedForAz": true,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/malaysiasouth",
+    "name": "Malaysia South",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": false
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/italynorth",
+    "name": "Italy North",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Local",
+        "Zone"
+      ],
+      "isResidencyRestricted": true,
+      "isSubscriptionRegionAccessAllowedForAz": true,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/israelcentral",
+    "name": "Israel Central",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Local",
+        "Zone"
+      ],
+      "isResidencyRestricted": true,
+      "isSubscriptionRegionAccessAllowedForAz": true,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/spaincentral",
+    "name": "Spain Central",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Local",
+        "Zone"
+      ],
+      "isResidencyRestricted": true,
+      "isSubscriptionRegionAccessAllowedForAz": true,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/mexicocentral",
+    "name": "Mexico Central",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Local",
+        "Zone"
+      ],
+      "isResidencyRestricted": true,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/taiwannorth",
+    "name": "Taiwan North",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local",
+        "Zone"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": true,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/taiwannorthwest",
+    "name": "Taiwan Northwest",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": false
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/newzealandnorth",
+    "name": "New Zealand North",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Local",
+        "Zone"
+      ],
+      "isResidencyRestricted": true,
+      "isSubscriptionRegionAccessAllowedForAz": true,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/southeastus",
+    "name": "Southeast US",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": false
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/indonesiacentral",
+    "name": "Indonesia Central",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Local",
+        "Zone"
+      ],
+      "isResidencyRestricted": true,
+      "isSubscriptionRegionAccessAllowedForAz": true,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/chilecentral",
+    "name": "Chile Central",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Local",
+        "Zone"
+      ],
+      "isResidencyRestricted": true,
+      "isSubscriptionRegionAccessAllowedForAz": true,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/malaysiawest",
+    "name": "Malaysia West",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Local",
+        "Zone"
+      ],
+      "isResidencyRestricted": true,
+      "isSubscriptionRegionAccessAllowedForAz": true,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/southcentralus2",
+    "name": "South Central US 2",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": false
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/austriaeast",
+    "name": "Austria East",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Local",
+        "Zone"
+      ],
+      "isResidencyRestricted": true,
+      "isSubscriptionRegionAccessAllowedForAz": true,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/southeastus3",
+    "name": "Southeast US 3",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": false
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/israelnorthwest",
+    "name": "Israel Northwest",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": false
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/belgiumcentral",
+    "name": "Belgium Central",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Local",
+        "Zone"
+      ],
+      "isResidencyRestricted": true,
+      "isSubscriptionRegionAccessAllowedForAz": true,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/denmarkeast",
+    "name": "Denmark East",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Local",
+        "Zone"
+      ],
+      "isResidencyRestricted": true,
+      "isSubscriptionRegionAccessAllowedForAz": true,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/southwestus",
+    "name": "Southwest US",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": false
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/southeastus5",
+    "name": "Southeast US 5",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": false
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/eastus3",
+    "name": "East US 3",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local",
+        "Zone"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": true,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/indiasouthcentral",
+    "name": "India South Central",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local",
+        "Zone"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": true,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/northeastus5",
+    "name": "Northeast US 5",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": false
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/southeastasia3",
+    "name": "Southeast Asia 3",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Zone",
+        "Geo",
+        "Local"
+      ],
+      "isResidencyRestricted": false,
+      "isSubscriptionRegionAccessAllowedForAz": true,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/saudiarabiaeast",
+    "name": "Saudi Arabia East",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Zone",
+        "Local"
+      ],
+      "isResidencyRestricted": true,
+      "isSubscriptionRegionAccessAllowedForAz": true,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.DocumentDB/locations/westcentralusfre",
+    "name": "West Central US FRE",
+    "properties": {
+      "backupStorageRedundancies": [
+        "Zone",
+        "Local"
+      ],
+      "isResidencyRestricted": true,
+      "isSubscriptionRegionAccessAllowedForAz": true,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "supportsAvailabilityZone": true
+    },
+    "systemData": null,
+    "type": "Microsoft.DocumentDB/locations"
+  }
+]

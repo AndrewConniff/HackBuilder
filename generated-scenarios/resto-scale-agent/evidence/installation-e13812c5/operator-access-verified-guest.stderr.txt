@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "C:\azd-projects\resto-scale-agent\evidence\installation-e13812c5\operator_access.py", line 96, in <module>
+    result = install(Installer(authorization["scope"], path, True), receipt)
+  File "C:\azd-projects\resto-scale-agent\evidence\installation-e13812c5\operator_access.py", line 51, in install
+    existing = installer.listing(path + query)
+  File "C:\azd-projects\resto-scale-agent\scripts\setup_identity.py", line 75, in listing
+    page = self.graph("get", path)
+  File "C:\azd-projects\resto-scale-agent\scripts\setup_identity.py", line 70, in graph
+    return self.cli(arguments)
+           ~~~~~~~~^^^^^^^^^^^
+  File "C:\azd-projects\resto-scale-agent\scripts\setup_identity.py", line 56, in cli
+    raise RuntimeError(f"Azure CLI failed ({result.returncode}): {result.stderr}")
+RuntimeError: Azure CLI failed (1): ERROR: Bad Request({"error":{"code":"Request_UnsupportedQuery","message":"Links to EntitlementGrant are not supported between specified entities.","innerError":{"date":"2026-10-24T17:41:17","request-id":"ead09716-59f8-4153-ada9-b74a8ca2c6c2","client-request-id":"ead09716-59f8-4153-ada9-b74a8ca2c6c2"}}})
+

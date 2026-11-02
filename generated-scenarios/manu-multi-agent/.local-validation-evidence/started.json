@@ -1,0 +1,11 @@
+{
+  "stage": "local-validation",
+  "status": "running",
+  "summary": "Resuming only the backend-assigned local-validation operation. Reusing confirmed design, local execution consent, current owner-bound readiness and completed application evidence. No cloud or directory authorization exists.",
+  "evidence": [
+    "portal_workflow.py read revision 23: requirements, architecture, diagrams, bicep and application completed; local-validation pending; designConfirmed true; authorizations empty; setupBlocker null.",
+    "backendReadiness checkedAtUtc 2026-10-23T14:32:38.967238-07:00: ready true, local build mode, no blocked stages; receipt reused without repeating the machine audit.",
+    ".application-evidence\\validation.json checkedAtUtc 2026-10-23T21:34:19.666862+00:00: all nine application checks passed, including 35 .NET tests, 12 infrastructure contracts and eight offline browser cases.",
+    "Production requires pinned endpoint/identity configuration and gateway JWTs on every route. The shared container helper's anonymous /health/live and homepage assumptions will be evaluated without weakening the confirmed authentication contract."
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "userResponse": "yes",
+  "receivedAtUtc": "2026-10-26T00:26:11.512Z",
+  "provenance": "Actual affirmative reply in this VS Code conversation to the same-target restore and complete-validation review.",
+  "review": "deployment-review.md",
+  "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+  "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+  "environment": "equip-ai",
+  "resourceGroup": "rg-equip-ai",
+  "region": "centralus",
+  "scope": "Restore the reference with local participant/coach accounts, retained site authorization, private access, managed identities and scoped deploying-user RBAC; complete real runtime acceptance after fresh readiness, cost and what-if checks.",
+  "historicalIllustrativeMonthlyUsd": 249.36,
+  "conditions": [
+    "Refresh pricing, capacity and what-if before paid allocation.",
+    "Return for material cost, security or target changes.",
+    "No hack composition, event deployment, publication or suitability approval."
+  ]
+}

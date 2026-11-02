@@ -1,0 +1,20 @@
+{
+  "checkedAtUtc": "2026-10-22T18:24:16.2380856Z",
+  "command": "az rest --method get --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Web/locations/swedencentral/usages?api-version=2024-11-01",
+  "exitCode": 0,
+  "result": {
+    "id": null,
+    "nextLink": null,
+    "value": [
+      {
+        "currentValue": 0,
+        "limit": 11,
+        "name": {
+          "localizedValue": "Total Regional VMs",
+          "value": "*"
+        },
+        "unit": "Instances"
+      }
+    ]
+  }
+}

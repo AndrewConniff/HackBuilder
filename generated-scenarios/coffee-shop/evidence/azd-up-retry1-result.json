@@ -1,0 +1,7 @@
+{
+  "status": "lifecycle-completed-runtime-not-yet-verified",
+  "exitCode": 0,
+  "checkedAtUtc": "2026-10-24T23:42:12.7489827+00:00",
+  "command": "azd up --no-prompt",
+  "correction": "Storage network ACL matches approved public-authenticated design; bootstrap explicitly uses configured Azure CLI identity"
+}

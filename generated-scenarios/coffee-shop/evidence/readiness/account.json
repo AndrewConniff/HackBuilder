@@ -1,0 +1,12 @@
+{
+  "checkedAtUtc": "2026-10-24T23:13:47.2863905+00:00",
+  "status": "observed-requires-review",
+  "arguments": [
+    "account",
+    "show",
+    "--subscription",
+    "efd64343-6ef4-4926-951f-d3229f38bd76"
+  ],
+  "exitCode": 0,
+  "output": "{\n  \"environmentName\": \"AzureCloud\",\n  \"homeTenantId\": \"16b3c013-d300-468d-ac64-7eda0820b6d3\",\n  \"id\": \"efd64343-6ef4-4926-951f-d3229f38bd76\",\n  \"isDefault\": true,\n  \"managedByTenants\": [\n    {\n      \"tenantId\": \"72f988bf-86f1-41af-91ab-2d7cd011db47\"\n    },\n    {\n      \"tenantId\": \"975f013f-7f24-47e8-a7d3-abc4752bf346\"\n    }\n  ],\n  \"name\": \"MCAPS-Hybrid-REQ-152516-2026-petender\",\n  \"state\": \"Enabled\",\n  \"tenantId\": \"16b3c013-d300-468d-ac64-7eda0820b6d3\",\n  \"user\": {\n    \"name\": \"petender@microsoft.com\",\n    \"type\": \"user\"\n  }\n}"
+}

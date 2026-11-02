@@ -1,0 +1,30 @@
+{
+  "currency": "USD",
+  "hoursPerMonth": 730,
+  "baselineIllustrativeMonthly": 151.53,
+  "baselineFixedMonthly": 99.95,
+  "management": {
+    "vmSku": "Standard_B2s",
+    "vmHourlyObservedPublicRetail": 0.0499,
+    "diskSku": "E4 LRS",
+    "diskMonthlyObservedPublicRetail": 2.4,
+    "standardIpv4HourlyObservedPublicRetail": 0.005,
+    "natHourlyPlanningAssumptionNotObserved": 0.045,
+    "natPerGbPlanningAssumptionNotObserved": 0.045,
+    "natGbPerMonthAssumption": 5,
+    "diskTransactionMonthlyAllowance": 0.01,
+    "illustrativeIncrementalMonthlyRounded": 75.56,
+    "illustrativeCombinedMonthlyRounded": 227.09
+  },
+  "publicRetailEvidence": "public-retail-prices.json",
+  "natRetailQueryReturnedNoRows": true,
+  "estimateNotQuoteOrSpendCeiling": true,
+  "exclusions": [
+    "Internet egress",
+    "Incremental diagnostics ingestion or private endpoint traffic above baseline",
+    "Disk transaction variation beyond allowance",
+    "Additional applicable Entra licensing",
+    "Tax and support"
+  ],
+  "newScopeApproved": false
+}

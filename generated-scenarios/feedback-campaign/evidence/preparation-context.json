@@ -1,0 +1,16 @@
+{
+  "recordedAtUtc": "2026-10-25T17:33:40.255865+00:00",
+  "userTrace": "affece3317ff4924b6bb60c9aa1497ab",
+  "workspace": "C:/HackBuilder",
+  "repository": "petender/HackBuilder",
+  "scenarioPath": "generated-scenarios/feedback-campaign",
+  "physicalPath": "C:\\azd-projects\\feedback-campaign",
+  "requestSha256": "56bf045588a4852233aea2b61422ad8a857806c97d721d721ace03e60b1302dd",
+  "handoffSha256": "b324815a627ce558cfa9114358f269fbf5759277f945175e44a65c5bc980ccfd",
+  "priorScenarioFolderFound": false,
+  "matchingLegacyWorkerObserved": false,
+  "cloudAuthority": "not-granted",
+  "cloudMutationsExecuted": false,
+  "cloudResourceQueriesExecuted": false,
+  "identityMetadataOnlyRefreshed": true
+}

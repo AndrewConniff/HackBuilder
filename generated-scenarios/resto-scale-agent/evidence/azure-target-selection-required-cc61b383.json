@@ -1,0 +1,23 @@
+{
+  "stage": "local-validation",
+  "status": "waiting_for_user",
+  "summary": "Setup verification passed and the blocker is cleared. Resumed local integration compiles, 25 application and eight tooling checks pass, and the final owned image passes liveness/cleanup. Fourteen static security findings and scanner/workload coverage limits remain explicit. Exact Azure targets are needed before requesting scoped preparation permission; no Azure operation or clean policy pass is claimed.",
+  "evidence": [
+    "Canonical revision 120 recorded setupVerification for blocker 13b185c049534370a1f6cdc802af4fdd with actual passing runtime/cleanup evidence; setupBlocker is now null.",
+    "validation\\local-checks-cc61b383.json: exact commands/results, allCommandsPassed=false because static security findings remain; no fabricated all-green receipt.",
+    "evidence\\tests\\final-tools-cc61b383.trx: 25 passed, zero failed/skipped. Python runtime/validation tooling suite: eight passed.",
+    "evidence\\container-runtime-final-cc61b383.json: final image linux/amd64 user 1654, health/homepage HTTP 200, required marker, cleanupPassed=true; shell-only scope.",
+    "05-implementation-reference.md and 07-webapp-summary.md: ordered authorized deployment procedure and retained security/live acceptance limitations.",
+    "Existing intake explicitly deferred deployment target selection; canonical authorizations remain empty. No account, subscription, tenant or resource group has been invented.",
+    "evidence\\catalog-refresh-scope-cc61b383.json: repository refresh CLI unexpectedly rewrote the shared catalog index; subsequent refresh was target-only. Concurrent shared edits prevented certifying a full rollback."
+  ],
+  "decision": {
+    "kind": "business",
+    "question": "Which exact Azure account, subscription ID, tenant ID, distinct azd environment, resource group rg-{environment}, and region should be proposed for deployment preparation? Supply these details in the portal response, or keep the reference local only. Target selection alone grants no Azure permission; a separate exact-scope preparation decision is required before any Azure query.",
+    "reason": "The confirmed local-only design deliberately deferred Azure targets. Local preparation has now produced compiled infrastructure/application and retained check evidence, but Azure policy, capacity, cost/what-if and real workload/agent validation cannot proceed without selected targets and separately recorded scope authorization. This is not another local tool/setup approval.",
+    "choices": [
+      "Provide exact Azure targets in the portal response",
+      "Keep the reference local only"
+    ]
+  }
+}

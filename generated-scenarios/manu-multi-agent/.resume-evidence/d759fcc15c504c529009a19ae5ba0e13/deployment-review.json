@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "projectSlug": "manu-multi-agent",
+  "status": "decision-required-before-cloud-preparation",
+  "reviewType": "local-complete-reference-installation-plan-not-an-authorized-deployment-review",
+  "canonicalStateAtResume": {
+    "revision": 9,
+    "designConfirmed": true,
+    "localToolConsent": "scenario-local-execution",
+    "authorizations": [],
+    "deploymentContext": null
+  },
+  "nextAction": "Use this project's portal Azure readiness and proposed targets card to resolve/review exact targets, then separately allow read-only preflight and what-if. Do not ask for IDs for solution-created components.",
+  "target": {
+    "account": null,
+    "subscriptionId": null,
+    "tenantId": null,
+    "resourceGroup": null,
+    "environment": null,
+    "region": null,
+    "provisionalPublicEvidenceRegion": "eastus2"
+  },
+  "oneConsolidatedInstallation": {
+    "entryPoint": "azd provision --environment <explicit-authorized-environment> --no-prompt",
+    "ordering": [
+      "Canonical exact-target deployment/directory/host scope, writer and identity guard.",
+      "Create or validate dedicated scenario-owned secretless single-tenant backend application/service principal; capture real IDs.",
+      "Provision private foundation and Standard dependencies using existing AVM-first Bicep.",
+      "Verify private DNS and TCP/TLS on the approved connected execution host.",
+      "Build native-SDK Linux amd64 nonroot image, push through private ACR and capture digest.",
+      "Install/reuse versioned fixtures and manifest, three actual agents and signing-key version.",
+      "Provision workload and public synthetic APIM using real digest, versions and identity outputs.",
+      "Capture nonsecret outputs and run separately recorded real model/agent/application/grounding/tool/negative acceptance."
+    ],
+    "directoryChanges": "One owned application and service principal, unique api:// audience and v2 access tokens. No client secret, Graph permission grant, tenant-wide consent or elevated role installation. Current tenant policy/capabilities remain unknown.",
+    "scopeFieldsForFutureConsolidatedReview": {
+      "directoryWrites": "scenario-owned-secretless-backend-api",
+      "privateExecutionHost": "Actual verified host name, unresolved; never substitute this text into a grant."
+    },
+    "generatedOutputsNotBusinessInputs": [
+      "Backend application/client/object IDs", "Agent IDs and versions", "Image digest",
+      "Fixture manifest digest", "Signing-key version", "Real service endpoints"
+    ]
+  },
+  "privateExecutionPath": {
+    "status": "unverified",
+    "preferred": "Verified existing VNet-connected operator/automation host using its approved artifact transfer and redacted result-return channel.",
+    "scope": "Run the existing repository helpers and azd lifecycle with the current canonical writer/authorization context. Do not copy credentials or treat a copied state file as authorization.",
+    "requiredEvidence": "Host identity, target route and private DNS, TCP/TLS, authenticated ACR/Blob/Foundry/Key Vault operations, and independent outside-network/unauthorized denial.",
+    "ifUnavailable": "Before deployment propose one priced connected-runner/management-path repair including bootstrap, identity, routing/DNS, patching, artifact transport, shutdown and ongoing charges.",
+    "notAuthorized": "No new VM, Bastion, VPN, runner, peering, firewall opening or public data-plane relaxation."
+  },
+  "costReview": {
+    "quoteStatus": "Not yet target-priced. No monetary total or budget approval is claimed.",
+    "currency": null,
+    "estimatedMonthlyTotal": null,
+    "baselineHours": 730,
+    "items": [
+      {"component": "API Management", "quantity": "One Standard v2 unit for 730 hours"},
+      {"component": "AI Search", "quantity": "One Standard replica/partition for 730 hours"},
+      {"component": "ACR", "quantity": "One Premium registry plus image storage/transactions"},
+      {"component": "Cosmos DB", "quantity": "Actual installed runtime-container throughput, bounded by the existing 5000 RU/s ceiling; ceiling is not billed provisioned usage"},
+      {"component": "Container Apps", "quantity": "One warm 0.5-vCPU/1-GiB replica; scale to three; actual active/idle/request rates"},
+      {"component": "Private networking", "quantity": "Seven private endpoints for 730 hours, endpoint data processing, eight linked service DNS zones plus internal ACA zone and queries"},
+      {"component": "Storage", "quantity": "Two Standard LRS accounts; actual versioned Blob capacity and transactions"},
+      {"component": "Key Vault", "quantity": "Standard nonexportable RSA signing key; operations and actual key/retention charges"},
+      {"component": "Logs and telemetry", "quantity": "PerGB2018 ingestion, 30-day retention and bounded diagnostics"},
+      {"component": "Model", "quantity": "Actual input/output token rates for the persisted exact model/version/deployment type; 100 handoffs <=700 Responses requests and <=3000000 combined tokens"},
+      {"component": "Management access", "quantity": "Existing connected-host allocation, approved artifact transport/network and operation costs; any new path requires an itemized scope repair"},
+      {"component": "Other usage", "quantity": "Applicable network egress, image/package transfer, requests, taxes and pricing-agreement differences"}
+    ],
+    "nextEvidence": "During authorized exact-target preparation obtain dated official regional unit rates and actual SKU/throughput assumptions; price fixed and input/output usage separately and disclose unresolved items. Include identity and management access in the same review."
+  },
+  "preparationChecksPending": [
+    "Exact account/subscription/tenant and selected azd environment",
+    "Complete region/model/SKU/provider/policy/subscription eligibility and quota/capacity",
+    "Verified private execution and artifact/result channel",
+    "Independent ARM what-if, including resource-group creation scope if needed",
+    "Actual tenant capability checks and planned directory mutations",
+    "Itemized dated end-to-end cost estimate",
+    "Identity/agent/key/image-dependent workload what-if after authorized installation outputs exist; never invent IDs"
+  ],
+  "completionBoundary": "Local validation does not authorize cloud preparation, directory writes, deployment, suitability approval, hack composition, event rollout or publication."
+}

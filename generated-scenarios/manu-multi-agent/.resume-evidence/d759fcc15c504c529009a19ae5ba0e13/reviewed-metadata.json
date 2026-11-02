@@ -1,0 +1,10 @@
+{
+  "title": "Manufacturing Sales-to-Marketing multi-agent handoff",
+  "summary": "Adventure Works Cycles Sales and Marketing reference with private keyless infrastructure, bounded three-agent application, offline validation and guarded complete-reference installation wiring. Cloud deployment and live proof remain pending.",
+  "industry": "Manufacturing & Mobility",
+  "businessUnits": ["sales", "marketing"],
+  "services": ["foundry", "container-apps", "key-vault", "managed-identity", "api-management", "storage", "cosmos-db", "ai-search", "virtual-network", "monitor"],
+  "pillars": ["operational-excellence"],
+  "domains": [],
+  "metadataStatus": "curated"
+}

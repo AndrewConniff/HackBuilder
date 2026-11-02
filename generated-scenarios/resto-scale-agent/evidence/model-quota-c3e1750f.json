@@ -1,0 +1,16 @@
+[
+  {
+    "currentValue": 1.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "One Thousand Tokens Per Minute - gpt-5.4-mini - GlobalStandard",
+      "value": "OpenAI.GlobalStandard.gpt-5.4-mini"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  }
+]

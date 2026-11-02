@@ -1,0 +1,31 @@
+{
+  "checkedAtUtc": "2026-10-24T22:34:36.761066+00:00",
+  "checks": [
+    {
+      "name": "03-architect-diagram",
+      "sourceParsed": true,
+      "pngVerified": true,
+      "dimensions": [
+        3423,
+        2413
+      ],
+      "pngSha256": "6189ea739d1573459e0e1fa29b25c1b9f34ffa8278a98a1bd4c803e70b1bd448"
+    },
+    {
+      "name": "04-runtime-diagram",
+      "sourceParsed": true,
+      "pngVerified": true,
+      "dimensions": [
+        2738,
+        2876
+      ],
+      "pngSha256": "59e67d12ea1349d99c337277d7325ff18fd850a6b5acd7e6d9a80107f8d476b6"
+    },
+    {
+      "name": "linux-publish",
+      "elf64X64Verified": true,
+      "bundledRuntime": true
+    }
+  ],
+  "limitation": "System Python lacked Pillow; rerun passed using existing repository .venv. No tools installed. Diagram labels overlap and historical resource-group label differs from exact target; management host not depicted. No regeneration or deployment-readiness claim."
+}

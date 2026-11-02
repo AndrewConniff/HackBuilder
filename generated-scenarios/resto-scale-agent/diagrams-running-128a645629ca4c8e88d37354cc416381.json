@@ -1,0 +1,9 @@
+{
+  "stage": "diagrams",
+  "status": "running",
+  "summary": "Resuming architecture and runtime diagrams from the confirmed design after actual passing setup verification. Diagrams describe the proposed reference; no implementation or deployment success is claimed.",
+  "evidence": [
+    "Canonical designConfirmed=true; existing scenario-local-execution consent retained; authorizations=[]",
+    "01-requirements.md, 02-architecture-assessment.md and 00-region-availability.json reviewed. No IaC exists yet."
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "coffee-shop-browser-assets",
+  "private": true,
+  "scripts": {
+    "build": "node --check wwwroot/js/workspace.js"
+  }
+}

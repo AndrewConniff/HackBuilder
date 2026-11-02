@@ -1,0 +1,7 @@
+{
+  "command": "azd up --environment equip-ai --no-prompt",
+  "exitCode": 1,
+  "scope": "Approved same-target reference restoration, including local sample authentication and private management publishing",
+  "startedAtUtc": "2026-10-26T00:40:16.6353015Z",
+  "finishedAtUtc": "2026-10-26T00:40:40.1374201Z"
+}

@@ -1,0 +1,30 @@
+<policies>
+  <inbound>
+    <base />
+    <rate-limit-by-key calls="20" renewal-period="60" counter-key="@(context.Request.IpAddress)" />
+    <rate-limit-by-key calls="120" renewal-period="60" counter-key="@(&quot;brokerage-public&quot;)" />
+    <set-header name="X-Correlation-ID" exists-action="override">
+      <value>@(context.RequestId.ToString())</value>
+    </set-header>
+    <authentication-managed-identity resource="__AUDIENCE__" client-id="__CLIENT_ID__" ignore-error="false" />
+  </inbound>
+  <backend>
+    <forward-request timeout="65" />
+  </backend>
+  <outbound>
+    <base />
+    <set-header name="Server" exists-action="delete" />
+    <set-header name="X-Correlation-ID" exists-action="override">
+      <value>@(context.RequestId.ToString())</value>
+    </set-header>
+  </outbound>
+  <on-error>
+    <return-response>
+      <set-status code="@(context.LastError.Reason == &quot;RateLimitExceeded&quot; ? 429 : 502)"
+                  reason="Gateway request failed" />
+      <set-header name="Content-Type" exists-action="override"><value>application/problem+json</value></set-header>
+      <set-body>@("{\"title\":\"Gateway could not complete the request.\",\"status\":" +
+        (context.LastError.Reason == "RateLimitExceeded" ? "429" : "502") + "}")</set-body>
+    </return-response>
+  </on-error>
+</policies>

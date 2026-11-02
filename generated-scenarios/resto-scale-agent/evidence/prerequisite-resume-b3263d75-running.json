@@ -1,0 +1,9 @@
+{
+  "stage": "diagrams",
+  "status": "running",
+  "summary": "Resume the pending diagram prerequisite check using the existing confirmed design and all persisted answers. No Azure authorization exists.",
+  "evidence": [
+    "python scripts\\portal_workflow.py read succeeded at revision 43; all decisions/history read; designConfirmed=true; authorizations=[]; current writer=b3263d75687047e09c09ba63a72ace48.",
+    "Only the existing resto-scale-agent reference workspace is in scope."
+  ]
+}

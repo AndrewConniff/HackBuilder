@@ -1,0 +1,46 @@
+{
+  "evidenceType": "offline_ui_test_with_intercepted_api_fixtures",
+  "liveFoundryVerified": false,
+  "checks": [
+    {
+      "width": 1280,
+      "mode": "success",
+      "passed": true
+    },
+    {
+      "width": 1280,
+      "mode": "error",
+      "passed": true
+    },
+    {
+      "width": 1280,
+      "mode": "empty",
+      "passed": true
+    },
+    {
+      "width": 1280,
+      "mode": "handoff-error",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "mode": "success",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "mode": "error",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "mode": "empty",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "mode": "handoff-error",
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "currency": "USD",
+  "evidenceDateUtc": "2026-10-24",
+  "scope": "Reviewed management addition only; retained scenario baseline reused",
+  "natHourlyUsd": 0.045,
+  "natProcessingPerGbUsd": 0.045,
+  "natMonthlyGbAssumption": 5,
+  "natVerification": "verified-nat-page-prices.json",
+  "natSource": "Official pricing page raw HTML regional us-central data-amount values",
+  "vmDiskIpVerification": "public-retail-prices.json",
+  "incrementalMonthlyUsd": 75.56,
+  "combinedMonthlyUsd": 227.09,
+  "materialCostIncreaseObserved": false,
+  "pricingCondition": "Reviewed NAT assumptions verified; other unchanged same-day rates retained",
+  "provisioningCondition": "Failed SKU eligibility; no provisioning",
+  "estimateNotQuote": true,
+  "limitations": "Retained workload/730-hour/5-GB assumptions and prior exclusions apply. Not an account-specific price quote."
+}

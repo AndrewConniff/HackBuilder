@@ -1,0 +1,246 @@
+{
+  "scope": "Local offline package authoring only; no Azure operations or runtime certification.",
+  "historicalEvidence": "User attestation only; URL, exact time and logs unavailable.",
+  "checks": [
+    {
+      "name": "approval-before-validation",
+      "command": [
+        "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe",
+        "scripts/hack_workflow.py",
+        "check-approval",
+        "C:\\HackBuilder\\generated-scenarios\\finance-security-hack"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-22T20:25:25.548955+00:00",
+      "durationSeconds": 0.26407
+    },
+    {
+      "name": "coach-bicep-build",
+      "command": [
+        "C:\\Users\\petender\\.azure\\bin\\bicep.exe",
+        "build",
+        "C:\\HackBuilder\\generated-scenarios\\finance-security-hack\\packages\\coach\\infra\\main.bicep",
+        "--no-restore",
+        "--outfile",
+        "C:\\HackBuilder\\generated-scenarios\\finance-security-hack\\packages\\validation\\coach.arm.json"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-22T20:25:25.814386+00:00",
+      "durationSeconds": 7.809359
+    },
+    {
+      "name": "coach-bicep-lint",
+      "command": [
+        "C:\\Users\\petender\\.azure\\bin\\bicep.exe",
+        "lint",
+        "C:\\HackBuilder\\generated-scenarios\\finance-security-hack\\packages\\coach\\infra\\main.bicep",
+        "--no-restore"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-22T20:25:33.625321+00:00",
+      "durationSeconds": 7.05792
+    },
+    {
+      "name": "participant-bicep-build",
+      "command": [
+        "C:\\Users\\petender\\.azure\\bin\\bicep.exe",
+        "build",
+        "C:\\HackBuilder\\generated-scenarios\\finance-security-hack\\packages\\participant\\infra\\main.bicep",
+        "--no-restore",
+        "--outfile",
+        "C:\\HackBuilder\\generated-scenarios\\finance-security-hack\\packages\\validation\\participant.arm.json"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-22T20:25:40.686928+00:00",
+      "durationSeconds": 1.764342
+    },
+    {
+      "name": "participant-bicep-lint",
+      "command": [
+        "C:\\Users\\petender\\.azure\\bin\\bicep.exe",
+        "lint",
+        "C:\\HackBuilder\\generated-scenarios\\finance-security-hack\\packages\\participant\\infra\\main.bicep",
+        "--no-restore"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-22T20:25:42.453450+00:00",
+      "durationSeconds": 1.7959
+    },
+    {
+      "name": "coach-offline-restore",
+      "command": [
+        "C:\\Users\\petender\\.copilot\\session-state\\c325fe77-0030-44d6-8b42-65777dcb3064\\files\\tools\\dotnet\\dotnet.exe",
+        "restore",
+        "C:\\HackBuilder\\generated-scenarios\\finance-security-hack\\packages\\coach\\tests\\Brokerage.Tests\\Brokerage.Tests.csproj",
+        "--configfile",
+        "C:\\HackBuilder\\generated-scenarios\\finance-security-hack\\packages\\validation\\NuGet.Config",
+        "-p:NuGetAudit=false"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-22T20:25:44.251528+00:00",
+      "durationSeconds": 0.905127
+    },
+    {
+      "name": "coach-build",
+      "command": [
+        "C:\\Users\\petender\\.copilot\\session-state\\c325fe77-0030-44d6-8b42-65777dcb3064\\files\\tools\\dotnet\\dotnet.exe",
+        "build",
+        "C:\\HackBuilder\\generated-scenarios\\finance-security-hack\\packages\\coach\\src\\Brokerage.Web\\Brokerage.Web.csproj",
+        "-c",
+        "Release",
+        "--no-restore"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-22T20:25:45.158849+00:00",
+      "durationSeconds": 1.644855
+    },
+    {
+      "name": "coach-tests",
+      "command": [
+        "C:\\Users\\petender\\.copilot\\session-state\\c325fe77-0030-44d6-8b42-65777dcb3064\\files\\tools\\dotnet\\dotnet.exe",
+        "test",
+        "C:\\HackBuilder\\generated-scenarios\\finance-security-hack\\packages\\coach\\tests\\Brokerage.Tests\\Brokerage.Tests.csproj",
+        "-c",
+        "Release",
+        "--no-restore",
+        "--logger",
+        "trx;LogFileName=coach-tests.trx",
+        "--results-directory",
+        "C:\\HackBuilder\\generated-scenarios\\finance-security-hack\\packages\\validation"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-22T20:25:46.805825+00:00",
+      "durationSeconds": 3.202472
+    },
+    {
+      "name": "coach-script-guards",
+      "command": [
+        "pwsh",
+        "-NoProfile",
+        "-File",
+        "C:\\HackBuilder\\generated-scenarios\\finance-security-hack\\packages\\coach\\scripts\\Test-LocalScripts.ps1"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-22T20:25:50.010237+00:00",
+      "durationSeconds": 1.118139
+    },
+    {
+      "name": "starter-status",
+      "command": [
+        "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe",
+        "C:\\HackBuilder\\generated-scenarios\\finance-security-hack\\packages\\participant\\scripts\\starter_status.py"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-22T20:25:51.129970+00:00",
+      "durationSeconds": 0.051667
+    },
+    {
+      "name": "package-boundaries",
+      "command": [
+        "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe",
+        "C:\\HackBuilder\\generated-scenarios\\finance-security-hack\\packages\\validation\\verify_boundaries.py"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-22T20:25:51.183019+00:00",
+      "durationSeconds": 0.354182
+    },
+    {
+      "name": "skillable",
+      "command": [
+        "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe",
+        ".github/skills/skillable-lod-authoring/scripts/validate_skillable_package.py",
+        "C:\\HackBuilder\\generated-scenarios\\finance-security-hack\\packages",
+        "--industry",
+        "financial-services"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-22T20:25:51.538921+00:00",
+      "durationSeconds": 0.154658
+    },
+    {
+      "name": "skillable-authoring-resources",
+      "command": [
+        "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe",
+        ".github/skills/skillable-lod-authoring/scripts/validate_skillable_package.py",
+        "--check-skill"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-22T20:25:51.695671+00:00",
+      "durationSeconds": 0.11752
+    },
+    {
+      "name": "approval-final",
+      "command": [
+        "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe",
+        "scripts/hack_workflow.py",
+        "check-approval",
+        "C:\\HackBuilder\\generated-scenarios\\finance-security-hack"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-22T20:25:51.815195+00:00",
+      "durationSeconds": 0.177025
+    },
+    {
+      "name": "release-archives",
+      "command": [
+        "local ZIP integrity, hash and visibility assertions"
+      ],
+      "exitCode": 0,
+      "assertions": 148
+    },
+    {
+      "name": "challenge-numbering-skillable",
+      "command": [
+        "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe",
+        "C:\\HackBuilder\\.github\\skills\\skillable-lod-authoring\\scripts\\validate_skillable_package.py",
+        "C:\\HackBuilder\\generated-scenarios\\finance-security-hack\\packages",
+        "--industry",
+        "financial-services"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-25T01:30:33.087142+00:00",
+      "stdout": "PASS: C:\\HackBuilder\\generated-scenarios\\finance-security-hack\\packages is valid.\n",
+      "stderr": ""
+    },
+    {
+      "name": "challenge-numbering-boundaries",
+      "command": [
+        "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe",
+        "C:\\HackBuilder\\generated-scenarios\\finance-security-hack\\packages\\validation\\verify_boundaries.py"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-25T01:30:33.245503+00:00",
+      "stdout": "477 boundary assertions; 0 failure(s)\n",
+      "stderr": ""
+    },
+    {
+      "name": "challenge-numbering-archives",
+      "command": [
+        "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe",
+        "C:\\Users\\petender\\.copilot\\session-state\\61b0493b-a232-4d05-92c7-69e59d8ea768\\files\\validate_renumbered_packages.py",
+        "--finance-archives-only"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-25T01:30:33.588241+00:00",
+      "stdout": "coach.zip: source bytes, CRC and recorded inventory verified.\nparticipant.zip: source bytes, CRC and recorded inventory verified.\nhack.zip: source bytes, CRC and recorded inventory verified.\ncoach-guide.zip: source bytes, CRC and recorded inventory verified.\n",
+      "stderr": ""
+    },
+    {
+      "name": "challenge-numbering-approval",
+      "command": [
+        "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe",
+        "C:\\HackBuilder\\scripts\\hack_workflow.py",
+        "check-approval",
+        "C:\\HackBuilder\\generated-scenarios\\finance-security-hack"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-25T01:30:33.891220+00:00",
+      "stdout": "check-approval: passed for finance-security-hack\n",
+      "stderr": ""
+    }
+  ],
+  "allCommandsPassed": true,
+  "eventDeployed": false,
+  "maintenanceScope": "Challenge filename/link maintenance only. Existing application and infrastructure check evidence is retained because executable implementation is unchanged. No Azure operations.",
+  "checkedAtUtc": "2026-10-25T01:30:34.146566+00:00"
+}

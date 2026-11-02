@@ -1,0 +1,14 @@
+{
+  "command": [
+    "az",
+    "bicep",
+    "build",
+    "--file",
+    "C:\\azd-projects\\equip-ai\\infra\\main.bicep",
+    "--stdout"
+  ],
+  "startedAtUtc": "2026-10-24T23:56:29.630603+00:00",
+  "finishedAtUtc": "2026-10-24T23:56:39.049822+00:00",
+  "exitCode": 0,
+  "stderr": ""
+}

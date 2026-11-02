@@ -1,0 +1,135 @@
+{
+  "projectSlug": "finance-security-hack",
+  "checkedAtUtc": "2026-10-22T18:57:44Z",
+  "status": "provisional_local_design",
+  "evidenceScope": "Public Microsoft documentation retrieved; no Azure account, subscription, provider, quota or capacity queries executed.",
+  "subscriptionName": null,
+  "subscriptionId": null,
+  "tenantId": null,
+  "account": null,
+  "azureCloud": null,
+  "requestedRegions": [],
+  "candidateRegions": ["eastus2"],
+  "selectedRegion": null,
+  "provisionalRegion": "eastus2",
+  "regionSelectionReason": "User delegated local scenario choices. East US 2 is a documented candidate only; selectedRegion remains null until deployment preflight.",
+  "model": {
+    "name": "gpt-4.1-mini",
+    "version": "2025-04-14",
+    "deploymentType": "GlobalStandard",
+    "sku": "GlobalStandard",
+    "quota": null,
+    "capacity": null,
+    "status": "not_checked",
+    "reason": "Documented provisional candidate selected under delegated discretion. Live quota/capacity remain unverified; Azure queries were not executed."
+  },
+  "resourceChecks": [
+    {"resource": "Microsoft Foundry account and direct child project", "status": "not_checked"},
+    {"resource": "Foundry Agent Service private networking and grounding", "status": "not_checked"},
+    {"resource": "Azure Container Apps", "sku": null, "status": "not_checked"},
+    {"resource": "Azure Key Vault", "sku": null, "status": "not_checked"},
+    {"resource": "Azure managed identities and scoped RBAC", "status": "not_checked"},
+    {"resource": "Azure API Management", "sku": null, "status": "not_checked"},
+    {"resource": "BYO Storage, Cosmos DB and AI Search for Standard private setup", "status": "not_checked"},
+    {"resource": "Private networking, DNS, diagnostics and image delivery", "status": "not_checked"}
+  ],
+  "candidateRejections": [],
+  "documentationEvidence": [
+    {
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/virtual-networks",
+      "retrievedAtUtc": "2026-10-22T18:32:00Z",
+      "pageUpdatedAt": "2026-08-27",
+      "scope": "Standard private setup, BYO dependencies, provisioning/runtime identity separation and verification sections",
+      "finding": "Standard private setup documents BYO Storage, Cosmos DB and AI Search, delegated agent subnet and separate private endpoints."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/reference/region-support",
+      "retrievedAtUtc": "2026-10-22T18:32:00Z",
+      "pageUpdatedAt": "2026-08-25",
+      "scope": "Project regions and linked per-feature availability process",
+      "finding": "Project-region support alone does not establish model, tool or subscription capacity."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/limits-quotas-regions",
+      "retrievedAtUtc": "2026-10-22T18:32:00Z",
+      "pageUpdatedAt": "2026-10-15",
+      "scope": "Supported regions, private-network constraints and initial model/tool availability sections",
+      "finding": "Agents, private VNet and tools have separate regional constraints; exact model availability must be checked."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/deployment-types",
+      "retrievedAtUtc": "2026-10-22T18:32:00Z",
+      "pageUpdatedAt": "2026-08-12",
+      "scope": "Deployment comparison, processing boundaries and selection criteria",
+      "finding": "Global, Data Zone and geography-based deployment types differ in processing location and throughput/billing."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/azure/api-management/integrate-vnet-outbound",
+      "retrievedAtUtc": "2026-10-22T18:32:00Z",
+      "pageUpdatedAt": "2026-06-25",
+      "scope": "Outbound integration behavior and subnet requirements",
+      "finding": "Standard v2 and Premium v2 outbound integration allow a public gateway to reach private backends."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/azure/api-management/inject-vnet-v2",
+      "retrievedAtUtc": "2026-10-22T18:32:00Z",
+      "pageUpdatedAt": "2026-06-25",
+      "scope": "Private gateway injection and initial subnet requirements",
+      "finding": "Premium v2 injection gives a private gateway; it is distinct from outbound VNet integration."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/azure/container-apps/networking",
+      "retrievedAtUtc": "2026-10-22T18:32:00Z",
+      "pageUpdatedAt": "2026-08-31",
+      "scope": "Environment types, VNet choice, accessibility and ingress settings",
+      "finding": "An internal environment has no public endpoint; workload profile networking supports custom egress controls."
+    }
+  ],
+  "implementationEvidence": [
+    {
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-region-availability",
+      "retrievedOn": "2026-10-22",
+      "pageUpdatedAt": "2026-10-19",
+      "finding": "Global Standard Americas table lists gpt-4.1-mini 2025-04-14 in eastus2; not live capacity evidence."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/concepts/rbac-foundry",
+      "retrievedOn": "2026-10-22",
+      "finding": "Foundry Agent Consumer is the least-privilege role for agent interaction; Foundry User is for development/installation. Consumer role GUID must be resolved in target scope."
+    },
+    {
+      "url": "https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Extensions.OpenAI",
+      "retrievedOn": "2026-10-22",
+      "finding": "Real agent execution uses ProjectOpenAIClient, AgentReference(name, version) and Responses; current package 2.0.0, Projects 2.0.1, stable service API v1."
+    },
+    {
+      "url": "https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup",
+      "retrievedOn": "2026-10-22",
+      "finding": "Private Standard setup project/connection/capability host and post-host role sequencing use 2025-04-01-preview; local Bicep validates with a documented internalId schema gap."
+    },
+    {
+      "url": "https://mcr.microsoft.com/v2/bicep/avm/res/cognitive-services/account/tags/list",
+      "retrievedOn": "2026-10-22",
+      "finding": "Public MCR tags and AVM source schemas checked for all pinned modules. Module/version inventory is in 04-implementation-plan.md."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/azure/api-management/authentication-managed-identity-policy",
+      "retrievedOn": "2026-10-22",
+      "finding": "APIM user-assigned client-id selects the gateway identity; policy replaces Authorization with the token for the configured resource audience."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/azure/api-management/rate-limit-by-key-policy",
+      "retrievedOn": "2026-10-22",
+      "finding": "Distinct keys support independent IP/global counters. Distributed rate control is approximate, not a spending guarantee."
+    }
+  ],
+  "recommendation": "Local provisional implementation is validated. Reconcile existing account/azd targets and verify all live evidence only at the separately authorized deployment gate.",
+  "deploymentTimeChecks": [
+    "Existing Azure account, subscription, tenant, cloud, resource group and azd environment agree",
+    "Exact region, model/version/SKU, tools, quota, capacity and provider/policy availability",
+    "Foundry Agent Consumer role GUID and effective least-privilege permissions",
+    "Single-tenant backend API audience registration",
+    "Network address overlap, private operator access, DNS and platform egress requirements",
+    "Dated itemized costs, actual what-if changes and separate deployment consent"
+  ]
+}

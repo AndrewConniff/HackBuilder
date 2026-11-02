@@ -1,0 +1,1093 @@
+{
+  "checkedAtUtc": "2026-10-22T18:21:02.2909393Z",
+  "command": "az provider show --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --namespace Microsoft.Authorization -o json",
+  "exitCode": 0,
+  "result": {
+    "authorizations": [
+      {
+        "applicationId": "de926fbf-e23b-41f9-ae15-c943a9cfa630"
+      },
+      {
+        "applicationId": "01fc33a7-78ba-4d2f-a4b7-768e336e890e"
+      },
+      {
+        "applicationId": "1dcb1bc7-c721-498e-b2fa-bcddcea44171"
+      },
+      {
+        "applicationId": "5861f7fb-5582-4c1a-83c0-fc5ffdb531a6"
+      },
+      {
+        "applicationId": "d8c767ef-3e9a-48c4-aef9-562696539b39"
+      },
+      {
+        "applicationId": "4eaceb75-fe6c-4953-b873-0fd565ecd334"
+      },
+      {
+        "applicationId": "2d215f00-80d1-4f4b-a6c8-28080dfafc81"
+      }
+    ],
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization",
+    "namespace": "Microsoft.Authorization",
+    "providerAuthorizationConsentState": null,
+    "registrationPolicy": "RegistrationFree",
+    "registrationState": "Registered",
+    "resourceTypes": [
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2026-06-01-preview"
+        ],
+        "capabilities": "None",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "privilegedResources",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2026-06-01-preview"
+        ],
+        "capabilities": "None",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "privilegedResources/relatedResources",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2026-06-01-preview"
+        ],
+        "capabilities": "None",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "privilegedResourceFavorites",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2022-04-01-preview",
+          "2020-10-01-preview",
+          "2020-10-01"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "roleAssignmentScheduleRequests",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2022-04-01-preview",
+          "2020-10-01-preview",
+          "2020-10-01"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "roleEligibilityScheduleRequests",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2020-10-01-preview",
+          "2020-10-01"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "roleAssignmentSchedules",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2020-10-01-preview",
+          "2020-10-01"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "roleEligibilitySchedules",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2020-10-01-preview",
+          "2020-10-01"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "roleAssignmentScheduleInstances",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2020-10-01-preview",
+          "2020-10-01"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "roleEligibilityScheduleInstances",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2024-09-01-preview",
+          "2024-02-01-preview",
+          "2020-10-01-preview",
+          "2020-10-01"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "roleManagementPolicies",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2024-09-01-preview",
+          "2024-02-01-preview",
+          "2020-10-01-preview",
+          "2020-10-01"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "roleManagementPolicyAssignments",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2020-10-01-preview",
+          "2020-10-01"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "eligibleChildResources",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2022-08-01-preview"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "roleManagementAlerts",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2022-08-01-preview"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "roleManagementAlertConfigurations",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2022-08-01-preview"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "roleManagementAlertDefinitions",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2022-08-01-preview"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "roleManagementAlertOperations",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": [
+          {
+            "apiVersion": "2017-09-01",
+            "profileVersion": "2018-06-01-profile"
+          },
+          {
+            "apiVersion": "2015-07-01",
+            "profileVersion": "2019-03-01-hybrid"
+          }
+        ],
+        "apiVersions": [
+          "2026-08-01-preview",
+          "2026-07-01-preview",
+          "2025-10-01-preview",
+          "2022-04-01",
+          "2022-01-01-preview",
+          "2021-04-01-preview",
+          "2020-10-01-preview",
+          "2020-08-01-preview",
+          "2020-04-01-preview",
+          "2020-03-01-preview",
+          "2019-04-01-preview",
+          "2018-12-01-preview",
+          "2018-09-01-preview",
+          "2018-07-01",
+          "2018-01-01-preview",
+          "2017-10-01-preview",
+          "2017-09-01",
+          "2017-05-01",
+          "2016-07-01",
+          "2015-07-01",
+          "2015-06-01",
+          "2015-05-01-preview",
+          "2014-10-01-preview",
+          "2014-07-01-preview",
+          "2014-04-01-preview"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "roleAssignments",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": [
+          {
+            "apiVersion": "2017-05-01",
+            "profileVersion": "2018-06-01-profile"
+          },
+          {
+            "apiVersion": "2015-07-01",
+            "profileVersion": "2019-03-01-hybrid"
+          }
+        ],
+        "apiVersions": [
+          "2023-07-01-preview",
+          "2022-05-01-preview",
+          "2022-04-01",
+          "2018-07-01",
+          "2018-01-01-preview",
+          "2017-09-01",
+          "2017-05-01",
+          "2016-07-01",
+          "2015-07-01",
+          "2015-06-01",
+          "2015-05-01-preview",
+          "2014-10-01-preview",
+          "2014-07-01-preview",
+          "2014-04-01-preview"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "roleDefinitions",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": [
+          {
+            "apiVersion": "2017-05-01",
+            "profileVersion": "2018-06-01-profile"
+          },
+          {
+            "apiVersion": "2015-07-01",
+            "profileVersion": "2019-03-01-hybrid"
+          }
+        ],
+        "apiVersions": [
+          "2022-05-01-preview",
+          "2022-04-01",
+          "2018-07-01",
+          "2018-01-01-preview",
+          "2017-05-01",
+          "2016-07-01",
+          "2015-07-01",
+          "2015-06-01",
+          "2015-05-01-preview",
+          "2014-10-01-preview",
+          "2014-07-01-preview",
+          "2014-04-01-preview"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "permissions",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2024-07-01-preview",
+          "2024-05-01-preview",
+          "2022-04-01",
+          "2019-03-01-preview",
+          "2018-07-01-preview",
+          "2018-07-01"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "denyAssignments",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": [
+          {
+            "apiVersion": "2017-04-01",
+            "profileVersion": "2018-06-01-profile"
+          },
+          {
+            "apiVersion": "2016-09-01",
+            "profileVersion": "2019-03-01-hybrid"
+          }
+        ],
+        "apiVersions": [
+          "2020-05-01",
+          "2017-04-01",
+          "2016-09-01",
+          "2015-06-01",
+          "2015-05-01-preview",
+          "2015-01-01"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "locks",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": [
+          {
+            "apiVersion": "2017-05-01",
+            "profileVersion": "2018-06-01-profile"
+          }
+        ],
+        "apiVersions": [
+          "2017-05-01",
+          "2016-07-01",
+          "2015-07-01",
+          "2015-01-01",
+          "2014-10-01-preview",
+          "2014-06-01"
+        ],
+        "capabilities": "None",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "operations",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": [
+          {
+            "apiVersion": "2018-03-01",
+            "profileVersion": "2018-06-01-profile"
+          },
+          {
+            "apiVersion": "2016-12-01",
+            "profileVersion": "2019-03-01-hybrid"
+          }
+        ],
+        "apiVersions": [
+          "2026-07-01",
+          "2026-06-01",
+          "2026-01-01-preview",
+          "2025-12-01-preview",
+          "2025-11-01",
+          "2025-03-01",
+          "2025-01-01",
+          "2024-05-01",
+          "2023-04-01",
+          "2021-06-01",
+          "2020-09-01",
+          "2020-08-01",
+          "2020-03-01",
+          "2019-09-01",
+          "2019-06-01",
+          "2019-01-01",
+          "2018-05-01",
+          "2018-03-01",
+          "2016-12-01",
+          "2016-04-01",
+          "2015-10-01-preview"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "policyDefinitions",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2026-07-01",
+          "2026-06-01",
+          "2026-01-01-preview",
+          "2025-12-01-preview",
+          "2025-11-01",
+          "2025-03-01",
+          "2025-01-01",
+          "2024-05-01",
+          "2023-04-01"
+        ],
+        "capabilities": "None",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "policyDefinitions/versions",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": [
+          {
+            "apiVersion": "2018-03-01",
+            "profileVersion": "2018-06-01-profile"
+          }
+        ],
+        "apiVersions": [
+          "2026-07-01",
+          "2026-06-01",
+          "2026-01-01-preview",
+          "2025-12-01-preview",
+          "2025-11-01",
+          "2025-03-01",
+          "2025-01-01",
+          "2024-05-01",
+          "2023-04-01",
+          "2021-06-01",
+          "2020-09-01",
+          "2020-08-01",
+          "2020-03-01",
+          "2019-09-01",
+          "2019-06-01",
+          "2019-01-01",
+          "2018-05-01",
+          "2018-03-01",
+          "2017-06-01-preview"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "policySetDefinitions",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2026-07-01",
+          "2026-06-01",
+          "2026-01-01-preview",
+          "2025-12-01-preview",
+          "2025-11-01",
+          "2025-03-01",
+          "2025-01-01",
+          "2024-05-01",
+          "2023-04-01"
+        ],
+        "capabilities": "None",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "policySetDefinitions/versions",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": [
+          {
+            "apiVersion": "2018-03-01",
+            "profileVersion": "2018-06-01-profile"
+          },
+          {
+            "apiVersion": "2016-12-01",
+            "profileVersion": "2019-03-01-hybrid"
+          }
+        ],
+        "apiVersions": [
+          "2026-07-01",
+          "2026-06-01",
+          "2026-01-01-preview",
+          "2025-12-01-preview",
+          "2025-11-01",
+          "2025-03-01",
+          "2025-01-01",
+          "2024-05-01",
+          "2024-04-01",
+          "2023-04-01",
+          "2022-06-01",
+          "2021-06-01",
+          "2020-09-01",
+          "2020-08-01",
+          "2020-03-01",
+          "2019-09-01",
+          "2019-06-01",
+          "2019-01-01",
+          "2018-05-01",
+          "2018-03-01",
+          "2017-06-01-preview",
+          "2016-12-01",
+          "2016-04-01",
+          "2015-10-01-preview"
+        ],
+        "capabilities": "SystemAssignedResourceIdentity, SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "policyAssignments",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2026-01-01-preview",
+          "2025-12-01-preview",
+          "2024-12-01-preview",
+          "2022-07-01-preview",
+          "2020-07-01-preview"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "policyExemptions",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2026-01-01-preview",
+          "2025-02-01-preview"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "policyEnrollments",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2026-07-01",
+          "2026-06-01",
+          "2026-01-01-preview",
+          "2025-12-01-preview",
+          "2025-11-01",
+          "2025-03-01",
+          "2025-01-01",
+          "2024-05-01",
+          "2023-04-01"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "listPolicyDefinitionVersions",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2026-07-01",
+          "2026-06-01",
+          "2026-01-01-preview",
+          "2025-12-01-preview",
+          "2025-11-01",
+          "2025-03-01",
+          "2025-01-01",
+          "2024-05-01",
+          "2023-04-01"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "listPolicySetDefinitionVersions",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2020-09-01",
+          "2020-03-01-preview",
+          "2018-06-01-preview"
+        ],
+        "capabilities": "None",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "dataAliases",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2026-07-01",
+          "2026-06-01",
+          "2026-01-01-preview",
+          "2025-12-01-preview",
+          "2025-11-01",
+          "2020-09-01"
+        ],
+        "capabilities": "None",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "dataPolicyManifests",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": [
+          {
+            "apiVersion": "2017-05-01",
+            "profileVersion": "2018-06-01-profile"
+          },
+          {
+            "apiVersion": "2015-07-01",
+            "profileVersion": "2019-03-01-hybrid"
+          }
+        ],
+        "apiVersions": [
+          "2022-04-01",
+          "2018-07-01",
+          "2018-01-01-preview",
+          "2017-05-01",
+          "2016-07-01",
+          "2015-07-01-preview",
+          "2015-07-01"
+        ],
+        "capabilities": "None",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "providerOperations",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": [
+          {
+            "apiVersion": "2017-05-01",
+            "profileVersion": "2018-06-01-profile"
+          }
+        ],
+        "apiVersions": [
+          "2018-01-01-preview",
+          "2017-05-01",
+          "2016-07-01",
+          "2015-07-01",
+          "2015-06-01",
+          "2015-05-01-preview",
+          "2014-10-01-preview",
+          "2014-07-01-preview",
+          "2014-04-01-preview"
+        ],
+        "capabilities": "None",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "elevateAccess",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2026-07-01",
+          "2026-06-01",
+          "2026-01-01-preview",
+          "2025-12-01-preview",
+          "2025-11-01",
+          "2025-03-01"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "acquirePolicyToken",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2024-06-01-preview"
+        ],
+        "capabilities": "None",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "MigrateRbac",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2024-06-01-preview"
+        ],
+        "capabilities": "None",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "MigrateRbac/OperationStatuses",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": [
+          {
+            "apiVersion": "2018-09-01-preview",
+            "profileVersion": "2018-06-01-profile"
+          }
+        ],
+        "apiVersions": [
+          "2018-09-01-preview"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "checkAccess",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": [
+          {
+            "apiVersion": "2018-09-01-preview",
+            "profileVersion": "2018-06-01-profile"
+          }
+        ],
+        "apiVersions": [
+          "2018-09-01-preview"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "batchResourceCheckAccess",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2019-04-01-preview"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "findOrphanRoleAssignments",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2019-08-01-preview"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "roleAssignmentsUsageMetrics",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2021-12-01-preview",
+          "2021-07-01-preview",
+          "2021-03-01-preview",
+          "2018-05-01-preview"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "accessReviewScheduleDefinitions",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2021-12-01-preview",
+          "2021-07-01-preview",
+          "2021-03-01-preview",
+          "2018-05-01-preview"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "accessReviewScheduleSettings",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2021-11-16-preview"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "accessReviewHistoryDefinitions",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2021-01-01-preview"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "roleAssignmentApprovals",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2023-02-01",
+          "2023-01-01",
+          "2020-05-01"
+        ],
+        "capabilities": "SupportsExtension",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "privateLinkAssociations",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2020-05-01"
+        ],
+        "capabilities": "SupportsTags, SupportsLocation",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [
+          "global"
+        ],
+        "properties": null,
+        "resourceType": "resourceManagementPrivateLinks",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2023-03-01-preview"
+        ],
+        "capabilities": "None",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "EnablePrivateLinkNetworkAccess",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2020-05-01"
+        ],
+        "capabilities": "None",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "operationStatus",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2017-04-01-preview"
+        ],
+        "capabilities": "None",
+        "defaultApiVersion": "2017-04-01-preview",
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "diagnosticSettings",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2017-04-01-preview"
+        ],
+        "capabilities": "None",
+        "defaultApiVersion": "2017-04-01-preview",
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "diagnosticSettingsCategories",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2026-03-01-preview"
+        ],
+        "capabilities": "None",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "attributeNamespaces",
+        "zoneMappings": null
+      },
+      {
+        "aliases": null,
+        "apiProfiles": null,
+        "apiVersions": [
+          "2026-03-01-preview"
+        ],
+        "capabilities": "None",
+        "defaultApiVersion": null,
+        "locationMappings": null,
+        "locations": [],
+        "properties": null,
+        "resourceType": "createAttributeNamespace",
+        "zoneMappings": null
+      }
+    ]
+  }
+}

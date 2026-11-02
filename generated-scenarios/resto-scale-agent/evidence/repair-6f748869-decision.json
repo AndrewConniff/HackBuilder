@@ -1,0 +1,32 @@
+{
+  "stage": "deployment",
+  "operation": "deployment",
+  "status": "waiting_for_user",
+  "summary": "Decision required: authorize the single consolidated end-to-end Central US reference installation, revise its scope, or keep local. The former group is absent and the foundation-only grant stopped; no retry or directory/runtime extension is authorized. Repaired full preview and costs are retained, with unresolved grants, future Consumption quota, directory capabilities and actual-output runtime preview disclosed.",
+  "evidence": [
+    "06-deployment-summary.md: Current repair and consolidated installation review; exact targets, new group absence, actual preview results, independent exclusions, deployment-output dependencies, costs and unchanged security.",
+    "evidence\\repair-6f748869\\installation-review.json: full proposed scope, directory permission/assignment boundaries, ordered azd/installer/initializer/runtime work and failure stops. Proposal only; no authorization or execution.",
+    "evidence\\repair-6f748869\\evidence-integrity.json: integrity passed, not runtime readiness; full what-if 33 creates/13 unresolved expansions, no modifies/deletes; validation skipped eight modules; real initializer grant and replacement vault independently previewed."
+  ],
+  "decision": {
+    "kind": "deployment",
+    "question": "Authorize ONE end-to-end reference installation in Central US using petender@microsoft.com, subscription efd64343-6ef4-4926-951f-d3229f38bd76, tenant 16b3c013-d300-468d-ac64-7eda0820b6d3, rg-resto-scale-agent and azd environment resto-scale-agent? The group is now absent: this recreates the reviewed foundation with corrected database-only Cosmos grants and replacement vault kv-resto-dc9a173f4d0b5f6, preserving all other names/SKUs/zones/security and the exact model. Also includes the two dedicated marker-owned staff registrations/service principals, business/floor roles and access_as_user, assignment-required access, ONLY the verified current deployment operator's Manager/API and native-client assignments, and operator-specific scenario-API delegated consent where current tenant capability permits. Includes publishing the verified immutable scenario image to its ACR, synthetic fixtures and three versioned agents, actual-output runtime/grant what-if, the three reviewed apps and bounded live business/agent/load/recovery checks. Review 06-deployment-summary.md and evidence\\repair-6f748869\\installation-review.json. Actual shared preview: 33 creates, zero modifies/deletes, 13 unresolved new-identity grants; validation skips eight modules; independent vault and corrected real-initializer Cosmos grant previews succeeded. No runtime preview yet: actual generated outputs/digest/versions do not exist. Directory capability and staff login are untested; subscription Owner is not directory permission. The former environment's 0/500 quota is historical; the new environment must actually cover 28 rollout vCPU before apps. Shared estimate USD 745-1150/month, typical full 900-1650/month; max/rollout app compute alone 1103.76/2207.52 per month if sustained, plus services/usage/taxes; not a cap. This is a NEW grant, not reuse/expansion of the stopped foundation consent. Execute technical passes in one context through existing azd wiring and output receipts, with no routine foundation/image/app approval cards. Recheck identity/ownership/eligibility/preview freshness before writes; capture generated IDs automatically. Stop for actual denial/failure, new permission, materially changed scope/cost or destructive preview. Excludes Graph application permissions, tenant-wide/admin consent, installer self-elevation, new users/groups/credentials, provider registration, quota/SKU increases, other scopes, adoption/recovery/purge/deletion/cleanup, real payments, hack packages/events/publication and suitability approval. Real operator sign-in may require interaction; no authentication or acceptance success may be invented.",
+    "reason": "The saved preparation grant authorizes only read-only checks. The prior restricted foundation grant stopped on provider failures and the group has since disappeared; it cannot authorize recreation, directory operations or runtime rollout. Local defects and independent previews are repaired. One honest review must include all remaining installation operations and costs while retaining dependent-check and tenant-capability uncertainty, rather than repeatedly requesting technical-stage approvals or generated IDs.",
+    "choices": [
+      "Authorize consolidated Central US reference installation",
+      "Keep the reference local only",
+      "Revise installation scope"
+    ],
+    "acceptChoice": "Authorize consolidated Central US reference installation",
+    "scope": {
+      "account": "petender@microsoft.com",
+      "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+      "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+      "resourceGroup": "rg-resto-scale-agent",
+      "environment": "resto-scale-agent",
+      "region": "centralus",
+      "whatIfEvidence": "06-deployment-summary.md; evidence\\repair-6f748869\\what-if-full.json: Succeeded, 33 creates, zero modifies/deletes, 13 unresolved identity-dependent grant expansions. validate-full.json skips eight modules. Independent replacement vault 3 creates; Cosmos 7 creates includes real initializer database grant, excludes two future MIs/diagnostics. Target group absent, not incremental repair. Exact infrastructure hash 2371ff53fd0c9ff35ca3e337f30911f0bd4b4bf019dcd27f13cb0456dfb25ed7. installation-review.json defines the requested directory/publication/initializer/runtime scope. Runtime preview pending real installation outputs; perform within the consolidated grant only if unchanged scope/cost, sufficient actual quota and no observed failures.",
+      "estimatedCost": "USD Central US same-day retail planning, original observation 2026-10-24T00:01:36.245550Z: shared foundation 745-1150/month, typical full reference 900-1650/month at nine warm replicas and 200 chat turns/day. Premium broker 677.08/month, model example 50.40/month. Sustained max28 replica compute alone 1103.76/month, conservative56 rollout replicas 2207.52/month, plus services. Storage, telemetry, requests, zone treatment, egress and taxes can add charges. Not a quote, cap, approved budget, current invoice or capacity reservation. Details in evidence\\centralus-189819a8\\cost-review.json and evidence\\repair-6f748869\\installation-review.json."
+    }
+  }
+}

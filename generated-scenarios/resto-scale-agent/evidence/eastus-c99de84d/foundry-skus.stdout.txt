@@ -1,0 +1,12 @@
+[
+  {
+    "kind": "AIServices",
+    "locations": [
+      "EASTUS"
+    ],
+    "name": "S0",
+    "resourceType": "accounts",
+    "restrictions": [],
+    "tier": "Standard"
+  }
+]

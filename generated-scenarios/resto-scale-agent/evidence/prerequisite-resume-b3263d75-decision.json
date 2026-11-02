@@ -1,0 +1,21 @@
+{
+  "stage": "diagrams",
+  "status": "waiting_for_user",
+  "summary": "Decision required: the actual worker still cannot resolve Graphviz dot. Python reports null and PowerShell finds no command. Existing design and all prior answers are preserved; no shared tools changed or Azure operations performed.",
+  "evidence": [
+    "python -c \"import importlib.util,json,shutil; print(json.dumps({'dot':shutil.which('dot'),'diagramsInstalled':importlib.util.find_spec('diagrams') is not None}))\" printed {\"dot\": null, \"diagramsInstalled\": true}.",
+    "Get-Command dot -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source returned no executable path; combined prerequisite probe exited 1.",
+    "generated-scenarios\\resto-scale-agent\\evidence\\prerequisite-resume-b3263d75-running.json",
+    "No diagram rendering, implementation, Azure operations, suitability approval, hack composition or team deployment performed."
+  ],
+  "decision": {
+    "kind": "business",
+    "question": "Have the environment administrator verify executable resolution inside the actual portal-launched worker, provide the verified full dot.exe path if PATH cannot be propagated, and then resume resto-scale-agent?",
+    "reason": "The latest affirmative answer is preserved, but this worker still reports shutil.which('dot') as null and Get-Command dot finds nothing. Diagram rendering cannot proceed. Coordinate the existing Graphviz installation and inherited worker environment outside this job; the scenario worker must not install or upgrade shared tools. An explicit existing executable path can be checked on resume without changing shared PATH. No design reconfirmation or cloud permission is requested.",
+    "choices": [
+      "Actual worker dot execution verified; resume",
+      "Stop"
+    ],
+    "acceptChoice": "Actual worker dot execution verified; resume"
+  }
+}

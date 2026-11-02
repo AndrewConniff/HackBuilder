@@ -1,0 +1,43 @@
+name: tdd-azd-resto-scale-agent
+metadata:
+  template: tdd-azd-resto-scale-agent@1.0.0
+infra:
+  provider: bicep
+  path: infra
+hooks:
+  postprovision:
+    shell: pwsh
+    run: python scripts\install_reference.py
+    interactive: false
+  predeploy:
+    shell: pwsh
+    run: python scripts\install_reference.py --verify-only
+    interactive: false
+services:
+  web:
+    project: src/Restaurant.Web
+    host: containerapp
+    language: csharp
+    resourceName: ca-resto-web-${RESOURCE_SUFFIX}
+    docker:
+      path: Dockerfile
+      context: ../..
+      platform: linux/amd64
+  chat:
+    project: src/Restaurant.Web
+    host: containerapp
+    language: csharp
+    resourceName: ca-resto-chat-${RESOURCE_SUFFIX}
+    docker:
+      path: Dockerfile
+      context: ../..
+      platform: linux/amd64
+  worker:
+    project: src/Restaurant.Web
+    host: containerapp
+    language: csharp
+    resourceName: ca-resto-worker-${RESOURCE_SUFFIX}
+    docker:
+      path: Dockerfile
+      context: ../..
+      platform: linux/amd64

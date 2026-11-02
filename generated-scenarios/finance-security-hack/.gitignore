@@ -1,0 +1,7 @@
+.azure/
+**/bin/
+**/obj/
+artifacts/
+TestResults/
+infra/*.json
+!infra/main.parameters.json

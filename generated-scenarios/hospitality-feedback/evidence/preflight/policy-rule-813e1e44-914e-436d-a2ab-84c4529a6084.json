@@ -1,0 +1,203 @@
+{
+  "checkedAtUtc": "2026-10-22T18:21:37.9014656Z",
+  "command": "az rest --method get --url https://management.azure.com/providers/Microsoft.Authorization/policyDefinitions/813e1e44-914e-436d-a2ab-84c4529a6084?api-version=2023-04-01",
+  "exitCode": 0,
+  "result": {
+    "id": "/providers/Microsoft.Authorization/policyDefinitions/813e1e44-914e-436d-a2ab-84c4529a6084",
+    "name": "813e1e44-914e-436d-a2ab-84c4529a6084",
+    "properties": {
+      "description": "Assign System Assigned identity at scale to Windows SQL virtual machines.",
+      "displayName": "Assign System Assigned identity to SQL Virtual Machines",
+      "metadata": {
+        "category": "Security Center",
+        "version": "1.0.0"
+      },
+      "mode": "Indexed",
+      "parameters": {
+        "effect": {
+          "allowedValues": [
+            "DeployIfNotExists",
+            "Disabled"
+          ],
+          "defaultValue": "DeployIfNotExists",
+          "metadata": {
+            "description": "The effect determines what happens when the policy rule is evaluated to match.",
+            "displayName": "Policy Effect"
+          },
+          "type": "String"
+        }
+      },
+      "policyRule": {
+        "if": {
+          "equals": "Microsoft.SqlVirtualMachine/SqlVirtualMachines",
+          "field": "type"
+        },
+        "then": {
+          "details": {
+            "deployment": {
+              "properties": {
+                "mode": "incremental",
+                "parameters": {
+                  "location": {
+                    "value": "[field('location')]"
+                  },
+                  "resourceId": {
+                    "value": "[field('Microsoft.SqlVirtualMachine/SqlVirtualMachines/virtualMachineResourceId')]"
+                  },
+                  "vmName": {
+                    "value": "[last(split(field('Microsoft.SqlVirtualMachine/SqlVirtualMachines/virtualMachineResourceId'), '/'))]"
+                  },
+                  "vmResourceGroup": {
+                    "value": "[resourceGroup().name]"
+                  }
+                },
+                "template": {
+                  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+                  "contentVersion": "1.0.0.1",
+                  "parameters": {
+                    "location": {
+                      "type": "string"
+                    },
+                    "resourceId": {
+                      "type": "string"
+                    },
+                    "vmName": {
+                      "type": "string"
+                    },
+                    "vmResourceGroup": {
+                      "type": "string"
+                    }
+                  },
+                  "resources": [
+                    {
+                      "apiVersion": "2022-09-01",
+                      "name": "[variables('deployGetResourceProperties')]",
+                      "properties": {
+                        "mode": "Incremental",
+                        "template": {
+                          "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                          "contentVersion": "1.0.0.0",
+                          "outputs": {
+                            "resource": {
+                              "type": "object",
+                              "value": "[reference(parameters('resourceId'), '2019-07-01', 'Full')]"
+                            }
+                          },
+                          "resources": []
+                        }
+                      },
+                      "type": "Microsoft.Resources/deployments"
+                    },
+                    {
+                      "apiVersion": "2022-09-01",
+                      "dependsOn": [
+                        "[variables('deployGetResourceProperties')]"
+                      ],
+                      "name": "[concat(variables('deployAssignSystemAssignedName'))]",
+                      "properties": {
+                        "expressionEvaluationOptions": {
+                          "scope": "inner"
+                        },
+                        "mode": "Incremental",
+                        "parameters": {
+                          "identityType": {
+                            "value": "[if(contains(reference(variables('deployGetResourceProperties')).outputs.resource.value, 'identity'), reference(variables('deployGetResourceProperties')).outputs.resource.value.identity.type, '')]"
+                          },
+                          "location": {
+                            "value": "[parameters('location')]"
+                          },
+                          "userAssignedIdentities": {
+                            "value": "[if(and(contains(reference(variables('deployGetResourceProperties')).outputs.resource.value, 'identity'), contains(reference(variables('deployGetResourceProperties')).outputs.resource.value.identity, 'userAssignedIdentities')), reference(variables('deployGetResourceProperties')).outputs.resource.value.identity.userAssignedIdentities, createObject())]"
+                          },
+                          "vmName": {
+                            "value": "[parameters('vmName')]"
+                          }
+                        },
+                        "template": {
+                          "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                          "contentVersion": "1.0.0.0",
+                          "parameters": {
+                            "identityType": {
+                              "type": "string"
+                            },
+                            "location": {
+                              "type": "string"
+                            },
+                            "userAssignedIdentities": {
+                              "type": "object"
+                            },
+                            "vmName": {
+                              "type": "string"
+                            }
+                          },
+                          "resources": [
+                            {
+                              "apiVersion": "2023-03-01",
+                              "condition": "[contains(variables('identityTypeValue'), 'UserAssigned')]",
+                              "identity": {
+                                "type": "[variables('identityTypeValue')]",
+                                "userAssignedIdentities": "[parameters('userAssignedIdentities')]"
+                              },
+                              "location": "[parameters('location')]",
+                              "name": "[parameters('vmName')]",
+                              "type": "Microsoft.Compute/virtualMachines"
+                            },
+                            {
+                              "apiVersion": "2023-03-01",
+                              "condition": "[not(contains(variables('identityTypeValue'), 'UserAssigned'))]",
+                              "identity": {
+                                "type": "[variables('identityTypeValue')]"
+                              },
+                              "location": "[parameters('location')]",
+                              "name": "[parameters('vmName')]",
+                              "type": "Microsoft.Compute/virtualMachines"
+                            }
+                          ],
+                          "variables": {
+                            "identityTypeValue": "[if(contains(parameters('identityType'), 'UserAssigned'), 'SystemAssigned,UserAssigned', 'SystemAssigned')]"
+                          }
+                        }
+                      },
+                      "resourceGroup": "[parameters('vmResourceGroup')]",
+                      "type": "Microsoft.Resources/deployments"
+                    }
+                  ],
+                  "variables": {
+                    "deployAssignSystemAssignedName": "[concat('deployAssignSystemAssigned-', uniqueString(deployment().name))]",
+                    "deployGetResourceProperties": "[concat('deployGetResourceProperties-', uniqueString(deployment().name))]"
+                  }
+                }
+              }
+            },
+            "evaluationDelay": "AfterProvisioning",
+            "existenceCondition": {
+              "anyOf": [
+                {
+                  "field": "Microsoft.Compute/virtualMachines/storageProfile.osDisk.osType",
+                  "like": "Linux*"
+                },
+                {
+                  "contains": "SystemAssigned",
+                  "field": "identity.type"
+                }
+              ]
+            },
+            "name": "[last(split(field('Microsoft.SqlVirtualMachine/SqlVirtualMachines/virtualMachineResourceId'), '/'))]",
+            "roleDefinitionIds": [
+              "/providers/microsoft.authorization/roleDefinitions/9980e02c-c2be-4d73-94e8-173b1dc7cf3c",
+              "/providers/microsoft.authorization/roleDefinitions/f1a07417-d97a-45cb-824c-7a7467783830"
+            ],
+            "type": "Microsoft.Compute/virtualMachines"
+          },
+          "effect": "[parameters('effect')]"
+        }
+      },
+      "policyType": "BuiltIn",
+      "version": "1.0.0",
+      "versions": [
+        "1.0.0"
+      ]
+    },
+    "type": "Microsoft.Authorization/policyDefinitions"
+  }
+}

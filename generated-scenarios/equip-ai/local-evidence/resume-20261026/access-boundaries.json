@@ -1,0 +1,50 @@
+{
+  "checkedAtUtc": "2026-10-26T01:07:53.352710+00:00",
+  "status": "passed",
+  "webTelemetryReaderOnly": true,
+  "managementHasNoTelemetryRole": true,
+  "accountRoles": [
+    {
+      "principalId": "6f92ba46-0612-40b6-bd3c-fc267c39e7e7",
+      "roleDefinitionName": "Storage Blob Data Contributor",
+      "scope": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourcegroups/rg-equip-ai/providers/Microsoft.Storage/storageAccounts/stequipequipaikex72vu7/blobServices/default/containers/accounts"
+    },
+    {
+      "principalId": "95e688cf-66f0-4d71-b361-8ab5cb20a890",
+      "roleDefinitionName": "Storage Blob Data Contributor",
+      "scope": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourcegroups/rg-equip-ai/providers/Microsoft.Storage/storageAccounts/stequipequipaikex72vu7/blobServices/default/containers/accounts"
+    },
+    {
+      "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+      "roleDefinitionName": "Storage Blob Data Contributor",
+      "scope": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourcegroups/rg-equip-ai/providers/Microsoft.Storage/storageAccounts/stequipequipaikex72vu7/blobServices/default/containers/accounts"
+    }
+  ],
+  "telemetryRoles": [
+    {
+      "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+      "roleDefinitionName": "Storage Blob Data Contributor",
+      "scope": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourcegroups/rg-equip-ai/providers/Microsoft.Storage/storageAccounts/stequipequipaikex72vu7/blobServices/default/containers/telemetry"
+    },
+    {
+      "principalId": "bf2292bc-df50-453c-bdb4-3fc4c7f8f677",
+      "roleDefinitionName": "equip-ai-expired-blob-cleaner-kex72v",
+      "scope": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourcegroups/rg-equip-ai/providers/Microsoft.Storage/storageAccounts/stequipequipaikex72vu7/blobServices/default/containers/telemetry"
+    },
+    {
+      "principalId": "95e688cf-66f0-4d71-b361-8ab5cb20a890",
+      "roleDefinitionName": "Storage Blob Data Reader",
+      "scope": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourcegroups/rg-equip-ai/providers/Microsoft.Storage/storageAccounts/stequipequipaikex72vu7/blobServices/default/containers/telemetry"
+    },
+    {
+      "principalId": "83e58925-23a0-4b4b-8978-4f42ff78b52f",
+      "roleDefinitionName": "Storage Blob Data Contributor",
+      "scope": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourcegroups/rg-equip-ai/providers/Microsoft.Storage/storageAccounts/stequipequipaikex72vu7/blobServices/default/containers/telemetry"
+    }
+  ],
+  "storageSharedKeysDisabled": true,
+  "storageDefaultDeny": true,
+  "trustedIotExceptionRetained": true,
+  "authenticatedOutsideNetworkBlobDenial": "AuthorizationFailure",
+  "outsideNetworkCleanerStatus": 403
+}

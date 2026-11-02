@@ -1,0 +1,21 @@
+{
+  "checkedAtUtc": "2026-10-24T00:03:13.724667+00:00",
+  "status": "passed",
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "resto-scale-agent",
+    "resourceGroup": "rg-resto-scale-agent",
+    "region": "centralus"
+  },
+  "infrastructureFingerprint": "1aa0c0f7d9f7518ece839c1edb8578142a922edb9ac482d2462b8fd6aa0feffc",
+  "checks": [
+    "Complete 26-check inventory; unknown dependencies remain unknown; no selected deployment-ready region.",
+    "Original observations retained; exact subscription, repaired name, what-if and final hash verified.",
+    "Earlier regional rejection history, Generic scope and curated target-only manifest retained.",
+    "Original failed lint retained alongside actual successful same-command retry.",
+    "Current controller review path inspected; no canonical backend edits or cloud writes."
+  ],
+  "limitations": "Artifact integrity only; no refreshed subscription eligibility or live runtime acceptance."
+}

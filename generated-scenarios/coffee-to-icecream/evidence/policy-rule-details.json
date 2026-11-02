@@ -1,0 +1,621 @@
+{
+  "AzureOpenAI_ProvisionedCapacity_Deny": {
+    "definition": {
+      "id": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/AzureOpenAI_ProvisionedCapacity_Deny",
+      "name": "AzureOpenAI_ProvisionedCapacity_Deny",
+      "properties": {
+        "description": "Deny the Azure OpenAI Deployments with Provisioned Capacity",
+        "displayName": "Block Azure OpenAI Provisioned Capacity",
+        "metadata": {
+          "Version": "20261008-1",
+          "category": "Cognitive Services",
+          "createdBy": "0bc12465-ad34-4ee9-9d73-d6b23dfc78b8",
+          "createdOn": "2024-09-27T01:03:04.3436664Z",
+          "updatedBy": "4619a992-000c-420a-97c5-fa7fd7c0d2b2",
+          "updatedOn": "2026-10-10T01:00:15.8153499Z"
+        },
+        "mode": "All",
+        "parameters": {},
+        "policyRule": {
+          "if": {
+            "AllOf": [
+              {
+                "equals": "Microsoft.CognitiveServices/accounts/deployments",
+                "field": "type"
+              },
+              {
+                "equals": "ProvisionedManaged",
+                "field": "Microsoft.CognitiveServices/accounts/deployments/sku.name"
+              }
+            ]
+          },
+          "then": {
+            "effect": "Deny"
+          }
+        },
+        "policyType": "Custom",
+        "version": "1.0.0",
+        "versions": [
+          "1.0.0"
+        ]
+      },
+      "systemData": {
+        "createdAt": "2024-09-27T01:03:04.2986096Z",
+        "createdBy": "eadea216-1d5c-4a4b-beaf-4f145e6b1cb4",
+        "createdByType": "Application",
+        "lastModifiedAt": "2026-10-10T01:00:15.7924777Z",
+        "lastModifiedBy": "a1a9c5b6-7a4f-4288-89ab-6805873f65d1",
+        "lastModifiedByType": "Application"
+      },
+      "type": "Microsoft.Authorization/policyDefinitions"
+    },
+    "initiativeParameters": {}
+  },
+  "6c112d4e-5bc7-47ae-a041-ea2d9dccd749": {
+    "definition": {
+      "id": "/providers/Microsoft.Authorization/policyDefinitions/6c112d4e-5bc7-47ae-a041-ea2d9dccd749",
+      "name": "6c112d4e-5bc7-47ae-a041-ea2d9dccd749",
+      "properties": {
+        "description": "Restrict which resource types can be deployed in your environment. Limiting resource types can reduce the complexity and attack surface of your environment while also helping to manage costs. Compliance results are only shown for non-compliant resources.",
+        "displayName": "Not allowed resource types",
+        "metadata": {
+          "category": "General",
+          "version": "2.0.0"
+        },
+        "mode": "All",
+        "parameters": {
+          "effect": {
+            "allowedValues": [
+              "Audit",
+              "Deny",
+              "Disabled"
+            ],
+            "defaultValue": "Deny",
+            "metadata": {
+              "description": "Enable or disable the execution of the policy",
+              "displayName": "Effect"
+            },
+            "type": "String"
+          },
+          "listOfResourceTypesNotAllowed": {
+            "metadata": {
+              "description": "The list of resource types that cannot be deployed.",
+              "displayName": "Not allowed resource types",
+              "strongType": "resourceTypes"
+            },
+            "type": "Array"
+          }
+        },
+        "policyRule": {
+          "if": {
+            "allOf": [
+              {
+                "field": "type",
+                "in": "[parameters('listOfResourceTypesNotAllowed')]"
+              },
+              {
+                "exists": true,
+                "value": "[field('type')]"
+              }
+            ]
+          },
+          "then": {
+            "effect": "[parameters('effect')]"
+          }
+        },
+        "policyType": "BuiltIn",
+        "version": "2.0.0",
+        "versions": [
+          "2.0.0"
+        ]
+      },
+      "type": "Microsoft.Authorization/policyDefinitions"
+    },
+    "initiativeParameters": {
+      "listOfResourceTypesNotAllowed": {
+        "value": [
+          "microsoft.classiccompute/virtualmachines",
+          "microsoft.classiccompute/virtualmachines/diagnosticsettings",
+          "microsoft.classiccompute/virtualmachines/metricdefinitions",
+          "microsoft.classiccompute/virtualmachines/metrics",
+          "microsoft.classicnetwork/virtualnetworks",
+          "microsoft.classicnetwork/virtualnetworks/remotevirtualnetworkpeeringproxies",
+          "microsoft.classicnetwork/virtualnetworks/virtualnetworkpeerings",
+          "microsoft.classicstorage/checkstorageaccountavailability",
+          "microsoft.classicstorage/storageaccounts",
+          "microsoft.classicstorage/storageaccounts/blobservices",
+          "microsoft.classicstorage/storageaccounts/fileservices",
+          "microsoft.classicstorage/storageaccounts/metricdefinitions",
+          "microsoft.classicstorage/storageaccounts/metrics",
+          "microsoft.classicstorage/storageaccounts/queueservices",
+          "microsoft.classicstorage/storageaccounts/services",
+          "microsoft.classicstorage/storageaccounts/services/diagnosticsettings",
+          "microsoft.classicstorage/storageaccounts/services/metricdefinitions",
+          "microsoft.classicstorage/storageaccounts/services/metrics",
+          "microsoft.classicstorage/storageaccounts/tableservices",
+          "microsoft.classicstorage/storageaccounts/vmimages",
+          "microsoft.classiccompute/capabilities",
+          "microsoft.classiccompute/checkdomainnameavailability",
+          "microsoft.classiccompute/domainnames",
+          "microsoft.classiccompute/domainnames/capabilities",
+          "microsoft.classiccompute/domainnames/internalloadbalancers",
+          "microsoft.classiccompute/domainnames/servicecertificates",
+          "microsoft.classiccompute/domainnames/slots",
+          "microsoft.classiccompute/domainnames/slots/roles",
+          "microsoft.classiccompute/domainnames/slots/roles/metricdefinitions",
+          "microsoft.classiccompute/domainnames/slots/roles/metrics",
+          "microsoft.classiccompute/movesubscriptionresources",
+          "microsoft.classiccompute/operatingsystemfamilies",
+          "microsoft.classiccompute/operatingsystems",
+          "microsoft.classiccompute/operations",
+          "microsoft.classiccompute/operationstatuses",
+          "microsoft.classiccompute/quotas",
+          "microsoft.classiccompute/resourcetypes",
+          "microsoft.classiccompute/validatesubscriptionmoveavailability",
+          "microsoft.classicnetwork/capabilities",
+          "microsoft.classicnetwork/expressroutecrossconnections",
+          "microsoft.classicnetwork/expressroutecrossconnections/peerings",
+          "microsoft.classicnetwork/gatewaysupporteddevices",
+          "microsoft.classicnetwork/networksecuritygroups",
+          "microsoft.classicnetwork/operations",
+          "microsoft.classicnetwork/quotas",
+          "microsoft.classicnetwork/reservedips",
+          "microsoft.classicstorage/capabilities",
+          "microsoft.classicstorage/disks",
+          "microsoft.classicstorage/images",
+          "microsoft.classicstorage/operations",
+          "microsoft.classicstorage/osimages",
+          "microsoft.classicstorage/osplatformimages",
+          "microsoft.classicstorage/publicimages",
+          "microsoft.classicstorage/quotas",
+          "microsoft.classicstorage/vmimages",
+          "microsoft.classicsubscription/operations",
+          "microsoft.classicinfrastructuremigrate/classicinfrastructureresources"
+        ]
+      }
+    }
+  },
+  "ResourceGroup_New_Deploy": {
+    "definition": {
+      "id": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/ResourceGroup_New_Deploy",
+      "name": "ResourceGroup_New_Deploy",
+      "properties": {
+        "description": "",
+        "displayName": "AzTB - Deploy Resource Group McapsGovernance",
+        "metadata": {
+          "createdBy": "0bc12465-ad34-4ee9-9d73-d6b23dfc78b8",
+          "createdOn": "2025-12-09T01:00:30.8313127Z",
+          "updatedBy": "4619a992-000c-420a-97c5-fa7fd7c0d2b2",
+          "updatedOn": "2026-10-10T01:00:15.8712252Z",
+          "version": "20261008-1"
+        },
+        "mode": "All",
+        "parameters": {
+          "Location": {
+            "defaultValue": "WestUS2",
+            "type": "String"
+          },
+          "ResourceGroupName": {
+            "defaultValue": "McapsGovernance",
+            "type": "String"
+          }
+        },
+        "policyRule": {
+          "if": {
+            "equals": "Microsoft.Resources/Subscriptions",
+            "field": "type"
+          },
+          "then": {
+            "details": {
+              "deployment": {
+                "location": "WestUS2",
+                "properties": {
+                  "mode": "incremental",
+                  "parameters": {
+                    "Location": {
+                      "value": "[parameters('Location')]"
+                    },
+                    "ResourceGroupName": {
+                      "value": "[parameters('ResourceGroupName')]"
+                    }
+                  },
+                  "template": {
+                    "$schema": "http://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json",
+                    "contentVersion": "1.0.0.0",
+                    "outputs": {},
+                    "parameters": {
+                      "Location": {
+                        "type": "String"
+                      },
+                      "ResourceGroupName": {
+                        "type": "String"
+                      }
+                    },
+                    "resources": [
+                      {
+                        "apiVersion": "2018-05-01",
+                        "location": "[parameters('Location')]",
+                        "name": "[parameters('ResourceGroupName')]",
+                        "tags": {
+                          "Action": "Do Not Delete",
+                          "Contact": "https://aka.ms/mcapsazuresupport",
+                          "CreatedByPolicy": "MCAPS Governance Team"
+                        },
+                        "type": "Microsoft.Resources/resourceGroups"
+                      }
+                    ],
+                    "variables": {}
+                  }
+                }
+              },
+              "deploymentScope": "subscription",
+              "evaluationDelay": "AfterProvisioning",
+              "existenceCondition": {
+                "equals": "[parameters('ResourceGroupName')]",
+                "field": "name"
+              },
+              "roleDefinitionIds": [
+                "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+              ],
+              "type": "Microsoft.Resources/Subscriptions/resourcegroups"
+            },
+            "effect": "deployIfNotExists"
+          }
+        },
+        "policyType": "Custom",
+        "version": "1.0.0",
+        "versions": [
+          "1.0.0"
+        ]
+      },
+      "systemData": {
+        "createdAt": "2025-12-09T01:00:30.7744547Z",
+        "createdBy": "eadea216-1d5c-4a4b-beaf-4f145e6b1cb4",
+        "createdByType": "Application",
+        "lastModifiedAt": "2026-10-10T01:00:15.8092971Z",
+        "lastModifiedBy": "a1a9c5b6-7a4f-4288-89ab-6805873f65d1",
+        "lastModifiedByType": "Application"
+      },
+      "type": "Microsoft.Authorization/policyDefinitions"
+    },
+    "initiativeParameters": {}
+  },
+  "LogAnalyticsWorkspace_New_Deploy": {
+    "definition": {
+      "id": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/LogAnalyticsWorkspace_New_Deploy",
+      "name": "LogAnalyticsWorkspace_New_Deploy",
+      "properties": {
+        "displayName": "AzTB - Deploy Log Analytics Workspace for Diagnostic Settings",
+        "metadata": {
+          "createdBy": "4619a992-000c-420a-97c5-fa7fd7c0d2b2",
+          "createdOn": "2026-09-01T01:00:48.5315651Z",
+          "updatedBy": "4619a992-000c-420a-97c5-fa7fd7c0d2b2",
+          "updatedOn": "2026-10-10T01:00:15.8179056Z",
+          "version": "20261008-1"
+        },
+        "mode": "All",
+        "parameters": {
+          "Location": {
+            "defaultValue": "WestUS2",
+            "type": "String"
+          },
+          "ResourceGroupName": {
+            "defaultValue": "McapsGovernance",
+            "type": "String"
+          }
+        },
+        "policyRule": {
+          "if": {
+            "equals": "Microsoft.Resources/subscriptions",
+            "field": "type"
+          },
+          "then": {
+            "details": {
+              "deployment": {
+                "properties": {
+                  "mode": "Incremental",
+                  "parameters": {
+                    "Location": {
+                      "value": "[parameters('Location')]"
+                    },
+                    "ResourceGroupName": {
+                      "value": "[parameters('ResourceGroupName')]"
+                    }
+                  },
+                  "template": {
+                    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {
+                      "Location": {
+                        "type": "String"
+                      },
+                      "ResourceGroupName": {
+                        "type": "String"
+                      }
+                    },
+                    "resources": [
+                      {
+                        "apiVersion": "2025-07-01",
+                        "location": "[parameters('Location')]",
+                        "name": "[variables('LogAnalyticsName')]",
+                        "retentionInDays": 30,
+                        "sku": {
+                          "name": "PerGB2018"
+                        },
+                        "tags": {
+                          "Action": "Do Not Delete",
+                          "Contact": "https://aka.ms/mcapsazuresupport",
+                          "CreatedByPolicy": "MCAPS Governance Team"
+                        },
+                        "type": "Microsoft.OperationalInsights/workspaces"
+                      }
+                    ],
+                    "variables": {
+                      "LogAnalyticsName": "[toLower(concat('mcaps', substring(replace(subscription().subscriptionId, '-', ''), 12), '-la'))]"
+                    }
+                  }
+                }
+              },
+              "existenceCondition": {
+                "allOf": [
+                  {
+                    "equals": "[toLower(concat('mcaps', substring(replace(subscription().subscriptionId, '-', ''), 12), '-la'))]",
+                    "field": "name"
+                  }
+                ]
+              },
+              "resourceGroupName": "[parameters('ResourceGroupName')]",
+              "roleDefinitionIds": [
+                "/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635"
+              ],
+              "type": "Microsoft.OperationalInsights/workspaces"
+            },
+            "effect": "deployIfNotExists"
+          }
+        },
+        "policyType": "Custom",
+        "version": "1.0.0",
+        "versions": [
+          "1.0.0"
+        ]
+      },
+      "systemData": {
+        "createdAt": "2026-09-01T01:00:48.4968151Z",
+        "createdBy": "a1a9c5b6-7a4f-4288-89ab-6805873f65d1",
+        "createdByType": "Application",
+        "lastModifiedAt": "2026-10-10T01:00:15.7155467Z",
+        "lastModifiedBy": "a1a9c5b6-7a4f-4288-89ab-6805873f65d1",
+        "lastModifiedByType": "Application"
+      },
+      "type": "Microsoft.Authorization/policyDefinitions"
+    },
+    "initiativeParameters": {}
+  },
+  "AIFoundryHub_PublicNetwork_Modify": {
+    "definition": {
+      "id": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/AIFoundryHub_PublicNetwork_Modify",
+      "name": "AIFoundryHub_PublicNetwork_Modify",
+      "properties": {
+        "displayName": "AzTB 16 - Public network access on Azure AI Foundry must be disabled or restricted",
+        "metadata": {
+          "Version": "20261008-1",
+          "category": "Network",
+          "createdBy": "0bc12465-ad34-4ee9-9d73-d6b23dfc78b8",
+          "createdOn": "2025-12-09T01:00:30.7979682Z",
+          "updatedBy": "4619a992-000c-420a-97c5-fa7fd7c0d2b2",
+          "updatedOn": "2026-10-10T01:00:15.872398Z"
+        },
+        "mode": "Indexed",
+        "parameters": {
+          "AllowedTagName": {
+            "defaultValue": "SecurityControl",
+            "metadata": {
+              "description": "Rule is not applied if this tag exists on the resource or resource group level",
+              "displayName": "Exclusion Tag Name"
+            },
+            "type": "String"
+          },
+          "AllowedTagValue": {
+            "defaultValue": "Ignore",
+            "metadata": {
+              "description": "Rule is not applied if this tag exists on the resource or resource group level",
+              "displayName": "Exclusion Tag Value"
+            },
+            "type": "String"
+          },
+          "effect": {
+            "allowedValues": [
+              "audit",
+              "deny",
+              "modify"
+            ],
+            "defaultValue": "modify",
+            "metadata": {
+              "description": "The effect determines what happens when the policy rule is evaluated to match",
+              "displayName": "Effect"
+            },
+            "type": "String"
+          }
+        },
+        "policyRule": {
+          "if": {
+            "allOf": [
+              {
+                "equals": "Microsoft.MachineLearningServices/workspaces",
+                "field": "type"
+              },
+              {
+                "field": "Microsoft.MachineLearningServices/workspaces/publicNetworkAccess",
+                "notEquals": "Disabled"
+              },
+              {
+                "equals": "Hub",
+                "field": "kind"
+              },
+              {
+                "not": {
+                  "anyOf": [
+                    {
+                      "equals": "[parameters('AllowedTagValue')]",
+                      "field": "[concat('tags[', parameters('AllowedTagName'), ']')]"
+                    },
+                    {
+                      "equals": "[parameters('AllowedTagValue')]",
+                      "value": "[resourceGroup().tags[parameters('AllowedTagName')]]"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "then": {
+            "details": {
+              "conflictEffect": "audit",
+              "operations": [
+                {
+                  "condition": "[greaterOrEquals(requestContext().apiVersion, '2021-10-01')]",
+                  "field": "Microsoft.MachineLearningServices/workspaces/publicNetworkAccess",
+                  "operation": "addOrReplace",
+                  "value": "Disabled"
+                }
+              ],
+              "roleDefinitionIds": [
+                "/providers/microsoft.authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+              ]
+            },
+            "effect": "[parameters('effect')]"
+          }
+        },
+        "policyType": "Custom",
+        "version": "1.0.0",
+        "versions": [
+          "1.0.0"
+        ]
+      },
+      "systemData": {
+        "createdAt": "2025-12-09T01:00:30.7588277Z",
+        "createdBy": "eadea216-1d5c-4a4b-beaf-4f145e6b1cb4",
+        "createdByType": "Application",
+        "lastModifiedAt": "2026-10-10T01:00:15.8092971Z",
+        "lastModifiedBy": "a1a9c5b6-7a4f-4288-89ab-6805873f65d1",
+        "lastModifiedByType": "Application"
+      },
+      "type": "Microsoft.Authorization/policyDefinitions"
+    },
+    "initiativeParameters": {}
+  },
+  "StorageAccount_PublicNetwork_Modify": {
+    "definition": {
+      "id": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/StorageAccount_PublicNetwork_Modify",
+      "name": "StorageAccount_PublicNetwork_Modify",
+      "properties": {
+        "description": "Disables public network access on Storage accounts to comply with the SFI KPI. Resources secured by a Network Security Perimeter (publicNetworkAccess = SecuredByPerimeter) are excluded and their networking is not modified.",
+        "displayName": "SFI-NS2.2.1 Secure PaaS Resources - Storage accounts (excluding NSP configured resources)",
+        "metadata": {
+          "Version": "20261008-1",
+          "category": "Network",
+          "createdBy": "0bc12465-ad34-4ee9-9d73-d6b23dfc78b8",
+          "createdOn": "2026-07-09T01:00:23.3528694Z",
+          "updatedBy": "4619a992-000c-420a-97c5-fa7fd7c0d2b2",
+          "updatedOn": "2026-10-10T01:00:15.8814679Z"
+        },
+        "mode": "Indexed",
+        "parameters": {
+          "AllowedTagName": {
+            "defaultValue": "SecurityControl",
+            "metadata": {
+              "description": "Rule is not applied if this tag exists on the resource or resource group level",
+              "displayName": "Exclusion Tag Name"
+            },
+            "type": "String"
+          },
+          "AllowedTagValue": {
+            "defaultValue": "Ignore",
+            "metadata": {
+              "description": "Rule is not applied if this tag exists on the resource or resource group level",
+              "displayName": "Exclusion Tag Value"
+            },
+            "type": "String"
+          },
+          "effect": {
+            "allowedValues": [
+              "audit",
+              "deny",
+              "modify"
+            ],
+            "defaultValue": "modify",
+            "metadata": {
+              "description": "The effect determines what happens when the policy rule is evaluated to match",
+              "displayName": "Effect"
+            },
+            "type": "String"
+          }
+        },
+        "policyRule": {
+          "if": {
+            "allOf": [
+              {
+                "equals": "Microsoft.Storage/storageAccounts",
+                "field": "type"
+              },
+              {
+                "field": "Microsoft.Storage/storageAccounts/publicNetworkAccess",
+                "notEquals": "Disabled"
+              },
+              {
+                "field": "Microsoft.Storage/storageAccounts/publicNetworkAccess",
+                "notEquals": "SecuredByPerimeter"
+              },
+              {
+                "not": {
+                  "anyOf": [
+                    {
+                      "equals": "[parameters('AllowedTagValue')]",
+                      "field": "[concat('tags[', parameters('AllowedTagName'), ']')]"
+                    },
+                    {
+                      "equals": "[parameters('AllowedTagValue')]",
+                      "value": "[resourceGroup().tags[parameters('AllowedTagName')]]"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "then": {
+            "details": {
+              "conflictEffect": "audit",
+              "operations": [
+                {
+                  "condition": "[greaterOrEquals(requestContext().apiVersion, '2021-04-01')]",
+                  "field": "Microsoft.Storage/storageAccounts/publicNetworkAccess",
+                  "operation": "addOrReplace",
+                  "value": "Disabled"
+                }
+              ],
+              "roleDefinitionIds": [
+                "/providers/microsoft.authorization/roleDefinitions/17d1049b-9a84-46fb-8f53-869881c3d3ab"
+              ]
+            },
+            "effect": "[parameters('effect')]"
+          }
+        },
+        "policyType": "Custom",
+        "version": "1.0.0",
+        "versions": [
+          "1.0.0"
+        ]
+      },
+      "systemData": {
+        "createdAt": "2026-07-09T01:00:23.2900505Z",
+        "createdBy": "eadea216-1d5c-4a4b-beaf-4f145e6b1cb4",
+        "createdByType": "Application",
+        "lastModifiedAt": "2026-10-10T01:00:15.82492Z",
+        "lastModifiedBy": "a1a9c5b6-7a4f-4288-89ab-6805873f65d1",
+        "lastModifiedByType": "Application"
+      },
+      "type": "Microsoft.Authorization/policyDefinitions"
+    },
+    "initiativeParameters": {}
+  }
+}

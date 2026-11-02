@@ -1,0 +1,2062 @@
+{
+  "command": "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku?api-version=2024-01-01 --output json",
+  "startedAtUtc": "2026-10-23T22:45:32.296975+00:00",
+  "checkedAtUtc": "2026-10-23T22:45:35.872812+00:00",
+  "exitCode": 0,
+  "stdout": "{\n  \"value\": [\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/australiacentral\",\n      \"name\": \"australiacentral\",\n      \"properties\": {\n        \"code\": \"australiacentral\",\n        \"features\": {},\n        \"fullName\": \"Australia Central\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/australiacentral\",\n      \"name\": \"australiacentral\",\n      \"properties\": {\n        \"code\": \"australiacentral\",\n        \"features\": {},\n        \"fullName\": \"Australia Central\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/australiacentral\",\n      \"name\": \"australiacentral\",\n      \"properties\": {\n        \"code\": \"australiacentral\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": false\n        },\n        \"fullName\": \"Australia Central\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/australiaeast\",\n      \"name\": \"australiaeast\",\n      \"properties\": {\n        \"code\": \"australiaeast\",\n        \"features\": {},\n        \"fullName\": \"Australia East\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/australiaeast\",\n      \"name\": \"australiaeast\",\n      \"properties\": {\n        \"code\": \"australiaeast\",\n        \"features\": {},\n        \"fullName\": \"Australia East\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/australiaeast\",\n      \"name\": \"australiaeast\",\n      \"properties\": {\n        \"code\": \"australiaeast\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"Australia East\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/australiasoutheast\",\n      \"name\": \"australiasoutheast\",\n      \"properties\": {\n        \"code\": \"australiasoutheast\",\n        \"features\": {},\n        \"fullName\": \"Australia Southeast\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/australiasoutheast\",\n      \"name\": \"australiasoutheast\",\n      \"properties\": {\n        \"code\": \"australiasoutheast\",\n        \"features\": {},\n        \"fullName\": \"Australia Southeast\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/australiasoutheast\",\n      \"name\": \"australiasoutheast\",\n      \"properties\": {\n        \"code\": \"australiasoutheast\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": false\n        },\n        \"fullName\": \"Australia Southeast\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/austriaeast\",\n      \"name\": \"austriaeast\",\n      \"properties\": {\n        \"code\": \"austriaeast\",\n        \"features\": {},\n        \"fullName\": \"Austria East\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/austriaeast\",\n      \"name\": \"austriaeast\",\n      \"properties\": {\n        \"code\": \"austriaeast\",\n        \"features\": {},\n        \"fullName\": \"Austria East\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/austriaeast\",\n      \"name\": \"austriaeast\",\n      \"properties\": {\n        \"code\": \"austriaeast\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"Austria East\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/belgiumcentral\",\n      \"name\": \"belgiumcentral\",\n      \"properties\": {\n        \"code\": \"belgiumcentral\",\n        \"features\": {},\n        \"fullName\": \"Belgium Central\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/belgiumcentral\",\n      \"name\": \"belgiumcentral\",\n      \"properties\": {\n        \"code\": \"belgiumcentral\",\n        \"features\": {},\n        \"fullName\": \"Belgium Central\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/belgiumcentral\",\n      \"name\": \"belgiumcentral\",\n      \"properties\": {\n        \"code\": \"belgiumcentral\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"Belgium Central\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/brazilsouth\",\n      \"name\": \"brazilsouth\",\n      \"properties\": {\n        \"code\": \"brazilsouth\",\n        \"features\": {},\n        \"fullName\": \"Brazil South\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/brazilsouth\",\n      \"name\": \"brazilsouth\",\n      \"properties\": {\n        \"code\": \"brazilsouth\",\n        \"features\": {},\n        \"fullName\": \"Brazil South\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/brazilsouth\",\n      \"name\": \"brazilsouth\",\n      \"properties\": {\n        \"code\": \"brazilsouth\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"Brazil South\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/canadacentral\",\n      \"name\": \"canadacentral\",\n      \"properties\": {\n        \"code\": \"canadacentral\",\n        \"features\": {},\n        \"fullName\": \"Canada Central\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/canadacentral\",\n      \"name\": \"canadacentral\",\n      \"properties\": {\n        \"code\": \"canadacentral\",\n        \"features\": {},\n        \"fullName\": \"Canada Central\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/canadacentral\",\n      \"name\": \"canadacentral\",\n      \"properties\": {\n        \"code\": \"canadacentral\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"Canada Central\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/canadaeast\",\n      \"name\": \"canadaeast\",\n      \"properties\": {\n        \"code\": \"canadaeast\",\n        \"features\": {},\n        \"fullName\": \"Canada East\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/canadaeast\",\n      \"name\": \"canadaeast\",\n      \"properties\": {\n        \"code\": \"canadaeast\",\n        \"features\": {},\n        \"fullName\": \"Canada East\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/canadaeast\",\n      \"name\": \"canadaeast\",\n      \"properties\": {\n        \"code\": \"canadaeast\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": false\n        },\n        \"fullName\": \"Canada East\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/centralindia\",\n      \"name\": \"centralindia\",\n      \"properties\": {\n        \"code\": \"centralindia\",\n        \"features\": {},\n        \"fullName\": \"Central India\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/centralindia\",\n      \"name\": \"centralindia\",\n      \"properties\": {\n        \"code\": \"centralindia\",\n        \"features\": {},\n        \"fullName\": \"Central India\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/centralindia\",\n      \"name\": \"centralindia\",\n      \"properties\": {\n        \"code\": \"centralindia\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"Central India\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/centralus\",\n      \"name\": \"centralus\",\n      \"properties\": {\n        \"code\": \"centralus\",\n        \"features\": {},\n        \"fullName\": \"Central US\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/centralus\",\n      \"name\": \"centralus\",\n      \"properties\": {\n        \"code\": \"centralus\",\n        \"features\": {},\n        \"fullName\": \"Central US\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/centralus\",\n      \"name\": \"centralus\",\n      \"properties\": {\n        \"code\": \"centralus\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"Central US\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/chilecentral\",\n      \"name\": \"chilecentral\",\n      \"properties\": {\n        \"code\": \"chilecentral\",\n        \"features\": {},\n        \"fullName\": \"Chile Central\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/chilecentral\",\n      \"name\": \"chilecentral\",\n      \"properties\": {\n        \"code\": \"chilecentral\",\n        \"features\": {},\n        \"fullName\": \"Chile Central\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/chilecentral\",\n      \"name\": \"chilecentral\",\n      \"properties\": {\n        \"code\": \"chilecentral\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"Chile Central\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/denmarkeast\",\n      \"name\": \"denmarkeast\",\n      \"properties\": {\n        \"code\": \"denmarkeast\",\n        \"features\": {},\n        \"fullName\": \"Denmark East\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/denmarkeast\",\n      \"name\": \"denmarkeast\",\n      \"properties\": {\n        \"code\": \"denmarkeast\",\n        \"features\": {},\n        \"fullName\": \"Denmark East\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/denmarkeast\",\n      \"name\": \"denmarkeast\",\n      \"properties\": {\n        \"code\": \"denmarkeast\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"Denmark East\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/eastasia\",\n      \"name\": \"eastasia\",\n      \"properties\": {\n        \"code\": \"eastasia\",\n        \"features\": {},\n        \"fullName\": \"East Asia\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/eastasia\",\n      \"name\": \"eastasia\",\n      \"properties\": {\n        \"code\": \"eastasia\",\n        \"features\": {},\n        \"fullName\": \"East Asia\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/eastasia\",\n      \"name\": \"eastasia\",\n      \"properties\": {\n        \"code\": \"eastasia\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"East Asia\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/eastus\",\n      \"name\": \"eastus\",\n      \"properties\": {\n        \"code\": \"eastus\",\n        \"features\": {},\n        \"fullName\": \"East US\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/eastus\",\n      \"name\": \"eastus\",\n      \"properties\": {\n        \"code\": \"eastus\",\n        \"features\": {},\n        \"fullName\": \"East US\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/eastus\",\n      \"name\": \"eastus\",\n      \"properties\": {\n        \"code\": \"eastus\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"East US\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/eastus2\",\n      \"name\": \"eastus2\",\n      \"properties\": {\n        \"code\": \"eastus2\",\n        \"features\": {},\n        \"fullName\": \"East US 2\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/eastus2\",\n      \"name\": \"eastus2\",\n      \"properties\": {\n        \"code\": \"eastus2\",\n        \"features\": {},\n        \"fullName\": \"East US 2\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/eastus2\",\n      \"name\": \"eastus2\",\n      \"properties\": {\n        \"code\": \"eastus2\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"East US 2\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/francecentral\",\n      \"name\": \"francecentral\",\n      \"properties\": {\n        \"code\": \"francecentral\",\n        \"features\": {},\n        \"fullName\": \"France Central\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/francecentral\",\n      \"name\": \"francecentral\",\n      \"properties\": {\n        \"code\": \"francecentral\",\n        \"features\": {},\n        \"fullName\": \"France Central\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/francecentral\",\n      \"name\": \"francecentral\",\n      \"properties\": {\n        \"code\": \"francecentral\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"France Central\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/germanywestcentral\",\n      \"name\": \"germanywestcentral\",\n      \"properties\": {\n        \"code\": \"germanywestcentral\",\n        \"features\": {},\n        \"fullName\": \"Germany West Central\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/germanywestcentral\",\n      \"name\": \"germanywestcentral\",\n      \"properties\": {\n        \"code\": \"germanywestcentral\",\n        \"features\": {},\n        \"fullName\": \"Germany West Central\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/germanywestcentral\",\n      \"name\": \"germanywestcentral\",\n      \"properties\": {\n        \"code\": \"germanywestcentral\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"Germany West Central\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/indiasouthcentral\",\n      \"name\": \"indiasouthcentral\",\n      \"properties\": {\n        \"code\": \"indiasouthcentral\",\n        \"features\": {},\n        \"fullName\": \"India South Central\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/indiasouthcentral\",\n      \"name\": \"indiasouthcentral\",\n      \"properties\": {\n        \"code\": \"indiasouthcentral\",\n        \"features\": {},\n        \"fullName\": \"India South Central\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/indiasouthcentral\",\n      \"name\": \"indiasouthcentral\",\n      \"properties\": {\n        \"code\": \"indiasouthcentral\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"India South Central\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/indonesiacentral\",\n      \"name\": \"indonesiacentral\",\n      \"properties\": {\n        \"code\": \"indonesiacentral\",\n        \"features\": {},\n        \"fullName\": \"Indonesia Central\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/indonesiacentral\",\n      \"name\": \"indonesiacentral\",\n      \"properties\": {\n        \"code\": \"indonesiacentral\",\n        \"features\": {},\n        \"fullName\": \"Indonesia Central\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/indonesiacentral\",\n      \"name\": \"indonesiacentral\",\n      \"properties\": {\n        \"code\": \"indonesiacentral\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"Indonesia Central\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/israelcentral\",\n      \"name\": \"israelcentral\",\n      \"properties\": {\n        \"code\": \"israelcentral\",\n        \"features\": {},\n        \"fullName\": \"Israel Central\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/israelcentral\",\n      \"name\": \"israelcentral\",\n      \"properties\": {\n        \"code\": \"israelcentral\",\n        \"features\": {},\n        \"fullName\": \"Israel Central\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/israelcentral\",\n      \"name\": \"israelcentral\",\n      \"properties\": {\n        \"code\": \"israelcentral\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"Israel Central\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/italynorth\",\n      \"name\": \"italynorth\",\n      \"properties\": {\n        \"code\": \"italynorth\",\n        \"features\": {},\n        \"fullName\": \"Italy North\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/italynorth\",\n      \"name\": \"italynorth\",\n      \"properties\": {\n        \"code\": \"italynorth\",\n        \"features\": {},\n        \"fullName\": \"Italy North\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/italynorth\",\n      \"name\": \"italynorth\",\n      \"properties\": {\n        \"code\": \"italynorth\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"Italy North\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/japaneast\",\n      \"name\": \"japaneast\",\n      \"properties\": {\n        \"code\": \"japaneast\",\n        \"features\": {},\n        \"fullName\": \"Japan East\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/japaneast\",\n      \"name\": \"japaneast\",\n      \"properties\": {\n        \"code\": \"japaneast\",\n        \"features\": {},\n        \"fullName\": \"Japan East\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/japaneast\",\n      \"name\": \"japaneast\",\n      \"properties\": {\n        \"code\": \"japaneast\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"Japan East\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/japanwest\",\n      \"name\": \"japanwest\",\n      \"properties\": {\n        \"code\": \"japanwest\",\n        \"features\": {},\n        \"fullName\": \"Japan West\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/japanwest\",\n      \"name\": \"japanwest\",\n      \"properties\": {\n        \"code\": \"japanwest\",\n        \"features\": {},\n        \"fullName\": \"Japan West\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/japanwest\",\n      \"name\": \"japanwest\",\n      \"properties\": {\n        \"code\": \"japanwest\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"Japan West\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/jioindiawest\",\n      \"name\": \"jioindiawest\",\n      \"properties\": {\n        \"code\": \"jioindiawest\",\n        \"features\": {},\n        \"fullName\": \"Jio India West\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/jioindiawest\",\n      \"name\": \"jioindiawest\",\n      \"properties\": {\n        \"code\": \"jioindiawest\",\n        \"features\": {},\n        \"fullName\": \"Jio India West\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/jioindiawest\",\n      \"name\": \"jioindiawest\",\n      \"properties\": {\n        \"code\": \"jioindiawest\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": false\n        },\n        \"fullName\": \"Jio India West\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/koreacentral\",\n      \"name\": \"koreacentral\",\n      \"properties\": {\n        \"code\": \"koreacentral\",\n        \"features\": {},\n        \"fullName\": \"Korea Central\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/koreacentral\",\n      \"name\": \"koreacentral\",\n      \"properties\": {\n        \"code\": \"koreacentral\",\n        \"features\": {},\n        \"fullName\": \"Korea Central\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/koreacentral\",\n      \"name\": \"koreacentral\",\n      \"properties\": {\n        \"code\": \"koreacentral\",\n        \"features\": {\n          \"supportsConfidential\": true,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"Korea Central\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/koreasouth\",\n      \"name\": \"koreasouth\",\n      \"properties\": {\n        \"code\": \"koreasouth\",\n        \"features\": {},\n        \"fullName\": \"Korea South\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/koreasouth\",\n      \"name\": \"koreasouth\",\n      \"properties\": {\n        \"code\": \"koreasouth\",\n        \"features\": {},\n        \"fullName\": \"Korea South\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/koreasouth\",\n      \"name\": \"koreasouth\",\n      \"properties\": {\n        \"code\": \"koreasouth\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": false\n        },\n        \"fullName\": \"Korea South\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/malaysiawest\",\n      \"name\": \"malaysiawest\",\n      \"properties\": {\n        \"code\": \"malaysiawest\",\n        \"features\": {},\n        \"fullName\": \"Malaysia West\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/malaysiawest\",\n      \"name\": \"malaysiawest\",\n      \"properties\": {\n        \"code\": \"malaysiawest\",\n        \"features\": {},\n        \"fullName\": \"Malaysia West\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/malaysiawest\",\n      \"name\": \"malaysiawest\",\n      \"properties\": {\n        \"code\": \"malaysiawest\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"Malaysia West\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/mexicocentral\",\n      \"name\": \"mexicocentral\",\n      \"properties\": {\n        \"code\": \"mexicocentral\",\n        \"features\": {},\n        \"fullName\": \"Mexico Central\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/mexicocentral\",\n      \"name\": \"mexicocentral\",\n      \"properties\": {\n        \"code\": \"mexicocentral\",\n        \"features\": {},\n        \"fullName\": \"Mexico Central\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/mexicocentral\",\n      \"name\": \"mexicocentral\",\n      \"properties\": {\n        \"code\": \"mexicocentral\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"Mexico Central\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/newzealandnorth\",\n      \"name\": \"newzealandnorth\",\n      \"properties\": {\n        \"code\": \"newzealandnorth\",\n        \"features\": {},\n        \"fullName\": \"New Zealand North\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/newzealandnorth\",\n      \"name\": \"newzealandnorth\",\n      \"properties\": {\n        \"code\": \"newzealandnorth\",\n        \"features\": {},\n        \"fullName\": \"New Zealand North\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/newzealandnorth\",\n      \"name\": \"newzealandnorth\",\n      \"properties\": {\n        \"code\": \"newzealandnorth\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"New Zealand North\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/northcentralus\",\n      \"name\": \"northcentralus\",\n      \"properties\": {\n        \"code\": \"northcentralus\",\n        \"features\": {},\n        \"fullName\": \"North Central US\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/northcentralus\",\n      \"name\": \"northcentralus\",\n      \"properties\": {\n        \"code\": \"northcentralus\",\n        \"features\": {},\n        \"fullName\": \"North Central US\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/northcentralus\",\n      \"name\": \"northcentralus\",\n      \"properties\": {\n        \"code\": \"northcentralus\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"North Central US\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/northeurope\",\n      \"name\": \"northeurope\",\n      \"properties\": {\n        \"code\": \"northeurope\",\n        \"features\": {},\n        \"fullName\": \"North Europe\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/northeurope\",\n      \"name\": \"northeurope\",\n      \"properties\": {\n        \"code\": \"northeurope\",\n        \"features\": {},\n        \"fullName\": \"North Europe\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/northeurope\",\n      \"name\": \"northeurope\",\n      \"properties\": {\n        \"code\": \"northeurope\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"North Europe\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/norwayeast\",\n      \"name\": \"norwayeast\",\n      \"properties\": {\n        \"code\": \"norwayeast\",\n        \"features\": {},\n        \"fullName\": \"Norway East\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/norwayeast\",\n      \"name\": \"norwayeast\",\n      \"properties\": {\n        \"code\": \"norwayeast\",\n        \"features\": {},\n        \"fullName\": \"Norway East\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/norwayeast\",\n      \"name\": \"norwayeast\",\n      \"properties\": {\n        \"code\": \"norwayeast\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"Norway East\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/polandcentral\",\n      \"name\": \"polandcentral\",\n      \"properties\": {\n        \"code\": \"polandcentral\",\n        \"features\": {},\n        \"fullName\": \"Poland Central\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/polandcentral\",\n      \"name\": \"polandcentral\",\n      \"properties\": {\n        \"code\": \"polandcentral\",\n        \"features\": {},\n        \"fullName\": \"Poland Central\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/polandcentral\",\n      \"name\": \"polandcentral\",\n      \"properties\": {\n        \"code\": \"polandcentral\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"Poland Central\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/qatarcentral\",\n      \"name\": \"qatarcentral\",\n      \"properties\": {\n        \"code\": \"qatarcentral\",\n        \"features\": {},\n        \"fullName\": \"Qatar Central\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/qatarcentral\",\n      \"name\": \"qatarcentral\",\n      \"properties\": {\n        \"code\": \"qatarcentral\",\n        \"features\": {},\n        \"fullName\": \"Qatar Central\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/qatarcentral\",\n      \"name\": \"qatarcentral\",\n      \"properties\": {\n        \"code\": \"qatarcentral\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"Qatar Central\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/southafricanorth\",\n      \"name\": \"southafricanorth\",\n      \"properties\": {\n        \"code\": \"southafricanorth\",\n        \"features\": {},\n        \"fullName\": \"South Africa North\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/southafricanorth\",\n      \"name\": \"southafricanorth\",\n      \"properties\": {\n        \"code\": \"southafricanorth\",\n        \"features\": {},\n        \"fullName\": \"South Africa North\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/southafricanorth\",\n      \"name\": \"southafricanorth\",\n      \"properties\": {\n        \"code\": \"southafricanorth\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"South Africa North\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/southcentralus\",\n      \"name\": \"southcentralus\",\n      \"properties\": {\n        \"code\": \"southcentralus\",\n        \"features\": {},\n        \"fullName\": \"South Central US\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/southcentralus\",\n      \"name\": \"southcentralus\",\n      \"properties\": {\n        \"code\": \"southcentralus\",\n        \"features\": {},\n        \"fullName\": \"South Central US\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/southcentralus\",\n      \"name\": \"southcentralus\",\n      \"properties\": {\n        \"code\": \"southcentralus\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"South Central US\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/southeastasia\",\n      \"name\": \"southeastasia\",\n      \"properties\": {\n        \"code\": \"southeastasia\",\n        \"features\": {},\n        \"fullName\": \"Southeast Asia\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/southeastasia\",\n      \"name\": \"southeastasia\",\n      \"properties\": {\n        \"code\": \"southeastasia\",\n        \"features\": {},\n        \"fullName\": \"Southeast Asia\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/southeastasia\",\n      \"name\": \"southeastasia\",\n      \"properties\": {\n        \"code\": \"southeastasia\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"Southeast Asia\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/southindia\",\n      \"name\": \"southindia\",\n      \"properties\": {\n        \"code\": \"southindia\",\n        \"features\": {},\n        \"fullName\": \"South India\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/southindia\",\n      \"name\": \"southindia\",\n      \"properties\": {\n        \"code\": \"southindia\",\n        \"features\": {},\n        \"fullName\": \"South India\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/southindia\",\n      \"name\": \"southindia\",\n      \"properties\": {\n        \"code\": \"southindia\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": false\n        },\n        \"fullName\": \"South India\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/spaincentral\",\n      \"name\": \"spaincentral\",\n      \"properties\": {\n        \"code\": \"spaincentral\",\n        \"features\": {},\n        \"fullName\": \"Spain Central\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/spaincentral\",\n      \"name\": \"spaincentral\",\n      \"properties\": {\n        \"code\": \"spaincentral\",\n        \"features\": {},\n        \"fullName\": \"Spain Central\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/spaincentral\",\n      \"name\": \"spaincentral\",\n      \"properties\": {\n        \"code\": \"spaincentral\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"Spain Central\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/swedencentral\",\n      \"name\": \"swedencentral\",\n      \"properties\": {\n        \"code\": \"swedencentral\",\n        \"features\": {},\n        \"fullName\": \"Sweden Central\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/swedencentral\",\n      \"name\": \"swedencentral\",\n      \"properties\": {\n        \"code\": \"swedencentral\",\n        \"features\": {},\n        \"fullName\": \"Sweden Central\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/swedencentral\",\n      \"name\": \"swedencentral\",\n      \"properties\": {\n        \"code\": \"swedencentral\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"Sweden Central\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/switzerlandnorth\",\n      \"name\": \"switzerlandnorth\",\n      \"properties\": {\n        \"code\": \"switzerlandnorth\",\n        \"features\": {},\n        \"fullName\": \"Switzerland North\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/switzerlandnorth\",\n      \"name\": \"switzerlandnorth\",\n      \"properties\": {\n        \"code\": \"switzerlandnorth\",\n        \"features\": {},\n        \"fullName\": \"Switzerland North\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/switzerlandnorth\",\n      \"name\": \"switzerlandnorth\",\n      \"properties\": {\n        \"code\": \"switzerlandnorth\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"Switzerland North\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/uaenorth\",\n      \"name\": \"uaenorth\",\n      \"properties\": {\n        \"code\": \"uaenorth\",\n        \"features\": {},\n        \"fullName\": \"UAE North\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/uaenorth\",\n      \"name\": \"uaenorth\",\n      \"properties\": {\n        \"code\": \"uaenorth\",\n        \"features\": {},\n        \"fullName\": \"UAE North\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/uaenorth\",\n      \"name\": \"uaenorth\",\n      \"properties\": {\n        \"code\": \"uaenorth\",\n        \"features\": {\n          \"supportsConfidential\": true,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"UAE North\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/uksouth\",\n      \"name\": \"uksouth\",\n      \"properties\": {\n        \"code\": \"uksouth\",\n        \"features\": {},\n        \"fullName\": \"UK South\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/uksouth\",\n      \"name\": \"uksouth\",\n      \"properties\": {\n        \"code\": \"uksouth\",\n        \"features\": {},\n        \"fullName\": \"UK South\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/uksouth\",\n      \"name\": \"uksouth\",\n      \"properties\": {\n        \"code\": \"uksouth\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"UK South\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/ukwest\",\n      \"name\": \"ukwest\",\n      \"properties\": {\n        \"code\": \"ukwest\",\n        \"features\": {},\n        \"fullName\": \"UK West\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/ukwest\",\n      \"name\": \"ukwest\",\n      \"properties\": {\n        \"code\": \"ukwest\",\n        \"features\": {},\n        \"fullName\": \"UK West\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/ukwest\",\n      \"name\": \"ukwest\",\n      \"properties\": {\n        \"code\": \"ukwest\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": false\n        },\n        \"fullName\": \"UK West\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/westcentralus\",\n      \"name\": \"westcentralus\",\n      \"properties\": {\n        \"code\": \"westcentralus\",\n        \"features\": {},\n        \"fullName\": \"West Central US\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/westcentralus\",\n      \"name\": \"westcentralus\",\n      \"properties\": {\n        \"code\": \"westcentralus\",\n        \"features\": {},\n        \"fullName\": \"West Central US\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/westcentralus\",\n      \"name\": \"westcentralus\",\n      \"properties\": {\n        \"code\": \"westcentralus\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": false\n        },\n        \"fullName\": \"West Central US\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/westeurope\",\n      \"name\": \"westeurope\",\n      \"properties\": {\n        \"code\": \"westeurope\",\n        \"features\": {},\n        \"fullName\": \"West Europe\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/westeurope\",\n      \"name\": \"westeurope\",\n      \"properties\": {\n        \"code\": \"westeurope\",\n        \"features\": {},\n        \"fullName\": \"West Europe\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/westeurope\",\n      \"name\": \"westeurope\",\n      \"properties\": {\n        \"code\": \"westeurope\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"West Europe\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/westindia\",\n      \"name\": \"westindia\",\n      \"properties\": {\n        \"code\": \"westindia\",\n        \"features\": {},\n        \"fullName\": \"West India\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/westindia\",\n      \"name\": \"westindia\",\n      \"properties\": {\n        \"code\": \"westindia\",\n        \"features\": {},\n        \"fullName\": \"West India\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/westindia\",\n      \"name\": \"westindia\",\n      \"properties\": {\n        \"code\": \"westindia\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": false\n        },\n        \"fullName\": \"West India\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/westus\",\n      \"name\": \"westus\",\n      \"properties\": {\n        \"code\": \"westus\",\n        \"features\": {},\n        \"fullName\": \"West US\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/westus\",\n      \"name\": \"westus\",\n      \"properties\": {\n        \"code\": \"westus\",\n        \"features\": {},\n        \"fullName\": \"West US\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/westus\",\n      \"name\": \"westus\",\n      \"properties\": {\n        \"code\": \"westus\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": false\n        },\n        \"fullName\": \"West US\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/westus2\",\n      \"name\": \"westus2\",\n      \"properties\": {\n        \"code\": \"westus2\",\n        \"features\": {},\n        \"fullName\": \"West US 2\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/westus2\",\n      \"name\": \"westus2\",\n      \"properties\": {\n        \"code\": \"westus2\",\n        \"features\": {},\n        \"fullName\": \"West US 2\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/westus2\",\n      \"name\": \"westus2\",\n      \"properties\": {\n        \"code\": \"westus2\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"West US 2\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/westus3\",\n      \"name\": \"westus3\",\n      \"properties\": {\n        \"code\": \"westus3\",\n        \"features\": {},\n        \"fullName\": \"West US 3\",\n        \"skuName\": \"Basic\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/westus3\",\n      \"name\": \"westus3\",\n      \"properties\": {\n        \"code\": \"westus3\",\n        \"features\": {},\n        \"fullName\": \"West US 3\",\n        \"skuName\": \"Standard\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    },\n    {\n      \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/westus3\",\n      \"name\": \"westus3\",\n      \"properties\": {\n        \"code\": \"westus3\",\n        \"features\": {\n          \"supportsConfidential\": false,\n          \"supportsDataDR\": true,\n          \"supportsPartitionedSBNamespace\": true,\n          \"supportsZoneRedundancy\": true\n        },\n        \"fullName\": \"West US 3\",\n        \"skuName\": \"Premium\",\n        \"supportsSKU\": true\n      },\n      \"type\": \"Microsoft.ServiceBus/sku/Regions\"\n    }\n  ]\n}\n",
+  "stderr": "",
+  "result": {
+    "value": [
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/australiacentral",
+        "name": "australiacentral",
+        "properties": {
+          "code": "australiacentral",
+          "features": {},
+          "fullName": "Australia Central",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/australiacentral",
+        "name": "australiacentral",
+        "properties": {
+          "code": "australiacentral",
+          "features": {},
+          "fullName": "Australia Central",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/australiacentral",
+        "name": "australiacentral",
+        "properties": {
+          "code": "australiacentral",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": false
+          },
+          "fullName": "Australia Central",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/australiaeast",
+        "name": "australiaeast",
+        "properties": {
+          "code": "australiaeast",
+          "features": {},
+          "fullName": "Australia East",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/australiaeast",
+        "name": "australiaeast",
+        "properties": {
+          "code": "australiaeast",
+          "features": {},
+          "fullName": "Australia East",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/australiaeast",
+        "name": "australiaeast",
+        "properties": {
+          "code": "australiaeast",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "Australia East",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/australiasoutheast",
+        "name": "australiasoutheast",
+        "properties": {
+          "code": "australiasoutheast",
+          "features": {},
+          "fullName": "Australia Southeast",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/australiasoutheast",
+        "name": "australiasoutheast",
+        "properties": {
+          "code": "australiasoutheast",
+          "features": {},
+          "fullName": "Australia Southeast",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/australiasoutheast",
+        "name": "australiasoutheast",
+        "properties": {
+          "code": "australiasoutheast",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": false
+          },
+          "fullName": "Australia Southeast",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/austriaeast",
+        "name": "austriaeast",
+        "properties": {
+          "code": "austriaeast",
+          "features": {},
+          "fullName": "Austria East",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/austriaeast",
+        "name": "austriaeast",
+        "properties": {
+          "code": "austriaeast",
+          "features": {},
+          "fullName": "Austria East",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/austriaeast",
+        "name": "austriaeast",
+        "properties": {
+          "code": "austriaeast",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "Austria East",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/belgiumcentral",
+        "name": "belgiumcentral",
+        "properties": {
+          "code": "belgiumcentral",
+          "features": {},
+          "fullName": "Belgium Central",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/belgiumcentral",
+        "name": "belgiumcentral",
+        "properties": {
+          "code": "belgiumcentral",
+          "features": {},
+          "fullName": "Belgium Central",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/belgiumcentral",
+        "name": "belgiumcentral",
+        "properties": {
+          "code": "belgiumcentral",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "Belgium Central",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/brazilsouth",
+        "name": "brazilsouth",
+        "properties": {
+          "code": "brazilsouth",
+          "features": {},
+          "fullName": "Brazil South",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/brazilsouth",
+        "name": "brazilsouth",
+        "properties": {
+          "code": "brazilsouth",
+          "features": {},
+          "fullName": "Brazil South",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/brazilsouth",
+        "name": "brazilsouth",
+        "properties": {
+          "code": "brazilsouth",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "Brazil South",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/canadacentral",
+        "name": "canadacentral",
+        "properties": {
+          "code": "canadacentral",
+          "features": {},
+          "fullName": "Canada Central",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/canadacentral",
+        "name": "canadacentral",
+        "properties": {
+          "code": "canadacentral",
+          "features": {},
+          "fullName": "Canada Central",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/canadacentral",
+        "name": "canadacentral",
+        "properties": {
+          "code": "canadacentral",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "Canada Central",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/canadaeast",
+        "name": "canadaeast",
+        "properties": {
+          "code": "canadaeast",
+          "features": {},
+          "fullName": "Canada East",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/canadaeast",
+        "name": "canadaeast",
+        "properties": {
+          "code": "canadaeast",
+          "features": {},
+          "fullName": "Canada East",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/canadaeast",
+        "name": "canadaeast",
+        "properties": {
+          "code": "canadaeast",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": false
+          },
+          "fullName": "Canada East",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/centralindia",
+        "name": "centralindia",
+        "properties": {
+          "code": "centralindia",
+          "features": {},
+          "fullName": "Central India",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/centralindia",
+        "name": "centralindia",
+        "properties": {
+          "code": "centralindia",
+          "features": {},
+          "fullName": "Central India",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/centralindia",
+        "name": "centralindia",
+        "properties": {
+          "code": "centralindia",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "Central India",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/centralus",
+        "name": "centralus",
+        "properties": {
+          "code": "centralus",
+          "features": {},
+          "fullName": "Central US",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/centralus",
+        "name": "centralus",
+        "properties": {
+          "code": "centralus",
+          "features": {},
+          "fullName": "Central US",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/centralus",
+        "name": "centralus",
+        "properties": {
+          "code": "centralus",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "Central US",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/chilecentral",
+        "name": "chilecentral",
+        "properties": {
+          "code": "chilecentral",
+          "features": {},
+          "fullName": "Chile Central",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/chilecentral",
+        "name": "chilecentral",
+        "properties": {
+          "code": "chilecentral",
+          "features": {},
+          "fullName": "Chile Central",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/chilecentral",
+        "name": "chilecentral",
+        "properties": {
+          "code": "chilecentral",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "Chile Central",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/denmarkeast",
+        "name": "denmarkeast",
+        "properties": {
+          "code": "denmarkeast",
+          "features": {},
+          "fullName": "Denmark East",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/denmarkeast",
+        "name": "denmarkeast",
+        "properties": {
+          "code": "denmarkeast",
+          "features": {},
+          "fullName": "Denmark East",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/denmarkeast",
+        "name": "denmarkeast",
+        "properties": {
+          "code": "denmarkeast",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "Denmark East",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/eastasia",
+        "name": "eastasia",
+        "properties": {
+          "code": "eastasia",
+          "features": {},
+          "fullName": "East Asia",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/eastasia",
+        "name": "eastasia",
+        "properties": {
+          "code": "eastasia",
+          "features": {},
+          "fullName": "East Asia",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/eastasia",
+        "name": "eastasia",
+        "properties": {
+          "code": "eastasia",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "East Asia",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/eastus",
+        "name": "eastus",
+        "properties": {
+          "code": "eastus",
+          "features": {},
+          "fullName": "East US",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/eastus",
+        "name": "eastus",
+        "properties": {
+          "code": "eastus",
+          "features": {},
+          "fullName": "East US",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/eastus",
+        "name": "eastus",
+        "properties": {
+          "code": "eastus",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "East US",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/eastus2",
+        "name": "eastus2",
+        "properties": {
+          "code": "eastus2",
+          "features": {},
+          "fullName": "East US 2",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/eastus2",
+        "name": "eastus2",
+        "properties": {
+          "code": "eastus2",
+          "features": {},
+          "fullName": "East US 2",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/eastus2",
+        "name": "eastus2",
+        "properties": {
+          "code": "eastus2",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "East US 2",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/francecentral",
+        "name": "francecentral",
+        "properties": {
+          "code": "francecentral",
+          "features": {},
+          "fullName": "France Central",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/francecentral",
+        "name": "francecentral",
+        "properties": {
+          "code": "francecentral",
+          "features": {},
+          "fullName": "France Central",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/francecentral",
+        "name": "francecentral",
+        "properties": {
+          "code": "francecentral",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "France Central",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/germanywestcentral",
+        "name": "germanywestcentral",
+        "properties": {
+          "code": "germanywestcentral",
+          "features": {},
+          "fullName": "Germany West Central",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/germanywestcentral",
+        "name": "germanywestcentral",
+        "properties": {
+          "code": "germanywestcentral",
+          "features": {},
+          "fullName": "Germany West Central",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/germanywestcentral",
+        "name": "germanywestcentral",
+        "properties": {
+          "code": "germanywestcentral",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "Germany West Central",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/indiasouthcentral",
+        "name": "indiasouthcentral",
+        "properties": {
+          "code": "indiasouthcentral",
+          "features": {},
+          "fullName": "India South Central",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/indiasouthcentral",
+        "name": "indiasouthcentral",
+        "properties": {
+          "code": "indiasouthcentral",
+          "features": {},
+          "fullName": "India South Central",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/indiasouthcentral",
+        "name": "indiasouthcentral",
+        "properties": {
+          "code": "indiasouthcentral",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "India South Central",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/indonesiacentral",
+        "name": "indonesiacentral",
+        "properties": {
+          "code": "indonesiacentral",
+          "features": {},
+          "fullName": "Indonesia Central",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/indonesiacentral",
+        "name": "indonesiacentral",
+        "properties": {
+          "code": "indonesiacentral",
+          "features": {},
+          "fullName": "Indonesia Central",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/indonesiacentral",
+        "name": "indonesiacentral",
+        "properties": {
+          "code": "indonesiacentral",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "Indonesia Central",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/israelcentral",
+        "name": "israelcentral",
+        "properties": {
+          "code": "israelcentral",
+          "features": {},
+          "fullName": "Israel Central",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/israelcentral",
+        "name": "israelcentral",
+        "properties": {
+          "code": "israelcentral",
+          "features": {},
+          "fullName": "Israel Central",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/israelcentral",
+        "name": "israelcentral",
+        "properties": {
+          "code": "israelcentral",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "Israel Central",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/italynorth",
+        "name": "italynorth",
+        "properties": {
+          "code": "italynorth",
+          "features": {},
+          "fullName": "Italy North",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/italynorth",
+        "name": "italynorth",
+        "properties": {
+          "code": "italynorth",
+          "features": {},
+          "fullName": "Italy North",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/italynorth",
+        "name": "italynorth",
+        "properties": {
+          "code": "italynorth",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "Italy North",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/japaneast",
+        "name": "japaneast",
+        "properties": {
+          "code": "japaneast",
+          "features": {},
+          "fullName": "Japan East",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/japaneast",
+        "name": "japaneast",
+        "properties": {
+          "code": "japaneast",
+          "features": {},
+          "fullName": "Japan East",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/japaneast",
+        "name": "japaneast",
+        "properties": {
+          "code": "japaneast",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "Japan East",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/japanwest",
+        "name": "japanwest",
+        "properties": {
+          "code": "japanwest",
+          "features": {},
+          "fullName": "Japan West",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/japanwest",
+        "name": "japanwest",
+        "properties": {
+          "code": "japanwest",
+          "features": {},
+          "fullName": "Japan West",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/japanwest",
+        "name": "japanwest",
+        "properties": {
+          "code": "japanwest",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "Japan West",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/jioindiawest",
+        "name": "jioindiawest",
+        "properties": {
+          "code": "jioindiawest",
+          "features": {},
+          "fullName": "Jio India West",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/jioindiawest",
+        "name": "jioindiawest",
+        "properties": {
+          "code": "jioindiawest",
+          "features": {},
+          "fullName": "Jio India West",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/jioindiawest",
+        "name": "jioindiawest",
+        "properties": {
+          "code": "jioindiawest",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": false
+          },
+          "fullName": "Jio India West",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/koreacentral",
+        "name": "koreacentral",
+        "properties": {
+          "code": "koreacentral",
+          "features": {},
+          "fullName": "Korea Central",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/koreacentral",
+        "name": "koreacentral",
+        "properties": {
+          "code": "koreacentral",
+          "features": {},
+          "fullName": "Korea Central",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/koreacentral",
+        "name": "koreacentral",
+        "properties": {
+          "code": "koreacentral",
+          "features": {
+            "supportsConfidential": true,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "Korea Central",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/koreasouth",
+        "name": "koreasouth",
+        "properties": {
+          "code": "koreasouth",
+          "features": {},
+          "fullName": "Korea South",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/koreasouth",
+        "name": "koreasouth",
+        "properties": {
+          "code": "koreasouth",
+          "features": {},
+          "fullName": "Korea South",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/koreasouth",
+        "name": "koreasouth",
+        "properties": {
+          "code": "koreasouth",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": false
+          },
+          "fullName": "Korea South",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/malaysiawest",
+        "name": "malaysiawest",
+        "properties": {
+          "code": "malaysiawest",
+          "features": {},
+          "fullName": "Malaysia West",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/malaysiawest",
+        "name": "malaysiawest",
+        "properties": {
+          "code": "malaysiawest",
+          "features": {},
+          "fullName": "Malaysia West",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/malaysiawest",
+        "name": "malaysiawest",
+        "properties": {
+          "code": "malaysiawest",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "Malaysia West",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/mexicocentral",
+        "name": "mexicocentral",
+        "properties": {
+          "code": "mexicocentral",
+          "features": {},
+          "fullName": "Mexico Central",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/mexicocentral",
+        "name": "mexicocentral",
+        "properties": {
+          "code": "mexicocentral",
+          "features": {},
+          "fullName": "Mexico Central",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/mexicocentral",
+        "name": "mexicocentral",
+        "properties": {
+          "code": "mexicocentral",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "Mexico Central",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/newzealandnorth",
+        "name": "newzealandnorth",
+        "properties": {
+          "code": "newzealandnorth",
+          "features": {},
+          "fullName": "New Zealand North",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/newzealandnorth",
+        "name": "newzealandnorth",
+        "properties": {
+          "code": "newzealandnorth",
+          "features": {},
+          "fullName": "New Zealand North",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/newzealandnorth",
+        "name": "newzealandnorth",
+        "properties": {
+          "code": "newzealandnorth",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "New Zealand North",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/northcentralus",
+        "name": "northcentralus",
+        "properties": {
+          "code": "northcentralus",
+          "features": {},
+          "fullName": "North Central US",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/northcentralus",
+        "name": "northcentralus",
+        "properties": {
+          "code": "northcentralus",
+          "features": {},
+          "fullName": "North Central US",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/northcentralus",
+        "name": "northcentralus",
+        "properties": {
+          "code": "northcentralus",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "North Central US",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/northeurope",
+        "name": "northeurope",
+        "properties": {
+          "code": "northeurope",
+          "features": {},
+          "fullName": "North Europe",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/northeurope",
+        "name": "northeurope",
+        "properties": {
+          "code": "northeurope",
+          "features": {},
+          "fullName": "North Europe",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/northeurope",
+        "name": "northeurope",
+        "properties": {
+          "code": "northeurope",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "North Europe",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/norwayeast",
+        "name": "norwayeast",
+        "properties": {
+          "code": "norwayeast",
+          "features": {},
+          "fullName": "Norway East",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/norwayeast",
+        "name": "norwayeast",
+        "properties": {
+          "code": "norwayeast",
+          "features": {},
+          "fullName": "Norway East",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/norwayeast",
+        "name": "norwayeast",
+        "properties": {
+          "code": "norwayeast",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "Norway East",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/polandcentral",
+        "name": "polandcentral",
+        "properties": {
+          "code": "polandcentral",
+          "features": {},
+          "fullName": "Poland Central",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/polandcentral",
+        "name": "polandcentral",
+        "properties": {
+          "code": "polandcentral",
+          "features": {},
+          "fullName": "Poland Central",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/polandcentral",
+        "name": "polandcentral",
+        "properties": {
+          "code": "polandcentral",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "Poland Central",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/qatarcentral",
+        "name": "qatarcentral",
+        "properties": {
+          "code": "qatarcentral",
+          "features": {},
+          "fullName": "Qatar Central",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/qatarcentral",
+        "name": "qatarcentral",
+        "properties": {
+          "code": "qatarcentral",
+          "features": {},
+          "fullName": "Qatar Central",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/qatarcentral",
+        "name": "qatarcentral",
+        "properties": {
+          "code": "qatarcentral",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "Qatar Central",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/southafricanorth",
+        "name": "southafricanorth",
+        "properties": {
+          "code": "southafricanorth",
+          "features": {},
+          "fullName": "South Africa North",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/southafricanorth",
+        "name": "southafricanorth",
+        "properties": {
+          "code": "southafricanorth",
+          "features": {},
+          "fullName": "South Africa North",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/southafricanorth",
+        "name": "southafricanorth",
+        "properties": {
+          "code": "southafricanorth",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "South Africa North",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/southcentralus",
+        "name": "southcentralus",
+        "properties": {
+          "code": "southcentralus",
+          "features": {},
+          "fullName": "South Central US",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/southcentralus",
+        "name": "southcentralus",
+        "properties": {
+          "code": "southcentralus",
+          "features": {},
+          "fullName": "South Central US",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/southcentralus",
+        "name": "southcentralus",
+        "properties": {
+          "code": "southcentralus",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "South Central US",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/southeastasia",
+        "name": "southeastasia",
+        "properties": {
+          "code": "southeastasia",
+          "features": {},
+          "fullName": "Southeast Asia",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/southeastasia",
+        "name": "southeastasia",
+        "properties": {
+          "code": "southeastasia",
+          "features": {},
+          "fullName": "Southeast Asia",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/southeastasia",
+        "name": "southeastasia",
+        "properties": {
+          "code": "southeastasia",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "Southeast Asia",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/southindia",
+        "name": "southindia",
+        "properties": {
+          "code": "southindia",
+          "features": {},
+          "fullName": "South India",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/southindia",
+        "name": "southindia",
+        "properties": {
+          "code": "southindia",
+          "features": {},
+          "fullName": "South India",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/southindia",
+        "name": "southindia",
+        "properties": {
+          "code": "southindia",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": false
+          },
+          "fullName": "South India",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/spaincentral",
+        "name": "spaincentral",
+        "properties": {
+          "code": "spaincentral",
+          "features": {},
+          "fullName": "Spain Central",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/spaincentral",
+        "name": "spaincentral",
+        "properties": {
+          "code": "spaincentral",
+          "features": {},
+          "fullName": "Spain Central",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/spaincentral",
+        "name": "spaincentral",
+        "properties": {
+          "code": "spaincentral",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "Spain Central",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/swedencentral",
+        "name": "swedencentral",
+        "properties": {
+          "code": "swedencentral",
+          "features": {},
+          "fullName": "Sweden Central",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/swedencentral",
+        "name": "swedencentral",
+        "properties": {
+          "code": "swedencentral",
+          "features": {},
+          "fullName": "Sweden Central",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/swedencentral",
+        "name": "swedencentral",
+        "properties": {
+          "code": "swedencentral",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "Sweden Central",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/switzerlandnorth",
+        "name": "switzerlandnorth",
+        "properties": {
+          "code": "switzerlandnorth",
+          "features": {},
+          "fullName": "Switzerland North",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/switzerlandnorth",
+        "name": "switzerlandnorth",
+        "properties": {
+          "code": "switzerlandnorth",
+          "features": {},
+          "fullName": "Switzerland North",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/switzerlandnorth",
+        "name": "switzerlandnorth",
+        "properties": {
+          "code": "switzerlandnorth",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "Switzerland North",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/uaenorth",
+        "name": "uaenorth",
+        "properties": {
+          "code": "uaenorth",
+          "features": {},
+          "fullName": "UAE North",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/uaenorth",
+        "name": "uaenorth",
+        "properties": {
+          "code": "uaenorth",
+          "features": {},
+          "fullName": "UAE North",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/uaenorth",
+        "name": "uaenorth",
+        "properties": {
+          "code": "uaenorth",
+          "features": {
+            "supportsConfidential": true,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "UAE North",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/uksouth",
+        "name": "uksouth",
+        "properties": {
+          "code": "uksouth",
+          "features": {},
+          "fullName": "UK South",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/uksouth",
+        "name": "uksouth",
+        "properties": {
+          "code": "uksouth",
+          "features": {},
+          "fullName": "UK South",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/uksouth",
+        "name": "uksouth",
+        "properties": {
+          "code": "uksouth",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "UK South",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/ukwest",
+        "name": "ukwest",
+        "properties": {
+          "code": "ukwest",
+          "features": {},
+          "fullName": "UK West",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/ukwest",
+        "name": "ukwest",
+        "properties": {
+          "code": "ukwest",
+          "features": {},
+          "fullName": "UK West",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/ukwest",
+        "name": "ukwest",
+        "properties": {
+          "code": "ukwest",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": false
+          },
+          "fullName": "UK West",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/westcentralus",
+        "name": "westcentralus",
+        "properties": {
+          "code": "westcentralus",
+          "features": {},
+          "fullName": "West Central US",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/westcentralus",
+        "name": "westcentralus",
+        "properties": {
+          "code": "westcentralus",
+          "features": {},
+          "fullName": "West Central US",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/westcentralus",
+        "name": "westcentralus",
+        "properties": {
+          "code": "westcentralus",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": false
+          },
+          "fullName": "West Central US",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/westeurope",
+        "name": "westeurope",
+        "properties": {
+          "code": "westeurope",
+          "features": {},
+          "fullName": "West Europe",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/westeurope",
+        "name": "westeurope",
+        "properties": {
+          "code": "westeurope",
+          "features": {},
+          "fullName": "West Europe",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/westeurope",
+        "name": "westeurope",
+        "properties": {
+          "code": "westeurope",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "West Europe",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/westindia",
+        "name": "westindia",
+        "properties": {
+          "code": "westindia",
+          "features": {},
+          "fullName": "West India",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/westindia",
+        "name": "westindia",
+        "properties": {
+          "code": "westindia",
+          "features": {},
+          "fullName": "West India",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/westindia",
+        "name": "westindia",
+        "properties": {
+          "code": "westindia",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": false
+          },
+          "fullName": "West India",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/westus",
+        "name": "westus",
+        "properties": {
+          "code": "westus",
+          "features": {},
+          "fullName": "West US",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/westus",
+        "name": "westus",
+        "properties": {
+          "code": "westus",
+          "features": {},
+          "fullName": "West US",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/westus",
+        "name": "westus",
+        "properties": {
+          "code": "westus",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": false
+          },
+          "fullName": "West US",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/westus2",
+        "name": "westus2",
+        "properties": {
+          "code": "westus2",
+          "features": {},
+          "fullName": "West US 2",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/westus2",
+        "name": "westus2",
+        "properties": {
+          "code": "westus2",
+          "features": {},
+          "fullName": "West US 2",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/westus2",
+        "name": "westus2",
+        "properties": {
+          "code": "westus2",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "West US 2",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Basic/westus3",
+        "name": "westus3",
+        "properties": {
+          "code": "westus3",
+          "features": {},
+          "fullName": "West US 3",
+          "skuName": "Basic",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Standard/westus3",
+        "name": "westus3",
+        "properties": {
+          "code": "westus3",
+          "features": {},
+          "fullName": "West US 3",
+          "skuName": "Standard",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      },
+      {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku/Premium/westus3",
+        "name": "westus3",
+        "properties": {
+          "code": "westus3",
+          "features": {
+            "supportsConfidential": false,
+            "supportsDataDR": true,
+            "supportsPartitionedSBNamespace": true,
+            "supportsZoneRedundancy": true
+          },
+          "fullName": "West US 3",
+          "skuName": "Premium",
+          "supportsSKU": true
+        },
+        "type": "Microsoft.ServiceBus/sku/Regions"
+      }
+    ]
+  }
+}

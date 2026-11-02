@@ -1,0 +1,21 @@
+{
+  "environmentName": "AzureCloud",
+  "homeTenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+  "id": "efd64343-6ef4-4926-951f-d3229f38bd76",
+  "isDefault": true,
+  "managedByTenants": [
+    {
+      "tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+    },
+    {
+      "tenantId": "975f013f-7f24-47e8-a7d3-abc4752bf346"
+    }
+  ],
+  "name": "MCAPS-Hybrid-REQ-152516-2026-petender",
+  "state": "Enabled",
+  "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+  "user": {
+    "name": "petender@microsoft.com",
+    "type": "user"
+  }
+}

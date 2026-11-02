@@ -1,0 +1,27 @@
+{
+  "observedDateUtc": "2026-10-26",
+  "failure": "ARM FlagMustBeSetForRestore for the exact approved Foundry account",
+  "repair": "Verified AVM 0.19.1 exposes restore; preprovision verifies deleted account ownership/group/region and supplies restoreFoundry=true only while that deleted account exists.",
+  "purgeAuthorizedOrAttempted": false,
+  "differentAccountOrRegionSelected": false,
+  "whatIf": {
+    "evidence": "readiness/recovery-whatif.json",
+    "status": "Succeeded",
+    "create": 7,
+    "noChange": 5,
+    "modify": 9,
+    "ignore": 17,
+    "resourceDelete": 0,
+    "nestedExpansionWarnings": 15,
+    "coverageComplete": false
+  },
+  "modifyAssessment": [
+    "IoT route difference removes a service-generated endpoint ID, not identity authentication or the destination.",
+    "Cleaner DNS zone differences are service-generated etag/id/type/provisioningState fields, not removal of the private zone link.",
+    "NAT IP differences contain unresolved nested formatting references; the unchanged AVM wiring still references the approved same-group public IP.",
+    "Other differences are service defaults, computed fields and diagnostic normalization within the same reference."
+  ],
+  "securityBoundariesPreserved": true,
+  "monthlyIllustrativeUsd": 249.42,
+  "runtimeAcceptance": "pending"
+}

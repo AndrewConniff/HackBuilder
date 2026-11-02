@@ -1,0 +1,10 @@
+{
+  "title": "Northwind Traders ice-cream stock and daily close",
+  "summary": "Deployed operations-led recipe stock, spoilage, approved orders and scoped Orchestrator-Workers P&L. Local/business/security and recovery checks pass; latency and narrative-grounding acceptance remain unresolved. Not suitability-approved.",
+  "industry": "Hospitality & Travel",
+  "businessUnits": ["operations"],
+  "services": ["foundry", "app-service"],
+  "pillars": ["performance-efficiency"],
+  "domains": ["cost-controls"],
+  "metadataStatus": "curated"
+}

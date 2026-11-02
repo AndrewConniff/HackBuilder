@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "stage": "diagrams",
+  "checkedAtUtc": "2026-10-23T20:57:10.866079+00:00",
+  "status": "passed",
+  "evidenceType": "local-diagram-render",
+  "checks": [
+    {
+      "name": "03-architect-diagram",
+      "sourceSyntax": "passed",
+      "pngDecode": "passed",
+      "width": 4013,
+      "height": 4921,
+      "bytes": 846254,
+      "sourceSha256": "91ae4ff05e30835d87cccf4f129e56c28df43d5fa68c630390b89bffc3d04796",
+      "pngSha256": "78fa69e4697987d054dbf858d96cba2e79dd20635947355461819ba01863e2be"
+    },
+    {
+      "name": "04-runtime-diagram",
+      "sourceSyntax": "passed",
+      "pngDecode": "passed",
+      "width": 2394,
+      "height": 5627,
+      "bytes": 531973,
+      "sourceSha256": "84d13ce3d8be6c0c34f721e47426176991348f85c79df8fc2af18b301ff77145",
+      "pngSha256": "a7a03208148d721de866c8fedc862ae1fb8298a7f50274ae340c93818d0cbb1d"
+    }
+  ],
+  "sourceSyntaxAndLineLengths": "passed",
+  "readmeRelativeLinks": "passed",
+  "manifestScopeAndDiagramInventory": "passed",
+  "deploymentVerified": false
+}

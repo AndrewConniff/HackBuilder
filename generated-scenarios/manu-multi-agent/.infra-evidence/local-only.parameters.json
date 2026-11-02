@@ -1,0 +1,42 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environment": {
+      "value": "manu-multi-agent-ref"
+    },
+    "location": {
+      "value": "eastus2"
+    },
+    "principalId": {
+      "value": "00000000-0000-0000-0000-000000000000"
+    },
+    "deploymentPhase": {
+      "value": "foundation"
+    },
+    "publisherEmail": {
+      "value": ""
+    },
+    "backendClientId": {
+      "value": ""
+    },
+    "consumerRoleDefinitionId": {
+      "value": ""
+    },
+    "imageDigest": {
+      "value": ""
+    },
+    "salesAgentVersion": {
+      "value": ""
+    },
+    "marketingAgentVersion": {
+      "value": ""
+    },
+    "coordinatorAgentVersion": {
+      "value": ""
+    },
+    "fixtureManifestHash": {
+      "value": ""
+    }
+  }
+}

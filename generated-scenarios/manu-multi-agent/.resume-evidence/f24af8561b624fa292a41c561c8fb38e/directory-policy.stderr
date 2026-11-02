@@ -1,0 +1,1 @@
+ERROR: Bad Request({"error":{"code":"BadRequest","message":"Parsing OData Select and Expand failed: Could not find a property named 'allowedToCreateApps' on type 'microsoft.graph.authorizationPolicy'.","innerError":{"date":"2026-10-24T20:34:13","request-id":"e6c64969-0590-449c-a4ba-f4138e308b19","client-request-id":"e6c64969-0590-449c-a4ba-f4138e308b19"}}})

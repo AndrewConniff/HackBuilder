@@ -1,0 +1,12 @@
+{
+  "stage": "application",
+  "status": "completed",
+  "summary": "Completed resumed local application integration: real version-pinned agent tools with human reservation/action gates, scoped boards and manager recovery UI, synthetic legacy import, cancellation compensation, managed-identity-only runtime and shared antiforgery keys. Local compilation, domain/API/Chromium and image shell checks pass; live business/agent/broker acceptance remains unproven.",
+  "evidence": [
+    "dotnet test generated-scenarios\\resto-scale-agent\\Restaurant.slnx --no-restore --verbosity quiet --logger \"trx;LogFileName=final-tools-cc61b383.trx\" --results-directory generated-scenarios\\resto-scale-agent\\evidence\\tests: 25 passed; zero failed/skipped.",
+    "evidence\\tests\\final-tools-cc61b383.trx; evidence\\browser: actual local server and desktop/mobile Chromium evidence, not deployed business data.",
+    "docker build --platform linux/amd64 --tag resto-scale-agent-local:cc61b3835f4244bfa28667f5b641fbe9 --file generated-scenarios\\resto-scale-agent\\src\\Restaurant.Web\\Dockerfile generated-scenarios\\resto-scale-agent: passed; evidence\\container-build-final-cc61b383.txt.",
+    "python scripts\\check_container_runtime.py --image resto-scale-agent-local:cc61b3835f4244bfa28667f5b641fbe9 --marker 'Fourth Coffee' --timeout 90: ok=true, linux/amd64 user=1654, health/homepage HTTP 200, marker verified, cleanupPassed=true; evidence\\container-runtime-final-cc61b383.json.",
+    "07-webapp-summary.md: exact local scope, retained failures, scanner and workload coverage limits, no Azure authorization or fabricated runtime success."
+  ]
+}

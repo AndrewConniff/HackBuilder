@@ -1,0 +1,350 @@
+{
+  "checkedAtUtc": "2026-10-24T23:19:24.439512+00:00",
+  "region": "swedencentral",
+  "operation": "POST ARM whatIf, poll read-only operation to terminal state",
+  "requestUrl": "https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Resources/deployments/coffee-shop-readonly-swedencentral/whatIf?api-version=2025-04-01",
+  "identityLimitation": "Empty app client ID; default empty store grants; no directory writes or deployment",
+  "responses": [
+    {
+      "httpStatus": 202,
+      "body": null,
+      "url": "https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Resources/deployments/coffee-shop-readonly-swedencentral/whatIf?api-version=2025-04-01"
+    },
+    {
+      "httpStatus": 200,
+      "body": {
+        "status": "Succeeded",
+        "properties": {
+          "correlationId": "3608a830-8ef5-4955-b070-faa786e8cdff",
+          "changes": [
+            {
+              "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref",
+              "changeType": "Create",
+              "after": {
+                "apiVersion": "2024-03-01",
+                "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref",
+                "location": "swedencentral",
+                "name": "rg-coffee-shop-ref",
+                "tags": {
+                  "Environment": "coffee-shop-ref",
+                  "ManagedBy": "azd",
+                  "Project": "coffee-shop",
+                  "SecurityControl": "Ignore"
+                },
+                "type": "Microsoft.Resources/resourceGroups"
+              }
+            },
+            {
+              "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo",
+              "changeType": "Create",
+              "after": {
+                "apiVersion": "2025-06-01",
+                "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo",
+                "identity": {
+                  "type": "SystemAssigned"
+                },
+                "kind": "AIServices",
+                "location": "swedencentral",
+                "name": "fc-coffee-shop-keegvmxo",
+                "properties": {
+                  "allowProjectManagement": true,
+                  "customSubDomainName": "fc-coffee-shop-keegvmxo",
+                  "disableLocalAuth": true,
+                  "dynamicThrottlingEnabled": false,
+                  "migrationToken": "*******",
+                  "publicNetworkAccess": "Enabled",
+                  "restore": false,
+                  "restrictOutboundNetworkAccess": false
+                },
+                "sku": {
+                  "name": "S0"
+                },
+                "tags": {
+                  "Environment": "coffee-shop-ref",
+                  "ManagedBy": "azd",
+                  "Project": "coffee-shop",
+                  "SecurityControl": "Ignore"
+                },
+                "type": "Microsoft.CognitiveServices/accounts"
+              }
+            },
+            {
+              "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/deployments/gpt-4.1-mini",
+              "changeType": "Create",
+              "after": {
+                "apiVersion": "2026-05-01",
+                "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/deployments/gpt-4.1-mini",
+                "name": "gpt-4.1-mini",
+                "properties": {
+                  "model": {
+                    "format": "OpenAI",
+                    "name": "gpt-4.1-mini",
+                    "version": "2025-04-14"
+                  },
+                  "versionUpgradeOption": "NoAutoUpgrade"
+                },
+                "sku": {
+                  "capacity": 30,
+                  "name": "GlobalStandard"
+                },
+                "type": "Microsoft.CognitiveServices/accounts/deployments"
+              }
+            },
+            {
+              "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/projects/backoffice",
+              "changeType": "Create",
+              "after": {
+                "apiVersion": "2025-06-01",
+                "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/projects/backoffice",
+                "identity": {
+                  "type": "SystemAssigned"
+                },
+                "location": "swedencentral",
+                "name": "backoffice",
+                "properties": {
+                  "description": "coffee-shop owned sales-readiness and daily-close agents",
+                  "displayName": "Fourth Coffee back office"
+                },
+                "tags": {
+                  "Environment": "coffee-shop-ref",
+                  "ManagedBy": "azd",
+                  "Project": "coffee-shop",
+                  "SecurityControl": "Ignore"
+                },
+                "type": "Microsoft.CognitiveServices/accounts/projects"
+              }
+            },
+            {
+              "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/projects/backoffice/providers/Microsoft.Authorization/roleAssignments/a1c6a0f1-6fe2-509d-9809-9235ece2cf2f",
+              "changeType": "Create",
+              "after": {
+                "apiVersion": "2022-04-01",
+                "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/projects/backoffice/providers/Microsoft.Authorization/roleAssignments/a1c6a0f1-6fe2-509d-9809-9235ece2cf2f",
+                "name": "a1c6a0f1-6fe2-509d-9809-9235ece2cf2f",
+                "properties": {
+                  "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/eed3b665-ab3a-47b6-8f48-c9382fb1dad6"
+                },
+                "type": "Microsoft.Authorization/roleAssignments"
+              }
+            },
+            {
+              "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/providers/Microsoft.Authorization/roleAssignments/00163789-8133-5584-892a-8490ceab2058",
+              "changeType": "Create",
+              "after": {
+                "apiVersion": "2022-04-01",
+                "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/providers/Microsoft.Authorization/roleAssignments/00163789-8133-5584-892a-8490ceab2058",
+                "name": "00163789-8133-5584-892a-8490ceab2058",
+                "properties": {
+                  "principalId": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/projects/backoffice', '2025-06-01', 'full').identity.principalId]",
+                  "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/53ca6127-db72-4b80-b1b0-d745d6d5456d"
+                },
+                "type": "Microsoft.Authorization/roleAssignments"
+              }
+            },
+            {
+              "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/providers/Microsoft.Authorization/roleAssignments/d8609193-3263-522f-879e-d2de9696de12",
+              "changeType": "Create",
+              "after": {
+                "apiVersion": "2022-04-01",
+                "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/providers/Microsoft.Authorization/roleAssignments/d8609193-3263-522f-879e-d2de9696de12",
+                "name": "d8609193-3263-522f-879e-d2de9696de12",
+                "properties": {
+                  "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+                  "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/53ca6127-db72-4b80-b1b0-d745d6d5456d"
+                },
+                "type": "Microsoft.Authorization/roleAssignments"
+              }
+            },
+            {
+              "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Storage/storageAccounts/stfckeegvmxonq3wc",
+              "changeType": "Create",
+              "after": {
+                "apiVersion": "2025-06-01",
+                "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Storage/storageAccounts/stfckeegvmxonq3wc",
+                "kind": "StorageV2",
+                "location": "swedencentral",
+                "name": "stfckeegvmxonq3wc",
+                "properties": {
+                  "accessTier": "Hot",
+                  "allowBlobPublicAccess": false,
+                  "allowCrossTenantReplication": false,
+                  "allowSharedKeyAccess": false,
+                  "customDomain": {
+                    "useSubDomainName": false
+                  },
+                  "defaultToOAuthAuthentication": true,
+                  "encryption": {
+                    "keySource": "Microsoft.Storage",
+                    "requireInfrastructureEncryption": true
+                  },
+                  "isLocalUserEnabled": false,
+                  "isSftpEnabled": false,
+                  "largeFileSharesState": "Disabled",
+                  "minimumTlsVersion": "TLS1_2",
+                  "networkAcls": {
+                    "bypass": "AzureServices",
+                    "defaultAction": "Deny"
+                  },
+                  "publicNetworkAccess": "Enabled",
+                  "supportsHttpsTrafficOnly": true
+                },
+                "sku": {
+                  "name": "Standard_LRS"
+                },
+                "tags": {
+                  "Environment": "coffee-shop-ref",
+                  "ManagedBy": "azd",
+                  "Project": "coffee-shop",
+                  "SecurityControl": "Ignore"
+                },
+                "type": "Microsoft.Storage/storageAccounts"
+              }
+            },
+            {
+              "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Storage/storageAccounts/stfckeegvmxonq3wc/providers/Microsoft.Authorization/roleAssignments/a0e2a0d6-45bd-58f6-8560-ca1d8de4f8f0",
+              "changeType": "Create",
+              "after": {
+                "apiVersion": "2022-04-01",
+                "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Storage/storageAccounts/stfckeegvmxonq3wc/providers/Microsoft.Authorization/roleAssignments/a0e2a0d6-45bd-58f6-8560-ca1d8de4f8f0",
+                "name": "a0e2a0d6-45bd-58f6-8560-ca1d8de4f8f0",
+                "properties": {
+                  "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/0a9a7e1f-b9d0-4cc4-a60d-0319b160aaa3"
+                },
+                "type": "Microsoft.Authorization/roleAssignments"
+              }
+            },
+            {
+              "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Storage/storageAccounts/stfckeegvmxonq3wc/providers/Microsoft.Authorization/roleAssignments/dc48e584-54ec-5835-b02b-f127f7dbee58",
+              "changeType": "Create",
+              "after": {
+                "apiVersion": "2022-04-01",
+                "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Storage/storageAccounts/stfckeegvmxonq3wc/providers/Microsoft.Authorization/roleAssignments/dc48e584-54ec-5835-b02b-f127f7dbee58",
+                "name": "dc48e584-54ec-5835-b02b-f127f7dbee58",
+                "properties": {
+                  "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+                  "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/0a9a7e1f-b9d0-4cc4-a60d-0319b160aaa3"
+                },
+                "type": "Microsoft.Authorization/roleAssignments"
+              }
+            },
+            {
+              "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Storage/storageAccounts/stfckeegvmxonq3wc/tableServices/default",
+              "changeType": "Create",
+              "after": {
+                "apiVersion": "2025-06-01",
+                "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Storage/storageAccounts/stfckeegvmxonq3wc/tableServices/default",
+                "name": "default",
+                "type": "Microsoft.Storage/storageAccounts/tableServices"
+              }
+            },
+            {
+              "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Storage/storageAccounts/stfckeegvmxonq3wc/tableServices/default/tables/CoffeeBackOffice",
+              "changeType": "Create",
+              "after": {
+                "apiVersion": "2025-06-01",
+                "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Storage/storageAccounts/stfckeegvmxonq3wc/tableServices/default/tables/CoffeeBackOffice",
+                "name": "CoffeeBackOffice",
+                "type": "Microsoft.Storage/storageAccounts/tableServices/tables"
+              }
+            },
+            {
+              "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Web/serverfarms/plan-fc-keegvmxonq3wc",
+              "changeType": "Create",
+              "after": {
+                "apiVersion": "2025-03-01",
+                "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Web/serverfarms/plan-fc-keegvmxonq3wc",
+                "kind": "linux",
+                "location": "swedencentral",
+                "name": "plan-fc-keegvmxonq3wc",
+                "properties": {
+                  "elasticScaleEnabled": true,
+                  "isCustomMode": false,
+                  "perSiteScaling": false,
+                  "reserved": true,
+                  "targetWorkerSizeId": 0,
+                  "zoneRedundant": false
+                },
+                "sku": {
+                  "capacity": 1,
+                  "name": "P0v3"
+                },
+                "tags": {
+                  "Environment": "coffee-shop-ref",
+                  "ManagedBy": "azd",
+                  "Project": "coffee-shop",
+                  "SecurityControl": "Ignore"
+                },
+                "type": "Microsoft.Web/serverfarms"
+              }
+            },
+            {
+              "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Web/sites/web-fc-keegvmxonq3wc",
+              "changeType": "Create",
+              "after": {
+                "apiVersion": "2025-03-01",
+                "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Web/sites/web-fc-keegvmxonq3wc",
+                "identity": "*******",
+                "kind": "app,linux",
+                "location": "swedencentral",
+                "name": "web-fc-keegvmxonq3wc",
+                "properties": {
+                  "clientAffinityEnabled": false,
+                  "clientAffinityPartitioningEnabled": false,
+                  "clientAffinityProxyEnabled": true,
+                  "clientCertEnabled": false,
+                  "clientCertMode": "Optional",
+                  "enabled": true,
+                  "httpsOnly": true,
+                  "publicNetworkAccess": "Enabled",
+                  "redundancyMode": "None",
+                  "scmSiteAlsoStopped": false,
+                  "serverFarmId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Web/serverfarms/plan-fc-keegvmxonq3wc",
+                  "siteConfig": "*******",
+                  "storageAccountRequired": false
+                },
+                "tags": {
+                  "azd-service-name": "web",
+                  "Environment": "coffee-shop-ref",
+                  "ManagedBy": "azd",
+                  "Project": "coffee-shop",
+                  "SecurityControl": "Ignore"
+                },
+                "type": "Microsoft.Web/sites"
+              }
+            },
+            {
+              "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Web/sites/web-fc-keegvmxonq3wc/basicPublishingCredentialsPolicies/ftp",
+              "changeType": "Create",
+              "after": {
+                "apiVersion": "2025-03-01",
+                "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Web/sites/web-fc-keegvmxonq3wc/basicPublishingCredentialsPolicies/ftp",
+                "location": "swedencentral",
+                "name": "ftp",
+                "properties": {
+                  "allow": false
+                },
+                "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies"
+              }
+            },
+            {
+              "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Web/sites/web-fc-keegvmxonq3wc/basicPublishingCredentialsPolicies/scm",
+              "changeType": "Create",
+              "after": {
+                "apiVersion": "2025-03-01",
+                "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Web/sites/web-fc-keegvmxonq3wc/basicPublishingCredentialsPolicies/scm",
+                "location": "swedencentral",
+                "name": "scm",
+                "properties": {
+                  "allow": false
+                },
+                "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies"
+              }
+            }
+          ]
+        }
+      },
+      "url": "https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/operationresults/eyJqb2JJZCI6IkRlcGxveW1lbnRXaGF0SWZKb2ItLUNPRkZFRToyRFNIT1A6MkRSRUFET05MWToyRFNXRURFTkNFTlRSQUwtMzYwOEE4MzA6MkQ4RUY1OjJENDk1NToyREIwNzA6MkRGQUE3ODZFOENERkYiLCJqb2JMb2NhdGlvbiI6InN3ZWRlbmNlbnRyYWwiLCJqb2JTdG9yYWdlQWNjb3VudCI6Ii9jc20vc3RvcmFnZWFjY291bnRzL2dsb2JhbC9ycGZkbGpvYjAwcHJvZHNlYzAxIn0?api-version=2025-04-01&t=639284807646467304&c=MIIHlDCCBnygAwIBAgIQEWqq0LXHm9_RoSQk3rtLtzANBgkqhkiG9w0BAQsFADA2MTQwMgYDVQQDEytDQ01FIEcxIFRMUyBSU0EgMjA0OCBTSEEyNTYgMjA0OSBXVVMyIENBIDAxMB4XDTI2MDkyMzA2MDIzOVoXDTI2MTIxODEyMDIzOVowQDE-MDwGA1UEAxM1YXN5bmNvcGVyYXRpb25zaWduaW5nY2VydGlmaWNhdGUubWFuYWdlbWVudC5henVyZS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCTL3s1G4HRJxCxQWgaa1QhZF9rCHBTzLl8phyc14DtHqFD1UEEvU8TdKIkn63TfPvm-CD5nDTQJhmqP3TQ4a1zbeIZvN26UwO-f2zs8v284_6vqmQYpp074W-XCE3yUu6xZi0c2RjrWXRE0C83U9RwiZBkm4sAg6EaNrBTlMtlbtByJMhA9KOAfS_ME_eoDeS2P_o__hD4yg538D4itpA1Yp3-XcF3vu3MgpyPUf4o8rU8J3Y9-jIPfdgYdhE-QPuKdwKQu0Aov3aNNHzv_aJivc4z22sXdAC9MeLP59Q0e1QaF_moRqk0Sr9AyE7J1ohMafagWSkQ-fj_5H83r6J9AgMBAAGjggSSMIIEjjCBnQYDVR0gBIGVMIGSMAwGCisGAQQBgjd7AQEwZgYKKwYBBAGCN3sCAjBYMFYGCCsGAQUFBwICMEoeSAAzADMAZQAwADEAOQAyADEALQA0AGQANgA0AC0ANABmADgAYwAtAGEAMAA1ADUALQA1AGIAZABhAGYAZgBkADUAZQAzADMAZDAMBgorBgEEAYI3ewMCMAwGCisGAQQBgjd7BAIwDAYDVR0TAQH_BAIwADAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwDgYDVR0PAQH_BAQDAgWgMB0GA1UdDgQWBBTI83RcASQN5gnS06-jdiNGf7b_JDAfBgNVHSMEGDAWgBSs43L6A7Jznj2VyO-HW67dG6HtaDCCAbIGA1UdHwSCAakwggGlMGmgZ6BlhmNodHRwOi8vcHJpbWFyeS1jZG4ucGtpLmNvcmUud2luZG93cy5uZXQvd2VzdHVzMi9jcmxzL2NjbWV3ZXN0dXMycGtpL2NjbWV3ZXN0dXMyaWNhMDEvOTcvY3VycmVudC5jcmwwa6BpoGeGZWh0dHA6Ly9zZWNvbmRhcnktY2RuLnBraS5jb3JlLndpbmRvd3MubmV0L3dlc3R1czIvY3Jscy9jY21ld2VzdHVzMnBraS9jY21ld2VzdHVzMmljYTAxLzk3L2N1cnJlbnQuY3JsMFqgWKBWhlRodHRwOi8vY3JsLm1pY3Jvc29mdC5jb20vd2VzdHVzMi9jcmxzL2NjbWV3ZXN0dXMycGtpL2NjbWV3ZXN0dXMyaWNhMDEvOTcvY3VycmVudC5jcmwwb6BtoGuGaWh0dHA6Ly9jY21ld2VzdHVzMnBraS53ZXN0dXMyLnBraS5jb3JlLndpbmRvd3MubmV0L2NlcnRpZmljYXRlQXV0aG9yaXRpZXMvY2NtZXdlc3R1czJpY2EwMS85Ny9jdXJyZW50LmNybDCCAbcGCCsGAQUFBwEBBIIBqTCCAaUwbAYIKwYBBQUHMAKGYGh0dHA6Ly9wcmltYXJ5LWNkbi5wa2kuY29yZS53aW5kb3dzLm5ldC93ZXN0dXMyL2NhY2VydHMvY2NtZXdlc3R1czJwa2kvY2NtZXdlc3R1czJpY2EwMS9jZXJ0LmNlcjBuBggrBgEFBQcwAoZiaHR0cDovL3NlY29uZGFyeS1jZG4ucGtpLmNvcmUud2luZG93cy5uZXQvd2VzdHVzMi9jYWNlcnRzL2NjbWV3ZXN0dXMycGtpL2NjbWV3ZXN0dXMyaWNhMDEvY2VydC5jZXIwXQYIKwYBBQUHMAKGUWh0dHA6Ly9jcmwubWljcm9zb2Z0LmNvbS93ZXN0dXMyL2NhY2VydHMvY2NtZXdlc3R1czJwa2kvY2NtZXdlc3R1czJpY2EwMS9jZXJ0LmNlcjBmBggrBgEFBQcwAoZaaHR0cDovL2NjbWV3ZXN0dXMycGtpLndlc3R1czIucGtpLmNvcmUud2luZG93cy5uZXQvY2VydGlmaWNhdGVBdXRob3JpdGllcy9jY21ld2VzdHVzMmljYTAxMA0GCSqGSIb3DQEBCwUAA4IBAQBtlTS-mdvGIKziCDp4X9OVPqRLuoH48ib0L8ZVUxxNXw-O3sl-lio6Y7V0Xqv47B1Ru94KfFJZpXsF6u0Gk7IcfpKl2PltvEAmAKSdpsOElmGW0MeH-AsmLU-uRKqaIGsDrnsyJuLqtILSJ_GCMnG1VbnaqOJFmoBMj7f_unbCkVhb6MmyJC4sd_klisVbuUnjtp_Cgp2Wc_HeRKPemyn8alnsmHVOO0NHWIR41o6dNQCt7LJ5nM5rQd2Fww6uP0eqn3jQiNE0nl_zOqY8Me96xb0gWGe9D4aRXyAG_j-B4_gTga7SVfy92csbUhBWi9huq3gKSoRRpuS_4dQqvDVj&s=IM-Pzcb7J8y8KHv67l_KeYnBr0eOHg88iaTOn_HXSOeb4Dumd9jysOpDRkGLDc9cfdOnl7qziiVQ37YvZ8WfM5vzaslp2OXMgTetj_wDU7pmjGRJbUnfXvEAXeW23bXA3QzqSa2pKBr2XejQOIMfl_ESKdIp-cFvIETstzxziO4ABwkDyDr3eWDcDc3nC06OeUqN29BVpyrhcnl01mIACKUoTbhyQfH7IsM5P_qjRzgOK-aT7Uw2FHYfZi4Fiqy9mH5rxdv-Ku5YujdcRw9vhYBHVTIKUstcTfvE4nElwlqnizexsCZs7APVSPWgTHmq0RlP1xcmL7bqXKZEziAeQQ&h=WP3LV4nsFU9itJm-imu9AdMQheQvG3ElXCBNJQDV8j8"
+    }
+  ],
+  "status": "Succeeded"
+}

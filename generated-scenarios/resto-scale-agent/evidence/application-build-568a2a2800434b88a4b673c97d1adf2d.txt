@@ -1,0 +1,7 @@
+  Restaurant.Web -> C:\azd-projects\resto-scale-agent\src\Restaurant.Web\bin\Debug\net10.0\Restaurant.Web.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.12

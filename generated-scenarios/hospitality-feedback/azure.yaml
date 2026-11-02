@@ -1,0 +1,22 @@
+name: hospitality-feedback
+metadata:
+  template: hospitality-feedback-reference
+services:
+  web:
+    project: ./src/HospitalityFeedback.Web
+    language: dotnet
+    host: appservice
+infra:
+  provider: bicep
+  path: infra
+  module: main
+hooks:
+  preprovision:
+    shell: pwsh
+    run: .\scripts\Invoke-ReferenceHook.ps1 -Phase preprovision
+  predeploy:
+    shell: pwsh
+    run: .\scripts\Invoke-ReferenceHook.ps1 -Phase predeploy
+  postdeploy:
+    shell: pwsh
+    run: .\scripts\Invoke-ReferenceHook.ps1 -Phase postdeploy

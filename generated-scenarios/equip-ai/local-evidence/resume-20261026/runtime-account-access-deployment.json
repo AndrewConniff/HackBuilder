@@ -1,0 +1,129 @@
+{
+  "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/equip-runtime-account-access",
+  "location": null,
+  "name": "equip-runtime-account-access",
+  "properties": {
+    "correlationId": "d91e87e8-9c11-4aaf-a8d5-d657b9816fe4",
+    "debugSetting": null,
+    "dependencies": [],
+    "diagnostics": null,
+    "duration": "PT3.9847312S",
+    "error": null,
+    "extensions": [],
+    "mode": "Incremental",
+    "onErrorDeployment": null,
+    "outputResources": [
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.CognitiveServices/accounts/ai-equip-equipai-kex72v/projects/equipment-operations/providers/Microsoft.Authorization/roleAssignments/40a729e5-64a5-53ea-a00d-9fae453ac9b4",
+        "identifiers": null,
+        "resourceGroup": "rg-equip-ai",
+        "resourceType": "Microsoft.Authorization/roleAssignments"
+      },
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.CognitiveServices/accounts/ai-equip-equipai-kex72v/projects/equipment-operations/providers/Microsoft.Authorization/roleAssignments/ee6cadc6-0e12-50e4-83d6-c757787ccd54",
+        "identifiers": null,
+        "resourceGroup": "rg-equip-ai",
+        "resourceType": "Microsoft.Authorization/roleAssignments"
+      },
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.CognitiveServices/accounts/ai-equip-equipai-kex72v/providers/Microsoft.Authorization/roleAssignments/4670ebde-46c7-5f6e-b1a6-b341dec78735",
+        "identifiers": null,
+        "resourceGroup": "rg-equip-ai",
+        "resourceType": "Microsoft.Authorization/roleAssignments"
+      },
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.CognitiveServices/accounts/ai-equip-equipai-kex72v/providers/Microsoft.Authorization/roleAssignments/c804e6c4-eebd-5fe1-8452-e54d2df5a801",
+        "identifiers": null,
+        "resourceGroup": "rg-equip-ai",
+        "resourceType": "Microsoft.Authorization/roleAssignments"
+      }
+    ],
+    "outputs": {
+      "resourceId": {
+        "type": "String",
+        "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.CognitiveServices/accounts/ai-equip-equipai-kex72v/projects/equipment-operations"
+      },
+      "resourceName": {
+        "type": "String",
+        "value": "equipment-operations"
+      }
+    },
+    "parameters": {
+      "accountName": {
+        "type": "String",
+        "value": "ai-equip-equipai-kex72v"
+      },
+      "consumerId": {
+        "type": "String",
+        "value": "95e688cf-66f0-4d71-b361-8ab5cb20a890"
+      },
+      "consumerRoleId": {
+        "type": "String",
+        "value": "eed3b665-ab3a-47b6-8f48-c9382fb1dad6"
+      },
+      "installerId": {
+        "type": "String",
+        "value": "214d672b-df87-4f3b-94fd-7863032546c1"
+      },
+      "installerRoleId": {
+        "type": "String",
+        "value": "53ca6127-db72-4b80-b1b0-d745d6d5456d"
+      },
+      "projectName": {
+        "type": "String",
+        "value": "equipment-operations"
+      },
+      "projectPrincipalId": {
+        "type": "String",
+        "value": "22294eff-bb60-4fa0-90ff-3785980828f1"
+      },
+      "runtimeRoleId": {
+        "type": "String",
+        "value": "142bfaed-a13f-4c2d-bed2-6db62c4a1009"
+      }
+    },
+    "parametersLink": null,
+    "providers": [
+      {
+        "id": null,
+        "namespace": "Microsoft.Authorization",
+        "providerAuthorizationConsentState": null,
+        "registrationPolicy": null,
+        "registrationState": null,
+        "resourceTypes": [
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locationMappings": null,
+            "locations": [
+              null
+            ],
+            "properties": null,
+            "resourceType": "roleAssignments",
+            "zoneMappings": null
+          }
+        ]
+      }
+    ],
+    "provisioningState": "Succeeded",
+    "templateHash": "18336204256052061783",
+    "templateLink": null,
+    "timestamp": "2026-10-26T02:02:41.645448+00:00",
+    "validatedResources": null,
+    "validationLevel": null
+  },
+  "resourceGroup": "rg-equip-ai",
+  "tags": null,
+  "type": "Microsoft.Resources/deployments"
+}

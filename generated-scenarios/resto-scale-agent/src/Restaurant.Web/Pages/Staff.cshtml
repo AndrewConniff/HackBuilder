@@ -1,0 +1,76 @@
+@page
+@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fourth Coffee | Staff and kitchen</title>
+    <link rel="stylesheet" href="/css/site.css" />
+    <script src="/lib/msal/msal-browser.min.js" defer></script>
+    <script src="/js/staff-entra.js" defer></script>
+    <script src="/js/restaurant.js" defer></script>
+</head>
+<body data-workspace="staff">
+<a class="skip" href="#main">Skip to main content</a>
+<header><span class="brand">Fourth Coffee</span><nav aria-label="Workspaces">
+    <a href="/">Guest journey</a><a href="/Staff" aria-current="page">Staff and kitchen</a>
+</nav></header>
+<main id="main">
+    <p class="eyebrow">Restaurant operations</p><h1>Service, kitchen and floor coordination</h1>
+    <p>Sign in with your assigned organizational account. Microsoft Entra API access tokens, staff roles
+        and Floor.1 through Floor.5 permissions are verified server-side at both service boundaries.
+        The public shell contains no visit or financial data. Sessions last at most 30 minutes,
+        never beyond token expiry. There is no deployed synthetic password fallback.</p>
+    <p id="notice" role="status" aria-live="polite">Authenticate to load your authorized workspace.</p>
+    <form id="staff-session">
+        <p>No role selector: permissions come from assigned Entra app roles.</p>
+        <button type="submit">Sign in with Microsoft Entra</button>
+    </form>
+    <button id="staff-logout" type="button">Sign out</button>
+    <p id="staff-identity" role="status"></p>
+    <section><h2>Floor and kitchen board</h2>
+        <label>Service date<input id="board-date" type="date" required /></label>
+        <label>Meal turn<select id="board-turn"><option>1</option><option>2</option><option>3</option>
+            <option>4</option><option>5</option></select></label>
+        <label>Display floor<select id="floor-filter"><option value="">All authorized floors</option><option>1</option>
+            <option>2</option><option>3</option><option>4</option><option>5</option></select></label>
+        <label>Visit status<select id="status-filter"><option value="">All statuses</option>
+            <option>Reserved</option><option>Active</option><option>Settled</option><option>Cancelled</option></select></label>
+        <button id="board-refresh" type="button">Refresh board</button>
+        <p>Connected boards refresh every two seconds. Pending dispatch is not kitchen acceptance.</p>
+        <div id="board">No staff data loaded.</div>
+    </section>
+    <section><h2>Selected visit</h2><div id="visit">Select an authorized visit from the board.</div>
+        <button id="refresh" type="button">Refresh selected visit</button>
+        <button id="checkin" type="button" disabled>Preview check-in</button>
+        <button id="cancel" type="button" disabled>Preview reservation cancellation</button>
+        <button id="settle" type="button" disabled>Preview synthetic settlement</button>
+        <p>Synthetic settlement - no money charged. Kitchen roles cannot view or settle bills.</p>
+    </section>
+    <section aria-labelledby="management-heading"><h2 id="management-heading">Manager reconciliation and recovery</h2>
+        <p>Manager role required. Synthetic totals are not real payments. Missing DLQ evidence is not an empty queue.</p>
+        <button id="management-refresh" type="button">Load manager evidence</button>
+        <div id="management">No manager data loaded.</div>
+        <form id="replay">
+            <label>Dead-letter message ID<input name="messageId" maxlength="128" required /></label>
+            <label>Ticket/session ID<input name="sessionId" maxlength="128" required /></label>
+            <p>This explicit action queues an audited recovery request. It does not claim delivery or erase the inbox.</p>
+            <button type="submit">Request this message replay</button>
+        </form>
+    </section>
+    <section><h2>Review before confirming</h2><div id="previews">No pending action.</div></section>
+    <section><h2>Service Coordinator</h2>
+        <p>For kitchen-delay questions the Coordinator can invoke one bounded Kitchen Advisor.
+            Recommendations never automatically reprioritize a ticket.</p>
+        <form id="chat"><label>Ask about your authorized floors
+            <textarea name="message" maxlength="2000" required></textarea></label>
+            <button type="submit">Ask Coordinator</button></form>
+        <div id="chat-result" role="status" aria-live="polite"></div>
+    </section>
+</main>
+<footer>Fourth Coffee | Host: Hasan Ibrahimov | Kitchen: Nemanja Milatovic | Manager: Nino Kapanadze</footer>
+</body>
+</html>

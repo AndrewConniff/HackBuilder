@@ -1,0 +1,9 @@
+{
+  "stage": "diagrams",
+  "status": "running",
+  "summary": "Resuming the existing confirmed design by verifying prerequisites in the actual worker. All prior answers are preserved. Local tools are authorized; cloud authorizations remain empty.",
+  "evidence": [
+    "Canonical state read at revision 38; designConfirmed=true; all prior decisions answered; authorizations=[].",
+    "Only generated-scenarios\\resto-scale-agent is in scope; no shared-tool installation or Azure operation is authorized."
+  ]
+}

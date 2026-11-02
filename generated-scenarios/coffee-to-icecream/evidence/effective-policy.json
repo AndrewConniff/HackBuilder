@@ -1,0 +1,883 @@
+{
+  "value": [
+    {
+      "id": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyAssignments/MCAPSGovDenyPolicies",
+      "name": "MCAPSGovDenyPolicies",
+      "properties": {
+        "definitionVersion": "1.*.*",
+        "description": "https://aka.ms/fdpowiki",
+        "displayName": "MCAPSGov Deny Policies",
+        "enforcementMode": "Default",
+        "metadata": {
+          "Version": "20261008-1",
+          "createdBy": "4619a992-000c-420a-97c5-fa7fd7c0d2b2",
+          "createdOn": "2026-10-10T01:00:17.9543165Z",
+          "updatedBy": null,
+          "updatedOn": null
+        },
+        "nonComplianceMessages": [
+          {
+            "message": "To learn more about the MCAPS deny policies and ensure compliance, please refer to the following wiki: https://aka.ms/AzPolicyWiki."
+          }
+        ],
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policySetDefinitions/MCAPSGovDenyPolicies",
+        "scope": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7"
+      },
+      "systemData": {
+        "createdAt": "2026-10-10T01:00:17.9120293Z",
+        "createdBy": "a1a9c5b6-7a4f-4288-89ab-6805873f65d1",
+        "createdByType": "Application",
+        "lastModifiedAt": "2026-10-10T01:00:17.9120293Z",
+        "lastModifiedBy": "a1a9c5b6-7a4f-4288-89ab-6805873f65d1",
+        "lastModifiedByType": "Application"
+      },
+      "type": "Microsoft.Authorization/policyAssignments"
+    },
+    {
+      "id": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyAssignments/MCAPSGovAuditPolicies",
+      "name": "MCAPSGovAuditPolicies",
+      "properties": {
+        "definitionVersion": "1.*.*",
+        "description": "https://aka.ms/fdpowiki",
+        "displayName": "MCAPSGov Audit Policies",
+        "enforcementMode": "Default",
+        "metadata": {
+          "Version": "20261008-1",
+          "createdBy": "4619a992-000c-420a-97c5-fa7fd7c0d2b2",
+          "createdOn": "2026-10-10T01:00:20.4349527Z",
+          "updatedBy": null,
+          "updatedOn": null
+        },
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policySetDefinitions/MCAPSGovAuditPolicies",
+        "scope": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7"
+      },
+      "systemData": {
+        "createdAt": "2026-10-10T01:00:20.3641267Z",
+        "createdBy": "a1a9c5b6-7a4f-4288-89ab-6805873f65d1",
+        "createdByType": "Application",
+        "lastModifiedAt": "2026-10-10T01:00:20.3641267Z",
+        "lastModifiedBy": "a1a9c5b6-7a4f-4288-89ab-6805873f65d1",
+        "lastModifiedByType": "Application"
+      },
+      "type": "Microsoft.Authorization/policyAssignments"
+    },
+    {
+      "id": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyAssignments/MCAPSGovDeployPolicies",
+      "identity": {
+        "principalId": "916cf0d8-8c88-451b-8295-f56b949504b7",
+        "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+        "type": "SystemAssigned"
+      },
+      "location": "eastus",
+      "name": "MCAPSGovDeployPolicies",
+      "properties": {
+        "definitionVersion": "1.*.*",
+        "description": "https://aka.ms/fdpowiki",
+        "displayName": "MCAPSGov Deploy and Modify Policies",
+        "enforcementMode": "Default",
+        "metadata": {
+          "Version": "20261008-1",
+          "createdBy": "4619a992-000c-420a-97c5-fa7fd7c0d2b2",
+          "createdOn": "2026-10-10T01:00:24.8319768Z",
+          "updatedBy": null,
+          "updatedOn": null
+        },
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policySetDefinitions/MCAPSGovDeployPolicies",
+        "scope": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7"
+      },
+      "systemData": {
+        "createdAt": "2026-10-10T01:00:24.0283711Z",
+        "createdBy": "a1a9c5b6-7a4f-4288-89ab-6805873f65d1",
+        "createdByType": "Application",
+        "lastModifiedAt": "2026-10-10T01:00:24.0283711Z",
+        "lastModifiedBy": "a1a9c5b6-7a4f-4288-89ab-6805873f65d1",
+        "lastModifiedByType": "Application"
+      },
+      "type": "Microsoft.Authorization/policyAssignments"
+    },
+    {
+      "id": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyAssignments/765fde02936549838c96ae34",
+      "name": "765fde02936549838c96ae34",
+      "properties": {
+        "definitionVersion": "1.*.*",
+        "displayName": "Demo2 - Audit diagnostic settings enabled on Azure FrontDoor",
+        "enforcementMode": "Default",
+        "metadata": {
+          "createdBy": "dd69825c-7e3c-430b-8b99-13508ab288ae",
+          "createdOn": "2024-08-13T08:02:51.829654Z",
+          "parameterScopes": {},
+          "updatedBy": null,
+          "updatedOn": null
+        },
+        "nonComplianceMessages": [],
+        "notScopes": [],
+        "overrides": [],
+        "parameters": {},
+        "policyDefinitionId": "/providers/microsoft.management/managementgroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/microsoft.authorization/policydefinitions/5d4e3173-fee4-496a-b142-d208f5328627",
+        "resourceSelectors": [],
+        "scope": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7"
+      },
+      "systemData": {
+        "createdAt": "2024-08-13T08:02:51.8111303Z",
+        "createdBy": "v-nagopu@microsoft.com",
+        "createdByType": "User",
+        "lastModifiedAt": "2024-08-13T08:02:51.8111303Z",
+        "lastModifiedBy": "v-nagopu@microsoft.com",
+        "lastModifiedByType": "User"
+      },
+      "type": "Microsoft.Authorization/policyAssignments"
+    },
+    {
+      "id": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyAssignments/998941031fc44b498769fc9e",
+      "identity": {
+        "principalId": "691665da-e4f5-4994-8d5e-b5541ba968b5",
+        "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+        "type": "SystemAssigned"
+      },
+      "location": "westus2",
+      "name": "998941031fc44b498769fc9e",
+      "properties": {
+        "definitionVersion": "1.*.*",
+        "description": "MCAPSGov Deploy and Modify policy to onboard Windows 10 and 11 on MDE. This policy is explicitly deployed on FDPO ",
+        "displayName": "MCAPSGov Deploy and Modify (MDE Onboarding Windows 10 and 11)",
+        "enforcementMode": "Default",
+        "metadata": {
+          "createdBy": "dc131c39-698a-4049-b421-468b569cd6dd",
+          "createdOn": "2024-10-02T19:42:21.2484445Z",
+          "parameterScopes": {},
+          "updatedBy": null,
+          "updatedOn": null
+        },
+        "nonComplianceMessages": [],
+        "notScopes": [],
+        "overrides": [],
+        "parameters": {},
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/896a9463-4bb5-462e-b7b5-2e525d3e1a03/providers/Microsoft.Authorization/policyDefinitions/3876673b-a3d5-4862-8365-0e18bd5ec996",
+        "resourceSelectors": [],
+        "scope": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7"
+      },
+      "systemData": {
+        "createdAt": "2024-10-02T19:42:20.8720932Z",
+        "createdBy": "v-mohanm@microsoft.com",
+        "createdByType": "User",
+        "lastModifiedAt": "2024-10-02T19:42:20.8720932Z",
+        "lastModifiedBy": "v-mohanm@microsoft.com",
+        "lastModifiedByType": "User"
+      },
+      "type": "Microsoft.Authorization/policyAssignments"
+    },
+    {
+      "id": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyAssignments/NotAllowedResourceTypes",
+      "name": "NotAllowedResourceTypes",
+      "properties": {
+        "definitionVersion": "2.*.*",
+        "description": "https://microsoft.sharepoint.com/teams/AzureTenantBaseline2/SitePages/Remove%20classic%20resources%20on%20a%20subscription.aspx",
+        "displayName": "Prevent Classic Resources",
+        "enforcementMode": "Default",
+        "metadata": {
+          "createdBy": "9ac68efe-bde4-48ff-ac4b-76f692c62755",
+          "createdOn": "2022-08-01T15:44:04.9182209Z",
+          "updatedBy": "9ac68efe-bde4-48ff-ac4b-76f692c62755",
+          "updatedOn": "2023-04-07T05:45:02.6940935Z"
+        },
+        "parameters": {
+          "listOfResourceTypesNotAllowed": {
+            "value": [
+              "microsoft.classiccompute/virtualmachines",
+              "microsoft.classiccompute/virtualmachines/diagnosticsettings",
+              "microsoft.classiccompute/virtualmachines/metricdefinitions",
+              "microsoft.classiccompute/virtualmachines/metrics",
+              "microsoft.classicnetwork/virtualnetworks",
+              "microsoft.classicnetwork/virtualnetworks/remotevirtualnetworkpeeringproxies",
+              "microsoft.classicnetwork/virtualnetworks/virtualnetworkpeerings",
+              "microsoft.classicstorage/checkstorageaccountavailability",
+              "microsoft.classicstorage/storageaccounts",
+              "microsoft.classicstorage/storageaccounts/blobservices",
+              "microsoft.classicstorage/storageaccounts/fileservices",
+              "microsoft.classicstorage/storageaccounts/metricdefinitions",
+              "microsoft.classicstorage/storageaccounts/metrics",
+              "microsoft.classicstorage/storageaccounts/queueservices",
+              "microsoft.classicstorage/storageaccounts/services",
+              "microsoft.classicstorage/storageaccounts/services/diagnosticsettings",
+              "microsoft.classicstorage/storageaccounts/services/metricdefinitions",
+              "microsoft.classicstorage/storageaccounts/services/metrics",
+              "microsoft.classicstorage/storageaccounts/tableservices",
+              "microsoft.classicstorage/storageaccounts/vmimages",
+              "microsoft.classiccompute/capabilities",
+              "microsoft.classiccompute/checkdomainnameavailability",
+              "microsoft.classiccompute/domainnames",
+              "microsoft.classiccompute/domainnames/capabilities",
+              "microsoft.classiccompute/domainnames/internalloadbalancers",
+              "microsoft.classiccompute/domainnames/servicecertificates",
+              "microsoft.classiccompute/domainnames/slots",
+              "microsoft.classiccompute/domainnames/slots/roles",
+              "microsoft.classiccompute/domainnames/slots/roles/metricdefinitions",
+              "microsoft.classiccompute/domainnames/slots/roles/metrics",
+              "microsoft.classiccompute/movesubscriptionresources",
+              "microsoft.classiccompute/operatingsystemfamilies",
+              "microsoft.classiccompute/operatingsystems",
+              "microsoft.classiccompute/operations",
+              "microsoft.classiccompute/operationstatuses",
+              "microsoft.classiccompute/quotas",
+              "microsoft.classiccompute/resourcetypes",
+              "microsoft.classiccompute/validatesubscriptionmoveavailability",
+              "microsoft.classicnetwork/capabilities",
+              "microsoft.classicnetwork/expressroutecrossconnections",
+              "microsoft.classicnetwork/expressroutecrossconnections/peerings",
+              "microsoft.classicnetwork/gatewaysupporteddevices",
+              "microsoft.classicnetwork/networksecuritygroups",
+              "microsoft.classicnetwork/operations",
+              "microsoft.classicnetwork/quotas",
+              "microsoft.classicnetwork/reservedips",
+              "microsoft.classicstorage/capabilities",
+              "microsoft.classicstorage/disks",
+              "microsoft.classicstorage/images",
+              "microsoft.classicstorage/operations",
+              "microsoft.classicstorage/osimages",
+              "microsoft.classicstorage/osplatformimages",
+              "microsoft.classicstorage/publicimages",
+              "microsoft.classicstorage/quotas",
+              "microsoft.classicstorage/vmimages",
+              "microsoft.classicsubscription/operations",
+              "microsoft.classicinfrastructuremigrate/classicinfrastructureresources"
+            ]
+          }
+        },
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/6c112d4e-5bc7-47ae-a041-ea2d9dccd749",
+        "scope": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7"
+      },
+      "systemData": {
+        "createdAt": "2022-08-01T15:44:04.8782104Z",
+        "createdBy": "kwill@microsoft.com",
+        "createdByType": "User",
+        "lastModifiedAt": "2023-04-07T05:45:02.6591937Z",
+        "lastModifiedBy": "kwill@microsoft.com",
+        "lastModifiedByType": "User"
+      },
+      "type": "Microsoft.Authorization/policyAssignments"
+    },
+    {
+      "id": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyAssignments/Azure_Security_Baseline",
+      "name": "Azure_Security_Baseline",
+      "properties": {
+        "definitionVersion": "57.*.*",
+        "description": "Azure Security Baseline",
+        "displayName": "Audit Azure Security Baseline",
+        "enforcementMode": "Default",
+        "metadata": {
+          "createdBy": "9ac68efe-bde4-48ff-ac4b-76f692c62755",
+          "createdOn": "2022-08-01T15:44:05.5938429Z",
+          "updatedBy": "9ac68efe-bde4-48ff-ac4b-76f692c62755",
+          "updatedOn": "2023-04-07T05:45:03.6235616Z"
+        },
+        "parameters": {
+          "disableUnrestrictedNetworkToStorageAccountMonitoringEffect": {
+            "value": "Audit"
+          },
+          "fTPSOnlyShouldBeRequiredInYourAPIAppMonitoringEffect": {
+            "value": "Disabled"
+          },
+          "fTPSOnlyShouldBeRequiredInYourFunctionAppMonitoringEffect": {
+            "value": "Disabled"
+          },
+          "fTPSShouldBeRequiredInYourWebAppMonitoringEffect": {
+            "value": "Disabled"
+          },
+          "keysExpirationSetEffect": {
+            "value": "Audit"
+          },
+          "networkSecurityGroupsOnSubnetsMonitoringEffect": {
+            "value": "AuditIfNotExists"
+          },
+          "secretsExpirationSetEffect": {
+            "value": "Audit"
+          },
+          "vnetEnableDDoSProtectionMonitoringEffect": {
+            "value": "Disabled"
+          },
+          "windowsWebServersShouldBeConfiguredToUseSecureCommunicationProtocolsMinimumTLSVersion": {
+            "value": "1.2"
+          }
+        },
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policySetDefinitions/1f3afdf9-d0c9-4c3d-847f-89da613e70a8",
+        "scope": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7"
+      },
+      "systemData": {
+        "createdAt": "2022-08-01T15:44:04.8782104Z",
+        "createdBy": "kwill@microsoft.com",
+        "createdByType": "User",
+        "lastModifiedAt": "2023-04-07T05:45:02.6591937Z",
+        "lastModifiedBy": "kwill@microsoft.com",
+        "lastModifiedByType": "User"
+      },
+      "type": "Microsoft.Authorization/policyAssignments"
+    },
+    {
+      "id": "/providers/Microsoft.Management/managementGroups/16b3c013-d300-468d-ac64-7eda0820b6d3/providers/Microsoft.Authorization/policyAssignments/Azure_Security_Baseline",
+      "name": "Azure_Security_Baseline",
+      "properties": {
+        "definitionVersion": "57.*.*",
+        "description": "Azure Security Baseline",
+        "displayName": "Azure Security Baseline",
+        "enforcementMode": "Default",
+        "metadata": {
+          "createdBy": "cbb80ced-fb10-445a-888e-7bca63482800",
+          "createdOn": "2022-11-22T18:25:42.8243729Z",
+          "updatedBy": null,
+          "updatedOn": null
+        },
+        "parameters": {
+          "disableUnrestrictedNetworkToStorageAccountMonitoringEffect": {
+            "value": "Audit"
+          },
+          "fTPSOnlyShouldBeRequiredInYourAPIAppMonitoringEffect": {
+            "value": "Disabled"
+          },
+          "fTPSOnlyShouldBeRequiredInYourFunctionAppMonitoringEffect": {
+            "value": "Disabled"
+          },
+          "fTPSShouldBeRequiredInYourWebAppMonitoringEffect": {
+            "value": "Disabled"
+          },
+          "keysExpirationSetEffect": {
+            "value": "Audit"
+          },
+          "networkSecurityGroupsOnSubnetsMonitoringEffect": {
+            "value": "AuditIfNotExists"
+          },
+          "secretsExpirationSetEffect": {
+            "value": "Audit"
+          },
+          "vnetEnableDDoSProtectionMonitoringEffect": {
+            "value": "Disabled"
+          },
+          "windowsWebServersShouldBeConfiguredToUseSecureCommunicationProtocolsMinimumTLSVersion": {
+            "value": "1.2"
+          }
+        },
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policySetDefinitions/1f3afdf9-d0c9-4c3d-847f-89da613e70a8",
+        "scope": "/providers/Microsoft.Management/managementGroups/16b3c013-d300-468d-ac64-7eda0820b6d3"
+      },
+      "systemData": {
+        "createdAt": "2022-11-22T18:25:41.48152Z",
+        "createdBy": "nistar@fdpo.onmicrosoft.com",
+        "createdByType": "User",
+        "lastModifiedAt": "2022-11-22T18:25:41.48152Z",
+        "lastModifiedBy": "nistar@fdpo.onmicrosoft.com",
+        "lastModifiedByType": "User"
+      },
+      "type": "Microsoft.Authorization/policyAssignments"
+    },
+    {
+      "id": "/providers/Microsoft.Management/managementGroups/16b3c013-d300-468d-ac64-7eda0820b6d3/providers/Microsoft.Authorization/policyAssignments/0df114edcd774ec1a32631dd",
+      "identity": {
+        "type": "UserAssigned",
+        "userAssignedIdentities": {
+          "/subscriptions/66c61e58-f679-4676-99b0-8dde9f0e8443/resourcegroups/Azure_Policy/providers/Microsoft.ManagedIdentity/userAssignedIdentities/FDPO-WebApp-Security": {
+            "clientId": "9cb3aef7-65d6-4e91-8fb1-016bdda8d73b",
+            "principalId": "76be5ef1-c500-4517-8fcc-dfcd02697840"
+          }
+        }
+      },
+      "location": "eastus",
+      "name": "0df114edcd774ec1a32631dd",
+      "properties": {
+        "definitionVersion": "1.*.*",
+        "description": "The deployment connections make the transmitted data/code vulnerable to network attacks. Basic authentication is being disabled centrally for all internal applications to improve security posture. For more information, please navigate to https://microsofteur.sharepoint.com/teams/AzRelRedFlag-CharcoalBratwurst. If an incident is related to the following policy, please open an IcM incident via https://portal.microsofticm.com/imp/v3/incidents/details/383328883/home",
+        "displayName": "Configure App Service app to disable local authentication for FTP deployments and SCM sites",
+        "enforcementMode": "Default",
+        "metadata": {
+          "assignedBy": "Marcus Weatherlow",
+          "createdBy": "83e1e214-70a5-41f9-9585-16b93afbb9c1",
+          "createdOn": "2023-06-01T21:38:06.9395926Z",
+          "parameterScopes": {},
+          "updatedBy": "f736b03b-3e24-4c51-b289-d8b15c9e05db",
+          "updatedOn": "2023-10-10T22:18:00.1176249Z"
+        },
+        "nonComplianceMessages": [
+          {
+            "message": "The resource has not complaint Basic Authentication configurations. If following policy is blocking your actions that have a valid security and business reason to remain non compliant, please add 'SkipBPCP' tagName with any value on your Web App. Make sure to follow up with an official exemption request via https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR9EtRz46cDVGn585Xp39USZUODk2QVBSWU9CMFpSN0NVOElWSFY5WlBaSy4u"
+          }
+        ],
+        "notScopes": [],
+        "overrides": [],
+        "parameters": {},
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/16b3c013-d300-468d-ac64-7eda0820b6d3/providers/Microsoft.Authorization/policySetDefinitions/bc03c0190b2748cfb2894011",
+        "resourceSelectors": [
+          {
+            "name": "SDPRegions",
+            "selectors": [
+              {
+                "in": [
+                  "australiacentral",
+                  "australiacentral2",
+                  "australiaeast",
+                  "australiasoutheast",
+                  "brazilsouth",
+                  "brazilsoutheast",
+                  "brazilus",
+                  "canadacentral",
+                  "canadaeast",
+                  "centralindia",
+                  "centralus",
+                  "eastasia",
+                  "eastus",
+                  "eastus2",
+                  "francecentral",
+                  "francesouth",
+                  "germanynorth",
+                  "germanywestcentral",
+                  "israelcentral",
+                  "italynorth",
+                  "japaneast",
+                  "japanwest",
+                  "jioindiacentral",
+                  "jioindiawest",
+                  "koreacentral",
+                  "koreasouth",
+                  "northcentralus",
+                  "northeurope",
+                  "norwayeast",
+                  "norwaywest",
+                  "polandcentral",
+                  "qatarcentral",
+                  "southafricanorth",
+                  "southafricawest",
+                  "southcentralus",
+                  "southindia",
+                  "southeastasia",
+                  "swedencentral",
+                  "switzerlandnorth",
+                  "switzerlandwest",
+                  "uaecentral",
+                  "uaenorth",
+                  "uksouth",
+                  "ukwest",
+                  "westcentralus",
+                  "westeurope",
+                  "westindia",
+                  "westus",
+                  "westus2",
+                  "westus3"
+                ],
+                "kind": "resourceLocation"
+              }
+            ]
+          }
+        ],
+        "scope": "/providers/Microsoft.Management/managementGroups/16b3c013-d300-468d-ac64-7eda0820b6d3"
+      },
+      "systemData": {
+        "createdAt": "2023-06-01T21:38:06.4594291Z",
+        "createdBy": "mweatherlow@fdpo.onmicrosoft.com",
+        "createdByType": "User",
+        "lastModifiedAt": "2023-10-10T22:17:59.9869246Z",
+        "lastModifiedBy": "SC-yt118@microsoft.com",
+        "lastModifiedByType": "User"
+      },
+      "type": "Microsoft.Authorization/policyAssignments"
+    },
+    {
+      "id": "/providers/Microsoft.Management/managementGroups/16b3c013-d300-468d-ac64-7eda0820b6d3/providers/Microsoft.Authorization/policyAssignments/sys.mfa-write",
+      "name": "sys.mfa-write",
+      "properties": {
+        "assignmentType": "SystemHidden",
+        "definitionVersion": "1.*.*",
+        "displayName": "Microsoft Azure Multi Factor Authentication Enforcement for Resource Write Actions",
+        "enforcementMode": "Default",
+        "metadata": {
+          "createdBy": "8032de33-246a-48c8-ba74-aed50b6e6be4",
+          "createdOn": "2025-12-05T17:37:10.6458095Z",
+          "updatedBy": "8032de33-246a-48c8-ba74-aed50b6e6be4",
+          "updatedOn": "2026-04-06T03:40:43.2452023Z"
+        },
+        "nonComplianceMessages": [
+          {
+            "message": "You are receiving this error because you tried to create, update or delete Azure resources without authenticating through MFA. User accounts must be authenticated through MFA to manage your resources. To resolve this error, go to https://aka.ms/MFAforAzure"
+          }
+        ],
+        "parameters": {
+          "effect": {
+            "value": "Deny"
+          }
+        },
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/54f51f64-eaa5-44cf-8674-830bcfd14d21",
+        "scope": "/providers/Microsoft.Management/managementGroups/16b3c013-d300-468d-ac64-7eda0820b6d3"
+      },
+      "systemData": {
+        "createdAt": "2025-12-05T17:37:10.5952196Z",
+        "createdBy": "2d215f00-80d1-4f4b-a6c8-28080dfafc81",
+        "createdByType": "Application",
+        "lastModifiedAt": "2026-04-06T03:40:43.2249391Z",
+        "lastModifiedBy": "2d215f00-80d1-4f4b-a6c8-28080dfafc81",
+        "lastModifiedByType": "Application"
+      },
+      "type": "Microsoft.Authorization/policyAssignments"
+    },
+    {
+      "id": "/providers/Microsoft.Management/managementGroups/16b3c013-d300-468d-ac64-7eda0820b6d3/providers/Microsoft.Authorization/policyAssignments/sys.mfa-delete",
+      "name": "sys.mfa-delete",
+      "properties": {
+        "assignmentType": "SystemHidden",
+        "definitionVersion": "1.*.*",
+        "displayName": "Microsoft Azure Multi Factor Authentication Enforcement for Resource Delete Actions",
+        "enforcementMode": "Default",
+        "metadata": {
+          "createdBy": "8032de33-246a-48c8-ba74-aed50b6e6be4",
+          "createdOn": "2025-12-05T21:36:55.537281Z",
+          "updatedBy": "8032de33-246a-48c8-ba74-aed50b6e6be4",
+          "updatedOn": "2026-04-06T03:30:58.7344646Z"
+        },
+        "nonComplianceMessages": [
+          {
+            "message": "You are receiving this error because you tried to create, update or delete Azure resources without authenticating through MFA. User accounts must be authenticated through MFA to manage your resources. To resolve this error, go to https://aka.ms/MFAforAzure"
+          }
+        ],
+        "parameters": {
+          "effect": {
+            "value": "DenyAction"
+          }
+        },
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/f69cd8b8-9a6e-46b4-be84-244e8b127944",
+        "scope": "/providers/Microsoft.Management/managementGroups/16b3c013-d300-468d-ac64-7eda0820b6d3"
+      },
+      "systemData": {
+        "createdAt": "2025-12-05T21:36:55.3960921Z",
+        "createdBy": "2d215f00-80d1-4f4b-a6c8-28080dfafc81",
+        "createdByType": "Application",
+        "lastModifiedAt": "2026-04-06T03:30:58.7138652Z",
+        "lastModifiedBy": "2d215f00-80d1-4f4b-a6c8-28080dfafc81",
+        "lastModifiedByType": "Application"
+      },
+      "type": "Microsoft.Authorization/policyAssignments"
+    },
+    {
+      "id": "/providers/microsoft.management/managementgroups/16b3c013-d300-468d-ac64-7eda0820b6d3/providers/Microsoft.Authorization/policyAssignments/a03ae271d929455",
+      "name": "a03ae271d929455",
+      "properties": {
+        "definitionVersion": "1.*.*",
+        "displayName": "App Service apps should have local authentication methods disabled for FTP deployments",
+        "enforcementMode": "Default",
+        "metadata": {
+          "createdBy": "623501ac-8a36-498d-9900-d62c5f87a40b",
+          "createdOn": "2023-05-02T20:20:33.5893905Z",
+          "updatedBy": null,
+          "updatedOn": null
+        },
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/871b205b-57cf-4e1e-a234-492616998bf7",
+        "scope": "/providers/microsoft.management/managementgroups/16b3c013-d300-468d-ac64-7eda0820b6d3"
+      },
+      "systemData": {
+        "createdAt": "2023-05-02T20:20:33.5346354Z",
+        "createdBy": "hahaze@fdpo.onmicrosoft.com",
+        "createdByType": "User",
+        "lastModifiedAt": "2023-05-02T20:20:33.5346354Z",
+        "lastModifiedBy": "hahaze@fdpo.onmicrosoft.com",
+        "lastModifiedByType": "User"
+      },
+      "type": "Microsoft.Authorization/policyAssignments"
+    },
+    {
+      "id": "/providers/microsoft.management/managementgroups/16b3c013-d300-468d-ac64-7eda0820b6d3/providers/Microsoft.Authorization/policyAssignments/47ee491dcf39498",
+      "name": "47ee491dcf39498",
+      "properties": {
+        "definitionVersion": "1.*.*",
+        "displayName": "App Service app slots should have local authentication methods disabled for FTP deployments",
+        "enforcementMode": "Default",
+        "metadata": {
+          "createdBy": "623501ac-8a36-498d-9900-d62c5f87a40b",
+          "createdOn": "2023-05-02T20:20:40.2391867Z",
+          "updatedBy": null,
+          "updatedOn": null
+        },
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/ec71c0bc-6a45-4b1f-9587-80dc83e6898c",
+        "scope": "/providers/microsoft.management/managementgroups/16b3c013-d300-468d-ac64-7eda0820b6d3"
+      },
+      "systemData": {
+        "createdAt": "2023-05-02T20:20:40.2121493Z",
+        "createdBy": "hahaze@fdpo.onmicrosoft.com",
+        "createdByType": "User",
+        "lastModifiedAt": "2023-05-02T20:20:40.2121493Z",
+        "lastModifiedBy": "hahaze@fdpo.onmicrosoft.com",
+        "lastModifiedByType": "User"
+      },
+      "type": "Microsoft.Authorization/policyAssignments"
+    },
+    {
+      "id": "/providers/microsoft.management/managementgroups/16b3c013-d300-468d-ac64-7eda0820b6d3/providers/Microsoft.Authorization/policyAssignments/bb0a11620f4c4c8",
+      "name": "bb0a11620f4c4c8",
+      "properties": {
+        "definitionVersion": "1.*.*",
+        "displayName": "App Service app slots should have local authentication methods disabled for SCM site deployments",
+        "enforcementMode": "Default",
+        "metadata": {
+          "createdBy": "623501ac-8a36-498d-9900-d62c5f87a40b",
+          "createdOn": "2023-05-02T20:20:42.6771965Z",
+          "updatedBy": null,
+          "updatedOn": null
+        },
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/847ef871-e2fe-4e6e-907e-4adbf71de5cf",
+        "scope": "/providers/microsoft.management/managementgroups/16b3c013-d300-468d-ac64-7eda0820b6d3"
+      },
+      "systemData": {
+        "createdAt": "2023-05-02T20:20:42.6525048Z",
+        "createdBy": "hahaze@fdpo.onmicrosoft.com",
+        "createdByType": "User",
+        "lastModifiedAt": "2023-05-02T20:20:42.6525048Z",
+        "lastModifiedBy": "hahaze@fdpo.onmicrosoft.com",
+        "lastModifiedByType": "User"
+      },
+      "type": "Microsoft.Authorization/policyAssignments"
+    },
+    {
+      "id": "/providers/microsoft.management/managementgroups/16b3c013-d300-468d-ac64-7eda0820b6d3/providers/Microsoft.Authorization/policyAssignments/1580708b7fd3464",
+      "name": "1580708b7fd3464",
+      "properties": {
+        "definitionVersion": "1.*.*",
+        "displayName": "App Service apps should have local authentication methods disabled for SCM site deployments",
+        "enforcementMode": "Default",
+        "metadata": {
+          "createdBy": "623501ac-8a36-498d-9900-d62c5f87a40b",
+          "createdOn": "2023-05-02T20:20:45.0415813Z",
+          "updatedBy": null,
+          "updatedOn": null
+        },
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/aede300b-d67f-480a-ae26-4b3dfb1a1fdc",
+        "scope": "/providers/microsoft.management/managementgroups/16b3c013-d300-468d-ac64-7eda0820b6d3"
+      },
+      "systemData": {
+        "createdAt": "2023-05-02T20:20:45.0107088Z",
+        "createdBy": "hahaze@fdpo.onmicrosoft.com",
+        "createdByType": "User",
+        "lastModifiedAt": "2023-05-02T20:20:45.0107088Z",
+        "lastModifiedBy": "hahaze@fdpo.onmicrosoft.com",
+        "lastModifiedByType": "User"
+      },
+      "type": "Microsoft.Authorization/policyAssignments"
+    },
+    {
+      "id": "/providers/microsoft.management/managementgroups/16b3c013-d300-468d-ac64-7eda0820b6d3/providers/Microsoft.Authorization/policyAssignments/denypiptencheck-en",
+      "name": "denypiptencheck-en",
+      "properties": {
+        "definitionVersion": "1.*.*",
+        "displayName": "PublicIPAllocationsFromNonMatchingTenants",
+        "enforcementMode": "Default",
+        "metadata": {
+          "createdBy": "0014bc5e-a7e6-4360-9ff9-a63e690b1766",
+          "createdOn": "2026-01-30T00:17:14.4451773Z",
+          "parameterScopes": {},
+          "updatedBy": "0014bc5e-a7e6-4360-9ff9-a63e690b1766",
+          "updatedOn": "2026-01-30T00:31:33.1290865Z"
+        },
+        "nonComplianceMessages": [],
+        "overrides": [],
+        "parameters": {
+          "allowedTags": {
+            "value": [
+              "/AzureDevOps",
+              "/AzureKeyVault",
+              "/AzureManagementGroupsNonProd",
+              "/AzureResourceManager",
+              "/AzureResourceManagerInternal",
+              "/EapNetProvProd",
+              "/ElasticAFD/Backend",
+              "/ElasticAFD/Frontend",
+              "/EstsRedisManagement",
+              "/FISCGAStubServicePPE",
+              "GenevaActions",
+              "/GenevaActionsNonProd",
+              "/PilotfishCloudHardwareDiagnostics",
+              "/AzureDevOpsNonProd",
+              "/AzureKeyVaultNonProd",
+              "/Sql"
+            ]
+          },
+          "tenant": {
+            "value": "Corp"
+          },
+          "tenantMapping": {
+            "value": {
+              "AME": [
+                "/AzureDevOps",
+                "/AzureKeyVault",
+                "/AzureManagementGroupsNonProd",
+                "/AzureResourceManager",
+                "/AzureResourceManagerInternal",
+                "/EapNetProvProd",
+                "/ElasticAFD/Backend",
+                "/ElasticAFD/Frontend",
+                "/EstsRedisManagement",
+                "/FISCGAStubServicePPE",
+                "/GenevaActions",
+                "/GenevaActionsNonProd",
+                "/PilotfishCloudHardwareDiagnostics"
+              ],
+              "CME": [],
+              "Corp": [
+                "/AzureDevOps",
+                "/AzureDevOpsNonProd",
+                "/AzureKeyVault",
+                "/AzureKeyVaultNonProd",
+                "/FISCGAStubServicePPE",
+                "/GenevaActionsNonProd",
+                "/Sql"
+              ],
+              "EXME": [],
+              "GME": [],
+              "PME": [],
+              "RXME": [],
+              "TME01": [
+                "/GenevaActionsNonProd"
+              ],
+              "USME": []
+            }
+          }
+        },
+        "policyDefinitionId": "/providers/microsoft.management/managementgroups/16b3c013-d300-468d-ac64-7eda0820b6d3/providers/Microsoft.Authorization/policyDefinitions/834bd0e28ecc4d1fab7035dc",
+        "resourceSelectors": [],
+        "scope": "/providers/microsoft.management/managementgroups/16b3c013-d300-468d-ac64-7eda0820b6d3"
+      },
+      "systemData": {
+        "createdAt": "2026-01-30T00:17:14.4087371Z",
+        "createdBy": "sburuiana+mpa@microsoft.com",
+        "createdByType": "User",
+        "lastModifiedAt": "2026-01-30T00:31:33.1240949Z",
+        "lastModifiedBy": "sburuiana+mpa@microsoft.com",
+        "lastModifiedByType": "User"
+      },
+      "type": "Microsoft.Authorization/policyAssignments"
+    },
+    {
+      "id": "/providers/Microsoft.Management/managementGroups/16b3c013-d300-468d-ac64-7eda0820b6d3/providers/Microsoft.Authorization/policyAssignments/5070a4f3c9d6554f993f8fef",
+      "identity": {
+        "principalId": "153efb2b-1347-4737-9a1d-8cd57d215ce0",
+        "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+        "type": "SystemAssigned"
+      },
+      "location": "westus2",
+      "name": "5070a4f3c9d6554f993f8fef",
+      "properties": {
+        "definitionVersion": "1.0.*",
+        "displayName": "Allow Zenity US and EU access to selected-network Foundry accounts",
+        "enforcementMode": "Default",
+        "metadata": {
+          "createdBy": "d06df7d7-585d-4c03-8e6e-46de2f6974c7",
+          "createdOn": "2026-10-09T05:56:01.0971955Z",
+          "parameterScopes": {},
+          "updatedBy": "d06df7d7-585d-4c03-8e6e-46de2f6974c7",
+          "updatedOn": "2026-10-09T14:36:01.890385Z"
+        },
+        "nonComplianceMessages": [],
+        "notScopes": [],
+        "overrides": [],
+        "parameters": {
+          "effect": {
+            "value": "Audit"
+          }
+        },
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/16b3c013-d300-468d-ac64-7eda0820b6d3/providers/Microsoft.Authorization/policyDefinitions/zenity-foundry",
+        "resourceSelectors": [],
+        "scope": "/providers/Microsoft.Management/managementGroups/16b3c013-d300-468d-ac64-7eda0820b6d3"
+      },
+      "systemData": {
+        "createdAt": "2026-10-09T05:56:00.5661784Z",
+        "createdBy": "BENNEWMAN+mpa@microsoft.com",
+        "createdByType": "User",
+        "lastModifiedAt": "2026-10-09T14:36:01.7993016Z",
+        "lastModifiedBy": "BENNEWMAN+mpa@microsoft.com",
+        "lastModifiedByType": "User"
+      },
+      "type": "Microsoft.Authorization/policyAssignments"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/policyAssignments/OpenSourceRelationalDatabasesProtectionSecurityCenter",
+      "name": "OpenSourceRelationalDatabasesProtectionSecurityCenter",
+      "properties": {
+        "definitionVersion": "1.*.*",
+        "description": "This policy assignment was automatically created by Azure Security Center",
+        "displayName": "ASC OpenSourceRelationalDatabasesProtection (subscription: efd64343-6ef4-4926-951f-d3229f38bd76)",
+        "enforcementMode": "Default",
+        "metadata": {
+          "assignedBy": "Security Center",
+          "createdBy": "b44cbfcb-0b02-41a7-9f50-4044a3b4884f",
+          "createdOn": "2026-06-17T00:08:13.5877172Z",
+          "updatedBy": null,
+          "updatedOn": null
+        },
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policySetDefinitions/e77fc0b3-f7e9-4c58-bc13-cb753ed8e46e",
+        "scope": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76"
+      },
+      "systemData": {
+        "createdAt": "2026-06-17T00:08:13.5362057Z",
+        "createdBy": "6cbd3a8f-4735-43c4-9bea-af63cf550e20",
+        "createdByType": "Application",
+        "lastModifiedAt": "2026-06-17T00:08:13.5362057Z",
+        "lastModifiedBy": "6cbd3a8f-4735-43c4-9bea-af63cf550e20",
+        "lastModifiedByType": "Application"
+      },
+      "type": "Microsoft.Authorization/policyAssignments"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/policyAssignments/DataProtectionSecurityCenter",
+      "name": "DataProtectionSecurityCenter",
+      "properties": {
+        "definitionVersion": "3.*.*",
+        "description": "This policy assignment was automatically created by Azure Security Center",
+        "displayName": "ASC DataProtection (subscription: efd64343-6ef4-4926-951f-d3229f38bd76)",
+        "enforcementMode": "Default",
+        "metadata": {
+          "assignedBy": "Security Center",
+          "createdBy": "b44cbfcb-0b02-41a7-9f50-4044a3b4884f",
+          "createdOn": "2026-06-17T00:08:29.6934888Z",
+          "updatedBy": null,
+          "updatedOn": null
+        },
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policySetDefinitions/9cb3cc7a-b39b-4b82-bc89-e5a5d9ff7b97",
+        "scope": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76"
+      },
+      "systemData": {
+        "createdAt": "2026-06-17T00:08:29.6539493Z",
+        "createdBy": "6cbd3a8f-4735-43c4-9bea-af63cf550e20",
+        "createdByType": "Application",
+        "lastModifiedAt": "2026-06-17T00:08:29.6539493Z",
+        "lastModifiedBy": "6cbd3a8f-4735-43c4-9bea-af63cf550e20",
+        "lastModifiedByType": "Application"
+      },
+      "type": "Microsoft.Authorization/policyAssignments"
+    },
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/policyAssignments/SqlVmAndArcSqlServersProtection",
+      "identity": {
+        "principalId": "1503d45d-0964-4bff-8ef8-70aeeae23ea2",
+        "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+        "type": "SystemAssigned"
+      },
+      "location": "westeurope",
+      "name": "SqlVmAndArcSqlServersProtection",
+      "properties": {
+        "definitionVersion": "1.*.*",
+        "description": "This initiative enables Defender for SQL on SQL VMs and Arc-enabled SQL Servers",
+        "displayName": "Defender for SQL Servers on Machines provisioning (subscription: efd64343-6ef4-4926-951f-d3229f38bd76)",
+        "enforcementMode": "Default",
+        "metadata": {
+          "assignedBy": "Security Center",
+          "createdBy": "b44cbfcb-0b02-41a7-9f50-4044a3b4884f",
+          "createdOn": "2026-06-16T22:33:54.9167354Z",
+          "updatedBy": "1564b3d0-4714-4f7f-b83a-5f1ee4fc4bb3",
+          "updatedOn": "2026-08-23T18:45:14.3087084Z"
+        },
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policySetDefinitions/c1529623-9fc2-45bc-b84b-b14cd0b7484e",
+        "scope": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76"
+      },
+      "systemData": {
+        "createdAt": "2026-06-16T22:33:54.3166206Z",
+        "createdBy": "6cbd3a8f-4735-43c4-9bea-af63cf550e20",
+        "createdByType": "Application",
+        "lastModifiedAt": "2026-08-23T18:45:14.2008093Z",
+        "lastModifiedBy": "321d0ea6-a866-4dc9-8436-ff792a85ac7d",
+        "lastModifiedByType": "Application"
+      },
+      "type": "Microsoft.Authorization/policyAssignments"
+    }
+  ]
+}

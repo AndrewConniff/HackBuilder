@@ -1,0 +1,15 @@
+{
+  "checkedAtUtc": "2026-10-24T23:14:44.1334341+00:00",
+  "status": "observed-requires-review",
+  "arguments": [
+    "rest",
+    "--method",
+    "get",
+    "--url",
+    "https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Web/locations/swedencentral/usages?api-version=2024-11-01",
+    "--subscription",
+    "efd64343-6ef4-4926-951f-d3229f38bd76"
+  ],
+  "exitCode": 0,
+  "output": "{\n  \"id\": null,\n  \"nextLink\": null,\n  \"value\": [\n    {\n      \"currentValue\": 0,\n      \"limit\": 10,\n      \"name\": {\n        \"localizedValue\": \"Total Regional VMs\",\n        \"value\": \"*\"\n      },\n      \"unit\": \"Instances\"\n    }\n  ]\n}"
+}

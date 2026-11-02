@@ -1,0 +1,5 @@
+{
+  "checkedAtUtc": "2026-10-28T14:37:03.807038+00:00",
+  "identity": "Existing management VM managed identity; not deploying-user or web-identity acceptance",
+  "output": "Enable succeeded: \n[stdout]\n{\"host\": \"vm-equip-management-equip-ai\", \"dns\": \"10.247.0.72\", \"results\": [{\"name\": \"project-agent-list\", \"status\": 200, \"bytes\": 4774, \"requestId\": \"5e95c940-1e15-417f-ac68-3a6da5890c12\", \"server\": \"istio-envoy\"}, {\"name\": \"project-model-response\", \"status\": 200, \"bytes\": 3573, \"requestId\": \"7c40082d-bed4-4c75-9823-5f28eebe5bc4\", \"server\": \"istio-envoy\"}, {\"name\": \"project-agent-response\", \"status\": 200, \"bytes\": 6678, \"requestId\": \"9446e482-d1c6-4bae-a1d9-0b297fb5fd11\", \"server\": \"istio-envoy\"}]}\n\n[stderr]\n"
+}

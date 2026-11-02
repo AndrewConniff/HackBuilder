@@ -1,0 +1,10 @@
+{
+  "name": "resto-scale-agent-browser-auth",
+  "private": true,
+  "scripts": {
+    "vendor": "node -e \"const fs=require('node:fs'); fs.mkdirSync('wwwroot/lib/msal',{recursive:true}); fs.copyFileSync('node_modules/@azure/msal-browser/lib/msal-browser.min.js','wwwroot/lib/msal/msal-browser.min.js'); fs.copyFileSync('node_modules/@azure/msal-browser/LICENSE','wwwroot/lib/msal/LICENSE');\""
+  },
+  "dependencies": {
+    "@azure/msal-browser": "4.30.0"
+  }
+}

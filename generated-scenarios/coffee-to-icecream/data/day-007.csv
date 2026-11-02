@@ -1,0 +1,15 @@
+StoreId,Date,Kind,Item,Component,Unit,Quantity,UnitCost,Target
+007,2026-10-28,stock,vanilla,,L,20,5,20
+007,2026-10-28,stock,chocolate,,L,18,6,20
+007,2026-10-28,stock,cone,,unit,200,0.2,200
+007,2026-10-28,stock,cup,,unit,180,0.1,200
+007,2026-10-28,recipe,vanilla-cone,vanilla,L,0.1,0,0
+007,2026-10-28,recipe,vanilla-cone,cone,unit,1,0,0
+007,2026-10-28,recipe,chocolate-cup,chocolate,L,0.1,0,0
+007,2026-10-28,recipe,chocolate-cup,cup,unit,1,0,0
+007,2026-10-28,sale,vanilla-cone,,unit,87,4,0
+007,2026-10-28,sale,chocolate-cup,,unit,67,4.5,0
+007,2026-10-28,spoilage,vanilla,,L,1.2,0,0
+007,2026-10-28,cost,labor,,USD,1,154,0
+007,2026-10-28,cost,occupancy,,USD,1,45,0
+007,2026-10-28,cost,planned-sales,,USD,1,650,0

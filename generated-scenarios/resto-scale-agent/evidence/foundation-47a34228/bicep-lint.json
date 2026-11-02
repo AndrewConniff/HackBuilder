@@ -1,0 +1,8 @@
+{
+  "command": "az bicep lint --file C:\\HackBuilder\\generated-scenarios\\resto-scale-agent\\infra\\main.bicep",
+  "startedAtUtc": "2026-10-24T00:10:53.926938+00:00",
+  "checkedAtUtc": "2026-10-24T00:11:00.258919+00:00",
+  "exitCode": 0,
+  "stdout": "\n",
+  "stderr": ""
+}

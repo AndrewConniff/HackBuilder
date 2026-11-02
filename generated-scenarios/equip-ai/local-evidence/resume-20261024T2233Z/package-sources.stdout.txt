@@ -1,0 +1,3 @@
+Registered Sources:
+  1.  MicrosoftPackageFeedProxy [Enabled]
+      https://packagefeedproxy.microsoft.io/nuget/v3/index.json

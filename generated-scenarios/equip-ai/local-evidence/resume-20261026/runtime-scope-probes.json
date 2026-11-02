@@ -1,0 +1,110 @@
+[
+  {
+    "status": 502,
+    "response": {
+      "error": "dependency_failure",
+      "message": "The request could not be completed; no equipment status is implied.",
+      "correlationId": "0HNPJ0J14LNRR:00000004"
+    },
+    "checkedAtUtc": "2026-10-26T02:03:26.308076+00:00"
+  },
+  {
+    "status": 502,
+    "response": {
+      "error": "dependency_failure",
+      "message": "The request could not be completed; no equipment status is implied.",
+      "correlationId": "0HNPJ0J14LNRR:00000005"
+    },
+    "checkedAtUtc": "2026-10-26T02:03:42.826012+00:00"
+  },
+  {
+    "status": 502,
+    "response": {
+      "error": "dependency_failure",
+      "message": "The request could not be completed; no equipment status is implied.",
+      "correlationId": "0HNPJ0J14LNRR:00000006"
+    },
+    "checkedAtUtc": "2026-10-26T02:03:59.092042+00:00"
+  },
+  {
+    "status": 502,
+    "response": {
+      "error": "dependency_failure",
+      "message": "The request could not be completed; no equipment status is implied.",
+      "correlationId": "0HNPJ0J14LNRR:00000007"
+    },
+    "checkedAtUtc": "2026-10-26T02:04:15.483307+00:00"
+  },
+  {
+    "status": 502,
+    "response": {
+      "error": "dependency_failure",
+      "message": "The request could not be completed; no equipment status is implied.",
+      "correlationId": "0HNPJ0J14LNRR:00000008"
+    },
+    "checkedAtUtc": "2026-10-26T02:04:31.780066+00:00"
+  },
+  {
+    "status": 502,
+    "response": {
+      "error": "dependency_failure",
+      "message": "The request could not be completed; no equipment status is implied.",
+      "correlationId": "0HNPJ0J14LNRR:00000009"
+    },
+    "checkedAtUtc": "2026-10-26T02:04:48.191573+00:00"
+  },
+  {
+    "status": 502,
+    "response": {
+      "error": "dependency_failure",
+      "message": "The request could not be completed; no equipment status is implied.",
+      "correlationId": "0HNPJ0J14LNRR:0000000B"
+    },
+    "checkedAtUtc": "2026-10-26T02:05:04.614184+00:00"
+  },
+  {
+    "status": 502,
+    "response": {
+      "error": "dependency_failure",
+      "message": "The request could not be completed; no equipment status is implied.",
+      "correlationId": "0HNPJ0J14LNRR:0000000C"
+    },
+    "checkedAtUtc": "2026-10-26T02:05:21.172389+00:00"
+  },
+  {
+    "status": 502,
+    "response": {
+      "error": "dependency_failure",
+      "message": "The request could not be completed; no equipment status is implied.",
+      "correlationId": "0HNPJ0J14LNRR:0000000D"
+    },
+    "checkedAtUtc": "2026-10-26T02:05:37.786062+00:00"
+  },
+  {
+    "status": 502,
+    "response": {
+      "error": "dependency_failure",
+      "message": "The request could not be completed; no equipment status is implied.",
+      "correlationId": "0HNPJ0J14LNRR:0000000E"
+    },
+    "checkedAtUtc": "2026-10-26T02:05:54.104214+00:00"
+  },
+  {
+    "status": 502,
+    "response": {
+      "error": "dependency_failure",
+      "message": "The request could not be completed; no equipment status is implied.",
+      "correlationId": "0HNPJ0J14LNRR:0000000F"
+    },
+    "checkedAtUtc": "2026-10-26T02:06:10.822679+00:00"
+  },
+  {
+    "status": 502,
+    "response": {
+      "error": "dependency_failure",
+      "message": "The request could not be completed; no equipment status is implied.",
+      "correlationId": "0HNPJ0J14LNRR:00000010"
+    },
+    "checkedAtUtc": "2026-10-26T02:06:27.262054+00:00"
+  }
+]
