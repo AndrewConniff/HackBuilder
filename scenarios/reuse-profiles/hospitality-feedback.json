@@ -1,0 +1,489 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "hospitality-feedback",
+  "manifestDigest": "66a2fd4c01a09d1f370002feb74c776d13559dc8c3e556d97842b512b8112482",
+  "summary": "A single Foundry Basic prompt agent analyzes multilingual hotel-service feedback using Blob evidence and reliable queued ingestion. Local reference; current deployment and suitability remain unverified.",
+  "metadataStatus": "needs-review",
+  "extractedAtUtc": "2026-10-30T01:07:54.736741+00:00",
+  "extractorVersion": 2,
+  "features": {
+    "multilingual": [
+      {
+        "path": "01-requirements.md",
+        "line": 17,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 22,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 94,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 123,
+        "basis": "design"
+      },
+      {
+        "path": "infra/workload.bicep",
+        "line": 132,
+        "basis": "code"
+      },
+      {
+        "path": "src/HospitalityFeedback.Web/Models/Domain.cs",
+        "line": 19,
+        "basis": "code"
+      },
+      {
+        "path": "src/HospitalityFeedback.Web/Models/Domain.cs",
+        "line": 28,
+        "basis": "code"
+      },
+      {
+        "path": "src/HospitalityFeedback.Web/Models/Domain.cs",
+        "line": 41,
+        "basis": "code"
+      }
+    ],
+    "grounded-retrieval": [
+      {
+        "path": "01-requirements.md",
+        "line": 23,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 53,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 61,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 78,
+        "basis": "design"
+      },
+      {
+        "path": "src/HospitalityFeedback.Operator/Program.cs",
+        "line": 91,
+        "basis": "code"
+      },
+      {
+        "path": "src/HospitalityFeedback.Operator/Program.cs",
+        "line": 92,
+        "basis": "code"
+      },
+      {
+        "path": "src/HospitalityFeedback.Operator/Program.cs",
+        "line": 93,
+        "basis": "code"
+      },
+      {
+        "path": "src/HospitalityFeedback.Operator/Program.cs",
+        "line": 113,
+        "basis": "code"
+      }
+    ],
+    "case-management": [
+      {
+        "path": "01-requirements.md",
+        "line": 59,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 119,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 122,
+        "basis": "design"
+      },
+      {
+        "path": "04-implementation-plan.md",
+        "line": 113,
+        "basis": "design"
+      }
+    ],
+    "replay-recovery": [
+      {
+        "path": "01-requirements.md",
+        "line": 71,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 120,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 120,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 197,
+        "basis": "design"
+      },
+      {
+        "path": "src/HospitalityFeedback.Web/Services/QueueWorker.cs",
+        "line": 46,
+        "basis": "code"
+      }
+    ],
+    "sequential-pipeline": [
+      {
+        "path": "01-requirements.md",
+        "line": 77,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 18,
+        "basis": "design"
+      }
+    ],
+    "single-agent-tool-loop": [
+      {
+        "path": "01-requirements.md",
+        "line": 81,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 20,
+        "basis": "design"
+      }
+    ],
+    "event-driven-reactive-agents": [
+      {
+        "path": "01-requirements.md",
+        "line": 84,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 127,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 23,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 82,
+        "basis": "design"
+      },
+      {
+        "path": "infra/workload.bicep",
+        "line": 77,
+        "basis": "code"
+      },
+      {
+        "path": "infra/workload.bicep",
+        "line": 87,
+        "basis": "code"
+      },
+      {
+        "path": "infra/workload.bicep",
+        "line": 209,
+        "basis": "code"
+      },
+      {
+        "path": "infra/workload.bicep",
+        "line": 241,
+        "basis": "code"
+      }
+    ],
+    "public-ingress": [
+      {
+        "path": "01-requirements.md",
+        "line": 98,
+        "basis": "design"
+      },
+      {
+        "path": "infra/workload.bicep",
+        "line": 47,
+        "basis": "code"
+      },
+      {
+        "path": "infra/workload.bicep",
+        "line": 105,
+        "basis": "code"
+      },
+      {
+        "path": "infra/workload.bicep",
+        "line": 186,
+        "basis": "code"
+      }
+    ],
+    "reconciliation": [
+      {
+        "path": "01-requirements.md",
+        "line": 121,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 24,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 121,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 194,
+        "basis": "design"
+      },
+      {
+        "path": "src/HospitalityFeedback.Web/Services/QueueWorker.cs",
+        "line": 21,
+        "basis": "code"
+      },
+      {
+        "path": "src/HospitalityFeedback.Web/Services/StorageRepository.cs",
+        "line": 94,
+        "basis": "code"
+      },
+      {
+        "path": "src/HospitalityFeedback.Web/Services/StorageRepository.cs",
+        "line": 132,
+        "basis": "code"
+      }
+    ],
+    "concurrent-fan-out-fan-in": [
+      {
+        "path": "01-requirements.md",
+        "line": 128,
+        "basis": "design"
+      }
+    ],
+    "human-in-the-loop": [
+      {
+        "path": "01-requirements.md",
+        "line": 143,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 36,
+        "basis": "design"
+      },
+      {
+        "path": "04-implementation-plan.md",
+        "line": 94,
+        "basis": "design"
+      },
+      {
+        "path": "04-implementation-plan.md",
+        "line": 136,
+        "basis": "design"
+      },
+      {
+        "path": "src/HospitalityFeedback.Operator/Program.cs",
+        "line": 113,
+        "basis": "code"
+      }
+    ],
+    "entra-identity": [
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 39,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 57,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 151,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 238,
+        "basis": "design"
+      },
+      {
+        "path": "infra/main.bicep",
+        "line": 37,
+        "basis": "code"
+      },
+      {
+        "path": "infra/main.bicep",
+        "line": 41,
+        "basis": "code"
+      }
+    ],
+    "routing-triage": [
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 51,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 116,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 164,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 179,
+        "basis": "design"
+      }
+    ],
+    "read-only": [
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 180,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 212,
+        "basis": "design"
+      }
+    ],
+    "handoff-transfer-of-control": [
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 209,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 215,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 223,
+        "basis": "design"
+      },
+      {
+        "path": "04-implementation-plan.md",
+        "line": 152,
+        "basis": "design"
+      }
+    ],
+    "inventory": [
+      {
+        "path": "04-implementation-plan.md",
+        "line": 9,
+        "basis": "design"
+      }
+    ]
+  },
+  "inputs": {
+    "01-requirements.md": "c1f6251d368e19c69dbc28318782de5fad4cd048157506f7163d7c2f09e39261",
+    "02-architecture-assessment.md": "25248e680e2c32cffd2e7f7df95907f7e331b892f119b10fa5aa975cc0390917",
+    "03-architect-diagram.py": "3d4e5ed5189d5995969a10ff71c912c3c17b33044876a5fc13a9eef90771dc2c",
+    "04-implementation-plan.md": "04d78967fcade9884a54ccb281d96562e1ab7f5bb211f3f88569fc06e6b1b70a",
+    "04-runtime-diagram.py": "568e879416d27a73bbc61b6b07206a6100604e22418cb08421fcdc50b370b3bd",
+    "azure.yaml": "084b35cc1f930ada4fcf6b59f31d456da83c2f1db132bac278beb9fe3d958772",
+    "infra/main.bicep": "7df66061974e12899841a2cd7ab15219864ae637694f18a4af7e15d17916414e",
+    "infra/workload.bicep": "72d086483270a0056eddd871a9333aba920d5e264d37bd6240076d30e4c8693b",
+    "src/HospitalityFeedback.Operator/Program.cs": "f21561602e713cc89a634d0c4a795f1bac7bd66773a06079179c4d26c611230f",
+    "src/HospitalityFeedback.Web/Models/Domain.cs": "e07548875fb7fe81ccdb0f4f2f0eb6b5d1fa8147178ba139016eb29e9989e0b1",
+    "src/HospitalityFeedback.Web/Pages/Index.cshtml.cs": "6bdec729896356d4d2e634930b66b0586025f87b94998860682b50229aa7aa95",
+    "src/HospitalityFeedback.Web/Program.cs": "826b18848c1e2587e202f63f0787a84930928893607717e275aad0c30c6f7c3e",
+    "src/HospitalityFeedback.Web/Services/FeedbackOptions.cs": "6ca1817f0d822c259dddac8f5d7120dba1e161feffe44d966934e4892705a7d3",
+    "src/HospitalityFeedback.Web/Services/FoundryAgent.cs": "0552269b970e6003f966d35af5319e363a066d60566a0a591afe2f22c116205e",
+    "src/HospitalityFeedback.Web/Services/QueueWorker.cs": "f3d3f4298c2f45f7359a43a160c63013a8c493e5b9d2d1ea0a74151c5ed31857",
+    "src/HospitalityFeedback.Web/Services/StorageRepository.cs": "fc7ca93dbd9ebc7843c9f6354756fc51ad0ba0bb8fac5b8baa45cc35fdeb93ca",
+    "src/HospitalityFeedback.Web/wwwroot/js/app.js": "aa18b9cf9799e320b05ee6af141cc96a813d2ae556857b824293ed270ffa36e0"
+  },
+  "architectureSummary": "Case / ticket management; Parallel evidence checks; Entra identity; Event-driven workflow; Grounded document retrieval; Case handoff; Human decision gate; Stock / inventory workflow; Multilingual interaction; Public ingress; Read-only assistance; Reconciliation / daily close; Replay / recovery handling; Routing / triage; Sequential pipeline; Single-agent tool loop",
+  "patternEvidence": {
+    "designMentioned": [
+      "case-management",
+      "concurrent-fan-out-fan-in",
+      "entra-identity",
+      "event-driven-reactive-agents",
+      "grounded-retrieval",
+      "handoff-transfer-of-control",
+      "human-in-the-loop",
+      "inventory",
+      "multilingual",
+      "public-ingress",
+      "read-only",
+      "reconciliation",
+      "replay-recovery",
+      "routing-triage",
+      "sequential-pipeline",
+      "single-agent-tool-loop"
+    ],
+    "codeMentioned": [
+      "entra-identity",
+      "event-driven-reactive-agents",
+      "grounded-retrieval",
+      "human-in-the-loop",
+      "multilingual",
+      "public-ingress",
+      "reconciliation",
+      "replay-recovery"
+    ],
+    "implemented": "unknown-until-reviewed"
+  },
+  "omittedLargeTextFiles": 0,
+  "dimensions": {
+    "businessCapabilities": [
+      "case-management",
+      "concurrent-fan-out-fan-in",
+      "event-driven-reactive-agents",
+      "grounded-retrieval",
+      "handoff-transfer-of-control",
+      "human-in-the-loop",
+      "inventory",
+      "multilingual",
+      "read-only",
+      "reconciliation",
+      "replay-recovery",
+      "routing-triage",
+      "sequential-pipeline",
+      "single-agent-tool-loop"
+    ],
+    "dataPatterns": [
+      "grounded-retrieval",
+      "replay-recovery"
+    ],
+    "integrationModes": [
+      "event-driven-reactive-agents",
+      "read-only"
+    ],
+    "humanDecisionPoints": [
+      "handoff-transfer-of-control",
+      "human-in-the-loop"
+    ],
+    "constraints": [
+      "entra-identity",
+      "public-ingress"
+    ]
+  },
+  "limitations": [
+    "Text-derived retrieval features require review; code references are not runtime validation.",
+    "An absent feature means unknown, not unsupported. No deployment or consent evidence is included.",
+    "0 text files over 256000 bytes were omitted; environment settings and runtime evidence are excluded."
+  ]
+}

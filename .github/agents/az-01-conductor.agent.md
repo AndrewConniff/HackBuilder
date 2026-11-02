@@ -45,7 +45,7 @@ On a normal build handoff, run the same bounded gap review before architecture, 
 questions; proceed without an interview when the brief is already sufficient.
 
 Use exactly `generated-scenarios\{projectSlug}` from the handoff.
-Read its saved brief under `.abcbuilder-portal\scenarios\{projectSlug}\request.json`
+Read its saved brief under `.fbcbuilder-portal\scenarios\{projectSlug}\request.json`
 (or the existing legacy state directory). Verify the repository workspace before edits.
 For an existing scenario, reuse its requirements, code, decisions and dated evidence.
 Do not restart from scratch or copy an unrelated deployment.

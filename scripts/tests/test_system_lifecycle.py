@@ -33,13 +33,14 @@ class SystemLifecycleTests(unittest.TestCase):
                 self.assertTrue((ROOT / relative).is_file(), f"Approved portal source is missing: {relative}")
 
     def test_real_visualizer_preserves_state_and_has_no_worker_or_approval_endpoints(self) -> None:
-        with tempfile.TemporaryDirectory(prefix="abc-system-test-") as temp:
+        with tempfile.TemporaryDirectory(prefix="fbc-system-test-") as temp:
             root = Path(temp)
             (root / "scripts").mkdir()
             (root / "portal").mkdir()
             for name in (
                 "portal_visualizer.py", "portal_status.py", "scenario_catalog.py", "hack_workflow.py",
                 "azure_context.py", "check_prerequisites.py", "prerequisite_profiles.py", "scenario_chat.py",
+                "scenario_adapt.py", "scenario_match.py",
             ):
                 shutil.copyfile(ROOT / "scripts" / name, root / "scripts" / name)
             for name in ("catalog.json", "visualizer.html", "visualizer.js", "visualizer.css", "markdown.js"):
@@ -48,7 +49,7 @@ class SystemLifecycleTests(unittest.TestCase):
             with socket.socket() as reservation:
                 reservation.bind(("127.0.0.1", 0))
                 port = reservation.getsockname()[1]
-            connection = root / ".abcbuilder-portal" / "server.json"
+            connection = root / ".fbcbuilder-portal" / "server.json"
             marker = root / "generated-scenarios" / "saved-project" / "partial.txt"
             marker.parent.mkdir(parents=True)
             marker.write_text("Retain this interrupted work.", encoding="utf-8")
@@ -75,7 +76,7 @@ class SystemLifecycleTests(unittest.TestCase):
                     for endpoint in ("/api/runs", "/api/system/azure-identity", "/api/runs/old/continue"):
                         self.assertEqual(404, self.call(port, "POST", endpoint)[0])
                     self.assertEqual("Retain this interrupted work.", marker.read_text(encoding="utf-8"))
-                    self.assertFalse((root / ".abcbuilder-portal" / "projects").exists())
+                    self.assertFalse((root / ".fbcbuilder-portal" / "projects").exists())
                 finally:
                     process.terminate()
                     process.wait(timeout=10)

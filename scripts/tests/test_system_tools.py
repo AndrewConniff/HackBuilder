@@ -71,7 +71,7 @@ class SystemProfileTests(unittest.TestCase):
 @unittest.skipUnless(os.name == "nt" and shutil.which("pwsh"), "Windows setup requires PowerShell")
 class SystemToolsTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.temporary = tempfile.TemporaryDirectory(prefix="abc system tools ")
+        self.temporary = tempfile.TemporaryDirectory(prefix="fbc system tools ")
         self.addCleanup(self.temporary.cleanup)
         self.root = Path(self.temporary.name)
         for name in ("scripts", "system-tools"):

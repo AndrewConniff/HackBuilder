@@ -1,4 +1,4 @@
-# ABC Builder - Copilot instructions
+# FBC Builder - Copilot instructions
 
 ## Entry point and workflow
 
@@ -23,7 +23,7 @@ Existing packages and selected services are not authorization.
 
 ## Customization ownership
 
-- Product branding is ABC Builder. Stable agent names, canonical skill folder
+- Product branding is FBC Builder. Stable agent names, canonical skill folder
   identifiers, executable script names and environment variables remain compatibility APIs.
 - `.github/agents/*.agent.md`: exactly two canonical contexts, scenario orchestrator
   (`az-01-conductor`) and hack composition (`HackCreator Agent`). Both have

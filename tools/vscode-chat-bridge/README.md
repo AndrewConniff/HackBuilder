@@ -1,12 +1,38 @@
-# ABC Builder Scenario Chat
+# FBC Builder Scenario Chat
 
 Local editor bridge for reopening existing conversations and continuing explicit portal brief responses.
 It never approves tools, changes editor security settings or creates replacement conversations.
 
+## FBC branding upgrade
+
+Version **0.4.0** uses `fbcbuilder.scenario-chat`, the `fbcbuilder.linkChat` command and FBC-branded URI routes.
+Portal state has moved to `.fbcbuilder-portal`; native session IDs and saved conversation links are unchanged.
+Install the updated VSIX, then run **Developer: Restart Extension Host** to activate the new identity and state path.
+The former publisher's extension cannot handle the new routes.
+
+## Portal messaging
+
+Version **0.3.0** adds `/message` to relay explicit portal conversation input to the existing scenario or composition
+session. Install the updated bridge and run **Developer: Restart Extension Host** before using portal messaging.
+The portal checks the running version before submitting. Existing brief continuation remains compatible.
+
+Message text stays in a bounded scenario/phase-local JSON file, not in the extension URI.
+The bridge checks the file, request ID, phase, slug, delivery state and exact saved native session link before dispatch.
+It uses the same native opener, editor-tab guard, submit API and per-request ledger as brief continuation.
+Phase-scoped ledgers prevent replay without confusing scenario replies with composition replies.
+An exception after attempting submit records uncertain delivery, not a safely retryable failure.
+No timer, status poll or reconnect submits another message.
+
+The fixed wrapper preserves the current agent, model, tools, phase and authorization boundaries, and asks for concise
+non-sensitive `portal_status.py` reports, including meaningful within-stage progress and questions.
+Reports are display-only; full native messages, private tool output and reasoning are not mirrored into the browser.
+Tool permissions, architecture/deployment decisions and suitability approval remain in the native chat.
+Brief confirmation still uses the existing fingerprint-bound controls. Portal text does not record formal approvals.
+
 ## Setup
 
 Package this folder with `npx --yes @vscode/vsce package --no-dependencies --skip-license`.
-Install the resulting VSIX using **Extensions: Install from VSIX** in the editor window containing ABC Builder.
+Install the resulting VSIX using **Extensions: Install from VSIX** in the editor window containing FBC Builder.
 This bridge requires VS Code 1.143 or later and a trusted local workspace.
 If the editor requests permission to open the extension URI, review and allow it yourself.
 If a newly installed extension has not activated, use **Developer: Reload Window** before retrying.
@@ -23,7 +49,7 @@ in place after verifying the same workspace and SDK identity; manually linked co
 Titles are not used, and editor databases are opened read-only for identity fields, not conversation messages.
 On Windows, the portal uses the registered editor protocol directly and waits for a native acknowledgement.
 
-**ABC Builder: Link Existing Chat to Scenario** remains an optional advanced repair command, not normal portal flow.
+**FBC Builder: Link Existing Chat to Scenario** remains an optional advanced repair command, not normal portal flow.
 It accepts only native `agent-host-session://` links. Missing or ambiguous history is an explicit error;
 the bridge never invents an association or creates a replacement conversation.
 

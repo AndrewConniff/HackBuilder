@@ -21,7 +21,7 @@ STATUSES = ("running", "waiting_for_user", "blocked", "completed", "failed", "ha
 
 def state_directory(root: Path) -> Path:
     legacy = root / ".hackbuilder-portal"
-    current = root / ".abcbuilder-portal"
+    current = root / ".fbcbuilder-portal"
     return legacy if legacy.exists() and not current.exists() else current
 
 
@@ -51,6 +51,10 @@ def report(root: Path, slug: str, stage: str, status: str, summary: str) -> dict
         raise ValueError("Summary must be 1-1200 characters; include no secrets.")
     path = scenario_state(root, slug) / "status.json"
     previous = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    events = previous.get("events")
+    if events is None:
+        events = [{"id": uuid.uuid4().hex, "stage": key, **value}
+                  for key, value in previous.get("steps", {}).items()]
     updated = datetime.now(timezone.utc).isoformat()
     value = {
         "schemaVersion": 1, "projectSlug": slug, "stage": stage, "status": status,
@@ -58,6 +62,10 @@ def report(root: Path, slug: str, stage: str, status: str, summary: str) -> dict
         "steps": {**previous.get("steps", {}), stage: {
             "status": status, "summary": summary.strip(), "updatedAtUtc": updated,
         }},
+        "events": [*events, {
+            "id": uuid.uuid4().hex, "stage": stage, "status": status,
+            "summary": summary.strip(), "updatedAtUtc": updated,
+        }][-100:],
     }
     write_json(path, value)
     return value

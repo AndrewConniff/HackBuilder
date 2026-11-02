@@ -321,7 +321,7 @@ class PrerequisiteChecksTests(unittest.TestCase):
 @unittest.skipUnless(os.name == "nt" and shutil.which("pwsh"), "Windows PowerShell setup")
 class WindowsSetupTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.temporary = tempfile.TemporaryDirectory(prefix="abc setup test ")
+        self.temporary = tempfile.TemporaryDirectory(prefix="fbc setup test ")
         self.addCleanup(self.temporary.cleanup)
         self.root = Path(self.temporary.name)
         (self.root / "scripts").mkdir()
@@ -386,7 +386,7 @@ class WindowsSetupTests(unittest.TestCase):
     def test_active_portal_or_writer_blocks_installation(self) -> None:
         for legacy, lease in ((False, False), (False, True), (True, True)):
             with self.subTest(legacy=legacy, lease=lease):
-                state = self.root / (".hackbuilder-portal" if legacy else ".abcbuilder-portal")
+                state = self.root / (".hackbuilder-portal" if legacy else ".fbcbuilder-portal")
                 state.mkdir(exist_ok=True)
                 if lease:
                     (state / "projects").mkdir(exist_ok=True)
@@ -420,7 +420,7 @@ class WindowsSetupTests(unittest.TestCase):
             ["pwsh", "-NoProfile", "-Command",
              f". '{script}'; $result = Invoke-SetupCommand '{python}' @('-c', 'raise SystemExit(7)'); "
              "$result | ConvertTo-Json; "
-             "try { Invoke-SetupCommand 'abc-builder-nonexistent-executable' } catch { exit 23 }"],
+             "try { Invoke-SetupCommand 'fbc-builder-nonexistent-executable' } catch { exit 23 }"],
             capture_output=True, text=True, timeout=15, check=False,
         )
         self.assertEqual(23, result.returncode, result.stderr)

@@ -50,8 +50,8 @@ def verify(image: str, marker: str, timeout: int = 90) -> dict:
         report["checks"].append(f"Image inspected: linux/amd64; user={user}")
         container_id = docker(
             "run", "--detach", "--rm", "--pull=never", "--read-only", "--platform", "linux/amd64",
-            "--name", f"abcbuilder-verify-{uuid.uuid4().hex[:12]}",
-            "--label", "abcbuilder.purpose=local-runtime-verification",
+            "--name", f"fbcbuilder-verify-{uuid.uuid4().hex[:12]}",
+            "--label", "fbcbuilder.purpose=local-runtime-verification",
             "--publish", "127.0.0.1::8080", "--env", "APP_ROLE=web", image,
         )
         if not re.fullmatch(r"[0-9a-f]{64}", container_id):

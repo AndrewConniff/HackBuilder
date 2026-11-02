@@ -1,6 +1,6 @@
 ---
 name: design-diagram
-description: "Manual standalone diagram request; not an extra ABC Builder pipeline stage."
+description: "Manual standalone diagram request; not an extra FBC Builder pipeline stage."
 disable-model-invocation: true
 ---
 

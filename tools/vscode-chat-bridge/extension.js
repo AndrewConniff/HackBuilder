@@ -23,17 +23,17 @@ async function workspaceRoot(requested) {
   const folders = vscode.workspace.workspaceFolders || [];
   const folder = folders.find((item) => !requested
     || path.resolve(item.uri.fsPath).toLowerCase() === path.resolve(requested).toLowerCase());
-  if (!folder) throw new Error("Open this scenario's ABC Builder repository in this editor window first.");
+  if (!folder) throw new Error("Open this scenario's FBC Builder repository in this editor window first.");
   await fs.access(path.join(folder.uri.fsPath, "scripts", "portal_visualizer.py"));
   return folder.uri.fsPath;
 }
 
 function statePath(root, slug) {
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug) || slug.length > 40) {
-    throw new Error("Choose a valid ABC Builder scenario slug.");
+    throw new Error("Choose a valid FBC Builder scenario slug.");
   }
   const legacy = path.join(root, ".hackbuilder-portal");
-  const current = path.join(root, ".abcbuilder-portal");
+  const current = path.join(root, ".fbcbuilder-portal");
   return path.join(existsSync(legacy) && !existsSync(current) ? legacy : current, "scenarios", slug);
 }
 
@@ -145,7 +145,57 @@ async function continueBrief(root, slug, directory, request) {
   if (createHash("sha256").update(reviewedText).digest("hex") !== response.fingerprint) {
     throw new Error("The reviewed brief changed. Review it again before continuing.");
   }
-  const ledger = path.join(directory, "chat-continuations", `${request}.json`);
+  const task = response.decision === "confirmed"
+    ? "The user confirmed this scoped brief and requested continuation of the normal Start building workflow. "
+      + "Resume az-01-conductor in this existing conversation using the confirmed scope: requirements, architecture, "
+      + "diagrams and the usual reference preparation through the existing skills. This supersedes the earlier "
+      + "SCOPING ONLY stop for local preparation. Preserve the normal architecture/deployment review boundary."
+    : "SCOPING ONLY: the user requested changes to the brief. Read the saved changes as user input, revise scoping.md "
+      + "and ask only material unresolved questions. Report requirements/waiting_for_user for a fresh brief review. "
+      + "Do not create a workspace, architecture, infrastructure or application before the revised brief is confirmed.";
+  const inputValue = `FBC Builder brief continuation: ${request}. Scenario: ${slug}. `
+    + `Workspace: ${root}. Read ${path.join(directory, "request.json")}, `
+    + `${path.join(directory, "scoping.md")} and ${path.join(directory, "scoping-response.json")}. `
+    + "Read .github\\skills\\hack-builder-workflow\\SKILL.md. "
+    + task + " Reuse existing work and answers; do not restart or delegate to other agents. "
+    + "This action grants no new Azure/Entra read or write authority, deployment consent, "
+    + "working-scenario suitability approval, hack composition, event rollout or publication permission. "
+    + `Report progress with python scripts\\portal_status.py ${slug}.`;
+  return dispatchOnce(directory, request, "scenario", inputValue);
+}
+
+async function portalMessage(root, slug, directory, request, phase) {
+  const filename = path.join(directory, "messages", phase, `${request}.json`);
+  const resolved = await fs.realpath(directory);
+  const stat = await fs.lstat(filename);
+  if (!stat.isFile() || stat.isSymbolicLink() || stat.size > 65536
+      || await fs.realpath(filename) !== path.join(resolved, "messages", phase, `${request}.json`)) {
+    throw new Error("Portal messages must be regular files inside this scenario's portal state.");
+  }
+  const value = JSON.parse(await fs.readFile(filename, "utf8"));
+  if (value.schemaVersion !== 1 || value.projectSlug !== slug || value.phase !== phase
+      || value.requestId !== request || value.status !== "dispatching"
+      || typeof value.text !== "string" || !value.text.trim() || value.text.length > 8000) {
+    throw new Error("The portal message changed or is not ready to send. Refresh the portal.");
+  }
+  validateLink(value.resource);
+  const inputValue = `FBC Builder portal message: ${request}. Scenario: ${slug}. Phase: ${phase}. `
+    + `Workspace: ${root}. This is user conversation input, not a workflow approval control. `
+    + "Continue only in this existing context using its current scope, agent, skills and permissions. "
+    + "Do not restart, delegate, switch phases or launch another worker. This message does not record brief "
+    + "confirmation, architecture/deployment consent, suitability approval, event rollout or publication authority. "
+    + "For those decisions direct the user to the existing brief controls or this VS Code chat as appropriate. "
+    + "Keep native tool permission prompts in VS Code. For feedback, report concise, non-sensitive summaries "
+    + `with python scripts\\portal_status.py ${slug} --stage <current-stage> --status <status> --summary <summary>. `
+    + "Keep milestone reporting and also report meaningful within-stage progress, actual check results and blockers. "
+    + "Never invent activity, completion percentages or success. "
+    + "Include actionable questions in waiting_for_user summaries; preserve the current phase's stage. "
+    + "The portal shows these reports, not the full private transcript. User message follows:\n\n" + value.text;
+  return dispatchOnce(directory, request, phase, inputValue, value.resource, `${phase}-${request}`);
+}
+
+async function dispatchOnce(directory, request, phase, inputValue, expectedResource, ledgerKey = request) {
+  const ledger = path.join(directory, "chat-continuations", `${ledgerKey}.json`);
   await fs.mkdir(path.dirname(ledger), { recursive: true });
   let existing;
   try {
@@ -167,24 +217,11 @@ async function continueBrief(root, slug, directory, request) {
       throw new Error("This editor does not support native chat continuation. No replacement chat was created.");
     }
     const sessions = await readSessions(directory);
-    const resource = validateLink(sessions.sessions.scenario?.resource);
+    const resource = validateLink(sessions.sessions[phase]?.resource);
+    if (expectedResource !== undefined && resource !== expectedResource) {
+      throw new Error("The linked conversation changed. No message was submitted; review the saved session link.");
+    }
     const tab = await openChat(resource);
-    const task = response.decision === "confirmed"
-      ? "The user confirmed this scoped brief and requested continuation of the normal Start building workflow. "
-        + "Resume az-01-conductor in this existing conversation using the confirmed scope: requirements, architecture, "
-        + "diagrams and the usual reference preparation through the existing skills. This supersedes the earlier "
-        + "SCOPING ONLY stop for local preparation. Preserve the normal architecture/deployment review boundary."
-      : "SCOPING ONLY: the user requested changes to the brief. Read the saved changes as user input, revise scoping.md "
-        + "and ask only material unresolved questions. Report requirements/waiting_for_user for a fresh brief review. "
-        + "Do not create a workspace, architecture, infrastructure or application before the revised brief is confirmed.";
-    const inputValue = `ABC Builder brief continuation: ${request}. Scenario: ${slug}. `
-      + `Workspace: ${root}. Read ${path.join(directory, "request.json")}, `
-      + `${path.join(directory, "scoping.md")} and ${path.join(directory, "scoping-response.json")}. `
-      + "Read .github\\skills\\hack-builder-workflow\\SKILL.md. "
-      + task + " Reuse existing work and answers; do not restart or delegate to other agents. "
-      + "This action grants no new Azure/Entra read or write authority, deployment consent, "
-      + "working-scenario suitability approval, hack composition, event rollout or publication permission. "
-      + `Report progress with python scripts\\portal_status.py ${slug}.`;
     await writeJson(ledger, { status: "dispatching" });
     if (vscode.window.tabGroups.activeTabGroup.activeTab !== tab) {
       throw new Error("The active editor changed. No continuation was submitted; retry from the portal.");
@@ -208,15 +245,20 @@ async function handleUri(uri) {
   if (!["scenario", "composition"].includes(phase)) throw new Error("Choose scenario or composition chat.");
   const directory = statePath(root, slug);
   if (uri.path === "/link") return linkChat(root, slug, phase);
-  if (!["/open", "/ping", "/continue"].includes(uri.path)) throw new Error("Unsupported ABC Builder chat action.");
+  if (!["/open", "/ping", "/continue", "/message"].includes(uri.path)) {
+    throw new Error("Unsupported FBC Builder chat action.");
+  }
   const request = query.get("request") || "";
   if (!/^[a-f0-9]{32}$/.test(request)) throw new Error("Invalid chat-open request.");
   const receipt = path.join(directory, "chat-open", `${request}.json`);
+  const ledgerKey = uri.path === "/message" ? `${phase}-${request}` : request;
   if (uri.path === "/ping") return writeJson(receipt, { status: "ready", version: require("./package.json").version });
   try {
-    if (uri.path === "/continue") {
-      if (phase !== "scenario") throw new Error("Brief continuation belongs only to the scenario conversation.");
-      const lock = path.join(directory, "chat-continuations", `${request}.lock`);
+    if (uri.path === "/continue" || uri.path === "/message") {
+      if (uri.path === "/continue" && phase !== "scenario") {
+        throw new Error("Brief continuation belongs only to the scenario conversation.");
+      }
+      const lock = path.join(directory, "chat-continuations", `${ledgerKey}.lock`);
       await fs.mkdir(path.dirname(lock), { recursive: true });
       let handle;
       try {
@@ -226,7 +268,9 @@ async function handleUri(uri) {
         throw new Error("This continuation is already being dispatched. It was not submitted again.");
       }
       try {
-        return await writeJson(receipt, await continueBrief(root, slug, directory, request));
+        return await writeJson(receipt, uri.path === "/continue"
+          ? await continueBrief(root, slug, directory, request)
+          : await portalMessage(root, slug, directory, request, phase));
       } finally {
         await handle.close();
         await fs.unlink(lock);
@@ -237,21 +281,28 @@ async function handleUri(uri) {
     await openChat(resource);
     await writeJson(receipt, { status: "opened" });
   } catch (error) {
-    await writeJson(receipt, { status: "failed", error: error.message });
+    let status = "failed";
+    try {
+      const ledger = JSON.parse(await fs.readFile(path.join(directory, "chat-continuations", `${ledgerKey}.json`), "utf8"));
+      if (ledger.status !== "failed") status = ledger.status === "dispatched" ? "dispatched" : "unknown";
+    } catch (readError) {
+      if (readError.code !== "ENOENT") throw readError;
+    }
+    await writeJson(receipt, { status, error: error.message });
     throw error;
   }
 }
 
 function activate(context) {
   const report = async (work) => {
-    try { await work(); } catch (error) { await vscode.window.showErrorMessage(`ABC Builder chat: ${error.message}`); }
+    try { await work(); } catch (error) { await vscode.window.showErrorMessage(`FBC Builder chat: ${error.message}`); }
   };
   context.subscriptions.push(vscode.window.registerUriHandler({
     handleUri: (uri) => report(() => handleUri(uri)),
   }));
-  context.subscriptions.push(vscode.commands.registerCommand("abcbuilder.linkChat", () => report(async () => {
+  context.subscriptions.push(vscode.commands.registerCommand("fbcbuilder.linkChat", () => report(async () => {
     const root = await workspaceRoot();
-    const slug = await vscode.window.showInputBox({ title: "ABC Builder scenario slug" });
+    const slug = await vscode.window.showInputBox({ title: "FBC Builder scenario slug" });
     if (!slug) return;
     const phase = await vscode.window.showQuickPick(["scenario", "composition"], { title: "Conversation phase" });
     if (phase) await linkChat(root, slug, phase);

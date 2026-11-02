@@ -9,12 +9,12 @@ metadata:
   category: azure-infrastructure
 ---
 
-# ABC Builder — Consolidated Skill
+# FBC Builder — Consolidated Skill
 
 Single reference for all agents. Covers Azure defaults, Bicep patterns,
 architecture diagrams, artifact templates, and demo guide generation.
 
-For ABC Builder sequencing, approval and deployment scope, use
+For FBC Builder sequencing, approval and deployment scope, use
 [the workflow contract](../hack-builder-workflow/SKILL.md). This skill supplies
 technical patterns, not an alternative orchestrator.
 
@@ -30,7 +30,7 @@ before generating business content, application branding, seed data, or
 company-derived infrastructure names. It also applies to names supplied in a
 prompt, examples in skills, and secondary fictitious organizations.
 
-1. Read the actual catalog from the ABC Builder repository, even when the
+1. Read the actual catalog from the FBC Builder repository, even when the
    scenario workspace is external. Require the `Company Name` and `Domain Name*`
    headers. Parse CSV quoting correctly; do not split lines blindly on commas.
 1. Select one valid, nonempty company entry appropriate to the scenario.
@@ -75,7 +75,7 @@ chat examples, evaluation fixtures, screenshots, and demo scripts using that dat
 Names from prompts, remembered examples, Faker, or other generators are not
 alternative sources.
 
-1. Read the actual catalog from the ABC Builder repository before generating
+1. Read the actual catalog from the FBC Builder repository before generating
    person-bearing data, including when the scenario workspace is external.
    Parse CSV with UTF-8 BOM support, quoting, and Unicode preservation.
    Require the headers `FirstName`, `LastName`, `FullName`, `FirstNameNative`,

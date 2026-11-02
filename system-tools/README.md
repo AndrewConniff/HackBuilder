@@ -1,9 +1,9 @@
-# ABC Builder system tools
+# FBC Builder system tools
 
 One Windows PowerShell 5.1+ entry point downloads the complete native tool baseline and optionally
 installs missing tools from those same files. Node.js and GitHub CLI are included by default.
 For granular manual installation, use the [HOWTO's official source links](
-../ABC-Builder-HOWTO.md#manual-tool-inventory-and-official-downloads).
+../FBC-Builder-HOWTO.md#manual-tool-inventory-and-official-downloads).
 The portal's System diagnostics remain read-only and never run this installer.
 
 ## Download, then optionally install in one flow
@@ -73,9 +73,9 @@ Downloads stop on the first failure; a few existing folders do not mean the comp
 Preserve/inspect incomplete or older-baseline entries and select a new cache directory if necessary:
 
 ```powershell
-.\system-tools\Install-SystemTools.ps1 -AcceptPackageAgreements -CacheDirectory 'D:\ABC-Builder-cache' -Verbose
+.\system-tools\Install-SystemTools.ps1 -AcceptPackageAgreements -CacheDirectory 'D:\FBC-Builder-cache' -Verbose
 .\system-tools\Install-SystemTools.ps1 -Install -AcceptPackageAgreements -AcceptDockerLicense `
-    -CacheDirectory 'D:\ABC-Builder-cache' -Verbose
+    -CacheDirectory 'D:\FBC-Builder-cache' -Verbose
 ```
 
 To prohibit new downloads and install only from an already complete cache:

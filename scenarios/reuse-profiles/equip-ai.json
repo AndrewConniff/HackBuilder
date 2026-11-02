@@ -1,0 +1,648 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "equip-ai",
+  "manifestDigest": "2e8444c7d0eb8d6d172a91f2e5d55b46ed3acea1f8ae385cc2407a11022c2248",
+  "summary": "Site-isolated local-account support for Washington machinery using fresh, certified event telemetry.",
+  "metadataStatus": "needs-review",
+  "extractedAtUtc": "2026-10-30T01:07:54.285810+00:00",
+  "extractorVersion": 2,
+  "features": {
+    "routing-triage": [
+      {
+        "path": "01-requirements.md",
+        "line": 26,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 58,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 85,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 115,
+        "basis": "design"
+      },
+      {
+        "path": "infra/main.bicep",
+        "line": 220,
+        "basis": "code"
+      },
+      {
+        "path": "infra/main.bicep",
+        "line": 318,
+        "basis": "code"
+      },
+      {
+        "path": "infra/main.bicep",
+        "line": 334,
+        "basis": "code"
+      },
+      {
+        "path": "src/EquipAI.Web/Services/FoundryAgent.cs",
+        "line": 27,
+        "basis": "code"
+      }
+    ],
+    "handoff-transfer-of-control": [
+      {
+        "path": "01-requirements.md",
+        "line": 43,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 47,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 48,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 165,
+        "basis": "design"
+      }
+    ],
+    "telemetry": [
+      {
+        "path": "01-requirements.md",
+        "line": 50,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 128,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 153,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 187,
+        "basis": "design"
+      },
+      {
+        "path": "03-architect-diagram.py",
+        "line": 39,
+        "basis": "code"
+      },
+      {
+        "path": "03-architect-diagram.py",
+        "line": 63,
+        "basis": "code"
+      },
+      {
+        "path": "04-runtime-diagram.py",
+        "line": 1,
+        "basis": "code"
+      },
+      {
+        "path": "infra/main.bicep",
+        "line": 230,
+        "basis": "code"
+      }
+    ],
+    "inventory": [
+      {
+        "path": "01-requirements.md",
+        "line": 50,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 96,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 390,
+        "basis": "design"
+      },
+      {
+        "path": "04-implementation-plan.md",
+        "line": 34,
+        "basis": "design"
+      },
+      {
+        "path": "src/EquipAI.Web/Models/Telemetry.cs",
+        "line": 43,
+        "basis": "code"
+      },
+      {
+        "path": "src/EquipAI.Web/Models/Telemetry.cs",
+        "line": 47,
+        "basis": "code"
+      },
+      {
+        "path": "src/EquipAI.Web/Models/Telemetry.cs",
+        "line": 51,
+        "basis": "code"
+      },
+      {
+        "path": "src/EquipAI.Web/Models/Telemetry.cs",
+        "line": 54,
+        "basis": "code"
+      }
+    ],
+    "grounded-retrieval": [
+      {
+        "path": "01-requirements.md",
+        "line": 50,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 89,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 91,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 142,
+        "basis": "design"
+      },
+      {
+        "path": "04-runtime-diagram.py",
+        "line": 53,
+        "basis": "code"
+      },
+      {
+        "path": "src/EquipAI.Web/Services/BlobTelemetry.cs",
+        "line": 51,
+        "basis": "code"
+      },
+      {
+        "path": "src/EquipAI.Web/Services/FoundryAgent.cs",
+        "line": 175,
+        "basis": "code"
+      },
+      {
+        "path": "src/EquipAI.Web/Services/FoundryAgent.cs",
+        "line": 176,
+        "basis": "code"
+      }
+    ],
+    "concurrent-fan-out-fan-in": [
+      {
+        "path": "01-requirements.md",
+        "line": 59,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 142,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 239,
+        "basis": "design"
+      },
+      {
+        "path": "src/EquipAI.Web/Services/LabAuthentication.cs",
+        "line": 150,
+        "basis": "code"
+      }
+    ],
+    "local-identity": [
+      {
+        "path": "01-requirements.md",
+        "line": 70,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 169,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 39,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 43,
+        "basis": "design"
+      },
+      {
+        "path": "04-runtime-diagram.py",
+        "line": 47,
+        "basis": "code"
+      },
+      {
+        "path": "infra/main.bicep",
+        "line": 554,
+        "basis": "code"
+      },
+      {
+        "path": "src/EquipAI.Web/Program.cs",
+        "line": 72,
+        "basis": "code"
+      },
+      {
+        "path": "src/EquipAI.Web/Services/LabAuthentication.cs",
+        "line": 88,
+        "basis": "code"
+      }
+    ],
+    "single-agent-tool-loop": [
+      {
+        "path": "01-requirements.md",
+        "line": 71,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 86,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 84,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 133,
+        "basis": "design"
+      },
+      {
+        "path": "04-runtime-diagram.py",
+        "line": 1,
+        "basis": "code"
+      },
+      {
+        "path": "04-runtime-diagram.py",
+        "line": 40,
+        "basis": "code"
+      }
+    ],
+    "read-tools": [
+      {
+        "path": "01-requirements.md",
+        "line": 71,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 86,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 133,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 141,
+        "basis": "design"
+      },
+      {
+        "path": "04-runtime-diagram.py",
+        "line": 40,
+        "basis": "code"
+      }
+    ],
+    "replay-recovery": [
+      {
+        "path": "01-requirements.md",
+        "line": 98,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 136,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 142,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 161,
+        "basis": "design"
+      },
+      {
+        "path": "04-runtime-diagram.py",
+        "line": 45,
+        "basis": "code"
+      },
+      {
+        "path": "src/EquipAI.Web/Services/BlobTelemetry.cs",
+        "line": 14,
+        "basis": "code"
+      },
+      {
+        "path": "src/EquipAI.Web/Services/BlobTelemetry.cs",
+        "line": 60,
+        "basis": "code"
+      },
+      {
+        "path": "src/EquipAI.Web/Services/TelemetryEngine.cs",
+        "line": 51,
+        "basis": "code"
+      }
+    ],
+    "public-ingress": [
+      {
+        "path": "01-requirements.md",
+        "line": 116,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 196,
+        "basis": "design"
+      },
+      {
+        "path": "infra/main.bicep",
+        "line": 243,
+        "basis": "code"
+      },
+      {
+        "path": "infra/main.bicep",
+        "line": 295,
+        "basis": "code"
+      }
+    ],
+    "entra-identity": [
+      {
+        "path": "01-requirements.md",
+        "line": 183,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 10,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 39,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 171,
+        "basis": "design"
+      }
+    ],
+    "read-only": [
+      {
+        "path": "01-requirements.md",
+        "line": 187,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 23,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 50,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 72,
+        "basis": "design"
+      },
+      {
+        "path": "infra/modules/blob-access.bicep",
+        "line": 3,
+        "basis": "code"
+      }
+    ],
+    "human-in-the-loop": [
+      {
+        "path": "01-requirements.md",
+        "line": 191,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 30,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 107,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 111,
+        "basis": "design"
+      },
+      {
+        "path": "infra/main.bicep",
+        "line": 49,
+        "basis": "code"
+      },
+      {
+        "path": "infra/main.bicep",
+        "line": 55,
+        "basis": "code"
+      },
+      {
+        "path": "infra/modules/management-network.bicep",
+        "line": 7,
+        "basis": "code"
+      }
+    ],
+    "private-network": [
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 83,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 160,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 359,
+        "basis": "design"
+      },
+      {
+        "path": "03-architect-diagram.py",
+        "line": 41,
+        "basis": "code"
+      },
+      {
+        "path": "infra/main.bicep",
+        "line": 46,
+        "basis": "code"
+      },
+      {
+        "path": "infra/main.bicep",
+        "line": 362,
+        "basis": "code"
+      },
+      {
+        "path": "infra/main.bicep",
+        "line": 467,
+        "basis": "code"
+      }
+    ],
+    "orchestrator-workers": [
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 141,
+        "basis": "design"
+      }
+    ],
+    "event-driven-reactive-agents": [
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 290,
+        "basis": "design"
+      }
+    ],
+    "case-management": [
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 413,
+        "basis": "design"
+      }
+    ],
+    "reconciliation": [
+      {
+        "path": "04-implementation-plan.md",
+        "line": 119,
+        "basis": "design"
+      }
+    ]
+  },
+  "inputs": {
+    "01-requirements.md": "1a15764787237710b9ef4e67efee9535319a358decd4e453fb87d1b51cd2bd75",
+    "02-architecture-assessment.md": "e2bcfdf544d75fa555ef1bd4ec46250cad332515bd6bdd471a24a9817582e9a9",
+    "03-architect-diagram.py": "4912cef6cb122b9b92ec7d38beb151b9ae6352f1bbf2821a5b11692f825217a7",
+    "04-implementation-plan.md": "7399cb8df62055d7d0e1c98019fafbba728854392cd955f442d7e51f5dfcf1e5",
+    "04-runtime-diagram.py": "3c84276e74597a049df4e8c6d48b0305d360ef1d1f42d1ec93629330fd6ab266",
+    "azure.yaml": "8951a9144d13aefcaf33c02c5eb73cfaefbdec42eca8393dca2425d18c03dbcd",
+    "infra/human-access-repair.bicep": "0183b88c772db9d5d3b674e91a7c17e7f2d2e333ef432663a2c4e362d97becf7",
+    "infra/main.bicep": "ef296718fc6cea55c534c27705655aca969d106c6a9b5708b497fc9f3bb3ed01",
+    "infra/management.bicep": "0a078bcb55588ee9687f237dd71e9056ac3b3c13d7f8aae2cbb23f8cdfbaf0b0",
+    "infra/modules/app-settings.bicep": "73cf41c181d65438bdc2f49a59a2e05a851c5089a388d276d1b41b5633de2cd1",
+    "infra/modules/blob-access.bicep": "18f975786c39f00cba0310267c30ea42960eddcd86b6f01dd68a7a71a0832f56",
+    "infra/modules/foundry-access.bicep": "707c69d119018437508f3a4ca6217cae8a3304517d141c02f8388f0490d5240f",
+    "infra/modules/human-access.bicep": "d83e0d064133c50adb95244b85a1ae84bb141d21fef99b30a7c9d0fc8b5f33b5",
+    "infra/modules/management-network.bicep": "488227d636f39ef22936de7fab8907acc87dfb89dd373aad2a36d71a0b001115",
+    "src/EquipAI.Web/Models/Telemetry.cs": "850359a29dc3529a7c5744d31c29453d840db71a8786abfeddf82aea94a1fbf4",
+    "src/EquipAI.Web/Program.cs": "beaded04ff26bee33aa8adaf6dec13f9f4f5f3e0015cdc83aa05875344e89b2d",
+    "src/EquipAI.Web/Services/BlobTelemetry.cs": "6e34c29c0480208f557ded385e8331cb4365b5ea5d4fa43957d27d1bbfd2be9b",
+    "src/EquipAI.Web/Services/DevicePublisher.cs": "62aa780fa488047541f6ec7be7e7917c101017f2e0bb6fe507ad532a6841d8af",
+    "src/EquipAI.Web/Services/FoundryAgent.cs": "9d8623c00556d4e6b4cc98c26f30451c386f21120571722223f6598a68943002",
+    "src/EquipAI.Web/Services/LabAuthentication.cs": "aae164089e1f31ad9e02b33c964fba3b9e8f0869cd4f56b2f43ccd83cbac8bb5",
+    "src/EquipAI.Web/Services/TelemetryEngine.cs": "01853470e6721507f47cf40ceffa8ceec08d365ce1db8092cc36e9db7ba42784",
+    "src/EquipAI.Web/wwwroot/app.js": "c6f72bf930f64fb20088494f8cffc25aa38eaf801644a63f459787acda28674c"
+  },
+  "architectureSummary": "Case / ticket management; Parallel evidence checks; Entra identity; Event-driven workflow; Grounded document retrieval; Case handoff; Human decision gate; Stock / inventory workflow; Local application accounts; Orchestrator / workers; Private network boundary; Public ingress; Read-only assistance; Tool-backed assistance; Reconciliation / daily close; Replay / recovery handling; Routing / triage; Single-agent tool loop; Telemetry / sensor processing",
+  "patternEvidence": {
+    "designMentioned": [
+      "case-management",
+      "concurrent-fan-out-fan-in",
+      "entra-identity",
+      "event-driven-reactive-agents",
+      "grounded-retrieval",
+      "handoff-transfer-of-control",
+      "human-in-the-loop",
+      "inventory",
+      "local-identity",
+      "orchestrator-workers",
+      "private-network",
+      "public-ingress",
+      "read-only",
+      "read-tools",
+      "reconciliation",
+      "replay-recovery",
+      "routing-triage",
+      "single-agent-tool-loop",
+      "telemetry"
+    ],
+    "codeMentioned": [
+      "concurrent-fan-out-fan-in",
+      "grounded-retrieval",
+      "human-in-the-loop",
+      "inventory",
+      "local-identity",
+      "private-network",
+      "public-ingress",
+      "read-only",
+      "read-tools",
+      "replay-recovery",
+      "routing-triage",
+      "single-agent-tool-loop",
+      "telemetry"
+    ],
+    "implemented": "unknown-until-reviewed"
+  },
+  "omittedLargeTextFiles": 0,
+  "dimensions": {
+    "businessCapabilities": [
+      "case-management",
+      "concurrent-fan-out-fan-in",
+      "event-driven-reactive-agents",
+      "grounded-retrieval",
+      "handoff-transfer-of-control",
+      "human-in-the-loop",
+      "inventory",
+      "orchestrator-workers",
+      "read-only",
+      "read-tools",
+      "reconciliation",
+      "replay-recovery",
+      "routing-triage",
+      "single-agent-tool-loop",
+      "telemetry"
+    ],
+    "dataPatterns": [
+      "grounded-retrieval",
+      "replay-recovery",
+      "telemetry"
+    ],
+    "integrationModes": [
+      "event-driven-reactive-agents",
+      "read-only",
+      "read-tools"
+    ],
+    "humanDecisionPoints": [
+      "handoff-transfer-of-control",
+      "human-in-the-loop"
+    ],
+    "constraints": [
+      "entra-identity",
+      "local-identity",
+      "private-network",
+      "public-ingress"
+    ]
+  },
+  "limitations": [
+    "Text-derived retrieval features require review; code references are not runtime validation.",
+    "An absent feature means unknown, not unsupported. No deployment or consent evidence is included.",
+    "0 text files over 256000 bytes were omitted; environment settings and runtime evidence are excluded."
+  ]
+}

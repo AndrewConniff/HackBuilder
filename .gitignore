@@ -9,7 +9,7 @@ Copilot-Processing.md
 
 # Local intake portal requests and execution logs
 .hackbuilder-portal/
-.abcbuilder-portal/
+.fbcbuilder-portal/
 
 # Workspace-specific Azure identity
 .github/instructions/az-default-account.instructions.md

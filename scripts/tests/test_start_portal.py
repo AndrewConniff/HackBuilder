@@ -57,7 +57,7 @@ class PortalStartupTests(unittest.TestCase):
             spawn.return_value.poll.return_value = None
             self.assertEqual(self.config, launcher.ensure_portal())
         self.assertEqual(3, running.call_count)
-        startup_id = spawn.call_args.kwargs["env"]["ABCBUILDER_PORTAL_STARTUP_ID"]
+        startup_id = spawn.call_args.kwargs["env"]["FBCBUILDER_PORTAL_STARTUP_ID"]
         for invocation in running.call_args_list[1:]:
             self.assertEqual({"expected_startup_id": startup_id}, invocation.kwargs)
         spawn.assert_called_once()
@@ -86,7 +86,7 @@ class PortalStartupTests(unittest.TestCase):
 
     def test_vscode_task_uses_existing_helper_without_shell_or_auto_execution(self) -> None:
         tasks = json.loads((ROOT / ".vscode" / "tasks.json").read_text(encoding="utf-8"))["tasks"]
-        task = next(item for item in tasks if item["label"] == "ABC Builder: Open Portal")
+        task = next(item for item in tasks if item["label"] == "FBC Builder: Open Portal")
         self.assertEqual("process", task["type"])
         self.assertEqual("python", task["command"])
         self.assertEqual(["${workspaceFolder}\\scripts\\start_portal.py"], task["args"])
@@ -101,7 +101,7 @@ class PortalStartupTests(unittest.TestCase):
         with (
             patch.object(launcher, "ROOT", root),
             patch.dict(os.environ, {
-                "PATH": "original-path", "ABC_SETUP_TEST": "preserved", "ProgramFiles": str(root / "programs"),
+                "PATH": "original-path", "FBC_SETUP_TEST": "preserved", "ProgramFiles": str(root / "programs"),
             }),
             patch.object(launcher, "running_portal", side_effect=[None, self.config]),
             patch.object(launcher.subprocess, "Popen") as spawn,
@@ -111,7 +111,7 @@ class PortalStartupTests(unittest.TestCase):
         environment = spawn.call_args.kwargs["env"]
         self.assertEqual(str(root / ".venv"), environment["VIRTUAL_ENV"])
         self.assertEqual(str(scripts) + os.pathsep + "original-path", environment["PATH"])
-        self.assertEqual("preserved", environment["ABC_SETUP_TEST"])
+        self.assertEqual("preserved", environment["FBC_SETUP_TEST"])
 
     def test_missing_repository_environment_keeps_current_interpreter(self) -> None:
         with (
@@ -126,20 +126,24 @@ class PortalStartupTests(unittest.TestCase):
 
     @unittest.skipUnless(os.name == "nt", "Windows click launcher")
     def test_click_launcher_runs_from_another_directory_and_returns_helper_status(self) -> None:
-        for code in (0, 7):
-            with self.subTest(code=code), tempfile.TemporaryDirectory(prefix="portal launcher ") as temp:
-                root = Path(temp)
-                (root / "scripts").mkdir()
-                (root / "Start-ABCBuilder.cmd").write_bytes((ROOT / "Start-ABCBuilder.cmd").read_bytes())
-                (root / "scripts" / "start_portal.py").write_text(
-                    f"print('launcher-helper-ok'); raise SystemExit({code})\n", encoding="utf-8",
-                )
-                result = subprocess.run(
-                    [os.environ["ComSpec"], "/d", "/c", str(root / "Start-ABCBuilder.cmd")],
-                    cwd=ROOT.parent, input="\n", capture_output=True, text=True, timeout=15, check=False,
-                )
-                self.assertEqual(code, result.returncode, result.stdout + result.stderr)
-                self.assertIn("launcher-helper-ok", result.stdout)
+        for launcher_name in ("Start-FBCBuilder.cmd",):
+            for code in (0, 7):
+                with self.subTest(launcher=launcher_name, code=code), tempfile.TemporaryDirectory(
+                    prefix="portal launcher ",
+                ) as temp:
+                    root = Path(temp)
+                    (root / "scripts").mkdir()
+                    for name in ("Start-FBCBuilder.cmd",):
+                        (root / name).write_bytes((ROOT / name).read_bytes())
+                    (root / "scripts" / "start_portal.py").write_text(
+                        f"print('launcher-helper-ok'); raise SystemExit({code})\n", encoding="utf-8",
+                    )
+                    result = subprocess.run(
+                        [os.environ["ComSpec"], "/d", "/c", str(root / launcher_name)],
+                        cwd=ROOT.parent, input="\n", capture_output=True, text=True, timeout=15, check=False,
+                    )
+                    self.assertEqual(code, result.returncode, result.stdout + result.stderr)
+                    self.assertIn("launcher-helper-ok", result.stdout)
 
     def test_authenticated_health_identifies_this_workspace(self) -> None:
         self.write_connection()
@@ -177,7 +181,7 @@ class PortalStartupTests(unittest.TestCase):
                 client.getresponse.side_effect = [health, version]
                 error = io.StringIO()
                 with (
-                    patch.dict(os.environ, {"ABCBUILDER_PORTAL_JOB": "0", "HACKBUILDER_PORTAL_JOB": "0"}),
+                    patch.dict(os.environ, {"FBCBUILDER_PORTAL_JOB": "0", "HACKBUILDER_PORTAL_JOB": "0"}),
                     patch("sys.argv", ["start_portal.py"]),
                     patch.object(launcher.http.client, "HTTPConnection", return_value=client),
                     patch.object(launcher.subprocess, "Popen") as spawn,
@@ -294,13 +298,13 @@ buffer = ctypes.create_unicode_buffer(8192)
 read = wintypes.DWORD()
 if not kernel.ReadConsoleOutputCharacterW(handle, buffer, len(buffer), 0, ctypes.byref(read)):
     raise ctypes.WinError(ctypes.get_last_error())
-assert "ABC Builder - Browser App Runtime" in buffer.value
+assert "FBC Builder - Browser App Runtime" in buffer.value
 assert "KEEP THIS WINDOW OPEN" in buffer.value
 assert "Closing this window stops the portal" in buffer.value
 assert "http://127.0.0.1:9876/" in buffer.value
 title = ctypes.create_unicode_buffer(256)
 kernel.GetConsoleTitleW(title, len(title))
-assert title.value == "ABC Builder - Browser App Runtime"
+assert title.value == "FBC Builder - Browser App Runtime"
 """
         result = subprocess.run(
             [sys.executable, "-c", script, str(ROOT / "scripts")],

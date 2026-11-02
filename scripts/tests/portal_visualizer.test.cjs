@@ -37,9 +37,11 @@ class Element {
 }
 
 async function portal({ saved = null, dark = false, storageError = null, items = [], files = [],
-  patterns = catalogPatterns, backendVersion = 19, review = { available: false }, fileText = "",
+  patterns = catalogPatterns, backendVersion = 23, review = { available: false }, fileText = "",
   systemReady = true, systemFailure = false, identityFailure = false, handoffFailure = false,
-  scopingFailure = false, scopingWait = null, hash = "" } = {}) {
+  scopingFailure = false, scopingWait = null, hash = "", conversation = { messages: [], canSend: true },
+  messageStatus = "dispatched", messageWait = null, recommendations = { matches: [], errors: [] },
+  recommendationWait = null, recommendationFailure = false, sourcePreview = null } = {}) {
   const elements = new Map();
   const get = (id) => {
     if (!elements.has(id)) {
@@ -62,7 +64,7 @@ async function portal({ saved = null, dark = false, storageError = null, items =
     const match = selector.match(/^input\[name="([^"]+)"\](:checked)?$/);
     return match ? inputs(match[1]).filter((input) => !match[2] || input.checked) : [];
   };
-  const storage = new Map(saved === null ? [] : [["abcbuilder-theme", saved]]);
+  const storage = new Map(saved === null ? [] : [["fbcbuilder-theme", saved]]);
   const listeners = {};
   const system = { matches: dark, addEventListener(name, handler) { this[name] = handler; } };
   const requests = [];
@@ -87,11 +89,33 @@ async function portal({ saved = null, dark = false, storageError = null, items =
     console: { warn: (...args) => warnings.push(args) },
     Option: function (name, value) { this.textContent = name; this.value = value; },
     URL,
+    crypto: require("node:crypto").webcrypto,
     location,
     setInterval: () => {},
+    setTimeout: () => 1,
+    clearTimeout: () => {},
     fetch: async (url, options = {}) => {
       requests.push({ url, options });
       const data = options.body ? JSON.parse(options.body) : {};
+      if (url === "/api/reuse-recommendations") {
+        if (recommendationWait) await recommendationWait;
+        if (recommendationFailure) return { ok: false, json: async () => ({ error: "Profile unreadable." }) };
+        return { ok: true, json: async () => recommendations };
+      }
+      if (url.startsWith("/api/reuse-source?")) {
+        return { ok: true, json: async () => sourcePreview };
+      }
+      if (url === "/api/reuse-selection") {
+        return { ok: true, json: async () => ({ response: { continuation: { status: "dispatched" } } }) };
+      }
+      if (url.startsWith("/api/conversation?")) {
+        return { ok: true, json: async () => conversation };
+      }
+      if (url === "/api/conversation/send") {
+        if (messageWait) await messageWait;
+        return { ok: true, json: async () => ({ status: messageStatus,
+          ...(messageStatus !== "dispatched" ? { error: "Delivery uncertain; check VS Code." } : {}) }) };
+      }
       if (url === "/api/handoff" && handoffFailure) {
         return { ok: false, json: async () => ({ error: "Agent chat launcher unavailable." }) };
       }
@@ -123,6 +147,7 @@ async function portal({ saved = null, dark = false, storageError = null, items =
           { id: "foundry", name: "Foundry" }, { id: "container-apps", name: "Container Apps" },
         ], businessUnits: [], pillars: [], domains: [],
           agenticPatterns: patterns, backendEngineVersion: backendVersion }
+        : url === "/api/reuse-sources" ? { scenarios: [], errors: [] }
         : url === "/api/prerequisites/plan" ? { plan: profile,
           checks: [{ id: "dotnet", name: ".NET SDK", state: "not-checked", stages: ["application"] }],
           report: systemReport && JSON.stringify(services) === JSON.stringify(systemReport.services) ? systemReport : null,
@@ -144,6 +169,7 @@ async function portal({ saved = null, dark = false, storageError = null, items =
   const theme = () => context.document.documentElement.dataset.theme;
   const choose = () => vm.runInContext('select("test-scenario")', context);
   const refresh = () => vm.runInContext("refresh()", context);
+  const sendMessage = () => vm.runInContext("sendConversationMessage()", context);
   const preview = (file) => vm.runInContext(`preview("test-scenario", ${JSON.stringify(file)})`, context);
   const render = (text) => {
     context.markdownText = text;
@@ -159,8 +185,319 @@ async function portal({ saved = null, dark = false, storageError = null, items =
     if (input.listeners.change) input.listeners.change();
   };
   return { get, storage, listeners, system, requests, warnings, change, theme, choose, refresh, preview, render,
-    navigate, location, checkChoice, inputs };
+    navigate, location, checkChoice, inputs, sendMessage,
+    suggest: () => vm.runInContext("suggestMatches()", context),
+    compare: () => vm.runInContext("compareBriefMatches()", context),
+    selectedSource: () => vm.runInContext("reuseSource", context) };
 }
+
+const reuseMatch = { scenarioId: "finance-triage", title: "Finance triage", summary: "Grounded ticket routing.",
+  industry: "Financial Services", available: true, manifestDigest: "a".repeat(64), metadataStatus: "needs-review",
+  profileState: "current", fit: "Possible partial reuse", reasons: ["Routing / triage"],
+  concerns: ["Different industry: adapt business rules."], evidence: {} };
+const reusePreview = { scenarioId: reuseMatch.scenarioId, title: reuseMatch.title, manifestDigest: reuseMatch.manifestDigest,
+  artifactsDigest: "b".repeat(64), brief: "## Finance source\n\nReview the routing design." };
+
+function draft(ui) {
+  ui.get("slug").value = "my-retail-target";
+  ui.get("prompt").value = "Route retail support tickets with grounded document retrieval and human approval.";
+  ui.checkChoice("industry", "Retail & Consumer Goods");
+}
+
+test("Local suggestions are opt-in source choices, not automatic AI calls or handoffs", async () => {
+  const ui = await portal({ recommendations: { matches: [reuseMatch], errors: [] } });
+  assert.equal(ui.requests.filter((entry) => entry.url === "/api/reuse-recommendations").length, 0);
+  draft(ui);
+  await ui.suggest();
+  assert.equal(ui.get("reuse-suggestions").hidden, false);
+  assert.equal(ui.get("reuse-suggestion-cards").children.length, 1);
+  assert.equal(ui.selectedSource(), null);
+  assert.equal(ui.requests.filter((entry) => ["/api/scenarios", "/api/handoff", "/api/conversation/send"]
+    .includes(entry.url) && entry.options.method === "POST").length, 0);
+});
+
+test("Review and accept a recommendation preserves every target field and forces scoping before copying", async () => {
+  const ui = await portal({ recommendations: { matches: [reuseMatch], errors: [] }, sourcePreview: reusePreview });
+  draft(ui);
+  const prompt = ui.get("prompt").value;
+  const pattern = ui.inputs("agenticPattern").find((input) => input.checked).value;
+  await ui.suggest();
+  ui.get("prompt").listeners.blur();
+  ui.get("intake").listeners.change();
+  const card = ui.get("reuse-suggestion-cards").children[0];
+  await card.children[6].listeners.click();
+  assert.equal(ui.selectedSource(), null);
+  await card.children[7].children[1].listeners.click();
+  assert.equal(ui.get("slug").value, "my-retail-target");
+  assert.equal(ui.get("prompt").value, prompt);
+  assert.equal(ui.inputs("industry").find((input) => input.checked).value, "Retail & Consumer Goods");
+  assert.equal(ui.inputs("agenticPattern").find((input) => input.checked).value, pattern);
+  assert.equal(ui.selectedSource().artifactsDigest, reusePreview.artifactsDigest);
+  assert.equal(ui.get("create").textContent, "Refine adapted brief");
+  ui.get("intake").listeners.submit({ preventDefault() {}, submitter: { id: "create" } });
+  await new Promise(setImmediate);
+  const saved = JSON.parse(ui.requests.find((entry) =>
+    entry.url === "/api/scenarios" && entry.options.method === "POST").options.body);
+  assert.equal(saved.prompt, prompt);
+  assert.equal(saved.intakeMode, "scope");
+  assert.equal(saved.reuseSource.scenarioId, reusePreview.scenarioId);
+});
+
+test("Suggestions disappear on editing and ignore out-of-date asynchronous results", async () => {
+  let release;
+  const wait = new Promise((resolve) => { release = resolve; });
+  const ui = await portal({ recommendations: { matches: [reuseMatch], errors: [] }, recommendationWait: wait });
+  draft(ui);
+  const pending = ui.suggest();
+  ui.get("prompt").value = "A completely different inventory replenishment and recipe management workflow.";
+  ui.get("prompt").listeners.input();
+  release();
+  await pending;
+  assert.equal(ui.get("reuse-suggestions").hidden, true);
+  assert.equal(ui.get("reuse-suggestion-cards").children.length, 0);
+  assert.equal(ui.selectedSource(), null);
+});
+
+test("Keep my original idea dismisses that input only, without clearing the draft", async () => {
+  const ui = await portal({ recommendations: { matches: [reuseMatch], errors: [] } });
+  draft(ui);
+  const prompt = ui.get("prompt").value;
+  await ui.suggest();
+  ui.get("reuse-dismiss").listeners.click();
+  await ui.suggest();
+  assert.equal(ui.get("reuse-suggestions").hidden, true);
+  assert.equal(ui.get("prompt").value, prompt);
+  ui.get("prompt").value += " Include case escalation.";
+  await ui.suggest();
+  assert.equal(ui.get("reuse-suggestions").hidden, false);
+  assert.equal(ui.selectedSource(), null);
+});
+
+test("Unavailable references remain inspiration-only and comparison failures never disable normal intake", async () => {
+  const ui = await portal({ recommendations: { matches: [{ ...reuseMatch, available: false }], errors: [] } });
+  draft(ui);
+  await ui.suggest();
+  const card = ui.get("reuse-suggestion-cards").children[0];
+  assert.equal(card.children[6].disabled, true);
+  assert.match(card.children[1].textContent, /Inspiration only/);
+  const failed = await portal({ recommendationFailure: true });
+  draft(failed);
+  await failed.suggest();
+  assert.match(failed.get("reuse-suggestions-status").textContent, /comparison unavailable.*still refine/i);
+  assert.equal(failed.get("create").disabled, false);
+  assert.equal(failed.get("refine").disabled, false);
+});
+
+test("No-match, vague inputs and manual existing mode do not produce distracting recommendation cards", async () => {
+  const ui = await portal();
+  draft(ui);
+  await ui.suggest();
+  assert.equal(ui.get("reuse-suggestions").hidden, true);
+  ui.get("prompt").value = "An assistant";
+  const before = ui.requests.length;
+  await ui.suggest();
+  assert.equal(ui.requests.length, before);
+  ui.get("entry-existing").listeners.click();
+  draft(ui);
+  await ui.suggest();
+  assert.equal(ui.requests.length, before);
+});
+
+test("Source metadata changes during review cannot attach a stale source", async () => {
+  const ui = await portal({ recommendations: { matches: [reuseMatch], errors: [] },
+    sourcePreview: { ...reusePreview, manifestDigest: "c".repeat(64) } });
+  draft(ui);
+  await ui.suggest();
+  await ui.get("reuse-suggestion-cards").children[0].children[6].listeners.click();
+  assert.equal(ui.selectedSource(), null);
+  assert.match(ui.get("error").textContent, /metadata changed/);
+});
+
+test("Late source choice uses the reviewed brief fingerprint, not a rewritten original intake", async () => {
+  const item = scenario("waiting_for_user");
+  item.scoping = { available: true, canRespond: true, text: "## A retail target", fingerprint: "target-brief" };
+  const ui = await portal({ items: [item], recommendations: { matches: [reuseMatch], errors: [] },
+    sourcePreview: reusePreview });
+  await ui.choose();
+  await ui.compare();
+  const card = ui.get("brief-reuse-cards").children[0];
+  await card.children[6].listeners.click();
+  await card.children[7].children[1].listeners.click();
+  const request = ui.requests.find((entry) => entry.url === "/api/reuse-selection");
+  const value = JSON.parse(request.options.body);
+  assert.equal(value.projectSlug, "test-scenario");
+  assert.equal(value.fingerprint, "target-brief");
+  assert.equal(value.reuseSource.scenarioId, reuseMatch.scenarioId);
+  assert.equal(ui.requests.filter((entry) => entry.url === "/api/scenarios" && entry.options.method === "POST").length, 0);
+});
+
+test("A pending late source assessment disables confirmation but retains the existing modification controls", async () => {
+  const item = scenario("waiting_for_user");
+  item.scoping = { available: true, canRespond: true, canConfirm: false, text: "## Target brief", fingerprint: "brief",
+    reuseSelection: { status: "pending-review", source: reusePreview } };
+  const ui = await portal({ items: [item] });
+  await ui.choose();
+  assert.equal(ui.get("scoping-confirm").disabled, true);
+  assert.equal(ui.get("scoping-modify").disabled, false);
+  assert.match(ui.get("brief-reuse-status").textContent, /must assess.*revise/);
+});
+
+test("A source attached before intake save can also be explicitly cleared after refinement", async () => {
+  const item = scenario("waiting_for_user");
+  item.reuseSource = reusePreview;
+  item.scoping = { available: true, canRespond: true, text: "## Adapted target", fingerprint: "adapted-brief" };
+  const ui = await portal({ items: [item] });
+  await ui.choose();
+  assert.equal(ui.get("brief-reuse-clear").hidden, false);
+  assert.match(ui.get("brief-reuse-status").textContent, /starts from finance-triage/);
+  await ui.get("brief-reuse-clear").listeners.click();
+  const request = ui.requests.find((entry) => entry.url === "/api/reuse-selection");
+  assert.equal(JSON.parse(request.options.body).reuseSource, null);
+});
+
+test("Older live backends keep existing intake working and explain the optional discovery restart", async () => {
+  const ui = await portal({ backendVersion: 21 });
+  draft(ui);
+  await ui.suggest();
+  assert.equal(ui.get("create").disabled, false);
+  assert.match(ui.get("prompt-help").textContent, /Restart the portal runtime/);
+  assert.equal(ui.requests.filter((entry) => entry.url === "/api/reuse-recommendations").length, 0);
+});
+
+test("Conversation feedback adds a history without replacing milestones, summaries or native chat actions", async () => {
+  const item = scenario("running");
+  const ui = await portal({ items: [item], conversation: { canSend: true, messages: [
+    { id: "one", role: "agent", stage: "application", status: "running",
+      text: "Building application routes.", updatedAtUtc: "2026-10-29T20:00:00Z" },
+    { id: "two", role: "agent", stage: "application", status: "running",
+      text: "<script>Not executable</script>", updatedAtUtc: "2026-10-29T20:01:00Z" },
+  ] } });
+  ui.navigate("build");
+  await ui.choose();
+  assert.equal(ui.get("conversation").hidden, false);
+  assert.equal(ui.get("conversation-messages").children.length, 2);
+  assert.equal(ui.get("conversation-messages").children[1].children[1].textContent, "<script>Not executable</script>");
+  assert.equal(ui.get("summary").textContent, item.progress.summary);
+  assert.equal(ui.get("open-agent").hidden, false);
+  assert.ok(ui.requests.some((request) => request.url.startsWith("/api/files?")));
+  const writes = ui.requests.filter((request) => request.options.method === "POST"
+    && request.url !== "/api/prerequisites/plan");
+  assert.equal(writes.length, 0, "Reading conversation history must never dispatch agent work");
+});
+
+test("Conversation is a responsive right-hand aside outside the main scenario content", () => {
+  assert.match(html, /<\/main>\s*<aside id="conversation"/);
+  assert.match(css, /@media \(min-width: 1200px\)/);
+  assert.match(css, /\.workspace:has\(#conversation:not\(\[hidden\]\)\)/);
+  assert.match(css, /grid-template-columns: 200px minmax\(0, 1fr\) minmax\(320px, 380px\)/);
+  assert.match(css, /#conversation \{ grid-column: 3; position: sticky; top: 20px/);
+  assert.match(css, /max-height: calc\(100dvh - 40px\)/);
+});
+
+test("Large new/existing choices expose reuse without discarding the intake or dispatching work", async () => {
+  const ui = await portal();
+  assert.match(html, /id="entry-new"[^>]*aria-pressed="true"/);
+  assert.match(html, /id="entry-existing"/);
+  assert.match(html, /<section id="reuse-panel"[^>]*hidden/);
+  assert.doesNotMatch(html, /<details id="reuse-panel"/);
+  ui.get("prompt").value = "Keep this customer idea.";
+  ui.get("slug").value = "my-new-scenario";
+  const before = ui.requests.length;
+  ui.get("entry-existing").listeners.click();
+  assert.equal(ui.get("reuse-panel").hidden, false);
+  assert.equal(ui.get("entry-existing")["aria-pressed"], "true");
+  assert.equal(ui.get("entry-existing")["aria-expanded"], "true");
+  assert.equal(ui.get("entry-new")["aria-pressed"], "false");
+  ui.get("entry-new").listeners.click();
+  assert.equal(ui.get("reuse-panel").hidden, true);
+  assert.equal(ui.get("entry-new")["aria-pressed"], "true");
+  assert.equal(ui.get("prompt").value, "Keep this customer idea.");
+  assert.equal(ui.get("slug").value, "my-new-scenario");
+  assert.equal(ui.requests.length, before);
+});
+
+test("Existing entry cannot silently submit as a new scenario without loading its source", async () => {
+  const ui = await portal();
+  ui.get("entry-existing").listeners.click();
+  ui.get("slug").value = "adapted-scenario";
+  ui.checkChoice("industry", "Manufacturing & Mobility");
+  ui.get("prompt").value = "A revised scope.";
+  ui.get("intake").listeners.submit({ preventDefault() {}, submitter: { id: "create" } });
+  await new Promise(setImmediate);
+  assert.match(ui.get("error").textContent, /Choose a source scenario.*Modify brief from source/);
+  assert.equal(ui.requests.some((request) => request.url === "/api/scenarios"
+    && request.options.method === "POST"), false);
+  ui.get("reuse-clear").listeners.click();
+  assert.equal(ui.get("reuse-panel").hidden, true);
+  assert.equal(ui.get("entry-new")["aria-pressed"], "true");
+});
+
+test("Portal replies dispatch explicitly to the current phase and clear only acknowledged input", async () => {
+  const ui = await portal({ items: [scenario("running")] });
+  ui.navigate("build");
+  await ui.choose();
+  ui.get("conversation-input").value = "Use supplier records.";
+  ui.get("conversation-input").listeners.input();
+  assert.equal(ui.get("conversation-send").disabled, false);
+  await ui.sendMessage();
+  const request = ui.requests.find((value) => value.url === "/api/conversation/send");
+  const data = JSON.parse(request.options.body);
+  assert.equal(data.projectSlug, "test-scenario");
+  assert.equal(data.phase, "scenario");
+  assert.equal(data.text, "Use supplier records.");
+  assert.match(data.requestId, /^[a-f0-9]{32}$/);
+  assert.equal(ui.get("conversation-input").value, "");
+  assert.equal(ui.get("conversation-send").disabled, true);
+});
+
+test("Unknown delivery retains the draft and request ID so explicit retries cannot duplicate a message", async () => {
+  const ui = await portal({ items: [scenario("running")], messageStatus: "unknown" });
+  ui.navigate("build");
+  await ui.choose();
+  ui.get("conversation-input").value = "Which checks failed?";
+  ui.get("conversation-input").listeners.input();
+  await ui.sendMessage();
+  await ui.sendMessage();
+  const sends = ui.requests.filter((value) => value.url === "/api/conversation/send")
+    .map((value) => JSON.parse(value.options.body));
+  assert.equal(sends.length, 2);
+  assert.equal(sends[0].requestId, sends[1].requestId);
+  assert.equal(ui.get("conversation-input").value, "Which checks failed?");
+  assert.equal(ui.get("conversation-error").hidden, false);
+  assert.match(ui.get("conversation-error").textContent, /uncertain/);
+});
+
+test("Conversation drafts and visibility stay scoped to the selected scenario and workflow phase", async () => {
+  const first = scenario("running");
+  const second = { ...scenario("running"), projectSlug: "other-scenario" };
+  const ui = await portal({ items: [first, second] });
+  ui.navigate("build");
+  await ui.choose();
+  ui.get("conversation-input").value = "First scenario only.";
+  ui.get("conversation-input").listeners.input();
+  ui.get("active-project").value = "other-scenario";
+  await ui.get("active-project").listeners.change();
+  assert.equal(ui.get("conversation-input").value, "");
+  await ui.choose();
+  assert.equal(ui.get("conversation-input").value, "First scenario only.");
+  for (const view of ["create", "system", "hack"]) {
+    ui.navigate(view);
+    assert.equal(ui.get("conversation").hidden, true);
+  }
+  assert.equal(ui.requests.filter((value) => value.url === "/api/conversation/send").length, 0);
+});
+
+test("A conversation without an existing agent session cannot send or start an agent implicitly", async () => {
+  const ui = await portal({ items: [scenario("saved")], conversation: { canSend: false, messages: [] } });
+  ui.navigate("build");
+  await ui.choose();
+  ui.get("conversation-input").value = "Continue.";
+  ui.get("conversation-input").listeners.input();
+  await ui.sendMessage();
+  assert.equal(ui.get("conversation-send").disabled, true);
+  assert.equal(ui.requests.filter((value) => value.options.method === "POST"
+    && value.url !== "/api/prerequisites/plan").length, 0);
+});
 
 test("Four workflow views preserve the brief and selection without triggering execution", async () => {
   const ui = await portal({ items: [scenario("running")] });
@@ -347,11 +684,11 @@ test("System follows OS changes until an explicit choice and can be restored", a
   assert.equal(ui.theme(), "light");
   ui.change("dark");
   assert.equal(ui.theme(), "dark");
-  assert.equal(ui.storage.get("abcbuilder-theme"), "dark");
+  assert.equal(ui.storage.get("fbcbuilder-theme"), "dark");
   ui.system.change();
   assert.equal(ui.theme(), "dark");
   ui.change("system");
-  assert.equal(ui.storage.has("abcbuilder-theme"), false);
+  assert.equal(ui.storage.has("fbcbuilder-theme"), false);
   assert.equal(ui.theme(), "light");
 });
 
@@ -360,10 +697,10 @@ test("Light and dark choices survive reloads and synchronize between tabs", asyn
     const ui = await portal({ saved, dark: saved === "light" });
     assert.equal(ui.theme(), saved);
     assert.equal(ui.get("theme").value, saved);
-    ui.storage.set("abcbuilder-theme", saved === "dark" ? "light" : "dark");
+    ui.storage.set("fbcbuilder-theme", saved === "dark" ? "light" : "dark");
     ui.listeners.storage({ key: "unrelated" });
     assert.equal(ui.theme(), saved);
-    ui.listeners.storage({ key: "abcbuilder-theme" });
+    ui.listeners.storage({ key: "fbcbuilder-theme" });
     assert.notEqual(ui.theme(), saved);
     ui.storage.clear();
     ui.listeners.storage({ key: null });
@@ -498,6 +835,34 @@ function scopedScenario() {
   return item;
 }
 
+test("Available briefs are expanded document boxes with a review cue and unchanged confirmation controls", async () => {
+  const ui = await portal({ items: [scopedScenario()] });
+  await ui.choose();
+  assert.match(html, /<section id="scoping-notes" class="brief-document" hidden aria-labelledby="brief-document-title">/);
+  assert.doesNotMatch(html, /<details id="scoping-notes"/);
+  assert.match(css, /font-family: "Courier New", Courier, monospace/);
+  assert.equal(ui.get("scoping-notes").hidden, false);
+  assert.equal(ui.get("scoping-notes").dataset.attention, "true");
+  assert.match(ui.get("brief-review-cue").textContent, /Ready for your review/);
+  assert.equal(ui.get("scoping-response").hidden, false);
+  assert.equal(ui.get("scoping-confirm").disabled, false);
+  assert.equal(ui.requests.filter((entry) => entry.url === "/api/scoping-response").length, 0);
+  await ui.get("scoping-confirm").listeners.click();
+  assert.equal(ui.get("scoping-notes").dataset.attention, "false");
+  assert.match(ui.get("brief-review-cue").textContent, /Brief confirmed/);
+});
+
+test("Saved reference briefs stay visible without asking for confirmation again", async () => {
+  const item = scopedScenario();
+  item.scoping.canRespond = false;
+  const ui = await portal({ items: [item] });
+  await ui.choose();
+  assert.equal(ui.get("scoping-notes").hidden, false);
+  assert.equal(ui.get("scoping-notes").dataset.attention, "false");
+  assert.equal(ui.get("scoping-response").hidden, true);
+  assert.match(ui.get("brief-review-cue").textContent, /reference copy/);
+});
+
 test("Brief confirmation is at the bottom of the brief and saves only the reviewed version", async () => {
   const item = scopedScenario();
   const ui = await portal({ items: [item] });
@@ -567,6 +932,9 @@ test("Failed continuation keeps Confirm brief enabled for an explicit retry, nev
   assert.equal(ui.get("scoping-confirm").textContent, "Confirm brief");
   assert.equal(ui.get("scoping-confirm").disabled, false);
   assert.match(ui.get("scoping-response-status").textContent, /Select Confirm brief to retry/);
+  assert.equal(ui.get("scoping-notes").hidden, false);
+  assert.equal(ui.get("scoping-notes").dataset.attention, "true");
+  assert.match(ui.get("brief-review-cue").textContent, /Action needed/);
   assert.equal(ui.get("scenario-status").textContent, "Needs attention");
   await ui.refresh();
   assert.equal(ui.requests.some((entry) => entry.url === "/api/scoping-response"), false);
@@ -694,7 +1062,7 @@ test("A slow save shows pending feedback and updates the current scenario after 
 
 test("A pre-confirmation backend asks for restart rather than silently hiding brief controls", async () => {
   const ui = await portal({ backendVersion: 16 });
-  assert.match(ui.get("error").textContent, /Restart the portal.*automatic brief continuation/);
+  assert.match(ui.get("error").textContent, /Restart the portal/);
   assert.equal(ui.get("refine").disabled, true);
 });
 

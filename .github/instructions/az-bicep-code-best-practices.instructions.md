@@ -22,8 +22,8 @@ applyTo: "**/*.bicep, **/azure.yaml"
 | Resource   | Max | Pattern                        | Example                  |
 | ---------- | --- | ------------------------------ | ------------------------ |
 | Storage    | 24  | `st{project}{env}{suffix}`     | `stcontosodev7xk2`       |
-| Key Vault  | 24  | `kv-{project}-{env}-{suffix}`  | `kv-contoso-dev-abc123`  |
-| SQL Server | 63  | `sql-{project}-{env}-{suffix}` | `sql-contoso-dev-abc123` |
+| Key Vault  | 24  | `kv-{project}-{env}-{suffix}`  | `kv-contoso-dev-fbc123`  |
+| SQL Server | 63  | `sql-{project}-{env}-{suffix}` | `sql-contoso-dev-fbc123` |
 
 ### Identifiers
 

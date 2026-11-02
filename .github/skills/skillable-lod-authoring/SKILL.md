@@ -17,7 +17,7 @@ Create a public learner repository and a private coach repository from one
 scenario. Each challenge is a separate Markdown page beneath the selected
 industry folder in `Instructions`.
 
-For ABC Builder scenarios, first enforce
+For FBC Builder scenarios, first enforce
 [the workflow contract](../hack-builder-workflow/SKILL.md) and current recorded
 approval. This skill never bypasses scenario review. Package validation is a
 local authoring milestone; event rollout is separately requested.

@@ -1,0 +1,4495 @@
+{
+  "schemaVersion": 1,
+  "profiles": {
+    "coffee-shop": {
+      "schemaVersion": 1,
+      "scenarioId": "coffee-shop",
+      "manifestDigest": "3aefae14b6dbfd6cfcc0bea6d5ee4372d6fd87905b1fe0fc5ceb4ccd2359837f",
+      "summary": "Sales-led, store-scoped inventory, human-approved replenishment and multi-agent daily managerial P&L.",
+      "metadataStatus": "needs-review",
+      "extractedAtUtc": "2026-10-30T01:07:53.907140+00:00",
+      "extractorVersion": 2,
+      "features": {
+        "reconciliation": [
+          {
+            "path": "01-requirements.md",
+            "line": 1,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 19,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 31,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 36,
+            "basis": "design"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 12,
+            "basis": "code"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 20,
+            "basis": "code"
+          },
+          {
+            "path": "src/CoffeeShop.Web/wwwroot/js/workspace.js",
+            "line": 56,
+            "basis": "code"
+          }
+        ],
+        "inventory": [
+          {
+            "path": "01-requirements.md",
+            "line": 18,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 31,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 35,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 44,
+            "basis": "design"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 26,
+            "basis": "code"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 12,
+            "basis": "code"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 22,
+            "basis": "code"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 26,
+            "basis": "code"
+          }
+        ],
+        "event-driven-reactive-agents": [
+          {
+            "path": "01-requirements.md",
+            "line": 18,
+            "basis": "design"
+          }
+        ],
+        "handoff-transfer-of-control": [
+          {
+            "path": "01-requirements.md",
+            "line": 33,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 62,
+            "basis": "design"
+          },
+          {
+            "path": "src/CoffeeShop.Web/Agents/close.md",
+            "line": 6,
+            "basis": "design"
+          }
+        ],
+        "human-in-the-loop": [
+          {
+            "path": "01-requirements.md",
+            "line": 49,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 56,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 117,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 24,
+            "basis": "design"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 28,
+            "basis": "code"
+          },
+          {
+            "path": "src/CoffeeShop.Web/Services/OrderService.cs",
+            "line": 52,
+            "basis": "code"
+          }
+        ],
+        "replay-recovery": [
+          {
+            "path": "01-requirements.md",
+            "line": 49,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 52,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 108,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 115,
+            "basis": "design"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 28,
+            "basis": "code"
+          },
+          {
+            "path": "src/CoffeeShop.Web/Services/Repository.cs",
+            "line": 42,
+            "basis": "code"
+          }
+        ],
+        "grounded-retrieval": [
+          {
+            "path": "01-requirements.md",
+            "line": 51,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 115,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 61,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 124,
+            "basis": "design"
+          }
+        ],
+        "concurrent-fan-out-fan-in": [
+          {
+            "path": "01-requirements.md",
+            "line": 56,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 67,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 68,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 86,
+            "basis": "design"
+          },
+          {
+            "path": "src/CoffeeShop.Web/Services/LocalAccounts.cs",
+            "line": 112,
+            "basis": "code"
+          },
+          {
+            "path": "src/CoffeeShop.Web/Services/OrderService.cs",
+            "line": 27,
+            "basis": "code"
+          },
+          {
+            "path": "src/CoffeeShop.Web/Services/OrderService.cs",
+            "line": 52,
+            "basis": "code"
+          }
+        ],
+        "sequential-pipeline": [
+          {
+            "path": "01-requirements.md",
+            "line": 56,
+            "basis": "design"
+          },
+          {
+            "path": "04-implementation-plan.md",
+            "line": 6,
+            "basis": "design"
+          }
+        ],
+        "single-agent-tool-loop": [
+          {
+            "path": "01-requirements.md",
+            "line": 58,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 29,
+            "basis": "design"
+          }
+        ],
+        "orchestrator-workers": [
+          {
+            "path": "01-requirements.md",
+            "line": 59,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 27,
+            "basis": "design"
+          }
+        ],
+        "entra-identity": [
+          {
+            "path": "01-requirements.md",
+            "line": 95,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 104,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 56,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 68,
+            "basis": "design"
+          }
+        ],
+        "local-identity": [
+          {
+            "path": "01-requirements.md",
+            "line": 96,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 97,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 62,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 68,
+            "basis": "design"
+          },
+          {
+            "path": "src/CoffeeShop.Web/Services/LocalAccounts.cs",
+            "line": 64,
+            "basis": "code"
+          }
+        ],
+        "read-only": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 31,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 158,
+            "basis": "design"
+          },
+          {
+            "path": "04-implementation-plan.md",
+            "line": 38,
+            "basis": "design"
+          },
+          {
+            "path": "src/CoffeeShop.Web/Agents/stock.md",
+            "line": 2,
+            "basis": "design"
+          }
+        ],
+        "routing-triage": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 95,
+            "basis": "design"
+          }
+        ],
+        "case-management": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 166,
+            "basis": "design"
+          }
+        ],
+        "public-ingress": [
+          {
+            "path": "infra/resources.bicep",
+            "line": 36,
+            "basis": "code"
+          },
+          {
+            "path": "infra/resources.bicep",
+            "line": 73,
+            "basis": "code"
+          },
+          {
+            "path": "infra/resources.bicep",
+            "line": 112,
+            "basis": "code"
+          }
+        ]
+      },
+      "inputs": {
+        "01-requirements.md": "411ee0a9a50959fd50ec6c9a14cc9dbad92342412c90f915e213636f13eba894",
+        "02-architecture-assessment.md": "e6ca1dfa04e512138bb60c3a7cd4e6675464b050d38746d32db81599555773af",
+        "03-architect-diagram.py": "f85800a2e228dfa6dc801ed10747dbeee1442d7c0385cbb71e6e16c67099c272",
+        "04-implementation-plan.md": "0db54639c74f81cee2459e017109944260c4474d6fbe648010bf424a068342c7",
+        "04-runtime-diagram.py": "740caeffce64d9dd257e57726823a597f49a5887e14052f02294080c3bf4d340",
+        "azure.yaml": "87db37bafa9ccf8414c8cc9ac8ffdf95d08ae7e3d775859703a19aaf24f34452",
+        "infra/main.bicep": "3017ed0b2b066454ebba163dc4332ff028d0b17c671c405d53e44db2bbc3bb13",
+        "infra/resources.bicep": "240865c75b2838f3de5975adc8eb6a6a270931dde2f1c88a4bbc104df524975c",
+        "src/CoffeeShop.Web/Agents/close.md": "fd548c68b3ce49b72d3ecaa6c06ba2448b562c0e293a91fb8299a2b1d75194ce",
+        "src/CoffeeShop.Web/Agents/margin.md": "59d7394413acc6e6a3b74bdaa18333f19d2166b845982bcc593795bf3c55a707",
+        "src/CoffeeShop.Web/Agents/stock.md": "4ed43c3d1b7faa5d9a39297afef57b52eacfddfea6b7c704c569227aceea93f3",
+        "src/CoffeeShop.Web/Models/Domain.cs": "2daaf6942bdf9d9c31ee27d1e6fd197c27878a8647dc329b30967bf52cfdeef1",
+        "src/CoffeeShop.Web/Pages/Error.cshtml.cs": "49a768a9dc7d82a8026722cce794f6e271e13a26be654a37f69fc8cf486c3c5a",
+        "src/CoffeeShop.Web/Pages/Index.cshtml.cs": "465c5a71a9f2c17f09b478871e682d951d488e249be6979a259ad5a7d2862c90",
+        "src/CoffeeShop.Web/Pages/Privacy.cshtml.cs": "27149062018e094caad8d6bd5f7d106b964f2c65311df469bf43ec7d26173173",
+        "src/CoffeeShop.Web/Program.cs": "58621e1791f0eca1edc3892df534e708dc036b1a375503afda412e4ed706ead1",
+        "src/CoffeeShop.Web/Services/Bootstrap.cs": "6e007ebd39cdb2abfa9c9a4b9c48e0a98ff694cee047b1b0d15039312674d7e9",
+        "src/CoffeeShop.Web/Services/CloseService.cs": "9caf7c502ece64a2728adafcb16f89d4c40192e48f3844b4ed1066aadc28faac",
+        "src/CoffeeShop.Web/Services/FoundryGateway.cs": "438e53c132500c9333bf300a2d6f4db2c97edee57f8d873094d09a7132a6a508",
+        "src/CoffeeShop.Web/Services/LocalAccounts.cs": "1ed91a5087c889ce665af0713f9bce17310dbef2febf36bd05c0b24e52f19477",
+        "src/CoffeeShop.Web/Services/OrderService.cs": "b89088b2ec5b81828a414576eed069c66753564c14e2c9d0aca8cdbdf068b84c",
+        "src/CoffeeShop.Web/Services/Repository.cs": "fef3319ab492b18c44f3c7fcd46df55e0afaed2be7c1b472418156471a81afae",
+        "src/CoffeeShop.Web/Services/StoreAccess.cs": "1b22120b0424e9f64ccb567763adae2319d279db2b6ed347bacf10b7295626b9",
+        "src/CoffeeShop.Web/wwwroot/js/site.js": "8514327ed5e2bb594b5f63fd2f2f716b88072602de475b86379a9e814a1bb46a",
+        "src/CoffeeShop.Web/wwwroot/js/workspace.js": "db6d1f7347c5fafdd823082b911e6a537cfb3b6b1e69fc4666b0e812f73e4837",
+        "src/CoffeeShop.Web/wwwroot/lib/jquery-validation/LICENSE.md": "81e1c4930fd618f75a1d0311ab91ee358f6c9e588dcd4ff2d8e5bcc9c9e1197c"
+      },
+      "architectureSummary": "Case / ticket management; Parallel evidence checks; Entra identity; Event-driven workflow; Grounded document retrieval; Case handoff; Human decision gate; Stock / inventory workflow; Local application accounts; Orchestrator / workers; Public ingress; Read-only assistance; Reconciliation / daily close; Replay / recovery handling; Routing / triage; Sequential pipeline; Single-agent tool loop",
+      "patternEvidence": {
+        "designMentioned": [
+          "case-management",
+          "concurrent-fan-out-fan-in",
+          "entra-identity",
+          "event-driven-reactive-agents",
+          "grounded-retrieval",
+          "handoff-transfer-of-control",
+          "human-in-the-loop",
+          "inventory",
+          "local-identity",
+          "orchestrator-workers",
+          "read-only",
+          "reconciliation",
+          "replay-recovery",
+          "routing-triage",
+          "sequential-pipeline",
+          "single-agent-tool-loop"
+        ],
+        "codeMentioned": [
+          "concurrent-fan-out-fan-in",
+          "human-in-the-loop",
+          "inventory",
+          "local-identity",
+          "public-ingress",
+          "reconciliation",
+          "replay-recovery"
+        ],
+        "implemented": "unknown-until-reviewed"
+      },
+      "omittedLargeTextFiles": 0,
+      "dimensions": {
+        "businessCapabilities": [
+          "case-management",
+          "concurrent-fan-out-fan-in",
+          "event-driven-reactive-agents",
+          "grounded-retrieval",
+          "handoff-transfer-of-control",
+          "human-in-the-loop",
+          "inventory",
+          "orchestrator-workers",
+          "read-only",
+          "reconciliation",
+          "replay-recovery",
+          "routing-triage",
+          "sequential-pipeline",
+          "single-agent-tool-loop"
+        ],
+        "dataPatterns": [
+          "grounded-retrieval",
+          "replay-recovery"
+        ],
+        "integrationModes": [
+          "event-driven-reactive-agents",
+          "read-only"
+        ],
+        "humanDecisionPoints": [
+          "handoff-transfer-of-control",
+          "human-in-the-loop"
+        ],
+        "constraints": [
+          "entra-identity",
+          "local-identity",
+          "public-ingress"
+        ]
+      },
+      "limitations": [
+        "Text-derived retrieval features require review; code references are not runtime validation.",
+        "An absent feature means unknown, not unsupported. No deployment or consent evidence is included.",
+        "0 text files over 256000 bytes were omitted; environment settings and runtime evidence are excluded."
+      ]
+    },
+    "coffee-to-icecream": {
+      "schemaVersion": 1,
+      "scenarioId": "coffee-to-icecream",
+      "manifestDigest": "ea07be4dc5cf32555e6a9931482e494942c6f21dd53b98220d0e31dc32a878b4",
+      "summary": "Operations-led recipe consumption, spoilage, approved internal orders and scoped Orchestrator-Workers managerial P&L. Locally prepared; not deployed.",
+      "metadataStatus": "needs-review",
+      "extractedAtUtc": "2026-10-30T01:07:54.076153+00:00",
+      "extractorVersion": 2,
+      "features": {
+        "inventory": [
+          {
+            "path": "01-requirements.md",
+            "line": 14,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 33,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 38,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 48,
+            "basis": "design"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 57,
+            "basis": "code"
+          },
+          {
+            "path": "infra/resources.bicep",
+            "line": 87,
+            "basis": "code"
+          },
+          {
+            "path": "src/CoffeeShop.Web/Models/Domain.cs",
+            "line": 5,
+            "basis": "code"
+          },
+          {
+            "path": "src/CoffeeShop.Web/Models/Domain.cs",
+            "line": 6,
+            "basis": "code"
+          }
+        ],
+        "reconciliation": [
+          {
+            "path": "01-requirements.md",
+            "line": 14,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 52,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 91,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 90,
+            "basis": "design"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 54,
+            "basis": "code"
+          },
+          {
+            "path": "src/CoffeeShop.Web/Services/CloseService.cs",
+            "line": 14,
+            "basis": "code"
+          },
+          {
+            "path": "src/CoffeeShop.Web/wwwroot/js/workspace.js",
+            "line": 63,
+            "basis": "code"
+          },
+          {
+            "path": "src/CoffeeShop.Web/wwwroot/js/workspace.js",
+            "line": 120,
+            "basis": "code"
+          }
+        ],
+        "read-only": [
+          {
+            "path": "01-requirements.md",
+            "line": 15,
+            "basis": "design"
+          }
+        ],
+        "entra-identity": [
+          {
+            "path": "01-requirements.md",
+            "line": 20,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 34,
+            "basis": "design"
+          },
+          {
+            "path": "04-implementation-plan.md",
+            "line": 70,
+            "basis": "design"
+          }
+        ],
+        "human-in-the-loop": [
+          {
+            "path": "01-requirements.md",
+            "line": 20,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 51,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 61,
+            "basis": "design"
+          },
+          {
+            "path": "src/CoffeeShop.Web/Agents/close.md",
+            "line": 9,
+            "basis": "design"
+          },
+          {
+            "path": "src/CoffeeShop.Web/Services/OrderService.cs",
+            "line": 52,
+            "basis": "code"
+          },
+          {
+            "path": "src/CoffeeShop.Web/Services/Repository.cs",
+            "line": 22,
+            "basis": "code"
+          }
+        ],
+        "handoff-transfer-of-control": [
+          {
+            "path": "01-requirements.md",
+            "line": 35,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 122,
+            "basis": "design"
+          },
+          {
+            "path": "04-implementation-plan.md",
+            "line": 67,
+            "basis": "design"
+          }
+        ],
+        "telemetry": [
+          {
+            "path": "01-requirements.md",
+            "line": 37,
+            "basis": "design"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 40,
+            "basis": "code"
+          }
+        ],
+        "grounded-retrieval": [
+          {
+            "path": "01-requirements.md",
+            "line": 49,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 27,
+            "basis": "design"
+          }
+        ],
+        "replay-recovery": [
+          {
+            "path": "01-requirements.md",
+            "line": 50,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 51,
+            "basis": "design"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 65,
+            "basis": "code"
+          },
+          {
+            "path": "src/CoffeeShop.Web/Services/Repository.cs",
+            "line": 16,
+            "basis": "code"
+          },
+          {
+            "path": "src/CoffeeShop.Web/Services/Repository.cs",
+            "line": 59,
+            "basis": "code"
+          }
+        ],
+        "orchestrator-workers": [
+          {
+            "path": "01-requirements.md",
+            "line": 53,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 61,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 62,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 26,
+            "basis": "design"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 45,
+            "basis": "code"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 55,
+            "basis": "code"
+          }
+        ],
+        "single-agent-tool-loop": [
+          {
+            "path": "01-requirements.md",
+            "line": 65,
+            "basis": "design"
+          }
+        ],
+        "concurrent-fan-out-fan-in": [
+          {
+            "path": "01-requirements.md",
+            "line": 71,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 90,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 91,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 21,
+            "basis": "design"
+          },
+          {
+            "path": "src/CoffeeShop.Web/Services/LocalAccounts.cs",
+            "line": 112,
+            "basis": "code"
+          },
+          {
+            "path": "src/CoffeeShop.Web/Services/OrderService.cs",
+            "line": 27,
+            "basis": "code"
+          },
+          {
+            "path": "src/CoffeeShop.Web/Services/OrderService.cs",
+            "line": 52,
+            "basis": "code"
+          }
+        ],
+        "case-management": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 104,
+            "basis": "design"
+          }
+        ],
+        "local-identity": [
+          {
+            "path": "03-architect-diagram.py",
+            "line": 27,
+            "basis": "code"
+          },
+          {
+            "path": "src/CoffeeShop.Web/Services/LocalAccounts.cs",
+            "line": 64,
+            "basis": "code"
+          }
+        ],
+        "public-ingress": [
+          {
+            "path": "infra/resources.bicep",
+            "line": 64,
+            "basis": "code"
+          },
+          {
+            "path": "infra/resources.bicep",
+            "line": 102,
+            "basis": "code"
+          },
+          {
+            "path": "infra/resources.bicep",
+            "line": 142,
+            "basis": "code"
+          }
+        ]
+      },
+      "inputs": {
+        "01-requirements.md": "a5c6eeecee19683485d721a8739b9ead962372b5073dcd48504376608e3ff81c",
+        "02-architecture-assessment.md": "7a8e2f2e9a7b3eb1897641d0f339f9251b725f5421245235cb409ccf270cf6b7",
+        "03-architect-diagram.py": "727692eddbda73aaa3ce25dbd4ac204311993390102e89d8fc4f4c4c1fb70e3d",
+        "04-implementation-plan.md": "898f7c3edc4009de7587554a87c0ba2ab9d22c85e3937dd1448e92dd87415c5a",
+        "azure.yaml": "c2f866937cf9cc477b75439cc693bf4fa2572d22b8308b211839bb2c22626a43",
+        "infra/main.bicep": "079fba69f7224ac90c4b05e182c194bbbdc06f2ba6409ab777f6633f28763299",
+        "infra/resources.bicep": "020b1a0484dedaf40d61efa4990cc4d6c83f0797edb2de5046fdaa70f223423f",
+        "src/CoffeeShop.Web/Agents/close.md": "4538efe4ab642ee9c7d53cefaefe336b92e7ea2f43167d9853af8194d1898bac",
+        "src/CoffeeShop.Web/Agents/margin.md": "0035d943d0ef4741575a9276a3bd5ac56478516721496f77cd579caf4e2b49ca",
+        "src/CoffeeShop.Web/Agents/stock.md": "59b8696a60dda46f401def663fe4fe53f7986f955f3274a8f513f707e7119ee5",
+        "src/CoffeeShop.Web/Models/Domain.cs": "211071cbda8e5b930365054ae3799b4d8e38e104372659653c27d5e68d967938",
+        "src/CoffeeShop.Web/Pages/Error.cshtml.cs": "49a768a9dc7d82a8026722cce794f6e271e13a26be654a37f69fc8cf486c3c5a",
+        "src/CoffeeShop.Web/Pages/Index.cshtml.cs": "465c5a71a9f2c17f09b478871e682d951d488e249be6979a259ad5a7d2862c90",
+        "src/CoffeeShop.Web/Pages/Privacy.cshtml.cs": "27149062018e094caad8d6bd5f7d106b964f2c65311df469bf43ec7d26173173",
+        "src/CoffeeShop.Web/Program.cs": "07be3137e68e90728e2d2d07f5949ab2a91c7cb337bfe0b3d353f3676420dd97",
+        "src/CoffeeShop.Web/Services/Bootstrap.cs": "f9d18a321198fcbcb3aca11d5bf01d31220a67d099a1790deda21ed14ed2a497",
+        "src/CoffeeShop.Web/Services/CloseService.cs": "bf36ed40d75f26002db984a9e84baea94312651fe1932706a0a537aa76fc5398",
+        "src/CoffeeShop.Web/Services/DailyOperations.cs": "cdc5b25d7a36afa6f14f1a97dd8313e3f84b57ef4e10ffd369678ba3bed93cd7",
+        "src/CoffeeShop.Web/Services/FoundryGateway.cs": "fdcfad60cc7e49f059e5fa8d96f28ba869ebee9f1c502e880d8ef84df2b82db6",
+        "src/CoffeeShop.Web/Services/LocalAccounts.cs": "f985650ea5971b7a9439861c25a8e95b25562f4d94e160f1e46195a6a08a2c82",
+        "src/CoffeeShop.Web/Services/OrderService.cs": "b89088b2ec5b81828a414576eed069c66753564c14e2c9d0aca8cdbdf068b84c",
+        "src/CoffeeShop.Web/Services/Repository.cs": "1812c9c07d8d897276cde2444b308ce93007948c43e096bb217dbca5b19c996e",
+        "src/CoffeeShop.Web/Services/StoreAccess.cs": "1b22120b0424e9f64ccb567763adae2319d279db2b6ed347bacf10b7295626b9",
+        "src/CoffeeShop.Web/wwwroot/js/site.js": "8514327ed5e2bb594b5f63fd2f2f716b88072602de475b86379a9e814a1bb46a",
+        "src/CoffeeShop.Web/wwwroot/js/workspace.js": "0c45274accf5053d17de2b6ed256ec304b2fa5db771cbcdb5b9029a07d807873",
+        "src/CoffeeShop.Web/wwwroot/lib/jquery-validation/LICENSE.md": "81e1c4930fd618f75a1d0311ab91ee358f6c9e588dcd4ff2d8e5bcc9c9e1197c"
+      },
+      "architectureSummary": "Case / ticket management; Parallel evidence checks; Entra identity; Grounded document retrieval; Case handoff; Human decision gate; Stock / inventory workflow; Local application accounts; Orchestrator / workers; Public ingress; Read-only assistance; Reconciliation / daily close; Replay / recovery handling; Single-agent tool loop; Telemetry / sensor processing",
+      "patternEvidence": {
+        "designMentioned": [
+          "case-management",
+          "concurrent-fan-out-fan-in",
+          "entra-identity",
+          "grounded-retrieval",
+          "handoff-transfer-of-control",
+          "human-in-the-loop",
+          "inventory",
+          "orchestrator-workers",
+          "read-only",
+          "reconciliation",
+          "replay-recovery",
+          "single-agent-tool-loop",
+          "telemetry"
+        ],
+        "codeMentioned": [
+          "concurrent-fan-out-fan-in",
+          "human-in-the-loop",
+          "inventory",
+          "local-identity",
+          "orchestrator-workers",
+          "public-ingress",
+          "reconciliation",
+          "replay-recovery",
+          "telemetry"
+        ],
+        "implemented": "unknown-until-reviewed"
+      },
+      "omittedLargeTextFiles": 0,
+      "dimensions": {
+        "businessCapabilities": [
+          "case-management",
+          "concurrent-fan-out-fan-in",
+          "grounded-retrieval",
+          "handoff-transfer-of-control",
+          "human-in-the-loop",
+          "inventory",
+          "orchestrator-workers",
+          "read-only",
+          "reconciliation",
+          "replay-recovery",
+          "single-agent-tool-loop",
+          "telemetry"
+        ],
+        "dataPatterns": [
+          "grounded-retrieval",
+          "replay-recovery",
+          "telemetry"
+        ],
+        "integrationModes": [
+          "read-only"
+        ],
+        "humanDecisionPoints": [
+          "handoff-transfer-of-control",
+          "human-in-the-loop"
+        ],
+        "constraints": [
+          "entra-identity",
+          "local-identity",
+          "public-ingress"
+        ]
+      },
+      "limitations": [
+        "Text-derived retrieval features require review; code references are not runtime validation.",
+        "An absent feature means unknown, not unsupported. No deployment or consent evidence is included.",
+        "0 text files over 256000 bytes were omitted; environment settings and runtime evidence are excluded."
+      ]
+    },
+    "equip-ai": {
+      "schemaVersion": 1,
+      "scenarioId": "equip-ai",
+      "manifestDigest": "2e8444c7d0eb8d6d172a91f2e5d55b46ed3acea1f8ae385cc2407a11022c2248",
+      "summary": "Site-isolated local-account support for Washington machinery using fresh, certified event telemetry.",
+      "metadataStatus": "needs-review",
+      "extractedAtUtc": "2026-10-30T01:07:54.285810+00:00",
+      "extractorVersion": 2,
+      "features": {
+        "routing-triage": [
+          {
+            "path": "01-requirements.md",
+            "line": 26,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 58,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 85,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 115,
+            "basis": "design"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 220,
+            "basis": "code"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 318,
+            "basis": "code"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 334,
+            "basis": "code"
+          },
+          {
+            "path": "src/EquipAI.Web/Services/FoundryAgent.cs",
+            "line": 27,
+            "basis": "code"
+          }
+        ],
+        "handoff-transfer-of-control": [
+          {
+            "path": "01-requirements.md",
+            "line": 43,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 47,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 48,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 165,
+            "basis": "design"
+          }
+        ],
+        "telemetry": [
+          {
+            "path": "01-requirements.md",
+            "line": 50,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 128,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 153,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 187,
+            "basis": "design"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 39,
+            "basis": "code"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 63,
+            "basis": "code"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 1,
+            "basis": "code"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 230,
+            "basis": "code"
+          }
+        ],
+        "inventory": [
+          {
+            "path": "01-requirements.md",
+            "line": 50,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 96,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 390,
+            "basis": "design"
+          },
+          {
+            "path": "04-implementation-plan.md",
+            "line": 34,
+            "basis": "design"
+          },
+          {
+            "path": "src/EquipAI.Web/Models/Telemetry.cs",
+            "line": 43,
+            "basis": "code"
+          },
+          {
+            "path": "src/EquipAI.Web/Models/Telemetry.cs",
+            "line": 47,
+            "basis": "code"
+          },
+          {
+            "path": "src/EquipAI.Web/Models/Telemetry.cs",
+            "line": 51,
+            "basis": "code"
+          },
+          {
+            "path": "src/EquipAI.Web/Models/Telemetry.cs",
+            "line": 54,
+            "basis": "code"
+          }
+        ],
+        "grounded-retrieval": [
+          {
+            "path": "01-requirements.md",
+            "line": 50,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 89,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 91,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 142,
+            "basis": "design"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 53,
+            "basis": "code"
+          },
+          {
+            "path": "src/EquipAI.Web/Services/BlobTelemetry.cs",
+            "line": 51,
+            "basis": "code"
+          },
+          {
+            "path": "src/EquipAI.Web/Services/FoundryAgent.cs",
+            "line": 175,
+            "basis": "code"
+          },
+          {
+            "path": "src/EquipAI.Web/Services/FoundryAgent.cs",
+            "line": 176,
+            "basis": "code"
+          }
+        ],
+        "concurrent-fan-out-fan-in": [
+          {
+            "path": "01-requirements.md",
+            "line": 59,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 142,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 239,
+            "basis": "design"
+          },
+          {
+            "path": "src/EquipAI.Web/Services/LabAuthentication.cs",
+            "line": 150,
+            "basis": "code"
+          }
+        ],
+        "local-identity": [
+          {
+            "path": "01-requirements.md",
+            "line": 70,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 169,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 39,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 43,
+            "basis": "design"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 47,
+            "basis": "code"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 554,
+            "basis": "code"
+          },
+          {
+            "path": "src/EquipAI.Web/Program.cs",
+            "line": 72,
+            "basis": "code"
+          },
+          {
+            "path": "src/EquipAI.Web/Services/LabAuthentication.cs",
+            "line": 88,
+            "basis": "code"
+          }
+        ],
+        "single-agent-tool-loop": [
+          {
+            "path": "01-requirements.md",
+            "line": 71,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 86,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 84,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 133,
+            "basis": "design"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 1,
+            "basis": "code"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 40,
+            "basis": "code"
+          }
+        ],
+        "read-tools": [
+          {
+            "path": "01-requirements.md",
+            "line": 71,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 86,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 133,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 141,
+            "basis": "design"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 40,
+            "basis": "code"
+          }
+        ],
+        "replay-recovery": [
+          {
+            "path": "01-requirements.md",
+            "line": 98,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 136,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 142,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 161,
+            "basis": "design"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 45,
+            "basis": "code"
+          },
+          {
+            "path": "src/EquipAI.Web/Services/BlobTelemetry.cs",
+            "line": 14,
+            "basis": "code"
+          },
+          {
+            "path": "src/EquipAI.Web/Services/BlobTelemetry.cs",
+            "line": 60,
+            "basis": "code"
+          },
+          {
+            "path": "src/EquipAI.Web/Services/TelemetryEngine.cs",
+            "line": 51,
+            "basis": "code"
+          }
+        ],
+        "public-ingress": [
+          {
+            "path": "01-requirements.md",
+            "line": 116,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 196,
+            "basis": "design"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 243,
+            "basis": "code"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 295,
+            "basis": "code"
+          }
+        ],
+        "entra-identity": [
+          {
+            "path": "01-requirements.md",
+            "line": 183,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 10,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 39,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 171,
+            "basis": "design"
+          }
+        ],
+        "read-only": [
+          {
+            "path": "01-requirements.md",
+            "line": 187,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 23,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 50,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 72,
+            "basis": "design"
+          },
+          {
+            "path": "infra/modules/blob-access.bicep",
+            "line": 3,
+            "basis": "code"
+          }
+        ],
+        "human-in-the-loop": [
+          {
+            "path": "01-requirements.md",
+            "line": 191,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 30,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 107,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 111,
+            "basis": "design"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 49,
+            "basis": "code"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 55,
+            "basis": "code"
+          },
+          {
+            "path": "infra/modules/management-network.bicep",
+            "line": 7,
+            "basis": "code"
+          }
+        ],
+        "private-network": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 83,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 160,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 359,
+            "basis": "design"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 41,
+            "basis": "code"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 46,
+            "basis": "code"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 362,
+            "basis": "code"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 467,
+            "basis": "code"
+          }
+        ],
+        "orchestrator-workers": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 141,
+            "basis": "design"
+          }
+        ],
+        "event-driven-reactive-agents": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 290,
+            "basis": "design"
+          }
+        ],
+        "case-management": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 413,
+            "basis": "design"
+          }
+        ],
+        "reconciliation": [
+          {
+            "path": "04-implementation-plan.md",
+            "line": 119,
+            "basis": "design"
+          }
+        ]
+      },
+      "inputs": {
+        "01-requirements.md": "1a15764787237710b9ef4e67efee9535319a358decd4e453fb87d1b51cd2bd75",
+        "02-architecture-assessment.md": "e2bcfdf544d75fa555ef1bd4ec46250cad332515bd6bdd471a24a9817582e9a9",
+        "03-architect-diagram.py": "4912cef6cb122b9b92ec7d38beb151b9ae6352f1bbf2821a5b11692f825217a7",
+        "04-implementation-plan.md": "7399cb8df62055d7d0e1c98019fafbba728854392cd955f442d7e51f5dfcf1e5",
+        "04-runtime-diagram.py": "3c84276e74597a049df4e8c6d48b0305d360ef1d1f42d1ec93629330fd6ab266",
+        "azure.yaml": "8951a9144d13aefcaf33c02c5eb73cfaefbdec42eca8393dca2425d18c03dbcd",
+        "infra/human-access-repair.bicep": "0183b88c772db9d5d3b674e91a7c17e7f2d2e333ef432663a2c4e362d97becf7",
+        "infra/main.bicep": "ef296718fc6cea55c534c27705655aca969d106c6a9b5708b497fc9f3bb3ed01",
+        "infra/management.bicep": "0a078bcb55588ee9687f237dd71e9056ac3b3c13d7f8aae2cbb23f8cdfbaf0b0",
+        "infra/modules/app-settings.bicep": "73cf41c181d65438bdc2f49a59a2e05a851c5089a388d276d1b41b5633de2cd1",
+        "infra/modules/blob-access.bicep": "18f975786c39f00cba0310267c30ea42960eddcd86b6f01dd68a7a71a0832f56",
+        "infra/modules/foundry-access.bicep": "707c69d119018437508f3a4ca6217cae8a3304517d141c02f8388f0490d5240f",
+        "infra/modules/human-access.bicep": "d83e0d064133c50adb95244b85a1ae84bb141d21fef99b30a7c9d0fc8b5f33b5",
+        "infra/modules/management-network.bicep": "488227d636f39ef22936de7fab8907acc87dfb89dd373aad2a36d71a0b001115",
+        "src/EquipAI.Web/Models/Telemetry.cs": "850359a29dc3529a7c5744d31c29453d840db71a8786abfeddf82aea94a1fbf4",
+        "src/EquipAI.Web/Program.cs": "beaded04ff26bee33aa8adaf6dec13f9f4f5f3e0015cdc83aa05875344e89b2d",
+        "src/EquipAI.Web/Services/BlobTelemetry.cs": "6e34c29c0480208f557ded385e8331cb4365b5ea5d4fa43957d27d1bbfd2be9b",
+        "src/EquipAI.Web/Services/DevicePublisher.cs": "62aa780fa488047541f6ec7be7e7917c101017f2e0bb6fe507ad532a6841d8af",
+        "src/EquipAI.Web/Services/FoundryAgent.cs": "9d8623c00556d4e6b4cc98c26f30451c386f21120571722223f6598a68943002",
+        "src/EquipAI.Web/Services/LabAuthentication.cs": "aae164089e1f31ad9e02b33c964fba3b9e8f0869cd4f56b2f43ccd83cbac8bb5",
+        "src/EquipAI.Web/Services/TelemetryEngine.cs": "01853470e6721507f47cf40ceffa8ceec08d365ce1db8092cc36e9db7ba42784",
+        "src/EquipAI.Web/wwwroot/app.js": "c6f72bf930f64fb20088494f8cffc25aa38eaf801644a63f459787acda28674c"
+      },
+      "architectureSummary": "Case / ticket management; Parallel evidence checks; Entra identity; Event-driven workflow; Grounded document retrieval; Case handoff; Human decision gate; Stock / inventory workflow; Local application accounts; Orchestrator / workers; Private network boundary; Public ingress; Read-only assistance; Tool-backed assistance; Reconciliation / daily close; Replay / recovery handling; Routing / triage; Single-agent tool loop; Telemetry / sensor processing",
+      "patternEvidence": {
+        "designMentioned": [
+          "case-management",
+          "concurrent-fan-out-fan-in",
+          "entra-identity",
+          "event-driven-reactive-agents",
+          "grounded-retrieval",
+          "handoff-transfer-of-control",
+          "human-in-the-loop",
+          "inventory",
+          "local-identity",
+          "orchestrator-workers",
+          "private-network",
+          "public-ingress",
+          "read-only",
+          "read-tools",
+          "reconciliation",
+          "replay-recovery",
+          "routing-triage",
+          "single-agent-tool-loop",
+          "telemetry"
+        ],
+        "codeMentioned": [
+          "concurrent-fan-out-fan-in",
+          "grounded-retrieval",
+          "human-in-the-loop",
+          "inventory",
+          "local-identity",
+          "private-network",
+          "public-ingress",
+          "read-only",
+          "read-tools",
+          "replay-recovery",
+          "routing-triage",
+          "single-agent-tool-loop",
+          "telemetry"
+        ],
+        "implemented": "unknown-until-reviewed"
+      },
+      "omittedLargeTextFiles": 0,
+      "dimensions": {
+        "businessCapabilities": [
+          "case-management",
+          "concurrent-fan-out-fan-in",
+          "event-driven-reactive-agents",
+          "grounded-retrieval",
+          "handoff-transfer-of-control",
+          "human-in-the-loop",
+          "inventory",
+          "orchestrator-workers",
+          "read-only",
+          "read-tools",
+          "reconciliation",
+          "replay-recovery",
+          "routing-triage",
+          "single-agent-tool-loop",
+          "telemetry"
+        ],
+        "dataPatterns": [
+          "grounded-retrieval",
+          "replay-recovery",
+          "telemetry"
+        ],
+        "integrationModes": [
+          "event-driven-reactive-agents",
+          "read-only",
+          "read-tools"
+        ],
+        "humanDecisionPoints": [
+          "handoff-transfer-of-control",
+          "human-in-the-loop"
+        ],
+        "constraints": [
+          "entra-identity",
+          "local-identity",
+          "private-network",
+          "public-ingress"
+        ]
+      },
+      "limitations": [
+        "Text-derived retrieval features require review; code references are not runtime validation.",
+        "An absent feature means unknown, not unsupported. No deployment or consent evidence is included.",
+        "0 text files over 256000 bytes were omitted; environment settings and runtime evidence are excluded."
+      ]
+    },
+    "feedback-campaign": {
+      "schemaVersion": 1,
+      "scenarioId": "feedback-campaign",
+      "manifestDigest": "7fcfeabac3ae5a37bec008885606f37343e6058c981b45f32a819ab1dee73df5",
+      "summary": "Adatum Corporation routes campaign feedback from Marketing to Sales using Foundry sentiment analysis, local role-scoped accounts, explicit human review and versioned Control rules.",
+      "metadataStatus": "needs-review",
+      "extractedAtUtc": "2026-10-30T01:07:54.440659+00:00",
+      "extractorVersion": 2,
+      "features": {
+        "routing-triage": [
+          {
+            "path": "01-requirements.md",
+            "line": 8,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 24,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 35,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 42,
+            "basis": "design"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 1,
+            "basis": "code"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 11,
+            "basis": "code"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 17,
+            "basis": "code"
+          },
+          {
+            "path": "src/FeedbackCampaign.Web/Models/Domain.cs",
+            "line": 25,
+            "basis": "code"
+          }
+        ],
+        "human-in-the-loop": [
+          {
+            "path": "01-requirements.md",
+            "line": 14,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 35,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 86,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 6,
+            "basis": "design"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 32,
+            "basis": "code"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 55,
+            "basis": "code"
+          },
+          {
+            "path": "src/FeedbackCampaign.Web/Models/Domain.cs",
+            "line": 69,
+            "basis": "code"
+          }
+        ],
+        "event-driven-reactive-agents": [
+          {
+            "path": "01-requirements.md",
+            "line": 16,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 36,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 64,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 90,
+            "basis": "design"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 78,
+            "basis": "code"
+          },
+          {
+            "path": "src/FeedbackCampaign.Web/Services/QueueWorker.cs",
+            "line": 14,
+            "basis": "code"
+          },
+          {
+            "path": "src/FeedbackCampaign.Web/wwwroot/app.js",
+            "line": 25,
+            "basis": "code"
+          }
+        ],
+        "entra-identity": [
+          {
+            "path": "01-requirements.md",
+            "line": 32,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 100,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 59,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 62,
+            "basis": "design"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 18,
+            "basis": "code"
+          }
+        ],
+        "case-management": [
+          {
+            "path": "01-requirements.md",
+            "line": 61,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 86,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 88,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 89,
+            "basis": "design"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 22,
+            "basis": "code"
+          },
+          {
+            "path": "src/FeedbackCampaign.Web/Models/Domain.cs",
+            "line": 67,
+            "basis": "code"
+          },
+          {
+            "path": "src/FeedbackCampaign.Web/Models/Domain.cs",
+            "line": 69,
+            "basis": "code"
+          },
+          {
+            "path": "src/FeedbackCampaign.Web/Models/Domain.cs",
+            "line": 75,
+            "basis": "code"
+          }
+        ],
+        "single-agent-tool-loop": [
+          {
+            "path": "01-requirements.md",
+            "line": 74,
+            "basis": "design"
+          }
+        ],
+        "supervisor-hierarchical-delegation": [
+          {
+            "path": "01-requirements.md",
+            "line": 76,
+            "basis": "design"
+          }
+        ],
+        "orchestrator-workers": [
+          {
+            "path": "01-requirements.md",
+            "line": 76,
+            "basis": "design"
+          }
+        ],
+        "grounded-retrieval": [
+          {
+            "path": "01-requirements.md",
+            "line": 80,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 76,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 93,
+            "basis": "design"
+          },
+          {
+            "path": "04-implementation-plan.md",
+            "line": 9,
+            "basis": "design"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 16,
+            "basis": "code"
+          },
+          {
+            "path": "src/FeedbackCampaign.Web/Models/Domain.cs",
+            "line": 38,
+            "basis": "code"
+          },
+          {
+            "path": "src/FeedbackCampaign.Web/Program.cs",
+            "line": 158,
+            "basis": "code"
+          },
+          {
+            "path": "src/FeedbackCampaign.Web/wwwroot/app.js",
+            "line": 54,
+            "basis": "code"
+          }
+        ],
+        "replay-recovery": [
+          {
+            "path": "01-requirements.md",
+            "line": 91,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 22,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 44,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 91,
+            "basis": "design"
+          }
+        ],
+        "local-identity": [
+          {
+            "path": "01-requirements.md",
+            "line": 97,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 90,
+            "basis": "design"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 29,
+            "basis": "code"
+          },
+          {
+            "path": "src/FeedbackCampaign.Web/Services/LabAccountProvisioner.cs",
+            "line": 67,
+            "basis": "code"
+          },
+          {
+            "path": "src/FeedbackCampaign.Web/Services/LabAuthentication.cs",
+            "line": 18,
+            "basis": "code"
+          },
+          {
+            "path": "src/FeedbackCampaign.Web/Services/LabAuthentication.cs",
+            "line": 20,
+            "basis": "code"
+          }
+        ],
+        "telemetry": [
+          {
+            "path": "01-requirements.md",
+            "line": 110,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 24,
+            "basis": "design"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 27,
+            "basis": "code"
+          },
+          {
+            "path": "src/FeedbackCampaign.Web/Services/CampaignWorkflow.cs",
+            "line": 33,
+            "basis": "code"
+          }
+        ],
+        "handoff-transfer-of-control": [
+          {
+            "path": "01-requirements.md",
+            "line": 111,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 5,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 103,
+            "basis": "design"
+          }
+        ],
+        "reconciliation": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 39,
+            "basis": "design"
+          }
+        ],
+        "public-ingress": [
+          {
+            "path": "infra/main.bicep",
+            "line": 35,
+            "basis": "code"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 69,
+            "basis": "code"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 88,
+            "basis": "code"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 148,
+            "basis": "code"
+          }
+        ],
+        "concurrent-fan-out-fan-in": [
+          {
+            "path": "src/FeedbackCampaign.Web/Pages/Login.cshtml.cs",
+            "line": 34,
+            "basis": "code"
+          },
+          {
+            "path": "src/FeedbackCampaign.Web/Services/LabAccountProvisioner.cs",
+            "line": 77,
+            "basis": "code"
+          }
+        ]
+      },
+      "inputs": {
+        "01-requirements.md": "09677497b47e112f635d205add0845581d6a8b5ec2374ac482bccc4299ae8375",
+        "02-architecture-assessment.md": "2d967314a140c04888901f22c672bafb3b0984c2e0bd78bf6b3db12e04e967fe",
+        "03-architect-diagram.py": "4ebc471e8d9fe4277066df7a9eb1f222551e7d68fb840d713a79163e6b3f0385",
+        "04-implementation-plan.md": "306ea11f0325b58db519e3c0d2696e6bf6b45f8716613ef29218ba8f485be821",
+        "04-runtime-diagram.py": "8a061ebb13014fd202fe5fbb110ce0144493870c4e960c2de8e55c5ff4062891",
+        "azure.yaml": "b8726e219110f6b70d0b624da8e9fe7a0d8c8224daadbd5a0fcde687abe5535d",
+        "infra/main.bicep": "f767b20021c2df0f9e73ed27e7992235f266d536aadd3f1ecdaca97dd08f9aa8",
+        "infra/review.bicep": "47adbdeea2098fbfd7672f8437491461948b9d6a88e47142d1b16f38a7370dea",
+        "src/FeedbackCampaign.Web/Models/Domain.cs": "fa13db784b95c4b0f251e9e1356dc959e6541fa1ba9208957c4fd5be58698bb5",
+        "src/FeedbackCampaign.Web/Pages/Index.cshtml.cs": "7baae8cd8f4bd376ad7c032e8dacdb3ab6787804b9b26a0a15c4fe81232977d9",
+        "src/FeedbackCampaign.Web/Pages/Login.cshtml.cs": "ce9b87f7c62b54aff0802f581e1888d19f7e7128d4da2e04671cfe2707c07034",
+        "src/FeedbackCampaign.Web/Policy/campaign-policy.md": "e706c4b2f89b20247ea6b9f824c0ebf82c687f7d5e7ef2bf274c414cfe198a57",
+        "src/FeedbackCampaign.Web/Program.cs": "1ce75e52a61eb6bc3ce4b44c116f413863757518667bef77fddf08ad627a1dcc",
+        "src/FeedbackCampaign.Web/Services/CampaignWorkflow.cs": "4e68da3956a9da606655f2832d357d0e6670c55544646dec29937234365befbd",
+        "src/FeedbackCampaign.Web/Services/FoundryAgent.cs": "37bddea4675587f12c8ac0e02997b46363bd3b77aeaac54631334a281c2a9cf0",
+        "src/FeedbackCampaign.Web/Services/LabAccountProvisioner.cs": "6efa386ad6556dce4a21976e1e43c941cc8f13ac48e091468c5ed6d380fd889d",
+        "src/FeedbackCampaign.Web/Services/LabAuthentication.cs": "d95e6fda88e16eb56f3a561d7f92aa9cb6b1916fc7115fbb8a672f6389623b81",
+        "src/FeedbackCampaign.Web/Services/QueueWorker.cs": "f8ce7e6e78b439ed225c9900467600015ca7bd3b75c23956b5602cb8578b77ba",
+        "src/FeedbackCampaign.Web/Services/StateStore.cs": "8982061605018b23e627b2025792c0388d89408843eca17606e8b345435fafc4",
+        "src/FeedbackCampaign.Web/wwwroot/app.js": "e5070d93243fa94274c7c143fb2d25e6df5aa2653e317d57e98980c9f213742f"
+      },
+      "architectureSummary": "Case / ticket management; Parallel evidence checks; Entra identity; Event-driven workflow; Grounded document retrieval; Case handoff; Human decision gate; Local application accounts; Orchestrator / workers; Public ingress; Reconciliation / daily close; Replay / recovery handling; Routing / triage; Single-agent tool loop; Hierarchical supervisor; Telemetry / sensor processing",
+      "patternEvidence": {
+        "designMentioned": [
+          "case-management",
+          "entra-identity",
+          "event-driven-reactive-agents",
+          "grounded-retrieval",
+          "handoff-transfer-of-control",
+          "human-in-the-loop",
+          "local-identity",
+          "orchestrator-workers",
+          "reconciliation",
+          "replay-recovery",
+          "routing-triage",
+          "single-agent-tool-loop",
+          "supervisor-hierarchical-delegation",
+          "telemetry"
+        ],
+        "codeMentioned": [
+          "case-management",
+          "concurrent-fan-out-fan-in",
+          "entra-identity",
+          "event-driven-reactive-agents",
+          "grounded-retrieval",
+          "human-in-the-loop",
+          "local-identity",
+          "public-ingress",
+          "routing-triage",
+          "telemetry"
+        ],
+        "implemented": "unknown-until-reviewed"
+      },
+      "omittedLargeTextFiles": 0,
+      "dimensions": {
+        "businessCapabilities": [
+          "case-management",
+          "concurrent-fan-out-fan-in",
+          "event-driven-reactive-agents",
+          "grounded-retrieval",
+          "handoff-transfer-of-control",
+          "human-in-the-loop",
+          "orchestrator-workers",
+          "reconciliation",
+          "replay-recovery",
+          "routing-triage",
+          "single-agent-tool-loop",
+          "supervisor-hierarchical-delegation",
+          "telemetry"
+        ],
+        "dataPatterns": [
+          "grounded-retrieval",
+          "replay-recovery",
+          "telemetry"
+        ],
+        "integrationModes": [
+          "event-driven-reactive-agents"
+        ],
+        "humanDecisionPoints": [
+          "handoff-transfer-of-control",
+          "human-in-the-loop"
+        ],
+        "constraints": [
+          "entra-identity",
+          "local-identity",
+          "public-ingress"
+        ]
+      },
+      "limitations": [
+        "Text-derived retrieval features require review; code references are not runtime validation.",
+        "An absent feature means unknown, not unsupported. No deployment or consent evidence is included.",
+        "0 text files over 256000 bytes were omitted; environment settings and runtime evidence are excluded."
+      ]
+    },
+    "finance-security-hack": {
+      "schemaVersion": 1,
+      "scenarioId": "finance-security-hack",
+      "manifestDigest": "03cf0398f86ff00ac9b13ac80a08757c40fd30db31f84790cbec4dbf38b1377e",
+      "summary": "Locally discovered reference. Review its architecture and metadata before adapting.",
+      "metadataStatus": "needs-review",
+      "extractedAtUtc": "2026-10-30T01:07:54.583687+00:00",
+      "extractorVersion": 2,
+      "features": {
+        "grounded-retrieval": [
+          {
+            "path": "01-requirements.md",
+            "line": 35,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 87,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 125,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 172,
+            "basis": "design"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 78,
+            "basis": "code"
+          },
+          {
+            "path": "src/Brokerage.Web/ChatService.cs",
+            "line": 43,
+            "basis": "code"
+          },
+          {
+            "path": "src/Brokerage.Web/ChatService.cs",
+            "line": 44,
+            "basis": "code"
+          },
+          {
+            "path": "src/Brokerage.Web/ChatService.cs",
+            "line": 49,
+            "basis": "code"
+          }
+        ],
+        "case-management": [
+          {
+            "path": "01-requirements.md",
+            "line": 92,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 172,
+            "basis": "design"
+          }
+        ],
+        "concurrent-fan-out-fan-in": [
+          {
+            "path": "01-requirements.md",
+            "line": 117,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 93,
+            "basis": "design"
+          }
+        ],
+        "public-ingress": [
+          {
+            "path": "01-requirements.md",
+            "line": 135,
+            "basis": "design"
+          }
+        ],
+        "private-network": [
+          {
+            "path": "01-requirements.md",
+            "line": 136,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 36,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 40,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 77,
+            "basis": "design"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 38,
+            "basis": "code"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 161,
+            "basis": "code"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 181,
+            "basis": "code"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 196,
+            "basis": "code"
+          }
+        ],
+        "human-in-the-loop": [
+          {
+            "path": "01-requirements.md",
+            "line": 148,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 173,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 109,
+            "basis": "design"
+          }
+        ],
+        "reconciliation": [
+          {
+            "path": "01-requirements.md",
+            "line": 161,
+            "basis": "design"
+          }
+        ],
+        "single-agent-tool-loop": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 11,
+            "basis": "design"
+          }
+        ],
+        "read-only": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 37,
+            "basis": "design"
+          }
+        ],
+        "entra-identity": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 43,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 45,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 86,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 110,
+            "basis": "design"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 11,
+            "basis": "code"
+          }
+        ],
+        "telemetry": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 88,
+            "basis": "design"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 54,
+            "basis": "code"
+          }
+        ],
+        "event-driven-reactive-agents": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 93,
+            "basis": "design"
+          }
+        ],
+        "inventory": [
+          {
+            "path": "04-implementation-plan.md",
+            "line": 11,
+            "basis": "design"
+          }
+        ],
+        "routing-triage": [
+          {
+            "path": "04-implementation-plan.md",
+            "line": 96,
+            "basis": "design"
+          },
+          {
+            "path": "infra/modules/workload.bicep",
+            "line": 83,
+            "basis": "code"
+          },
+          {
+            "path": "infra/modules/workload.bicep",
+            "line": 84,
+            "basis": "code"
+          }
+        ],
+        "handoff-transfer-of-control": [
+          {
+            "path": "04-implementation-plan.md",
+            "line": 112,
+            "basis": "design"
+          }
+        ]
+      },
+      "inputs": {
+        "01-requirements.md": "7ae6ba0ff029a65b6bdbb901aa95faf087f7e92e007971c1d9a154b81a0da005",
+        "02-architecture-assessment.md": "c87ee3f82e49cb3ba82e575ef8acf417251e936cb3fe77e103668be0dc8decc8",
+        "03-architect-diagram.py": "dc7bbbfd598e076f9fe92045143bc2484b0d3500b45af405ed6d7981db7ec7ad",
+        "04-implementation-plan.md": "7979a5f0f70bd4863ab00da596c87b0f2fc8cbe74dd29c61e3d556027af507b1",
+        "azure.yaml": "8d3f288bd2e603a18e33f6d105be32a94dfe396b4f7f80bc314df0edd03ab15b",
+        "infra/main.bicep": "63dbc0a1aae19cc298bc2f1b8a9fb7d32fa844b43614ae8c3065fa8b56dfd8f0",
+        "infra/modules/post-host.bicep": "5914dc9a1a9f4b789857b551f942081ce7733ac82bfed7b739fe36be6f839910",
+        "infra/modules/project.bicep": "c8f800fe54ce4daab825b3fa02178a1a095dde2eb31a3d134e1a45bf05f7840f",
+        "infra/modules/workload.bicep": "cfd89cc4a531f9f2df3edb6cfe877545392de58e7a1513e961567a6a708397f5",
+        "src/Brokerage.Web/AzureBrokerage.cs": "28f60e743c008c2d233bca74f204dd6251f7f19292d2e1e275007be405c33862",
+        "src/Brokerage.Web/ChatService.cs": "43170e5e11c5343ba2b87b40f1d1abf38cff17e7899afabda7d26dbd91d368f2",
+        "src/Brokerage.Web/Pages/Index.cshtml.cs": "1f56493b10e35824a00e1465317e45076438a345957e3a78a797cbc82eb4e054",
+        "src/Brokerage.Web/Program.cs": "85ae6acf639acb3ed81b95dc277aef835010164ce648f7087bba2bc9e73a4664",
+        "src/Brokerage.Web/UpstreamExceptionHandler.cs": "673d2d9c12c5bb1e8ad852afa2bca12211c902288e931d46c65a28395a86ba09",
+        "src/Brokerage.Web/WorkloadSettings.cs": "a6d125609b3016ae5f56de75cfadb7b8164e3fd019852646a78a02847492a1d7",
+        "src/Brokerage.Web/wwwroot/chat.js": "326f69fcaf54cc00f1af2481ecbc3015240fd1e14e244135f741c647eee8f948"
+      },
+      "architectureSummary": "Case / ticket management; Parallel evidence checks; Entra identity; Event-driven workflow; Grounded document retrieval; Case handoff; Human decision gate; Stock / inventory workflow; Private network boundary; Public ingress; Read-only assistance; Reconciliation / daily close; Routing / triage; Single-agent tool loop; Telemetry / sensor processing",
+      "patternEvidence": {
+        "designMentioned": [
+          "case-management",
+          "concurrent-fan-out-fan-in",
+          "entra-identity",
+          "event-driven-reactive-agents",
+          "grounded-retrieval",
+          "handoff-transfer-of-control",
+          "human-in-the-loop",
+          "inventory",
+          "private-network",
+          "public-ingress",
+          "read-only",
+          "reconciliation",
+          "routing-triage",
+          "single-agent-tool-loop",
+          "telemetry"
+        ],
+        "codeMentioned": [
+          "entra-identity",
+          "grounded-retrieval",
+          "private-network",
+          "routing-triage",
+          "telemetry"
+        ],
+        "implemented": "unknown-until-reviewed"
+      },
+      "omittedLargeTextFiles": 0,
+      "dimensions": {
+        "businessCapabilities": [
+          "case-management",
+          "concurrent-fan-out-fan-in",
+          "event-driven-reactive-agents",
+          "grounded-retrieval",
+          "handoff-transfer-of-control",
+          "human-in-the-loop",
+          "inventory",
+          "read-only",
+          "reconciliation",
+          "routing-triage",
+          "single-agent-tool-loop",
+          "telemetry"
+        ],
+        "dataPatterns": [
+          "grounded-retrieval",
+          "telemetry"
+        ],
+        "integrationModes": [
+          "event-driven-reactive-agents",
+          "read-only"
+        ],
+        "humanDecisionPoints": [
+          "handoff-transfer-of-control",
+          "human-in-the-loop"
+        ],
+        "constraints": [
+          "entra-identity",
+          "private-network",
+          "public-ingress"
+        ]
+      },
+      "limitations": [
+        "Text-derived retrieval features require review; code references are not runtime validation.",
+        "An absent feature means unknown, not unsupported. No deployment or consent evidence is included.",
+        "0 text files over 256000 bytes were omitted; environment settings and runtime evidence are excluded."
+      ]
+    },
+    "hospitality-feedback": {
+      "schemaVersion": 1,
+      "scenarioId": "hospitality-feedback",
+      "manifestDigest": "66a2fd4c01a09d1f370002feb74c776d13559dc8c3e556d97842b512b8112482",
+      "summary": "A single Foundry Basic prompt agent analyzes multilingual hotel-service feedback using Blob evidence and reliable queued ingestion. Local reference; current deployment and suitability remain unverified.",
+      "metadataStatus": "needs-review",
+      "extractedAtUtc": "2026-10-30T01:07:54.736741+00:00",
+      "extractorVersion": 2,
+      "features": {
+        "multilingual": [
+          {
+            "path": "01-requirements.md",
+            "line": 17,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 22,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 94,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 123,
+            "basis": "design"
+          },
+          {
+            "path": "infra/workload.bicep",
+            "line": 132,
+            "basis": "code"
+          },
+          {
+            "path": "src/HospitalityFeedback.Web/Models/Domain.cs",
+            "line": 19,
+            "basis": "code"
+          },
+          {
+            "path": "src/HospitalityFeedback.Web/Models/Domain.cs",
+            "line": 28,
+            "basis": "code"
+          },
+          {
+            "path": "src/HospitalityFeedback.Web/Models/Domain.cs",
+            "line": 41,
+            "basis": "code"
+          }
+        ],
+        "grounded-retrieval": [
+          {
+            "path": "01-requirements.md",
+            "line": 23,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 53,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 61,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 78,
+            "basis": "design"
+          },
+          {
+            "path": "src/HospitalityFeedback.Operator/Program.cs",
+            "line": 91,
+            "basis": "code"
+          },
+          {
+            "path": "src/HospitalityFeedback.Operator/Program.cs",
+            "line": 92,
+            "basis": "code"
+          },
+          {
+            "path": "src/HospitalityFeedback.Operator/Program.cs",
+            "line": 93,
+            "basis": "code"
+          },
+          {
+            "path": "src/HospitalityFeedback.Operator/Program.cs",
+            "line": 113,
+            "basis": "code"
+          }
+        ],
+        "case-management": [
+          {
+            "path": "01-requirements.md",
+            "line": 59,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 119,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 122,
+            "basis": "design"
+          },
+          {
+            "path": "04-implementation-plan.md",
+            "line": 113,
+            "basis": "design"
+          }
+        ],
+        "replay-recovery": [
+          {
+            "path": "01-requirements.md",
+            "line": 71,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 120,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 120,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 197,
+            "basis": "design"
+          },
+          {
+            "path": "src/HospitalityFeedback.Web/Services/QueueWorker.cs",
+            "line": 46,
+            "basis": "code"
+          }
+        ],
+        "sequential-pipeline": [
+          {
+            "path": "01-requirements.md",
+            "line": 77,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 18,
+            "basis": "design"
+          }
+        ],
+        "single-agent-tool-loop": [
+          {
+            "path": "01-requirements.md",
+            "line": 81,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 20,
+            "basis": "design"
+          }
+        ],
+        "event-driven-reactive-agents": [
+          {
+            "path": "01-requirements.md",
+            "line": 84,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 127,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 23,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 82,
+            "basis": "design"
+          },
+          {
+            "path": "infra/workload.bicep",
+            "line": 77,
+            "basis": "code"
+          },
+          {
+            "path": "infra/workload.bicep",
+            "line": 87,
+            "basis": "code"
+          },
+          {
+            "path": "infra/workload.bicep",
+            "line": 209,
+            "basis": "code"
+          },
+          {
+            "path": "infra/workload.bicep",
+            "line": 241,
+            "basis": "code"
+          }
+        ],
+        "public-ingress": [
+          {
+            "path": "01-requirements.md",
+            "line": 98,
+            "basis": "design"
+          },
+          {
+            "path": "infra/workload.bicep",
+            "line": 47,
+            "basis": "code"
+          },
+          {
+            "path": "infra/workload.bicep",
+            "line": 105,
+            "basis": "code"
+          },
+          {
+            "path": "infra/workload.bicep",
+            "line": 186,
+            "basis": "code"
+          }
+        ],
+        "reconciliation": [
+          {
+            "path": "01-requirements.md",
+            "line": 121,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 24,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 121,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 194,
+            "basis": "design"
+          },
+          {
+            "path": "src/HospitalityFeedback.Web/Services/QueueWorker.cs",
+            "line": 21,
+            "basis": "code"
+          },
+          {
+            "path": "src/HospitalityFeedback.Web/Services/StorageRepository.cs",
+            "line": 94,
+            "basis": "code"
+          },
+          {
+            "path": "src/HospitalityFeedback.Web/Services/StorageRepository.cs",
+            "line": 132,
+            "basis": "code"
+          }
+        ],
+        "concurrent-fan-out-fan-in": [
+          {
+            "path": "01-requirements.md",
+            "line": 128,
+            "basis": "design"
+          }
+        ],
+        "human-in-the-loop": [
+          {
+            "path": "01-requirements.md",
+            "line": 143,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 36,
+            "basis": "design"
+          },
+          {
+            "path": "04-implementation-plan.md",
+            "line": 94,
+            "basis": "design"
+          },
+          {
+            "path": "04-implementation-plan.md",
+            "line": 136,
+            "basis": "design"
+          },
+          {
+            "path": "src/HospitalityFeedback.Operator/Program.cs",
+            "line": 113,
+            "basis": "code"
+          }
+        ],
+        "entra-identity": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 39,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 57,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 151,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 238,
+            "basis": "design"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 37,
+            "basis": "code"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 41,
+            "basis": "code"
+          }
+        ],
+        "routing-triage": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 51,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 116,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 164,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 179,
+            "basis": "design"
+          }
+        ],
+        "read-only": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 180,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 212,
+            "basis": "design"
+          }
+        ],
+        "handoff-transfer-of-control": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 209,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 215,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 223,
+            "basis": "design"
+          },
+          {
+            "path": "04-implementation-plan.md",
+            "line": 152,
+            "basis": "design"
+          }
+        ],
+        "inventory": [
+          {
+            "path": "04-implementation-plan.md",
+            "line": 9,
+            "basis": "design"
+          }
+        ]
+      },
+      "inputs": {
+        "01-requirements.md": "c1f6251d368e19c69dbc28318782de5fad4cd048157506f7163d7c2f09e39261",
+        "02-architecture-assessment.md": "25248e680e2c32cffd2e7f7df95907f7e331b892f119b10fa5aa975cc0390917",
+        "03-architect-diagram.py": "3d4e5ed5189d5995969a10ff71c912c3c17b33044876a5fc13a9eef90771dc2c",
+        "04-implementation-plan.md": "04d78967fcade9884a54ccb281d96562e1ab7f5bb211f3f88569fc06e6b1b70a",
+        "04-runtime-diagram.py": "568e879416d27a73bbc61b6b07206a6100604e22418cb08421fcdc50b370b3bd",
+        "azure.yaml": "084b35cc1f930ada4fcf6b59f31d456da83c2f1db132bac278beb9fe3d958772",
+        "infra/main.bicep": "7df66061974e12899841a2cd7ab15219864ae637694f18a4af7e15d17916414e",
+        "infra/workload.bicep": "72d086483270a0056eddd871a9333aba920d5e264d37bd6240076d30e4c8693b",
+        "src/HospitalityFeedback.Operator/Program.cs": "f21561602e713cc89a634d0c4a795f1bac7bd66773a06079179c4d26c611230f",
+        "src/HospitalityFeedback.Web/Models/Domain.cs": "e07548875fb7fe81ccdb0f4f2f0eb6b5d1fa8147178ba139016eb29e9989e0b1",
+        "src/HospitalityFeedback.Web/Pages/Index.cshtml.cs": "6bdec729896356d4d2e634930b66b0586025f87b94998860682b50229aa7aa95",
+        "src/HospitalityFeedback.Web/Program.cs": "826b18848c1e2587e202f63f0787a84930928893607717e275aad0c30c6f7c3e",
+        "src/HospitalityFeedback.Web/Services/FeedbackOptions.cs": "6ca1817f0d822c259dddac8f5d7120dba1e161feffe44d966934e4892705a7d3",
+        "src/HospitalityFeedback.Web/Services/FoundryAgent.cs": "0552269b970e6003f966d35af5319e363a066d60566a0a591afe2f22c116205e",
+        "src/HospitalityFeedback.Web/Services/QueueWorker.cs": "f3d3f4298c2f45f7359a43a160c63013a8c493e5b9d2d1ea0a74151c5ed31857",
+        "src/HospitalityFeedback.Web/Services/StorageRepository.cs": "fc7ca93dbd9ebc7843c9f6354756fc51ad0ba0bb8fac5b8baa45cc35fdeb93ca",
+        "src/HospitalityFeedback.Web/wwwroot/js/app.js": "aa18b9cf9799e320b05ee6af141cc96a813d2ae556857b824293ed270ffa36e0"
+      },
+      "architectureSummary": "Case / ticket management; Parallel evidence checks; Entra identity; Event-driven workflow; Grounded document retrieval; Case handoff; Human decision gate; Stock / inventory workflow; Multilingual interaction; Public ingress; Read-only assistance; Reconciliation / daily close; Replay / recovery handling; Routing / triage; Sequential pipeline; Single-agent tool loop",
+      "patternEvidence": {
+        "designMentioned": [
+          "case-management",
+          "concurrent-fan-out-fan-in",
+          "entra-identity",
+          "event-driven-reactive-agents",
+          "grounded-retrieval",
+          "handoff-transfer-of-control",
+          "human-in-the-loop",
+          "inventory",
+          "multilingual",
+          "public-ingress",
+          "read-only",
+          "reconciliation",
+          "replay-recovery",
+          "routing-triage",
+          "sequential-pipeline",
+          "single-agent-tool-loop"
+        ],
+        "codeMentioned": [
+          "entra-identity",
+          "event-driven-reactive-agents",
+          "grounded-retrieval",
+          "human-in-the-loop",
+          "multilingual",
+          "public-ingress",
+          "reconciliation",
+          "replay-recovery"
+        ],
+        "implemented": "unknown-until-reviewed"
+      },
+      "omittedLargeTextFiles": 0,
+      "dimensions": {
+        "businessCapabilities": [
+          "case-management",
+          "concurrent-fan-out-fan-in",
+          "event-driven-reactive-agents",
+          "grounded-retrieval",
+          "handoff-transfer-of-control",
+          "human-in-the-loop",
+          "inventory",
+          "multilingual",
+          "read-only",
+          "reconciliation",
+          "replay-recovery",
+          "routing-triage",
+          "sequential-pipeline",
+          "single-agent-tool-loop"
+        ],
+        "dataPatterns": [
+          "grounded-retrieval",
+          "replay-recovery"
+        ],
+        "integrationModes": [
+          "event-driven-reactive-agents",
+          "read-only"
+        ],
+        "humanDecisionPoints": [
+          "handoff-transfer-of-control",
+          "human-in-the-loop"
+        ],
+        "constraints": [
+          "entra-identity",
+          "public-ingress"
+        ]
+      },
+      "limitations": [
+        "Text-derived retrieval features require review; code references are not runtime validation.",
+        "An absent feature means unknown, not unsupported. No deployment or consent evidence is included.",
+        "0 text files over 256000 bytes were omitted; environment settings and runtime evidence are excluded."
+      ]
+    },
+    "manu-multi-agent": {
+      "schemaVersion": 1,
+      "scenarioId": "manu-multi-agent",
+      "manifestDigest": "fe3ffa099ffb553e3b90e419f5d03e8dde2e803e273daf3e1230156e473baa1c",
+      "summary": "Adventure Works Cycles Sales and Marketing reference with private keyless infrastructure, bounded three-agent application, offline validation and guarded complete-reference installation wiring. Cloud deployment and live proof remain pending.",
+      "metadataStatus": "needs-review",
+      "extractedAtUtc": "2026-10-30T01:07:55.074474+00:00",
+      "extractorVersion": 2,
+      "features": {
+        "human-in-the-loop": [
+          {
+            "path": "01-requirements.md",
+            "line": 7,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 42,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 62,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 96,
+            "basis": "design"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 137,
+            "basis": "code"
+          },
+          {
+            "path": "infra/modules/workload.bicep",
+            "line": 187,
+            "basis": "code"
+          },
+          {
+            "path": "src/MobilityCommercial.Web/Services/HandoffService.cs",
+            "line": 64,
+            "basis": "code"
+          },
+          {
+            "path": "src/MobilityCommercial.Web/wwwroot/app.js",
+            "line": 69,
+            "basis": "code"
+          }
+        ],
+        "handoff-transfer-of-control": [
+          {
+            "path": "01-requirements.md",
+            "line": 19,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 39,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 40,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 56,
+            "basis": "design"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 83,
+            "basis": "code"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 1,
+            "basis": "code"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 44,
+            "basis": "code"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 71,
+            "basis": "code"
+          }
+        ],
+        "reconciliation": [
+          {
+            "path": "01-requirements.md",
+            "line": 39,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 16,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 182,
+            "basis": "design"
+          },
+          {
+            "path": "src/MobilityCommercial.Web/Services/HandoffService.cs",
+            "line": 85,
+            "basis": "code"
+          },
+          {
+            "path": "src/MobilityCommercial.Web/Services/HandoffService.cs",
+            "line": 173,
+            "basis": "code"
+          }
+        ],
+        "single-agent-tool-loop": [
+          {
+            "path": "01-requirements.md",
+            "line": 45,
+            "basis": "design"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 155,
+            "basis": "code"
+          }
+        ],
+        "grounded-retrieval": [
+          {
+            "path": "01-requirements.md",
+            "line": 46,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 144,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 179,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 45,
+            "basis": "design"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 98,
+            "basis": "code"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 79,
+            "basis": "code"
+          }
+        ],
+        "telemetry": [
+          {
+            "path": "01-requirements.md",
+            "line": 54,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 65,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 149,
+            "basis": "design"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 141,
+            "basis": "code"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 121,
+            "basis": "code"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 172,
+            "basis": "code"
+          }
+        ],
+        "orchestrator-workers": [
+          {
+            "path": "01-requirements.md",
+            "line": 107,
+            "basis": "design"
+          }
+        ],
+        "private-network": [
+          {
+            "path": "01-requirements.md",
+            "line": 116,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 88,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 93,
+            "basis": "design"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 64,
+            "basis": "code"
+          },
+          {
+            "path": "04-implementation-plan.md",
+            "line": 25,
+            "basis": "design"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 179,
+            "basis": "code"
+          },
+          {
+            "path": "infra/modules/dependencies.bicep",
+            "line": 27,
+            "basis": "code"
+          },
+          {
+            "path": "infra/modules/dependencies.bicep",
+            "line": 51,
+            "basis": "code"
+          }
+        ],
+        "case-management": [
+          {
+            "path": "01-requirements.md",
+            "line": 130,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 145,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 182,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 270,
+            "basis": "design"
+          }
+        ],
+        "read-tools": [
+          {
+            "path": "01-requirements.md",
+            "line": 137,
+            "basis": "design"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 155,
+            "basis": "code"
+          }
+        ],
+        "concurrent-fan-out-fan-in": [
+          {
+            "path": "01-requirements.md",
+            "line": 177,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 177,
+            "basis": "design"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 116,
+            "basis": "code"
+          }
+        ],
+        "event-driven-reactive-agents": [
+          {
+            "path": "01-requirements.md",
+            "line": 177,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 46,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 177,
+            "basis": "design"
+          }
+        ],
+        "replay-recovery": [
+          {
+            "path": "01-requirements.md",
+            "line": 183,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 180,
+            "basis": "design"
+          }
+        ],
+        "read-only": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 14,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 29,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 167,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 193,
+            "basis": "design"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 68,
+            "basis": "code"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 102,
+            "basis": "code"
+          },
+          {
+            "path": "infra/modules/workload.bicep",
+            "line": 50,
+            "basis": "code"
+          }
+        ],
+        "inventory": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 17,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 245,
+            "basis": "design"
+          },
+          {
+            "path": "04-implementation-plan.md",
+            "line": 15,
+            "basis": "design"
+          },
+          {
+            "path": "infra/tests/test_infrastructure.py",
+            "line": 236,
+            "basis": "code"
+          }
+        ],
+        "entra-identity": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 24,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 50,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 149,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 245,
+            "basis": "design"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 47,
+            "basis": "code"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 27,
+            "basis": "code"
+          }
+        ],
+        "sequential-pipeline": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 25,
+            "basis": "design"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 153,
+            "basis": "code"
+          }
+        ],
+        "routing-triage": [
+          {
+            "path": "04-implementation-plan.md",
+            "line": 89,
+            "basis": "design"
+          },
+          {
+            "path": "04-implementation-plan.md",
+            "line": 117,
+            "basis": "design"
+          },
+          {
+            "path": "04-implementation-plan.md",
+            "line": 123,
+            "basis": "design"
+          },
+          {
+            "path": "04-implementation-plan.md",
+            "line": 142,
+            "basis": "design"
+          },
+          {
+            "path": "infra/tests/test_infrastructure.py",
+            "line": 179,
+            "basis": "code"
+          },
+          {
+            "path": "infra/tests/test_infrastructure.py",
+            "line": 180,
+            "basis": "code"
+          },
+          {
+            "path": "infra/tests/test_infrastructure.py",
+            "line": 181,
+            "basis": "code"
+          },
+          {
+            "path": "infra/tests/test_infrastructure.py",
+            "line": 182,
+            "basis": "code"
+          }
+        ],
+        "public-ingress": [
+          {
+            "path": "infra/modules/workload.bicep",
+            "line": 208,
+            "basis": "code"
+          }
+        ]
+      },
+      "inputs": {
+        "01-requirements.md": "ee12caa252ba31c05f4de85556faf10a8b39ab7ea40b81126389ad3095c769d6",
+        "02-architecture-assessment.md": "354f2702778be2560874b6afa908c82450978f6f1750fcd22e307a59db4f8c7b",
+        "03-architect-diagram.py": "91ae4ff05e30835d87cccf4f129e56c28df43d5fa68c630390b89bffc3d04796",
+        "04-implementation-plan.md": "aefd9b58cda013e2c0062945eca3054406d314c1b64f7d3466550a84cd3c40d1",
+        "04-runtime-diagram.py": "84d13ce3d8be6c0c34f721e47426176991348f85c79df8fc2af18b301ff77145",
+        "azure.yaml": "9d624c409caf71b2f957c5afb3ebb37c4f3561db594fd441531e8bdae378b63d",
+        "infra/main.bicep": "c91c8e66e737f5558f927957b1ce63ff55ef775587858ce9fee7dbe8f9cf6914",
+        "infra/modules/access.bicep": "a7541c1d515e972888cab9bbd597494690e4952d9f2f3fb76da82ff38cfbe10b",
+        "infra/modules/capability.bicep": "98e4c6bcc2aa96d6c4e50bb4dfdd5e78654b4dd296afef92f97ea19e1bab83d2",
+        "infra/modules/dependencies.bicep": "619d76a2cc080f27d41b07f9eeda497d98825dc3e9fa6781acbc6e766d8eebf9",
+        "infra/modules/foundry.bicep": "23bd84bb7accada26c81a16eb7b3ea29fdf4814b1e36dd6e1eb5fba7d6fcbd4b",
+        "infra/modules/network.bicep": "110f059c174b00c599d3af42a582e04daa3abba0c48ea1f46c9bf4e2805c0206",
+        "infra/modules/private-links.bicep": "237c6aaee648e77245c070a717ed5ac01616d8ded486abe4cc9e742ab02e4473",
+        "infra/modules/workload.bicep": "14743dc94cae733d5d4eb35d8db8d33b5a555f439bd036bf27fd1d3266943433",
+        "infra/tests/test_infrastructure.py": "669928451027fb73c4c9b594c4ccad7ec8e6b93622c77e8fe2a6b9647344de65",
+        "src/MobilityCommercial.Web/Models/Contracts.cs": "07a60af1f0511fc0b463f7a9ada5f85f3397e876a1140f931f8e97f38ed193b4",
+        "src/MobilityCommercial.Web/Pages/Index.cshtml.cs": "61bdd320d00deef4fba46f263ad7ad95205205f92706670f89b3f7da5936e663",
+        "src/MobilityCommercial.Web/Program.cs": "792455b4b0869fe550324fc7f6a8458bfa90e29363252f42db9a9cff734860f6",
+        "src/MobilityCommercial.Web/Services/Fixtures.cs": "f516edcd8d937e789afe7e578540e58f2750310503eba7cad61e4e6538266349",
+        "src/MobilityCommercial.Web/Services/FoundryGateway.cs": "bcbcb6bc7a7dbb42d0e6204856a5132534e52d506564429292a3cd38d77ea5de",
+        "src/MobilityCommercial.Web/Services/HandoffService.cs": "135820f841a8d88274bd1193a04dca0217bfcefe82c9cdcbc4781972a67fa9f3",
+        "src/MobilityCommercial.Web/Services/Settings.cs": "7332c742e69e115089e9a3b09b53896a958faf5e3a195e1d7c197b63e4f239d5",
+        "src/MobilityCommercial.Web/wwwroot/app.js": "5dad2e9107da243f2948dc7f933c129657d70a6b2c7811aae993bb6d065f8383"
+      },
+      "architectureSummary": "Case / ticket management; Parallel evidence checks; Entra identity; Event-driven workflow; Grounded document retrieval; Case handoff; Human decision gate; Stock / inventory workflow; Orchestrator / workers; Private network boundary; Public ingress; Read-only assistance; Tool-backed assistance; Reconciliation / daily close; Replay / recovery handling; Routing / triage; Sequential pipeline; Single-agent tool loop; Telemetry / sensor processing",
+      "patternEvidence": {
+        "designMentioned": [
+          "case-management",
+          "concurrent-fan-out-fan-in",
+          "entra-identity",
+          "event-driven-reactive-agents",
+          "grounded-retrieval",
+          "handoff-transfer-of-control",
+          "human-in-the-loop",
+          "inventory",
+          "orchestrator-workers",
+          "private-network",
+          "read-only",
+          "read-tools",
+          "reconciliation",
+          "replay-recovery",
+          "routing-triage",
+          "sequential-pipeline",
+          "single-agent-tool-loop",
+          "telemetry"
+        ],
+        "codeMentioned": [
+          "concurrent-fan-out-fan-in",
+          "entra-identity",
+          "grounded-retrieval",
+          "handoff-transfer-of-control",
+          "human-in-the-loop",
+          "inventory",
+          "private-network",
+          "public-ingress",
+          "read-only",
+          "read-tools",
+          "reconciliation",
+          "routing-triage",
+          "sequential-pipeline",
+          "single-agent-tool-loop",
+          "telemetry"
+        ],
+        "implemented": "unknown-until-reviewed"
+      },
+      "omittedLargeTextFiles": 0,
+      "dimensions": {
+        "businessCapabilities": [
+          "case-management",
+          "concurrent-fan-out-fan-in",
+          "event-driven-reactive-agents",
+          "grounded-retrieval",
+          "handoff-transfer-of-control",
+          "human-in-the-loop",
+          "inventory",
+          "orchestrator-workers",
+          "read-only",
+          "read-tools",
+          "reconciliation",
+          "replay-recovery",
+          "routing-triage",
+          "sequential-pipeline",
+          "single-agent-tool-loop",
+          "telemetry"
+        ],
+        "dataPatterns": [
+          "grounded-retrieval",
+          "replay-recovery",
+          "telemetry"
+        ],
+        "integrationModes": [
+          "event-driven-reactive-agents",
+          "read-only",
+          "read-tools"
+        ],
+        "humanDecisionPoints": [
+          "handoff-transfer-of-control",
+          "human-in-the-loop"
+        ],
+        "constraints": [
+          "entra-identity",
+          "private-network",
+          "public-ingress"
+        ]
+      },
+      "limitations": [
+        "Text-derived retrieval features require review; code references are not runtime validation.",
+        "An absent feature means unknown, not unsupported. No deployment or consent evidence is included.",
+        "0 text files over 256000 bytes were omitted; environment settings and runtime evidence are excluded."
+      ]
+    },
+    "resto-scale-agent": {
+      "schemaVersion": 1,
+      "scenarioId": "resto-scale-agent",
+      "manifestDigest": "1806053557a664d979083ab163629543097a1727a549ffe4ec7eda41f18d4171",
+      "summary": "Generic Hospitality & Travel five-floor, 250-seat restaurant reference with scoped guest and staff Foundry agents, deterministic transactions, durable kitchen handoffs and separate transaction/AI scaling.",
+      "metadataStatus": "needs-review",
+      "extractedAtUtc": "2026-10-30T01:07:55.306181+00:00",
+      "extractorVersion": 2,
+      "features": {
+        "handoff-transfer-of-control": [
+          {
+            "path": "01-requirements.md",
+            "line": 31,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 59,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 172,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 205,
+            "basis": "design"
+          }
+        ],
+        "case-management": [
+          {
+            "path": "01-requirements.md",
+            "line": 34,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 63,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 95,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 104,
+            "basis": "design"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 41,
+            "basis": "code"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 49,
+            "basis": "code"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 41,
+            "basis": "code"
+          },
+          {
+            "path": "src/Restaurant.Web/Models/Domain.cs",
+            "line": 54,
+            "basis": "code"
+          }
+        ],
+        "reconciliation": [
+          {
+            "path": "01-requirements.md",
+            "line": 64,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 24,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 123,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 165,
+            "basis": "design"
+          },
+          {
+            "path": "src/Restaurant.Web/Services/KitchenWorker.cs",
+            "line": 245,
+            "basis": "code"
+          },
+          {
+            "path": "src/Restaurant.Web/Services/KitchenWorker.cs",
+            "line": 247,
+            "basis": "code"
+          },
+          {
+            "path": "src/Restaurant.Web/Services/OperationsService.cs",
+            "line": 12,
+            "basis": "code"
+          },
+          {
+            "path": "src/Restaurant.Web/Services/OperationsService.cs",
+            "line": 53,
+            "basis": "code"
+          }
+        ],
+        "grounded-retrieval": [
+          {
+            "path": "01-requirements.md",
+            "line": 69,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 121,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 125,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 193,
+            "basis": "design"
+          }
+        ],
+        "replay-recovery": [
+          {
+            "path": "01-requirements.md",
+            "line": 89,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 94,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 96,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 176,
+            "basis": "design"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 38,
+            "basis": "code"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 49,
+            "basis": "code"
+          },
+          {
+            "path": "src/Restaurant.Web/Models/Domain.cs",
+            "line": 83,
+            "basis": "code"
+          },
+          {
+            "path": "src/Restaurant.Web/Models/Domain.cs",
+            "line": 95,
+            "basis": "code"
+          }
+        ],
+        "event-driven-reactive-agents": [
+          {
+            "path": "01-requirements.md",
+            "line": 108,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 173,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 175,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 99,
+            "basis": "design"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 49,
+            "basis": "code"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 225,
+            "basis": "code"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 254,
+            "basis": "code"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 259,
+            "basis": "code"
+          }
+        ],
+        "single-agent-tool-loop": [
+          {
+            "path": "01-requirements.md",
+            "line": 112,
+            "basis": "design"
+          }
+        ],
+        "read-tools": [
+          {
+            "path": "01-requirements.md",
+            "line": 112,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 207,
+            "basis": "design"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 92,
+            "basis": "code"
+          }
+        ],
+        "supervisor-hierarchical-delegation": [
+          {
+            "path": "01-requirements.md",
+            "line": 113,
+            "basis": "design"
+          }
+        ],
+        "orchestrator-workers": [
+          {
+            "path": "01-requirements.md",
+            "line": 113,
+            "basis": "design"
+          }
+        ],
+        "entra-identity": [
+          {
+            "path": "01-requirements.md",
+            "line": 134,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 153,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 16,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 28,
+            "basis": "design"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 65,
+            "basis": "code"
+          },
+          {
+            "path": "04-runtime-diagram.py",
+            "line": 33,
+            "basis": "code"
+          },
+          {
+            "path": "infra/modules/apps.bicep",
+            "line": 38,
+            "basis": "code"
+          },
+          {
+            "path": "infra/modules/apps.bicep",
+            "line": 130,
+            "basis": "code"
+          }
+        ],
+        "read-only": [
+          {
+            "path": "01-requirements.md",
+            "line": 200,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 85,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 157,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 283,
+            "basis": "design"
+          }
+        ],
+        "public-ingress": [
+          {
+            "path": "01-requirements.md",
+            "line": 212,
+            "basis": "design"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 150,
+            "basis": "code"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 195,
+            "basis": "code"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 239,
+            "basis": "code"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 293,
+            "basis": "code"
+          }
+        ],
+        "human-in-the-loop": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 13,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 118,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 409,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 435,
+            "basis": "design"
+          }
+        ],
+        "routing-triage": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 83,
+            "basis": "design"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 435,
+            "basis": "code"
+          }
+        ],
+        "private-network": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 105,
+            "basis": "design"
+          }
+        ],
+        "sequential-pipeline": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 117,
+            "basis": "design"
+          }
+        ],
+        "telemetry": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 135,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 361,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 368,
+            "basis": "design"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 75,
+            "basis": "code"
+          },
+          {
+            "path": "04-implementation-plan.md",
+            "line": 21,
+            "basis": "design"
+          },
+          {
+            "path": "infra/modules/apps.bicep",
+            "line": 47,
+            "basis": "code"
+          }
+        ],
+        "concurrent-fan-out-fan-in": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 176,
+            "basis": "design"
+          },
+          {
+            "path": "src/Restaurant.Web/Services/CosmosStore.cs",
+            "line": 74,
+            "basis": "code"
+          }
+        ],
+        "inventory": [
+          {
+            "path": "04-implementation-plan.md",
+            "line": 37,
+            "basis": "design"
+          }
+        ],
+        "local-identity": [
+          {
+            "path": "src/Restaurant.Web/Services/StaffAuthentication.cs",
+            "line": 28,
+            "basis": "code"
+          }
+        ]
+      },
+      "inputs": {
+        "01-requirements.md": "80c1b7be6fcc27051bb5fd77a53999b2d015278b154f1c19bb04f68c53ebd06a",
+        "02-architecture-assessment.md": "8d9c63a6d5017a43fb8318bf6270af17cc8ed1fecbe40ef5f6928224eff51337",
+        "03-architect-diagram.py": "3dcf2a872f27ee1fc7ad38ef3d0d76e1d15317beb2d06f1531e7684fae95bfeb",
+        "04-implementation-plan.md": "e02b4d3d3833d18daa84e13303f031182d2197be6fd1c94976931d22001186fb",
+        "04-runtime-diagram.py": "6f56d5c06d9fcf185b52992d11c5aaa0f8c1a04c0ec50849117b7683632287a5",
+        "azure.yaml": "8b1130b7d2b17ef1b6d09d72fad2d0f4b0c5bf582fca1a00890e594e6c9b4a23",
+        "infra/main.bicep": "3a54642205ef1ab4944b2a297bada449444e4305f3cfbd7778b16f88a4be6da8",
+        "infra/modules/apps.bicep": "0dd36d684a6807c8072c47599ca9d394336b43f63d3ddd771da3675ae1368f29",
+        "infra/modules/project.bicep": "c346ffe376f1d3bcf09aedffed117edaa9ad8b6a950001b7547b6157a2cdd088",
+        "src/Restaurant.Web/Models/Domain.cs": "87f0d7d4cf2c1d45238b930814f6a6c5e11bf2054f03d6216b2aa6aa02387a41",
+        "src/Restaurant.Web/Program.cs": "9c3397d2b0fbad6a8b7981ccf172e5c356035d1c306ae8540158d2b5d06ef005",
+        "src/Restaurant.Web/Services/CosmosKeyRepository.cs": "262b756e182e1db3c788efef56004ef1ce8085b08b19d803ad2b277a4ed80772",
+        "src/Restaurant.Web/Services/CosmosStore.cs": "d47e8d7dd311db30cf0309b90e887e52b012e0dffe604511dc1f1459ef6b628e",
+        "src/Restaurant.Web/Services/EntraStaffAuthentication.cs": "5c5116653fe977757ffd8a89e8a9add40d107f17acf91363507dc43ff20f7051",
+        "src/Restaurant.Web/Services/KitchenWorker.cs": "75850e8b3e6feadf0c62addb512a237a84973490700ce69f7cd86f43d73773df",
+        "src/Restaurant.Web/Services/LegacyImport.cs": "74a884a739c3bf4824ca5d5e734dc13ac35c9e9bc98a72166e9369e85a46e70a",
+        "src/Restaurant.Web/Services/OperationsService.cs": "8161911ab2cf61aad863e206f84dcb3ed278ad28ca7b62b637e75ca6243873b5",
+        "src/Restaurant.Web/Services/RestaurantService.cs": "ec0b323ff87b6a7d1fd60e5bef0072a390154879980492e92a1c6ff57b7ecc27",
+        "src/Restaurant.Web/Services/StaffAuthentication.cs": "cf2c4f3342e9495c931ca53778676eae9922c0357884029a76f4625efe0fb349",
+        "src/Restaurant.Web/wwwroot/js/restaurant.js": "e9bfb72dc8e386b11dc9619405cd5d14053d832130b55f958dcde30d805dedad",
+        "src/Restaurant.Web/wwwroot/js/staff-entra.js": "b3bfc82409ab1b88cb459dfb0b3e5dc2b4075884ba88aee48ca538aa794710b1"
+      },
+      "architectureSummary": "Case / ticket management; Parallel evidence checks; Entra identity; Event-driven workflow; Grounded document retrieval; Case handoff; Human decision gate; Stock / inventory workflow; Local application accounts; Orchestrator / workers; Private network boundary; Public ingress; Read-only assistance; Tool-backed assistance; Reconciliation / daily close; Replay / recovery handling; Routing / triage; Sequential pipeline; Single-agent tool loop; Hierarchical supervisor; Telemetry / sensor processing",
+      "patternEvidence": {
+        "designMentioned": [
+          "case-management",
+          "concurrent-fan-out-fan-in",
+          "entra-identity",
+          "event-driven-reactive-agents",
+          "grounded-retrieval",
+          "handoff-transfer-of-control",
+          "human-in-the-loop",
+          "inventory",
+          "orchestrator-workers",
+          "private-network",
+          "public-ingress",
+          "read-only",
+          "read-tools",
+          "reconciliation",
+          "replay-recovery",
+          "routing-triage",
+          "sequential-pipeline",
+          "single-agent-tool-loop",
+          "supervisor-hierarchical-delegation",
+          "telemetry"
+        ],
+        "codeMentioned": [
+          "case-management",
+          "concurrent-fan-out-fan-in",
+          "entra-identity",
+          "event-driven-reactive-agents",
+          "local-identity",
+          "public-ingress",
+          "read-tools",
+          "reconciliation",
+          "replay-recovery",
+          "routing-triage",
+          "telemetry"
+        ],
+        "implemented": "unknown-until-reviewed"
+      },
+      "omittedLargeTextFiles": 1,
+      "dimensions": {
+        "businessCapabilities": [
+          "case-management",
+          "concurrent-fan-out-fan-in",
+          "event-driven-reactive-agents",
+          "grounded-retrieval",
+          "handoff-transfer-of-control",
+          "human-in-the-loop",
+          "inventory",
+          "orchestrator-workers",
+          "read-only",
+          "read-tools",
+          "reconciliation",
+          "replay-recovery",
+          "routing-triage",
+          "sequential-pipeline",
+          "single-agent-tool-loop",
+          "supervisor-hierarchical-delegation",
+          "telemetry"
+        ],
+        "dataPatterns": [
+          "grounded-retrieval",
+          "replay-recovery",
+          "telemetry"
+        ],
+        "integrationModes": [
+          "event-driven-reactive-agents",
+          "read-only",
+          "read-tools"
+        ],
+        "humanDecisionPoints": [
+          "handoff-transfer-of-control",
+          "human-in-the-loop"
+        ],
+        "constraints": [
+          "entra-identity",
+          "local-identity",
+          "private-network",
+          "public-ingress"
+        ]
+      },
+      "limitations": [
+        "Text-derived retrieval features require review; code references are not runtime validation.",
+        "An absent feature means unknown, not unsupported. No deployment or consent evidence is included.",
+        "1 text files over 256000 bytes were omitted; environment settings and runtime evidence are excluded."
+      ]
+    },
+    "finance-customer-hack": {
+      "schemaVersion": 1,
+      "scenarioId": "finance-customer-hack",
+      "manifestDigest": "7f10c5d27d3823d9f565ec26c36b519d22354aa77d1e9dde710bf46cc69295ed",
+      "summary": "Financial Services reference: two saved Foundry agents route grounded policy and synthetic account questions into durable representative-owned cases. Local implementation only; Azure deployment and live acceptance pending authorization.",
+      "metadataStatus": "needs-review",
+      "extractedAtUtc": "2026-10-30T03:21:04.250921+00:00",
+      "extractorVersion": 2,
+      "features": {
+        "handoff-transfer-of-control": [
+          {
+            "path": "01-requirements.md",
+            "line": 12,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 41,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 55,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 62,
+            "basis": "design"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 58,
+            "basis": "code"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 152,
+            "basis": "code"
+          },
+          {
+            "path": "src/BankSupport.Web/Models/Domain.cs",
+            "line": 35,
+            "basis": "code"
+          },
+          {
+            "path": "src/BankSupport.Web/Pages/Index.cshtml.cs",
+            "line": 37,
+            "basis": "code"
+          }
+        ],
+        "grounded-retrieval": [
+          {
+            "path": "01-requirements.md",
+            "line": 12,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 52,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 53,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 71,
+            "basis": "design"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 42,
+            "basis": "code"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 57,
+            "basis": "code"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 152,
+            "basis": "code"
+          },
+          {
+            "path": "src/BankSupport.Web/Models/Domain.cs",
+            "line": 34,
+            "basis": "code"
+          }
+        ],
+        "case-management": [
+          {
+            "path": "01-requirements.md",
+            "line": 29,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 30,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 31,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 55,
+            "basis": "design"
+          },
+          {
+            "path": "src/BankSupport.Web/Models/Domain.cs",
+            "line": 20,
+            "basis": "code"
+          },
+          {
+            "path": "src/BankSupport.Web/Pages/Queue.cshtml.cs",
+            "line": 9,
+            "basis": "code"
+          },
+          {
+            "path": "src/BankSupport.Web/Pages/Queue.cshtml.cs",
+            "line": 13,
+            "basis": "code"
+          },
+          {
+            "path": "src/BankSupport.Web/Pages/Queue.cshtml.cs",
+            "line": 19,
+            "basis": "code"
+          }
+        ],
+        "read-only": [
+          {
+            "path": "01-requirements.md",
+            "line": 41,
+            "basis": "design"
+          },
+          {
+            "path": "src/BankSupport.Web/Models/Domain.cs",
+            "line": 8,
+            "basis": "code"
+          },
+          {
+            "path": "src/BankSupport.Web/Pages/Index.cshtml.cs",
+            "line": 14,
+            "basis": "code"
+          },
+          {
+            "path": "src/BankSupport.Web/Services/Installer.cs",
+            "line": 23,
+            "basis": "code"
+          }
+        ],
+        "entra-identity": [
+          {
+            "path": "01-requirements.md",
+            "line": 43,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 87,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 40,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 42,
+            "basis": "design"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 36,
+            "basis": "code"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 37,
+            "basis": "code"
+          },
+          {
+            "path": "src/BankSupport.Web/Services/DocumentStore.cs",
+            "line": 22,
+            "basis": "code"
+          }
+        ],
+        "routing-triage": [
+          {
+            "path": "01-requirements.md",
+            "line": 54,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 62,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 67,
+            "basis": "design"
+          },
+          {
+            "path": "01-requirements.md",
+            "line": 69,
+            "basis": "design"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 42,
+            "basis": "code"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 48,
+            "basis": "code"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 55,
+            "basis": "code"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 152,
+            "basis": "code"
+          }
+        ],
+        "single-agent-tool-loop": [
+          {
+            "path": "01-requirements.md",
+            "line": 65,
+            "basis": "design"
+          }
+        ],
+        "event-driven-reactive-agents": [
+          {
+            "path": "01-requirements.md",
+            "line": 81,
+            "basis": "design"
+          },
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 107,
+            "basis": "design"
+          },
+          {
+            "path": "03-architect-diagram.py",
+            "line": 51,
+            "basis": "code"
+          },
+          {
+            "path": "04-implementation-plan.md",
+            "line": 8,
+            "basis": "design"
+          },
+          {
+            "path": "src/BankSupport.Web/Pages/Login.cshtml.cs",
+            "line": 33,
+            "basis": "code"
+          },
+          {
+            "path": "src/BankSupport.Web/Pages/Queue.cshtml.cs",
+            "line": 12,
+            "basis": "code"
+          },
+          {
+            "path": "src/BankSupport.Web/Program.cs",
+            "line": 31,
+            "basis": "code"
+          }
+        ],
+        "concurrent-fan-out-fan-in": [
+          {
+            "path": "01-requirements.md",
+            "line": 107,
+            "basis": "design"
+          }
+        ],
+        "human-in-the-loop": [
+          {
+            "path": "01-requirements.md",
+            "line": 116,
+            "basis": "design"
+          }
+        ],
+        "orchestrator-workers": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 16,
+            "basis": "design"
+          },
+          {
+            "path": "04-implementation-plan.md",
+            "line": 29,
+            "basis": "design"
+          }
+        ],
+        "local-identity": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 110,
+            "basis": "design"
+          },
+          {
+            "path": "src/BankSupport.Web/Models/Domain.cs",
+            "line": 3,
+            "basis": "code"
+          },
+          {
+            "path": "src/BankSupport.Web/Pages/Login.cshtml.cs",
+            "line": 9,
+            "basis": "code"
+          },
+          {
+            "path": "src/BankSupport.Web/Services/Installer.cs",
+            "line": 76,
+            "basis": "code"
+          },
+          {
+            "path": "src/BankSupport.Web/Services/Installer.cs",
+            "line": 106,
+            "basis": "code"
+          }
+        ],
+        "replay-recovery": [
+          {
+            "path": "02-architecture-assessment.md",
+            "line": 122,
+            "basis": "design"
+          },
+          {
+            "path": "04-implementation-plan.md",
+            "line": 38,
+            "basis": "design"
+          },
+          {
+            "path": "src/BankSupport.Web/Services/Installer.cs",
+            "line": 37,
+            "basis": "code"
+          }
+        ],
+        "telemetry": [
+          {
+            "path": "03-architect-diagram.py",
+            "line": 36,
+            "basis": "code"
+          },
+          {
+            "path": "src/BankSupport.Web/Program.cs",
+            "line": 75,
+            "basis": "code"
+          }
+        ],
+        "inventory": [
+          {
+            "path": "04-implementation-plan.md",
+            "line": 10,
+            "basis": "design"
+          }
+        ],
+        "public-ingress": [
+          {
+            "path": "infra/main.bicep",
+            "line": 95,
+            "basis": "code"
+          },
+          {
+            "path": "infra/main.bicep",
+            "line": 125,
+            "basis": "code"
+          }
+        ]
+      },
+      "inputs": {
+        "01-requirements.md": "5a30e71e02ac661052ece192264846e5c8931473cac9d0017d64fb7ea510a638",
+        "02-architecture-assessment.md": "88a1a05b5b74bcfbac6444a4b5c13ad805cae0a8386974dd92038f87f77a6132",
+        "03-architect-diagram.py": "58d0fedd49c9197449c22a631ba2b51069f7905b6a7b53faa9bc7e8549bce015",
+        "04-implementation-plan.md": "0d54530ed77e4354ec9aef824aece1e93bc179614f15ee910e6c959ab81bd6ad",
+        "azure.yaml": "000a62ee5d263eabc8649d596356dfdd492e1003b104d3f7d25ece0f26afebb9",
+        "infra/main.bicep": "af9653eacc77381b596212a36c6b41cbc4536b92916fb6f772e3f43da33db17f",
+        "src/BankSupport.Web/Models/Domain.cs": "18e3d1343cacd2b142d9386e9c4fd5187c1097f3beb11179137378356cf37379",
+        "src/BankSupport.Web/Pages/Error.cshtml.cs": "ff6a51a8c6d5d157df7af649666476dbc4fb135afbfed85cc020e47dc70c0acf",
+        "src/BankSupport.Web/Pages/Index.cshtml.cs": "49291be496b0c465b33b52074244d6eee858d48788d121a20e4ec258987c16a8",
+        "src/BankSupport.Web/Pages/Login.cshtml.cs": "5e68029a43d7e1a9c5997b8d4db8712d08b24219becf19c52516176822fdfed2",
+        "src/BankSupport.Web/Pages/Logout.cshtml.cs": "9f48f70a88702c155e2230591de1dfbcf38ad18e0f3dac457a321b3afff78e6b",
+        "src/BankSupport.Web/Pages/Privacy.cshtml.cs": "70104ba055a113a32fb54429adecb65797062193dd60693af9d12dd409d19dee",
+        "src/BankSupport.Web/Pages/Queue.cshtml.cs": "9719d9333a19ca9dc9c1000a827020dda1275a9e2b830c10da8199c95e227e63",
+        "src/BankSupport.Web/Program.cs": "2ff4f7d132130f22abf9fb045f55406908080896ed372c6392c5f5b249cf3923",
+        "src/BankSupport.Web/Services/BankingWorkflow.cs": "a0c95e206c8ffd9977ee36e8e39abf88d66a107dc4b6a0e16d031545ba908a00",
+        "src/BankSupport.Web/Services/DocumentStore.cs": "f90b68e041beb621e65545794d1c2da16b6172c8ebbbbdc85fe22d72358bbdae",
+        "src/BankSupport.Web/Services/FoundryGateway.cs": "e82221c6f889c8e1721d74b1325be60c0b343b6b8a73ee525427d63a6bc2af5e",
+        "src/BankSupport.Web/Services/Installer.cs": "d4ef3fc0105777b8f3ab39fcbcbef1087a21b848b30b96b71354a35b9baa1bf5",
+        "src/BankSupport.Web/Services/LocalAuthentication.cs": "781bb9f59b162438cecf5400db8083678e8bb9e1faf75002769d5531c63aa1c4",
+        "src/BankSupport.Web/wwwroot/js/site.js": "8514327ed5e2bb594b5f63fd2f2f716b88072602de475b86379a9e814a1bb46a",
+        "src/BankSupport.Web/wwwroot/lib/jquery-validation/LICENSE.md": "81e1c4930fd618f75a1d0311ab91ee358f6c9e588dcd4ff2d8e5bcc9c9e1197c"
+      },
+      "architectureSummary": "Case / ticket management; Parallel evidence checks; Entra identity; Event-driven workflow; Grounded document retrieval; Case handoff; Human decision gate; Stock / inventory workflow; Local application accounts; Orchestrator / workers; Public ingress; Read-only assistance; Replay / recovery handling; Routing / triage; Single-agent tool loop; Telemetry / sensor processing",
+      "patternEvidence": {
+        "designMentioned": [
+          "case-management",
+          "concurrent-fan-out-fan-in",
+          "entra-identity",
+          "event-driven-reactive-agents",
+          "grounded-retrieval",
+          "handoff-transfer-of-control",
+          "human-in-the-loop",
+          "inventory",
+          "local-identity",
+          "orchestrator-workers",
+          "read-only",
+          "replay-recovery",
+          "routing-triage",
+          "single-agent-tool-loop"
+        ],
+        "codeMentioned": [
+          "case-management",
+          "entra-identity",
+          "event-driven-reactive-agents",
+          "grounded-retrieval",
+          "handoff-transfer-of-control",
+          "local-identity",
+          "public-ingress",
+          "read-only",
+          "replay-recovery",
+          "routing-triage",
+          "telemetry"
+        ],
+        "implemented": "unknown-until-reviewed"
+      },
+      "omittedLargeTextFiles": 0,
+      "dimensions": {
+        "businessCapabilities": [
+          "case-management",
+          "concurrent-fan-out-fan-in",
+          "event-driven-reactive-agents",
+          "grounded-retrieval",
+          "handoff-transfer-of-control",
+          "human-in-the-loop",
+          "inventory",
+          "orchestrator-workers",
+          "read-only",
+          "replay-recovery",
+          "routing-triage",
+          "single-agent-tool-loop",
+          "telemetry"
+        ],
+        "dataPatterns": [
+          "grounded-retrieval",
+          "replay-recovery",
+          "telemetry"
+        ],
+        "integrationModes": [
+          "event-driven-reactive-agents",
+          "read-only"
+        ],
+        "humanDecisionPoints": [
+          "handoff-transfer-of-control",
+          "human-in-the-loop"
+        ],
+        "constraints": [
+          "entra-identity",
+          "local-identity",
+          "public-ingress"
+        ]
+      },
+      "limitations": [
+        "Text-derived retrieval features require review; code references are not runtime validation.",
+        "An absent feature means unknown, not unsupported. No deployment or consent evidence is included.",
+        "0 text files over 256000 bytes were omitted; environment settings and runtime evidence are excluded."
+      ]
+    }
+  }
+}

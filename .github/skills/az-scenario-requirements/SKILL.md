@@ -58,6 +58,47 @@ For normal **Start building**, ask material open questions first, then continue 
 they are resolved; an already descriptive brief requires no extra interview or approval gate.
 Brief confirmation is neither deployment authorization nor working-scenario suitability approval.
 
+## Catalog fit assessment during refinement
+
+The portal may show up to three deterministic local catalog suggestions while the user drafts a new idea.
+These are retrieval candidates, not AI verdicts, selections or evidence of implemented behavior.
+In this same scenario conversation, read `reuse-candidates.json` beside the immutable `request.json`.
+For chat-only intake, run `python scripts\scenario_match.py recommend --input <target-intake-json>`.
+Do not launch another agent, model session, worker or cloud service for matching.
+
+Compare outcome/workflow, implemented versus merely proposed patterns, grounding/data paths, tool reads versus
+consequential writes, human gates, integrations, recovery, identity/network boundaries and tenancy.
+Industry is a weak signal: a cross-industry reference can fit better than a same-industry reference.
+Inspect only bounded top-candidate architecture and relevant code read-only when useful.
+Use `scenarios/reuse-profiles/<source-slug>.json` for portable feature evidence, relative lines, input hashes,
+extraction date and review status. Design/code mentions are not proof of implementation or runtime success.
+Missing or stale metadata is unknown; inspect evidence rather than treating it as absent capability.
+Do not disclose credentials, cloud identity values, endpoints or host paths in the assessment.
+
+Add **Recommended starting point** to the refined brief: reuse, partial reuse or build fresh, with short evidence,
+important differences and a simpler/fresh alternative. Never invent reusable percentages or force a match.
+The user may ignore this recommendation; no-match or an unavailable reference must not block a fresh build.
+Never replace the target prompt, industry, units, pattern, services or project name with source intake.
+Normal Start building remains normal implementation, without an extra mandatory source-selection gate.
+
+A source chosen before intake save uses the existing `reuseSource` snapshot.
+An explicit source choice after refinement is recorded separately in `reuse-selection.json`, bound to the
+reviewed target brief and inspected source manifest/artifact hashes. It is a scoping-only change request,
+not authority to prepare, build or deploy. Preserve `request.json`.
+Assess this choice, revise `scoping.md` with keep/change/remove implications (or explain building fresh),
+include the exact `Reuse selection: <id>` marker from the selection record, then run:
+
+```powershell
+python scripts\scenario_adapt.py review-selection <target-slug>
+```
+
+This records the revised brief fingerprint, not consent. Wait for fresh brief confirmation.
+If source inputs changed, report the failure and have the user review/select the current source again.
+After confirmation, resolve the effective intake using `scenario_adapt.py effective-request <target-slug>`.
+If it contains `reuseSource`, load the adaptation skill and prepare/reconcile only then.
+A null late source choice explicitly requests building fresh; it also requires a revised brief and confirmation.
+During scoping, the only extra writes are candidate metadata and the review binding for an already explicit selection.
+
 ## Requirements procedure
 
 1. Read the user's prompt and existing scenario evidence. Use the portal's

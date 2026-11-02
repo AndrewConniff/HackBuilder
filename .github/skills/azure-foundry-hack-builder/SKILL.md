@@ -14,7 +14,7 @@ description: >
   submissions.
 ---
 
-# ABC Builder — Foundry hack authoring
+# FBC Builder — Foundry hack authoring
 
 Turn any input (a scenario, an industry, a customer ask, a product theme) into a
 complete set of Azure AI Foundry hack challenges. **Every hack this skill
@@ -40,7 +40,7 @@ An unsupported industry blocks composition pending an explicit decision to exten
 support or revise and reapprove the scenario. Never silently map another industry.
 In noninteractive jobs, persist the missing decision and stop.
 
-When this skill is used by ABC Builder, the scenario has four
+When this skill is used by FBC Builder, the scenario has four
 deliverables that share one design:
 
 - A **coach solution** that fully implements the agent in Azure AI Foundry,

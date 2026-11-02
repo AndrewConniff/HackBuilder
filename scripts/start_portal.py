@@ -65,7 +65,7 @@ def running_portal(expected_pid: int | None = None, expected_startup_id: str | N
             raise ValueError(
                 f"An outdated portal server is still running (PID {label}). "
                 "The launcher reuses servers; it does not restart them. "
-                "Finish or stop active workers, stop that server, then run Start-ABCBuilder.cmd again."
+                "Finish or stop active workers, stop that server, then run Start-FBCBuilder.cmd again."
             )
         return config
     except (ConnectionRefusedError, TimeoutError) as error:
@@ -86,7 +86,7 @@ def ensure_portal() -> dict:
     STATE.mkdir(exist_ok=True)
     environment = execution_environment(ROOT)
     startup_id = secrets.token_hex(32)
-    environment["ABCBUILDER_PORTAL_STARTUP_ID"] = startup_id
+    environment["FBCBUILDER_PORTAL_STARTUP_ID"] = startup_id
     virtual_environment = ROOT / ".venv"
     python = virtual_environment / ("Scripts/python.exe" if os.name == "nt" else "bin/python")
     if not python.is_file():
@@ -126,7 +126,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--hook", action="store_true", help="Return hook JSON without exposing the private URL.")
     args = parser.parse_args()
-    if os.environ.get("ABCBUILDER_PORTAL_JOB") == "1" or os.environ.get("HACKBUILDER_PORTAL_JOB") == "1":
+    if os.environ.get("FBCBUILDER_PORTAL_JOB") == "1" or os.environ.get("HACKBUILDER_PORTAL_JOB") == "1":
         if args.hook:
             print("{}")
         else:

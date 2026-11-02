@@ -44,7 +44,7 @@ class ScenarioChatTests(unittest.TestCase):
             ])
         prompt = f"Follow the attached {phase} handoff for {slug}. Report progress to portal_status.py."
         if trace:
-            prompt += f" ABC Builder chat trace: {trace}."
+            prompt += f" FBC Builder chat trace: {trace}."
         events = [
             {"type": "session.start", "data": {"sessionId": sdk_id}},
             {"type": "user.message", "data": {
@@ -90,6 +90,26 @@ class ScenarioChatTests(unittest.TestCase):
         self.assertEqual(f"agent-host-session://ahp-session/{editor_id}?connectionAuthority=local", result["resource"])
         self.assertEqual(before, database.read_bytes())
         self.assertNotIn("content", json.dumps(result))
+
+    def test_rebranding_preserves_exact_old_and_new_launch_trace_associations(self) -> None:
+        for index, initial in enumerate(("A", "F")):
+            brand = f"{initial}BC"
+            with self.subTest(brand=brand):
+                slug = f"brand-{index}"
+                trace = str(index) * 32
+                directory = portal_status.scenario_state(self.root, slug)
+                portal_status.write_json(directory / "scenario-chat-started.json", {"traceId": trace})
+                prompt = (
+                    f"Follow the attached scenario handoff for {slug}. Report progress to portal_status.py."
+                    f" {brand} Builder chat trace: {trace}."
+                )
+                editor_id, sdk_id = self.add_session(slug=slug, first_request=prompt)
+                result = scenario_chat.resolve(
+                    self.root, slug, "scenario", storage=self.storage, history=self.history,
+                )
+                self.assertEqual(editor_id, result["editorSessionId"])
+                self.assertEqual(sdk_id, result["sdkSessionId"])
+                self.assertEqual(trace, result["traceId"])
 
     def test_legacy_duplicates_use_latest_actual_successful_scenario_report(self) -> None:
         self.add_session(reported="2026-10-24T22:00:00Z")

@@ -1,0 +1,326 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "finance-security-hack",
+  "manifestDigest": "03cf0398f86ff00ac9b13ac80a08757c40fd30db31f84790cbec4dbf38b1377e",
+  "summary": "Locally discovered reference. Review its architecture and metadata before adapting.",
+  "metadataStatus": "needs-review",
+  "extractedAtUtc": "2026-10-30T01:07:54.583687+00:00",
+  "extractorVersion": 2,
+  "features": {
+    "grounded-retrieval": [
+      {
+        "path": "01-requirements.md",
+        "line": 35,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 87,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 125,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 172,
+        "basis": "design"
+      },
+      {
+        "path": "03-architect-diagram.py",
+        "line": 78,
+        "basis": "code"
+      },
+      {
+        "path": "src/Brokerage.Web/ChatService.cs",
+        "line": 43,
+        "basis": "code"
+      },
+      {
+        "path": "src/Brokerage.Web/ChatService.cs",
+        "line": 44,
+        "basis": "code"
+      },
+      {
+        "path": "src/Brokerage.Web/ChatService.cs",
+        "line": 49,
+        "basis": "code"
+      }
+    ],
+    "case-management": [
+      {
+        "path": "01-requirements.md",
+        "line": 92,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 172,
+        "basis": "design"
+      }
+    ],
+    "concurrent-fan-out-fan-in": [
+      {
+        "path": "01-requirements.md",
+        "line": 117,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 93,
+        "basis": "design"
+      }
+    ],
+    "public-ingress": [
+      {
+        "path": "01-requirements.md",
+        "line": 135,
+        "basis": "design"
+      }
+    ],
+    "private-network": [
+      {
+        "path": "01-requirements.md",
+        "line": 136,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 36,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 40,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 77,
+        "basis": "design"
+      },
+      {
+        "path": "infra/main.bicep",
+        "line": 38,
+        "basis": "code"
+      },
+      {
+        "path": "infra/main.bicep",
+        "line": 161,
+        "basis": "code"
+      },
+      {
+        "path": "infra/main.bicep",
+        "line": 181,
+        "basis": "code"
+      },
+      {
+        "path": "infra/main.bicep",
+        "line": 196,
+        "basis": "code"
+      }
+    ],
+    "human-in-the-loop": [
+      {
+        "path": "01-requirements.md",
+        "line": 148,
+        "basis": "design"
+      },
+      {
+        "path": "01-requirements.md",
+        "line": 173,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 109,
+        "basis": "design"
+      }
+    ],
+    "reconciliation": [
+      {
+        "path": "01-requirements.md",
+        "line": 161,
+        "basis": "design"
+      }
+    ],
+    "single-agent-tool-loop": [
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 11,
+        "basis": "design"
+      }
+    ],
+    "read-only": [
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 37,
+        "basis": "design"
+      }
+    ],
+    "entra-identity": [
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 43,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 45,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 86,
+        "basis": "design"
+      },
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 110,
+        "basis": "design"
+      },
+      {
+        "path": "infra/main.bicep",
+        "line": 11,
+        "basis": "code"
+      }
+    ],
+    "telemetry": [
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 88,
+        "basis": "design"
+      },
+      {
+        "path": "03-architect-diagram.py",
+        "line": 54,
+        "basis": "code"
+      }
+    ],
+    "event-driven-reactive-agents": [
+      {
+        "path": "02-architecture-assessment.md",
+        "line": 93,
+        "basis": "design"
+      }
+    ],
+    "inventory": [
+      {
+        "path": "04-implementation-plan.md",
+        "line": 11,
+        "basis": "design"
+      }
+    ],
+    "routing-triage": [
+      {
+        "path": "04-implementation-plan.md",
+        "line": 96,
+        "basis": "design"
+      },
+      {
+        "path": "infra/modules/workload.bicep",
+        "line": 83,
+        "basis": "code"
+      },
+      {
+        "path": "infra/modules/workload.bicep",
+        "line": 84,
+        "basis": "code"
+      }
+    ],
+    "handoff-transfer-of-control": [
+      {
+        "path": "04-implementation-plan.md",
+        "line": 112,
+        "basis": "design"
+      }
+    ]
+  },
+  "inputs": {
+    "01-requirements.md": "7ae6ba0ff029a65b6bdbb901aa95faf087f7e92e007971c1d9a154b81a0da005",
+    "02-architecture-assessment.md": "c87ee3f82e49cb3ba82e575ef8acf417251e936cb3fe77e103668be0dc8decc8",
+    "03-architect-diagram.py": "dc7bbbfd598e076f9fe92045143bc2484b0d3500b45af405ed6d7981db7ec7ad",
+    "04-implementation-plan.md": "7979a5f0f70bd4863ab00da596c87b0f2fc8cbe74dd29c61e3d556027af507b1",
+    "azure.yaml": "8d3f288bd2e603a18e33f6d105be32a94dfe396b4f7f80bc314df0edd03ab15b",
+    "infra/main.bicep": "63dbc0a1aae19cc298bc2f1b8a9fb7d32fa844b43614ae8c3065fa8b56dfd8f0",
+    "infra/modules/post-host.bicep": "5914dc9a1a9f4b789857b551f942081ce7733ac82bfed7b739fe36be6f839910",
+    "infra/modules/project.bicep": "c8f800fe54ce4daab825b3fa02178a1a095dde2eb31a3d134e1a45bf05f7840f",
+    "infra/modules/workload.bicep": "cfd89cc4a531f9f2df3edb6cfe877545392de58e7a1513e961567a6a708397f5",
+    "src/Brokerage.Web/AzureBrokerage.cs": "28f60e743c008c2d233bca74f204dd6251f7f19292d2e1e275007be405c33862",
+    "src/Brokerage.Web/ChatService.cs": "43170e5e11c5343ba2b87b40f1d1abf38cff17e7899afabda7d26dbd91d368f2",
+    "src/Brokerage.Web/Pages/Index.cshtml.cs": "1f56493b10e35824a00e1465317e45076438a345957e3a78a797cbc82eb4e054",
+    "src/Brokerage.Web/Program.cs": "85ae6acf639acb3ed81b95dc277aef835010164ce648f7087bba2bc9e73a4664",
+    "src/Brokerage.Web/UpstreamExceptionHandler.cs": "673d2d9c12c5bb1e8ad852afa2bca12211c902288e931d46c65a28395a86ba09",
+    "src/Brokerage.Web/WorkloadSettings.cs": "a6d125609b3016ae5f56de75cfadb7b8164e3fd019852646a78a02847492a1d7",
+    "src/Brokerage.Web/wwwroot/chat.js": "326f69fcaf54cc00f1af2481ecbc3015240fd1e14e244135f741c647eee8f948"
+  },
+  "architectureSummary": "Case / ticket management; Parallel evidence checks; Entra identity; Event-driven workflow; Grounded document retrieval; Case handoff; Human decision gate; Stock / inventory workflow; Private network boundary; Public ingress; Read-only assistance; Reconciliation / daily close; Routing / triage; Single-agent tool loop; Telemetry / sensor processing",
+  "patternEvidence": {
+    "designMentioned": [
+      "case-management",
+      "concurrent-fan-out-fan-in",
+      "entra-identity",
+      "event-driven-reactive-agents",
+      "grounded-retrieval",
+      "handoff-transfer-of-control",
+      "human-in-the-loop",
+      "inventory",
+      "private-network",
+      "public-ingress",
+      "read-only",
+      "reconciliation",
+      "routing-triage",
+      "single-agent-tool-loop",
+      "telemetry"
+    ],
+    "codeMentioned": [
+      "entra-identity",
+      "grounded-retrieval",
+      "private-network",
+      "routing-triage",
+      "telemetry"
+    ],
+    "implemented": "unknown-until-reviewed"
+  },
+  "omittedLargeTextFiles": 0,
+  "dimensions": {
+    "businessCapabilities": [
+      "case-management",
+      "concurrent-fan-out-fan-in",
+      "event-driven-reactive-agents",
+      "grounded-retrieval",
+      "handoff-transfer-of-control",
+      "human-in-the-loop",
+      "inventory",
+      "read-only",
+      "reconciliation",
+      "routing-triage",
+      "single-agent-tool-loop",
+      "telemetry"
+    ],
+    "dataPatterns": [
+      "grounded-retrieval",
+      "telemetry"
+    ],
+    "integrationModes": [
+      "event-driven-reactive-agents",
+      "read-only"
+    ],
+    "humanDecisionPoints": [
+      "handoff-transfer-of-control",
+      "human-in-the-loop"
+    ],
+    "constraints": [
+      "entra-identity",
+      "private-network",
+      "public-ingress"
+    ]
+  },
+  "limitations": [
+    "Text-derived retrieval features require review; code references are not runtime validation.",
+    "An absent feature means unknown, not unsupported. No deployment or consent evidence is included.",
+    "0 text files over 256000 bytes were omitted; environment settings and runtime evidence are excluded."
+  ]
+}

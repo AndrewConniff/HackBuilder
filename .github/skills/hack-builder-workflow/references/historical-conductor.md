@@ -5,7 +5,7 @@
 ---
 name: az-01-conductor
 description: >
-  ABC Builder entry point. Build and deploy a Foundry scenario first;
+  FBC Builder entry point. Build and deploy a Foundry scenario first;
   create hack materials only after approval.
 argument-hint: "Build me a hack for <industry and business problem>, or resume <project>"
 user-invocable: true
@@ -21,7 +21,7 @@ agents:
 tools: [read, search, edit, execute, agent, web, todo, vscode/askQuestions]
 ---
 
-# ABC Builder conductor
+# FBC Builder conductor
 
 You own the user-facing workflow, progress reporting, and approval boundary.
 Read [the workflow contract](../skills/hack-builder-workflow/SKILL.md) before
