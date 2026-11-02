@@ -1,0 +1,5 @@
+{
+  "checkedAtUtc": "2026-10-28T14:38:35.121072+00:00",
+  "identity": "Web SCM managed identity",
+  "output": "{\"Output\": \"\", \"Error\": \"Traceback (most recent call last):\\n  File \\\"/home/data/equip-runtime-probe.py\\\", line 8, in <module>\\n    os.environ[\\\"IDENTITY_ENDPOINT\\\"] + \\\"?\\\" + query.replace(\\\"2018-02-01\\\", \\\"2019-08-01\\\"), headers={\\\"X-IDENTITY-HEADER\\\": os.environ[\\\"IDENTITY_HEADER\\\"]})\\n    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"<frozen os>\\\", line 685, in __getitem__\\nKeyError: 'IDENTITY_ENDPOINT'\\n\", \"ExitCode\": 1}"
+}

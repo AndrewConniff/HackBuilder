@@ -1,0 +1,20 @@
+{
+  "command": [
+    "az",
+    "vm",
+    "list-skus",
+    "--location",
+    "centralus",
+    "--size",
+    "Standard_B2s",
+    "--all",
+    "--subscription",
+    "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "--output",
+    "json"
+  ],
+  "startedAtUtc": "2026-10-24T23:32:54.594410+00:00",
+  "finishedAtUtc": "2026-10-24T23:36:00.256431+00:00",
+  "exitCode": 0,
+  "stderr": ""
+}

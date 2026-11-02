@@ -1,0 +1,48 @@
+{
+  "checkedAtUtc": "2026-10-24T19:26:51.631004+00:00",
+  "projectSlug": "equip-ai",
+  "status": "passed",
+  "validationScope": "requirements, catalog metadata and retained architecture document consistency only",
+  "industry": "Manufacturing & Mobility",
+  "businessUnits": [
+    "operations"
+  ],
+  "services": [
+    "foundry",
+    "storage",
+    "app-service",
+    "managed-identity",
+    "virtual-network",
+    "monitor"
+  ],
+  "pillars": [],
+  "domains": [],
+  "companyRecord": 1,
+  "personRecords": [
+    1,
+    2
+  ],
+  "rejectedCompanyRecords": [
+    7,
+    11,
+    25,
+    33
+  ],
+  "templateHeadings": "passed",
+  "manifestValidation": "passed; scenario-scoped refresh; no shared catalog export",
+  "cloudOperationsPerformed": false,
+  "implementationValidated": false,
+  "runtimeValidated": false,
+  "designConfirmationRequired": true,
+  "historicalEvidenceImportedAsAuthorization": false,
+  "dependencies": {
+    "hosting": ".NET 10 self-contained linux-x64 ZIP; no Docker or remote image builds",
+    "packages": "dependency-inventory.json; approved NuGet proxy; actual restore/build deferred",
+    "bicepAndDiagrams": "retained AVM modules and PNGs; current build/render checks deferred",
+    "iotHub": "required B2 dependency outside service catalog; SDK and live ingress checks deferred",
+    "entra": "preserve dedicated identity outputs; authorized ownership/readback and assignments pending",
+    "privateManagement": "connected publishing/agent runner not evidenced; no connectivity changes authorized",
+    "cost": "historical Central US USD 151.53/month illustration excludes private runner/connectivity",
+    "cloudReadiness": "exact targets, current quota/model/policy/what-if require separate portal permission"
+  }
+}

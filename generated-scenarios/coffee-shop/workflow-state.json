@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "phase": "hack-authoring",
+  "scenarioStatus": "ready-for-review",
+  "referenceFingerprint": "3be67e02fd1b4246759f567203e037070ff9447bf9a634d3f555d545e954871c",
+  "reviewRequestedAtUtc": "2026-10-25T00:05:44.863906+00:00",
+  "approval": {
+    "decision": "approved",
+    "message": "Approve suitability with disclosed limitations",
+    "recordedAtUtc": "2026-10-25T00:36:37.015752+00:00",
+    "referenceFingerprint": "3be67e02fd1b4246759f567203e037070ff9447bf9a634d3f555d545e954871c"
+  },
+  "evidenceType": "runtime-validation"
+}

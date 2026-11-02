@@ -1,0 +1,14 @@
+{
+  "stage": "diagrams",
+  "status": "completed",
+  "summary": "Rendered and inspected both confirmed-design diagrams with matching retained Python sources, identity/private-data paths, three-agent handoff, validation gates, bounds, signing and human review. README and target-only curated manifest updated. No Azure operations or later stages performed.",
+  "evidence": [
+    "python generated-scenarios\\manu-multi-agent\\03-architect-diagram.py: passed, exit 0; final PNG 4013 x 4921.",
+    "python generated-scenarios\\manu-multi-agent\\04-runtime-diagram.py: passed, exit 0; final PNG 2394 x 5627.",
+    "generated-scenarios\\manu-multi-agent\\.diagram-evidence\\verification.json: passed actual Pillow PNG verify/load and nonblank checks, AST parsing, 120-character line limits, README relative links, curated manifest scope and both diagram artifact entries; source and PNG SHA-256 recorded.",
+    "Visually inspected final PNGs: ordered runtime gates readable, labels separated, all four proposed subnets shown, PaaS resources outside subnet boundaries, direct child Foundry project and three pinned agent roles shown. These are design views, not live execution or deployment evidence.",
+    "generated-scenarios\\manu-multi-agent\\README.md: embeds both diagrams with descriptive alt text, reproduction commands, diagram legend, aggregate-endpoint/RBAC explanations, pending IaC reconciliation and updated execution record.",
+    "Used scripts.scenario_catalog.refresh target-only library operation with .diagram-evidence\\reviewed-metadata.json: passed. CLI main always exports shared scenarios\\catalog.json; direct refresh reused the same manifest helper without prohibited shared repository writes. Source provenance and selected services unchanged.",
+    "No infra, azure.yaml or application exists yet; no implementation/runtime success, scenario suitability approval, package composition or team deployment claimed."
+  ]
+}

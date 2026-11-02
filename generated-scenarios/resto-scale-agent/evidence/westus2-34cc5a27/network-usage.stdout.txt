@@ -1,0 +1,629 @@
+[
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/VirtualNetworks",
+    "limit": "1000",
+    "localName": "Virtual Networks",
+    "name": {
+      "localizedValue": "Virtual Networks",
+      "value": "VirtualNetworks"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/CustomIpPrefixes",
+    "limit": "5",
+    "localName": "Custom Ip Prefixes",
+    "name": {
+      "localizedValue": "Custom Ip Prefixes",
+      "value": "CustomIpPrefixes"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/PublicIpPrefixes",
+    "limit": "2147483647",
+    "localName": "Public Ip Prefixes",
+    "name": {
+      "localizedValue": "Public Ip Prefixes",
+      "value": "PublicIpPrefixes"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/PublicIPAddresses",
+    "limit": "1000",
+    "localName": "Public IP Addresses",
+    "name": {
+      "localizedValue": "Public IP Addresses",
+      "value": "PublicIPAddresses"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/IPv4BasicSkuPublicIpAddresses",
+    "limit": "0",
+    "localName": "Public IPv4 Addresses - Basic",
+    "name": {
+      "localizedValue": "Public IPv4 Addresses - Basic",
+      "value": "IPv4BasicSkuPublicIpAddresses"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/IPv6BasicSkuPublicIpAddresses",
+    "limit": "0",
+    "localName": "Public IPv6 Addresses - Basic",
+    "name": {
+      "localizedValue": "Public IPv6 Addresses - Basic",
+      "value": "IPv6BasicSkuPublicIpAddresses"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/IPv4StandardSkuPublicIpAddresses",
+    "limit": "1000",
+    "localName": "Public IPv4 Addresses - Standard",
+    "name": {
+      "localizedValue": "Public IPv4 Addresses - Standard",
+      "value": "IPv4StandardSkuPublicIpAddresses"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/IPv6StandardSkuPublicIpAddresses",
+    "limit": "1000",
+    "localName": "Public IPv6 Addresses - Standard",
+    "name": {
+      "localizedValue": "Public IPv6 Addresses - Standard",
+      "value": "IPv6StandardSkuPublicIpAddresses"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/IPv4GlobalTierPublicIpAddresses",
+    "limit": "20",
+    "localName": "Public IPv4 Addresses - Global Tier",
+    "name": {
+      "localizedValue": "Public IPv4 Addresses - Global Tier",
+      "value": "IPv4GlobalTierPublicIpAddresses"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/IPv6GlobalTierPublicIpAddresses",
+    "limit": "20",
+    "localName": "Public IPv6 Addresses - Global Tier",
+    "name": {
+      "localizedValue": "Public IPv6 Addresses - Global Tier",
+      "value": "IPv6GlobalTierPublicIpAddresses"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/IPv4InternetRoutingPreferencePublicIpAddresses",
+    "limit": "20",
+    "localName": "Public IPv4 Addresses - Internet Routing Preference",
+    "name": {
+      "localizedValue": "Public IPv4 Addresses - Internet Routing Preference",
+      "value": "IPv4InternetRoutingPreferencePublicIpAddresses"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/IPv6InternetRoutingPreferencePublicIpAddresses",
+    "limit": "20",
+    "localName": "Public IPv6 Addresses - Internet Routing Preference",
+    "name": {
+      "localizedValue": "Public IPv6 Addresses - Internet Routing Preference",
+      "value": "IPv6InternetRoutingPreferencePublicIpAddresses"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/NetworkSecurityGroups",
+    "limit": "5000",
+    "localName": "Network Security Groups",
+    "name": {
+      "localizedValue": "Network Security Groups",
+      "value": "NetworkSecurityGroups"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/NatGateways",
+    "limit": "500",
+    "localName": "Nat Gateways",
+    "name": {
+      "localizedValue": "Nat Gateways",
+      "value": "NatGateways"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/NetworkInterfaces",
+    "limit": "65536",
+    "localName": "Network Interfaces",
+    "name": {
+      "localizedValue": "Network Interfaces",
+      "value": "NetworkInterfaces"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/PrivateEndpoints",
+    "limit": "65536",
+    "localName": "Private Endpoints",
+    "name": {
+      "localizedValue": "Private Endpoints",
+      "value": "PrivateEndpoints"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/PrivateEndpointRedirectMaps",
+    "limit": "2147483647",
+    "localName": "Private Endpoint Redirect Maps",
+    "name": {
+      "localizedValue": "Private Endpoint Redirect Maps",
+      "value": "PrivateEndpointRedirectMaps"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/LoadBalancers",
+    "limit": "1000",
+    "localName": "Load Balancers",
+    "name": {
+      "localizedValue": "Load Balancers",
+      "value": "LoadBalancers"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/PrivateLinkServices",
+    "limit": "1800",
+    "localName": "Private Link Services",
+    "name": {
+      "localizedValue": "Private Link Services",
+      "value": "PrivateLinkServices"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/PrivateLinkServicesDirectConnect",
+    "limit": "10",
+    "localName": "Private Link Services Direct Connect",
+    "name": {
+      "localizedValue": "Private Link Services Direct Connect",
+      "value": "PrivateLinkServicesDirectConnect"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/ApplicationGateways",
+    "limit": "1000",
+    "localName": "Application Gateways",
+    "name": {
+      "localizedValue": "Application Gateways",
+      "value": "ApplicationGateways"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/RouteTables",
+    "limit": "600",
+    "localName": "Route Tables",
+    "name": {
+      "localizedValue": "Route Tables",
+      "value": "RouteTables"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/RouteFilters",
+    "limit": "1000",
+    "localName": "Route Filters",
+    "name": {
+      "localizedValue": "Route Filters",
+      "value": "RouteFilters"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/NetworkInterfaceTapConfiguration",
+    "limit": "10",
+    "localName": "Network Interface Tap Configuration.",
+    "name": {
+      "localizedValue": "Network Interface Tap Configuration.",
+      "value": "NetworkInterfaceTapConfiguration"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/NetworkWatchers",
+    "limit": "1",
+    "localName": "Network Watchers",
+    "name": {
+      "localizedValue": "Network Watchers",
+      "value": "NetworkWatchers"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/PacketCaptures",
+    "limit": "10000",
+    "localName": "Packet Captures",
+    "name": {
+      "localizedValue": "Packet Captures",
+      "value": "PacketCaptures"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/ApplicationSecurityGroups",
+    "limit": "3000",
+    "localName": "Application Security Groups.",
+    "name": {
+      "localizedValue": "Application Security Groups.",
+      "value": "ApplicationSecurityGroups"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/DdosProtectionPlans",
+    "limit": "1",
+    "localName": "DDoS Protection Plans.",
+    "name": {
+      "localizedValue": "DDoS Protection Plans.",
+      "value": "DdosProtectionPlans"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/DdosCustomPolicies",
+    "limit": "200",
+    "localName": "DDoS customized policies",
+    "name": {
+      "localizedValue": "DDoS customized policies",
+      "value": "DdosCustomPolicies"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/ServiceEndpointPolicies",
+    "limit": "500",
+    "localName": "Service Endpoint Policies",
+    "name": {
+      "localizedValue": "Service Endpoint Policies",
+      "value": "ServiceEndpointPolicies"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/NetworkIntentPolicies",
+    "limit": "2000",
+    "localName": "Network Intent Policies",
+    "name": {
+      "localizedValue": "Network Intent Policies",
+      "value": "NetworkIntentPolicies"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/StandardSkuLoadBalancers",
+    "limit": "1000",
+    "localName": "Standard Sku Load Balancers",
+    "name": {
+      "localizedValue": "Standard Sku Load Balancers",
+      "value": "StandardSkuLoadBalancers"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/ServiceSkuLoadBalancers",
+    "limit": "10000",
+    "localName": "Service Sku Load Balancers",
+    "name": {
+      "localizedValue": "Service Sku Load Balancers",
+      "value": "ServiceSkuLoadBalancers"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/AuxiliaryModeEnabledNetworkInterfaces",
+    "limit": "10",
+    "localName": "Auxiliary Mode Enabled Network Interfaces",
+    "name": {
+      "localizedValue": "Auxiliary Mode Enabled Network Interfaces",
+      "value": "AuxiliaryModeEnabledNetworkInterfaces"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/VirtualNetworkAppliances",
+    "limit": "2",
+    "localName": "Virtual Network Appliances",
+    "name": {
+      "localizedValue": "Virtual Network Appliances",
+      "value": "VirtualNetworkAppliances"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/DnsServersPerVirtualNetwork",
+    "limit": "20",
+    "localName": "DNS servers per Virtual Network",
+    "name": {
+      "localizedValue": "DNS servers per Virtual Network",
+      "value": "DnsServersPerVirtualNetwork"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/CustomDnsServersPerP2SVpnGateway",
+    "limit": "5",
+    "localName": "Custom DNS servers per P2SVpnGateway",
+    "name": {
+      "localizedValue": "Custom DNS servers per P2SVpnGateway",
+      "value": "CustomDnsServersPerP2SVpnGateway"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/SubnetsPerVirtualNetwork",
+    "limit": "3000",
+    "localName": "Subnets per Virtual Network",
+    "name": {
+      "localizedValue": "Subnets per Virtual Network",
+      "value": "SubnetsPerVirtualNetwork"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/IPConfigurationsPerVirtualNetwork",
+    "limit": "65536",
+    "localName": "IP Configurations per Virtual Network",
+    "name": {
+      "localizedValue": "IP Configurations per Virtual Network",
+      "value": "IPConfigurationsPerVirtualNetwork"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/IPV6ConfigurationsPerNetworkInterface",
+    "limit": "8",
+    "localName": "IPV6 Configurations per Network Interface",
+    "name": {
+      "localizedValue": "IPV6 Configurations per Network Interface",
+      "value": "IPV6ConfigurationsPerNetworkInterface"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/PeeringsPerVirtualNetwork",
+    "limit": "650",
+    "localName": "Peerings per Virtual Network",
+    "name": {
+      "localizedValue": "Peerings per Virtual Network",
+      "value": "PeeringsPerVirtualNetwork"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/PrefixesPerSubnet",
+    "limit": "25",
+    "localName": "Prefixes per Subnet",
+    "name": {
+      "localizedValue": "Prefixes per Subnet",
+      "value": "PrefixesPerSubnet"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/SecurityRulesPerNetworkSecurityGroup",
+    "limit": "2000",
+    "localName": "Security rules per Network Security Group",
+    "name": {
+      "localizedValue": "Security rules per Network Security Group",
+      "value": "SecurityRulesPerNetworkSecurityGroup"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/SecurityRulesPerNetworkIntentPolicy",
+    "limit": "100",
+    "localName": "Security rules per Network Intent Policy",
+    "name": {
+      "localizedValue": "Security rules per Network Intent Policy",
+      "value": "SecurityRulesPerNetworkIntentPolicy"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/RoutesPerNetworkIntentPolicy",
+    "limit": "200",
+    "localName": "Routes per Network Intent Policy",
+    "name": {
+      "localizedValue": "Routes per Network Intent Policy",
+      "value": "RoutesPerNetworkIntentPolicy"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/SecurityRuleAddressesOrPortsPerNetworkSecurityGroup",
+    "limit": "6000",
+    "localName": "Security rules addresses or ports per Network Security Group",
+    "name": {
+      "localizedValue": "Security rules addresses or ports per Network Security Group",
+      "value": "SecurityRuleAddressesOrPortsPerNetworkSecurityGroup"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/InboundRulesPerLoadBalancer",
+    "limit": "250",
+    "localName": "Inbound Rules per Load Balancer",
+    "name": {
+      "localizedValue": "Inbound Rules per Load Balancer",
+      "value": "InboundRulesPerLoadBalancer"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/FrontendIPConfigurationPerLoadBalancer",
+    "limit": "200",
+    "localName": "Frontend IP Configurations per Load Balancer",
+    "name": {
+      "localizedValue": "Frontend IP Configurations per Load Balancer",
+      "value": "FrontendIPConfigurationPerLoadBalancer"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/OutboundRulesPerLoadBalancer",
+    "limit": "5",
+    "localName": "Outbound Rules per Load Balancer",
+    "name": {
+      "localizedValue": "Outbound Rules per Load Balancer",
+      "value": "OutboundRulesPerLoadBalancer"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/RoutesPerRouteTable",
+    "limit": "1000",
+    "localName": "Routes per Route Table",
+    "name": {
+      "localizedValue": "Routes per Route Table",
+      "value": "RoutesPerRouteTable"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/RoutesWithServiceTagPerRouteTable",
+    "limit": "25",
+    "localName": "Routes with service tag per Route Table",
+    "name": {
+      "localizedValue": "Routes with service tag per Route Table",
+      "value": "RoutesWithServiceTagPerRouteTable"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/SecondaryIPConfigurationsPerNetworkInterface",
+    "limit": "256",
+    "localName": "Secondary IP Configurations per Network Interface",
+    "name": {
+      "localizedValue": "Secondary IP Configurations per Network Interface",
+      "value": "SecondaryIPConfigurationsPerNetworkInterface"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/SecondaryIPConfigurationsPerPrivateEndpointNetworkInterface",
+    "limit": "500",
+    "localName": "Secondary IP Configurations per PrivateEndpoint Network Interface",
+    "name": {
+      "localizedValue": "Secondary IP Configurations per PrivateEndpoint Network Interface",
+      "value": "SecondaryIPConfigurationsPerPrivateEndpointNetworkInterface"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/InboundNatOrLbRulesPerNetworkInterface",
+    "limit": "300",
+    "localName": "Inbound rules per Network Interface",
+    "name": {
+      "localizedValue": "Inbound rules per Network Interface",
+      "value": "InboundNatOrLbRulesPerNetworkInterface"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/RouteFilterRulesPerRouteFilter",
+    "limit": "1",
+    "localName": "Route filter rules per Route Filter",
+    "name": {
+      "localizedValue": "Route filter rules per Route Filter",
+      "value": "RouteFilterRulesPerRouteFilter"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/RouteFiltersPerExpressRouteBgpPeering",
+    "limit": "1",
+    "localName": "Route filters per Express route BGP Peering",
+    "name": {
+      "localizedValue": "Route filters per Express route BGP Peering",
+      "value": "RouteFiltersPerExpressRouteBgpPeering"
+    },
+    "unit": "Count"
+  },
+  {
+    "currentValue": "0",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/westus2/usages/MinPublicIpInterNetworkPrefixLength",
+    "limit": "28",
+    "localName": "Public IPv4 Prefix Length",
+    "name": {
+      "localizedValue": "Public IPv4 Prefix Length",
+      "value": "MinPublicIpInterNetworkPrefixLength"
+    },
+    "unit": "Count"
+  }
+]

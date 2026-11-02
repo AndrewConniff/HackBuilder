@@ -1,0 +1,10 @@
+.azure/
+.private/
+**/bin/
+**/obj/
+**/__pycache__/
+TestResults/
+infra/main.json
+infra/review.json
+evidence/identity-installation.json
+evidence/agent-installation.json

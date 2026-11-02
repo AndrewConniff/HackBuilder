@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Adatum Corporation</title>
+    <link rel="stylesheet" href="~/css/brokerage.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <a asp-page="/Index" class="brand">Adatum Corporation</a>
+        <nav aria-label="Main navigation">
+            <a asp-page="/Index" aria-current="@(ViewContext.RouteData.Values["page"]?.ToString() == "/Index" ? "page" : null)">Customer support</a>
+            @if (User.IsInRole("Coach"))
+            {
+                <a asp-page="/Desk" aria-current="@(ViewContext.RouteData.Values["page"]?.ToString() == "/Desk" ? "page" : null)">Representative desk</a>
+            }
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <span>@User.Identity.Name</span>
+                <form method="post" asp-page="/Login" asp-page-handler="Logout"><button class="secondary">Sign out</button></form>
+            }
+        </nav>
+    </header>
+    <main id="main">@RenderBody()</main>
+    <footer>Financial Services demonstration. Synthetic company policies; not financial, legal or tax advice.</footer>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

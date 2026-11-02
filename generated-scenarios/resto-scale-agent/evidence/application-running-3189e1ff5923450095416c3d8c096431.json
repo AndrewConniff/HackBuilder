@@ -1,0 +1,10 @@
+{
+  "stage": "application",
+  "status": "running",
+  "summary": "Resuming confirmed local application implementation after actual approved-proxy verification. Verify pinned dependencies with explicit repository NuGet configuration before building the business application. No cloud operations authorized.",
+  "evidence": [
+    "Application prerequisite audit at 2026-10-23T06:38:50.360532+00:00: all checks ok:true, current run 3189e1ff5923450095416c3d8c096431.",
+    "Current official prompt-agent quickstart and function-calling documentation inspected on 2026-10-23: use Azure.AI.Projects, Azure.AI.Projects.Agents and Azure.AI.Extensions.OpenAI, new project API.",
+    "Approved proxy advertised HTTPS PackageBaseAddress; numeric version sorting confirms Azure.Identity 1.21.0, Microsoft.Azure.Cosmos 3.63.2, Azure.Messaging.ServiceBus 7.21.0, Azure.Security.KeyVault.Keys 4.10.2, Azure.AI.Projects 2.0.1, Azure.AI.Projects.Agents 2.0.0, Azure.AI.Extensions.OpenAI 2.0.0 and Microsoft.AspNetCore.Authentication.JwtBearer 10.0.13."
+  ]
+}

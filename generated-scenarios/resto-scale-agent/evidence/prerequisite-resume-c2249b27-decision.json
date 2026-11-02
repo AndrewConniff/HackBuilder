@@ -1,0 +1,21 @@
+{
+  "stage": "diagrams",
+  "status": "waiting_for_user",
+  "summary": "Decision required: this actual worker still cannot resolve Graphviz dot despite the recorded verification. Python diagrams is installed. No explicit Graphviz path was supplied or configured. Existing design and answers are preserved; no shared tooling changed or Azure operations performed.",
+  "evidence": [
+    "python -c \"import importlib.util,json,shutil; print(json.dumps({'dot':shutil.which('dot'),'diagramsInstalled':importlib.util.find_spec('diagrams') is not None}))\" returned {\"dot\": null, \"diagramsInstalled\": true}.",
+    "Get-Command dot -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source returned no executable path; combined prerequisite probe exited 1.",
+    "Worker environment inspection found no GRAPHVIZ configuration. Current worker run is c2249b272c2649d6a8a5c5d763f631b6.",
+    "generated-scenarios\\resto-scale-agent\\evidence\\prerequisite-resume-c2249b27-running.json"
+  ],
+  "decision": {
+    "kind": "business",
+    "question": "Provide the existing full dot.exe path through the portal, or correct the PATH inherited by a newly launched worker and verify dot -V there, before resuming resto-scale-agent?",
+    "reason": "The actual worker still reports no executable path. Repeating the prior affirmative answer has not corrected its inherited environment. An administrator must coordinate the existing Graphviz installation outside this worker; shared tools must not be installed or upgraded by this job. A verified explicit executable path permits a targeted check without changing shared PATH. This does not request design reconfirmation or cloud authorization.",
+    "choices": [
+      "Verified executable path supplied or actual worker PATH corrected; resume",
+      "Stop"
+    ],
+    "acceptChoice": "Verified executable path supplied or actual worker PATH corrected; resume"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "runtime-build",
+  "command": "az bicep build --file C:\\azd-projects\\resto-scale-agent\\infra\\runtime.bicep --outfile C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\runtime.arm.json",
+  "cwd": "C:\\HackBuilder",
+  "exitCode": 0,
+  "stdout": "",
+  "stderr": "",
+  "checkedAtUtc": "2026-10-23T23:47:29.126874+00:00"
+}

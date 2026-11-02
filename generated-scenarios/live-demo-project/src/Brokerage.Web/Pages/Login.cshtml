@@ -1,0 +1,17 @@
+@page
+@model Brokerage.Web.Pages.LoginModel
+@{
+    ViewData["Title"] = "Sign in";
+}
+<p class="eyebrow">ADATUM CORPORATION / LOCAL DEMO ACCOUNT</p>
+<h1>Welcome to customer support</h1>
+<p>Use your privately supplied participant or representative account. This is not a Microsoft sign-in.</p>
+<form method="post">
+    <div asp-validation-summary="All" role="alert" class="error"></div>
+    <label asp-for="Username">Username</label>
+    <input asp-for="Username" autocomplete="username" required />
+    <label asp-for="Password">Password</label>
+    <input asp-for="Password" type="password" autocomplete="current-password" required />
+    <button type="submit">Sign in</button>
+</form>
+<p class="notice">Synthetic demonstration only. No trades or personal investment advice.</p>

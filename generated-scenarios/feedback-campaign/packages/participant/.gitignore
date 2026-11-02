@@ -1,0 +1,5 @@
+.azure/
+.private/
+evidence/
+**/__pycache__/
+.env

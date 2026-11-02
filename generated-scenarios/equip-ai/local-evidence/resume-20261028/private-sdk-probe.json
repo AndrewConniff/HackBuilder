@@ -1,0 +1,5 @@
+{
+  "checkedAtUtc": "2026-10-28T14:43:50.781060+00:00",
+  "identity": "Existing management VM managed identity; not deploying-user or web-identity acceptance",
+  "output": "Enable succeeded: \n[stdout]\n{\"operation\": \"private-sdk-agent-probe\", \"exitCode\": 0, \"stdout\": \"{\\\"operation\\\":\\\"native-sdk-agent-probe\\\",\\\"status\\\":\\\"Completed\\\",\\\"outputItems\\\":1}\\n\", \"stderr\": \"\"}\nEQUIP_SDK_PROBE_OK\n\n[stderr]\n"
+}

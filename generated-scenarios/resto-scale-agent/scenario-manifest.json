@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "resto-scale-agent",
+  "title": "Fourth Coffee: five-floor restaurant agents under load",
+  "summary": "Generic Hospitality & Travel five-floor, 250-seat restaurant reference with scoped guest and staff Foundry agents, deterministic transactions, durable kitchen handoffs and separate transaction/AI scaling.",
+  "industry": "Hospitality & Travel",
+  "businessUnits": [
+    "generic"
+  ],
+  "services": [
+    "foundry",
+    "cosmos-db",
+    "container-apps",
+    "key-vault",
+    "managed-identity",
+    "service-bus",
+    "virtual-network",
+    "monitor"
+  ],
+  "pillars": [
+    "reliability",
+    "performance-efficiency"
+  ],
+  "domains": [
+    "scaling"
+  ],
+  "artifacts": [
+    "01-requirements.md",
+    "02-architecture-assessment.md",
+    "04-implementation-plan.md",
+    "03-architect-diagram.png",
+    "04-runtime-diagram.png",
+    "azure.yaml",
+    "infra",
+    "src"
+  ],
+  "source": null,
+  "metadataStatus": "curated"
+}

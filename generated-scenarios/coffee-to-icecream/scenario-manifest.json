@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "coffee-to-icecream",
+  "title": "Northwind Traders ice-cream stock and daily close",
+  "summary": "Deployed operations-led recipe stock, spoilage, approved orders and scoped Orchestrator-Workers P&L. Local/business/security and recovery checks pass; latency and narrative-grounding acceptance remain unresolved. Not suitability-approved.",
+  "industry": "Hospitality & Travel",
+  "businessUnits": [
+    "operations"
+  ],
+  "services": [
+    "foundry",
+    "app-service"
+  ],
+  "pillars": [
+    "performance-efficiency"
+  ],
+  "domains": [
+    "cost-controls"
+  ],
+  "artifacts": [
+    "01-requirements.md",
+    "02-architecture-assessment.md",
+    "04-implementation-plan.md",
+    "03-architect-diagram.png",
+    "04-runtime-diagram.png",
+    "azure.yaml",
+    "infra",
+    "src"
+  ],
+  "source": {
+    "scenarioId": "coffee-shop",
+    "manifestDigest": "3aefae14b6dbfd6cfcc0bea6d5ee4372d6fd87905b1fe0fc5ceb4ccd2359837f"
+  },
+  "metadataStatus": "curated"
+}

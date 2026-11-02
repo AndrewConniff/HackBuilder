@@ -1,0 +1,10 @@
+{
+  "stage": "diagrams",
+  "status": "running",
+  "summary": "Resuming the confirmed reference design with all recorded answers preserved. Checking the fresh worker's Graphviz prerequisite before diagram generation; local-only tool permission is recorded and cloud authorizations remain empty.",
+  "evidence": [
+    "python scripts\\portal_workflow.py read: revision 28; designConfirmed true; all five prior decisions answered; authorizations empty; current writer 89a12cc60a4e49c6b93f5171080afb24.",
+    "Read-only Python prerequisite probe exited 0: diagrams available; Python, dotnet, az and azd resolved; shutil.which('dot') returned None.",
+    "No shared tool installation, Azure operations, suitability approval or composition."
+  ]
+}

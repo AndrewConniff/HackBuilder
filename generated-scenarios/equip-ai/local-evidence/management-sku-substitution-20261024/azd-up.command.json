@@ -1,0 +1,6 @@
+{
+  "command": "azd up --environment equip-ai --no-prompt",
+  "startedAtUtc": "2026-10-24T23:58:04.2774145Z",
+  "finishedAtUtc": "2026-10-25T00:10:00.0785947Z",
+  "exitCode": 1
+}

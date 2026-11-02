@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Bellows College</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header>
+        <strong>Bellows College</strong><span>Teaching material review</span>
+        <nav aria-label="Primary">
+            <a asp-page="/Index" aria-current="page">Material review</a>
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <span>@User.Identity.Name · @User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value</span>
+                <form method="post" asp-page="/Index" asp-page-handler="Logout"><button>Sign out</button></form>
+            }
+        </nav>
+    </header>
+    <main id="main">@RenderBody()</main>
+    <footer>Synthetic reference · Education · Generic workflow · Human approval required</footer>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

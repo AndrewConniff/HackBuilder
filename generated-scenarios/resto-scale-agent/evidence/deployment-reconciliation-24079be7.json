@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "runId": "24079be747de4ded9fff6d1fd6594e2d",
+  "evidenceDateUtc": "2026-10-23",
+  "operation": "deployment",
+  "mode": "read-only-reconciliation",
+  "checks": [
+    {
+      "command": "az account show --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --query '{account:user.name,subscriptionId:id,tenantId:tenantId,state:state}' --output json",
+      "exitCode": 0,
+      "result": {
+        "account": "petender@microsoft.com",
+        "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+        "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+        "state": "Enabled"
+      }
+    },
+    {
+      "command": "az deployment group show --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --resource-group rg-resto-scale-agent --name reference-shared-8608c198 --output json --only-show-errors",
+      "exitCode": 1,
+      "errorCode": "ResourceGroupNotFound",
+      "message": "Resource group 'rg-resto-scale-agent' could not be found."
+    },
+    {
+      "command": "az resource list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --resource-group rg-resto-scale-agent --output json --only-show-errors",
+      "exitCode": 1,
+      "errorCode": "ResourceGroupNotFound",
+      "message": "Resource group 'rg-resto-scale-agent' could not be found."
+    },
+    {
+      "command": "az deployment operation group list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --resource-group rg-resto-scale-agent --name reference-shared-8608c198 --query \"[?properties.provisioningState=='Failed']\" --output json --only-show-errors",
+      "exitCode": 1,
+      "errorCode": "ResourceGroupNotFound",
+      "message": "Resource group 'rg-resto-scale-agent' could not be found."
+    },
+    {
+      "command": "az group exists --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --name rg-resto-scale-agent --output json --only-show-errors",
+      "exitCode": 0,
+      "result": false
+    }
+  ],
+  "historicalDeployment": {
+    "name": "reference-shared-8608c198",
+    "provisioningState": "Failed",
+    "timestamp": "2026-10-23T18:59:00.786943+00:00",
+    "evidence": [
+      "evidence\\deployment-final-8608c198.json",
+      "evidence\\deployment-operations-final-8608c198.json",
+      "evidence\\resources-final-8608c198.json"
+    ],
+    "failures": [
+      {
+        "resource": "cosmos",
+        "code": "ServiceUnavailable",
+        "message": "East US 2 availability-zone account capacity could not fulfill creation; Azure directs a region access request to https://aka.ms/cosmosdbquota."
+      },
+      {
+        "resource": "registry",
+        "code": "NetworkRuleNotSupported",
+        "message": "The requested feature virtual network rule is not supported for the SKU Basic."
+      }
+    ]
+  },
+  "currentResourceGroupExists": false,
+  "reasonForGroupDisappearance": null,
+  "cloudMutationsPerformedThisRun": false,
+  "runtimeValidationPerformed": false,
+  "conclusion": "Decision required. Do not recreate the absent target, silently retry known failures, weaken zone redundancy, change region/SKU or proceed to runtime. Retained authorization expressly requires stopping on capacity/provider failures."
+}

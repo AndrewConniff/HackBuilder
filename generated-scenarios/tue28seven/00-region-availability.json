@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "evidenceType": "subscription_readiness_partial",
+  "checkedAtUtc": "2026-10-29T03:14:15.302183+00:00",
+  "subscriptionName": "MCAPS-Hybrid-REQ-152516-2026-petender",
+  "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+  "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+  "requestedRegions": [],
+  "candidateRegions": ["eastus2", "swedencentral"],
+  "selectedRegion": null,
+  "provisionalRegion": null,
+  "model": {
+    "name": "gpt-4.1",
+    "version": "2025-04-14",
+    "deploymentType": "GlobalStandard",
+    "sku": "GlobalStandard",
+    "proposedCapacity": 10,
+    "quotaStatus": "sufficient_in_both_candidates",
+    "quotaUsageName": "OpenAI.GlobalStandard.gpt4.1",
+    "capacityStatus": "not_reserved_allocation_unproven",
+    "lifecycleStatus": "Legacy",
+    "listedGlobalStandardDeprecationDate": "2027-04-14T00:00:00Z",
+    "residency": "Global processing; no geography-restricted processing claim"
+  },
+  "results": [
+    {"resource": "Microsoft.CognitiveServices/accounts", "kind": "AIServices", "sku": "S0", "status": "provider_registered_full_feature_eligibility_pending"},
+    {"resource": "Microsoft.CognitiveServices/accounts/projects", "setup": "Basic with private inbound", "status": "public_design_supported_private_acceptance_pending"},
+    {"feature": "Two saved prompt agents and Responses API", "status": "SDK_compiles_live_feature_acceptance_pending"},
+    {"model": "gpt-4.1", "version": "2025-04-14", "deploymentType": "GlobalStandard", "status": "listed_and_quota_sufficient_in_both_candidates"},
+    {"resource": "Microsoft.Web/serverfarms", "sku": "B1 Linux", "status": "eastus2_failed_swedencentral_unknown"},
+    {"resource": "Microsoft.Web/sites", "runtime": ".NET 10", "status": "runtime_and_region_not_live_checked"},
+    {"resource": "Microsoft.Storage/storageAccounts", "sku": "Standard_LRS", "features": ["Blob", "private endpoint", "RBAC"], "status": "not_live_checked"},
+    {"resource": "Microsoft.Compute/virtualMachines", "sku": "Standard_D2s_v5", "count": 1, "requiredVcpu": 2, "status": "eastus2_restricted_swedencentral_SKU_and_quota_pass"},
+    {"resource": "Microsoft.Network/bastionHosts", "sku": "Basic", "status": "not_live_checked"},
+    {"resource": "Microsoft.Network/privateEndpoints", "count": 2, "status": "not_live_checked"},
+    {"resource": "Microsoft.Network/privateDnsZones", "zones": ["privatelink.cognitiveservices.azure.com", "privatelink.openai.azure.com", "privatelink.services.ai.azure.com", "privatelink.blob.core.windows.net"], "status": "exact_service_DNS_configuration_pending"},
+    {"resource": "Microsoft.OperationalInsights/workspaces", "sku": "PerGB2018", "status": "not_live_checked"},
+    {"resource": "Microsoft.Insights/components", "sku": "workspace-based", "status": "not_live_checked"}
+  ],
+  "regionalResults": [
+    {
+      "region": "eastus2",
+      "wholeDesignStatus": "rejected",
+      "vmSku": {
+        "name": "Standard_D2s_v5",
+        "family": "standardDSv5Family",
+        "status": "restricted",
+        "reasonCode": "NotAvailableForSubscription",
+        "restrictionType": "Location",
+        "checkedAtUtc": "2026-10-29T03:11:19.419855+00:00"
+      },
+      "computeQuota": [
+        {"name": "cores", "used": 0, "required": 2, "limit": 100, "sufficient": true},
+        {"name": "standardDSv5Family", "used": 0, "required": 2, "limit": 100, "sufficient": true},
+        {"name": "virtualMachines", "used": 0, "required": 1, "limit": 25000, "sufficient": true}
+      ],
+      "modelQuota": {
+        "name": "OpenAI.GlobalStandard.gpt4.1", "used": 0, "required": 10, "limit": 1000,
+        "sufficient": true, "checkedAtUtc": "2026-10-29T03:13:04.343527+00:00"
+      },
+      "appService": {
+        "sku": "B1", "linuxListed": true, "skuQuotaStatus": "insufficient",
+        "used": 0, "required": 1, "limit": 0
+      },
+      "reasons": ["Exact operator VM SKU has a subscription location restriction", "B1 worker quota is zero"]
+    },
+    {
+      "region": "swedencentral",
+      "wholeDesignStatus": "unknown",
+      "vmSku": {
+        "name": "Standard_D2s_v5",
+        "family": "standardDSv5Family",
+        "status": "no_restrictions_returned",
+        "restrictions": [],
+        "checkedAtUtc": "2026-10-29T03:13:21.042323+00:00"
+      },
+      "computeQuota": [
+        {"name": "cores", "used": 2, "required": 2, "limit": 100, "sufficient": true},
+        {"name": "standardDSv5Family", "used": 2, "required": 2, "limit": 100, "sufficient": true},
+        {"name": "virtualMachines", "used": 1, "required": 1, "limit": 25000, "sufficient": true}
+      ],
+      "modelQuota": {
+        "name": "OpenAI.GlobalStandard.gpt4.1", "used": 0, "required": 10, "limit": 1000,
+        "sufficient": true, "checkedAtUtc": "2026-10-29T03:13:05.125086+00:00"
+      },
+      "appService": {
+        "sku": "B1", "linuxListed": true, "skuQuotaStatus": "unknown",
+        "used": null, "required": 1, "limit": null,
+        "regionalTotal": {"name": "*", "used": 0, "limit": 11},
+        "note": "All three location-name variants return only a regional total, not a SKU-specific B1 limit."
+      },
+      "reasons": ["Exact B1 worker limit not returned", "Remaining whole-design checks pending"]
+    }
+  ],
+  "subscriptionObservations": {
+    "providerRegistrations": "All eight required namespaces registered, including lower-case microsoft.insights",
+    "policyAssignmentsListed": 3,
+    "policyEffectsAndTemplateCompliance": "not_validated",
+    "humanPrincipalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+    "humanPrincipalSource": "Current CLI ARM token claims decoded locally; token not retained; no Graph request",
+    "effectiveArmPermissions": "Wildcard actions observed with no notActions in that permission entry",
+    "effectiveCognitiveDataPermissions": "Microsoft.CognitiveServices/* observed",
+    "privateDataAdministration": "not_tested",
+    "storageDataGrants": "not_verified"
+  },
+  "rejectedRegions": ["eastus2"],
+  "rejectionNote": "East US 2 fails exact VM eligibility and B1 quota; Sweden Central is unknown, not passed.",
+  "recommendation": "Keep selectedRegion null. Resolve exact Sweden Central B1 eligibility or obtain read-only authority for additional candidate regions. Do not silently substitute resources or request quota.",
+  "pendingLiveChecks": [
+    "Resolve exact Microsoft.Web B1 quota for Sweden Central; regional total alone is insufficient",
+    "Validate policy effects and template compliance",
+    "Validate inherited storage data roles and complete resource-scoped human access",
+    "Check actual allocation capacity during an authorized deployment; quota reserves no capacity",
+    "Foundry private inbound, project, agent and model compatibility",
+    "Microsoft.Web B1 Linux worker quota and .NET 10 stack support",
+    "Network address overlap, private endpoint DNS and operator connectivity",
+    "Existing inherited roles before proposing duplicate scoped grants",
+    "Exact ARM what-if and generated runtime dependencies"
+  ],
+  "sources": [
+    "https://learn.microsoft.com/azure/foundry/agents/environment-setup",
+    "https://learn.microsoft.com/azure/foundry/agents/concepts/limits-quotas-regions",
+    "https://learn.microsoft.com/azure/foundry/agents/concepts/prompt-agents",
+    "https://learn.microsoft.com/azure/foundry/agents/quickstarts/prompt-agent",
+    "https://learn.microsoft.com/azure/foundry/agents/how-to/virtual-networks",
+    "https://learn.microsoft.com/dotnet/api/overview/azure/ai.extensions.openai-readme?view=azure-dotnet",
+    "https://mcr.microsoft.com/v2/bicep/avm/res/cognitive-services/account/tags/list",
+    "https://prices.azure.com/api/retail/prices",
+    "https://learn.microsoft.com/troubleshoot/azure/app-service/troubleshoot-non-zone-redundant-quota-requests"
+  ]
+}

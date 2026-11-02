@@ -1,0 +1,122 @@
+[
+  {
+    "feedbackId": "HF-0001",
+    "guestId": "G-001",
+    "guestName": "Airi Ilves",
+    "hotelId": "HOTEL-01",
+    "language": "en",
+    "category": "check-in",
+    "text": "Check-in took forty minutes. The receptionist explained the delay politely.",
+    "observedAt": "2026-10-10T12:00:00Z"
+  },
+  {
+    "feedbackId": "HF-0002",
+    "guestId": "G-002",
+    "guestName": "Hasan Ibrahimov",
+    "hotelId": "HOTEL-01",
+    "language": "es",
+    "category": "check-in",
+    "text": "Esperé treinta minutos para registrarme. El personal fue amable, pero faltaba información.",
+    "observedAt": "2026-10-10T12:00:00Z"
+  },
+  {
+    "feedbackId": "HF-0003",
+    "guestId": "G-003",
+    "guestName": "Nemanja Milatovic",
+    "hotelId": "HOTEL-01",
+    "language": "fr",
+    "category": "check-in",
+    "text": "L'enregistrement a été rapide et les explications sur le petit-déjeuner étaient claires.",
+    "observedAt": "2026-10-10T12:00:00Z"
+  },
+  {
+    "feedbackId": "HF-0004",
+    "guestId": "G-004",
+    "guestName": "Nino Kapanadze",
+    "hotelId": "HOTEL-01",
+    "language": "ja",
+    "category": "check-in",
+    "text": "チェックインに四十分かかりました。遅れの説明がなく、不安でした。",
+    "observedAt": "2026-10-11T12:00:00Z"
+  },
+  {
+    "feedbackId": "HF-0005",
+    "guestId": "G-005",
+    "guestName": "Petra Bartosova",
+    "hotelId": "HOTEL-01",
+    "language": "en",
+    "category": "housekeeping",
+    "text": "The bathroom was clean, but fresh towels arrived only after a second request.",
+    "observedAt": "2026-10-11T12:00:00Z"
+  },
+  {
+    "feedbackId": "HF-0006",
+    "guestId": "G-006",
+    "guestName": "Eesha Chatterjee",
+    "hotelId": "HOTEL-01",
+    "language": "es",
+    "category": "housekeeping",
+    "text": "La habitación estaba limpia, pero no repusieron las toallas hasta la segunda llamada.",
+    "observedAt": "2026-10-11T12:00:00Z"
+  },
+  {
+    "feedbackId": "HF-0007",
+    "guestId": "G-007",
+    "guestName": "Aliaksei Kunets",
+    "hotelId": "HOTEL-01",
+    "language": "fr",
+    "category": "housekeeping",
+    "text": "La salle de bains était propre. Les serviettes demandées sont arrivées en dix minutes.",
+    "observedAt": "2026-10-11T12:00:00Z"
+  },
+  {
+    "feedbackId": "HF-0008",
+    "guestId": "G-008",
+    "guestName": "Josef Cizek",
+    "hotelId": "HOTEL-01",
+    "language": "ja",
+    "category": "housekeeping",
+    "text": "部屋は清潔でしたが、タオルの追加を二回お願いする必要がありました。",
+    "observedAt": "2026-10-12T12:00:00Z"
+  },
+  {
+    "feedbackId": "HF-0009",
+    "guestId": "G-009",
+    "guestName": "Yonas Demeke",
+    "hotelId": "HOTEL-02",
+    "language": "en",
+    "category": "breakfast",
+    "text": "Breakfast had fresh fruit, but the coffee queue moved slowly.",
+    "observedAt": "2026-10-12T12:00:00Z"
+  },
+  {
+    "feedbackId": "HF-0010",
+    "guestId": "G-010",
+    "guestName": "Akihito Sato",
+    "hotelId": "HOTEL-02",
+    "language": "es",
+    "category": "staff",
+    "text": "El equipo de recepción me ayudó con una solicitud y explicó las opciones con paciencia.",
+    "observedAt": "2026-10-12T12:00:00Z"
+  },
+  {
+    "feedbackId": "HF-0011",
+    "guestId": "G-011",
+    "guestName": "Josefine Karlsen",
+    "hotelId": "HOTEL-02",
+    "language": "fr",
+    "category": "noise",
+    "text": "Le bruit du couloir m'a réveillé deux fois pendant la nuit.",
+    "observedAt": "2026-10-12T12:00:00Z"
+  },
+  {
+    "feedbackId": "HF-0012",
+    "guestId": "G-012",
+    "guestName": "Stepan Vacek",
+    "hotelId": "HOTEL-02",
+    "language": "ja",
+    "category": "staff",
+    "text": "スタッフは朝食の時間を丁寧に説明してくれました。親切な対応でした。",
+    "observedAt": "2026-10-13T12:00:00Z"
+  }
+]

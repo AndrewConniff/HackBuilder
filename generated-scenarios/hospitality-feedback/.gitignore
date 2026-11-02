@@ -1,0 +1,10 @@
+.tools/
+.azure/
+**/bin/
+**/obj/
+TestResults/
+.local/
+*.user
+target-authorization.json
+deployment-authorization.json
+*.tokens.json

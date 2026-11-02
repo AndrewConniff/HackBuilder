@@ -1,0 +1,129 @@
+{
+  "changes": [
+    {
+      "after": {
+        "apiVersion": "2024-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent",
+        "location": "centralus",
+        "name": "rg-resto-scale-agent",
+        "tags": {
+          "Environment": "resto-scale-agent",
+          "ManagedBy": "Bicep",
+          "Project": "resto-scale-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Resources/resourceGroups"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2026-02-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-dc9a173f4d0b5f6",
+        "location": "centralus",
+        "name": "kv-resto-dc9a173f4d0b5f6",
+        "properties": {
+          "createMode": "default",
+          "enablePurgeProtection": true,
+          "enableRbacAuthorization": true,
+          "enableSoftDelete": true,
+          "enabledForDeployment": false,
+          "enabledForDiskEncryption": false,
+          "enabledForTemplateDeployment": false,
+          "networkAcls": {
+            "bypass": "None",
+            "defaultAction": "Allow"
+          },
+          "publicNetworkAccess": "Enabled",
+          "sku": {
+            "family": "A",
+            "name": "standard"
+          },
+          "softDeleteRetentionInDays": 90,
+          "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3"
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "tags": {
+          "Environment": "resto-scale-agent",
+          "ManagedBy": "Bicep",
+          "Project": "resto-scale-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.KeyVault/vaults"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-dc9a173f4d0b5f6",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2026-02-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-dc9a173f4d0b5f6/keys/guest-session",
+        "name": "guest-session",
+        "properties": {
+          "attributes": {
+            "enabled": true,
+            "exp": 1808357083
+          },
+          "curveName": "P-256",
+          "keyOps": [
+            "sign",
+            "verify"
+          ],
+          "keySize": 3072,
+          "kty": "RSA",
+          "rotationPolicy": {
+            "attributes": {
+              "expiryTime": "P180D"
+            },
+            "lifetimeActions": [
+              {
+                "action": {
+                  "type": "rotate"
+                },
+                "trigger": {
+                  "timeAfterCreate": "P90D"
+                }
+              }
+            ]
+          }
+        },
+        "resourceGroup": "rg-resto-scale-agent",
+        "tags": {
+          "Environment": "resto-scale-agent",
+          "ManagedBy": "Bicep",
+          "Project": "resto-scale-agent",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.KeyVault/vaults/keys"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-dc9a173f4d0b5f6/keys/guest-session",
+      "symbolicName": null,
+      "unsupportedReason": null
+    }
+  ],
+  "diagnostics": null,
+  "error": null,
+  "potentialChanges": null,
+  "status": "Succeeded"
+}

@@ -1,0 +1,59 @@
+{
+  "status": "prepared-not-executed",
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "resto-scale-agent",
+    "resourceGroup": "rg-resto-scale-agent",
+    "region": "centralus"
+  },
+  "directoryWritesAuthorized": false,
+  "installer": "scripts\\setup_identity.py",
+  "changes": [
+    "Create or reconcile exactly two marker-owned single-tenant registrations: staff API and secretless native/public token client.",
+    "Create or reconcile their same-tenant, marker-owned service principals with appRoleAssignmentRequired true.",
+    "Expose only access_as_user delegated scope on the API, request v2 access tokens, and define Manager/Host/Server/Kitchen plus Floor.1-Floor.5 user app roles.",
+    "Set API identifier URI using its actual generated client ID. Configure public-client localhost redirect and only this API's delegated scope. No API web redirect or runtime hostname is required for this token-based staff UI.",
+    "No password, certificate, Graph application permission, preauthorization, tenant-wide admin consent, user/group creation or automatic manager assignment is performed.",
+    "Later authorized staff assignment uses POST /servicePrincipals/{actual-api-sp-id}/appRoleAssignedTo for the approved user's business role plus floor roles (Manager already spans all floors). Assign the same approved user to the native-client principal using its default access role. Unassigned users remain denied.",
+    "Tenant-permitted delegated consent for the scenario API scope is separate; no oauth2PermissionGrant is automatically created."
+  ],
+  "permissionRequirements": {
+    "applicationCreate": "Current Graph v1.0 documents AppRegistration.Create as least privilege; tenant member creation policy or Application Developer capability still applies.",
+    "applicationReadUpdate": "Delegated Application.ReadWrite.All plus effective ownership/tenant capability; application-only Application.ReadWrite.OwnedBy may be an approved installer alternative, not selected automatically.",
+    "servicePrincipalCreateUpdate": "Delegated Application.ReadWrite.All; current create documentation requires an Application Developer or supported scoped application-management role for owned single-tenant apps. Effective capabilities are not proven by Azure subscription Owner.",
+    "staffRoleAssignments": "Separate AppRoleAssignment.ReadWrite.All and Application.Read.All, with an effective supported Entra role/custom capability such as scoped application management. These are installer permissions only, never runtime application permissions.",
+    "delegatedConsent": "Tenant user-consent policy may allow access_as_user; otherwise an authorized consent administrator must handle only the reviewed permission. No claim of tenant admin necessity without actual policy evidence.",
+    "quotaProviderRegistration": "Microsoft.Resources/subscriptions/providers/register/action for Microsoft.Quota would be an additional subscription mutation, currently not authorized; it is not tooling installation and is not performed."
+  },
+  "lifecycle": [
+    "Present this exact directory/install scope, actual independent ARM preview, costs, missing quota facts and dependent checks in consolidated exact-target consent; do not execute from read-only preparation.",
+    "Only after separate recorded directory authorization, run setup_identity.py with the exact scope file and --authorize-directory-install. Errors stop execution; no permission fallback or elevation.",
+    "Installer discovers by stable name plus cryptographic target marker, rejects ambiguous/unowned registrations/principals, captures generated object/client IDs automatically after each step and verifies configured outputs.",
+    "After separately authorized shared-infrastructure provisioning, capture actual Foundry project endpoint, environment domain, managed identity IDs and exact per-environment Consumption usage. Require measured quota >= 28 rollout vCPU before app rollout; do not infer zero or a default quota.",
+    "Capture image digest and real agent versions through the existing publication/initializer sequence only within authorized scope.",
+    "prepare_runtime.py consumes --identity-receipt and actual infrastructure/initializer outputs; staff audience is generated, not user input. Optional legacy --audience can only match the generated audience.",
+    "azd predeploy hook exports generated STAFF_TENANT_ID/STAFF_AUDIENCE/STAFF_CLIENT_ID to the exact already-existing environment after scope verification. It performs no Graph call, initialization or cloud mutation.",
+    "Repreview dependent runtime/grants with actual outputs, refresh readiness and obtain any remaining exact-target rollout authorization before deployment. Run live sign-in, wrong-role, cross-floor, wrong-tenant and agent tests afterward."
+  ],
+  "outputsNotInputs": [
+    "api.clientId", "api.objectId", "api.servicePrincipalId",
+    "client.clientId", "client.objectId", "client.servicePrincipalId",
+    "staffAudience", "roleIds", "delegatedScope", "Foundry project endpoint",
+    "managed identity principal/client IDs", "ACA domain", "image digest", "agent versions"
+  ],
+  "sources": [
+    "https://learn.microsoft.com/en-us/graph/api/application-post-applications?view=graph-rest-1.0",
+    "https://learn.microsoft.com/en-us/graph/api/application-update?view=graph-rest-1.0",
+    "https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-serviceprincipals?view=graph-rest-1.0",
+    "https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-approleassignedto?view=graph-rest-1.0",
+    "https://learn.microsoft.com/en-us/entra/fundamentals/users-default-permissions"
+  ],
+  "limitations": [
+    "Only offline installer tests ran. No Graph reads/writes or consent/role-assignment tests were authorized or executed.",
+    "Default-deny principal assignment remains pending until authorized staff installation; receipt installed=true means registrations verified, not staff login or end-to-end success.",
+    "No generated identity IDs or endpoints are requested from the user. Authorized human staff roster is distinct from installation-generated resource IDs.",
+    "No new installer route, administrator questionnaire or business decision is created."
+  ]
+}

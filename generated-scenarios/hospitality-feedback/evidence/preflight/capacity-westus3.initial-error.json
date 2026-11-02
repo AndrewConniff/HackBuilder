@@ -1,0 +1,6 @@
+{
+  "checkedAtUtc": "2026-10-22T18:15:29.2320227Z",
+  "command": "az rest --method get --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/westus3/modelCapacities?api-version=2024-10-01&modelFormat=OpenAI&modelName=gpt-4.1-mini&modelVersion=2025-04-14",
+  "exitCode": 1,
+  "output": "ERROR: Bad Request({\"error\":{\"code\":\"ParameterIsMissing\",\"message\":\"Query parameter modelFormat is required.\"}})\r\n'modelFormat' is not recognized as an internal or external command,\r\noperable program or batch file.\r\n'modelName' is not recognized as an internal or external command,\r\noperable program or batch file.\r\n'modelVersion' is not recognized as an internal or external command,\r\noperable program or batch file.\r\n"
+}

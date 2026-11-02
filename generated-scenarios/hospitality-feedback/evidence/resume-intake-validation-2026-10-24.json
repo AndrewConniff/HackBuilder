@@ -1,0 +1,46 @@
+{
+  "checkedAtUtc": "2026-10-24T17:35:10.754000+00:00",
+  "status": "passed",
+  "scope": "recovered_intake_and_document_consistency_only",
+  "fixtureCount": 12,
+  "rejectedCompanyRecords": [
+    7,
+    11,
+    25,
+    33
+  ],
+  "businessUnits": [
+    "generic"
+  ],
+  "businessUnitBasis": "documented legacy fallback; not department targeting",
+  "requiredHeadings": {
+    "01-requirements": [
+      "Project Overview",
+      "Functional Requirements",
+      "Non-Functional Requirements (NFRs)",
+      "Summary for Architecture Assessment"
+    ],
+    "02-architecture-assessment": [
+      "Requirements Validation",
+      "Resource SKU Recommendations",
+      "Architecture Decision Summary",
+      "Implementation Handoff"
+    ]
+  },
+  "preservedAssetSha256": {
+    "data/feedback.json": "e65b979b2306a0d8c6218875bf87728065680fe9aae1f84400dfde3422823d3f",
+    "data/provenance.json": "568b02e9f2884a7157ad384e0099977a05933465fbeefb60557e5beed545da51",
+    "azure.yaml": "88435a8d27681fcb29f9a74bae2b763929f04336a1230dd61b47cd267bebe1b7",
+    "infra/main.bicep": "7df66061974e12899841a2cd7ab15219864ae637694f18a4af7e15d17916414e",
+    "infra/workload.bicep": "72d086483270a0056eddd871a9333aba920d5e264d37bd6240076d30e4c8693b",
+    "src/HospitalityFeedback.Web/Program.cs": "2390167bebe03311b201c18ce0478e7685138d99398d76ee5cf2fa4fd6599136",
+    "src/HospitalityFeedback.Web/Services/FoundryAgent.cs": "0552269b970e6003f966d35af5319e363a066d60566a0a591afe2f22c116205e",
+    "03-architect-diagram.png": "948ef69d25114ab03c3d4ce38d24ae25eadd142939640c5929cd94a72c023de8",
+    "04-runtime-diagram.png": "4d217697165da0ab39e579bdc56987d5eef68f9237148aa0e8fea2d9535c7250"
+  },
+  "applicationTestsRun": false,
+  "cloudOperationsExecuted": false,
+  "historicalCloudEvidenceRevalidated": false,
+  "designConfirmed": false,
+  "liveAcceptanceClaimed": false
+}

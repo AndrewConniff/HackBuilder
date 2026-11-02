@@ -1,0 +1,38 @@
+{
+  "architecture": "x64",
+  "automaticOSUpgradeProperties": {
+    "automaticOSUpgradeSupported": false
+  },
+  "dataDiskImages": [],
+  "disallowed": {
+    "vmDiskType": "Unmanaged"
+  },
+  "features": [
+    {
+      "name": "SecurityType",
+      "value": "TrustedLaunchSupported"
+    },
+    {
+      "name": "IsAcceleratedNetworkSupported",
+      "value": "True"
+    },
+    {
+      "name": "DiskControllerTypes",
+      "value": "SCSI, NVMe"
+    },
+    {
+      "name": "IsHibernateSupported",
+      "value": "True"
+    }
+  ],
+  "hyperVGeneration": "V2",
+  "id": "/Subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/Providers/Microsoft.Compute/Locations/centralus/Publishers/Canonical/ArtifactTypes/VMImage/Offers/ubuntu-24_04-lts/Skus/server/Versions/24.04.202610210",
+  "imageDeprecationStatus": {
+    "imageState": "Active"
+  },
+  "location": "centralus",
+  "name": "24.04.202610210",
+  "osDiskImage": {
+    "operatingSystem": "Linux"
+  }
+}

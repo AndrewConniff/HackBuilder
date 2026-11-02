@@ -1,0 +1,200 @@
+{
+  "checkedAtUtc": "2026-10-24T22:44:00.012552+00:00",
+  "region": "centralus",
+  "currency": "USD",
+  "status": "refreshed_baseline_only_incomplete_total",
+  "items": [
+    {
+      "name": "hosting",
+      "meterId": "e348d2df-93d8-45c5-a957-916f825c4d2b",
+      "meterName": "B2",
+      "unit": "1 Hour",
+      "unitPriceUsd": 0.035,
+      "quantity": 730,
+      "monthlyUsd": 25.55,
+      "refreshedPriceMatched": true,
+      "tierMinimumUnits": [
+        0.0
+      ]
+    },
+    {
+      "name": "iot",
+      "meterId": "ef8d357b-60be-4c2e-9e66-e879a8250a05",
+      "meterName": "B2 Unit",
+      "unit": "1/Month",
+      "unitPriceUsd": 50.0,
+      "quantity": 1,
+      "monthlyUsd": 50.0,
+      "refreshedPriceMatched": true,
+      "tierMinimumUnits": [
+        0.0
+      ]
+    },
+    {
+      "name": "endpoint",
+      "meterId": "e6ab7238-e433-4fe0-a2b2-2b2564df2cdb",
+      "meterName": "Standard Private Endpoint",
+      "unit": "1 Hour",
+      "unitPriceUsd": 0.01,
+      "quantity": 2190,
+      "monthlyUsd": 21.900000000000002,
+      "refreshedPriceMatched": true,
+      "tierMinimumUnits": [
+        0.0
+      ]
+    },
+    {
+      "name": "endpoint-data",
+      "meterId": "10caa28b-6479-4852-9eb7-610870cb6417",
+      "meterName": "Standard Data Processed - Ingress",
+      "unit": "1 GB",
+      "unitPriceUsd": 0.01,
+      "quantity": 2000,
+      "monthlyUsd": 20.0,
+      "refreshedPriceMatched": true,
+      "tierMinimumUnits": [
+        0.0
+      ]
+    },
+    {
+      "name": "dns-zone",
+      "meterId": "0b608a26-f611-4232-8192-ce81b6b57194",
+      "meterName": "Private Zone",
+      "unit": "1",
+      "unitPriceUsd": 0.5,
+      "quantity": 5,
+      "monthlyUsd": 2.5,
+      "refreshedPriceMatched": true,
+      "tierMinimumUnits": [
+        0.0
+      ]
+    },
+    {
+      "name": "dns-query",
+      "meterId": "46cff9cb-4b15-4af0-bf41-25143827fef8",
+      "meterName": "Private Queries",
+      "unit": "1M",
+      "unitPriceUsd": 0.4,
+      "quantity": 1,
+      "monthlyUsd": 0.4,
+      "refreshedPriceMatched": true,
+      "tierMinimumUnits": [
+        0.0
+      ]
+    },
+    {
+      "name": "blob-capacity",
+      "meterId": "06cd85e2-e7d6-49a3-bc94-2c31c8f7d433",
+      "meterName": "Hot LRS Data Stored",
+      "unit": "1 GB/Month",
+      "unitPriceUsd": 0.0184,
+      "quantity": 1,
+      "monthlyUsd": 0.0184,
+      "refreshedPriceMatched": true,
+      "tierMinimumUnits": [
+        0.0
+      ]
+    },
+    {
+      "name": "blob-write",
+      "meterId": "8778022c-ce89-4ebf-8f3a-646bff3faf28",
+      "meterName": "Hot LRS Write Operations",
+      "unit": "10K",
+      "unitPriceUsd": 0.05,
+      "quantity": 17.28,
+      "monthlyUsd": 0.8640000000000001,
+      "refreshedPriceMatched": true,
+      "tierMinimumUnits": [
+        0.0
+      ]
+    },
+    {
+      "name": "blob-read",
+      "meterId": "8b6d2696-456c-41e1-a09e-73efeb109a63",
+      "meterName": "Hot Read Operations",
+      "unit": "10K",
+      "unitPriceUsd": 0.004,
+      "quantity": 480,
+      "monthlyUsd": 1.92,
+      "refreshedPriceMatched": true,
+      "tierMinimumUnits": [
+        0.0
+      ]
+    },
+    {
+      "name": "blob-list",
+      "meterId": "8778022c-ce89-4ebf-8f3a-646bff3faf28",
+      "meterName": "LRS List and Create Container Operations",
+      "unit": "10K",
+      "unitPriceUsd": 0.05,
+      "quantity": 2,
+      "monthlyUsd": 0.1,
+      "refreshedPriceMatched": true,
+      "tierMinimumUnits": [
+        0.0
+      ]
+    },
+    {
+      "name": "model-input",
+      "meterId": "fc62a2ae-9e19-5812-9a5e-4ea082efd400",
+      "meterName": "gpt 4.1 mini Inp glbl Tokens",
+      "unit": "1K",
+      "unitPriceUsd": 0.0004,
+      "quantity": 30000,
+      "monthlyUsd": 12.0,
+      "refreshedPriceMatched": true,
+      "tierMinimumUnits": [
+        0.0
+      ]
+    },
+    {
+      "name": "model-output",
+      "meterId": "0aa0219b-d2f5-5146-a0b8-7a98518a0a17",
+      "meterName": "gpt 4.1 mini Outp glbl Tokens",
+      "unit": "1K",
+      "unitPriceUsd": 0.0016,
+      "quantity": 5000,
+      "monthlyUsd": 8.0,
+      "refreshedPriceMatched": true,
+      "tierMinimumUnits": [
+        0.0
+      ]
+    },
+    {
+      "name": "logs",
+      "meterId": "7011d191-03ab-4350-8bc8-f1879b43777c",
+      "meterName": "Analytics Logs Data Ingestion",
+      "unit": "1 GB",
+      "unitPriceUsd": 2.76,
+      "quantity": 3,
+      "monthlyUsd": 8.28,
+      "refreshedPriceMatched": true,
+      "tierMinimumUnits": [
+        5.0
+      ]
+    }
+  ],
+  "illustrativeMonthlySubtotalUsd": 151.53,
+  "fixedMonthlyUsd": 99.95,
+  "assumptions": [
+    "730 hosting hours; 30 telemetry days; 1000 devices; one <=1 KiB message/minute.",
+    "5760 writes/day; 10000 questions/month; 480 cold-read batches and two lists/question.",
+    "3000 input and 500 output tokens/question; 1 GB stored; 2000 GB endpoint data.",
+    "3 GB sanitized logs priced conservatively at paid tier 2.76/GB without subtracting 5 GB free allowance.",
+    "One million private DNS queries; no free allowances or discounts."
+  ],
+  "notIncluded": [
+    "Actual connected runner or new host compute, disks, connectivity, bootstrap and artifact transport.",
+    "Internet egress, extra endpoint traffic, applicable Entra licensing, taxes and support.",
+    "Contractual pricing, traffic variability, model tool-loop amplification beyond retained quantities."
+  ],
+  "deploymentConsentEligible": false,
+  "publicPriceCheckedAtUtc": "2026-10-24T22:40:42.576121+00:00",
+  "historicalQuantityAssumptionsReused": true,
+  "monthlyBaselineBeforeLogsUsd": 143.25,
+  "logsPricingNote": "3 GB at paid 2.76/GB retained conservatively. First 5 GB free tier not assumed available.",
+  "managementPathMonthlyUsd": null,
+  "completeMonthlyTotalUsd": null,
+  "finalQuote": false,
+  "securityControlsPreserved": true
+}

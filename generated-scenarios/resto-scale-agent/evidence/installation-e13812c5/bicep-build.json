@@ -1,0 +1,9 @@
+{
+  "command": "az bicep build --file C:\\azd-projects\\resto-scale-agent\\infra\\main.bicep --outfile C:\\azd-projects\\resto-scale-agent\\evidence\\installation-e13812c5\\main.arm.json",
+  "cwd": "C:\\azd-projects\\resto-scale-agent",
+  "startedAtUtc": "2026-10-24T17:32:54.256871+00:00",
+  "checkedAtUtc": "2026-10-24T17:33:04.386647+00:00",
+  "exitCode": 0,
+  "stdout": "",
+  "stderr": ""
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": { "value": "${AZURE_LOCATION}" },
+    "environment": { "value": "${AZURE_ENV_NAME}" },
+    "principalId": { "value": "${AZURE_PRINCIPAL_ID}" },
+    "publisherEmail": { "value": "${APIM_PUBLISHER_EMAIL}" },
+    "backendAudience": { "value": "${BACKEND_AUDIENCE}" },
+    "agentConsumerRoleId": { "value": "${FOUNDRY_AGENT_CONSUMER_ROLE_ID}" },
+    "modelName": { "value": "gpt-4.1-mini" },
+    "modelVersion": { "value": "2025-04-14" },
+    "modelSku": { "value": "GlobalStandard" }
+  }
+}

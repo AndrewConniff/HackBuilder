@@ -1,0 +1,14 @@
+{
+  "Name": "equip-ai temporary native Responses writer",
+  "IsCustom": true,
+  "Description": "Temporary equip-ai native Responses permission isolation; no administration or read permissions.",
+  "Actions": [],
+  "NotActions": [],
+  "DataActions": [
+    "Microsoft.CognitiveServices/accounts/OpenAI/responses/write"
+  ],
+  "NotDataActions": [],
+  "AssignableScopes": [
+    "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai"
+  ]
+}

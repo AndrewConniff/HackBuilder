@@ -1,0 +1,14 @@
+{
+  "checkedAtUtc": "2026-10-24T00:19:04.015943+00:00",
+  "status": "passed",
+  "scope": "Local integrity of retained failed foundation deployment evidence only; no runtime acceptance",
+  "infrastructureFingerprint": "1aa0c0f7d9f7518ece839c1edb8578142a922edb9ac482d2462b8fd6aa0feffc",
+  "checks": [
+    "actual failure and partial state verified including three nested failed Cosmos grant deployments",
+    "quota threshold 0+28<=500 verified",
+    "real exact model and retained zones verified",
+    "no runtime/retry/directory success fabricated",
+    "JSON parses and summary template/120-column limit pass",
+    "scenario-only curated manifest refreshed; shared catalog not exported"
+  ]
+}

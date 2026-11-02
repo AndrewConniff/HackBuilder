@@ -37,7 +37,7 @@
       "schemaVersion": 1,
       "id": "coffee-to-icecream",
       "title": "Northwind Traders ice-cream stock and daily close",
-      "summary": "Operations-led recipe consumption, spoilage, approved orders and scoped Orchestrator-Workers managerial P&L. Local checks and authorized readiness/what-if passed; not deployed.",
+      "summary": "Deployed operations-led recipe stock, spoilage, approved orders and scoped Orchestrator-Workers P&L. Local/business/security and recovery checks pass; latency and narrative-grounding acceptance remain unresolved. Not suitability-approved.",
       "industry": "Hospitality & Travel",
       "businessUnits": [
         "operations"
@@ -67,7 +67,7 @@
         "manifestDigest": "3aefae14b6dbfd6cfcc0bea6d5ee4372d6fd87905b1fe0fc5ceb4ccd2359837f"
       },
       "metadataStatus": "curated",
-      "manifestDigest": "40039bb4e763d98170ead076b2365503a2abdaeeab7954f85d3863c806f37150"
+      "manifestDigest": "32c20ba511df1d726152dab5288912a92eb624153007dbf8bff84b61459d8411"
     },
     {
       "schemaVersion": 1,

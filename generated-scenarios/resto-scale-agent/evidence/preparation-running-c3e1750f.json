@@ -1,0 +1,12 @@
+{
+  "stage": "local-validation",
+  "status": "running",
+  "summary": "Resuming the existing reference with canonical read-only preparation authorization. Checking identity, isolated target, providers, policy, regional eligibility/quota and actual what-if; no creation, registration, azd environment initialization or deployment is authorized.",
+  "evidence": [
+    "Canonical revision 131: answered preparation decision 7d18da3b02774120a79615b426323ea6 and matching scoped authorization for petender@microsoft.com, subscription efd64343-6ef4-4926-951f-d3229f38bd76, tenant 16b3c013-d300-468d-ac64-7eda0820b6d3, rg-resto-scale-agent, environment resto-scale-agent, eastus2.",
+    "az account show --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --query '{account:user.name,subscriptionId:id,tenantId:tenantId,state:state,name:name}' --output json: exact account/subscription/tenant match, state Enabled.",
+    "azd auth login --check-status: signed in as petender@microsoft.com.",
+    "The deployment/running report was rejected because that stage requires deployment consent. Preparation progress is reported under local-validation instead; no deployment authorization is inferred.",
+    "python scripts\\check_prerequisites.py --for-project --record --stage deployment --json: ready true, all blockedStages empty, owner c3e1750fca1747d78cddf588d412a85f, checkedAtUtc 2026-10-23T08:41:42.375795-07:00."
+  ]
+}

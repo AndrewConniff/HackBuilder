@@ -1,0 +1,27 @@
+{
+  "evidenceDateUtc": "2026-10-23",
+  "method": "Read current official Microsoft Learn pages with web_fetch during this preparation attempt.",
+  "sources": [
+    {
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/limits-quotas-regions",
+      "pageUpdatedAt": "2026-10-15T06:04:00Z",
+      "observations": [
+        "Central US row: Responses API Yes, Agents Yes, Private VNet Yes.",
+        "Central US tool row: Function yes.",
+        "gpt-5.4-mini model tool row: Functions Yes; Azure Functions No. This design uses app-executed function tools, not Azure Functions.",
+        "This is public feature availability, not subscription/project runtime acceptance."
+      ]
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/azure/container-apps/quotas",
+      "pageUpdatedAt": "2026-10-16T22:20:00Z",
+      "observations": [
+        "Managed Environment Count is a subscription/region quota.",
+        "Managed Environment Consumption Cores is scoped to one managed environment and sums cores across active replicas of every app.",
+        "Default quotas depend on subscription age/type/usage. No default limit is assumed.",
+        "az containerapp env list-usages is the documented actual environment quota check.",
+        "No environment is created to discover its future quota; no quota increase is requested."
+      ]
+    }
+  ]
+}

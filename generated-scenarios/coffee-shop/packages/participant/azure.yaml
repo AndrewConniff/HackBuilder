@@ -1,0 +1,9 @@
+name: coffee-shop-participant
+infra:
+  provider: bicep
+  path: ./infra
+hooks:
+  preprovision:
+    shell: pwsh
+    run: ./scripts/Assert-TeamScope.ps1
+    interactive: false

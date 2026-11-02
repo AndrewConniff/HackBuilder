@@ -1,0 +1,12 @@
+Initialized table fixtures without overwriting existing stock; captured real agent IDs/versions.
+ERROR: argument --subscription: expected one argument
+
+Examples from command's help:
+az webapp config appsettings set -g MyResourceGroup -n MyUniqueApp --settings WEBSITE_NODE_DEFAULT_VERSION=6.9.1
+Set the default NodeJS version to 6.9.1 for a web app.
+
+az webapp config appsettings set -g MyResourceGroup -n MyUniqueApp --settings mySetting=value @moreSettings.json
+Set using both key-value pair and a json file with more settings.
+
+https://aka.ms/cli_ref
+Read more about the command in reference docs

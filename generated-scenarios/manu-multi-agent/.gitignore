@@ -1,0 +1,7 @@
+**/bin/
+**/obj/
+**/TestResults/
+.azure/
+.installation/
+.application-evidence/publish/
+.application-evidence/browser/

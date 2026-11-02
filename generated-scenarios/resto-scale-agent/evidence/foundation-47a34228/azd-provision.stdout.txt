@@ -1,0 +1,74 @@
+
+Provisioning Azure resources (azd provision)
+Provisioning Azure resources can take some time.
+
+Initialize bicep provider
+Reading subscription and location from environment...
+Subscription: MCAPS-Hybrid-REQ-152516-2026-petender (efd64343-6ef4-4926-951f-d3229f38bd76)
+Location: Central US
+
+Creating a deployment plan
+Comparing deployment state
+Validating deployment
+Creating/Updating resources
+  You can view detailed progress in the Azure Portal:
+  https://portal.azure.com/#view/HubsExtension/DeploymentDetailsBlade/~/overview/id/%2Fsubscriptions%2Fefd64343-6ef4-4926-951f-d3229f38bd76%2FresourceGroups%2Frg-resto-scale-agent%2Fproviders%2FMicrosoft.Resources%2Fdeployments%2Fresto-scale-agent-1792800732
+
+  (✓) Done: Virtual Network: vnet-resto-4tvlzr5zf2rxi (3.123s)
+  (✓) Done: Log Analytics workspace: log-resto-4tvlzr5zf2rxi (20.926s)
+  (✓) Done: Application Insights: appi-resto-4tvlzr5zf2rxi (1.317s)
+  (x) Failed: Key Vault: kv-resto-4tvlzr5zf2rxi (1.225s)
+  (✓) Done: Container Registry: acrresto4tvlzr5zf2rxi (28.377s)
+  (✓) Done: Foundry: ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec (20.762s)
+  (✓) Done: Azure AI Services Model Deployment: ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/restaurant-model (1.633s)
+  (✓) Done: Foundry project: ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/restaurant (1.773s)
+  (✓) Done: Service Bus Namespace: sb-resto-4tvlzr5zf2rxi (1m6.374s)
+  (✓) Done: Azure Cosmos DB: cosmos-resto-4tvlzr5zf2rxi (1m59.252s)
+  (✓) Done: Container Apps Environment: cae-resto-4tvlzr5zf2rxi (2m40.87s)
+
+ERROR: A soft-deleted resource is causing a deployment conflict.
+
+Suggestion: Purge the soft-deleted resource in the Azure portal or via the Azure CLI, then retry with 'azd up'. If the resources are still provisioned, running 'azd down --purge' will delete and purge them.
+
+
+  • https://learn.microsoft.com/azure/key-vault/general/key-vault-recovery
+
+deployment failed: error deploying infrastructure: deploying to resource group: 
+
+Deployment Error Details:
+BadRequest: Failed to parse the incoming request payload. Exception: System.FormatException: Could not parse property [properties] as [Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties] due to exception: System.FormatException: Could not parse property [scope] with value [/dbs/restaurant] as [Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.FullyQualifiedResourcePath] due to exception: System.FormatException: Expected path segment [subscriptions] at position [0] but found [dbs].
+   at Microsoft.Azure.Documents.Common.RoleBasedAccessControl.ResourcePath.ParseResourceNameFromSegments(String[] segments, Int32 index, String resourceTypePathSegment, String& resourceNamePathSegment)
+   at Microsoft.Azure.Documents.Common.RoleBasedAccessControl.ControlPlaneResourcePath..ctor(String[] segments, Boolean ignoreExtraSegments)
+   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.FullyQualifiedResourcePath..ctor(String[] segments, Boolean ignoreExtraSegments)
+   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties.get_Scope()
+   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties.get_Scope()
+   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties.Validate()
+   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentRequest.get_Properties()
+   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentRequest.get_Properties()
+   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.RequestHandlers.SqlRoleAssignmentRequestHandler.<HandlePutAsync>d__4.MoveNext()
+ActivityId: 047116f6-2ff9-47de-894c-0c4035e72550, Microsoft.Azure.Documents.Common/2.14.0
+BadRequest: Failed to parse the incoming request payload. Exception: System.FormatException: Could not parse property [properties] as [Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties] due to exception: System.FormatException: Could not parse property [scope] with value [/dbs/restaurant] as [Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.FullyQualifiedResourcePath] due to exception: System.FormatException: Expected path segment [subscriptions] at position [0] but found [dbs].
+   at Microsoft.Azure.Documents.Common.RoleBasedAccessControl.ResourcePath.ParseResourceNameFromSegments(String[] segments, Int32 index, String resourceTypePathSegment, String& resourceNamePathSegment)
+   at Microsoft.Azure.Documents.Common.RoleBasedAccessControl.ControlPlaneResourcePath..ctor(String[] segments, Boolean ignoreExtraSegments)
+   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.FullyQualifiedResourcePath..ctor(String[] segments, Boolean ignoreExtraSegments)
+   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties.get_Scope()
+   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties.get_Scope()
+   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties.Validate()
+   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentRequest.get_Properties()
+   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentRequest.get_Properties()
+   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.RequestHandlers.SqlRoleAssignmentRequestHandler.<HandlePutAsync>d__4.MoveNext()
+ActivityId: c6340973-0d94-4ebf-b9c2-f796146d12a9, Microsoft.Azure.Documents.Common/2.14.0
+BadRequest: Failed to parse the incoming request payload. Exception: System.FormatException: Could not parse property [properties] as [Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties] due to exception: System.FormatException: Could not parse property [scope] with value [/dbs/restaurant] as [Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.FullyQualifiedResourcePath] due to exception: System.FormatException: Expected path segment [subscriptions] at position [0] but found [dbs].
+   at Microsoft.Azure.Documents.Common.RoleBasedAccessControl.ResourcePath.ParseResourceNameFromSegments(String[] segments, Int32 index, String resourceTypePathSegment, String& resourceNamePathSegment)
+   at Microsoft.Azure.Documents.Common.RoleBasedAccessControl.ControlPlaneResourcePath..ctor(String[] segments, Boolean ignoreExtraSegments)
+   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.FullyQualifiedResourcePath..ctor(String[] segments, Boolean ignoreExtraSegments)
+   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties.get_Scope()
+   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties.get_Scope()
+   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties.Validate()
+   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentRequest.get_Properties()
+   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentRequest.get_Properties()
+   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.RequestHandlers.SqlRoleAssignmentRequestHandler.<HandlePutAsync>d__4.MoveNext()
+ActivityId: 52b81ce2-a37b-4345-b129-f6c81d386bea, Microsoft.Azure.Documents.Common/2.14.0
+VaultAlreadyExists: The vault name 'kv-resto-4tvlzr5zf2rxi' is already in use. Vault names are globally unique so it is possible that the name is already taken. If you are sure that the vault name was not taken then it is possible that a vault with the same name was recently deleted but not purged after being placed in a recoverable state. If the vault is in a recoverable state then the vault will need to be purged before reusing the name. For more information about VaultAlreadyExists, soft delete and purging a vault follow this link https://go.microsoft.com/fwlink/?linkid=2147740.
+
+

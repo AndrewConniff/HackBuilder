@@ -1,0 +1,20 @@
+{
+  "command": "az cognitiveservices account list-skus --kind AIServices --location westus2 --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+  "startedAtUtc": "2026-10-23T23:21:01.172643+00:00",
+  "checkedAtUtc": "2026-10-23T23:21:03.412946+00:00",
+  "exitCode": 0,
+  "stdout": "[\n  {\n    \"kind\": \"AIServices\",\n    \"locations\": [\n      \"WESTUS2\"\n    ],\n    \"name\": \"S0\",\n    \"resourceType\": \"accounts\",\n    \"restrictions\": [],\n    \"tier\": \"Standard\"\n  }\n]\n",
+  "stderr": "",
+  "result": [
+    {
+      "kind": "AIServices",
+      "locations": [
+        "WESTUS2"
+      ],
+      "name": "S0",
+      "resourceType": "accounts",
+      "restrictions": [],
+      "tier": "Standard"
+    }
+  ]
+}

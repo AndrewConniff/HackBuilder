@@ -1,0 +1,10 @@
+{
+  "title": "Manufacturing Sales-to-Marketing multi-agent handoff",
+  "summary": "Confirmed private keyless Foundry reference for Adventure Works Cycles Sales and Marketing. Diagrams, AVM-first infrastructure, bounded three-agent .NET application, versioned fixtures and installation tooling authored; cloud deployment and live proof remain pending.",
+  "industry": "Manufacturing & Mobility",
+  "businessUnits": ["sales", "marketing"],
+  "services": ["foundry", "container-apps", "key-vault", "managed-identity", "api-management"],
+  "pillars": ["operational-excellence"],
+  "domains": [],
+  "metadataStatus": "curated"
+}

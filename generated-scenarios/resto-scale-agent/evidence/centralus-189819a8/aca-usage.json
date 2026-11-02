@@ -1,0 +1,57 @@
+{
+  "command": "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/locations/centralus/usages?api-version=2025-07-01 --output json",
+  "startedAtUtc": "2026-10-23T23:38:22.684994+00:00",
+  "checkedAtUtc": "2026-10-23T23:38:25.093608+00:00",
+  "exitCode": 0,
+  "stdout": "{\n  \"value\": [\n    {\n      \"currentValue\": 0,\n      \"limit\": 50,\n      \"name\": {\n        \"localizedValue\": \"Managed Environment Count\",\n        \"value\": \"ManagedEnvironmentCount\"\n      },\n      \"usage\": 0\n    },\n    {\n      \"currentValue\": 0,\n      \"limit\": 0,\n      \"name\": {\n        \"localizedValue\": \"Subscription Dedicated NCA 100 Gpus\",\n        \"value\": \"SubscriptionDedicatedNCA100Gpus\"\n      },\n      \"usage\": 0\n    },\n    {\n      \"currentValue\": 0,\n      \"limit\": 50,\n      \"name\": {\n        \"localizedValue\": \"Session Pools\",\n        \"value\": \"SessionPools\"\n      },\n      \"usage\": 0\n    },\n    {\n      \"currentValue\": 0,\n      \"limit\": 500,\n      \"name\": {\n        \"localizedValue\": \"Express Environment Count\",\n        \"value\": \"ExpressEnvironmentCount\"\n      },\n      \"usage\": 0\n    },\n    {\n      \"currentValue\": 0,\n      \"limit\": 20000,\n      \"name\": {\n        \"localizedValue\": \"Sandbox Cores\",\n        \"value\": \"SandboxCores\"\n      },\n      \"usage\": 0\n    }\n  ]\n}\n",
+  "stderr": "",
+  "result": {
+    "value": [
+      {
+        "currentValue": 0,
+        "limit": 50,
+        "name": {
+          "localizedValue": "Managed Environment Count",
+          "value": "ManagedEnvironmentCount"
+        },
+        "usage": 0
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "Subscription Dedicated NCA 100 Gpus",
+          "value": "SubscriptionDedicatedNCA100Gpus"
+        },
+        "usage": 0
+      },
+      {
+        "currentValue": 0,
+        "limit": 50,
+        "name": {
+          "localizedValue": "Session Pools",
+          "value": "SessionPools"
+        },
+        "usage": 0
+      },
+      {
+        "currentValue": 0,
+        "limit": 500,
+        "name": {
+          "localizedValue": "Express Environment Count",
+          "value": "ExpressEnvironmentCount"
+        },
+        "usage": 0
+      },
+      {
+        "currentValue": 0,
+        "limit": 20000,
+        "name": {
+          "localizedValue": "Sandbox Cores",
+          "value": "SandboxCores"
+        },
+        "usage": 0
+      }
+    ]
+  }
+}

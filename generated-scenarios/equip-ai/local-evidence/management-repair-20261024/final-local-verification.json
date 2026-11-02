@@ -1,0 +1,32 @@
+{
+  "recordedAtUtc": "2026-10-24T23:30:02.056388+00:00",
+  "results": {
+    "private_runner.py": "syntax-passed",
+    "runner_guest.py": "syntax-passed",
+    "private_lifecycle.py": "syntax-passed",
+    "prepare_management_review.py": "syntax-passed",
+    "install_identity.py": "syntax-passed",
+    "00-region-availability.json": "json-passed",
+    "scenario-validation.json": "json-passed",
+    "infra/main.parameters.json": "json-passed",
+    "local-evidence/handoff-reconciliation.json": "json-passed",
+    "03-architect-diagram.png": {
+      "integrity": "passed",
+      "sha256": "9f9528f75cf8adce08ef5a49cb57302c812ee6e0229f7e69cadab0d1e08a90ab"
+    },
+    "04-runtime-diagram.png": {
+      "integrity": "passed",
+      "sha256": "e742193bc43b174448ec5facac880877486671f58bc9c74e4719fd6681cf8c85"
+    },
+    "realArtifactTransferPlan": {
+      "sha256": "b1d329ed3739a3184526d77102a2b189333f88e157ee8e6e3fa6d7b89ca87ca5",
+      "bytes": 53624006,
+      "chunks": 103,
+      "minimumTransferSeconds": 2060,
+      "executed": false
+    },
+    "manifest": "scenario-only refresh passed; shared index unchanged"
+  },
+  "cloudOperations": false,
+  "runtimePassed": false
+}

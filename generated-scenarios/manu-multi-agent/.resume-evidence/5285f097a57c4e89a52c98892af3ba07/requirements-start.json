@@ -1,0 +1,9 @@
+{
+  "stage": "requirements",
+  "status": "running",
+  "summary": "Validating recovered intake against the same existing local reference and current repository catalogs; no historical completion or authorization imported.",
+  "evidence": [
+    "portal_workflow.py read: revision 2; localToolConsent retained; designConfirmed false; authorizations empty; no decisions requiring classification.",
+    "Existing 01-requirements.md, 02-architecture-assessment.md, scenario-manifest.json and azure.yaml inspected without regeneration."
+  ]
+}

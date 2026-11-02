@@ -1,0 +1,12 @@
+[
+  {
+    "condition": null,
+    "role": "Owner",
+    "scope": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76"
+  },
+  {
+    "condition": null,
+    "role": "Foundry User",
+    "scope": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76"
+  }
+]

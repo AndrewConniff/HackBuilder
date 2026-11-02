@@ -1,0 +1,15 @@
+@page
+@model FeedbackCampaign.Web.Pages.LoginModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lab sign-in | Campaign Control</title><link rel="stylesheet" href="/site.css"></head>
+<body><header><p>Adatum Corporation · Media &amp; Communications</p><h1>Campaign Control lab sign-in</h1></header>
+<main><section><p>Use the local username and password issued for this scenario. No Microsoft account or Entra consent is needed.</p>
+<p>Roles are assigned by the installer, not selected at sign-in. Synthetic lab only; do not use a corporate password.</p>
+<form method="post">
+<div asp-validation-summary="All" role="alert"></div>
+<label>Username<input asp-for="Username" autocomplete="username" required maxlength="80"></label>
+<label>Password<input asp-for="Password" type="password" autocomplete="current-password" required maxlength="256"></label>
+<button type="submit">Sign in</button></form></section><a href="/">Back to Campaign Control</a></main></body></html>

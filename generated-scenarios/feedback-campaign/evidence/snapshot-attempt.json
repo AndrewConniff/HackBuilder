@@ -1,0 +1,9 @@
+{
+  "checkedAtUtc": "2026-10-25T17:33:40.406222+00:00",
+  "command": "python scripts/hack_workflow.py snapshot generated-scenarios/feedback-campaign",
+  "exitCode": 1,
+  "stdout": "",
+  "stderr": "Workflow blocked: Live scenario validation has not passed.\n",
+  "expectedGuard": "No live validation; suitability snapshot must remain unavailable",
+  "suitabilityApprovalRecorded": false
+}

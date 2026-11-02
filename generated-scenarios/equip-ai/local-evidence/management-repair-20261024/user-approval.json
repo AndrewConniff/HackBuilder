@@ -1,0 +1,28 @@
+{
+  "actualResponse": "Approve the listed additions, subject to passing readiness, pricing and what-if checks",
+  "provenance": {
+    "source": "Actual user handoff in this VS Code conversation, 2026-10-24",
+    "parentContext": "equip-ai-conductor af2561b0-7971-4501-9dc4-30c527836830",
+    "reportedInteraction": "Parent ask_user consolidated review; response quoted verbatim in user handoff",
+    "review": "local-evidence/management-repair-20261024/deployment-review.md"
+  },
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "equip-ai",
+    "resourceGroup": "rg-equip-ai",
+    "region": "centralus"
+  },
+  "conditions": ["Passing readiness", "Verified pricing without material increase", "Reviewed full exact ARM what-if without unexpected destructive changes"],
+  "managementOperations": ["Private B2s VM/disk/NIC", "management subnet", "NAT/IP/NSG", "project/site-scoped managed identity grants", "privileged Run Command installation", "artifact cleanup", "VM deallocation"],
+  "directoryNomination": {
+    "account": "petender@microsoft.com",
+    "targets": ["dedicated equip-ai SPA", "dedicated equip-ai API"],
+    "sequence": ["SPA default role and API Operations.Tacoma for denial test", "replace API Operations.Tacoma with Operations.Statewide"],
+    "prohibited": ["directory privilege elevation", "broad administrator consent", "other principal nominations"]
+  },
+  "incrementalMonthlyEstimateUsd": 75.56,
+  "combinedMonthlyEstimateUsd": 227.09,
+  "suitabilityApproved": false
+}

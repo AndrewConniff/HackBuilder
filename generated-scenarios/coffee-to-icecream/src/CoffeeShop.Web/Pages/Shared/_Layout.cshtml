@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] · Northwind Traders</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <nav aria-label="Main"><a href="/" aria-current="page">Northwind Traders</a><span>Ice-cream operations / Daily close</span></nav>
+    <main>@RenderBody()</main>
+    <footer>Northwind Traders · Hospitality &amp; Travel · Operations reference · Not production accounting</footer>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

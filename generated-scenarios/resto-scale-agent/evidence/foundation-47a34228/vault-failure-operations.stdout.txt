@@ -1,0 +1,65 @@
+[
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/vault/operations/7D881C3E7BBA680F",
+    "operationId": "7D881C3E7BBA680F",
+    "properties": {
+      "duration": "PT3.1951802S",
+      "provisioningOperation": "Create",
+      "provisioningState": "Succeeded",
+      "request": null,
+      "response": null,
+      "serviceRequestId": null,
+      "statusCode": "OK",
+      "statusMessage": null,
+      "targetResource": {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/46d3xbcp.res.keyvault-vault.0-14-2.p7nx",
+        "identifiers": null,
+        "resourceGroup": "rg-resto-scale-agent",
+        "resourceName": "46d3xbcp.res.keyvault-vault.0-14-2.p7nx",
+        "resourceType": "Microsoft.Resources/deployments",
+        "symbolicName": null
+      },
+      "timestamp": "2026-10-24T00:12:49.950787+00:00",
+      "trackingId": "435cf53f-65e8-4bfd-9389-fdc4eaf4c878"
+    },
+    "resourceGroup": "rg-resto-scale-agent"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/vault/operations/BE44EA0077DC452F",
+    "operationId": "BE44EA0077DC452F",
+    "properties": {
+      "duration": "PT1.2259542S",
+      "provisioningOperation": "Create",
+      "provisioningState": "Failed",
+      "request": null,
+      "response": null,
+      "serviceRequestId": null,
+      "statusCode": "Conflict",
+      "statusMessage": {
+        "error": {
+          "additionalInfo": null,
+          "code": "VaultAlreadyExists",
+          "details": null,
+          "message": "The vault name 'kv-resto-4tvlzr5zf2rxi' is already in use. Vault names are globally unique so it is possible that the name is already taken. If you are sure that the vault name was not taken then it is possible that a vault with the same name was recently deleted but not purged after being placed in a recoverable state. If the vault is in a recoverable state then the vault will need to be purged before reusing the name. For more information about VaultAlreadyExists, soft delete and purging a vault follow this link https://go.microsoft.com/fwlink/?linkid=2147740.",
+          "target": null
+        },
+        "status": "Failed"
+      },
+      "targetResource": {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi",
+        "identifiers": null,
+        "resourceGroup": "rg-resto-scale-agent",
+        "resourceName": "kv-resto-4tvlzr5zf2rxi",
+        "resourceType": "Microsoft.KeyVault/vaults",
+        "symbolicName": null
+      },
+      "timestamp": "2026-10-24T00:12:49.950787+00:00",
+      "trackingId": "88e06a44-5af2-45be-a97c-e6a0b98565a1"
+    },
+    "resourceGroup": "rg-resto-scale-agent"
+  }
+]

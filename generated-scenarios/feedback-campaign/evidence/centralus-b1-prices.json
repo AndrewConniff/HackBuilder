@@ -1,0 +1,53 @@
+{
+  "BillingCurrency": "USD",
+  "CustomerEntityId": "Default",
+  "CustomerEntityType": "Retail",
+  "Items": [
+    {
+      "currencyCode": "USD",
+      "tierMinimumUnits": 0.0,
+      "retailPrice": 0.075,
+      "unitPrice": 0.075,
+      "armRegionName": "centralus",
+      "location": "US Central",
+      "effectiveStartDate": "2014-04-02T00:00:00Z",
+      "meterId": "ba302f7a-078b-4141-a636-a76315ba44ce",
+      "meterName": "B1 App",
+      "productId": "DZH318Z0BQJK",
+      "skuId": "DZH318Z0BQJK/003D",
+      "productName": "Azure App Service Basic Plan",
+      "skuName": "B1",
+      "serviceName": "Azure App Service",
+      "serviceId": "DZH317GT8G5N",
+      "serviceFamily": "Compute",
+      "unitOfMeasure": "1 Hour",
+      "type": "Consumption",
+      "isPrimaryMeterRegion": false,
+      "armSkuName": ""
+    },
+    {
+      "currencyCode": "USD",
+      "tierMinimumUnits": 0.0,
+      "retailPrice": 0.018,
+      "unitPrice": 0.018,
+      "armRegionName": "centralus",
+      "location": "US Central",
+      "effectiveStartDate": "2019-06-01T00:00:00Z",
+      "meterId": "fcdc02bd-9779-4dca-8766-183349217bc9",
+      "meterName": "B1",
+      "productId": "DZH318Z0BXW9",
+      "skuId": "DZH318Z0BXW9/0018",
+      "productName": "Azure App Service Basic Plan - Linux",
+      "skuName": "B1",
+      "serviceName": "Azure App Service",
+      "serviceId": "DZH317GT8G5N",
+      "serviceFamily": "Compute",
+      "unitOfMeasure": "1 Hour",
+      "type": "Consumption",
+      "isPrimaryMeterRegion": true,
+      "armSkuName": ""
+    }
+  ],
+  "NextPageLink": null,
+  "Count": 2
+}

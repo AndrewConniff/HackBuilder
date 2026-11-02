@@ -1,0 +1,9 @@
+{
+  "name": "application",
+  "command": "dotnet test tests\\Restaurant.Tests\\Restaurant.Tests.csproj --no-restore --logger trx;LogFileName=final-application.trx --results-directory C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8",
+  "cwd": "C:\\azd-projects\\resto-scale-agent",
+  "exitCode": 0,
+  "stdout": "  Restaurant.Web -> C:\\azd-projects\\resto-scale-agent\\src\\Restaurant.Web\\bin\\Debug\\net10.0\\Restaurant.Web.dll\n  Restaurant.Tests -> C:\\azd-projects\\resto-scale-agent\\tests\\Restaurant.Tests\\bin\\Debug\\net10.0\\Restaurant.Tests.dll\nTest run for C:\\azd-projects\\resto-scale-agent\\tests\\Restaurant.Tests\\bin\\Debug\\net10.0\\Restaurant.Tests.dll (.NETCoreApp,Version=v10.0)\nA total of 1 test files matched the specified pattern.\nResults File: C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\final-application.trx\n\nPassed!  - Failed:     0, Passed:    26, Skipped:     0, Total:    26, Duration: 5 s - Restaurant.Tests.dll (net10.0)\n",
+  "stderr": "",
+  "checkedAtUtc": "2026-10-23T23:47:12.001517+00:00"
+}

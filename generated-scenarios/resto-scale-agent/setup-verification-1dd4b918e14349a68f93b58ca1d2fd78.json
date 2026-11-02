@@ -1,0 +1,15 @@
+{
+  "stage": "application",
+  "status": "blocked",
+  "summary": "Setup verification failed under existing host permissions. The recorded api.nuget.org metadata request still fails with remote TLS HandshakeFailure. Application implementation remains blocked; no tools were installed, PATH changed, restrictions bypassed, or cloud operations performed.",
+  "evidence": [
+    "Current setupBlocker id: ed6ba41327544fb690084af870ad01af.",
+    "python scripts\\check_prerequisites.py --for-project --record --stage requirements --json: exit code 0; ready=true; all profiled checks passed. Its NuGet probe uses https://packagefeedproxy.microsoft.io/nuget/v3/index.json and does not verify the recorded api.nuget.org endpoint.",
+    "Invoke-RestMethod \"https://api.nuget.org/v3-flatcontainer/azure.identity/index.json\": exit code 1; Authentication failed because the remote party sent a TLS alert: 'HandshakeFailure'."
+  ],
+  "blocker": {
+    "kind": "prerequisite",
+    "action": "Outside this worker, have the environment administrator restore organization-approved TLS connectivity from the actual portal worker account to api.nuget.org using existing authorized host/network configuration. Investigate the reported remote TLS HandshakeFailure; do not disable certificate validation, weaken TLS, install or upgrade shared tools in a worker, or bypass host restrictions. Verify a fresh portal worker can read the recorded NuGet package metadata endpoint successfully.",
+    "verification": "Invoke-RestMethod \"https://api.nuget.org/v3-flatcontainer/azure.identity/index.json\""
+  }
+}

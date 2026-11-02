@@ -1,0 +1,103 @@
+{
+  "APPLICATIONINSIGHTS_CONNECTION_STRING": {
+    "type": "String",
+    "value": "InstrumentationKey=41edd6c7-af94-44b7-9de1-ee30aea5330f;IngestionEndpoint=https://centralus-2.in.applicationinsights.azure.com/;LiveEndpoint=https://centralus.livediagnostics.monitor.azure.com/;ApplicationId=8da57f94-b71f-4779-af70-62ee9e73224c"
+  },
+  "AZURE_CONTAINER_APPS_ENVIRONMENT_DOMAIN": {
+    "type": "String",
+    "value": "proudsea-27880dc7.centralus.azurecontainerapps.io"
+  },
+  "AZURE_CONTAINER_APPS_ENVIRONMENT_ID": {
+    "type": "String",
+    "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.App/managedEnvironments/cae-resto-4tvlzr5zf2rxi"
+  },
+  "AZURE_CONTAINER_APPS_ENVIRONMENT_NAME": {
+    "type": "String",
+    "value": "cae-resto-4tvlzr5zf2rxi"
+  },
+  "AZURE_CONTAINER_REGISTRY_ENDPOINT": {
+    "type": "String",
+    "value": "acrresto4tvlzr5zf2rxi.azurecr.io"
+  },
+  "AZURE_CONTAINER_REGISTRY_NAME": {
+    "type": "String",
+    "value": "acrresto4tvlzr5zf2rxi"
+  },
+  "AZURE_ENV_NAME": {
+    "type": "String",
+    "value": "resto-scale-agent"
+  },
+  "AZURE_LOCATION": {
+    "type": "String",
+    "value": "centralus"
+  },
+  "AZURE_RESOURCE_GROUP": {
+    "type": "String",
+    "value": "rg-resto-scale-agent"
+  },
+  "AZURE_SUBSCRIPTION_ID": {
+    "type": "String",
+    "value": "efd64343-6ef4-4926-951f-d3229f38bd76"
+  },
+  "AZURE_TENANT_ID": {
+    "type": "String",
+    "value": "16b3c013-d300-468d-ac64-7eda0820b6d3"
+  },
+  "COSMOS_ENDPOINT": {
+    "type": "String",
+    "value": "https://cosmos-resto-4tvlzr5zf2rxi.documents.azure.com:443/"
+  },
+  "FOUNDRY_ACCOUNT_NAME": {
+    "type": "String",
+    "value": "ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec"
+  },
+  "FOUNDRY_MODEL_DEPLOYMENT": {
+    "type": "String",
+    "value": "restaurant-model"
+  },
+  "FOUNDRY_PROJECT_ID": {
+    "type": "String",
+    "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/projects/restaurant"
+  },
+  "FOUNDRY_PROJECT_NAME": {
+    "type": "String",
+    "value": "restaurant"
+  },
+  "KEY_VAULT_URI": {
+    "type": "String",
+    "value": "https://kv-resto-dc9a173f4d0b5f6.vault.azure.net/"
+  },
+  "RESOURCE_SUFFIX": {
+    "type": "String",
+    "value": "4tvlzr5zf2rxi"
+  },
+  "RUNTIME_IDENTITIES": {
+    "type": "Array",
+    "value": [
+      {
+        "clientId": "fe43e3cd-f5a4-4425-b8c9-641b9ac3f08e",
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi",
+        "role": "web"
+      },
+      {
+        "clientId": "0ce36690-9387-4a51-a294-eb6f7f8768f9",
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi",
+        "role": "chat"
+      },
+      {
+        "clientId": "ca6749d0-9d4b-494d-95b7-c01bd7020650",
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi",
+        "role": "worker"
+      },
+      {
+        "clientId": "d7f5f036-7f4d-47c5-bdd4-49b4a6713840",
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-scaler-4tvlzr5zf2rxi",
+        "role": "scaler"
+      }
+    ]
+  },
+  "SERVICE_BUS_NAMESPACE": {
+    "type": "String",
+    "value": "sb-resto-4tvlzr5zf2rxi.servicebus.windows.net"
+  }
+}

@@ -153,7 +153,7 @@ The complete native setup also includes Node.js 22+, GitHub CLI and VS Code.
 There is no root npm application and no portal `npm install`, `npm start` or bundle build.
 The bridge has its own [package manifest][bridge-package] and `npm test` command.
 Python dependencies are minimum-version requirements, not a fully reproducible transitive lock.
-The native [tool catalog][tool-catalog] separately locks installer versions, URLs and SHA256 hashes.
+Native installation uses WinGet online; no native installer catalog or offline bundle is shipped.
 
 Useful read-only checks from the repository root:
 
@@ -813,24 +813,22 @@ Scenario agents still check only the dependencies needed by their design.
 
 ### Native installation is a separate consented operation
 
-[Install-SystemTools.ps1][installer] defaults to downloading all pinned native baseline tools.
-`-Install` adds installation of missing/failed tools after verifying the complete cache.
+[Install-SystemTools.ps1][installer] defaults to read-only checks of the complete toolchain.
+`-Install` downloads and installs missing/failed tools online through WinGet, pip and Azure CLI Bicep.
 `-Mode Check` is read-only. `-WhatIf` previews.
-`-UseCachedInstallers` forbids new native downloads; missing/corrupt cache entries fail.
+Offline/download-only modes, cache parameters and the pinned native catalog have been removed.
 
-The catalog pins URL/version/hash and validates signatures/publishers where applicable.
-Catalogued unsigned open-source exceptions still require the pinned hash.
-Receipts are local evidence, not signed publisher manifests.
+WinGet uses exact package IDs from its community source and selects available releases for the host.
+Microsoft App Installer must be available through the user's approved software channel.
 Compatible installed tools are preserved rather than forcibly downgraded.
 Docker installation requires separate `-AcceptDockerLicense`; OS virtualization/WSL setup remains manual.
 Setup does not elevate itself, reboot, sign in, enable Windows features or start Docker.
 
-Native installation is Windows x64 only.
-The cache is not a fully offline bundle: Python packages, WSL images, extensions,
-vendor dependencies and generated NuGet packages are not all supplied.
-Do not redistribute the ignored cache/report directories with source.
-Read [system-tools/README.md](system-tools/README.md) for exit codes, custom paths and recovery.
-The legacy [Install-Prerequisites.ps1](scripts/Install-Prerequisites.ps1) remains a narrower compatibility entry.
+Native installation targets Windows with supported WinGet packages; other hosts use manual vendor downloads.
+Internet access is required. Existing cache folders are preserved but unused.
+Do not redistribute the ignored cache/report directories or scenario `.packages` restore folders with source.
+Read [system-tools/README.md](system-tools/README.md) for exit codes, reports and repository hygiene.
+The underlying [Install-Prerequisites.ps1](scripts/Install-Prerequisites.ps1) also offers a narrower core profile.
 
 ### Azure identity and readiness
 
@@ -1070,7 +1068,7 @@ Keep the distinction between syntactically valid evidence and independently obse
 
 Change the reviewed tool catalog's versions, immutable official URLs, SHA256 and install arguments together.
 Test a separate cache rather than editing receipts to accept different bytes.
-Preserve signature policy, explicit agreement/Docker consent, offline-native limits and compatible-tool reuse.
+Preserve signature policy, explicit agreement/Docker consent, online-only setup and compatible-tool reuse.
 Update System/profile/checker coverage when adding dependencies.
 Keep setup separate from diagnostics and scenario execution.
 
@@ -1170,7 +1168,6 @@ artifacts are evidence, not current portal paths. Cryptographic hashes and third
 [howto-setup]: FBC-Builder-HOWTO.md#prepare-your-machine-and-open-fbc-builder
 [bridge]: tools/vscode-chat-bridge/README.md
 [bridge-package]: tools/vscode-chat-bridge/package.json
-[tool-catalog]: system-tools/tool-catalog.json
 [installer]: system-tools/Install-SystemTools.ps1
 [conductor]: .github/agents/az-01-conductor.agent.md
 [creator]: .github/agents/az-09-hackcreator.agent.md

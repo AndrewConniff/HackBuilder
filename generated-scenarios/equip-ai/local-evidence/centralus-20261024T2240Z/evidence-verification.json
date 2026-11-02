@@ -1,0 +1,15 @@
+{
+  "checkedAtUtc": "2026-10-24T22:44:00.012552+00:00",
+  "compiledSourceHashMatched": true,
+  "commandRecordsVerified": 45,
+  "allRecordedCommandExitCodesZero": true,
+  "whatIfCounts": {
+    "Create": 35
+  },
+  "noRuntimeChecksClaimed": true,
+  "baselinePricesMatchedFreshPublicEvidence": true,
+  "savedTargetFiles": {
+    ".azure\\equip-ai\\.env": "be6f1cc822cc6a9617c6e8df410418bc0ad96cdbfe66af07dddbe4c9ae530b3d",
+    "deployment-target-preview.json": "c24f2aeb3fcf99d1c2d4d78c880adfde06e7d939076aafc72428b0ce48da79a0"
+  }
+}

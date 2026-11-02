@@ -1,0 +1,322 @@
+{
+  "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/resto-scale-agent-1792800732",
+  "location": null,
+  "name": "resto-scale-agent-1792800732",
+  "properties": {
+    "correlationId": "7b7c21ed-a6ed-f7c4-4314-161a2571653c",
+    "debugSetting": null,
+    "dependencies": [
+      {
+        "dependsOn": [
+          {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-web",
+            "resourceGroup": "rg-resto-scale-agent",
+            "resourceName": "identity-web",
+            "resourceType": "Microsoft.Resources/deployments"
+          },
+          {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-chat",
+            "resourceGroup": "rg-resto-scale-agent",
+            "resourceName": "identity-chat",
+            "resourceType": "Microsoft.Resources/deployments"
+          },
+          {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-worker",
+            "resourceGroup": "rg-resto-scale-agent",
+            "resourceName": "identity-worker",
+            "resourceType": "Microsoft.Resources/deployments"
+          },
+          {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-scaler",
+            "resourceGroup": "rg-resto-scale-agent",
+            "resourceName": "identity-scaler",
+            "resourceType": "Microsoft.Resources/deployments"
+          },
+          {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/logs",
+            "resourceGroup": "rg-resto-scale-agent",
+            "resourceName": "logs",
+            "resourceType": "Microsoft.Resources/deployments"
+          }
+        ],
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/insights",
+        "resourceGroup": "rg-resto-scale-agent",
+        "resourceName": "insights",
+        "resourceType": "Microsoft.Resources/deployments"
+      },
+      {
+        "dependsOn": [
+          {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-worker",
+            "resourceGroup": "rg-resto-scale-agent",
+            "resourceName": "identity-worker",
+            "resourceType": "Microsoft.Resources/deployments"
+          },
+          {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-chat",
+            "resourceGroup": "rg-resto-scale-agent",
+            "resourceName": "identity-chat",
+            "resourceType": "Microsoft.Resources/deployments"
+          },
+          {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-web",
+            "resourceGroup": "rg-resto-scale-agent",
+            "resourceName": "identity-web",
+            "resourceType": "Microsoft.Resources/deployments"
+          }
+        ],
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/registry",
+        "resourceGroup": "rg-resto-scale-agent",
+        "resourceName": "registry",
+        "resourceType": "Microsoft.Resources/deployments"
+      },
+      {
+        "dependsOn": [
+          {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-web",
+            "resourceGroup": "rg-resto-scale-agent",
+            "resourceName": "identity-web",
+            "resourceType": "Microsoft.Resources/deployments"
+          },
+          {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-worker",
+            "resourceGroup": "rg-resto-scale-agent",
+            "resourceName": "identity-worker",
+            "resourceType": "Microsoft.Resources/deployments"
+          },
+          {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/logs",
+            "resourceGroup": "rg-resto-scale-agent",
+            "resourceName": "logs",
+            "resourceType": "Microsoft.Resources/deployments"
+          }
+        ],
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/cosmos",
+        "resourceGroup": "rg-resto-scale-agent",
+        "resourceName": "cosmos",
+        "resourceType": "Microsoft.Resources/deployments"
+      },
+      {
+        "dependsOn": [
+          {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-scaler",
+            "resourceGroup": "rg-resto-scale-agent",
+            "resourceName": "identity-scaler",
+            "resourceType": "Microsoft.Resources/deployments"
+          },
+          {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-worker",
+            "resourceGroup": "rg-resto-scale-agent",
+            "resourceName": "identity-worker",
+            "resourceType": "Microsoft.Resources/deployments"
+          },
+          {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/logs",
+            "resourceGroup": "rg-resto-scale-agent",
+            "resourceName": "logs",
+            "resourceType": "Microsoft.Resources/deployments"
+          }
+        ],
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/broker",
+        "resourceGroup": "rg-resto-scale-agent",
+        "resourceName": "broker",
+        "resourceType": "Microsoft.Resources/deployments"
+      },
+      {
+        "dependsOn": [
+          {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-web",
+            "resourceGroup": "rg-resto-scale-agent",
+            "resourceName": "identity-web",
+            "resourceType": "Microsoft.Resources/deployments"
+          },
+          {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/logs",
+            "resourceGroup": "rg-resto-scale-agent",
+            "resourceName": "logs",
+            "resourceType": "Microsoft.Resources/deployments"
+          }
+        ],
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/vault",
+        "resourceGroup": "rg-resto-scale-agent",
+        "resourceName": "vault",
+        "resourceType": "Microsoft.Resources/deployments"
+      },
+      {
+        "dependsOn": [
+          {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/logs",
+            "resourceGroup": "rg-resto-scale-agent",
+            "resourceName": "logs",
+            "resourceType": "Microsoft.Resources/deployments"
+          }
+        ],
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/foundry",
+        "resourceGroup": "rg-resto-scale-agent",
+        "resourceName": "foundry",
+        "resourceType": "Microsoft.Resources/deployments"
+      },
+      {
+        "dependsOn": [
+          {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/foundry",
+            "resourceGroup": "rg-resto-scale-agent",
+            "resourceName": "foundry",
+            "resourceType": "Microsoft.Resources/deployments"
+          },
+          {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-chat",
+            "resourceGroup": "rg-resto-scale-agent",
+            "resourceName": "identity-chat",
+            "resourceType": "Microsoft.Resources/deployments"
+          }
+        ],
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/project",
+        "resourceGroup": "rg-resto-scale-agent",
+        "resourceName": "project",
+        "resourceType": "Microsoft.Resources/deployments"
+      },
+      {
+        "dependsOn": [
+          {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/logs",
+            "resourceGroup": "rg-resto-scale-agent",
+            "resourceName": "logs",
+            "resourceType": "Microsoft.Resources/deployments"
+          },
+          {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/network",
+            "resourceGroup": "rg-resto-scale-agent",
+            "resourceName": "network",
+            "resourceType": "Microsoft.Resources/deployments"
+          }
+        ],
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/environment",
+        "resourceGroup": "rg-resto-scale-agent",
+        "resourceName": "environment",
+        "resourceType": "Microsoft.Resources/deployments"
+      }
+    ],
+    "diagnostics": null,
+    "duration": "PT3M30.086858S",
+    "error": {
+      "additionalInfo": null,
+      "code": "DeploymentFailed",
+      "details": [
+        {
+          "additionalInfo": null,
+          "code": "DeploymentFailed",
+          "details": null,
+          "message": "At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/arm-deployment-operations for usage details.",
+          "target": null
+        },
+        {
+          "additionalInfo": null,
+          "code": "DeploymentFailed",
+          "details": null,
+          "message": "At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/arm-deployment-operations for usage details.",
+          "target": null
+        }
+      ],
+      "message": "At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/arm-deployment-operations for usage details.",
+      "target": null
+    },
+    "extensions": [],
+    "mode": "Incremental",
+    "onErrorDeployment": null,
+    "outputResources": null,
+    "outputs": null,
+    "parameters": {
+      "environment": {
+        "type": "String",
+        "value": "resto-scale-agent"
+      },
+      "foundryConsumerRoleId": {
+        "type": "String",
+        "value": "eed3b665-ab3a-47b6-8f48-c9382fb1dad6"
+      },
+      "guestSigningKeyExpiration": {
+        "type": "String",
+        "value": "2027-04-22T00:12:20Z"
+      },
+      "location": {
+        "type": "String",
+        "value": "centralus"
+      },
+      "modelCapacity": {
+        "type": "Int",
+        "value": 100
+      },
+      "modelDeploymentType": {
+        "type": "String",
+        "value": "GlobalStandard"
+      },
+      "modelName": {
+        "type": "String",
+        "value": "gpt-5.4-mini"
+      },
+      "modelVersion": {
+        "type": "String",
+        "value": "2026-03-17"
+      },
+      "principalId": {
+        "type": "String",
+        "value": "214d672b-df87-4f3b-94fd-7863032546c1"
+      }
+    },
+    "parametersLink": null,
+    "providers": [
+      {
+        "id": null,
+        "namespace": "Microsoft.Resources",
+        "providerAuthorizationConsentState": null,
+        "registrationPolicy": null,
+        "registrationState": null,
+        "resourceTypes": [
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locationMappings": null,
+            "locations": [
+              null
+            ],
+            "properties": null,
+            "resourceType": "tags",
+            "zoneMappings": null
+          },
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locationMappings": null,
+            "locations": [
+              null
+            ],
+            "properties": null,
+            "resourceType": "deployments",
+            "zoneMappings": null
+          }
+        ]
+      }
+    ],
+    "provisioningState": "Failed",
+    "templateHash": "5738745450112953888",
+    "templateLink": null,
+    "timestamp": "2026-10-24T00:15:51.197124+00:00",
+    "validatedResources": null,
+    "validationLevel": null
+  },
+  "resourceGroup": "rg-resto-scale-agent",
+  "tags": {
+    "azd-env-name": "resto-scale-agent",
+    "azd-layer-name": "",
+    "azd-project-name": "tdd-azd-resto-scale-agent",
+    "azd-provision-param-hash": "86dc41965a98233246e53d87d4d15623a8cf34e3b096097647fde77509b5fc47"
+  },
+  "type": "Microsoft.Resources/deployments"
+}

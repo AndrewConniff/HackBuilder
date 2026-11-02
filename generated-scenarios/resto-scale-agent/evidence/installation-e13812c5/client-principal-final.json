@@ -1,0 +1,66 @@
+{
+  "command": "az rest --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --method get --url https://graph.microsoft.com/v1.0/servicePrincipals/9f0df588-c7e8-4c71-920a-677187e09e72 --output json",
+  "cwd": "C:\\azd-projects\\resto-scale-agent",
+  "startedAtUtc": "2026-10-24T17:42:34.772118+00:00",
+  "checkedAtUtc": "2026-10-24T17:42:36.479079+00:00",
+  "exitCode": 0,
+  "stdout": "{\n  \"@odata.context\": \"https://graph.microsoft.com/v1.0/$metadata#servicePrincipals/$entity\",\n  \"accountEnabled\": true,\n  \"addIns\": [],\n  \"alternativeNames\": [],\n  \"appDescription\": null,\n  \"appDisplayName\": \"resto-scale-agent-client-a80613974550a044\",\n  \"appId\": \"9e01b233-2898-49c8-8e9e-1c8ffc2f8ad5\",\n  \"appOwnerOrganizationId\": \"16b3c013-d300-468d-ac64-7eda0820b6d3\",\n  \"appRoleAssignmentRequired\": true,\n  \"appRoles\": [],\n  \"applicationTemplateId\": null,\n  \"createdByAppId\": \"04b07795-8ddb-461a-bbee-02f9e1bf7b46\",\n  \"createdDateTime\": \"2026-10-24T17:39:45Z\",\n  \"deletedDateTime\": null,\n  \"description\": null,\n  \"disabledByMicrosoftStatus\": null,\n  \"displayName\": \"resto-scale-agent-client-a80613974550a044\",\n  \"homepage\": null,\n  \"id\": \"9f0df588-c7e8-4c71-920a-677187e09e72\",\n  \"info\": {\n    \"logoUrl\": null,\n    \"marketingUrl\": null,\n    \"privacyStatementUrl\": null,\n    \"supportUrl\": null,\n    \"termsOfServiceUrl\": null\n  },\n  \"isDisabled\": null,\n  \"keyCredentials\": [],\n  \"loginUrl\": null,\n  \"logoutUrl\": null,\n  \"notes\": null,\n  \"notificationEmailAddresses\": [],\n  \"oauth2PermissionScopes\": [],\n  \"passwordCredentials\": [],\n  \"preferredSingleSignOnMode\": null,\n  \"preferredTokenSigningKeyThumbprint\": null,\n  \"replyUrls\": [\n    \"http://localhost\"\n  ],\n  \"resourceSpecificApplicationPermissions\": [],\n  \"samlSingleSignOnSettings\": null,\n  \"servicePrincipalNames\": [\n    \"9e01b233-2898-49c8-8e9e-1c8ffc2f8ad5\"\n  ],\n  \"servicePrincipalType\": \"Application\",\n  \"signInAudience\": \"AzureADMyOrg\",\n  \"tags\": [\n    \"abc-resto-scale-agent:a80613974550a044f78afcb2eb6955e95192b51876363102cf63368ed1b825d8\"\n  ],\n  \"tokenEncryptionKeyId\": null,\n  \"verifiedPublisher\": {\n    \"addedDateTime\": null,\n    \"displayName\": null,\n    \"verifiedPublisherId\": null\n  }\n}\n",
+  "stderr": "",
+  "result": {
+    "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#servicePrincipals/$entity",
+    "accountEnabled": true,
+    "addIns": [],
+    "alternativeNames": [],
+    "appDescription": null,
+    "appDisplayName": "resto-scale-agent-client-a80613974550a044",
+    "appId": "9e01b233-2898-49c8-8e9e-1c8ffc2f8ad5",
+    "appOwnerOrganizationId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "appRoleAssignmentRequired": true,
+    "appRoles": [],
+    "applicationTemplateId": null,
+    "createdByAppId": "04b07795-8ddb-461a-bbee-02f9e1bf7b46",
+    "createdDateTime": "2026-10-24T17:39:45Z",
+    "deletedDateTime": null,
+    "description": null,
+    "disabledByMicrosoftStatus": null,
+    "displayName": "resto-scale-agent-client-a80613974550a044",
+    "homepage": null,
+    "id": "9f0df588-c7e8-4c71-920a-677187e09e72",
+    "info": {
+      "logoUrl": null,
+      "marketingUrl": null,
+      "privacyStatementUrl": null,
+      "supportUrl": null,
+      "termsOfServiceUrl": null
+    },
+    "isDisabled": null,
+    "keyCredentials": [],
+    "loginUrl": null,
+    "logoutUrl": null,
+    "notes": null,
+    "notificationEmailAddresses": [],
+    "oauth2PermissionScopes": [],
+    "passwordCredentials": [],
+    "preferredSingleSignOnMode": null,
+    "preferredTokenSigningKeyThumbprint": null,
+    "replyUrls": [
+      "http://localhost"
+    ],
+    "resourceSpecificApplicationPermissions": [],
+    "samlSingleSignOnSettings": null,
+    "servicePrincipalNames": [
+      "9e01b233-2898-49c8-8e9e-1c8ffc2f8ad5"
+    ],
+    "servicePrincipalType": "Application",
+    "signInAudience": "AzureADMyOrg",
+    "tags": [
+      "abc-resto-scale-agent:a80613974550a044f78afcb2eb6955e95192b51876363102cf63368ed1b825d8"
+    ],
+    "tokenEncryptionKeyId": null,
+    "verifiedPublisher": {
+      "addedDateTime": null,
+      "displayName": null,
+      "verifiedPublisherId": null
+    }
+  }
+}

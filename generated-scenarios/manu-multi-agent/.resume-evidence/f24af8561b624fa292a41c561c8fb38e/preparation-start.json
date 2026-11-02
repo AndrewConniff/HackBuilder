@@ -1,0 +1,19 @@
+{
+  "stage": "deployment",
+  "operation": "deployment-preparation",
+  "status": "running",
+  "summary": "Resuming the same validated reference for authorized read-only eastus2 preflight and independent ARM what-if. No resource or directory writes are authorized.",
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "manu-multi-agent",
+    "resourceGroup": "rg-manu-multi-agent",
+    "region": "eastus2"
+  },
+  "evidence": [
+    "Canonical revision 41 read in full, including all decisions/history, deploymentContext and exact preparation grant c5b9b6e615064c5085134c1a62948c7f.",
+    "Existing local-validation, architecture, installation automation, model/SKU contracts and consolidated installation/cost inventory reused unchanged.",
+    "Workload what-if depends on real generated identity/image/agent/key outputs; no placeholder values or directory creation will be used."
+  ]
+}

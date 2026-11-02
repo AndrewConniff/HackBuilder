@@ -1,0 +1,22 @@
+{
+  "stage": "diagrams",
+  "status": "waiting_for_user",
+  "summary": "Decision required: this resumed worker still cannot resolve Graphviz dot. A follow-up check for an existing installation or persisted PATH update was denied by the execution host. The confirmed design and all prior answers remain preserved. No shared tools were installed and implementation has not advanced.",
+  "evidence": [
+    "Canonical portal revision 19 read in full: designConfirmed=true; local implementation permission answered affirmatively; Graphviz availability decision answered affirmatively; authorizations=[]; writer=28144938a01845e0a91f72d0b1e49c9f.",
+    "Get-Command dot,python,dotnet,az,azd -ErrorAction SilentlyContinue: python, dotnet, az and azd resolved; dot did not resolve.",
+    "python -c \"import shutil; print('dot:', shutil.which('dot'))\": exit 0; output dot: None.",
+    "Follow-up PowerShell check of known Graphviz locations and persisted PATH: execution host denied permission because no interactive user response was available. The denied operation was not retried or bypassed.",
+    "No Azure queries, deployments, shared SDK/tool changes, other scenario edits, canonical repository edits, scenario approvals, hack packages or team deployments performed."
+  ],
+  "decision": {
+    "kind": "business",
+    "question": "Make dot.exe resolvable on PATH in a newly launched portal worker and permit the local prerequisite check in the execution host, then resume this same scenario?",
+    "reason": "The user-confirmed Graphviz availability is preserved, but the actual resumed worker reports shutil.which('dot') as None. The execution host also denied checking existing locations or persisted PATH, so the worker cannot verify or render the required diagrams. An administrator must coordinate the worker environment/tool permission; this job must not install shared tooling or bypass the denial. No design reconfirmation or cloud consent is requested.",
+    "choices": [
+      "Worker PATH and local prerequisite permission corrected; resume",
+      "Stop"
+    ],
+    "acceptChoice": "Worker PATH and local prerequisite permission corrected; resume"
+  }
+}

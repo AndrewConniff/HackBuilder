@@ -1,0 +1,37 @@
+{
+  "purpose": "Independent partial provider previews only; unchanged full production template preview retained.",
+  "exclusions": {
+    "registry": [
+      "roleAssignments"
+    ],
+    "cosmos": [
+      "sqlRoleAssignments",
+      "diagnosticSettings"
+    ],
+    "broker": [
+      "roleAssignments",
+      "diagnosticSettings",
+      "queue.roleAssignments"
+    ],
+    "vault": [
+      "roleAssignments",
+      "diagnosticSettings",
+      "key.roleAssignments"
+    ],
+    "foundry": [
+      "diagnosticSettings"
+    ]
+  },
+  "identity": "No fabricated identity IDs; all dependent grants excluded, never claimed validated.",
+  "names": "Only Foundry uses repaired v2 expression; all other exact names unchanged.",
+  "location": "centralus; required production ${AZURE_LOCATION} remains unchanged.",
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "resto-scale-agent",
+    "resourceGroup": "rg-resto-scale-agent",
+    "region": "centralus"
+  },
+  "foundryName": "ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec"
+}

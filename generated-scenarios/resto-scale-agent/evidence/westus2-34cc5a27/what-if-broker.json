@@ -1,0 +1,109 @@
+{
+  "command": "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-broker-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-broker.arm.json --no-pretty-print --output json",
+  "startedAtUtc": "2026-10-23T23:22:40.298772+00:00",
+  "checkedAtUtc": "2026-10-23T23:23:00.658523+00:00",
+  "exitCode": 0,
+  "stdout": "{\n  \"changes\": [\n    {\n      \"after\": {\n        \"apiVersion\": \"2024-03-01\",\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent\",\n        \"location\": \"westus2\",\n        \"name\": \"rg-resto-scale-agent\",\n        \"tags\": {\n          \"Environment\": \"resto-scale-agent\",\n          \"ManagedBy\": \"Bicep\",\n          \"Project\": \"resto-scale-agent\",\n          \"SecurityControl\": \"Ignore\"\n        },\n        \"type\": \"Microsoft.Resources/resourceGroups\"\n      },\n      \"before\": null,\n      \"changeType\": \"Create\",\n      \"delta\": null,\n      \"deploymentId\": null,\n      \"extension\": null,\n      \"identifiers\": null,\n      \"resourceId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent\",\n      \"symbolicName\": null,\n      \"unsupportedReason\": null\n    },\n    {\n      \"after\": {\n        \"apiVersion\": \"2024-01-01\",\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi\",\n        \"location\": \"westus2\",\n        \"name\": \"sb-resto-4tvlzr5zf2rxi\",\n        \"properties\": {\n          \"disableLocalAuth\": true,\n          \"minimumTlsVersion\": \"1.2\",\n          \"premiumMessagingPartitions\": 1,\n          \"publicNetworkAccess\": \"Enabled\",\n          \"zoneRedundant\": true\n        },\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"sku\": {\n          \"capacity\": 1,\n          \"name\": \"Premium\"\n        },\n        \"tags\": {\n          \"Environment\": \"resto-scale-agent\",\n          \"ManagedBy\": \"Bicep\",\n          \"Project\": \"resto-scale-agent\",\n          \"SecurityControl\": \"Ignore\"\n        },\n        \"type\": \"Microsoft.ServiceBus/namespaces\"\n      },\n      \"before\": null,\n      \"changeType\": \"Create\",\n      \"delta\": null,\n      \"deploymentId\": null,\n      \"extension\": null,\n      \"identifiers\": null,\n      \"resourceId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi\",\n      \"symbolicName\": null,\n      \"unsupportedReason\": null\n    },\n    {\n      \"after\": {\n        \"apiVersion\": \"2024-01-01\",\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen\",\n        \"name\": \"kitchen\",\n        \"properties\": {\n          \"deadLetteringOnMessageExpiration\": true,\n          \"defaultMessageTimeToLive\": \"P7D\",\n          \"duplicateDetectionHistoryTimeWindow\": \"PT10M\",\n          \"enableBatchedOperations\": true,\n          \"enableExpress\": false,\n          \"enablePartitioning\": false,\n          \"lockDuration\": \"PT1M\",\n          \"maxDeliveryCount\": 5,\n          \"maxMessageSizeInKilobytes\": \"[if(equals(reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi', '2024-01-01', 'full').sku.name, 'Premium'), parameters('maxMessageSizeInKilobytes'), null())]\",\n          \"maxSizeInMegabytes\": 1024,\n          \"requiresDuplicateDetection\": true,\n          \"requiresSession\": true,\n          \"status\": \"Active\"\n        },\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"type\": \"Microsoft.ServiceBus/namespaces/queues\"\n      },\n      \"before\": null,\n      \"changeType\": \"Create\",\n      \"delta\": null,\n      \"deploymentId\": null,\n      \"extension\": null,\n      \"identifiers\": null,\n      \"resourceId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen\",\n      \"symbolicName\": null,\n      \"unsupportedReason\": null\n    }\n  ],\n  \"diagnostics\": null,\n  \"error\": null,\n  \"potentialChanges\": null,\n  \"status\": \"Succeeded\"\n}\n",
+  "stderr": "",
+  "result": {
+    "changes": [
+      {
+        "after": {
+          "apiVersion": "2024-03-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent",
+          "location": "westus2",
+          "name": "rg-resto-scale-agent",
+          "tags": {
+            "Environment": "resto-scale-agent",
+            "ManagedBy": "Bicep",
+            "Project": "resto-scale-agent",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.Resources/resourceGroups"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2024-01-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi",
+          "location": "westus2",
+          "name": "sb-resto-4tvlzr5zf2rxi",
+          "properties": {
+            "disableLocalAuth": true,
+            "minimumTlsVersion": "1.2",
+            "premiumMessagingPartitions": 1,
+            "publicNetworkAccess": "Enabled",
+            "zoneRedundant": true
+          },
+          "resourceGroup": "rg-resto-scale-agent",
+          "sku": {
+            "capacity": 1,
+            "name": "Premium"
+          },
+          "tags": {
+            "Environment": "resto-scale-agent",
+            "ManagedBy": "Bicep",
+            "Project": "resto-scale-agent",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.ServiceBus/namespaces"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2024-01-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen",
+          "name": "kitchen",
+          "properties": {
+            "deadLetteringOnMessageExpiration": true,
+            "defaultMessageTimeToLive": "P7D",
+            "duplicateDetectionHistoryTimeWindow": "PT10M",
+            "enableBatchedOperations": true,
+            "enableExpress": false,
+            "enablePartitioning": false,
+            "lockDuration": "PT1M",
+            "maxDeliveryCount": 5,
+            "maxMessageSizeInKilobytes": "[if(equals(reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi', '2024-01-01', 'full').sku.name, 'Premium'), parameters('maxMessageSizeInKilobytes'), null())]",
+            "maxSizeInMegabytes": 1024,
+            "requiresDuplicateDetection": true,
+            "requiresSession": true,
+            "status": "Active"
+          },
+          "resourceGroup": "rg-resto-scale-agent",
+          "type": "Microsoft.ServiceBus/namespaces/queues"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen",
+        "symbolicName": null,
+        "unsupportedReason": null
+      }
+    ],
+    "diagnostics": null,
+    "error": null,
+    "potentialChanges": null,
+    "status": "Succeeded"
+  }
+}

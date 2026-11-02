@@ -1,0 +1,10 @@
+{
+  "containers": "[parameters('containers')]",
+  "terminationGracePeriodSeconds": "[parameters('terminationGracePeriodSeconds')]",
+  "initContainers": "[parameters('initContainersTemplate')]",
+  "revisionSuffix": "[parameters('revisionSuffix')]",
+  "scale": "[parameters('scaleSettings')]",
+  "serviceBinds": "[if(parameters('includeAddOns'), parameters('serviceBinds'), null())]",
+  "volumes": "[parameters('volumes')]",
+  "resources": []
+}

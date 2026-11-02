@@ -1,0 +1,51 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.48.1.52935",
+      "templateHash": "14198604312659825001"
+    }
+  },
+  "parameters": {
+    "environmentName": {
+      "type": "string",
+      "metadata": {
+        "description": "Explicit isolated participant azd environment."
+      }
+    },
+    "location": {
+      "type": "string",
+      "metadata": {
+        "description": "Explicit destination region; no reference-region default."
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/tags",
+      "apiVersion": "2024-03-01",
+      "name": "default",
+      "properties": {
+        "tags": {
+          "Environment": "[parameters('environmentName')]",
+          "Location": "[parameters('location')]",
+          "Project": "feedback-campaign",
+          "ManagedBy": "azd",
+          "BusinessUnits": "sales,marketing"
+        }
+      }
+    }
+  ],
+  "outputs": {
+    "AZURE_RESOURCE_GROUP": {
+      "type": "string",
+      "value": "[resourceGroup().name]"
+    },
+    "STARTER_STATUS": {
+      "type": "string",
+      "value": "not-configured: learner agent and action are intentionally absent"
+    }
+  }
+}

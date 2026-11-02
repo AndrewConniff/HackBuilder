@@ -1,0 +1,16 @@
+{
+  "checkedAtUtc": "2026-10-23T22:47:23.572342+00:00",
+  "pages": [
+    {
+      "source": "https://prices.azure.com/api/retail/prices?%24filter=armRegionName+eq+%27eastus%27+and+serviceName+eq+%27Azure+OpenAI%27",
+      "response": {
+        "BillingCurrency": "USD",
+        "CustomerEntityId": "Default",
+        "CustomerEntityType": "Retail",
+        "Items": [],
+        "NextPageLink": null,
+        "Count": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "checkedAtUtc": "2026-10-23T22:52:26.574674+00:00",
+  "region": "eastus",
+  "currency": "USD",
+  "rates": {
+    "broker": {
+      "meterId": "176d7148-0033-48c7-8b18-7af4a9d1dca7",
+      "meterName": "Premium Messaging Unit",
+      "retailPrice": 0.9275,
+      "unitOfMeasure": "1/Hour",
+      "armRegionName": "eastus"
+    },
+    "cpuActive": {
+      "meterId": "ba69f1c7-e68f-56b1-bc7e-79aa26713625",
+      "meterName": "Standard vCPU Active Usage",
+      "retailPrice": 2.4e-05,
+      "unitOfMeasure": "1 Second",
+      "armRegionName": "eastus"
+    },
+    "cpuIdle": {
+      "meterId": "2937c12a-555a-58f0-86fb-11db356f5fb0",
+      "meterName": "Standard vCPU Idle Usage",
+      "retailPrice": 3e-06,
+      "unitOfMeasure": "1 Second",
+      "armRegionName": "eastus"
+    },
+    "memoryActive": {
+      "meterId": "f3d673ac-8004-5c9e-a541-8c9eaac1dfea",
+      "meterName": "Standard Memory Active Usage",
+      "retailPrice": 3e-06,
+      "unitOfMeasure": "1 GiB Second",
+      "armRegionName": "eastus"
+    },
+    "memoryIdle": {
+      "meterId": "ac22f07d-3385-5dca-a67a-c888b544b546",
+      "meterName": "Standard Memory Idle Usage",
+      "retailPrice": 3e-06,
+      "unitOfMeasure": "1 GiB Second",
+      "armRegionName": "eastus"
+    },
+    "cosmosAutoscale": {
+      "meterId": "73a9758d-a043-46f4-804b-d4a4b0c063ff",
+      "meterName": "AP1 100 RUs",
+      "retailPrice": 0.012,
+      "unitOfMeasure": "1/Hour",
+      "armRegionName": "eastus"
+    },
+    "cosmosStorage": {
+      "meterId": "56f07b6a-c7d9-490f-a196-a7ee08e28712",
+      "meterName": "Data Stored",
+      "retailPrice": 0.25,
+      "unitOfMeasure": "1 GB/Month",
+      "armRegionName": "eastus"
+    },
+    "continuous7Days": {
+      "meterId": "a7df2b11-3394-5c24-81b8-4d24e6a0089f",
+      "meterName": "Cont 7D Bkup Continuous Backup",
+      "retailPrice": 0.0,
+      "unitOfMeasure": "1 GB",
+      "armRegionName": "eastus"
+    },
+    "input": {
+      "meterId": "516ef4f1-f681-5acc-87fe-54943f9a8d2d",
+      "meterName": "5.4 mini Inp Gl 1M Tokens",
+      "retailPrice": 0.75,
+      "unitOfMeasure": "1M",
+      "armRegionName": "eastus"
+    },
+    "output": {
+      "meterId": "c2388b1d-c5cb-5be4-9ae7-3c3393914873",
+      "meterName": "5.4 mini Opt Gl 1M Tokens",
+      "retailPrice": 4.5,
+      "unitOfMeasure": "1M",
+      "armRegionName": "eastus"
+    }
+  },
+  "monthlyExamples": {
+    "hours": 730,
+    "brokerOneMU": 677.08,
+    "cosmos400RU": 35.04,
+    "cosmos4000RU": 350.4,
+    "nineReplicasIdle": 106.43,
+    "nineReplicasActive": 354.78,
+    "model24MInput7_2MOutput": 50.4,
+    "max28ReplicasActive": 1103.76
+  },
+  "planningAllowancesMonthly": {
+    "shared": [
+      745,
+      1150
+    ],
+    "fullReference": [
+      900,
+      1650
+    ],
+    "ancillary": [
+      30,
+      120
+    ]
+  },
+  "limitations": [
+    "Planning ranges retained after checking actual East US base rates; not a quote, budget approval or cap.",
+    "Nine warm replicas and 200 turns/day; max scale and temporary old/new overlap can exceed normal allowance.",
+    "Ancillary ACR, logs, insights, vault and network retain unquoted USD 30-120/month allowance.",
+    "Requests, storage, restore, zone-related billing, telemetry, egress and taxes can add costs; grants/discounts excluded.",
+    "No pricing or preview result overrides Cosmos regional denial, Foundry conflict or unknown environment quota.",
+    "East US 2 meter IDs and the old serviceName Azure OpenAI query returned no East US model rates; corrected product Azure OpenAI GPT5 / service Foundry Models used without substituting old-region prices."
+  ]
+}

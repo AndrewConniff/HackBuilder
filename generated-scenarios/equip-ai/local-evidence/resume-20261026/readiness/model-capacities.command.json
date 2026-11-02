@@ -1,0 +1,9 @@
+{
+  "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" rest --method get --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/modelCapacities --url-parameters @C:\\azd-projects\\equip-ai\\local-evidence\\resume-20261026\\readiness\\model-capacities.query.json --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+  "cwd": "C:\\azd-projects\\equip-ai",
+  "startedAtUtc": "2026-10-26T00:33:41.932937+00:00",
+  "finishedAtUtc": "2026-10-26T00:33:48.174972+00:00",
+  "exitCode": 0,
+  "stdout": "model-capacities.json",
+  "stderr": "model-capacities.stderr.txt"
+}

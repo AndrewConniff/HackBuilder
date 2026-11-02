@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "scope": "local_browser_only",
+  "checkedAtUtc": "2026-10-24T17:51:25.117Z",
+  "url": "http://127.0.0.1:5080",
+  "localOnly": true,
+  "checks": {
+    "branding": true,
+    "ingestionStatus": true,
+    "missingFoundryReturns503": true,
+    "noPageErrors": true
+  },
+  "liveAgentInvocation": false,
+  "liveModelInference": false,
+  "chatStatus": "Not successful: HTTP 503: {\"error\":\"dependency_unavailable\",\"mockFallback\":false}"
+}

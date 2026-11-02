@@ -1,0 +1,8 @@
+{
+  "command": "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/eastus/models/OpenAI.gpt-5.4-mini.2026-03-17/skuCapacities?api-version=2024-10-01 --output json",
+  "startedAtUtc": "2026-10-23T22:45:28.840646+00:00",
+  "checkedAtUtc": "2026-10-23T22:45:31.137126+00:00",
+  "exitCode": 1,
+  "stdout": "",
+  "stderr": "ERROR: Method Not Allowed\n"
+}

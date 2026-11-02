@@ -1,0 +1,16 @@
+{
+  "stage": "diagrams",
+  "status": "blocked",
+  "summary": "Recorded read-only setup verification failed under existing host permissions: Python resolved dot to None and raised AssertionError: Graphviz dot is not on the worker PATH. Setup blocker ddf4a2b4293c4fed9a02d7dc74d536aa remains unmet. Stopped without implementation, tool installation, PATH changes, permission bypass or Azure operations.",
+  "evidence": [
+    "Canonical state read at revision 56; setupBlocker.id=ddf4a2b4293c4fed9a02d7dc74d536aa; stage=diagrams.",
+    "Exact recorded command: python -c \"import shutil,subprocess; dot=shutil.which('dot'); print('dot:',dot); assert dot is not None, 'Graphviz dot is not on the worker PATH'; subprocess.run([dot,'-V'],check=True)\"",
+    "Actual result: dot: None; AssertionError: Graphviz dot is not on the worker PATH; exit code 1. dot -V was not reached.",
+    "Existing design confirmation and scenario-local-execution consent preserved; no cloud authorizations recorded."
+  ],
+  "blocker": {
+    "kind": "prerequisite",
+    "action": "Outside this worker, have the environment administrator expose the existing Graphviz dot.exe on the PATH inherited by the portal-launched worker and restart the portal execution host if required for PATH propagation. Verify in that actual worker that Python resolves dot to an executable path and dot -V succeeds. Do not repeat an affirmative answer without correcting the worker environment.",
+    "verification": "python -c \"import shutil,subprocess; dot=shutil.which('dot'); print('dot:',dot); assert dot is not None, 'Graphviz dot is not on the worker PATH'; subprocess.run([dot,'-V'],check=True)\""
+  }
+}

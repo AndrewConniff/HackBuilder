@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "projectSlug": "manu-multi-agent",
+  "runId": "130becf026584743890709ef90ab1a5b",
+  "canonicalRevisionReviewed": 31,
+  "status": "decision-required",
+  "nextIncompleteStep": "deployment-preparation",
+  "designConfirmed": true,
+  "localExecutionAuthorized": true,
+  "cloudAuthorizations": [],
+  "deploymentContext": null,
+  "pendingBusinessDecisions": [],
+  "sourceVerification": {
+    "receipt": "local-validation.json",
+    "receiptCheckedAtUtc": "2026-10-24T19:59:52.091203+00:00",
+    "sourceFilesChecked": 34,
+    "sourceMismatches": [],
+    "exitCode": 0,
+    "freshRuntimeTestsRun": false
+  },
+  "retainedDeploymentPlan": ".resume-evidence\\d759fcc15c504c529009a19ae5ba0e13\\deployment-review.json",
+  "nextAction": "In this project's portal Azure readiness and proposed targets card, resolve and review exact targets, then select Allow read-only preflight & what-if. Deployment consent follows actual what-if and the consolidated identity, private-execution and cost review.",
+  "limitations": [
+    "All canonical decisions and history were read; the latest continuation message grants no cloud authorization.",
+    "No Azure query, directory operation, what-if or deployment was authorized or executed.",
+    "Existing local validation is retained as dated evidence, not represented as fresh runtime acceptance.",
+    "No exact scope was invented. The report protocol requires exact targets for cloud decisions and an authorized scope for preparation events.",
+    "No reference implementation, shared CLI default, suitability approval, hack package or other project was changed."
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "stage": "local-validation",
+  "status": "blocked",
+  "summary": "Corrected loopback-only Docker verification executed under existing permissions but failed: health timed out after 90 seconds, and Docker Desktop reported its WSL engine terminated abruptly. Log collection and owned-container cleanup also failed because the daemon was unavailable. Current blocker retained; no further implementation or permission request.",
+  "evidence": [
+    "Canonical state read at revision 116: current setupBlocker 13b185c049534370a1f6cdc802af4fdd. Historical host-denial evidence remains in canonical history; this retry was not denied and does not verify the earlier blocker.",
+    "python scripts\\check_prerequisites.py --for-project --record --stage requirements --json: exit 0, ready=true; Docker initially reported 29.8.2 linux. This initial audit did not prove subsequent container HTTP health.",
+    "python scripts\\check_container_runtime.py --image resto-scale-agent-local:568a2a2800434b88a4b673c97d1adf2d --marker 'Fourth Coffee' --timeout 90: exit 1; ok=false; checks=[Image inspected: linux/amd64; user=1654]; cleanupPassed=false.",
+    "Exact health failure: RuntimeError: Container health did not pass within 90s: TimeoutError: timed out. No HTTP 200 health result or homepage marker result was obtained.",
+    "Exact log failure: Log collection failed: docker logs failed (1): Error response from daemon: Docker Desktop is unable to start\nrunning wsl-keepalive in \"docker-desktop-data\": WSL engine terminated abruptly\ngithub.com/docker/pinata/common/pkg/errordef.helper.Wrapf\n\tgithub.com/docker/pinata/common/pkg/errordef/helper.go:70\ngithub.com/docker/pinata/win/backend/wsl/distro.(*Distro).keepAlive.func2\n\tgithub.com/docker/pinata/win/backend/wsl/distro/legacy_data.go:86\ngolang.org/x/sync/errgroup.(*Group).Go.func1\n\tgolang.org/x/sync@v0.22.0/errgroup/errgroup.go:93\nruntime.goexit\n\truntime/asm_arm64.s:1039",
+    "Exact cleanup failure: Owned-container cleanup failed: docker stop failed (1): Flag --time has been deprecated, use --timeout instead\nError response from daemon: Docker Desktop is unable to start\nrunning wsl-keepalive in \"docker-desktop-data\": WSL engine terminated abruptly\ngithub.com/docker/pinata/common/pkg/errordef.helper.Wrapf\n\tgithub.com/docker/pinata/common/pkg/errordef/helper.go:70\ngithub.com/docker/pinata/win/backend/wsl/distro.(*Distro).keepAlive.func2\n\tgithub.com/docker/pinata/win/backend/wsl/distro/legacy_data.go:86\ngolang.org/x/sync/errgroup.(*Group).Go.func1\n\tgolang.org/x/sync@v0.22.0/errgroup/errgroup.go:93\nruntime.goexit\n\truntime/asm_arm64.s:1039",
+    "The helper attempted cleanup only for its owned container. Cleanup remains unverified; no broad cleanup, daemon restart, tool installation, PATH change, permission expansion, alternative runtime check or Azure operation was performed."
+  ],
+  "blocker": {
+    "kind": "prerequisite",
+    "action": "Outside this worker, restore the existing Docker Desktop Linux engine after its docker-desktop-data WSL engine termination and inspect/remove only the leftover abcbuilder-verify container from this failed attempt, if present, using its ownership label abcbuilder.purpose=local-runtime-verification and attempt time. Do not remove other scenarios' containers or broaden permissions. Runtime health, homepage and owned cleanup must actually pass before clearing this blocker.",
+    "verification": "python scripts\\check_container_runtime.py --image resto-scale-agent-local:568a2a2800434b88a4b673c97d1adf2d --marker 'Fourth Coffee' --timeout 90"
+  }
+}

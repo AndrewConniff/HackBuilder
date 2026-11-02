@@ -1,0 +1,26 @@
+
+Deploying services (azd deploy)
+
+  web: Packaging
+  web: Packaging (Publishing .NET project)
+  web: Packaging (Compressing deployment artifacts)
+  web: Publishing
+  web: Deploying
+  web: Deploying (Checking deployment slots)
+  web: Deploying (Uploading deployment package) [1s]
+  web: Deploying (Starting runtime process, 1 in progress instances, 0 successful instances) [18s]
+  web: Deploying (Starting runtime process, 1 in progress instances, 0 successful instances) [22s]
+  web: Deploying (Starting runtime process, 1 in progress instances, 0 successful instances) [26s]
+  web: Deploying (Starting runtime process, 1 in progress instances, 0 successful instances) [29s]
+  web: Deploying (Starting runtime process, 1 in progress instances, 0 successful instances) [33s]
+  web: Deploying (Starting runtime process, 1 in progress instances, 0 successful instances) [36s]
+  web: Deploying (Fetching endpoints for app service) [40s]
+  web: Done [41s]
+- Endpoint: https://web-fc-keegvmxonq3wc.azurewebsites.net/ 
+
+
+SUCCESS: Your application was deployed to Azure in 57 seconds.
+You can view the resources created under the resource group rg-coffee-shop-ref in Azure Portal:
+https://portal.azure.com/#@/resource/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/overview
+Update available: 1.35.1 -> 1.37.1 (https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_1.37.1)
+To update, run `winget upgrade Microsoft.Azd`

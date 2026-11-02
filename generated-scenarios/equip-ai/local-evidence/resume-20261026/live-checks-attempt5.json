@@ -1,0 +1,158 @@
+{
+  "status": "failed",
+  "checkedAtUtc": "2026-10-26T01:17:44.612380+00:00",
+  "errorType": "KeyError",
+  "message": "'deviceId'",
+  "checks": [
+    {
+      "name": "anonymous denial /api/equipment",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:16:10.508136+00:00"
+    },
+    {
+      "name": "anonymous denial /api/evidence/tacoma/tacoma-pump-01",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:16:11.925430+00:00"
+    },
+    {
+      "name": "anonymous chat denied",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:16:13.297151+00:00"
+    },
+    {
+      "name": "wrong local password denied",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:16:17.006423+00:00"
+    },
+    {
+      "name": "Tacoma local login",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:16:21.663133+00:00"
+    },
+    {
+      "name": "Tacoma role has exactly five site-owned devices",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:16:22.800636+00:00"
+    },
+    {
+      "name": "cross-site evidence denied before retrieval",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:16:24.154465+00:00"
+    },
+    {
+      "name": "missing CSRF denied",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:16:25.195809+00:00"
+    },
+    {
+      "name": "foreign origin denied",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:16:26.162150+00:00"
+    },
+    {
+      "name": "owned X.509 registry identity tacoma-pump-01",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:16:29.819727+00:00"
+    },
+    {
+      "name": "real MQTT certificate publication tacoma-pump-01",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:16:32.397328+00:00",
+      "deviceId": "tacoma-pump-01",
+      "messages": 3
+    },
+    {
+      "name": "owned X.509 registry identity spokane-pump-01",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:16:34.066448+00:00"
+    },
+    {
+      "name": "real MQTT certificate publication spokane-pump-01",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:16:36.565243+00:00",
+      "deviceId": "spokane-pump-01",
+      "messages": 3
+    },
+    {
+      "name": "owned X.509 registry identity tacoma-press-02",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:16:37.950157+00:00"
+    },
+    {
+      "name": "real MQTT certificate publication tacoma-press-02",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:16:40.149214+00:00",
+      "deviceId": "tacoma-press-02",
+      "messages": 1
+    },
+    {
+      "name": "50-events-per-second 60-second certified burst",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:17:42.507242+00:00",
+      "acknowledgedMessages": 3000,
+      "offeredPerSecond": [
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50
+      ],
+      "elapsedSeconds": 60.0078099
+    }
+  ]
+}

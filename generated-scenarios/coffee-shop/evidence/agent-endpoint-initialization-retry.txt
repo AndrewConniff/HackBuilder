@@ -1,0 +1,78 @@
+Initialized table fixtures without overwriting existing stock; captured real agent IDs/versions.
+[
+  {
+    "name": "Storage__Endpoint",
+    "slotSetting": false,
+    "value": null
+  },
+  {
+    "name": "Foundry__Endpoint",
+    "slotSetting": false,
+    "value": null
+  },
+  {
+    "name": "Foundry__Model",
+    "slotSetting": false,
+    "value": null
+  },
+  {
+    "name": "ASPNETCORE_ENVIRONMENT",
+    "slotSetting": false,
+    "value": null
+  },
+  {
+    "name": "SCM_DO_BUILD_DURING_DEPLOYMENT",
+    "slotSetting": false,
+    "value": null
+  },
+  {
+    "name": "Foundry__stock__Name",
+    "slotSetting": false,
+    "value": null
+  },
+  {
+    "name": "Foundry__stock__Version",
+    "slotSetting": false,
+    "value": null
+  },
+  {
+    "name": "Foundry__stock__Id",
+    "slotSetting": false,
+    "value": null
+  },
+  {
+    "name": "Foundry__margin__Name",
+    "slotSetting": false,
+    "value": null
+  },
+  {
+    "name": "Foundry__margin__Version",
+    "slotSetting": false,
+    "value": null
+  },
+  {
+    "name": "Foundry__margin__Id",
+    "slotSetting": false,
+    "value": null
+  },
+  {
+    "name": "Foundry__close__Name",
+    "slotSetting": false,
+    "value": null
+  },
+  {
+    "name": "Foundry__close__Version",
+    "slotSetting": false,
+    "value": null
+  },
+  {
+    "name": "Foundry__close__Id",
+    "slotSetting": false,
+    "value": null
+  },
+  {
+    "name": "WEBSITE_HTTPLOGGING_RETENTION_DAYS",
+    "slotSetting": false,
+    "value": null
+  }
+]

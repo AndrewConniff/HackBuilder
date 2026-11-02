@@ -1,0 +1,37 @@
+{
+  "value": [
+    {
+      "currentValue": 0,
+      "id": null,
+      "limit": 1,
+      "name": {
+        "localizedValue": "Free Iot Hub Count",
+        "value": "freeIotHubCount"
+      },
+      "type": null,
+      "unit": "count"
+    },
+    {
+      "currentValue": 0,
+      "id": null,
+      "limit": 50,
+      "name": {
+        "localizedValue": "Paid Iot Hub Count",
+        "value": "paidIotHubCount"
+      },
+      "type": null,
+      "unit": "count"
+    },
+    {
+      "currentValue": 0,
+      "id": null,
+      "limit": 5,
+      "name": {
+        "localizedValue": "GEN2 Iot Hub Count",
+        "value": "gen2IotHubCount"
+      },
+      "type": null,
+      "unit": "count"
+    }
+  ]
+}

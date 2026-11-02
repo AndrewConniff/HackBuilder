@@ -1,0 +1,11 @@
+{
+  "command": "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Web/skus?api-version=2024-11-01 --output json",
+  "startedAtUtc": "2026-10-23T22:45:33.587602+00:00",
+  "checkedAtUtc": "2026-10-23T22:45:36.331600+00:00",
+  "exitCode": 0,
+  "stdout": "{\n  \"value\": []\n}\n",
+  "stderr": "",
+  "result": {
+    "value": []
+  }
+}

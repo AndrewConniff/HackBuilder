@@ -1,0 +1,10 @@
+{
+  "title": "Woodgrove Groceries: Agentic Order to Home Delivery",
+  "summary": "Three real Foundry prompt agents coordinate synthetic grocery ordering, fulfillment and delivery with exact customer approval for changed commitments.",
+  "industry": "Retail & Consumer Goods",
+  "businessUnits": ["generic"],
+  "services": ["foundry", "app-service", "storage", "managed-identity", "virtual-network"],
+  "pillars": [],
+  "domains": [],
+  "metadataStatus": "curated"
+}

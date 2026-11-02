@@ -1,0 +1,15 @@
+using './main.bicep'
+
+param environment = readEnvironmentVariable('AZURE_ENV_NAME', 'manu-multi-agent-ref')
+param location = readEnvironmentVariable('AZURE_LOCATION', loadJsonContent('../00-region-availability.json').provisionalRegion)
+param principalId = readEnvironmentVariable('AZURE_PRINCIPAL_ID')
+param deploymentPhase = readEnvironmentVariable('DEPLOYMENT_PHASE', 'foundation')
+param publisherEmail = readEnvironmentVariable('APIM_PUBLISHER_EMAIL', '')
+param backendClientId = readEnvironmentVariable('BACKEND_CLIENT_ID', '')
+param consumerRoleDefinitionId = readEnvironmentVariable('FOUNDRY_CONSUMER_ROLE_ID', '')
+param imageDigest = readEnvironmentVariable('APP_IMAGE_SHA256', '')
+param salesAgentVersion = readEnvironmentVariable('SALES_AGENT_VERSION', '')
+param marketingAgentVersion = readEnvironmentVariable('MARKETING_AGENT_VERSION', '')
+param coordinatorAgentVersion = readEnvironmentVariable('COORDINATOR_AGENT_VERSION', '')
+param fixtureManifestHash = readEnvironmentVariable('FIXTURE_MANIFEST_SHA256', '')
+param signingKeyVersion = readEnvironmentVariable('SIGNING_KEY_VERSION', '')

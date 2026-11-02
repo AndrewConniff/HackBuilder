@@ -1,0 +1,5 @@
+{
+  "disableDeviceSAS": true,
+  "disableLocalAuth": true,
+  "disableModuleSAS": true
+}

@@ -1,0 +1,16 @@
+{
+  "checkedAtUtc": "2026-10-24T20:01:01.324682+00:00",
+  "status": "passed_local_revalidation",
+  "productionFilesPreserved": 26,
+  "applicationTests": 35,
+  "infrastructureAndLifecycleTests": 21,
+  "offlineBrowserCases": 8,
+  "containerChecks": 7,
+  "sourceHashesMatch": true,
+  "documentationLineLimits": "passed",
+  "actualUnauthorizedInstallation": "Expected exit 1 before Azure operations",
+  "cloudAuthorizations": [],
+  "privateConnectivityAndCost": "Pending exact-target authorized preparation",
+  "nextAction": "Use portal Azure readiness and proposed targets card; then separately allow read-only preflight and what-if.",
+  "noSuitabilityApprovalOrComposition": true
+}

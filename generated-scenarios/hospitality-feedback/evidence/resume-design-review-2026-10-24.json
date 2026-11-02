@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "scope": "same_existing_reference_local_design_review",
+  "projectSlug": "hospitality-feedback",
+  "evidenceDate": "2026-10-24",
+  "status": "awaiting_design_confirmation",
+  "intakeValidation": "resume-intake-validation-2026-10-24.json",
+  "referenceDocuments": [
+    "../01-requirements.md",
+    "../02-architecture-assessment.md",
+    "../04-implementation-plan.md"
+  ],
+  "reviewedImplementation": [
+    "../azure.yaml",
+    "../infra/main.bicep",
+    "../infra/workload.bicep",
+    "../src/HospitalityFeedback.Web/Program.cs",
+    "../src/HospitalityFeedback.Web/Services/FoundryAgent.cs",
+    "../src/HospitalityFeedback.Web/Services/StorageRepository.cs",
+    "../src/HospitalityFeedback.Web/Services/QueueWorker.cs",
+    "../src/HospitalityFeedback.Web/Services/FeedbackOptions.cs",
+    "../src/HospitalityFeedback.Web/wwwroot/js/app.js"
+  ],
+  "businessScope": {
+    "industry": "Hospitality & Travel",
+    "vertical": "Hotels",
+    "businessUnits": ["generic"],
+    "basis": "documented legacy fallback; no department targeting",
+    "output": "Grounded multilingual service-quality summary and proposed improvements for manager review.",
+    "excluded": ["Unsupported revenue/occupancy claims", "Automated hotel actions", "Production guest data"]
+  },
+  "architecture": {
+    "pattern": "02 Sequential / Pipeline; application-hosted deterministic stages and one Foundry prompt agent",
+    "hosting": ".NET 10 Razor Pages and colocated worker; Linux App Service B1 x1, Always On",
+    "storage": "StorageV2 Standard_LRS Hot; private raw, processed, status and audit containers; ingest and poison queues",
+    "foundry": "Basic AIServices S0 account and direct child project; Microsoft-managed agent state",
+    "network": "Preserve proposed public TLS endpoints with private blob containers; no private-network approval inferred",
+    "identity": "User-assigned managed identity for runtime Storage and Foundry; Entra JWT API policy unchanged",
+    "excludedServices": ["Customer Cosmos DB", "AI Search", "Service Bus", "Event Hubs", "Key Vault", "Multiple agents"]
+  },
+  "installationDependencies": {
+    "existingAzdHooks": false,
+    "existingDirectoryAutomation": false,
+    "proposedIdentityObjects": "Dedicated scenario-owned API and operator public-client registrations unless approved reusable inputs are supplied.",
+    "proposedTokenPath": "Microsoft-library authorization-code/PKCE operator acquisition; existing UI passes token in memory to JWT APIs.",
+    "apiPolicy": "v2 tenant/audience validation, operator oid allowlist, access_as_user or existing Feedback.Operator validation branch",
+    "directoryScope": "Registration/service-principal creation, exposed delegated scope, approved redirects and any required delegated consent must be explicitly authorized; no broad Graph grants or automatic app-role caller assignment.",
+    "outputCapture": "Capture real tenant/application/client/object/scope IDs automatically; generated identity IDs are installation outputs.",
+    "ownership": "Use stable scenario ownership markers and verify owned objects before reuse; names alone are insufficient.",
+    "ordering": "Prepare idempotent identity setup and azd hooks after design confirmation; identity outputs, dependent provisioning, app publication, agent readiness, fixtures, acceptance.",
+    "dependentChecks": "Final-audience ARM what-if and live authenticated API checks depend on real identity outputs; never deploy preview-only audience.",
+    "permissionStatus": "No current cloud/directory authorization; actual tenant capabilities unknown; no administrator requirement assumed."
+  },
+  "historicalEvidence": {
+    "checkedAtUtc": "2026-10-22T18:29:10.992560+00:00",
+    "sources": ["../00-region-availability.json", "what-if-review.json", "auth-blocker-2026-10-22.md"],
+    "candidateOnly": {
+      "region": "westus3",
+      "model": "gpt-4.1-mini",
+      "version": "2025-04-14",
+      "deploymentType": "Standard",
+      "capacity": 10
+    },
+    "previewCounts": {"Create": 24, "Modify": 0, "Delete": 0, "Unsupported": 2},
+    "limitations": [
+      "Historical target and conditional authorization are not imported into current portal authorization.",
+      "Capacity and quota are not reservations and have not been refreshed.",
+      "Historical audience is preview-only; two runtime-identity Storage grants were not fully analyzed.",
+      "Model was catalogued Legacy; lifecycle and complete subscription eligibility require authorized refresh.",
+      "No evidence establishes an approved reusable operator client or current token flow."
+    ]
+  },
+  "planningCost": {
+    "currency": "USD",
+    "basis": "Historical 2026-10-22 public B1 quote and low-volume allowance; not a refreshed deployment estimate.",
+    "monthlyBeforeModelAllowance": [15, 30],
+    "b1HourlyHistorical": 0.017,
+    "b1Monthly730HoursHistorical": 12.41,
+    "modelTokenRatesVerified": false,
+    "additionalCharges": "Model tokens, Storage transactions/retention and possible egress; applicable identity licensing not assessed.",
+    "addedManagementCompute": false,
+    "spendCapEnforced": false,
+    "requiredReview": "Refresh complete costs and model workload estimate during separately authorized preparation before deployment consent."
+  },
+  "officialIdentityEvidence": [
+    {
+      "url": "https://learn.microsoft.com/en-us/entra/fundamentals/users-default-permissions",
+      "finding": "Default member registration rights differ from guest access and can be restricted; no tenant-specific capability inferred."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-auth-code-flow",
+      "finding": "Use a supported Microsoft authentication library and authorization-code/PKCE; exact redirect/client configuration must be validated."
+    }
+  ],
+  "nextBoundary": "Portal design confirmation only; not cloud preparation, directory installation, deployment or suitability approval.",
+  "cloudOperationsExecuted": false,
+  "applicationTestsRun": false,
+  "liveAcceptanceClaimed": false,
+  "compositionStarted": false
+}

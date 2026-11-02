@@ -1,0 +1,12 @@
+{
+  "scenario": "feedback-campaign",
+  "source": "Actual user responses in VS Code chat",
+  "deploymentResponse": "attempt deployment o centralus",
+  "directoryResponse": "Authorize the listed scenario-only Entra installation and acceptance operations",
+  "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+  "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+  "resourceGroup": "rg-feedback-campaign",
+  "region": "centralus",
+  "review": "../05-deployment-review.md",
+  "limitations": "Reference installation and listed dedicated identity operations only; no hack suitability approval, event rollout, external delivery integration or publication."
+}

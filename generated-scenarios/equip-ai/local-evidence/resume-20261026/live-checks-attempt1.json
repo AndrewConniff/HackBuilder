@@ -1,0 +1,50 @@
+{
+  "status": "running",
+  "checks": [
+    {
+      "name": "anonymous denial /api/equipment",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:01:35.913200+00:00"
+    },
+    {
+      "name": "anonymous denial /api/evidence/tacoma/tacoma-pump-01",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:01:37.289169+00:00"
+    },
+    {
+      "name": "anonymous chat denied",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:01:38.389965+00:00"
+    },
+    {
+      "name": "wrong local password denied",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:01:42.490757+00:00"
+    },
+    {
+      "name": "Tacoma local login",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:01:45.897223+00:00"
+    },
+    {
+      "name": "Tacoma role has exactly five site-owned devices",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:01:47.275272+00:00"
+    },
+    {
+      "name": "cross-site evidence denied before retrieval",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:01:48.637579+00:00"
+    },
+    {
+      "name": "missing CSRF denied",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:01:49.680585+00:00"
+    },
+    {
+      "name": "foreign origin denied",
+      "passed": true,
+      "checkedAtUtc": "2026-10-26T01:01:50.758665+00:00"
+    }
+  ]
+}

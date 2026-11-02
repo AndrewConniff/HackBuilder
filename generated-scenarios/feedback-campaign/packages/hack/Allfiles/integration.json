@@ -1,0 +1,41 @@
+{
+  "industry": "Media & Communications",
+  "industrySlug": "media-communications",
+  "businessUnits": [
+    "sales",
+    "marketing"
+  ],
+  "status": "not-configured",
+  "projectEndpoint": null,
+  "agentName": null,
+  "actionEndpoint": null,
+  "credentials": "private destination delivery only",
+  "interpretation": {
+    "sentiment": "positive/negative/neutral finite scores [0,1], sum 1",
+    "aspects": "company and product sentiment vectors",
+    "assessment": "source-grounded brief text",
+    "draftReply": "policy-bounded text",
+    "recommendations": "advisory, never executable"
+  },
+  "actionRequest": {
+    "sourceId": "stable string",
+    "revision": "optimistic concurrency token",
+    "editedReply": "nonempty string",
+    "intent": "explicit human send"
+  },
+  "actionEvidence": [
+    "authenticated role",
+    "rule snapshot",
+    "correlation ID",
+    "durable pending state",
+    "queue acceptance receipt",
+    "duplicate denial"
+  ],
+  "prohibited": [
+    "external-delivery claims",
+    "model rule promotion",
+    "keys in source",
+    "caller-selected role",
+    "in-memory-only human approval"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "operation": "read-only-preflight-and-what-if",
+  "authorized": true,
+  "account": "petender@microsoft.com",
+  "accountEvidence": "Active az and azd identity independently verified during this run; account was not switched.",
+  "subscriptionName": "MCAPS-Hybrid-REQ-152516-2026-petender",
+  "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+  "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+  "resourceGroupName": "rg-hospitality-feedback",
+  "azdEnvironment": "hospitality-feedback",
+  "userMessage": "Execute target-scoped PRELIGHT and WHAT-IF only, through your skills directly, no delegation.",
+  "structuredConfirmation": {
+    "target": "Subscription: MCAPS-Hybrid-REQ-152516-2026-petender (efd64343-6ef4-4926-951f-d3229f38bd76); tenant: 16b3c013-d300-468d-ac64-7eda0820b6d3; new resource group: rg-hospitality-feedback; azd environment: hospitality-feedback",
+    "region": "Recommend a region based on live availability; do not deploy until the what-if target is confirmed.",
+    "authorizePreflight": true
+  },
+  "permitted": ["live read-only target checks", "local azd environment and parameter configuration", "subscription-scope what-if", "local template fixes and validation"],
+  "forbidden": ["deployment", "resource group creation", "provider registration", "RBAC writes", "other cloud mutations", "approval snapshot", "hack packages", "participant deployments", "publishing", "commits"],
+  "postWhatIfDeploymentAuthorized": false
+}

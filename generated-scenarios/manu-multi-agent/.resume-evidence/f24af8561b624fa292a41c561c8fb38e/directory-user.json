@@ -1,0 +1,6 @@
+{
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#users(id,userPrincipalName,userType)/$entity",
+  "id": "214d672b-df87-4f3b-94fd-7863032546c1",
+  "userPrincipalName": "petender_microsoft.com#EXT#@fdpo.onmicrosoft.com",
+  "userType": "Member"
+}

@@ -1,0 +1,14 @@
+[
+  {"Id":1,"Name":"Oat beverage, 1 litre","PriceCents":320,"Stock":12,"Allergens":["oats"]},
+  {"Id":2,"Name":"Wholemeal loaf","PriceCents":280,"Stock":15,"Allergens":["wheat"]},
+  {"Id":3,"Name":"Rice beverage, 1 litre","PriceCents":350,"Stock":20,"Allergens":[]},
+  {"Id":4,"Name":"Fresh apples, 1 kg","PriceCents":450,"Stock":25,"Allergens":[]},
+  {"Id":5,"Name":"Bananas, 1 kg","PriceCents":230,"Stock":18,"Allergens":[]},
+  {"Id":6,"Name":"Plain dairy yogurt","PriceCents":190,"Stock":10,"Allergens":["milk"]},
+  {"Id":7,"Name":"Plain coconut yogurt","PriceCents":260,"Stock":15,"Allergens":[]},
+  {"Id":8,"Name":"Peanut spread","PriceCents":420,"Stock":8,"Allergens":["peanuts"]},
+  {"Id":9,"Name":"Sunflower seed spread","PriceCents":460,"Stock":10,"Allergens":["sunflower"]},
+  {"Id":10,"Name":"Dry rice, 1 kg","PriceCents":340,"Stock":30,"Allergens":[]},
+  {"Id":11,"Name":"Brown rice pasta","PriceCents":310,"Stock":0,"Allergens":[]},
+  {"Id":12,"Name":"Unverified seasonal snack","PriceCents":250,"Stock":4,"Allergens":null}
+]

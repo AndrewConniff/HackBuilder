@@ -1,0 +1,15 @@
+{
+  "checkedAtUtc": "2026-10-24T23:14:06.2164211+00:00",
+  "status": "observed-requires-review",
+  "arguments": [
+    "appservice",
+    "list-locations",
+    "--sku",
+    "P0V3",
+    "--linux-workers-enabled",
+    "--subscription",
+    "efd64343-6ef4-4926-951f-d3229f38bd76"
+  ],
+  "exitCode": 0,
+  "output": "[\n  {\n    \"name\": \"West US 3\"\n  },\n  {\n    \"name\": \"North Europe\"\n  },\n  {\n    \"name\": \"West Europe\"\n  },\n  {\n    \"name\": \"Southeast Asia\"\n  },\n  {\n    \"name\": \"East Asia\"\n  },\n  {\n    \"name\": \"West US\"\n  },\n  {\n    \"name\": \"Japan West\"\n  },\n  {\n    \"name\": \"Japan East\"\n  },\n  {\n    \"name\": \"East US 2\"\n  },\n  {\n    \"name\": \"North Central US\"\n  },\n  {\n    \"name\": \"South Central US\"\n  },\n  {\n    \"name\": \"Brazil South\"\n  },\n  {\n    \"name\": \"Australia East\"\n  },\n  {\n    \"name\": \"Australia Southeast\"\n  },\n  {\n    \"name\": \"Central US\"\n  },\n  {\n    \"name\": \"Canada Central\"\n  },\n  {\n    \"name\": \"East US\"\n  },\n  {\n    \"name\": \"Central India\"\n  },\n  {\n    \"name\": \"South India\"\n  },\n  {\n    \"name\": \"Central US (Stage)\"\n  },\n  {\n    \"name\": \"Canada East\"\n  },\n  {\n    \"name\": \"West Central US\"\n  },\n  {\n    \"name\": \"West US 2\"\n  },\n  {\n    \"name\": \"UK West\"\n  },\n  {\n    \"name\": \"UK South\"\n  },\n  {\n    \"name\": \"Korea South\"\n  },\n  {\n    \"name\": \"Korea Central\"\n  },\n  {\n    \"name\": \"France Central\"\n  },\n  {\n    \"name\": \"Australia Central\"\n  },\n  {\n    \"name\": \"South Africa North\"\n  },\n  {\n    \"name\": \"Switzerland North\"\n  },\n  {\n    \"name\": \"Germany West Central\"\n  },\n  {\n    \"name\": \"UAE North\"\n  },\n  {\n    \"name\": \"Norway East\"\n  },\n  {\n    \"name\": \"Jio India West\"\n  },\n  {\n    \"name\": \"Sweden Central\"\n  },\n  {\n    \"name\": \"Qatar Central\"\n  },\n  {\n    \"name\": \"Poland Central\"\n  },\n  {\n    \"name\": \"Italy North\"\n  },\n  {\n    \"name\": \"Israel Central\"\n  },\n  {\n    \"name\": \"Spain Central\"\n  },\n  {\n    \"name\": \"Mexico Central\"\n  },\n  {\n    \"name\": \"New Zealand North\"\n  },\n  {\n    \"name\": \"Indonesia Central\"\n  },\n  {\n    \"name\": \"Malaysia West\"\n  },\n  {\n    \"name\": \"Chile Central\"\n  },\n  {\n    \"name\": \"Austria East\"\n  },\n  {\n    \"name\": \"Belgium Central\"\n  },\n  {\n    \"name\": \"Denmark East\"\n  },\n  {\n    \"name\": \"India South Central\"\n  }\n]"
+}

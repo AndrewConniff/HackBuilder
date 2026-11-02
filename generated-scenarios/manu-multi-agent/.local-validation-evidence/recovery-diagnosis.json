@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "supersedes": "diagnosis.json describes the earlier failed amd64 SDK-under-QEMU build, not the current repaired image.",
+  "resolved": [
+    "The existing Dockerfile uses BUILDPLATFORM for SDK compilation and preserves an amd64 runtime.",
+    "Actual locked restore and publish passed, and the current image rebuilt successfully.",
+    "The generic helper's missing Foundry:ProjectEndpoint failure is the expected unconfigured production guard, not another SDK or host-permission failure."
+  ],
+  "validationHarnessCorrection": {
+    "firstAttempt": "An internal Docker network allowed startup but did not provide the requested host port; docker port returned no public port.",
+    "observedApplication": "Production startup logged listening on port 8080; no application configuration failure occurred.",
+    "correction": "Disable Docker networking entirely and exercise the protected routes over in-container loopback through repository-helper Docker calls.",
+    "finalResult": "Six explicit HTTP 401 authentication_required responses with valid correlation IDs; no external network, mounts or published ports; owned containers cleaned."
+  },
+  "remainingUnverified": [
+    "Actual installation-generated IDs, version pins, manifest hash and signing key version",
+    "Cloud/directory authorization and real private-network/managed-identity configuration",
+    "Live model inference, three-agent workflow, grounding, signing and negative runtime acceptance"
+  ],
+  "authorization": "Local validation only; no cloud/directory queries or mutations, deployment, approval or composition."
+}

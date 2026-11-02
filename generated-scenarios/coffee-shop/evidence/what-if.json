@@ -1,0 +1,1146 @@
+{
+  "checkedAtUtc": "2026-10-24T23:38:22.8566183+00:00",
+  "status": "resource-preview",
+  "whatIf": {
+    "changes": [
+      {
+        "after": {
+          "apiVersion": "2024-03-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref",
+          "location": "swedencentral",
+          "name": "rg-coffee-shop-ref",
+          "tags": {
+            "Environment": "coffee-shop-ref",
+            "ManagedBy": "azd",
+            "Project": "coffee-shop",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.Resources/resourceGroups"
+        },
+        "before": {
+          "apiVersion": "2024-03-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref",
+          "location": "swedencentral",
+          "name": "rg-coffee-shop-ref",
+          "tags": {
+            "Environment": "coffee-shop-ref",
+            "ManagedBy": "azd",
+            "Project": "coffee-shop",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.Resources/resourceGroups"
+        },
+        "changeType": "NoChange",
+        "delta": [],
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2025-06-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo",
+          "identity": {
+            "type": "SystemAssigned"
+          },
+          "kind": "AIServices",
+          "location": "swedencentral",
+          "name": "fc-coffee-shop-keegvmxo",
+          "properties": {
+            "allowProjectManagement": true,
+            "customSubDomainName": "fc-coffee-shop-keegvmxo",
+            "disableLocalAuth": true,
+            "dynamicThrottlingEnabled": false,
+            "publicNetworkAccess": "Enabled",
+            "restore": false,
+            "restrictOutboundNetworkAccess": false
+          },
+          "resourceGroup": "rg-coffee-shop-ref",
+          "sku": {
+            "name": "S0"
+          },
+          "tags": {
+            "Environment": "coffee-shop-ref",
+            "ManagedBy": "azd",
+            "Project": "coffee-shop",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.CognitiveServices/accounts"
+        },
+        "before": {
+          "apiVersion": "2025-06-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo",
+          "identity": {
+            "type": "SystemAssigned"
+          },
+          "kind": "AIServices",
+          "location": "swedencentral",
+          "name": "fc-coffee-shop-keegvmxo",
+          "properties": {
+            "allowProjectManagement": true,
+            "associatedProjects": [
+              "backoffice"
+            ],
+            "customSubDomainName": "fc-coffee-shop-keegvmxo",
+            "defaultProject": "backoffice",
+            "disableLocalAuth": true,
+            "dynamicThrottlingEnabled": false,
+            "publicNetworkAccess": "Enabled",
+            "restrictOutboundNetworkAccess": false
+          },
+          "resourceGroup": "rg-coffee-shop-ref",
+          "sku": {
+            "name": "S0"
+          },
+          "tags": {
+            "Environment": "coffee-shop-ref",
+            "ManagedBy": "azd",
+            "Project": "coffee-shop",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.CognitiveServices/accounts"
+        },
+        "changeType": "Modify",
+        "delta": [
+          {
+            "after": null,
+            "before": [
+              "backoffice"
+            ],
+            "children": null,
+            "path": "properties.associatedProjects",
+            "propertyChangeType": "Delete"
+          },
+          {
+            "after": null,
+            "before": "backoffice",
+            "children": null,
+            "path": "properties.defaultProject",
+            "propertyChangeType": "Delete"
+          },
+          {
+            "after": false,
+            "before": null,
+            "children": null,
+            "path": "properties.restore",
+            "propertyChangeType": "Create"
+          }
+        ],
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2026-05-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/deployments/gpt-4.1-mini",
+          "name": "gpt-4.1-mini",
+          "properties": {
+            "model": {
+              "format": "OpenAI",
+              "name": "gpt-4.1-mini",
+              "version": "2025-04-14"
+            },
+            "versionUpgradeOption": "NoAutoUpgrade"
+          },
+          "resourceGroup": "rg-coffee-shop-ref",
+          "sku": {
+            "capacity": 30,
+            "name": "GlobalStandard"
+          },
+          "type": "Microsoft.CognitiveServices/accounts/deployments"
+        },
+        "before": {
+          "apiVersion": "2026-05-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/deployments/gpt-4.1-mini",
+          "name": "gpt-4.1-mini",
+          "properties": {
+            "currentCapacity": 30,
+            "deploymentState": "Running",
+            "model": {
+              "format": "OpenAI",
+              "name": "gpt-4.1-mini",
+              "version": "2025-04-14"
+            },
+            "raiPolicyName": "Microsoft.DefaultV2",
+            "versionUpgradeOption": "NoAutoUpgrade"
+          },
+          "resourceGroup": "rg-coffee-shop-ref",
+          "sku": {
+            "capacity": 30,
+            "name": "GlobalStandard"
+          },
+          "type": "Microsoft.CognitiveServices/accounts/deployments"
+        },
+        "changeType": "Modify",
+        "delta": [
+          {
+            "after": null,
+            "before": 30,
+            "children": null,
+            "path": "properties.currentCapacity",
+            "propertyChangeType": "Delete"
+          },
+          {
+            "after": null,
+            "before": "Running",
+            "children": null,
+            "path": "properties.deploymentState",
+            "propertyChangeType": "Delete"
+          },
+          {
+            "after": null,
+            "before": "Microsoft.DefaultV2",
+            "children": null,
+            "path": "properties.raiPolicyName",
+            "propertyChangeType": "Delete"
+          }
+        ],
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/deployments/gpt-4.1-mini",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2025-06-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/projects/backoffice",
+          "identity": {
+            "type": "SystemAssigned"
+          },
+          "location": "swedencentral",
+          "name": "backoffice",
+          "properties": {
+            "description": "coffee-shop owned sales-readiness and daily-close agents",
+            "displayName": "Fourth Coffee back office"
+          },
+          "resourceGroup": "rg-coffee-shop-ref",
+          "tags": {
+            "Environment": "coffee-shop-ref",
+            "ManagedBy": "azd",
+            "Project": "coffee-shop",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.CognitiveServices/accounts/projects"
+        },
+        "before": {
+          "apiVersion": "2025-06-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/projects/backoffice",
+          "identity": {
+            "type": "SystemAssigned"
+          },
+          "kind": "AIServices",
+          "location": "swedencentral",
+          "name": "backoffice",
+          "properties": {
+            "description": "coffee-shop owned sales-readiness and daily-close agents",
+            "displayName": "Fourth Coffee back office",
+            "endpoints": {
+              "AI Foundry API": "https://fc-coffee-shop-keegvmxo.services.ai.azure.com/api/projects/backoffice"
+            },
+            "internalId": "36f0da0119804e4883904cd6311e2558",
+            "isDefault": true
+          },
+          "resourceGroup": "rg-coffee-shop-ref",
+          "tags": {
+            "Environment": "coffee-shop-ref",
+            "ManagedBy": "azd",
+            "Project": "coffee-shop",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.CognitiveServices/accounts/projects"
+        },
+        "changeType": "Modify",
+        "delta": [
+          {
+            "after": null,
+            "before": "AIServices",
+            "children": null,
+            "path": "kind",
+            "propertyChangeType": "Delete"
+          },
+          {
+            "after": null,
+            "before": {
+              "AI Foundry API": "https://fc-coffee-shop-keegvmxo.services.ai.azure.com/api/projects/backoffice"
+            },
+            "children": null,
+            "path": "properties.endpoints",
+            "propertyChangeType": "Delete"
+          },
+          {
+            "after": null,
+            "before": "36f0da0119804e4883904cd6311e2558",
+            "children": null,
+            "path": "properties.internalId",
+            "propertyChangeType": "Delete"
+          },
+          {
+            "after": null,
+            "before": true,
+            "children": null,
+            "path": "properties.isDefault",
+            "propertyChangeType": "Delete"
+          }
+        ],
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/projects/backoffice",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2022-04-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/projects/backoffice/providers/Microsoft.Authorization/roleAssignments/a1c6a0f1-6fe2-509d-9809-9235ece2cf2f",
+          "name": "a1c6a0f1-6fe2-509d-9809-9235ece2cf2f",
+          "properties": {
+            "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/eed3b665-ab3a-47b6-8f48-c9382fb1dad6"
+          },
+          "resourceGroup": "rg-coffee-shop-ref",
+          "type": "Microsoft.Authorization/roleAssignments"
+        },
+        "before": {
+          "apiVersion": "2022-04-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/projects/backoffice/providers/Microsoft.Authorization/roleAssignments/a1c6a0f1-6fe2-509d-9809-9235ece2cf2f",
+          "name": "a1c6a0f1-6fe2-509d-9809-9235ece2cf2f",
+          "properties": {
+            "principalId": "a03f1a03-1b4b-402d-a807-0334996b560e",
+            "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/eed3b665-ab3a-47b6-8f48-c9382fb1dad6"
+          },
+          "resourceGroup": "rg-coffee-shop-ref",
+          "type": "Microsoft.Authorization/roleAssignments"
+        },
+        "changeType": "Modify",
+        "delta": [
+          {
+            "after": null,
+            "before": "a03f1a03-1b4b-402d-a807-0334996b560e",
+            "children": null,
+            "path": "properties.principalId",
+            "propertyChangeType": "Delete"
+          },
+          {
+            "after": "ServicePrincipal",
+            "before": null,
+            "children": null,
+            "path": "properties.principalType",
+            "propertyChangeType": "NoEffect"
+          }
+        ],
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/projects/backoffice/providers/Microsoft.Authorization/roleAssignments/a1c6a0f1-6fe2-509d-9809-9235ece2cf2f",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2022-04-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/providers/Microsoft.Authorization/roleAssignments/00163789-8133-5584-892a-8490ceab2058",
+          "name": "00163789-8133-5584-892a-8490ceab2058",
+          "properties": {
+            "principalId": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/projects/backoffice', '2025-06-01', 'full').identity.principalId]",
+            "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/53ca6127-db72-4b80-b1b0-d745d6d5456d"
+          },
+          "resourceGroup": "rg-coffee-shop-ref",
+          "type": "Microsoft.Authorization/roleAssignments"
+        },
+        "before": {
+          "apiVersion": "2022-04-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/providers/Microsoft.Authorization/roleAssignments/00163789-8133-5584-892a-8490ceab2058",
+          "name": "00163789-8133-5584-892a-8490ceab2058",
+          "properties": {
+            "principalId": "71051826-8c3a-461a-8b8a-1f6b433e306a",
+            "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/53ca6127-db72-4b80-b1b0-d745d6d5456d"
+          },
+          "resourceGroup": "rg-coffee-shop-ref",
+          "type": "Microsoft.Authorization/roleAssignments"
+        },
+        "changeType": "Modify",
+        "delta": [
+          {
+            "after": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/projects/backoffice', '2025-06-01', 'full').identity.principalId]",
+            "before": "71051826-8c3a-461a-8b8a-1f6b433e306a",
+            "children": null,
+            "path": "properties.principalId",
+            "propertyChangeType": "Modify"
+          },
+          {
+            "after": "ServicePrincipal",
+            "before": null,
+            "children": null,
+            "path": "properties.principalType",
+            "propertyChangeType": "NoEffect"
+          }
+        ],
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/providers/Microsoft.Authorization/roleAssignments/00163789-8133-5584-892a-8490ceab2058",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2022-04-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/providers/Microsoft.Authorization/roleAssignments/d8609193-3263-522f-879e-d2de9696de12",
+          "name": "d8609193-3263-522f-879e-d2de9696de12",
+          "properties": {
+            "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+            "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/53ca6127-db72-4b80-b1b0-d745d6d5456d"
+          },
+          "resourceGroup": "rg-coffee-shop-ref",
+          "type": "Microsoft.Authorization/roleAssignments"
+        },
+        "before": {
+          "apiVersion": "2022-04-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/providers/Microsoft.Authorization/roleAssignments/d8609193-3263-522f-879e-d2de9696de12",
+          "name": "d8609193-3263-522f-879e-d2de9696de12",
+          "properties": {
+            "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+            "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/53ca6127-db72-4b80-b1b0-d745d6d5456d"
+          },
+          "resourceGroup": "rg-coffee-shop-ref",
+          "type": "Microsoft.Authorization/roleAssignments"
+        },
+        "changeType": "NoChange",
+        "delta": [
+          {
+            "after": "User",
+            "before": null,
+            "children": null,
+            "path": "properties.principalType",
+            "propertyChangeType": "NoEffect"
+          }
+        ],
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/providers/Microsoft.Authorization/roleAssignments/d8609193-3263-522f-879e-d2de9696de12",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2025-06-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Storage/storageAccounts/stfckeegvmxonq3wc",
+          "kind": "StorageV2",
+          "location": "swedencentral",
+          "name": "stfckeegvmxonq3wc",
+          "properties": {
+            "accessTier": "Hot",
+            "allowBlobPublicAccess": false,
+            "allowCrossTenantDelegationSas": false,
+            "allowCrossTenantReplication": false,
+            "allowSharedKeyAccess": false,
+            "customDomain": {
+              "useSubDomainName": false
+            },
+            "defaultToOAuthAuthentication": true,
+            "encryption": {
+              "keySource": "Microsoft.Storage",
+              "requireInfrastructureEncryption": true
+            },
+            "isLocalUserEnabled": false,
+            "isSftpEnabled": false,
+            "largeFileSharesState": "Disabled",
+            "minimumTlsVersion": "TLS1_2",
+            "networkAcls": {
+              "bypass": "None",
+              "defaultAction": "Allow"
+            },
+            "publicNetworkAccess": "Enabled",
+            "supportsHttpsTrafficOnly": true
+          },
+          "resourceGroup": "rg-coffee-shop-ref",
+          "sku": {
+            "name": "Standard_LRS"
+          },
+          "tags": {
+            "Environment": "coffee-shop-ref",
+            "ManagedBy": "azd",
+            "Project": "coffee-shop",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.Storage/storageAccounts"
+        },
+        "before": {
+          "apiVersion": "2025-06-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Storage/storageAccounts/stfckeegvmxonq3wc",
+          "kind": "StorageV2",
+          "location": "swedencentral",
+          "name": "stfckeegvmxonq3wc",
+          "properties": {
+            "accessTier": "Hot",
+            "allowBlobPublicAccess": false,
+            "allowCrossTenantDelegationSas": false,
+            "allowCrossTenantReplication": false,
+            "allowSharedKeyAccess": false,
+            "defaultToOAuthAuthentication": true,
+            "encryption": {
+              "keySource": "Microsoft.Storage",
+              "requireInfrastructureEncryption": true
+            },
+            "isLocalUserEnabled": false,
+            "isSftpEnabled": false,
+            "largeFileSharesState": "Disabled",
+            "minimumTlsVersion": "TLS1_2",
+            "networkAcls": {
+              "bypass": "AzureServices",
+              "defaultAction": "Deny"
+            },
+            "publicNetworkAccess": "Enabled",
+            "supportsHttpsTrafficOnly": true
+          },
+          "resourceGroup": "rg-coffee-shop-ref",
+          "sku": {
+            "name": "Standard_LRS"
+          },
+          "tags": {
+            "Environment": "coffee-shop-ref",
+            "ManagedBy": "azd",
+            "Project": "coffee-shop",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.Storage/storageAccounts"
+        },
+        "changeType": "Modify",
+        "delta": [
+          {
+            "after": "None",
+            "before": "AzureServices",
+            "children": null,
+            "path": "properties.networkAcls.bypass",
+            "propertyChangeType": "Modify"
+          },
+          {
+            "after": "Allow",
+            "before": "Deny",
+            "children": null,
+            "path": "properties.networkAcls.defaultAction",
+            "propertyChangeType": "Modify"
+          },
+          {
+            "after": {
+              "useSubDomainName": false
+            },
+            "before": null,
+            "children": null,
+            "path": "properties.customDomain",
+            "propertyChangeType": "Create"
+          },
+          {
+            "after": {
+              "blob": {
+                "enabled": true
+              },
+              "file": {
+                "enabled": true
+              },
+              "queue": {
+                "enabled": true,
+                "keyType": null
+              },
+              "table": {
+                "enabled": true,
+                "keyType": null
+              }
+            },
+            "before": null,
+            "children": null,
+            "path": "properties.encryption.services",
+            "propertyChangeType": "NoEffect"
+          }
+        ],
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Storage/storageAccounts/stfckeegvmxonq3wc",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2022-04-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Storage/storageAccounts/stfckeegvmxonq3wc/providers/Microsoft.Authorization/roleAssignments/a0e2a0d6-45bd-58f6-8560-ca1d8de4f8f0",
+          "name": "a0e2a0d6-45bd-58f6-8560-ca1d8de4f8f0",
+          "properties": {
+            "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/0a9a7e1f-b9d0-4cc4-a60d-0319b160aaa3"
+          },
+          "resourceGroup": "rg-coffee-shop-ref",
+          "type": "Microsoft.Authorization/roleAssignments"
+        },
+        "before": {
+          "apiVersion": "2022-04-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Storage/storageAccounts/stfckeegvmxonq3wc/providers/Microsoft.Authorization/roleAssignments/a0e2a0d6-45bd-58f6-8560-ca1d8de4f8f0",
+          "name": "a0e2a0d6-45bd-58f6-8560-ca1d8de4f8f0",
+          "properties": {
+            "principalId": "a03f1a03-1b4b-402d-a807-0334996b560e",
+            "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/0a9a7e1f-b9d0-4cc4-a60d-0319b160aaa3"
+          },
+          "resourceGroup": "rg-coffee-shop-ref",
+          "type": "Microsoft.Authorization/roleAssignments"
+        },
+        "changeType": "Modify",
+        "delta": [
+          {
+            "after": null,
+            "before": "a03f1a03-1b4b-402d-a807-0334996b560e",
+            "children": null,
+            "path": "properties.principalId",
+            "propertyChangeType": "Delete"
+          },
+          {
+            "after": "ServicePrincipal",
+            "before": null,
+            "children": null,
+            "path": "properties.principalType",
+            "propertyChangeType": "NoEffect"
+          }
+        ],
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Storage/storageAccounts/stfckeegvmxonq3wc/providers/Microsoft.Authorization/roleAssignments/a0e2a0d6-45bd-58f6-8560-ca1d8de4f8f0",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2022-04-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Storage/storageAccounts/stfckeegvmxonq3wc/providers/Microsoft.Authorization/roleAssignments/dc48e584-54ec-5835-b02b-f127f7dbee58",
+          "name": "dc48e584-54ec-5835-b02b-f127f7dbee58",
+          "properties": {
+            "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+            "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/0a9a7e1f-b9d0-4cc4-a60d-0319b160aaa3"
+          },
+          "resourceGroup": "rg-coffee-shop-ref",
+          "type": "Microsoft.Authorization/roleAssignments"
+        },
+        "before": {
+          "apiVersion": "2022-04-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Storage/storageAccounts/stfckeegvmxonq3wc/providers/Microsoft.Authorization/roleAssignments/dc48e584-54ec-5835-b02b-f127f7dbee58",
+          "name": "dc48e584-54ec-5835-b02b-f127f7dbee58",
+          "properties": {
+            "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+            "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/0a9a7e1f-b9d0-4cc4-a60d-0319b160aaa3"
+          },
+          "resourceGroup": "rg-coffee-shop-ref",
+          "type": "Microsoft.Authorization/roleAssignments"
+        },
+        "changeType": "NoChange",
+        "delta": [
+          {
+            "after": "User",
+            "before": null,
+            "children": null,
+            "path": "properties.principalType",
+            "propertyChangeType": "NoEffect"
+          }
+        ],
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Storage/storageAccounts/stfckeegvmxonq3wc/providers/Microsoft.Authorization/roleAssignments/dc48e584-54ec-5835-b02b-f127f7dbee58",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2025-06-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Storage/storageAccounts/stfckeegvmxonq3wc/tableServices/default",
+          "name": "default",
+          "resourceGroup": "rg-coffee-shop-ref",
+          "type": "Microsoft.Storage/storageAccounts/tableServices"
+        },
+        "before": {
+          "apiVersion": "2025-06-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Storage/storageAccounts/stfckeegvmxonq3wc/tableServices/default",
+          "name": "default",
+          "resourceGroup": "rg-coffee-shop-ref",
+          "type": "Microsoft.Storage/storageAccounts/tableServices"
+        },
+        "changeType": "NoChange",
+        "delta": [],
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Storage/storageAccounts/stfckeegvmxonq3wc/tableServices/default",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2025-06-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Storage/storageAccounts/stfckeegvmxonq3wc/tableServices/default/tables/CoffeeBackOffice",
+          "name": "CoffeeBackOffice",
+          "resourceGroup": "rg-coffee-shop-ref",
+          "type": "Microsoft.Storage/storageAccounts/tableServices/tables"
+        },
+        "before": {
+          "apiVersion": "2025-06-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Storage/storageAccounts/stfckeegvmxonq3wc/tableServices/default/tables/CoffeeBackOffice",
+          "name": "CoffeeBackOffice",
+          "resourceGroup": "rg-coffee-shop-ref",
+          "type": "Microsoft.Storage/storageAccounts/tableServices/tables"
+        },
+        "changeType": "NoChange",
+        "delta": [],
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Storage/storageAccounts/stfckeegvmxonq3wc/tableServices/default/tables/CoffeeBackOffice",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2025-03-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Web/serverFarms/plan-fc-keegvmxonq3wc",
+          "kind": "linux",
+          "location": "swedencentral",
+          "name": "plan-fc-keegvmxonq3wc",
+          "properties": {
+            "allowEquivalentSku": false,
+            "asyncScalingEnabled": false,
+            "createdTime": "2026-10-24T23:35:29.08",
+            "currentNumberOfZonesUtilized": 1,
+            "elasticScaleEnabled": true,
+            "hyperV": false,
+            "isCustomMode": false,
+            "isSpot": false,
+            "isXenon": false,
+            "kind": "linux",
+            "maximumNumberOfZones": 3,
+            "name": "plan-fc-keegvmxonq3wc",
+            "perSiteScaling": false,
+            "powerState": "Running",
+            "reserved": true,
+            "tags": {
+              "Environment": "coffee-shop-ref",
+              "ManagedBy": "azd",
+              "Project": "coffee-shop",
+              "SecurityControl": "Ignore"
+            },
+            "targetWorkerSizeId": 0,
+            "vnetConnectionsMax": 2,
+            "vnetConnectionsUsed": 0,
+            "zoneRedundant": false
+          },
+          "resourceGroup": "rg-coffee-shop-ref",
+          "sku": {
+            "capacity": 1,
+            "name": "P0v3"
+          },
+          "tags": {
+            "Environment": "coffee-shop-ref",
+            "ManagedBy": "azd",
+            "Project": "coffee-shop",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.Web/serverfarms"
+        },
+        "before": {
+          "apiVersion": "2025-03-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Web/serverFarms/plan-fc-keegvmxonq3wc",
+          "kind": "linux",
+          "location": "swedencentral",
+          "name": "plan-fc-keegvmxonq3wc",
+          "properties": {
+            "allowEquivalentSku": false,
+            "asyncScalingEnabled": false,
+            "createdTime": "2026-10-24T23:35:29.08",
+            "currentNumberOfZonesUtilized": 1,
+            "elasticScaleEnabled": true,
+            "hyperV": false,
+            "isCustomMode": false,
+            "isSpot": false,
+            "isXenon": false,
+            "kind": "linux",
+            "maximumNumberOfZones": 3,
+            "name": "plan-fc-keegvmxonq3wc",
+            "perSiteScaling": false,
+            "powerState": "Running",
+            "reserved": true,
+            "tags": {
+              "Environment": "coffee-shop-ref",
+              "ManagedBy": "azd",
+              "Project": "coffee-shop",
+              "SecurityControl": "Ignore"
+            },
+            "targetWorkerSizeId": 0,
+            "vnetConnectionsMax": 2,
+            "vnetConnectionsUsed": 0,
+            "zoneRedundant": false
+          },
+          "resourceGroup": "rg-coffee-shop-ref",
+          "sku": {
+            "capacity": 1,
+            "name": "P0v3"
+          },
+          "tags": {
+            "Environment": "coffee-shop-ref",
+            "ManagedBy": "azd",
+            "Project": "coffee-shop",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.Web/serverfarms"
+        },
+        "changeType": "NoChange",
+        "delta": [
+          {
+            "after": 3,
+            "before": null,
+            "children": null,
+            "path": "properties.maximumElasticWorkerCount",
+            "propertyChangeType": "NoEffect"
+          },
+          {
+            "after": 0,
+            "before": null,
+            "children": null,
+            "path": "properties.targetWorkerCount",
+            "propertyChangeType": "NoEffect"
+          }
+        ],
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Web/serverfarms/plan-fc-keegvmxonq3wc",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2025-03-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Web/sites/web-fc-keegvmxonq3wc",
+          "identity": {
+            "type": "SystemAssigned"
+          },
+          "kind": "app,linux",
+          "location": "swedencentral",
+          "name": "web-fc-keegvmxonq3wc",
+          "properties": {
+            "afdEnabled": false,
+            "blockPathTraversal": false,
+            "clientAffinityEnabled": false,
+            "clientAffinityPartitioningEnabled": false,
+            "clientAffinityProxyEnabled": true,
+            "clientCertEnabled": false,
+            "clientCertMode": "Optional",
+            "containerSize": 1536,
+            "dailyMemoryTimeQuota": 0,
+            "eligibleLogCategories": "AppServiceAppLogs,AppServiceConsoleLogs,AppServiceHTTPLogs,AppServicePlatformLogs,ScanLogs,AppServiceAntivirusScanAuditLogs,AppServiceAuthenticationLogs,AppServiceFileAuditLogs,AppServiceAuditLogs,AppServiceIPSecAuditLogs",
+            "enabled": true,
+            "endToEndEncryptionEnabled": false,
+            "ftpUsername": "web-fc-keegvmxonq3wc\\$web-fc-keegvmxonq3wc",
+            "ftpsHostName": "ftps://waws-prod-sec-003.ftp.azurewebsites.windows.net/site/wwwroot",
+            "functionsRuntimeAdminIsolationEnabled": false,
+            "hostNamesDisabled": false,
+            "httpsOnly": true,
+            "inFlightFeatures": [
+              "SiteContainers"
+            ],
+            "inboundIpv6Address": "2603:1020:1004:3::100",
+            "ipMode": "IPv4",
+            "jA4Forwarding": false,
+            "keyVaultReferenceIdentity": "SystemAssigned",
+            "maintenanceEnabled": false,
+            "name": "web-fc-keegvmxonq3wc",
+            "outboundIpv6Addresses": "2603:1020:1001:10::4dc,2603:1020:1001:10::4dd,2603:1020:1001:25::60,2603:1020:1001:24::7a,2603:1020:1001:10::4de,2603:1020:1001:e::a7,2603:1020:1004:3::100,2603:10e1:100:2::330c:1f01,2603:1020:1004:2::508,2603:10e1:100:2::330c:1f12",
+            "outboundVnetRouting": {
+              "allTraffic": false,
+              "applicationTraffic": false,
+              "backupRestoreTraffic": false,
+              "contentShareTraffic": false,
+              "imagePullTraffic": false,
+              "managedIdentityTraffic": false
+            },
+            "platformVersion": "110.0.7.48",
+            "possibleInboundIpv6Addresses": "2603:1020:1004:3::100",
+            "possibleOutboundIpv6Addresses": "2603:1020:1001:13::f2,2603:1020:1001:13::f3,2603:1020:1001:13::f4,2603:1020:1001:25::6f,2603:1020:1001:24::7b,2603:1020:1001:13::f5,2603:1020:1001:12::100,2603:1020:1001:14::93,2603:1020:1001:14::94,2603:1020:1001:26::76,2603:1020:1001:25::5f,2603:1020:1001:24::79,2603:1020:1001:e::a6,2603:1020:1001:13::e5,2603:1020:1001:14::95,2603:1020:1001:10::62,2603:1020:1001:13::ea,2603:1020:1001:26::77,2603:1020:1001:10::4dc,2603:1020:1001:10::4dd,2603:1020:1001:25::60,2603:1020:1001:24::7a,2603:1020:1001:10::4de,2603:1020:1001:e::a7,2603:1020:1001:14::96,2603:1020:1001:10::4df,2603:1020:1001:13::f1,2603:1020:1001:25::62,2603:1020:1001:12::10b,2603:1020:1001:12::10c,2603:1020:1004:3::100,2603:10e1:100:2::330c:1f01,2603:1020:1004:2::508,2603:10e1:100:2::330c:1f12",
+            "publicNetworkAccess": "Enabled",
+            "redundancyMode": "None",
+            "reserved": true,
+            "runtimeAvailabilityState": "Normal",
+            "scmSiteAlsoStopped": false,
+            "serverFarmId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Web/serverfarms/plan-fc-keegvmxonq3wc",
+            "siteConfig": {
+              "acrUseManagedIdentityCreds": false,
+              "alwaysOn": true,
+              "appSettings": "*******",
+              "clusteringEnabled": false,
+              "elasticWebAppScaleLimit": 3,
+              "ftpsState": "Disabled",
+              "functionAppScaleLimit": 0,
+              "http20Enabled": false,
+              "linuxFxVersion": "DOTNETCORE|10.0",
+              "localMySqlEnabled": false,
+              "minTlsVersion": "1.2",
+              "minimumElasticInstanceCount": 1,
+              "netFrameworkVersion": "v4.6",
+              "numberOfWorkers": 1,
+              "scmMinTlsVersion": "1.2",
+              "webJobsEnabled": false
+            },
+            "siteScopedCertificatesEnabled": false,
+            "storageAccountRequired": false,
+            "storageRecoveryDefaultState": "Running",
+            "useQueryStringAffinity": false
+          },
+          "resourceGroup": "rg-coffee-shop-ref",
+          "tags": {
+            "Environment": "coffee-shop-ref",
+            "ManagedBy": "azd",
+            "Project": "coffee-shop",
+            "SecurityControl": "Ignore",
+            "azd-service-name": "web"
+          },
+          "type": "Microsoft.Web/sites"
+        },
+        "before": {
+          "apiVersion": "2025-03-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Web/sites/web-fc-keegvmxonq3wc",
+          "identity": {
+            "type": "SystemAssigned"
+          },
+          "kind": "app,linux",
+          "location": "swedencentral",
+          "name": "web-fc-keegvmxonq3wc",
+          "properties": {
+            "afdEnabled": false,
+            "blockPathTraversal": false,
+            "clientAffinityEnabled": false,
+            "clientAffinityProxyEnabled": true,
+            "clientCertEnabled": false,
+            "clientCertMode": "Optional",
+            "containerSize": 1536,
+            "dailyMemoryTimeQuota": 0,
+            "eligibleLogCategories": "AppServiceAppLogs,AppServiceConsoleLogs,AppServiceHTTPLogs,AppServicePlatformLogs,ScanLogs,AppServiceAntivirusScanAuditLogs,AppServiceAuthenticationLogs,AppServiceFileAuditLogs,AppServiceAuditLogs,AppServiceIPSecAuditLogs",
+            "enabled": true,
+            "endToEndEncryptionEnabled": false,
+            "ftpUsername": "web-fc-keegvmxonq3wc\\$web-fc-keegvmxonq3wc",
+            "ftpsHostName": "ftps://waws-prod-sec-003.ftp.azurewebsites.windows.net/site/wwwroot",
+            "functionsRuntimeAdminIsolationEnabled": false,
+            "hostNamesDisabled": false,
+            "httpsOnly": true,
+            "inFlightFeatures": [
+              "SiteContainers"
+            ],
+            "inboundIpv6Address": "2603:1020:1004:3::100",
+            "ipMode": "IPv4",
+            "jA4Forwarding": false,
+            "keyVaultReferenceIdentity": "SystemAssigned",
+            "maintenanceEnabled": false,
+            "name": "web-fc-keegvmxonq3wc",
+            "outboundIpv6Addresses": "2603:1020:1001:10::4dc,2603:1020:1001:10::4dd,2603:1020:1001:25::60,2603:1020:1001:24::7a,2603:1020:1001:10::4de,2603:1020:1001:e::a7,2603:1020:1004:3::100,2603:10e1:100:2::330c:1f01,2603:1020:1004:2::508,2603:10e1:100:2::330c:1f12",
+            "outboundVnetRouting": {
+              "allTraffic": false,
+              "applicationTraffic": false,
+              "backupRestoreTraffic": false,
+              "contentShareTraffic": false,
+              "imagePullTraffic": false,
+              "managedIdentityTraffic": false
+            },
+            "platformVersion": "110.0.7.48",
+            "possibleInboundIpv6Addresses": "2603:1020:1004:3::100",
+            "possibleOutboundIpv6Addresses": "2603:1020:1001:13::f2,2603:1020:1001:13::f3,2603:1020:1001:13::f4,2603:1020:1001:25::6f,2603:1020:1001:24::7b,2603:1020:1001:13::f5,2603:1020:1001:12::100,2603:1020:1001:14::93,2603:1020:1001:14::94,2603:1020:1001:26::76,2603:1020:1001:25::5f,2603:1020:1001:24::79,2603:1020:1001:e::a6,2603:1020:1001:13::e5,2603:1020:1001:14::95,2603:1020:1001:10::62,2603:1020:1001:13::ea,2603:1020:1001:26::77,2603:1020:1001:10::4dc,2603:1020:1001:10::4dd,2603:1020:1001:25::60,2603:1020:1001:24::7a,2603:1020:1001:10::4de,2603:1020:1001:e::a7,2603:1020:1001:14::96,2603:1020:1001:10::4df,2603:1020:1001:13::f1,2603:1020:1001:25::62,2603:1020:1001:12::10b,2603:1020:1001:12::10c,2603:1020:1004:3::100,2603:10e1:100:2::330c:1f01,2603:1020:1004:2::508,2603:10e1:100:2::330c:1f12",
+            "publicNetworkAccess": "Enabled",
+            "redundancyMode": "None",
+            "reserved": true,
+            "runtimeAvailabilityState": "Normal",
+            "scmSiteAlsoStopped": false,
+            "serverFarmId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Web/serverfarms/plan-fc-keegvmxonq3wc",
+            "siteConfig": {
+              "acrUseManagedIdentityCreds": false,
+              "alwaysOn": true,
+              "appSettings": "*******",
+              "clusteringEnabled": false,
+              "functionAppScaleLimit": 0,
+              "http20Enabled": false,
+              "linuxFxVersion": "DOTNETCORE|10.0",
+              "minimumElasticInstanceCount": 1,
+              "numberOfWorkers": 1,
+              "webJobsEnabled": false
+            },
+            "siteScopedCertificatesEnabled": false,
+            "storageAccountRequired": false,
+            "storageRecoveryDefaultState": "Running",
+            "useQueryStringAffinity": false
+          },
+          "resourceGroup": "rg-coffee-shop-ref",
+          "tags": {
+            "Environment": "coffee-shop-ref",
+            "ManagedBy": "azd",
+            "Project": "coffee-shop",
+            "SecurityControl": "Ignore",
+            "azd-service-name": "web"
+          },
+          "type": "Microsoft.Web/sites"
+        },
+        "changeType": "Modify",
+        "delta": [
+          {
+            "after": 3,
+            "before": null,
+            "children": null,
+            "path": "properties.siteConfig.elasticWebAppScaleLimit",
+            "propertyChangeType": "Create"
+          },
+          {
+            "after": "Disabled",
+            "before": null,
+            "children": null,
+            "path": "properties.siteConfig.ftpsState",
+            "propertyChangeType": "Create"
+          },
+          {
+            "after": false,
+            "before": null,
+            "children": null,
+            "path": "properties.siteConfig.localMySqlEnabled",
+            "propertyChangeType": "Create"
+          },
+          {
+            "after": "1.2",
+            "before": null,
+            "children": null,
+            "path": "properties.siteConfig.minTlsVersion",
+            "propertyChangeType": "Create"
+          },
+          {
+            "after": "v4.6",
+            "before": null,
+            "children": null,
+            "path": "properties.siteConfig.netFrameworkVersion",
+            "propertyChangeType": "Create"
+          },
+          {
+            "after": "1.2",
+            "before": null,
+            "children": null,
+            "path": "properties.siteConfig.scmMinTlsVersion",
+            "propertyChangeType": "Create"
+          },
+          {
+            "after": false,
+            "before": null,
+            "children": null,
+            "path": "properties.clientAffinityPartitioningEnabled",
+            "propertyChangeType": "Create"
+          },
+          {
+            "after": null,
+            "before": null,
+            "children": null,
+            "path": "properties.hostNameSslStates",
+            "propertyChangeType": "NoEffect"
+          },
+          {
+            "after": null,
+            "before": null,
+            "children": null,
+            "path": "properties.hostingEnvironmentProfile",
+            "propertyChangeType": "NoEffect"
+          },
+          {
+            "after": false,
+            "before": null,
+            "children": null,
+            "path": "properties.hyperV",
+            "propertyChangeType": "NoEffect"
+          }
+        ],
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Web/sites/web-fc-keegvmxonq3wc",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2025-03-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Web/sites/web-fc-keegvmxonq3wc/basicPublishingCredentialsPolicies/ftp",
+          "location": "swedencentral",
+          "name": "ftp",
+          "properties": {
+            "allow": false
+          },
+          "resourceGroup": "rg-coffee-shop-ref",
+          "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies"
+        },
+        "before": {
+          "apiVersion": "2025-03-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Web/sites/web-fc-keegvmxonq3wc/basicPublishingCredentialsPolicies/ftp",
+          "location": "swedencentral",
+          "name": "ftp",
+          "properties": {
+            "allow": false
+          },
+          "resourceGroup": "rg-coffee-shop-ref",
+          "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies"
+        },
+        "changeType": "NoChange",
+        "delta": [],
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Web/sites/web-fc-keegvmxonq3wc/basicPublishingCredentialsPolicies/ftp",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2025-03-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Web/sites/web-fc-keegvmxonq3wc/basicPublishingCredentialsPolicies/scm",
+          "location": "swedencentral",
+          "name": "scm",
+          "properties": {
+            "allow": false
+          },
+          "resourceGroup": "rg-coffee-shop-ref",
+          "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies"
+        },
+        "before": {
+          "apiVersion": "2025-03-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Web/sites/web-fc-keegvmxonq3wc/basicPublishingCredentialsPolicies/scm",
+          "location": "swedencentral",
+          "name": "scm",
+          "properties": {
+            "allow": false
+          },
+          "resourceGroup": "rg-coffee-shop-ref",
+          "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies"
+        },
+        "changeType": "NoChange",
+        "delta": [],
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Web/sites/web-fc-keegvmxonq3wc/basicPublishingCredentialsPolicies/scm",
+        "symbolicName": null,
+        "unsupportedReason": null
+      }
+    ],
+    "diagnostics": null,
+    "error": null,
+    "potentialChanges": null,
+    "status": "Succeeded"
+  },
+  "location": "swedencentral",
+  "limitation": "No directory registration. Local accounts are initialized after provisioning; runtime remains untested.",
+  "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+  "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76"
+}

@@ -1,0 +1,927 @@
+{
+  "checkedAtUtc": "2026-10-24T22:44:00.012552+00:00",
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "region": "centralus",
+    "resourceGroup": "rg-equip-ai",
+    "environment": "equip-ai"
+  },
+  "status": "partial_eligibility_observed_not_deployment_ready",
+  "selectedRegion": null,
+  "testedRegion": "centralus",
+  "savedTargetsChanged": false,
+  "accountAndAzdTargetMatched": true,
+  "providers": {
+    "Microsoft.Authorization": "Registered",
+    "Microsoft.CognitiveServices": "Registered",
+    "Microsoft.Devices": "Registered",
+    "microsoft.insights": "Registered",
+    "Microsoft.ManagedIdentity": "Registered",
+    "Microsoft.Network": "Registered",
+    "Microsoft.OperationalInsights": "Registered",
+    "Microsoft.Resources": "Registered",
+    "Microsoft.Storage": "Registered",
+    "Microsoft.Web": "Registered"
+  },
+  "appService": {
+    "sku": "B2",
+    "os": "Linux",
+    "requiredWorkers": 1,
+    "b2": {
+      "currentValue": 0,
+      "limit": 10,
+      "name": {
+        "localizedValue": "B2 VMs",
+        "value": "B2"
+      },
+      "unit": "Instances"
+    },
+    "aggregateWorkers": {
+      "currentValue": 0,
+      "limit": 10,
+      "name": {
+        "localizedValue": "Total Regional VMs",
+        "value": "*"
+      },
+      "unit": "Instances"
+    },
+    "b2LinuxRegionListed": true,
+    "dotnet10Listed": true,
+    "allocationReserved": false
+  },
+  "model": {
+    "kind": "AIServices",
+    "accountSku": "S0",
+    "name": "gpt-4.1-mini",
+    "version": "2025-04-14",
+    "deploymentType": "GlobalStandard",
+    "requiredCapacity": 10,
+    "quotaUsed": 0.0,
+    "quotaLimit": 5000.0,
+    "availableCapacity": 5000,
+    "capacityReserved": false,
+    "lifecycle": "Legacy",
+    "deprecation": {
+      "deprecationStatus": null,
+      "fineTune": "2027-04-14T00:00:00Z",
+      "inference": "2027-04-14T00:00:00Z"
+    },
+    "restrictions": [],
+    "privateAgentFeatureAndRuntimeAcceptance": "not_proven_by_catalog",
+    "publicAgentFeatureSupport": {
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/limits-quotas-regions",
+      "finding": "Current new Agent Service table lists Central US for Responses API, Agents and Private VNet. Tool table lists Function support. Foundry and VNet must share a region.",
+      "scope": "Public feature support, not subscription-specific runtime acceptance",
+      "shortExcerpt": "| Central US | Yes | Yes | Yes | Yes |"
+    }
+  },
+  "storage": {
+    "sku": "Standard_LRS",
+    "kind": "StorageV2",
+    "restrictions": [],
+    "usage": [
+      {
+        "currentValue": 0,
+        "limit": 250,
+        "name": {
+          "localizedValue": "Storage Accounts",
+          "value": "StorageAccounts"
+        },
+        "unit": "Count"
+      }
+    ],
+    "privateAndTrustedIotRouting": "pending_runtime"
+  },
+  "iot": {
+    "sku": "B2",
+    "requiredHubs": 1,
+    "usage": [
+      {
+        "currentValue": 0,
+        "id": null,
+        "limit": 1,
+        "name": {
+          "localizedValue": "Free Iot Hub Count",
+          "value": "freeIotHubCount"
+        },
+        "type": null,
+        "unit": "count"
+      },
+      {
+        "currentValue": 0,
+        "id": null,
+        "limit": 50,
+        "name": {
+          "localizedValue": "Paid Iot Hub Count",
+          "value": "paidIotHubCount"
+        },
+        "type": null,
+        "unit": "count"
+      },
+      {
+        "currentValue": 0,
+        "id": null,
+        "limit": 5,
+        "name": {
+          "localizedValue": "GEN2 Iot Hub Count",
+          "value": "gen2IotHubCount"
+        },
+        "type": null,
+        "unit": "count"
+      }
+    ],
+    "providerListsCentralUs": true,
+    "hubIncludedInWhatIf": true,
+    "exactSkuAllocation": "unreserved; Get Valid Skus requires an existing hub",
+    "x509AndIdentityRouteAcceptance": "pending_runtime"
+  },
+  "network": {
+    "usage": [
+      {
+        "currentValue": "1",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/VirtualNetworks",
+        "limit": "1000",
+        "localName": "Virtual Networks",
+        "name": {
+          "localizedValue": "Virtual Networks",
+          "value": "VirtualNetworks"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/CustomIpPrefixes",
+        "limit": "5",
+        "localName": "Custom Ip Prefixes",
+        "name": {
+          "localizedValue": "Custom Ip Prefixes",
+          "value": "CustomIpPrefixes"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/PublicIpPrefixes",
+        "limit": "2147483647",
+        "localName": "Public Ip Prefixes",
+        "name": {
+          "localizedValue": "Public Ip Prefixes",
+          "value": "PublicIpPrefixes"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "1",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/PublicIPAddresses",
+        "limit": "1000",
+        "localName": "Public IP Addresses",
+        "name": {
+          "localizedValue": "Public IP Addresses",
+          "value": "PublicIPAddresses"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/IPv4BasicSkuPublicIpAddresses",
+        "limit": "0",
+        "localName": "Public IPv4 Addresses - Basic",
+        "name": {
+          "localizedValue": "Public IPv4 Addresses - Basic",
+          "value": "IPv4BasicSkuPublicIpAddresses"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/IPv6BasicSkuPublicIpAddresses",
+        "limit": "0",
+        "localName": "Public IPv6 Addresses - Basic",
+        "name": {
+          "localizedValue": "Public IPv6 Addresses - Basic",
+          "value": "IPv6BasicSkuPublicIpAddresses"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "1",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/IPv4StandardSkuPublicIpAddresses",
+        "limit": "1000",
+        "localName": "Public IPv4 Addresses - Standard",
+        "name": {
+          "localizedValue": "Public IPv4 Addresses - Standard",
+          "value": "IPv4StandardSkuPublicIpAddresses"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/IPv6StandardSkuPublicIpAddresses",
+        "limit": "1000",
+        "localName": "Public IPv6 Addresses - Standard",
+        "name": {
+          "localizedValue": "Public IPv6 Addresses - Standard",
+          "value": "IPv6StandardSkuPublicIpAddresses"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/IPv4GlobalTierPublicIpAddresses",
+        "limit": "20",
+        "localName": "Public IPv4 Addresses - Global Tier",
+        "name": {
+          "localizedValue": "Public IPv4 Addresses - Global Tier",
+          "value": "IPv4GlobalTierPublicIpAddresses"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/IPv6GlobalTierPublicIpAddresses",
+        "limit": "20",
+        "localName": "Public IPv6 Addresses - Global Tier",
+        "name": {
+          "localizedValue": "Public IPv6 Addresses - Global Tier",
+          "value": "IPv6GlobalTierPublicIpAddresses"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/IPv4InternetRoutingPreferencePublicIpAddresses",
+        "limit": "20",
+        "localName": "Public IPv4 Addresses - Internet Routing Preference",
+        "name": {
+          "localizedValue": "Public IPv4 Addresses - Internet Routing Preference",
+          "value": "IPv4InternetRoutingPreferencePublicIpAddresses"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/IPv6InternetRoutingPreferencePublicIpAddresses",
+        "limit": "20",
+        "localName": "Public IPv6 Addresses - Internet Routing Preference",
+        "name": {
+          "localizedValue": "Public IPv6 Addresses - Internet Routing Preference",
+          "value": "IPv6InternetRoutingPreferencePublicIpAddresses"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "1",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/NetworkSecurityGroups",
+        "limit": "5000",
+        "localName": "Network Security Groups",
+        "name": {
+          "localizedValue": "Network Security Groups",
+          "value": "NetworkSecurityGroups"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/NatGateways",
+        "limit": "500",
+        "localName": "Nat Gateways",
+        "name": {
+          "localizedValue": "Nat Gateways",
+          "value": "NatGateways"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/NetworkInterfaces",
+        "limit": "65536",
+        "localName": "Network Interfaces",
+        "name": {
+          "localizedValue": "Network Interfaces",
+          "value": "NetworkInterfaces"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/PrivateEndpoints",
+        "limit": "65536",
+        "localName": "Private Endpoints",
+        "name": {
+          "localizedValue": "Private Endpoints",
+          "value": "PrivateEndpoints"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/PrivateEndpointRedirectMaps",
+        "limit": "2147483647",
+        "localName": "Private Endpoint Redirect Maps",
+        "name": {
+          "localizedValue": "Private Endpoint Redirect Maps",
+          "value": "PrivateEndpointRedirectMaps"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "1",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/LoadBalancers",
+        "limit": "1000",
+        "localName": "Load Balancers",
+        "name": {
+          "localizedValue": "Load Balancers",
+          "value": "LoadBalancers"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/PrivateLinkServices",
+        "limit": "1800",
+        "localName": "Private Link Services",
+        "name": {
+          "localizedValue": "Private Link Services",
+          "value": "PrivateLinkServices"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/PrivateLinkServicesDirectConnect",
+        "limit": "10",
+        "localName": "Private Link Services Direct Connect",
+        "name": {
+          "localizedValue": "Private Link Services Direct Connect",
+          "value": "PrivateLinkServicesDirectConnect"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/ApplicationGateways",
+        "limit": "1000",
+        "localName": "Application Gateways",
+        "name": {
+          "localizedValue": "Application Gateways",
+          "value": "ApplicationGateways"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/RouteTables",
+        "limit": "600",
+        "localName": "Route Tables",
+        "name": {
+          "localizedValue": "Route Tables",
+          "value": "RouteTables"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/RouteFilters",
+        "limit": "1000",
+        "localName": "Route Filters",
+        "name": {
+          "localizedValue": "Route Filters",
+          "value": "RouteFilters"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/NetworkInterfaceTapConfiguration",
+        "limit": "10",
+        "localName": "Network Interface Tap Configuration.",
+        "name": {
+          "localizedValue": "Network Interface Tap Configuration.",
+          "value": "NetworkInterfaceTapConfiguration"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "1",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/NetworkWatchers",
+        "limit": "1",
+        "localName": "Network Watchers",
+        "name": {
+          "localizedValue": "Network Watchers",
+          "value": "NetworkWatchers"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/PacketCaptures",
+        "limit": "10000",
+        "localName": "Packet Captures",
+        "name": {
+          "localizedValue": "Packet Captures",
+          "value": "PacketCaptures"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/ApplicationSecurityGroups",
+        "limit": "3000",
+        "localName": "Application Security Groups.",
+        "name": {
+          "localizedValue": "Application Security Groups.",
+          "value": "ApplicationSecurityGroups"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/DdosProtectionPlans",
+        "limit": "1",
+        "localName": "DDoS Protection Plans.",
+        "name": {
+          "localizedValue": "DDoS Protection Plans.",
+          "value": "DdosProtectionPlans"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/DdosCustomPolicies",
+        "limit": "200",
+        "localName": "DDoS customized policies",
+        "name": {
+          "localizedValue": "DDoS customized policies",
+          "value": "DdosCustomPolicies"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/ServiceEndpointPolicies",
+        "limit": "500",
+        "localName": "Service Endpoint Policies",
+        "name": {
+          "localizedValue": "Service Endpoint Policies",
+          "value": "ServiceEndpointPolicies"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/NetworkIntentPolicies",
+        "limit": "2000",
+        "localName": "Network Intent Policies",
+        "name": {
+          "localizedValue": "Network Intent Policies",
+          "value": "NetworkIntentPolicies"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "1",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/StandardSkuLoadBalancers",
+        "limit": "1000",
+        "localName": "Standard Sku Load Balancers",
+        "name": {
+          "localizedValue": "Standard Sku Load Balancers",
+          "value": "StandardSkuLoadBalancers"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/ServiceSkuLoadBalancers",
+        "limit": "10000",
+        "localName": "Service Sku Load Balancers",
+        "name": {
+          "localizedValue": "Service Sku Load Balancers",
+          "value": "ServiceSkuLoadBalancers"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/AuxiliaryModeEnabledNetworkInterfaces",
+        "limit": "10",
+        "localName": "Auxiliary Mode Enabled Network Interfaces",
+        "name": {
+          "localizedValue": "Auxiliary Mode Enabled Network Interfaces",
+          "value": "AuxiliaryModeEnabledNetworkInterfaces"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/VirtualNetworkAppliances",
+        "limit": "2",
+        "localName": "Virtual Network Appliances",
+        "name": {
+          "localizedValue": "Virtual Network Appliances",
+          "value": "VirtualNetworkAppliances"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/DnsServersPerVirtualNetwork",
+        "limit": "20",
+        "localName": "DNS servers per Virtual Network",
+        "name": {
+          "localizedValue": "DNS servers per Virtual Network",
+          "value": "DnsServersPerVirtualNetwork"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/CustomDnsServersPerP2SVpnGateway",
+        "limit": "5",
+        "localName": "Custom DNS servers per P2SVpnGateway",
+        "name": {
+          "localizedValue": "Custom DNS servers per P2SVpnGateway",
+          "value": "CustomDnsServersPerP2SVpnGateway"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/SubnetsPerVirtualNetwork",
+        "limit": "3000",
+        "localName": "Subnets per Virtual Network",
+        "name": {
+          "localizedValue": "Subnets per Virtual Network",
+          "value": "SubnetsPerVirtualNetwork"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/IPConfigurationsPerVirtualNetwork",
+        "limit": "65536",
+        "localName": "IP Configurations per Virtual Network",
+        "name": {
+          "localizedValue": "IP Configurations per Virtual Network",
+          "value": "IPConfigurationsPerVirtualNetwork"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/IPV6ConfigurationsPerNetworkInterface",
+        "limit": "8",
+        "localName": "IPV6 Configurations per Network Interface",
+        "name": {
+          "localizedValue": "IPV6 Configurations per Network Interface",
+          "value": "IPV6ConfigurationsPerNetworkInterface"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/PeeringsPerVirtualNetwork",
+        "limit": "650",
+        "localName": "Peerings per Virtual Network",
+        "name": {
+          "localizedValue": "Peerings per Virtual Network",
+          "value": "PeeringsPerVirtualNetwork"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/PrefixesPerSubnet",
+        "limit": "25",
+        "localName": "Prefixes per Subnet",
+        "name": {
+          "localizedValue": "Prefixes per Subnet",
+          "value": "PrefixesPerSubnet"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/SecurityRulesPerNetworkSecurityGroup",
+        "limit": "2000",
+        "localName": "Security rules per Network Security Group",
+        "name": {
+          "localizedValue": "Security rules per Network Security Group",
+          "value": "SecurityRulesPerNetworkSecurityGroup"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/SecurityRulesPerNetworkIntentPolicy",
+        "limit": "100",
+        "localName": "Security rules per Network Intent Policy",
+        "name": {
+          "localizedValue": "Security rules per Network Intent Policy",
+          "value": "SecurityRulesPerNetworkIntentPolicy"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/RoutesPerNetworkIntentPolicy",
+        "limit": "200",
+        "localName": "Routes per Network Intent Policy",
+        "name": {
+          "localizedValue": "Routes per Network Intent Policy",
+          "value": "RoutesPerNetworkIntentPolicy"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/SecurityRuleAddressesOrPortsPerNetworkSecurityGroup",
+        "limit": "6000",
+        "localName": "Security rules addresses or ports per Network Security Group",
+        "name": {
+          "localizedValue": "Security rules addresses or ports per Network Security Group",
+          "value": "SecurityRuleAddressesOrPortsPerNetworkSecurityGroup"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/InboundRulesPerLoadBalancer",
+        "limit": "250",
+        "localName": "Inbound Rules per Load Balancer",
+        "name": {
+          "localizedValue": "Inbound Rules per Load Balancer",
+          "value": "InboundRulesPerLoadBalancer"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/FrontendIPConfigurationPerLoadBalancer",
+        "limit": "200",
+        "localName": "Frontend IP Configurations per Load Balancer",
+        "name": {
+          "localizedValue": "Frontend IP Configurations per Load Balancer",
+          "value": "FrontendIPConfigurationPerLoadBalancer"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/OutboundRulesPerLoadBalancer",
+        "limit": "5",
+        "localName": "Outbound Rules per Load Balancer",
+        "name": {
+          "localizedValue": "Outbound Rules per Load Balancer",
+          "value": "OutboundRulesPerLoadBalancer"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/RoutesPerRouteTable",
+        "limit": "1000",
+        "localName": "Routes per Route Table",
+        "name": {
+          "localizedValue": "Routes per Route Table",
+          "value": "RoutesPerRouteTable"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/RoutesWithServiceTagPerRouteTable",
+        "limit": "25",
+        "localName": "Routes with service tag per Route Table",
+        "name": {
+          "localizedValue": "Routes with service tag per Route Table",
+          "value": "RoutesWithServiceTagPerRouteTable"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/SecondaryIPConfigurationsPerNetworkInterface",
+        "limit": "256",
+        "localName": "Secondary IP Configurations per Network Interface",
+        "name": {
+          "localizedValue": "Secondary IP Configurations per Network Interface",
+          "value": "SecondaryIPConfigurationsPerNetworkInterface"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/SecondaryIPConfigurationsPerPrivateEndpointNetworkInterface",
+        "limit": "500",
+        "localName": "Secondary IP Configurations per PrivateEndpoint Network Interface",
+        "name": {
+          "localizedValue": "Secondary IP Configurations per PrivateEndpoint Network Interface",
+          "value": "SecondaryIPConfigurationsPerPrivateEndpointNetworkInterface"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/InboundNatOrLbRulesPerNetworkInterface",
+        "limit": "300",
+        "localName": "Inbound rules per Network Interface",
+        "name": {
+          "localizedValue": "Inbound rules per Network Interface",
+          "value": "InboundNatOrLbRulesPerNetworkInterface"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/RouteFilterRulesPerRouteFilter",
+        "limit": "1",
+        "localName": "Route filter rules per Route Filter",
+        "name": {
+          "localizedValue": "Route filter rules per Route Filter",
+          "value": "RouteFilterRulesPerRouteFilter"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/RouteFiltersPerExpressRouteBgpPeering",
+        "limit": "1",
+        "localName": "Route filters per Express route BGP Peering",
+        "name": {
+          "localizedValue": "Route filters per Express route BGP Peering",
+          "value": "RouteFiltersPerExpressRouteBgpPeering"
+        },
+        "unit": "Count"
+      },
+      {
+        "currentValue": "0",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/MinPublicIpInterNetworkPrefixLength",
+        "limit": "28",
+        "localName": "Public IPv4 Prefix Length",
+        "name": {
+          "localizedValue": "Public IPv4 Prefix Length",
+          "value": "MinPublicIpInterNetworkPrefixLength"
+        },
+        "unit": "Count"
+      }
+    ],
+    "existingVnets": [
+      {
+        "name": "vnet-resto-4tvlzr5zf2rxi",
+        "prefixes": [
+          "10.74.0.0/22"
+        ]
+      }
+    ],
+    "plannedAddressSpace": "10.247.0.0/24",
+    "overlapInReturnedSubscriptionVnets": false,
+    "unobservedPeeredOrExternalRoutes": "unknown",
+    "privateEndpointsRequired": 3,
+    "privateDnsZonesRequired": 5,
+    "privateDnsLocation": "global",
+    "actualManagementHost": null
+  },
+  "monitoring": {
+    "workspaceSku": "PerGB2018",
+    "retentionDays": 30,
+    "dailyQuotaGb": 1,
+    "workspaceAndAppInsightsRegionListed": true,
+    "whatIfCreatesReturned": true,
+    "sanitizedLoggingRuntimeVerified": false
+  },
+  "identityAndRbac": {
+    "managedIdentityRegionListed": true,
+    "foundryRoleDefinitionsRead": true,
+    "armWildcardPermissionsReturned": true,
+    "directoryReadPerformed": false,
+    "directoryOwnershipAndRoleAssignments": "not_currently_verified"
+  },
+  "policy": {
+    "assignmentCount": 3,
+    "definitionCount": 11,
+    "observedRules": "Database and SQL Defender DeployIfNotExists rules; no applicable deny identified",
+    "fullReferencePolicyPassed": false,
+    "limitations": "Nested resources not fully expanded; no runtime/Graph coverage"
+  },
+  "whatIf": {
+    "commandExitCode": 0,
+    "armStatus": "Succeeded",
+    "changeCounts": {
+      "Create": 35
+    },
+    "deleteCount": 0,
+    "modifyCount": 0,
+    "diagnostics": [
+      {
+        "additionalInfo": null,
+        "code": "NestedDeploymentShortCircuited",
+        "level": "Warning",
+        "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/telemetry-storage"
+      },
+      {
+        "additionalInfo": null,
+        "code": "NestedDeploymentShortCircuited",
+        "level": "Warning",
+        "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/iot-container-access"
+      },
+      {
+        "additionalInfo": null,
+        "code": "NestedDeploymentShortCircuited",
+        "level": "Warning",
+        "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/foundry-account"
+      },
+      {
+        "additionalInfo": null,
+        "code": "NestedDeploymentShortCircuited",
+        "level": "Warning",
+        "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/application-container-access"
+      },
+      {
+        "additionalInfo": null,
+        "code": "NestedDeploymentShortCircuited",
+        "level": "Warning",
+        "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/project-access"
+      },
+      {
+        "additionalInfo": null,
+        "code": "NestedDeploymentSkippedFromInternalExpansion",
+        "level": "Warning",
+        "message": "When nested deployments are expanded, all its inner resources are retrieved for further validation. This process is performed in batch of: '10' at a time. Nested deployments exceeding this batch count are skipped from expansion.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/dns-7ijinxo56ybbo"
+      },
+      {
+        "additionalInfo": null,
+        "code": "NestedDeploymentSkippedFromInternalExpansion",
+        "level": "Warning",
+        "message": "When nested deployments are expanded, all its inner resources are retrieved for further validation. This process is performed in batch of: '10' at a time. Nested deployments exceeding this batch count are skipped from expansion.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/dns-6fmerxwgpwjpg"
+      },
+      {
+        "additionalInfo": null,
+        "code": "NestedDeploymentSkippedFromInternalExpansion",
+        "level": "Warning",
+        "message": "When nested deployments are expanded, all its inner resources are retrieved for further validation. This process is performed in batch of: '10' at a time. Nested deployments exceeding this batch count are skipped from expansion.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/app-web"
+      },
+      {
+        "additionalInfo": null,
+        "code": "NestedDeploymentSkippedFromInternalExpansion",
+        "level": "Warning",
+        "message": "When nested deployments are expanded, all its inner resources are retrieved for further validation. This process is performed in batch of: '10' at a time. Nested deployments exceeding this batch count are skipped from expansion.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/app-cleaner"
+      }
+    ],
+    "coverage": {
+      "sourceSha256": "7e61117802d1702d2b84dcd9b0e1109cc5084d441422e2011563e62d58cb9e3e",
+      "partial": true,
+      "excludedSymbolicResources": [
+        "runtimeConfiguration"
+      ],
+      "retainedSymbolicResources": [
+        "rgTags",
+        "account",
+        "project",
+        "cleanerRole",
+        "workspace",
+        "insights",
+        "network",
+        "dns",
+        "routeIdentity",
+        "storage",
+        "routeAccess",
+        "hub",
+        "foundry",
+        "plan",
+        "apps",
+        "cleanerEndpoint",
+        "appBlobAccess",
+        "agentAccess"
+      ],
+      "identityPlaceholdersUsed": false,
+      "exactFullReferenceWhatIfPassed": false,
+      "principalId": "",
+      "installerAssignmentsOmittedIntentionally": true,
+      "excludedChecks": [
+        "Runtime appsettings with Entra client IDs; historical IDs not treated as verified.",
+        "Installer-specific assignments; principalId intentionally empty, not an invented principal.",
+        "Graph operations, identity propagation, private publishing, initialization and runtime tests."
+      ]
+    },
+    "fullReferencePassed": false
+  },
+  "runtime": {
+    "status": "not_attempted",
+    "applicationUrl": null
+  },
+  "commandCount": 45,
+  "allRecordedCommandExitCodesZero": true,
+  "deploymentAuthorized": false,
+  "directoryWriteAuthorized": false
+}

@@ -1,0 +1,11 @@
+{
+  "operation": "read-only-preflight-and-what-if",
+  "authorized": false,
+  "userMessage": null,
+  "account": null,
+  "subscriptionId": null,
+  "tenantId": null,
+  "resourceGroupName": null,
+  "azdEnvironment": null,
+  "note": "Unfilled example only. Not consent. No post-what-if deployment authorization is present."
+}

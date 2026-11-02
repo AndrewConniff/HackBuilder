@@ -1,0 +1,17 @@
+name: tdd-azd-retail-agentic
+metadata:
+  template: tddazd-retail-agentic@1.0.0
+infra:
+  provider: bicep
+  path: ./infra
+services:
+  web:
+    project: ./src/Woodgrove.Web
+    host: appservice
+    language: csharp
+hooks:
+  postprovision:
+    windows:
+      shell: pwsh
+      run: ./scripts/Initialize-PrivateReference.ps1
+      interactive: false

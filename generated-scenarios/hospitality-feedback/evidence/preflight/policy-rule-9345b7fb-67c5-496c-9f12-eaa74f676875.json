@@ -1,0 +1,133 @@
+{
+  "checkedAtUtc": "2026-10-22T18:21:39.6897590Z",
+  "command": "az rest --method get --url https://management.azure.com/providers/Microsoft.Authorization/policyDefinitions/9345b7fb-67c5-496c-9f12-eaa74f676875?api-version=2023-04-01",
+  "exitCode": 0,
+  "result": {
+    "id": "/providers/Microsoft.Authorization/policyDefinitions/9345b7fb-67c5-496c-9f12-eaa74f676875",
+    "name": "9345b7fb-67c5-496c-9f12-eaa74f676875",
+    "properties": {
+      "description": "Configure Windows SQL Virtual Machines to automatically install the Microsoft Defender for SQL extension. Microsoft Defender for SQL collects events from the agent and uses them to provide security alerts and tailored hardening tasks (recommendations).",
+      "displayName": "Configure SQL Virtual Machines to automatically install Microsoft Defender for SQL extension",
+      "metadata": {
+        "category": "Security Center",
+        "version": "1.0.0"
+      },
+      "mode": "Indexed",
+      "parameters": {
+        "effect": {
+          "allowedValues": [
+            "DeployIfNotExists",
+            "Disabled"
+          ],
+          "defaultValue": "DeployIfNotExists",
+          "metadata": {
+            "description": "Enable or disable the execution of the policy",
+            "displayName": "Effect"
+          },
+          "type": "String"
+        }
+      },
+      "policyRule": {
+        "if": {
+          "equals": "Microsoft.SqlVirtualMachine/SqlVirtualMachines",
+          "field": "type"
+        },
+        "then": {
+          "details": {
+            "deployment": {
+              "properties": {
+                "mode": "incremental",
+                "parameters": {
+                  "location": {
+                    "value": "[field('location')]"
+                  },
+                  "vmName": {
+                    "value": "[last(split(field('Microsoft.SqlVirtualMachine/SqlVirtualMachines/virtualMachineResourceId'), '/'))]"
+                  }
+                },
+                "template": {
+                  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+                  "contentVersion": "1.0.0.0",
+                  "parameters": {
+                    "location": {
+                      "type": "string"
+                    },
+                    "vmName": {
+                      "type": "string"
+                    }
+                  },
+                  "resources": [
+                    {
+                      "apiVersion": "2023-03-01",
+                      "location": "[parameters('location')]",
+                      "name": "[concat(parameters('vmName'), '/', 'MicrosoftDefenderForSQL')]",
+                      "properties": {
+                        "autoUpgradeMinorVersion": true,
+                        "enableAutomaticUpgrade": true,
+                        "publisher": "Microsoft.Azure.AzureDefenderForSQL",
+                        "type": "AdvancedThreatProtection.Windows",
+                        "typeHandlerVersion": "2.0"
+                      },
+                      "tags": {
+                        "createdBy": "MicrosoftDefenderForSQL"
+                      },
+                      "type": "Microsoft.Compute/virtualMachines/extensions"
+                    }
+                  ]
+                }
+              }
+            },
+            "evaluationDelay": "AfterProvisioning",
+            "existenceCondition": {
+              "anyOf": [
+                {
+                  "allOf": [
+                    {
+                      "equals": "SqlIaaSAgentLinux",
+                      "field": "Microsoft.Compute/virtualMachines/extensions/type"
+                    },
+                    {
+                      "equals": "Microsoft.SqlServer.Management",
+                      "field": "Microsoft.Compute/virtualMachines/extensions/publisher"
+                    }
+                  ]
+                },
+                {
+                  "allOf": [
+                    {
+                      "equals": "AdvancedThreatProtection.Windows",
+                      "field": "Microsoft.Compute/virtualMachines/extensions/type"
+                    },
+                    {
+                      "equals": "Microsoft.Azure.AzureDefenderForSQL",
+                      "field": "Microsoft.Compute/virtualMachines/extensions/publisher"
+                    },
+                    {
+                      "field": "Microsoft.Compute/virtualMachines/extensions/provisioningState",
+                      "in": [
+                        "Succeeded",
+                        "Provisioning succeeded"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "name": "[concat(last(split(field('Microsoft.SqlVirtualMachine/SqlVirtualMachines/virtualMachineResourceId'), '/')), '/?')]",
+            "roleDefinitionIds": [
+              "/providers/microsoft.authorization/roleDefinitions/92aaf0da-9dab-42b6-94a3-d43ce8d16293"
+            ],
+            "type": "Microsoft.Compute/virtualMachines/extensions"
+          },
+          "effect": "[parameters('effect')]"
+        }
+      },
+      "policyType": "BuiltIn",
+      "version": "1.0.0",
+      "versions": [
+        "1.0.0"
+      ]
+    },
+    "type": "Microsoft.Authorization/policyDefinitions"
+  }
+}

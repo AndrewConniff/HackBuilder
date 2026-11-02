@@ -1,0 +1,9 @@
+{
+  "command": "azd auth login --check-status --no-prompt",
+  "cwd": "C:\\azd-projects\\resto-scale-agent",
+  "startedAtUtc": "2026-10-24T17:32:47.784938+00:00",
+  "checkedAtUtc": "2026-10-24T17:32:48.615706+00:00",
+  "exitCode": 0,
+  "stdout": "Logged in to Azure as petender@microsoft.com\n",
+  "stderr": "Update available: 1.35.1 -> 1.37.1 (https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_1.37.1)\nTo update, run `winget upgrade Microsoft.Azd`\n"
+}

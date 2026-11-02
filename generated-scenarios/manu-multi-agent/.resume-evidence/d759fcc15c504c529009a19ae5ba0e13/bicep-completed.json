@@ -1,0 +1,12 @@
+{
+  "stage": "bicep",
+  "status": "completed",
+  "summary": "Preserved private infrastructure compiles/lints and the missing guarded azd lifecycle/output capture is now wired. Cloud readiness and installer connectivity remain unverified.",
+  "evidence": [
+    ".resume-evidence\\d759fcc15c504c529009a19ae5ba0e13\\application\\bicep-build.log and bicep-lint.log: actual exit 0, no diagnostics.",
+    ".resume-evidence\\d759fcc15c504c529009a19ae5ba0e13\\application\\infrastructure-contracts.log: 21 offline tests passed, including 12 infrastructure contracts and nine lifecycle tests covering restricted consent, CLI/azd account mismatch, identity/output capture, private DNS rejection, retries and dependency ordering.",
+    ".resume-evidence\\d759fcc15c504c529009a19ae5ba0e13\\azd-schema-validation.json: azure.yaml validates against the official azd configuration schema.",
+    "azure.yaml and scripts\\deployment_lifecycle.py: one authorized azd provision installs foundation, secretless identity, private image/fixtures/agents/key and digest-pinned workload; default independent up/deploy rollout is explicitly rejected.",
+    "05-implementation-reference.md documents the exact canonical authorization and private connected-host requirements; no Azure query, what-if, installation or deployment was run."
+  ]
+}

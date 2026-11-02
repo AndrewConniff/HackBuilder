@@ -1,0 +1,19 @@
+{
+  "scope": "Supplemental repository-wide regression; distinct from the 19 required successful package checks",
+  "checks": [
+    {
+      "name": "repository-python-suite",
+      "command": "python -m unittest discover -s scripts\\tests -p \"test_*.py\"",
+      "exitCode": 1,
+      "testsRun": 331,
+      "failures": 1,
+      "durationSeconds": 104.336,
+      "failedTest": "test_system_lifecycle.SystemLifecycleTests.test_real_visualizer_preserves_state_and_has_no_worker_or_approval_endpoints",
+      "observedFailure": "The test's temporary portal_visualizer.py process failed at import azure_context with ModuleNotFoundError: No module named 'azure_context'.",
+      "diagnosis": "The existing lifecycle fixture copies portal_visualizer.py, portal_status.py, scenario_catalog.py and hack_workflow.py, but not azure_context.py. This file was already dirty before composition and is outside the authorized industry/package scope; it was not edited."
+    }
+  ],
+  "allCommandsPassed": false,
+  "packageChecksEvidence": "local-checks.json",
+  "eventDeployed": false
+}

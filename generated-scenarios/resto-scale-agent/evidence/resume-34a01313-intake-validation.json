@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "checkedAtUtc": "2026-10-24T20:41:39.321075+00:00",
+  "projectSlug": "resto-scale-agent",
+  "status": "passed",
+  "evidenceType": "local-intake-validation",
+  "stateRevision": 5,
+  "checks": {
+    "sameWorkspace": "Saved slug and manifest ID match the existing workspace; no scaffold or rename.",
+    "industry": "Exact industry matches microsoft_industry_verticals.csv and reference metadata.",
+    "businessScope": "Generic is explicit and exclusive, not inferred from operational personas.",
+    "serviceUnion": "Six required services retained; saved intake includes VNet and Monitor dependencies.",
+    "priorities": "Reliability, Performance Efficiency and scaling match the saved intake.",
+    "artifact:01-requirements.md": "Reference artifact exists within this same workspace; not runtime proof.",
+    "artifact:02-architecture-assessment.md": "Reference artifact exists within this same workspace; not runtime proof.",
+    "artifact:04-implementation-plan.md": "Reference artifact exists within this same workspace; not runtime proof.",
+    "artifact:03-architect-diagram.png": "Reference artifact exists within this same workspace; not runtime proof.",
+    "artifact:04-runtime-diagram.png": "Reference artifact exists within this same workspace; not runtime proof.",
+    "artifact:azure.yaml": "Reference artifact exists within this same workspace; not runtime proof.",
+    "artifact:infra": "Reference artifact exists within this same workspace; not runtime proof.",
+    "artifact:src": "Reference artifact exists within this same workspace; not runtime proof.",
+    "companyHeaders": "Company CSV headers match.",
+    "company": "Exact valid company record 14; rejected malformed records: [7, 11, 25, 33].",
+    "peopleHeaders": "BOM-aware person catalog headers match.",
+    "personMapping": "All four stable fixture IDs retain their exact documented catalog records.",
+    "person:guest-001": "Seed full name exactly matches catalog record 1.",
+    "person:host-001": "Seed full name exactly matches catalog record 2.",
+    "person:kitchen-001": "Seed full name exactly matches catalog record 3.",
+    "person:manager-001": "Seed full name exactly matches catalog record 4.",
+    "seedCompany": "Menu and policy retain the exact selected company and source record.",
+    "headings:01-requirements": "Required H2 headings retain the canonical template order.",
+    "headings:02-architecture-assessment": "Required H2 headings retain the canonical template order.",
+    "requirementsContract": "Capacity, daily covers, unmeasured load targets and Entra requirement remain explicit."
+  },
+  "preservedAssetHashes": {
+    "azure.yaml": "5067c6642b6b8754f44577abd0497abd736247700a048608c613ce37405599e7",
+    "scripts\\setup_identity.py": "8e1d55e9c1d8f8cba1b82f895edb8cee19da11edd8d0da689d3ab734f21334b6",
+    "scripts\\setup_staff.py": "3fb282ffe98fcb98e9a19dab6f8e2493a0146dbaad48c60f5da2e78a9e6af394",
+    "scripts\\prepare_runtime.py": "100d3a95afc8a1e96df380d2a85a55d0f243ca898151ec8b415cfa898dec20a9",
+    "infra\\main.bicep": "3a54642205ef1ab4944b2a297bada449444e4305f3cfbd7778b16f88a4be6da8",
+    "infra\\runtime.bicep": "fb4f5af9edb6ee24ceb5cb3617876aa26f85423f40fd7dfa7c2614528bdaca2e",
+    "infra\\modules\\apps.bicep": "b1802d201c80075a0504b923757837930627467774a188b208ba5520dfb95da5",
+    "src\\Restaurant.Web\\Program.cs": "709e99d91d295f45fa80d5a2f796a1706b4529946f23ee87ef841f898f2c5d78",
+    "src\\Restaurant.Web\\Services\\StaffAuthentication.cs": "4cfdd3df72d316bb082a425fd791e622f9e31ef72b6a3ab19dadf9d51dd81f5e",
+    "src\\Restaurant.Web\\SeedData\\catalog.json": "8f8963ce6818980d25dadb0d84a97ed1632a4f9a826665837f574a176aaf27e4",
+    "00-region-availability.json": "4b83f184308e556cbb7fbe2b16c400be690f962e2214a63fa1641331b3657ee6",
+    "03-architect-diagram.png": "d40ec1f4f12ec6c0ef763fbc4d6a254eb66babcdc0dbc64eb0e2724bd68e7442",
+    "04-runtime-diagram.png": "036e109e5525f9333ee18b2173ddc89c419b684f60d88d2af9342fb1fa70ddc9"
+  },
+  "preservedAssetsVerified": true,
+  "newDocumentationLineLengthsPassed": true,
+  "intake": {
+    "schemaVersion": 1,
+    "projectSlug": "resto-scale-agent",
+    "prompt": "Resume the SAME existing Fourth Coffee restaurant reference in generated-scenarios\\resto-scale-agent. Preserve existing files, slug and working assets; do not reset, rename, copy, scaffold over or regenerate it. The fictitious five-floor restaurant has 250 seats, 50 per floor, with four or five meal turns and 1,000-1,250 daily covers, not simultaneous guests. Complete the guest journey from reservation and check-in through menu/order, kitchen preparation and service, synthetic settlement and survey. Provide scoped Guest Concierge and staff Service Coordinator Foundry agents with one bounded Kitchen Advisor invocation, grounded in authorized tools and versioned business records. Keep deterministic transaction APIs independent of AI availability. Human confirmation is required before writes; agents cannot invent receipts, authorize payments or guarantee allergy safety. Preserve capacity enforcement, integer minor-unit server pricing, ETag/version checks, idempotent receipts, Cosmos transactional outbox/inbox, ordered Service Bus ticket processing, dead-letter visibility and audited replay. Use the six explicitly required services: Microsoft Foundry, Cosmos DB, Container Apps, Key Vault, managed identities and Service Bus. Inventory supporting VNet/subnet, Container Registry, Azure Monitor/Application Insights/Log Analytics and staff authentication dependencies upfront. Business scope is explicitly Generic Hospitality & Travel with no department targeting. WAF priorities are Reliability and Performance Efficiency; the selected technical domain is scaling and load testing. Retain the five-floor operational views, manager reconciliation, versioned synthetic legacy import with external IDs, scoped guest sessions, role/floor restrictions and negative authorization tests. Preserve the synthetic-only boundary: no real card collection, bank settlement, production migration or regional-disaster-recovery claim. The documented network boundary uses authenticated public data endpoints, an internal chat service and a zone-enabled VNet-integrated Container Apps environment, not private endpoints or a production WAF. Basic Foundry setup uses managed agent state and does not introduce Search or Storage. Proposed acceptance includes 50 requests/second normal load, 150 requests/second burst with 10 writes/second, 25 requests/second soak, no missing/duplicate transactions, bounded AI admission and visible AI/worker failures; these are targets, not recovered measurements. Existing requirements describe Entra staff roles/floors, while current runtime templates and azure.yaml reference synthetic staff authentication; preserve both sources and explicitly reconcile this technical/security inconsistency in the normal authorized flow rather than silently weakening authentication. File presence, manifests, historical resources and packages establish no current stage completion, cloud authorization, deployment or suitability approval. Never auto-start composition.",
+    "industry": "Hospitality & Travel",
+    "businessUnits": [
+      "generic"
+    ],
+    "services": [
+      "foundry",
+      "cosmos-db",
+      "container-apps",
+      "key-vault",
+      "managed-identity",
+      "service-bus",
+      "virtual-network",
+      "monitor"
+    ],
+    "pillars": [
+      "reliability",
+      "performance-efficiency"
+    ],
+    "domains": [
+      "scaling"
+    ],
+    "phase": "scenario",
+    "deploymentAuthorized": false,
+    "scenarioApproved": false,
+    "preferences": {
+      "regionModel": "delegate-supported-provisional-choice",
+      "deploymentTarget": "defer-until-deployment-preparation",
+      "budget": "estimate-not-a-local-build-blocker"
+    },
+    "localResume": {
+      "sourceRunId": "bdb94be7bbb203dd423b688fc984fe61",
+      "scope": "same-existing-workspace"
+    }
+  },
+  "limitations": [
+    "No application build, runtime, subscription query, directory operation or cloud authorization.",
+    "Historical deployment and denial evidence is retained, not imported as current state.",
+    "Synthetic staff runtime differs from Entra requirements; design reconciliation is required.",
+    "Manifest lists six core services; supporting VNet/Monitor are present in the saved intake union."
+  ]
+}

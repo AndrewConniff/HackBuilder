@@ -1,0 +1,346 @@
+[
+  {
+    "config": "dotnet|11",
+    "end_of_life": "2028-11-14",
+    "os": "Linux",
+    "runtime": ".NET",
+    "support": "Active",
+    "version": "11.0 (STS)"
+  },
+  {
+    "config": "DOTNETCORE|10.0",
+    "end_of_life": "2028-11-14",
+    "os": "Linux",
+    "runtime": ".NET",
+    "support": "Active",
+    "version": "10.0 (LTS)"
+  },
+  {
+    "config": "DOTNETCORE|9.0",
+    "end_of_life": "2026-11-10",
+    "os": "Linux",
+    "runtime": ".NET",
+    "support": "Near",
+    "version": "9.0 (STS)"
+  },
+  {
+    "config": "DOTNETCORE|8.0",
+    "end_of_life": "2026-11-10",
+    "os": "Linux",
+    "runtime": ".NET",
+    "support": "Near",
+    "version": "8.0 (LTS)"
+  },
+  {
+    "config": "NODE|26",
+    "end_of_life": "2029-04-30",
+    "os": "Linux",
+    "runtime": "Node",
+    "support": "Active",
+    "version": "26.0"
+  },
+  {
+    "config": "NODE|24-lts",
+    "end_of_life": "2028-04-30",
+    "os": "Linux",
+    "runtime": "Node",
+    "support": "Active",
+    "version": "24.0 LTS"
+  },
+  {
+    "config": "NODE|22-lts",
+    "end_of_life": "2027-04-30",
+    "os": "Linux",
+    "runtime": "Node",
+    "support": "Near",
+    "version": "22.0 LTS"
+  },
+  {
+    "config": "PYTHON|3.15",
+    "end_of_life": "2031-10-31",
+    "os": "Linux",
+    "runtime": "Python",
+    "support": "Active",
+    "version": "3.15"
+  },
+  {
+    "config": "PYTHON|3.14",
+    "end_of_life": "2030-10-31",
+    "os": "Linux",
+    "runtime": "Python",
+    "support": "Active",
+    "version": "3.14"
+  },
+  {
+    "config": "PYTHON|3.13",
+    "end_of_life": "2029-10-31",
+    "os": "Linux",
+    "runtime": "Python",
+    "support": "Active",
+    "version": "3.13"
+  },
+  {
+    "config": "PYTHON|3.12",
+    "end_of_life": "2028-10-31",
+    "os": "Linux",
+    "runtime": "Python",
+    "support": "Active",
+    "version": "3.12"
+  },
+  {
+    "config": "PYTHON|3.11",
+    "end_of_life": "2027-10-31",
+    "os": "Linux",
+    "runtime": "Python",
+    "support": "Active",
+    "version": "3.11"
+  },
+  {
+    "config": "PYTHON|3.10",
+    "end_of_life": "2026-10-31",
+    "os": "Linux",
+    "runtime": "Python",
+    "support": "Near",
+    "version": "3.10"
+  },
+  {
+    "config": "PHP|8.5",
+    "end_of_life": "2029-12-31",
+    "os": "Linux",
+    "runtime": "PHP",
+    "support": "Active",
+    "version": "8.5"
+  },
+  {
+    "config": "PHP|8.4",
+    "end_of_life": "2028-12-31",
+    "os": "Linux",
+    "runtime": "PHP",
+    "support": "Active",
+    "version": "8.4"
+  },
+  {
+    "config": "PHP|8.3",
+    "end_of_life": "2027-12-31",
+    "os": "Linux",
+    "runtime": "PHP",
+    "support": "Active",
+    "version": "8.3"
+  },
+  {
+    "config": "PHP|8.2",
+    "end_of_life": "2026-12-31",
+    "os": "Linux",
+    "runtime": "PHP",
+    "support": "Near",
+    "version": "8.2"
+  },
+  {
+    "config": "JAVA|25-java25",
+    "end_of_life": "2030-09-01",
+    "os": "Linux",
+    "runtime": "Java",
+    "support": "Active",
+    "version": "25"
+  },
+  {
+    "config": "JAVA|21-java21",
+    "end_of_life": "2028-09-01",
+    "os": "Linux",
+    "runtime": "Java",
+    "support": "Active",
+    "version": "21"
+  },
+  {
+    "config": "JAVA|17-java17",
+    "end_of_life": "2027-09-01",
+    "os": "Linux",
+    "runtime": "Java",
+    "support": "Near",
+    "version": "17"
+  },
+  {
+    "config": "JAVA|11-java11",
+    "end_of_life": "2027-09-01",
+    "os": "Linux",
+    "runtime": "Java",
+    "support": "Near",
+    "version": "11"
+  },
+  {
+    "config": "JAVA|8-jre8",
+    "end_of_life": "2027-09-01",
+    "os": "Linux",
+    "runtime": "Java",
+    "support": "Near",
+    "version": "8"
+  },
+  {
+    "config": "JBOSSEAP|8.1.0.1-java21",
+    "end_of_life": "2028-09-01",
+    "os": "Linux",
+    "runtime": "JBoss EAP",
+    "support": "Active",
+    "version": "8.1.0.1 (Java 21)"
+  },
+  {
+    "config": "JBOSSEAP|8.1.0.1-java17",
+    "end_of_life": "2027-09-01",
+    "os": "Linux",
+    "runtime": "JBoss EAP",
+    "support": "Near",
+    "version": "8.1.0.1 (Java 17)"
+  },
+  {
+    "config": "JBOSSEAP|8-java21",
+    "end_of_life": "2028-09-01",
+    "os": "Linux",
+    "runtime": "JBoss EAP",
+    "support": "Active",
+    "version": "8 (Java 21)"
+  },
+  {
+    "config": "JBOSSEAP|8-java17",
+    "end_of_life": "2027-09-01",
+    "os": "Linux",
+    "runtime": "JBoss EAP",
+    "support": "Near",
+    "version": "8 (Java 17)"
+  },
+  {
+    "config": "JBOSSEAP|8-java11",
+    "end_of_life": "2027-09-01",
+    "os": "Linux",
+    "runtime": "JBoss EAP",
+    "support": "Near",
+    "version": "8 (Java 11)"
+  },
+  {
+    "config": "JBOSSEAP|7-java17",
+    "end_of_life": "2027-09-01",
+    "os": "Linux",
+    "runtime": "JBoss EAP",
+    "support": "Near",
+    "version": "7 (Java 17)"
+  },
+  {
+    "config": "JBOSSEAP|7-java11",
+    "end_of_life": "2027-09-01",
+    "os": "Linux",
+    "runtime": "JBoss EAP",
+    "support": "Near",
+    "version": "7 (Java 11)"
+  },
+  {
+    "config": "JBOSSEAP|7-java8",
+    "end_of_life": "2027-09-01",
+    "os": "Linux",
+    "runtime": "JBoss EAP",
+    "support": "Near",
+    "version": "7 (Java 8)"
+  },
+  {
+    "config": "TOMCAT|11.0-java25",
+    "end_of_life": "2030-09-01",
+    "os": "Linux",
+    "runtime": "Tomcat",
+    "support": "Active",
+    "version": "11.0 (Java 25)"
+  },
+  {
+    "config": "TOMCAT|11.0-java21",
+    "end_of_life": "2028-09-01",
+    "os": "Linux",
+    "runtime": "Tomcat",
+    "support": "Active",
+    "version": "11.0 (Java 21)"
+  },
+  {
+    "config": "TOMCAT|11.0-java17",
+    "end_of_life": "2027-09-01",
+    "os": "Linux",
+    "runtime": "Tomcat",
+    "support": "Near",
+    "version": "11.0 (Java 17)"
+  },
+  {
+    "config": "TOMCAT|11.0-java11",
+    "end_of_life": "2027-09-01",
+    "os": "Linux",
+    "runtime": "Tomcat",
+    "support": "Near",
+    "version": "11.0 (Java 11)"
+  },
+  {
+    "config": "TOMCAT|10.1-java25",
+    "end_of_life": "2030-09-01",
+    "os": "Linux",
+    "runtime": "Tomcat",
+    "support": "Active",
+    "version": "10.1 (Java 25)"
+  },
+  {
+    "config": "TOMCAT|10.1-java21",
+    "end_of_life": "2028-09-01",
+    "os": "Linux",
+    "runtime": "Tomcat",
+    "support": "Active",
+    "version": "10.1 (Java 21)"
+  },
+  {
+    "config": "TOMCAT|10.1-java17",
+    "end_of_life": "2027-09-01",
+    "os": "Linux",
+    "runtime": "Tomcat",
+    "support": "Near",
+    "version": "10.1 (Java 17)"
+  },
+  {
+    "config": "TOMCAT|10.1-java11",
+    "end_of_life": "2027-09-01",
+    "os": "Linux",
+    "runtime": "Tomcat",
+    "support": "Near",
+    "version": "10.1 (Java 11)"
+  },
+  {
+    "config": "TOMCAT|9.0-java25",
+    "end_of_life": "2027-03-31",
+    "os": "Linux",
+    "runtime": "Tomcat",
+    "support": "Near",
+    "version": "9.0 (Java 25)"
+  },
+  {
+    "config": "TOMCAT|9.0-java21",
+    "end_of_life": "2027-03-31",
+    "os": "Linux",
+    "runtime": "Tomcat",
+    "support": "Near",
+    "version": "9.0 (Java 21)"
+  },
+  {
+    "config": "TOMCAT|9.0-java17",
+    "end_of_life": "2027-03-31",
+    "os": "Linux",
+    "runtime": "Tomcat",
+    "support": "Near",
+    "version": "9.0 (Java 17)"
+  },
+  {
+    "config": "TOMCAT|9.0-java11",
+    "end_of_life": "2027-03-31",
+    "os": "Linux",
+    "runtime": "Tomcat",
+    "support": "Near",
+    "version": "9.0 (Java 11)"
+  },
+  {
+    "config": "TOMCAT|9.0-jre8",
+    "end_of_life": "2027-03-31",
+    "os": "Linux",
+    "runtime": "Tomcat",
+    "support": "Near",
+    "version": "9.0-jre8"
+  }
+]

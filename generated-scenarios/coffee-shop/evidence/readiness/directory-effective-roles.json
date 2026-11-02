@@ -1,0 +1,9 @@
+{
+  "checkedAtUtc": "2026-10-24T23:21:40.554352+00:00",
+  "url": "https://graph.microsoft.com/v1.0/me/transitiveMemberOf/microsoft.graph.directoryRole?$select=id,displayName,roleTemplateId",
+  "httpStatus": 200,
+  "response": {
+    "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#directoryRoles(id,displayName,roleTemplateId)",
+    "value": []
+  }
+}

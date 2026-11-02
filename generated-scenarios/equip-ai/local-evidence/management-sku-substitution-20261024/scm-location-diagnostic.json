@@ -1,0 +1,3 @@
+{
+  "output": "Enable succeeded: \n[stdout]\n{\"status\": 202, \"scheme\": \"https\", \"hostname\": \"app-equip-web-equipai-kex72v.scm.azurewebsites.net\", \"port\": 443, \"path\": \"/api/deployments/latest\"}\n\n[stderr]\n"
+}

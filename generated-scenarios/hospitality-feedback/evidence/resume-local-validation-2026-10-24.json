@@ -1,0 +1,42 @@
+{
+  "scope": "local_only",
+  "status": "passed",
+  "startedAtUtc": "2026-10-24T17:50:57.293547+00:00",
+  "liveDeployment": false,
+  "liveModelInference": false,
+  "liveAgentInvocation": false,
+  "commands": [
+    {
+      "command": "dotnet test tests\\HospitalityFeedback.Tests\\HospitalityFeedback.Tests.csproj -c Release --no-restore --nologo --logger trx;LogFileName=resume-all-2026-10-24.trx --results-directory evidence\\tests",
+      "startedAtUtc": "2026-10-24T17:51:07.530100+00:00",
+      "exitCode": 0,
+      "log": "C:\\Users\\petender\\.copilot\\session-state\\16db88b2-0b57-4f2d-9f40-11f82e708d2f\\files\\check-1.log"
+    },
+    {
+      "command": "dotnet publish src\\HospitalityFeedback.Web\\HospitalityFeedback.Web.csproj -c Release --no-restore --nologo -o .local\\resume-publish",
+      "startedAtUtc": "2026-10-24T17:51:13.343602+00:00",
+      "exitCode": 0,
+      "log": "C:\\Users\\petender\\.copilot\\session-state\\16db88b2-0b57-4f2d-9f40-11f82e708d2f\\files\\check-2.log"
+    },
+    {
+      "command": "pwsh -NoProfile -File scripts\\Test-LocalApplication.ps1",
+      "startedAtUtc": "2026-10-24T17:51:15.875332+00:00",
+      "exitCode": 0,
+      "log": "C:\\Users\\petender\\.copilot\\session-state\\16db88b2-0b57-4f2d-9f40-11f82e708d2f\\files\\check-3.log"
+    },
+    {
+      "command": "node scripts\\browser-local.cjs",
+      "startedAtUtc": "2026-10-24T17:51:22.201166+00:00",
+      "exitCode": 0,
+      "log": "C:\\Users\\petender\\.copilot\\session-state\\16db88b2-0b57-4f2d-9f40-11f82e708d2f\\files\\check-4.log"
+    },
+    {
+      "command": "python scripts\\validate_artifacts.py",
+      "startedAtUtc": "2026-10-24T17:51:25.215340+00:00",
+      "exitCode": 0,
+      "log": "C:\\Users\\petender\\.copilot\\session-state\\16db88b2-0b57-4f2d-9f40-11f82e708d2f\\files\\check-5.log"
+    }
+  ],
+  "checkedAtUtc": "2026-10-24T17:51:25.554462+00:00",
+  "ownedProcessesStopped": true
+}

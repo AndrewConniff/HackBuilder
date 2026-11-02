@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "status": "deployed_functional_runtime_verified_performance_limits",
+  "subscriptionName": "MCAPS-Hybrid-REQ-152516-2026-petender",
+  "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+  "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+  "checkedAtUtc": "2026-10-25T00:00:52.801901+00:00",
+  "requestedRegions": [],
+  "candidateRegions": ["eastus2", "swedencentral"],
+  "selectedRegion": "swedencentral",
+  "recommendedRegion": "swedencentral",
+  "provisionalRegion": "eastus2",
+  "model": {"name": "gpt-4.1-mini", "version": "2025-04-14", "deploymentType": "GlobalStandard", "capacity": 30},
+  "resources": [
+    {"type": "Microsoft.CognitiveServices/accounts", "kind": "AIServices", "sku": "S0",
+      "region": "swedencentral", "eligibility": "Deployed; real model inference succeeded"},
+    {"type": "Microsoft.CognitiveServices/accounts/projects", "feature": "new prompt agents",
+      "region": "swedencentral", "eligibility": "Deployed; three installed version-selected agent endpoints invoked"},
+    {"type": "Microsoft.Web/serverfarms", "sku": "P0v3", "workers": 1, "maximumScale": 3,
+      "region": "swedencentral", "eligibility": "Baseline allocated; three-worker ARM validation passed, scale-out not load-proved"},
+    {"type": "Microsoft.Storage/storageAccounts", "sku": "Standard_LRS",
+      "region": "swedencentral", "eligibility": "Deployed; real managed-identity account/data/order access succeeded"}
+  ],
+  "quotaEvidence": {
+    "modelUsageName": "OpenAI.GlobalStandard.gpt4.1-mini",
+    "scope": "global; not independent regional pools",
+    "currentValue": 0,
+    "limit": 5000,
+    "required": 30,
+    "unit": "thousands of tokens per minute",
+    "regionsQueried": ["eastus2", "swedencentral"],
+    "webSweden": {
+      "reportedRegionalLimit": 10,
+      "reportedCurrentValue": 0,
+      "requestedMaximumWorkers": 3,
+      "limitation": "Usage endpoint only returns total regional VMs, not an exact P0v3 row.",
+      "exactSkuEvidence": "evidence/arm-validation-swedencentral-scale.json",
+      "exactSkuResult": "ARM provider validation of an in-memory three-worker request completed with provisioningState Succeeded"
+    }
+  },
+  "capacityEvidence": {
+    "modelVersion": "2025-04-14",
+    "deploymentType": "GlobalStandard",
+    "modelLifecycleStatus": "Legacy",
+    "reportedInferenceDeprecation": "2027-04-14T00:00:00Z",
+    "capabilities": ["agentsV2", "assistants", "chatCompletion", "responses"],
+    "whatIf": "evidence/what-if-rest-swedencentral.json",
+    "changeCounts": {"Create": 16, "Delete": 0, "Modify": 0},
+    "limitation": "Metadata, ARM validation and what-if do not reserve model or worker capacity."
+  },
+  "rejectedRegions": [
+    {
+      "region": "eastus2",
+      "reason": "ARM validate rejects P0v3 with InternalSubscriptionIsOverQuotaForSku: limit 0, usage 0, required 1.",
+      "conflict": "Microsoft.Web usage endpoint reports P0v3 limit 360; actual template validation takes precedence.",
+      "whatIfResult": "Failed: InvalidTemplate empty-expression error, reproduced with REST as well as CLI.",
+      "evidence": ["evidence/arm-validation.json", "evidence/what-if-rest-eastus2.json"]
+    }
+  ],
+  "sources": [
+    "https://learn.microsoft.com/en-us/azure/foundry/agents/overview",
+    "https://learn.microsoft.com/en-us/azure/foundry/agents/quickstarts/responses-api",
+    "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure",
+    "https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/limits-quotas-regions",
+    "https://raw.githubusercontent.com/Azure/bicep-registry-modules/main/avm/res/cognitive-services/account/main.bicep"
+  ],
+  "outstandingLiveChecks": [
+    "Original performance targets remain unmet; validate revised capacity/admission design before production claims",
+    "Actual automatic scale-out to three workers has not been exercised",
+    "Evaluate model migration before reported 2027-04-14 deprecation"
+  ],
+  "evidence": [
+    "evidence/read-only-authorization.json",
+    "evidence/deployment-authorization.json",
+    "evidence/readiness/predeploy-quotas.json",
+    "evidence/readiness/providers.json",
+    "evidence/readiness/policy.json",
+    "evidence/readiness/swedencentral-models.json",
+    "evidence/readiness/swedencentral-model-usage.json",
+    "evidence/readiness/swedencentral-web-usage.json",
+    "evidence/readiness/web-runtimes.json",
+    "evidence/what-if.json",
+    "evidence/azd-up-retry1-result.json",
+    "evidence/agent-endpoint-repair.json",
+    "evidence/live-checks.json",
+    "evidence/live-branch-failure.json",
+    "evidence/live-concurrency.json",
+    "evidence/browser-checks.json",
+    "evidence/arm-validation-swedencentral-scale.json",
+    "evidence/readiness/directory-policy.json",
+    "evidence/readiness/directory-effective-roles.json"
+  ],
+  "recommendation": "Approved Sweden Central reference is deployed and functionally verified with local user login and managed identity; no directory writes. Review measured performance limitations before suitability approval. No production capacity or three-worker scale-out guarantee."
+}

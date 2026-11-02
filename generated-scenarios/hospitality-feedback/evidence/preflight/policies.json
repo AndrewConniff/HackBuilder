@@ -1,0 +1,94 @@
+{
+  "checkedAtUtc": "2026-10-22T18:21:14.9373936Z",
+  "command": "az policy assignment list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --scope /subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76 --disable-scope-strict-match -o json",
+  "exitCode": 0,
+  "result": [
+    {
+      "definitionVersion": "1.*.*",
+      "description": "This policy assignment was automatically created by Azure Security Center",
+      "displayName": "ASC OpenSourceRelationalDatabasesProtection (subscription: efd64343-6ef4-4926-951f-d3229f38bd76)",
+      "enforcementMode": "Default",
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/policyAssignments/OpenSourceRelationalDatabasesProtectionSecurityCenter",
+      "instanceId": "c836f600-d45c-45f8-b87c-db3734075b44",
+      "metadata": {
+        "assignedBy": "Security Center",
+        "createdBy": "b44cbfcb-0b02-41a7-9f50-4044a3b4884f",
+        "createdOn": "2026-06-17T00:08:13.5877172Z",
+        "updatedBy": null,
+        "updatedOn": null
+      },
+      "name": "OpenSourceRelationalDatabasesProtectionSecurityCenter",
+      "policyDefinitionId": "/providers/Microsoft.Authorization/policySetDefinitions/e77fc0b3-f7e9-4c58-bc13-cb753ed8e46e",
+      "scope": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76",
+      "systemData": {
+        "createdAt": "2026-06-17T00:08:13.5362057Z",
+        "createdBy": "6cbd3a8f-4735-43c4-9bea-af63cf550e20",
+        "createdByType": "Application",
+        "lastModifiedAt": "2026-06-17T00:08:13.5362057Z",
+        "lastModifiedBy": "6cbd3a8f-4735-43c4-9bea-af63cf550e20",
+        "lastModifiedByType": "Application"
+      },
+      "type": "Microsoft.Authorization/policyAssignments"
+    },
+    {
+      "definitionVersion": "3.*.*",
+      "description": "This policy assignment was automatically created by Azure Security Center",
+      "displayName": "ASC DataProtection (subscription: efd64343-6ef4-4926-951f-d3229f38bd76)",
+      "enforcementMode": "Default",
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/policyAssignments/DataProtectionSecurityCenter",
+      "instanceId": "64a971e1-6921-4648-88d4-7c66eebc761e",
+      "metadata": {
+        "assignedBy": "Security Center",
+        "createdBy": "b44cbfcb-0b02-41a7-9f50-4044a3b4884f",
+        "createdOn": "2026-06-17T00:08:29.6934888Z",
+        "updatedBy": null,
+        "updatedOn": null
+      },
+      "name": "DataProtectionSecurityCenter",
+      "policyDefinitionId": "/providers/Microsoft.Authorization/policySetDefinitions/9cb3cc7a-b39b-4b82-bc89-e5a5d9ff7b97",
+      "scope": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76",
+      "systemData": {
+        "createdAt": "2026-06-17T00:08:29.6539493Z",
+        "createdBy": "6cbd3a8f-4735-43c4-9bea-af63cf550e20",
+        "createdByType": "Application",
+        "lastModifiedAt": "2026-06-17T00:08:29.6539493Z",
+        "lastModifiedBy": "6cbd3a8f-4735-43c4-9bea-af63cf550e20",
+        "lastModifiedByType": "Application"
+      },
+      "type": "Microsoft.Authorization/policyAssignments"
+    },
+    {
+      "definitionVersion": "1.*.*",
+      "description": "This initiative enables Defender for SQL on SQL VMs and Arc-enabled SQL Servers",
+      "displayName": "Defender for SQL Servers on Machines provisioning (subscription: efd64343-6ef4-4926-951f-d3229f38bd76)",
+      "enforcementMode": "Default",
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/policyAssignments/SqlVmAndArcSqlServersProtection",
+      "identity": {
+        "principalId": "1503d45d-0964-4bff-8ef8-70aeeae23ea2",
+        "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+        "type": "SystemAssigned"
+      },
+      "instanceId": "8fd2487b-707f-4d46-9a00-85cb1ab62152",
+      "location": "westeurope",
+      "metadata": {
+        "assignedBy": "Security Center",
+        "createdBy": "b44cbfcb-0b02-41a7-9f50-4044a3b4884f",
+        "createdOn": "2026-06-16T22:33:54.9167354Z",
+        "updatedBy": "1564b3d0-4714-4f7f-b83a-5f1ee4fc4bb3",
+        "updatedOn": "2026-08-23T18:45:14.3087084Z"
+      },
+      "name": "SqlVmAndArcSqlServersProtection",
+      "policyDefinitionId": "/providers/Microsoft.Authorization/policySetDefinitions/c1529623-9fc2-45bc-b84b-b14cd0b7484e",
+      "scope": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76",
+      "systemData": {
+        "createdAt": "2026-06-16T22:33:54.3166206Z",
+        "createdBy": "6cbd3a8f-4735-43c4-9bea-af63cf550e20",
+        "createdByType": "Application",
+        "lastModifiedAt": "2026-08-23T18:45:14.2008093Z",
+        "lastModifiedBy": "321d0ea6-a866-4dc9-8436-ff792a85ac7d",
+        "lastModifiedByType": "Application"
+      },
+      "type": "Microsoft.Authorization/policyAssignments"
+    }
+  ]
+}

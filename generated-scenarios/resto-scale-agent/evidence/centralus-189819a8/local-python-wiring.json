@@ -1,0 +1,9 @@
+{
+  "name": "python-wiring",
+  "command": "C:\\HackBuilder\\.venv\\Scripts\\python.exe -m unittest discover -s C:\\azd-projects\\resto-scale-agent\\validation -p test_*.py",
+  "cwd": "C:\\HackBuilder",
+  "exitCode": 0,
+  "stdout": "",
+  "stderr": "...............\n----------------------------------------------------------------------\nRan 15 tests in 0.339s\n\nOK\n",
+  "checkedAtUtc": "2026-10-23T23:47:04.804024+00:00"
+}

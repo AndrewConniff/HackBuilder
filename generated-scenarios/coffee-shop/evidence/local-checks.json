@@ -1,0 +1,159 @@
+{
+  "checkedAtUtc": "2026-10-24T23:52:51.761000+00:00",
+  "scope": "local-only; dependency test doubles do not prove inference or Azure runtime",
+  "passed": true,
+  "checks": [
+    {
+      "name": "locked-restore",
+      "command": [
+        "C:\\Program Files\\dotnet\\dotnet.EXE",
+        "restore",
+        "src/CoffeeShop.Web",
+        "--locked-mode"
+      ],
+      "exitCode": 0,
+      "stdout": "  Determining projects to restore...\n  Restored C:\\azd-projects\\coffee-shop\\src\\CoffeeShop.Web\\CoffeeShop.Web.csproj (in 344 ms).\n",
+      "stderr": ""
+    },
+    {
+      "name": "build",
+      "command": [
+        "C:\\Program Files\\dotnet\\dotnet.EXE",
+        "build",
+        "src/CoffeeShop.Web",
+        "--no-restore",
+        "--nologo",
+        "-v",
+        "minimal"
+      ],
+      "exitCode": 0,
+      "stdout": "  CoffeeShop.Web -> C:\\azd-projects\\coffee-shop\\src\\CoffeeShop.Web\\bin\\Debug\\net10.0\\CoffeeShop.Web.dll\n\nBuild succeeded.\n    0 Warning(s)\n    0 Error(s)\n\nTime Elapsed 00:00:02.24\n",
+      "stderr": ""
+    },
+    {
+      "name": "focused-tests",
+      "command": [
+        "C:\\Program Files\\dotnet\\dotnet.EXE",
+        "test",
+        "tests/CoffeeShop.Tests",
+        "--nologo",
+        "-v",
+        "minimal",
+        "--logger",
+        "trx;LogFileName=local-tests.trx",
+        "--results-directory",
+        "evidence"
+      ],
+      "exitCode": 0,
+      "stdout": "  Determining projects to restore...\n  Restored C:\\azd-projects\\coffee-shop\\src\\CoffeeShop.Web\\CoffeeShop.Web.csproj (in 345 ms).\n  1 of 2 projects are up-to-date for restore.\n  CoffeeShop.Web -> C:\\azd-projects\\coffee-shop\\src\\CoffeeShop.Web\\bin\\Debug\\net10.0\\CoffeeShop.Web.dll\n  CoffeeShop.Tests -> C:\\azd-projects\\coffee-shop\\tests\\CoffeeShop.Tests\\bin\\Debug\\net10.0\\CoffeeShop.Tests.dll\nTest run for C:\\azd-projects\\coffee-shop\\tests\\CoffeeShop.Tests\\bin\\Debug\\net10.0\\CoffeeShop.Tests.dll (.NETCoreApp,Version=v10.0)\nA total of 1 test files matched the specified pattern.\nWARNING: Overwriting results file: C:\\azd-projects\\coffee-shop\\evidence\\local-tests.trx\nResults File: C:\\azd-projects\\coffee-shop\\evidence\\local-tests.trx\n\nPassed!  - Failed:     0, Passed:    31, Skipped:     0, Total:    31, Duration: 44 s - CoffeeShop.Tests.dll (net10.0)\n",
+      "stderr": ""
+    },
+    {
+      "name": "bicep-build",
+      "command": [
+        "C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD",
+        "bicep",
+        "build",
+        "--file",
+        "infra/main.bicep"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "bicep-lint-main",
+      "command": [
+        "C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD",
+        "bicep",
+        "lint",
+        "--file",
+        "infra/main.bicep"
+      ],
+      "exitCode": 0,
+      "stdout": "\n",
+      "stderr": ""
+    },
+    {
+      "name": "bicep-lint-resources",
+      "command": [
+        "C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD",
+        "bicep",
+        "lint",
+        "--file",
+        "infra/resources.bicep"
+      ],
+      "exitCode": 0,
+      "stdout": "\n",
+      "stderr": ""
+    },
+    {
+      "name": "browser-restore",
+      "command": [
+        "C:\\Program Files\\nodejs\\npm.CMD",
+        "ci",
+        "--prefix",
+        "src/CoffeeShop.Web",
+        "--ignore-scripts",
+        "--no-audit",
+        "--no-fund"
+      ],
+      "exitCode": 0,
+      "stdout": "\nup to date in 1s\n",
+      "stderr": ""
+    },
+    {
+      "name": "browser-assets",
+      "command": [
+        "C:\\Program Files\\nodejs\\npm.CMD",
+        "run",
+        "build",
+        "--prefix",
+        "src/CoffeeShop.Web"
+      ],
+      "exitCode": 0,
+      "stdout": "\n> build\n> node --check wwwroot/js/workspace.js\n\n",
+      "stderr": ""
+    },
+    {
+      "name": "browser-syntax",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "--check",
+        "src/CoffeeShop.Web/wwwroot/js/workspace.js"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "publish",
+      "command": [
+        "C:\\Program Files\\dotnet\\dotnet.EXE",
+        "publish",
+        "src/CoffeeShop.Web",
+        "--no-restore",
+        "--nologo",
+        "-c",
+        "Release",
+        "-v",
+        "minimal"
+      ],
+      "exitCode": 0,
+      "stdout": "  CoffeeShop.Web -> C:\\azd-projects\\coffee-shop\\src\\CoffeeShop.Web\\bin\\Release\\net10.0\\CoffeeShop.Web.dll\n  CoffeeShop.Web -> C:\\azd-projects\\coffee-shop\\src\\CoffeeShop.Web\\bin\\Release\\net10.0\\publish\\\n",
+      "stderr": ""
+    },
+    {
+      "name": "powershell-syntax",
+      "command": [
+        "C:\\Users\\petender\\AppData\\Local\\Microsoft\\WindowsApps\\Microsoft.PowerShell_8wekyb3d8bbwe\\pwsh.EXE",
+        "-NoProfile",
+        "-Command",
+        "$failed=$false; Get-ChildItem scripts/*.ps1 | ForEach-Object { $tokens=$null;$errors=$null;[System.Management.Automation.Language.Parser]::ParseFile($_.FullName,[ref]$tokens,[ref]$errors)|Out-Null;if($errors){$errors;$failed=$true}else{Write-Output ('Parsed '+$_.Name)} };if($failed){exit 1}"
+      ],
+      "exitCode": 0,
+      "stdout": "Parsed Assert-DeploymentScope.ps1\nParsed Build-Assets.ps1\nParsed Get-ReferenceWhatIf.ps1\nParsed Initialize-Scenario.ps1\nParsed Test-Readiness.ps1\n",
+      "stderr": ""
+    }
+  ]
+}

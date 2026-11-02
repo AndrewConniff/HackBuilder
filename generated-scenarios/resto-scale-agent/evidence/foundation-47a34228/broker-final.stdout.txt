@@ -1,0 +1,44 @@
+{
+  "createdAt": "2026-10-24T00:12:52.2445085Z",
+  "disableLocalAuth": true,
+  "geoDataReplication": {
+    "locations": [
+      {
+        "locationName": "centralus",
+        "roleType": "Primary"
+      }
+    ],
+    "maxReplicationLagDurationInSeconds": 0
+  },
+  "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi",
+  "ipAddressType": "IPv4",
+  "location": "centralus",
+  "metricId": "efd64343-6ef4-4926-951f-d3229f38bd76:sb-resto-4tvlzr5zf2rxi",
+  "minimumTlsVersion": "1.2",
+  "name": "sb-resto-4tvlzr5zf2rxi",
+  "platformCapabilities": {
+    "confidentialCompute": {
+      "mode": "Disabled"
+    }
+  },
+  "premiumMessagingPartitions": 1,
+  "provisioningState": "Succeeded",
+  "publicNetworkAccess": "Enabled",
+  "resourceGroup": "rg-resto-scale-agent",
+  "serviceBusEndpoint": "https://sb-resto-4tvlzr5zf2rxi.servicebus.windows.net:443/",
+  "sku": {
+    "capacity": 1,
+    "name": "Premium",
+    "tier": "Premium"
+  },
+  "status": "Active",
+  "tags": {
+    "Environment": "resto-scale-agent",
+    "ManagedBy": "Bicep",
+    "Project": "resto-scale-agent",
+    "SecurityControl": "Ignore"
+  },
+  "type": "Microsoft.ServiceBus/Namespaces",
+  "updatedAt": "2026-10-24T00:12:52.2445085Z",
+  "zoneRedundant": true
+}

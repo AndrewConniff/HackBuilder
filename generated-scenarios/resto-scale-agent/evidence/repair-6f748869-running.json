@@ -1,0 +1,19 @@
+{
+  "stage": "deployment",
+  "operation": "deployment-preparation",
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "resto-scale-agent",
+    "resourceGroup": "rg-resto-scale-agent",
+    "region": "centralus"
+  },
+  "status": "running",
+  "summary": "Resuming local repair and read-only Central US preparation after the stopped foundation attempt. Correct Cosmos ARM database scopes and replace only the absent conflicting vault name, preserve verified existing resources, then prepare one consolidated remaining installation review. No provisioning retry or directory/runtime writes authorized.",
+  "evidence": [
+    "Canonical revision 200: all 16 decisions and complete history read; local tool consent and exact Central US preparation grant retained; no pending business question or setup blocker.",
+    "Foundation decision 00637ba454ef44d3b84d700f57017e3d stopped on provider failures. Its restricted grant cannot authorize retry, Graph writes, publication, initialization or app rollout.",
+    "evidence\\foundation-47a34228: actual VaultAlreadyExists and three Cosmos scope BadRequest errors; 13 resources retained; actual environment Consumption quota 0/500 covers 28 rollout vCPU but proves no runtime acceptance."
+  ]
+}

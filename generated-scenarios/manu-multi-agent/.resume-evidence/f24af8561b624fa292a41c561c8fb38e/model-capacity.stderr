@@ -1,0 +1,7 @@
+ERROR: Bad Request({"error":{"code":"ParameterIsMissing","message":"Query parameter modelFormat is required."}})
+'modelFormat' is not recognized as an internal or external command,
+operable program or batch file.
+'modelName' is not recognized as an internal or external command,
+operable program or batch file.
+'modelVersion' is not recognized as an internal or external command,
+operable program or batch file.

@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "evidenceType": "subscription-verified-reference-restoration",
+  "checkedAtUtc": "2026-10-26T00:39:08Z",
+  "subscriptionName": "MCAPS-Hybrid-REQ-152516-2026-petender",
+  "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+  "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+  "requestedRegions": ["centralus"],
+  "candidateRegions": ["centralus"],
+  "selectedRegion": "centralus",
+  "provisionalRegion": null,
+  "status": "reference_restored_native_foundry_runtime_blocked",
+  "currentReadiness": "local-evidence/resume-20261026/readiness/restoration-summary.json",
+  "historicalEvidence": "local-evidence/resume-20261026/historical-region-availability.json",
+  "authorization": "local-evidence/resume-20261026/user-approval.json",
+  "resources": [
+    {
+      "resource": "Foundry account and direct child project",
+      "kind": "AIServices",
+      "sku": "S0",
+      "region": "centralus",
+      "eligibility": "Current SKU catalog and provider registration verified; no SKU restrictions",
+      "installation": "Same soft-deleted account restored without purge; private agent metadata and local accounts installed",
+      "evidence": "local-evidence/resume-20261026/readiness/cognitive-skus.json",
+      "runtime": "pending real private agent and app invocation"
+    },
+    {
+      "resource": "Foundry model",
+      "model": "gpt-4.1-mini",
+      "version": "2025-04-14",
+      "deploymentName": "equip-support",
+      "deploymentType": "GlobalStandard",
+      "requiredCapacity": 10,
+      "quotaUsed": 40,
+      "quotaLimit": 5000,
+      "availableCapacity": 4960,
+      "lifecycle": "Legacy",
+      "limitation": "Still listed for this SKU; review exact retirement dates in the current catalog. No substitution.",
+      "evidence": "local-evidence/resume-20261026/readiness/model-catalog.json",
+      "capacityEvidence": "local-evidence/resume-20261026/readiness/model-capacities.json",
+      "quotaEvidence": "local-evidence/resume-20261026/readiness/model-quota.json",
+      "runtime": "pending actual inference"
+    },
+    {
+      "resource": "Linux App Service",
+      "sku": "B2",
+      "requiredWorkers": 1,
+      "skuQuotaUsed": 0,
+      "skuQuotaLimit": 11,
+      "aggregateUsed": 0,
+      "aggregateLimit": 10,
+      "runtimeConfig": "DOTNETCORE|10.0",
+      "eligibility": "Central US Linux B2 and active .NET 10 runtime listed",
+      "evidence": "local-evidence/resume-20261026/readiness/web-usages.json",
+      "runtime": "pending authenticated public web and outside-network private-cleaner checks"
+    },
+    {
+      "resource": "Storage",
+      "sku": "Standard_LRS",
+      "kind": "StorageV2",
+      "accessTier": "Hot",
+      "eligibility": "Current region/SKU catalog has no restrictions",
+      "containers": ["telemetry", "accounts"],
+      "security": "Private app access; public selected-network default deny with trusted IoT routing exception; no shared keys",
+      "evidence": "local-evidence/resume-20261026/readiness/storage-skus.json",
+      "runtime": "pending actual certificate ingress, private app MI reads and account/session persistence"
+    },
+    {
+      "resource": "IoT Hub",
+      "sku": "B2",
+      "requiredHubs": 1,
+      "eligibility": "Registered provider, recorded usage and actual same-target allocation",
+      "security": "X.509 devices, shared keys/device SAS/module SAS disabled; managed-identity Blob route",
+      "evidence": "local-evidence/resume-20261026/readiness/iot-usages.json",
+      "runtime": "pending registry RBAC readback and real certificate publication"
+    },
+    {
+      "resource": "Private management VM",
+      "sku": "Standard_D2als_v7",
+      "requiredVcpus": 2,
+      "requiredVms": 1,
+      "osDiskGiB": 32,
+      "eligibility": "Exact SKU unrestricted; family/region/VM-count quotas, Ubuntu Gen2, NVMe and Trusted Launch passed",
+      "evidence": "local-evidence/resume-20261026/readiness/management-readiness.json",
+      "runtime": "pending actual private DNS, managed-identity agent initialization and SCM publishing"
+    },
+    {
+      "resource": "Networking and monitoring",
+      "region": "centralus",
+      "vnetPrefix": "10.247.0.0/24",
+      "privateEndpoints": 3,
+      "privateDnsZones": 5,
+      "management": "Private VM, deny-inbound NSG, outbound NAT and same-group public IP; no public SSH",
+      "monitoring": "PerGB2018 workspace and sanitized App Insights/metric diagnostics",
+      "evidence": "local-evidence/resume-20261026/readiness/management-network-usage.json",
+      "runtime": "pending actual DNS/TLS/identity operations; no peering or production connectivity certification"
+    }
+  ],
+  "providersRegistered": 10,
+  "initialFullSourceWhatIf": {
+    "status": "Succeeded",
+    "create": 22,
+    "modify": 0,
+    "delete": 0,
+    "nestedWarnings": 15,
+    "coverageComplete": false,
+    "evidence": "local-evidence/resume-20261026/readiness/full-whatif.json"
+  },
+  "recoveryWhatIf": {
+    "status": "Succeeded",
+    "create": 7,
+    "modify": 9,
+    "delete": 0,
+    "nestedWarnings": 15,
+    "coverageComplete": false,
+    "review": "local-evidence/resume-20261026/recovery-review.json"
+  },
+  "pricing": {
+    "currency": "USD",
+    "illustrativeMonthlyTotal": 249.42,
+    "quoteOrSpendCap": false,
+    "evidence": "local-evidence/resume-20261026/readiness/restoration-summary.json"
+  },
+  "allocationReserved": false,
+  "directoryWritesRequired": false,
+  "runtimeAcceptancePassed": false,
+  "limitations": [
+    "Readiness and what-if do not reserve capacity or prove runtime behavior.",
+    "Dependent nested templates were not fully expanded by what-if; actual provisioning exposed and retained the restore-flag failure.",
+    "Other regions and historical East US results were not reused as current target eligibility.",
+    "Existing tenant registrations are retained but not used for sample login."
+  ]
+}

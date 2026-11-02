@@ -1,0 +1,8 @@
+test_all_three_database_grants_use_fully_qualified_scope_without_chat_access (test_infrastructure_repairs.InfrastructureRepairTests.test_all_three_database_grants_use_fully_qualified_scope_without_chat_access) ... ok
+test_existing_resource_names_and_security_inputs_are_preserved (test_infrastructure_repairs.InfrastructureRepairTests.test_existing_resource_names_and_security_inputs_are_preserved) ... ok
+test_vault_name_is_scope_bound_and_all_other_vault_controls_are_unchanged (test_infrastructure_repairs.InfrastructureRepairTests.test_vault_name_is_scope_bound_and_all_other_vault_controls_are_unchanged) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 6.253s
+
+OK

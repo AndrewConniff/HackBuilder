@@ -1,0 +1,472 @@
+metadata name = 'App ManagedEnvironments'
+metadata description = 'This module deploys an App Managed Environment (also known as a Container App Environment).'
+
+@description('Required. Name of the Container Apps Managed Environment.')
+param name string
+
+@description('Optional. Location for all Resources.')
+param location string = resourceGroup().location
+
+@description('Optional. Tags of the resource.')
+param tags resourceInput<'Microsoft.App/managedEnvironments@2026-01-01'>.tags?
+
+import { managedIdentityAllType } from 'br/public:avm/utl/types/avm-common-types:0.7.0'
+@description('Optional. The managed identity definition for this resource.')
+param managedIdentities managedIdentityAllType?
+
+import { roleAssignmentType } from 'br/public:avm/utl/types/avm-common-types:0.7.0'
+@description('Optional. Array of role assignments to create.')
+param roleAssignments roleAssignmentType[]?
+
+import { lockType } from 'br/public:avm/utl/types/avm-common-types:0.7.0'
+@description('Optional. The lock settings of the service.')
+param lock lockType?
+
+import { privateEndpointSingleServiceType } from 'br/public:avm/utl/types/avm-common-types:0.7.0'
+@description('Optional. Configuration details for private endpoints. For security reasons, it is recommended to use private endpoints whenever possible.')
+param privateEndpoints privateEndpointSingleServiceType[]?
+
+import { diagnosticSettingFullType } from 'br/public:avm/utl/types/avm-common-types:0.7.0'
+@description('Optional. The diagnostic settings of the service. If neither metrics nor logs are specified, all metrics & logs are configured by default. If only one of them is specified, the other one will not be configured.')
+param diagnosticSettings diagnosticSettingFullType[]?
+
+@description('Optional. Enable/Disable usage telemetry for module.')
+param enableTelemetry bool = true
+
+@description('Optional. The configuration of Dapr component.')
+param daprConfiguration resourceInput<'Microsoft.App/managedEnvironments@2026-01-01'>.properties.daprConfiguration?
+
+@description('Optional. Ingress configuration for the Managed Environment.')
+param ingressConfiguration resourceInput<'Microsoft.App/managedEnvironments@2026-01-01'>.properties.ingressConfiguration?
+
+@description('Optional. The configuration of Keda component.')
+param kedaConfiguration resourceInput<'Microsoft.App/managedEnvironments@2026-01-01'>.properties.kedaConfiguration?
+
+@description('Optional. Peer authentication settings for the Managed Environment.')
+param peerAuthentication resourceInput<'Microsoft.App/managedEnvironments@2026-01-01'>.properties.peerAuthentication?
+
+@description('Optional. Application Insights connection string used by Dapr to export Service to Service communication telemetry.')
+@secure()
+param daprAIConnectionString string = ''
+
+@description('Optional. Azure Monitor instrumentation key used by Dapr to export Service to Service communication telemetry.')
+@secure()
+param daprAIInstrumentationKey string = ''
+
+@description('Conditional. CIDR notation IP range assigned to the Docker bridge, network. It must not overlap with any other provided IP ranges and can only be used when the environment is deployed into a virtual network. E.g. `172.16.0.1/28`. If not provided, it will be set with a default value by the platform. Required if zoneRedundant is set to true to make the resource WAF compliant.')
+param dockerBridgeCidr string = ''
+
+@description('Conditional. Resource ID of a subnet for infrastructure components. This is used to deploy the environment into a virtual network. Must not overlap with any other provided IP ranges. Required if "internal" is set to true. Required if zoneRedundant is set to true to make the resource WAF compliant.')
+param infrastructureSubnetResourceId string?
+
+@description('Conditional. Boolean indicating the environment only has an internal load balancer. These environments do not have a public static IP resource. If set to true, then "infrastructureSubnetResourceId" must be provided. Required if zoneRedundant is set to true to make the resource WAF compliant.')
+param internal bool = false
+
+@description('Conditional. IP range in CIDR notation that can be reserved for environment infrastructure IP addresses. It must not overlap with any other provided IP ranges and can only be used when the environment is deployed into a virtual network. E.g. `172.17.17.0/24`. If not provided, it will be set with a default value by the platform. Required if zoneRedundant is set to true  to make the resource WAF compliant.')
+param platformReservedCidr string = ''
+
+@description('Conditional. An IP address from the IP range defined by "platformReservedCidr" that will be reserved for the internal DNS server. It must not be the first address in the range and can only be used when the environment is deployed into a virtual network. E.g. `172.17.17.17`. If not provided, it will be set with a default value by the platform. Required if zoneRedundant is set to true to make the resource WAF compliant.')
+param platformReservedDnsIP string = ''
+
+@description('Optional. Whether or not to encrypt peer traffic.')
+param peerTrafficEncryption bool = true
+
+@allowed([
+  'Enabled'
+  'Disabled'
+])
+@description('Optional. Whether to allow or block all public traffic.')
+param publicNetworkAccess string = 'Disabled'
+
+@description('Optional. Whether or not this Managed Environment is zone-redundant.')
+param zoneRedundant bool = true
+
+@description('Optional. Password of the certificate used by the custom domain.')
+@secure()
+param certificatePassword string = ''
+
+@description('Optional. Certificate to use for the custom domain. PFX or PEM.')
+@secure()
+param certificateValue string?
+
+@description('Optional. DNS suffix for the environment domain.')
+param dnsSuffix string = ''
+
+@description('Conditional. Workload profiles configured for the Managed Environment. Required if zoneRedundant is set to true to make the resource WAF compliant.')
+param workloadProfiles resourceInput<'Microsoft.App/managedEnvironments@2026-01-01'>.properties.workloadProfiles?
+
+@description('Conditional. Name of the infrastructure resource group. If not provided, it will be set with a default value. Required if zoneRedundant is set to true to make the resource WAF compliant.')
+param infrastructureResourceGroupName string = take('ME_${name}', 63)
+
+@description('Optional. The list of storages to mount on the environment.')
+param storages storageType[]?
+
+@description('Optional. A Managed Environment Certificate.')
+param certificate certificateType?
+
+@description('Optional. The AppLogsConfiguration for the Managed Environment.')
+param appLogsConfiguration appLogsConfigurationType?
+
+var formattedUserAssignedIdentities = reduce(
+  map((managedIdentities.?userAssignedResourceIds ?? []), (id) => { '${id}': {} }),
+  {},
+  (cur, next) => union(cur, next)
+) // Converts the flat array to an object like { '${id1}': {}, '${id2}': {} }
+
+var identity = !empty(managedIdentities)
+  ? {
+      type: (managedIdentities.?systemAssigned ?? false)
+        ? (!empty(formattedUserAssignedIdentities) ? 'SystemAssigned,UserAssigned' : 'SystemAssigned')
+        : (!empty(formattedUserAssignedIdentities) ? 'UserAssigned' : 'None')
+      userAssignedIdentities: !empty(formattedUserAssignedIdentities) ? formattedUserAssignedIdentities : null
+    }
+  : null
+
+var builtInRoleNames = {
+  Contributor: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'b24988ac-6180-42a0-ab88-20f7382dd24c')
+  Owner: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '8e3af657-a8ff-443c-a75c-2fe8c4bcb635')
+  Reader: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'acdd72a7-3385-48ef-bd42-f606fba81ae7')
+  'Role Based Access Control Administrator': subscriptionResourceId(
+    'Microsoft.Authorization/roleDefinitions',
+    'f58310d9-a9f6-439a-9e8d-f62e7b41a168'
+  )
+  'User Access Administrator': subscriptionResourceId(
+    'Microsoft.Authorization/roleDefinitions',
+    '18d7d88d-d35e-4fb5-a5c3-7773c20a72d9'
+  )
+}
+
+var formattedRoleAssignments = [
+  for (roleAssignment, index) in (roleAssignments ?? []): union(roleAssignment, {
+    roleDefinitionId: builtInRoleNames[?roleAssignment.roleDefinitionIdOrName] ?? (contains(
+        roleAssignment.roleDefinitionIdOrName,
+        '/providers/Microsoft.Authorization/roleDefinitions/'
+      )
+      ? roleAssignment.roleDefinitionIdOrName
+      : subscriptionResourceId('Microsoft.Authorization/roleDefinitions', roleAssignment.roleDefinitionIdOrName))
+  })
+]
+
+var enableReferencedModulesTelemetry = false
+
+#disable-next-line no-deployments-resources
+resource avmTelemetry 'Microsoft.Resources/deployments@2024-11-01' = if (enableTelemetry) {
+  name: '46d3xbcp.res.app-managedenvironment.${replace('-..--..-', '.', '-')}.${substring(uniqueString(deployment().name, location), 0, 4)}'
+  properties: {
+    mode: 'Incremental'
+    template: {
+      '$schema': 'https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#'
+      contentVersion: '1.0.0.0'
+      resources: []
+      outputs: {
+        telemetry: {
+          type: 'String'
+          value: 'For more information, see https://aka.ms/avm/TelemetryInfo'
+        }
+      }
+    }
+  }
+}
+
+resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2025-02-01' existing = if (!empty(appLogsConfiguration.?logAnalyticsWorkspaceResourceId)) {
+  name: last(split(appLogsConfiguration.?logAnalyticsWorkspaceResourceId!, '/'))!
+  scope: resourceGroup(
+    split(appLogsConfiguration.?logAnalyticsWorkspaceResourceId!, '/')[2],
+    split(appLogsConfiguration.?logAnalyticsWorkspaceResourceId!, '/')[4]
+  )
+}
+
+resource managedEnvironment 'Microsoft.App/managedEnvironments@2026-01-01' = {
+  name: name
+  location: location
+  tags: tags
+  identity: identity
+  properties: {
+    daprConfiguration: daprConfiguration
+    ingressConfiguration: ingressConfiguration
+    kedaConfiguration: kedaConfiguration
+    peerAuthentication: peerAuthentication
+    appLogsConfiguration: !empty(appLogsConfiguration)
+      ? {
+          destination: appLogsConfiguration!.destination
+          ...(!empty(appLogsConfiguration.?logAnalyticsWorkspaceResourceId)
+            ? {
+                logAnalyticsConfiguration: {
+                  customerId: logAnalyticsWorkspace!.properties.customerId
+                  sharedKey: logAnalyticsWorkspace!.listKeys().primarySharedKey
+                }
+              }
+            : {})
+        }
+      : null
+    daprAIConnectionString: daprAIConnectionString
+    daprAIInstrumentationKey: daprAIInstrumentationKey
+    customDomainConfiguration: {
+      certificatePassword: certificatePassword
+      certificateValue: certificateValue
+      dnsSuffix: dnsSuffix
+      certificateKeyVaultProperties: !empty(certificate.?certificateKeyVaultProperties)
+        ? {
+            identity: certificate!.?certificateKeyVaultProperties!.identityResourceId
+            keyVaultUrl: certificate!.?certificateKeyVaultProperties!.keyVaultUrl
+          }
+        : null
+    }
+    peerTrafficConfiguration: {
+      encryption: {
+        enabled: peerTrafficEncryption
+      }
+    }
+    publicNetworkAccess: publicNetworkAccess
+    vnetConfiguration: {
+      internal: internal
+      infrastructureSubnetId: infrastructureSubnetResourceId
+      dockerBridgeCidr: !empty(infrastructureSubnetResourceId) ? dockerBridgeCidr : null
+      platformReservedCidr: empty(workloadProfiles) && !empty(infrastructureSubnetResourceId)
+        ? platformReservedCidr
+        : null
+      platformReservedDnsIP: empty(workloadProfiles) && !empty(infrastructureSubnetResourceId)
+        ? platformReservedDnsIP
+        : null
+    }
+    workloadProfiles: workloadProfiles
+    zoneRedundant: zoneRedundant
+    infrastructureResourceGroup: infrastructureResourceGroupName
+  }
+}
+
+module managedEnvironment_storage 'storage/main.bicep' = [
+  for (storage, index) in (storages ?? []): {
+    name: '${uniqueString(deployment().name)}-Managed-Environment-Storage-${index}'
+    params: {
+      name: storage.name
+      managedEnvironmentName: managedEnvironment.name
+      kind: storage.kind
+      accessMode: storage.accessMode
+      storageAccountName: storage.storageAccountName
+      enableTelemetry: enableReferencedModulesTelemetry
+    }
+  }
+]
+
+resource managedEnvironment_roleAssignments 'Microsoft.Authorization/roleAssignments@2022-04-01' = [
+  for (roleAssignment, index) in (formattedRoleAssignments ?? []): {
+    name: roleAssignment.?name ?? guid(
+      managedEnvironment.id,
+      roleAssignment.principalId,
+      roleAssignment.roleDefinitionId
+    )
+    properties: {
+      roleDefinitionId: roleAssignment.roleDefinitionId
+      principalId: roleAssignment.principalId
+      description: roleAssignment.?description
+      principalType: roleAssignment.?principalType
+      condition: roleAssignment.?condition
+      conditionVersion: !empty(roleAssignment.?condition) ? (roleAssignment.?conditionVersion ?? '2.0') : null // Must only be set if condtion is set
+      delegatedManagedIdentityResourceId: roleAssignment.?delegatedManagedIdentityResourceId
+    }
+    scope: managedEnvironment
+  }
+]
+
+resource managedEnvironment_lock 'Microsoft.Authorization/locks@2020-05-01' = if (!empty(lock ?? {}) && lock.?kind != 'None') {
+  name: lock.?name ?? 'lock-${name}'
+  properties: {
+    level: lock.?kind ?? ''
+    notes: lock.?notes ?? (lock.?kind == 'CanNotDelete'
+      ? 'Cannot delete resource or child resources.'
+      : 'Cannot delete or modify the resource or child resources.')
+  }
+  scope: managedEnvironment
+}
+
+module managedEnvironment_certificate 'certificate/main.bicep' = if (!empty(certificate)) {
+  name: '${uniqueString(deployment().name)}-Managed-Environment-Certificate'
+  params: {
+    name: certificate.?name ?? 'cert-${name}'
+    managedEnvironmentName: managedEnvironment.name
+    certificateKeyVaultProperties: certificate.?certificateKeyVaultProperties
+    certificateValue: certificate.?certificateValue
+    certificatePassword: certificate.?certificatePassword
+    location: certificate.?location
+    tags: certificate.?tags
+    enableTelemetry: enableReferencedModulesTelemetry
+  }
+}
+
+module managedEnvironment_privateEndpoints 'br/public:avm/res/network/private-endpoint:0.12.1' = [
+  for (privateEndpoint, index) in (privateEndpoints ?? []): {
+    name: '${uniqueString(deployment().name, location)}-managedEnvironment-PrivateEndpoint-${index}'
+    scope: resourceGroup(
+      split(privateEndpoint.?resourceGroupResourceId ?? resourceGroup().id, '/')[2],
+      split(privateEndpoint.?resourceGroupResourceId ?? resourceGroup().id, '/')[4]
+    )
+    params: {
+      name: privateEndpoint.?name ?? 'pep-${last(split(managedEnvironment.id, '/'))}-${privateEndpoint.?service ?? 'managedEnvironments'}-${index}'
+      privateLinkServiceConnections: privateEndpoint.?isManualConnection != true
+        ? [
+            {
+              name: privateEndpoint.?privateLinkServiceConnectionName ?? '${last(split(managedEnvironment.id, '/'))}-${privateEndpoint.?service ?? 'managedEnvironments'}-${index}'
+              properties: {
+                privateLinkServiceId: managedEnvironment.id
+                groupIds: [
+                  privateEndpoint.?service ?? 'managedEnvironments'
+                ]
+              }
+            }
+          ]
+        : null
+      manualPrivateLinkServiceConnections: privateEndpoint.?isManualConnection == true
+        ? [
+            {
+              name: privateEndpoint.?privateLinkServiceConnectionName ?? '${last(split(managedEnvironment.id, '/'))}-${privateEndpoint.?service ?? 'managedEnvironments'}-${index}'
+              properties: {
+                privateLinkServiceId: managedEnvironment.id
+                groupIds: [
+                  privateEndpoint.?service ?? 'managedEnvironments'
+                ]
+                requestMessage: privateEndpoint.?manualConnectionRequestMessage ?? 'Manual approval required.'
+              }
+            }
+          ]
+        : null
+      subnetResourceId: privateEndpoint.subnetResourceId
+      enableTelemetry: enableReferencedModulesTelemetry
+      location: privateEndpoint.?location ?? reference(
+        split(privateEndpoint.subnetResourceId, '/subnets/')[0],
+        '2020-06-01',
+        'Full'
+      ).location
+      lock: privateEndpoint.?lock ?? lock
+      privateDnsZoneGroup: privateEndpoint.?privateDnsZoneGroup
+      roleAssignments: privateEndpoint.?roleAssignments
+      tags: privateEndpoint.?tags ?? tags
+      customDnsConfigs: privateEndpoint.?customDnsConfigs
+      ipConfigurations: privateEndpoint.?ipConfigurations
+      applicationSecurityGroupResourceIds: privateEndpoint.?applicationSecurityGroupResourceIds
+      customNetworkInterfaceName: privateEndpoint.?customNetworkInterfaceName
+    }
+  }
+]
+
+resource managedEnvironment_diagnosticSettings 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = [
+  for (diagnosticSetting, index) in (diagnosticSettings ?? []): {
+    name: diagnosticSetting.?name ?? '${name}-diagnosticSettings'
+    properties: {
+      storageAccountId: diagnosticSetting.?storageAccountResourceId
+      workspaceId: diagnosticSetting.?workspaceResourceId
+      eventHubAuthorizationRuleId: diagnosticSetting.?eventHubAuthorizationRuleResourceId
+      eventHubName: diagnosticSetting.?eventHubName
+      metrics: [
+        for group in (diagnosticSetting.?metricCategories ?? (empty(diagnosticSetting.?logCategoriesAndGroups)
+          ? [{ category: 'AllMetrics' }]
+          : [])): {
+          category: group.category
+          enabled: group.?enabled ?? true
+          timeGrain: null
+        }
+      ]
+      logs: [
+        for group in (diagnosticSetting.?logCategoriesAndGroups ?? (empty(diagnosticSetting.?metricCategories)
+          ? [{ categoryGroup: 'allLogs' }]
+          : [])): {
+          categoryGroup: group.?categoryGroup
+          category: group.?category
+          enabled: group.?enabled ?? true
+        }
+      ]
+      marketplacePartnerId: diagnosticSetting.?marketplacePartnerResourceId
+      logAnalyticsDestinationType: diagnosticSetting.?logAnalyticsDestinationType
+    }
+    scope: managedEnvironment
+  }
+]
+
+@description('The name of the resource group the Managed Environment was deployed into.')
+output resourceGroupName string = resourceGroup().name
+
+@description('The location the resource was deployed into.')
+output location string = managedEnvironment.location
+
+@description('The name of the Managed Environment.')
+output name string = managedEnvironment.name
+
+@description('The resource ID of the Managed Environment.')
+output resourceId string = managedEnvironment.id
+
+@description('The principal ID of the system assigned identity.')
+output systemAssignedMIPrincipalId string? = managedEnvironment.?identity.?principalId
+
+@description('The Default domain of the Managed Environment.')
+output defaultDomain string = managedEnvironment.properties.defaultDomain
+
+@description('The IP address of the Managed Environment. Only populated for internal Managed Environments deployed into a VNet.')
+output staticIp string? = managedEnvironment.properties.?staticIp
+
+@description('The domain verification id for custom domains.')
+output domainVerificationId string = managedEnvironment.properties.customDomainConfiguration.customDomainVerificationId
+
+// =============== //
+//   Definitions   //
+// =============== //
+
+import { certificateKeyVaultPropertiesType } from 'certificate/main.bicep'
+
+@export()
+@description('The type for a certificate.')
+type certificateType = {
+  @description('Optional. The name of the certificate.')
+  name: string?
+
+  @description('Optional. The value of the certificate. PFX or PEM blob.')
+  certificateValue: string?
+
+  @description('Optional. The password of the certificate.')
+  @secure()
+  certificatePassword: string?
+
+  @description('Optional. A key vault reference.')
+  certificateKeyVaultProperties: certificateKeyVaultPropertiesType?
+
+  @description('Optional. The location for the resource.')
+  location: string?
+
+  @description('Optional. Tags of the resource.')
+  tags: resourceInput<'Microsoft.App/managedEnvironments/certificates@2026-01-01'>.tags?
+}
+
+@export()
+@description('The type of the storage.')
+type storageType = {
+  @description('Required. Access mode for storage: "ReadOnly" or "ReadWrite".')
+  accessMode: ('ReadOnly' | 'ReadWrite')
+
+  @description('Required. Type of storage: "SMB" or "NFS".')
+  kind: ('SMB' | 'NFS')
+
+  @description('Required. Storage account name.')
+  storageAccountName: string
+
+  @description('Required. File share name.')
+  name: string
+}
+
+@export()
+@discriminator('destination')
+@description('The type for the App Logs Configuration.')
+type appLogsConfigurationType = appLogsConfigurationMonitorType | appLogsConfigurationLawType
+
+@description('The type for the App Logs Configuration if using azure-monitor.')
+type appLogsConfigurationMonitorType = {
+  @description('Required. The destination of the logs.')
+  destination: 'azure-monitor'
+}
+
+@description('The type for the App Logs Configuration if using log-analytics.')
+type appLogsConfigurationLawType = {
+  @description('Required. The destination of the logs.')
+  destination: 'log-analytics'
+
+  @description('Required. Existing Log Analytics Workspace resource ID.')
+  logAnalyticsWorkspaceResourceId: string
+}

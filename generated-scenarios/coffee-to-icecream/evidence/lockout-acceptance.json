@@ -1,0 +1,95 @@
+{
+  "checkedAtUtc": "2026-10-30T04:20:41.671454+00:00",
+  "status": "passed",
+  "checks": [
+    {
+      "name": "probe session",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 1.6613483000110136,
+      "traceId": null
+    },
+    {
+      "name": "probe initial valid login",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 0.6646613000048092,
+      "traceId": null
+    },
+    {
+      "name": "probe authenticated token",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 0.20549509998818394,
+      "traceId": null
+    },
+    {
+      "name": "negative session",
+      "passed": true,
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "seconds": 1.533443399996031,
+      "traceId": null
+    },
+    {
+      "name": "bad password 1",
+      "passed": true,
+      "expectedStatus": 401,
+      "actualStatus": 401,
+      "seconds": 0.3619943000085186,
+      "traceId": null
+    },
+    {
+      "name": "bad password 2",
+      "passed": true,
+      "expectedStatus": 401,
+      "actualStatus": 401,
+      "seconds": 0.3524279999983264,
+      "traceId": null
+    },
+    {
+      "name": "bad password 3",
+      "passed": true,
+      "expectedStatus": 401,
+      "actualStatus": 401,
+      "seconds": 0.36438579999958165,
+      "traceId": null
+    },
+    {
+      "name": "bad password 4",
+      "passed": true,
+      "expectedStatus": 401,
+      "actualStatus": 401,
+      "seconds": 0.38740320000215434,
+      "traceId": null
+    },
+    {
+      "name": "bad password 5",
+      "passed": true,
+      "expectedStatus": 401,
+      "actualStatus": 401,
+      "seconds": 0.3642766999982996,
+      "traceId": null
+    },
+    {
+      "name": "locked correct password denied",
+      "passed": true,
+      "expectedStatus": 401,
+      "actualStatus": 401,
+      "seconds": 0.350513299999875,
+      "traceId": null
+    },
+    {
+      "name": "pre-lockout session revoked",
+      "passed": true,
+      "expectedStatus": 401,
+      "actualStatus": 401,
+      "seconds": 0.19296010000107344,
+      "traceId": null
+    }
+  ],
+  "cleanup": "Disposable account removed immediately after this command"
+}

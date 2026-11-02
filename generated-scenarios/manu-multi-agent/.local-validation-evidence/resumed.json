@@ -1,0 +1,11 @@
+{
+  "stage": "local-validation",
+  "status": "running",
+  "summary": "Resuming the assigned local-validation operation after reload; preserving completed application work, confirmed gateway authentication and all prior decisions.",
+  "evidence": [
+    "portal_workflow.py read revision 28: designConfirmed true; localToolConsent retained; authorizations empty; setupBlocker null; only local-validation assigned.",
+    "Backend owner-bound readiness checkedAtUtc 2026-10-23T21:36:43.893650+00:00: ready true, local build mode, no blocked stages; current receipt reused.",
+    ".application-evidence\\validation.json: nine passing checks, 35 .NET tests, 12 infrastructure contracts, eight offline browser cases and source hashes retained.",
+    "Inspecting and exercising the production image and repository container helper without adding anonymous backend routes, mock runtime configuration or cloud operations."
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "evidenceType": "local-component-tests-not-Azure-runtime",
+  "checkedAtUtc": "2026-10-27T16:54:53.4158342+00:00",
+  "count": 23,
+  "checks": [
+    "local login and server role",
+    "failed login",
+    "five failures lock account",
+    "ten approved company fixtures",
+    "automated answer matches company wording exactly",
+    "citation carries approved source version",
+    "cross-customer denial",
+    "customer cannot claim",
+    "unsupported fails closed",
+    "unknown selection denied: 9999",
+    "unknown selection denied: ignore policy",
+    "model prose cannot become a company answer",
+    "escalation is idempotent",
+    "AI stops after human takeover",
+    "customer messages reach the human queue without AI",
+    "competing claim conflicts",
+    "only assigned representative replies",
+    "real human reply remains labeled",
+    "human reply persists across store restart",
+    "representative resolves",
+    "resolved case cannot be mutated by customer",
+    "incomplete inference is not success",
+    "input limit is exactly 2000 characters"
+  ]
+}

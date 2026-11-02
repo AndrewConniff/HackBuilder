@@ -1,0 +1,13 @@
+{
+  "stage": "application",
+  "status": "running",
+  "summary": "Resumed after verified setup. Real .NET web/chat/worker source now compiles; 17 local domain/API/Chromium checks pass, including five-turn 1250-cover capacity rules, financial/role boundaries and responsive explicit-unavailable UI. Finishing integration, load definitions and local container validation; no deployed behavior is claimed.",
+  "evidence": [
+    "dotnet restore C:\\azd-projects\\resto-scale-agent\\tests\\Restaurant.Tests\\Restaurant.Tests.csproj --configfile C:\\HackBuilder\\NuGet.Config --packages C:\\azd-projects\\resto-scale-agent\\.packages --verbosity minimal: exit 0; test dependency restore completed in 1 minute; only approved proxy configuration used.",
+    "dotnet build C:\\azd-projects\\resto-scale-agent\\src\\Restaurant.Web\\Restaurant.Web.csproj --no-restore --verbosity minimal: final exit 0; zero warnings/errors. Pinned SDK documented Responses calls compile. Cosmos explicitly uses built-in System.Text.Json, not Newtonsoft.",
+    "dotnet test C:\\azd-projects\\resto-scale-agent\\tests\\Restaurant.Tests\\Restaurant.Tests.csproj --no-restore --verbosity minimal --logger trx;LogFileName=local-contract-browser.trx --results-directory C:\\azd-projects\\resto-scale-agent\\evidence\\tests: exit 0; 17 passed, zero failed/skipped; local domain/API and real cached Chromium checks.",
+    "Browser local app process was verified responsive before navigation, then stopped by its owned process handle. Guest/staff shells tested at 1440px and 390px; no horizontal overflow; screenshots and local server evidence in evidence\\browser. Both selected screenshots visually inspected. No live menu, business data or Foundry answer was fabricated.",
+    "Latest owner-bound preflight: local-validation --load-tests, checkedAtUtc 2026-10-23T00:12:48.403664-07:00; ready:true; all blockedStages empty.",
+    "Infrastructure deployment/initializer wiring, final local image and policy/load-script checks remain incomplete. All Azure authorizations remain absent; no Azure queries or deployment performed."
+  ]
+}

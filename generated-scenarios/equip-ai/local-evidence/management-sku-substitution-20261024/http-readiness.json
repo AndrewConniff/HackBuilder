@@ -1,0 +1,25 @@
+{
+  "url": "https://app-equip-web-equipai-kex72v.azurewebsites.net",
+  "checks": [
+    {
+      "path": "/health",
+      "status": 200,
+      "body": "{\"status\":\"process-running\",\"cloudValidated\":false}"
+    },
+    {
+      "path": "/api/config",
+      "status": 200,
+      "body": "{\"tenantId\":\"16b3c013-d300-468d-ac64-7eda0820b6d3\",\"apiClientId\":\"ec738863-e2ae-4e25-81f7-77701cd0ccb4\",\"spaClientId\":\"f2feab39-1b36-4371-80d5-7cbf5c287ce3\",\"configured\":true}"
+    },
+    {
+      "path": "/api/equipment",
+      "status": 401,
+      "body": null
+    },
+    {
+      "path": "/api/chat",
+      "status": 401,
+      "body": null
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "sourceSha256": "7e61117802d1702d2b84dcd9b0e1109cc5084d441422e2011563e62d58cb9e3e",
+  "partial": true,
+  "excludedSymbolicResources": [
+    "runtimeConfiguration"
+  ],
+  "retainedSymbolicResources": [
+    "rgTags",
+    "account",
+    "project",
+    "cleanerRole",
+    "workspace",
+    "insights",
+    "network",
+    "dns",
+    "routeIdentity",
+    "storage",
+    "routeAccess",
+    "hub",
+    "foundry",
+    "plan",
+    "apps",
+    "cleanerEndpoint",
+    "appBlobAccess",
+    "agentAccess"
+  ],
+  "identityPlaceholdersUsed": false,
+  "exactFullReferenceWhatIfPassed": false,
+  "principalId": "",
+  "installerAssignmentsOmittedIntentionally": true,
+  "excludedChecks": [
+    "Runtime appsettings with Entra client IDs; historical IDs not treated as verified.",
+    "Installer-specific assignments; principalId intentionally empty, not an invented principal.",
+    "Graph operations, identity propagation, private publishing, initialization and runtime tests."
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "restoreRequired": true,
+  "observedDeletedAccounts": [
+    {
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/centralus/resourceGroups/rg-equip-ai/deletedAccounts/ai-equip-equipai-kex72v",
+      "location": "centralus",
+      "name": "ai-equip-equipai-kex72v"
+    }
+  ],
+  "purgeAttempted": false,
+  "retainedPrivateSecurity": true
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "projectSlug": "equip-ai",
+  "scope": "VS Code local resume, 2026-10-24",
+  "checks": {
+    "gitRootVerified": "C:/HackBuilder",
+    "junctionTargetVerified": "C:/azd-projects/equip-ai",
+    "briefRecovered": ".abcbuilder-portal/projects/equip-ai.json",
+    "scenarioSpecificWorkerObservedBeforeEdits": false,
+    "scenarioSpecificWorkerObservedAfterChecks": false,
+    "localValidationCommandsPassed": 9,
+    "installerTestsPassed": 15,
+    "applicationChecksPassed": 49,
+    "buildWarnings": 0,
+    "buildErrors": 0,
+    "diagramSourceAndIntegrity": "passed; artifact-checks.json",
+    "linuxElf64X64AndRuntime": "passed; artifact-checks.json",
+    "blockedRuntimeJsonContract": "passed",
+    "approvalGuard": "correctly rejected with Live scenario validation has not passed.",
+    "newDocumentLineLengths": "passed for resume-review.md and demoguide/demoguide.md",
+    "priorApplicationEvidencePreserved": "prior-local-evidence",
+    "scenarioManifestRefresh": "reviewed metadata; scenario_catalog.refresh only; no shared-index export"
+  },
+  "limitations": [
+    "Default Python lacked Pillow; existing repository .venv passed without installation.",
+    "Retained diagrams have overlapping labels, a historical group label and no actual management host.",
+    "Earlier nonpassing Checkov scan was not rerun or relabeled.",
+    "Historical cloud evidence was reused, not reobserved.",
+    "No live deployment, inference, agent invocation, login or grounding acceptance was attempted."
+  ],
+  "cloudOperationsPerformed": false,
+  "deploymentAuthorized": false,
+  "suitabilityApproved": false,
+  "reviewSnapshotCreated": false,
+  "snapshotDeferredReason": "Runtime acceptance is blocked; creating a suitability fingerprint now would be premature."
+}

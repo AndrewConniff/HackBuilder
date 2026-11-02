@@ -1,0 +1,9 @@
+{
+  "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" policy assignment list --scope /subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76 --disable-scope-strict-match --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+  "cwd": "C:\\azd-projects\\equip-ai",
+  "startedAtUtc": "2026-10-26T00:34:51.861162+00:00",
+  "finishedAtUtc": "2026-10-26T00:34:55.264621+00:00",
+  "exitCode": 0,
+  "stdout": "policy-assignments.json",
+  "stderr": "policy-assignments.stderr.txt"
+}

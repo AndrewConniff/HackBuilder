@@ -1,0 +1,929 @@
+{
+  "command": "az deployment group list --query [].{name:name,state:properties.provisioningState,error:properties.error,outputs:properties.outputs} --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --resource-group rg-resto-scale-agent --output json",
+  "startedAtUtc": "2026-10-24T00:16:22.830260+00:00",
+  "checkedAtUtc": "2026-10-24T00:16:26.631075+00:00",
+  "exitCode": 0,
+  "stdout": "[\n  {\n    \"error\": {\n      \"additionalInfo\": null,\n      \"code\": \"DeploymentFailed\",\n      \"details\": [\n        {\n          \"additionalInfo\": null,\n          \"code\": \"BadRequest\",\n          \"details\": null,\n          \"message\": \"Failed to parse the incoming request payload. Exception: System.FormatException: Could not parse property [properties] as [Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties] due to exception: System.FormatException: Could not parse property [scope] with value [/dbs/restaurant] as [Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.FullyQualifiedResourcePath] due to exception: System.FormatException: Expected path segment [subscriptions] at position [0] but found [dbs].\\r\\n   at Microsoft.Azure.Documents.Common.RoleBasedAccessControl.ResourcePath.ParseResourceNameFromSegments(String[] segments, Int32 index, String resourceTypePathSegment, String& resourceNamePathSegment)\\r\\n   at Microsoft.Azure.Documents.Common.RoleBasedAccessControl.ControlPlaneResourcePath..ctor(String[] segments, Boolean ignoreExtraSegments)\\r\\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.FullyQualifiedResourcePath..ctor(String[] segments, Boolean ignoreExtraSegments)\\r\\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties.get_Scope()\\r\\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties.get_Scope()\\r\\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties.Validate()\\r\\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentRequest.get_Properties()\\r\\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentRequest.get_Properties()\\r\\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.RequestHandlers.SqlRoleAssignmentRequestHandler.<HandlePutAsync>d__4.MoveNext()\\r\\nActivityId: 047116f6-2ff9-47de-894c-0c4035e72550, Microsoft.Azure.Documents.Common/2.14.0\",\n          \"target\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleAssignments/882c15b6-baf4-5d0e-9e53-d2d1cc136ba6\"\n        }\n      ],\n      \"message\": \"At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/arm-deployment-operations for usage details.\",\n      \"target\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/vgw6bxel2pguk-sqlra-0\"\n    },\n    \"name\": \"vgw6bxel2pguk-sqlra-0\",\n    \"outputs\": null,\n    \"state\": \"Failed\"\n  },\n  {\n    \"error\": {\n      \"additionalInfo\": null,\n      \"code\": \"DeploymentFailed\",\n      \"details\": [\n        {\n          \"additionalInfo\": null,\n          \"code\": \"BadRequest\",\n          \"details\": null,\n          \"message\": \"Failed to parse the incoming request payload. Exception: System.FormatException: Could not parse property [properties] as [Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties] due to exception: System.FormatException: Could not parse property [scope] with value [/dbs/restaurant] as [Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.FullyQualifiedResourcePath] due to exception: System.FormatException: Expected path segment [subscriptions] at position [0] but found [dbs].\\r\\n   at Microsoft.Azure.Documents.Common.RoleBasedAccessControl.ResourcePath.ParseResourceNameFromSegments(String[] segments, Int32 index, String resourceTypePathSegment, String& resourceNamePathSegment)\\r\\n   at Microsoft.Azure.Documents.Common.RoleBasedAccessControl.ControlPlaneResourcePath..ctor(String[] segments, Boolean ignoreExtraSegments)\\r\\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.FullyQualifiedResourcePath..ctor(String[] segments, Boolean ignoreExtraSegments)\\r\\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties.get_Scope()\\r\\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties.get_Scope()\\r\\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties.Validate()\\r\\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentRequest.get_Properties()\\r\\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentRequest.get_Properties()\\r\\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.RequestHandlers.SqlRoleAssignmentRequestHandler.<HandlePutAsync>d__4.MoveNext()\\r\\nActivityId: c6340973-0d94-4ebf-b9c2-f796146d12a9, Microsoft.Azure.Documents.Common/2.14.0\",\n          \"target\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleAssignments/2aa9ec6f-a798-5335-be0a-9a88fcfb0893\"\n        }\n      ],\n      \"message\": \"At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/arm-deployment-operations for usage details.\",\n      \"target\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/vgw6bxel2pguk-sqlra-2\"\n    },\n    \"name\": \"vgw6bxel2pguk-sqlra-2\",\n    \"outputs\": null,\n    \"state\": \"Failed\"\n  },\n  {\n    \"error\": {\n      \"additionalInfo\": null,\n      \"code\": \"DeploymentFailed\",\n      \"details\": [\n        {\n          \"additionalInfo\": null,\n          \"code\": \"BadRequest\",\n          \"details\": null,\n          \"message\": \"Failed to parse the incoming request payload. Exception: System.FormatException: Could not parse property [properties] as [Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties] due to exception: System.FormatException: Could not parse property [scope] with value [/dbs/restaurant] as [Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.FullyQualifiedResourcePath] due to exception: System.FormatException: Expected path segment [subscriptions] at position [0] but found [dbs].\\r\\n   at Microsoft.Azure.Documents.Common.RoleBasedAccessControl.ResourcePath.ParseResourceNameFromSegments(String[] segments, Int32 index, String resourceTypePathSegment, String& resourceNamePathSegment)\\r\\n   at Microsoft.Azure.Documents.Common.RoleBasedAccessControl.ControlPlaneResourcePath..ctor(String[] segments, Boolean ignoreExtraSegments)\\r\\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.FullyQualifiedResourcePath..ctor(String[] segments, Boolean ignoreExtraSegments)\\r\\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties.get_Scope()\\r\\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties.get_Scope()\\r\\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties.Validate()\\r\\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentRequest.get_Properties()\\r\\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentRequest.get_Properties()\\r\\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.RequestHandlers.SqlRoleAssignmentRequestHandler.<HandlePutAsync>d__4.MoveNext()\\r\\nActivityId: 52b81ce2-a37b-4345-b129-f6c81d386bea, Microsoft.Azure.Documents.Common/2.14.0\",\n          \"target\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleAssignments/e7a76cc4-900e-5b55-9a21-8dae0db005a6\"\n        }\n      ],\n      \"message\": \"At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/arm-deployment-operations for usage details.\",\n      \"target\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/vgw6bxel2pguk-sqlra-1\"\n    },\n    \"name\": \"vgw6bxel2pguk-sqlra-1\",\n    \"outputs\": null,\n    \"state\": \"Failed\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"ie7jezkjcx6ty-sqldb-reporting\",\n    \"outputs\": {\n      \"name\": {\n        \"type\": \"String\",\n        \"value\": \"reporting\"\n      },\n      \"resourceGroupName\": {\n        \"type\": \"String\",\n        \"value\": \"rg-resto-scale-agent\"\n      },\n      \"resourceId\": {\n        \"type\": \"String\",\n        \"value\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/reporting\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"ie7jezkjcx6ty-sqldb-catalog\",\n    \"outputs\": {\n      \"name\": {\n        \"type\": \"String\",\n        \"value\": \"catalog\"\n      },\n      \"resourceGroupName\": {\n        \"type\": \"String\",\n        \"value\": \"rg-resto-scale-agent\"\n      },\n      \"resourceId\": {\n        \"type\": \"String\",\n        \"value\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/catalog\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"ie7jezkjcx6ty-sqldb-transactions\",\n    \"outputs\": {\n      \"name\": {\n        \"type\": \"String\",\n        \"value\": \"transactions\"\n      },\n      \"resourceGroupName\": {\n        \"type\": \"String\",\n        \"value\": \"rg-resto-scale-agent\"\n      },\n      \"resourceId\": {\n        \"type\": \"String\",\n        \"value\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/transactions\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"6bzsoysfscgdk-sqldb-restaurant\",\n    \"outputs\": {\n      \"name\": {\n        \"type\": \"String\",\n        \"value\": \"restaurant\"\n      },\n      \"resourceGroupName\": {\n        \"type\": \"String\",\n        \"value\": \"rg-resto-scale-agent\"\n      },\n      \"resourceId\": {\n        \"type\": \"String\",\n        \"value\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"peu23awlapsli-Queue-0\",\n    \"outputs\": {\n      \"name\": {\n        \"type\": \"String\",\n        \"value\": \"kitchen\"\n      },\n      \"resourceGroupName\": {\n        \"type\": \"String\",\n        \"value\": \"rg-resto-scale-agent\"\n      },\n      \"resourceId\": {\n        \"type\": \"String\",\n        \"value\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"project\",\n    \"outputs\": {\n      \"resourceId\": {\n        \"type\": \"String\",\n        \"value\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/projects/restaurant\"\n      },\n      \"resourceName\": {\n        \"type\": \"String\",\n        \"value\": \"restaurant\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"gxnreqrkxvhle-cognitiveservice-deployment-0\",\n    \"outputs\": {\n      \"name\": {\n        \"type\": \"String\",\n        \"value\": \"restaurant-model\"\n      },\n      \"resourceGroupName\": {\n        \"type\": \"String\",\n        \"value\": \"rg-resto-scale-agent\"\n      },\n      \"resourceId\": {\n        \"type\": \"String\",\n        \"value\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/deployments/restaurant-model\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"46d3xbcp.res.cognitiveservices-account.0-19-1.gxnr\",\n    \"outputs\": {\n      \"telemetry\": {\n        \"type\": \"String\",\n        \"value\": \"For more information, see https://aka.ms/avm/TelemetryInfo\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"46d3xbcp.res.keyvault-vault.0-14-2.p7nx\",\n    \"outputs\": {\n      \"telemetry\": {\n        \"type\": \"String\",\n        \"value\": \"For more information, see https://aka.ms/avm/TelemetryInfo\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"46d3xbcp.res.documentdb-databaseaccount.0-21-1.6bzs\",\n    \"outputs\": {\n      \"telemetry\": {\n        \"type\": \"String\",\n        \"value\": \"For more information, see https://aka.ms/avm/TelemetryInfo\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"46d3xbcp.res.servicebus-namespace.0-17-1.peu2\",\n    \"outputs\": {\n      \"telemetry\": {\n        \"type\": \"String\",\n        \"value\": \"For more information, see https://aka.ms/avm/TelemetryInfo\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"46d3xbcp.res.app-managedenvironment.0-16-0.h55f\",\n    \"outputs\": {\n      \"telemetry\": {\n        \"type\": \"String\",\n        \"value\": \"For more information, see https://aka.ms/avm/TelemetryInfo\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"46d3xbcp.res.insights-component.0-8-0.m532\",\n    \"outputs\": {\n      \"telemetry\": {\n        \"type\": \"String\",\n        \"value\": \"For more information, see https://aka.ms/avm/TelemetryInfo\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": {\n      \"additionalInfo\": null,\n      \"code\": \"DeploymentFailed\",\n      \"details\": [\n        {\n          \"additionalInfo\": null,\n          \"code\": \"ResourceDeploymentFailure\",\n          \"details\": null,\n          \"message\": \"The resource write operation failed to complete successfully, because it reached terminal provisioning state 'Failed'.\",\n          \"target\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/vgw6bxel2pguk-sqlra-0\"\n        },\n        {\n          \"additionalInfo\": null,\n          \"code\": \"ResourceDeploymentFailure\",\n          \"details\": null,\n          \"message\": \"The resource write operation failed to complete successfully, because it reached terminal provisioning state 'Failed'.\",\n          \"target\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/vgw6bxel2pguk-sqlra-2\"\n        },\n        {\n          \"additionalInfo\": null,\n          \"code\": \"ResourceDeploymentFailure\",\n          \"details\": null,\n          \"message\": \"The resource write operation failed to complete successfully, because it reached terminal provisioning state 'Failed'.\",\n          \"target\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/vgw6bxel2pguk-sqlra-1\"\n        }\n      ],\n      \"message\": \"At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/arm-deployment-operations for usage details.\",\n      \"target\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/cosmos\"\n    },\n    \"name\": \"cosmos\",\n    \"outputs\": null,\n    \"state\": \"Failed\"\n  },\n  {\n    \"error\": {\n      \"additionalInfo\": null,\n      \"code\": \"DeploymentFailed\",\n      \"details\": [\n        {\n          \"additionalInfo\": null,\n          \"code\": \"VaultAlreadyExists\",\n          \"details\": null,\n          \"message\": \"The vault name 'kv-resto-4tvlzr5zf2rxi' is already in use. Vault names are globally unique so it is possible that the name is already taken. If you are sure that the vault name was not taken then it is possible that a vault with the same name was recently deleted but not purged after being placed in a recoverable state. If the vault is in a recoverable state then the vault will need to be purged before reusing the name. For more information about VaultAlreadyExists, soft delete and purging a vault follow this link https://go.microsoft.com/fwlink/?linkid=2147740.\",\n          \"target\": null\n        }\n      ],\n      \"message\": \"At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/arm-deployment-operations for usage details.\",\n      \"target\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/vault\"\n    },\n    \"name\": \"vault\",\n    \"outputs\": null,\n    \"state\": \"Failed\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"broker\",\n    \"outputs\": {\n      \"location\": {\n        \"type\": \"String\",\n        \"value\": \"centralus\"\n      },\n      \"name\": {\n        \"type\": \"String\",\n        \"value\": \"sb-resto-4tvlzr5zf2rxi\"\n      },\n      \"primaryConnectionString\": {\n        \"type\": \"SecureString\"\n      },\n      \"primaryKey\": {\n        \"type\": \"SecureString\"\n      },\n      \"privateEndpoints\": {\n        \"type\": \"Array\",\n        \"value\": []\n      },\n      \"resourceGroupName\": {\n        \"type\": \"String\",\n        \"value\": \"rg-resto-scale-agent\"\n      },\n      \"resourceId\": {\n        \"type\": \"String\",\n        \"value\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi\"\n      },\n      \"secondaryConnectionString\": {\n        \"type\": \"SecureString\"\n      },\n      \"secondaryKey\": {\n        \"type\": \"SecureString\"\n      },\n      \"serviceBusEndpoint\": {\n        \"type\": \"String\",\n        \"value\": \"https://sb-resto-4tvlzr5zf2rxi.servicebus.windows.net:443/\"\n      },\n      \"systemAssignedMIPrincipalId\": {\n        \"type\": \"String\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"environment\",\n    \"outputs\": {\n      \"defaultDomain\": {\n        \"type\": \"String\",\n        \"value\": \"ashystone-e32f76b9.centralus.azurecontainerapps.io\"\n      },\n      \"domainVerificationId\": {\n        \"type\": \"String\",\n        \"value\": \"A262E16A36F44907BB780F3F1F741B72ED52E69472C8164C37C258905CB562E3\"\n      },\n      \"location\": {\n        \"type\": \"String\",\n        \"value\": \"Central US\"\n      },\n      \"name\": {\n        \"type\": \"String\",\n        \"value\": \"cae-resto-4tvlzr5zf2rxi\"\n      },\n      \"resourceGroupName\": {\n        \"type\": \"String\",\n        \"value\": \"rg-resto-scale-agent\"\n      },\n      \"resourceId\": {\n        \"type\": \"String\",\n        \"value\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.App/managedEnvironments/cae-resto-4tvlzr5zf2rxi\"\n      },\n      \"staticIp\": {\n        \"type\": \"String\",\n        \"value\": \"52.185.77.15\"\n      },\n      \"systemAssignedMIPrincipalId\": {\n        \"type\": \"String\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"insights\",\n    \"outputs\": {\n      \"applicationId\": {\n        \"type\": \"String\",\n        \"value\": \"d78a6012-02c3-459b-bc12-79a900108627\"\n      },\n      \"connectionString\": {\n        \"type\": \"String\",\n        \"value\": \"InstrumentationKey=21e25895-5d7e-40d4-b816-f5416cbfdf07;IngestionEndpoint=https://centralus-2.in.applicationinsights.azure.com/;LiveEndpoint=https://centralus.livediagnostics.monitor.azure.com/;ApplicationId=d78a6012-02c3-459b-bc12-79a900108627\"\n      },\n      \"instrumentationKey\": {\n        \"type\": \"String\",\n        \"value\": \"21e25895-5d7e-40d4-b816-f5416cbfdf07\"\n      },\n      \"location\": {\n        \"type\": \"String\",\n        \"value\": \"centralus\"\n      },\n      \"name\": {\n        \"type\": \"String\",\n        \"value\": \"appi-resto-4tvlzr5zf2rxi\"\n      },\n      \"resourceGroupName\": {\n        \"type\": \"String\",\n        \"value\": \"rg-resto-scale-agent\"\n      },\n      \"resourceId\": {\n        \"type\": \"String\",\n        \"value\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Insights/components/appi-resto-4tvlzr5zf2rxi\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"foundry\",\n    \"outputs\": {\n      \"endpoint\": {\n        \"type\": \"String\",\n        \"value\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\"\n      },\n      \"endpoints\": {\n        \"type\": \"Object\",\n        \"value\": {\n          \"AI Foundry API\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.services.ai.azure.com/\",\n          \"Azure AI Model Inference API\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.services.ai.azure.com/\",\n          \"Azure MAI Model Inference API\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.services.ai.azure.com/\",\n          \"Azure MAI Model Inference API v1.0\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.services.ai.azure.com/\",\n          \"Azure MAI Realtime API v1.0\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.services.ai.azure.com/\",\n          \"Azure OpenAI Legacy API - Latest moniker\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/\",\n          \"Cohere AI API\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.services.ai.azure.com/\",\n          \"Computer Vision\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Container\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Content Safety\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Content Understanding\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.services.ai.azure.com/\",\n          \"Conversational Language Understanding Authoring\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"ConversationalLURuntime\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Custom Question Answering\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Custom Question Answering Authoring\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Custom Text Authoring\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"CustomTranslator\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"DocumentTranslation\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"FormRecognizer\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"LUIS\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Language\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Language Remote MCP Server\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"MAAP Managed Deployments API\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Mistral AI API\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.services.ai.azure.com/\",\n          \"OpenAI Dall-E API\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/\",\n          \"OpenAI Language Model Instance API\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/\",\n          \"OpenAI Model Scaleset API\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/\",\n          \"OpenAI Moderations API\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/\",\n          \"OpenAI Realtime API\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/\",\n          \"OpenAI Realtime Live WebSocket API\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/\",\n          \"OpenAI Realtime Translation WebSocket API\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/\",\n          \"OpenAI Response API on Websocket\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/\",\n          \"OpenAI Sora API\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/\",\n          \"OpenAI Whisper API\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/\",\n          \"ProjectA APIs\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"QnAMaker\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"QuestionAnswering\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Speech Services Audio Content Creation\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Speech Services Batch Avatar\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Speech Services Batch Text to Speech\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Speech Services Custom Avatar\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Speech Services Custom Voice\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Speech Services Custom Voice Trial\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Speech Services Podcast\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Speech Services Speaker Identification\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Speech Services Speaker Verification\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Speech Services Speech to Text\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Speech Services Speech to Text (Standard)\": \"https://centralus.stt.speech.microsoft.com\",\n          \"Speech Services Speech to Text 2024-05-15-preview\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Speech Services Speech to Text 2024-11-15\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Speech Services Speech to Text 2025-10-15\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Speech Services Speech to Text v3.2\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Speech Services Speech to Text v3.2_internal.1\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Speech Services TTS Player\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Speech Services Text to Speech (Neural)\": \"https://centralus.tts.speech.microsoft.com\",\n          \"Text Analytics\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"TextTranslation\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"TextTranslation-Global\": \"https://api.cognitive.microsofttranslator.com/\",\n          \"Token\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Token Service API\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/\",\n          \"Turing\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Video Translation\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Voice Agent Realtime API\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Voice Live Capabilities API\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Voice Live Media Gateway Calls API\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Voice Live Media Gateway Calls HTTP API\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Voice Live Realtime API\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Voice Live SIP API\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\",\n          \"Voice Live SIP Calls API\": \"https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/\"\n        }\n      },\n      \"exportedSecrets\": {\n        \"type\": \"Object\",\n        \"value\": {}\n      },\n      \"location\": {\n        \"type\": \"String\",\n        \"value\": \"centralus\"\n      },\n      \"name\": {\n        \"type\": \"String\",\n        \"value\": \"ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec\"\n      },\n      \"primaryKey\": {\n        \"type\": \"SecureString\"\n      },\n      \"privateEndpoints\": {\n        \"type\": \"Array\",\n        \"value\": []\n      },\n      \"resourceGroupName\": {\n        \"type\": \"String\",\n        \"value\": \"rg-resto-scale-agent\"\n      },\n      \"resourceId\": {\n        \"type\": \"String\",\n        \"value\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec\"\n      },\n      \"secondaryKey\": {\n        \"type\": \"SecureString\"\n      },\n      \"systemAssignedMIPrincipalId\": {\n        \"type\": \"String\",\n        \"value\": \"62c39da1-bce1-49b8-92d2-a65cd93edbc9\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"46d3xbcp.res.containerregistry-registry.0-13-1.rtle\",\n    \"outputs\": {\n      \"telemetry\": {\n        \"type\": \"String\",\n        \"value\": \"For more information, see https://aka.ms/avm/TelemetryInfo\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"registry\",\n    \"outputs\": {\n      \"credentialSetsResourceIds\": {\n        \"type\": \"Array\",\n        \"value\": []\n      },\n      \"credentialSetsSystemAssignedMIPrincipalIds\": {\n        \"type\": \"Array\",\n        \"value\": []\n      },\n      \"location\": {\n        \"type\": \"String\",\n        \"value\": \"centralus\"\n      },\n      \"loginServer\": {\n        \"type\": \"String\",\n        \"value\": \"acrresto4tvlzr5zf2rxi.azurecr.io\"\n      },\n      \"name\": {\n        \"type\": \"String\",\n        \"value\": \"acrresto4tvlzr5zf2rxi\"\n      },\n      \"privateEndpoints\": {\n        \"type\": \"Array\",\n        \"value\": []\n      },\n      \"resourceGroupName\": {\n        \"type\": \"String\",\n        \"value\": \"rg-resto-scale-agent\"\n      },\n      \"resourceId\": {\n        \"type\": \"String\",\n        \"value\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi\"\n      },\n      \"systemAssignedMIPrincipalId\": {\n        \"type\": \"String\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"rknmobu4auvve-subnet-0\",\n    \"outputs\": {\n      \"addressPrefix\": {\n        \"type\": \"String\",\n        \"value\": \"10.74.0.0/23\"\n      },\n      \"addressPrefixes\": {\n        \"type\": \"Array\",\n        \"value\": []\n      },\n      \"ipamPoolPrefixAllocations\": {\n        \"type\": \"Array\",\n        \"value\": []\n      },\n      \"name\": {\n        \"type\": \"String\",\n        \"value\": \"container-apps\"\n      },\n      \"resourceGroupName\": {\n        \"type\": \"String\",\n        \"value\": \"rg-resto-scale-agent\"\n      },\n      \"resourceId\": {\n        \"type\": \"String\",\n        \"value\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi/subnets/container-apps\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"46d3xbcp.res.network-virtualnetwork.0-10-2.6mcz\",\n    \"outputs\": {\n      \"telemetry\": {\n        \"type\": \"String\",\n        \"value\": \"For more information, see https://aka.ms/avm/TelemetryInfo\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"46d3xbcp.res.managedidentity-userassignedidentity.0-6-0.34gq\",\n    \"outputs\": {\n      \"telemetry\": {\n        \"type\": \"String\",\n        \"value\": \"For more information, see https://aka.ms/avm/TelemetryInfo\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"46d3xbcp.res.managedidentity-userassignedidentity.0-6-0.vzjx\",\n    \"outputs\": {\n      \"telemetry\": {\n        \"type\": \"String\",\n        \"value\": \"For more information, see https://aka.ms/avm/TelemetryInfo\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"46d3xbcp.res.managedidentity-userassignedidentity.0-6-0.jjc7\",\n    \"outputs\": {\n      \"telemetry\": {\n        \"type\": \"String\",\n        \"value\": \"For more information, see https://aka.ms/avm/TelemetryInfo\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"46d3xbcp.res.operationalinsights-workspace.0-16-1.yrtc\",\n    \"outputs\": {\n      \"telemetry\": {\n        \"type\": \"String\",\n        \"value\": \"For more information, see https://aka.ms/avm/TelemetryInfo\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"46d3xbcp.res.managedidentity-userassignedidentity.0-6-0.ucqv\",\n    \"outputs\": {\n      \"telemetry\": {\n        \"type\": \"String\",\n        \"value\": \"For more information, see https://aka.ms/avm/TelemetryInfo\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"identity-web\",\n    \"outputs\": {\n      \"clientId\": {\n        \"type\": \"String\",\n        \"value\": \"4cacbaae-2d97-49e2-98ff-37b7625c8b49\"\n      },\n      \"location\": {\n        \"type\": \"String\",\n        \"value\": \"centralus\"\n      },\n      \"name\": {\n        \"type\": \"String\",\n        \"value\": \"id-resto-web-4tvlzr5zf2rxi\"\n      },\n      \"principalId\": {\n        \"type\": \"String\",\n        \"value\": \"3dd2382a-5d1f-42e6-8a85-2efd721787a5\"\n      },\n      \"resourceGroupName\": {\n        \"type\": \"String\",\n        \"value\": \"rg-resto-scale-agent\"\n      },\n      \"resourceId\": {\n        \"type\": \"String\",\n        \"value\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"logs\",\n    \"outputs\": {\n      \"location\": {\n        \"type\": \"String\",\n        \"value\": \"centralus\"\n      },\n      \"logAnalyticsWorkspaceId\": {\n        \"type\": \"String\",\n        \"value\": \"d0a4029e-990c-4f67-a7cf-2804aa8897eb\"\n      },\n      \"name\": {\n        \"type\": \"String\",\n        \"value\": \"log-resto-4tvlzr5zf2rxi\"\n      },\n      \"primarySharedKey\": {\n        \"type\": \"SecureString\"\n      },\n      \"resourceGroupName\": {\n        \"type\": \"String\",\n        \"value\": \"rg-resto-scale-agent\"\n      },\n      \"resourceId\": {\n        \"type\": \"String\",\n        \"value\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.OperationalInsights/workspaces/log-resto-4tvlzr5zf2rxi\"\n      },\n      \"secondarySharedKey\": {\n        \"type\": \"SecureString\"\n      },\n      \"systemAssignedMIPrincipalId\": {\n        \"type\": \"String\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"identity-worker\",\n    \"outputs\": {\n      \"clientId\": {\n        \"type\": \"String\",\n        \"value\": \"60a3fef3-9445-4570-ab6c-59a9ca928ec8\"\n      },\n      \"location\": {\n        \"type\": \"String\",\n        \"value\": \"centralus\"\n      },\n      \"name\": {\n        \"type\": \"String\",\n        \"value\": \"id-resto-worker-4tvlzr5zf2rxi\"\n      },\n      \"principalId\": {\n        \"type\": \"String\",\n        \"value\": \"c2bded32-9e13-4a18-8db6-5a3cfe2f60fc\"\n      },\n      \"resourceGroupName\": {\n        \"type\": \"String\",\n        \"value\": \"rg-resto-scale-agent\"\n      },\n      \"resourceId\": {\n        \"type\": \"String\",\n        \"value\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"identity-chat\",\n    \"outputs\": {\n      \"clientId\": {\n        \"type\": \"String\",\n        \"value\": \"7d5ce194-90d5-45e9-959b-c7491c7a750f\"\n      },\n      \"location\": {\n        \"type\": \"String\",\n        \"value\": \"centralus\"\n      },\n      \"name\": {\n        \"type\": \"String\",\n        \"value\": \"id-resto-chat-4tvlzr5zf2rxi\"\n      },\n      \"principalId\": {\n        \"type\": \"String\",\n        \"value\": \"9b5d1481-07eb-4713-bc3c-f916d065266f\"\n      },\n      \"resourceGroupName\": {\n        \"type\": \"String\",\n        \"value\": \"rg-resto-scale-agent\"\n      },\n      \"resourceId\": {\n        \"type\": \"String\",\n        \"value\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"network\",\n    \"outputs\": {\n      \"location\": {\n        \"type\": \"String\",\n        \"value\": \"centralus\"\n      },\n      \"name\": {\n        \"type\": \"String\",\n        \"value\": \"vnet-resto-4tvlzr5zf2rxi\"\n      },\n      \"resourceGroupName\": {\n        \"type\": \"String\",\n        \"value\": \"rg-resto-scale-agent\"\n      },\n      \"resourceId\": {\n        \"type\": \"String\",\n        \"value\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi\"\n      },\n      \"subnetNames\": {\n        \"type\": \"Array\",\n        \"value\": [\n          \"container-apps\"\n        ]\n      },\n      \"subnetResourceIds\": {\n        \"type\": \"Array\",\n        \"value\": [\n          \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi/subnets/container-apps\"\n        ]\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": null,\n    \"name\": \"identity-scaler\",\n    \"outputs\": {\n      \"clientId\": {\n        \"type\": \"String\",\n        \"value\": \"1c52801d-f59b-49df-9219-8794ba2fed44\"\n      },\n      \"location\": {\n        \"type\": \"String\",\n        \"value\": \"centralus\"\n      },\n      \"name\": {\n        \"type\": \"String\",\n        \"value\": \"id-resto-scaler-4tvlzr5zf2rxi\"\n      },\n      \"principalId\": {\n        \"type\": \"String\",\n        \"value\": \"1d247a8f-e5b3-4e87-a309-3e6662858539\"\n      },\n      \"resourceGroupName\": {\n        \"type\": \"String\",\n        \"value\": \"rg-resto-scale-agent\"\n      },\n      \"resourceId\": {\n        \"type\": \"String\",\n        \"value\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-scaler-4tvlzr5zf2rxi\"\n      }\n    },\n    \"state\": \"Succeeded\"\n  },\n  {\n    \"error\": {\n      \"additionalInfo\": null,\n      \"code\": \"DeploymentFailed\",\n      \"details\": [\n        {\n          \"additionalInfo\": null,\n          \"code\": \"DeploymentFailed\",\n          \"details\": null,\n          \"message\": \"At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/arm-deployment-operations for usage details.\",\n          \"target\": null\n        },\n        {\n          \"additionalInfo\": null,\n          \"code\": \"DeploymentFailed\",\n          \"details\": null,\n          \"message\": \"At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/arm-deployment-operations for usage details.\",\n          \"target\": null\n        }\n      ],\n      \"message\": \"At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/arm-deployment-operations for usage details.\",\n      \"target\": null\n    },\n    \"name\": \"resto-scale-agent-1792800732\",\n    \"outputs\": null,\n    \"state\": \"Failed\"\n  }\n]\n",
+  "stderr": "",
+  "result": [
+    {
+      "error": {
+        "additionalInfo": null,
+        "code": "DeploymentFailed",
+        "details": [
+          {
+            "additionalInfo": null,
+            "code": "BadRequest",
+            "details": null,
+            "message": "Failed to parse the incoming request payload. Exception: System.FormatException: Could not parse property [properties] as [Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties] due to exception: System.FormatException: Could not parse property [scope] with value [/dbs/restaurant] as [Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.FullyQualifiedResourcePath] due to exception: System.FormatException: Expected path segment [subscriptions] at position [0] but found [dbs].\r\n   at Microsoft.Azure.Documents.Common.RoleBasedAccessControl.ResourcePath.ParseResourceNameFromSegments(String[] segments, Int32 index, String resourceTypePathSegment, String& resourceNamePathSegment)\r\n   at Microsoft.Azure.Documents.Common.RoleBasedAccessControl.ControlPlaneResourcePath..ctor(String[] segments, Boolean ignoreExtraSegments)\r\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.FullyQualifiedResourcePath..ctor(String[] segments, Boolean ignoreExtraSegments)\r\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties.get_Scope()\r\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties.get_Scope()\r\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties.Validate()\r\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentRequest.get_Properties()\r\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentRequest.get_Properties()\r\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.RequestHandlers.SqlRoleAssignmentRequestHandler.<HandlePutAsync>d__4.MoveNext()\r\nActivityId: 047116f6-2ff9-47de-894c-0c4035e72550, Microsoft.Azure.Documents.Common/2.14.0",
+            "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleAssignments/882c15b6-baf4-5d0e-9e53-d2d1cc136ba6"
+          }
+        ],
+        "message": "At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/arm-deployment-operations for usage details.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/vgw6bxel2pguk-sqlra-0"
+      },
+      "name": "vgw6bxel2pguk-sqlra-0",
+      "outputs": null,
+      "state": "Failed"
+    },
+    {
+      "error": {
+        "additionalInfo": null,
+        "code": "DeploymentFailed",
+        "details": [
+          {
+            "additionalInfo": null,
+            "code": "BadRequest",
+            "details": null,
+            "message": "Failed to parse the incoming request payload. Exception: System.FormatException: Could not parse property [properties] as [Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties] due to exception: System.FormatException: Could not parse property [scope] with value [/dbs/restaurant] as [Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.FullyQualifiedResourcePath] due to exception: System.FormatException: Expected path segment [subscriptions] at position [0] but found [dbs].\r\n   at Microsoft.Azure.Documents.Common.RoleBasedAccessControl.ResourcePath.ParseResourceNameFromSegments(String[] segments, Int32 index, String resourceTypePathSegment, String& resourceNamePathSegment)\r\n   at Microsoft.Azure.Documents.Common.RoleBasedAccessControl.ControlPlaneResourcePath..ctor(String[] segments, Boolean ignoreExtraSegments)\r\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.FullyQualifiedResourcePath..ctor(String[] segments, Boolean ignoreExtraSegments)\r\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties.get_Scope()\r\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties.get_Scope()\r\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties.Validate()\r\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentRequest.get_Properties()\r\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentRequest.get_Properties()\r\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.RequestHandlers.SqlRoleAssignmentRequestHandler.<HandlePutAsync>d__4.MoveNext()\r\nActivityId: c6340973-0d94-4ebf-b9c2-f796146d12a9, Microsoft.Azure.Documents.Common/2.14.0",
+            "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleAssignments/2aa9ec6f-a798-5335-be0a-9a88fcfb0893"
+          }
+        ],
+        "message": "At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/arm-deployment-operations for usage details.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/vgw6bxel2pguk-sqlra-2"
+      },
+      "name": "vgw6bxel2pguk-sqlra-2",
+      "outputs": null,
+      "state": "Failed"
+    },
+    {
+      "error": {
+        "additionalInfo": null,
+        "code": "DeploymentFailed",
+        "details": [
+          {
+            "additionalInfo": null,
+            "code": "BadRequest",
+            "details": null,
+            "message": "Failed to parse the incoming request payload. Exception: System.FormatException: Could not parse property [properties] as [Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties] due to exception: System.FormatException: Could not parse property [scope] with value [/dbs/restaurant] as [Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.FullyQualifiedResourcePath] due to exception: System.FormatException: Expected path segment [subscriptions] at position [0] but found [dbs].\r\n   at Microsoft.Azure.Documents.Common.RoleBasedAccessControl.ResourcePath.ParseResourceNameFromSegments(String[] segments, Int32 index, String resourceTypePathSegment, String& resourceNamePathSegment)\r\n   at Microsoft.Azure.Documents.Common.RoleBasedAccessControl.ControlPlaneResourcePath..ctor(String[] segments, Boolean ignoreExtraSegments)\r\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.FullyQualifiedResourcePath..ctor(String[] segments, Boolean ignoreExtraSegments)\r\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties.get_Scope()\r\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties.get_Scope()\r\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentProperties.Validate()\r\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentRequest.get_Properties()\r\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.DataModel.RoleBasedAccessControl.SqlRoleAssignmentRequest.get_Properties()\r\n   at Microsoft.Azure.Documents.Management.Services.ResourceProvider.RequestHandlers.SqlRoleAssignmentRequestHandler.<HandlePutAsync>d__4.MoveNext()\r\nActivityId: 52b81ce2-a37b-4345-b129-f6c81d386bea, Microsoft.Azure.Documents.Common/2.14.0",
+            "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlRoleAssignments/e7a76cc4-900e-5b55-9a21-8dae0db005a6"
+          }
+        ],
+        "message": "At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/arm-deployment-operations for usage details.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/vgw6bxel2pguk-sqlra-1"
+      },
+      "name": "vgw6bxel2pguk-sqlra-1",
+      "outputs": null,
+      "state": "Failed"
+    },
+    {
+      "error": null,
+      "name": "ie7jezkjcx6ty-sqldb-reporting",
+      "outputs": {
+        "name": {
+          "type": "String",
+          "value": "reporting"
+        },
+        "resourceGroupName": {
+          "type": "String",
+          "value": "rg-resto-scale-agent"
+        },
+        "resourceId": {
+          "type": "String",
+          "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/reporting"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": null,
+      "name": "ie7jezkjcx6ty-sqldb-catalog",
+      "outputs": {
+        "name": {
+          "type": "String",
+          "value": "catalog"
+        },
+        "resourceGroupName": {
+          "type": "String",
+          "value": "rg-resto-scale-agent"
+        },
+        "resourceId": {
+          "type": "String",
+          "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/catalog"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": null,
+      "name": "ie7jezkjcx6ty-sqldb-transactions",
+      "outputs": {
+        "name": {
+          "type": "String",
+          "value": "transactions"
+        },
+        "resourceGroupName": {
+          "type": "String",
+          "value": "rg-resto-scale-agent"
+        },
+        "resourceId": {
+          "type": "String",
+          "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/transactions"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": null,
+      "name": "6bzsoysfscgdk-sqldb-restaurant",
+      "outputs": {
+        "name": {
+          "type": "String",
+          "value": "restaurant"
+        },
+        "resourceGroupName": {
+          "type": "String",
+          "value": "rg-resto-scale-agent"
+        },
+        "resourceId": {
+          "type": "String",
+          "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": null,
+      "name": "peu23awlapsli-Queue-0",
+      "outputs": {
+        "name": {
+          "type": "String",
+          "value": "kitchen"
+        },
+        "resourceGroupName": {
+          "type": "String",
+          "value": "rg-resto-scale-agent"
+        },
+        "resourceId": {
+          "type": "String",
+          "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi/queues/kitchen"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": null,
+      "name": "project",
+      "outputs": {
+        "resourceId": {
+          "type": "String",
+          "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/projects/restaurant"
+        },
+        "resourceName": {
+          "type": "String",
+          "value": "restaurant"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": null,
+      "name": "gxnreqrkxvhle-cognitiveservice-deployment-0",
+      "outputs": {
+        "name": {
+          "type": "String",
+          "value": "restaurant-model"
+        },
+        "resourceGroupName": {
+          "type": "String",
+          "value": "rg-resto-scale-agent"
+        },
+        "resourceId": {
+          "type": "String",
+          "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/deployments/restaurant-model"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": null,
+      "name": "46d3xbcp.res.cognitiveservices-account.0-19-1.gxnr",
+      "outputs": {
+        "telemetry": {
+          "type": "String",
+          "value": "For more information, see https://aka.ms/avm/TelemetryInfo"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": null,
+      "name": "46d3xbcp.res.keyvault-vault.0-14-2.p7nx",
+      "outputs": {
+        "telemetry": {
+          "type": "String",
+          "value": "For more information, see https://aka.ms/avm/TelemetryInfo"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": null,
+      "name": "46d3xbcp.res.documentdb-databaseaccount.0-21-1.6bzs",
+      "outputs": {
+        "telemetry": {
+          "type": "String",
+          "value": "For more information, see https://aka.ms/avm/TelemetryInfo"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": null,
+      "name": "46d3xbcp.res.servicebus-namespace.0-17-1.peu2",
+      "outputs": {
+        "telemetry": {
+          "type": "String",
+          "value": "For more information, see https://aka.ms/avm/TelemetryInfo"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": null,
+      "name": "46d3xbcp.res.app-managedenvironment.0-16-0.h55f",
+      "outputs": {
+        "telemetry": {
+          "type": "String",
+          "value": "For more information, see https://aka.ms/avm/TelemetryInfo"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": null,
+      "name": "46d3xbcp.res.insights-component.0-8-0.m532",
+      "outputs": {
+        "telemetry": {
+          "type": "String",
+          "value": "For more information, see https://aka.ms/avm/TelemetryInfo"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": {
+        "additionalInfo": null,
+        "code": "DeploymentFailed",
+        "details": [
+          {
+            "additionalInfo": null,
+            "code": "ResourceDeploymentFailure",
+            "details": null,
+            "message": "The resource write operation failed to complete successfully, because it reached terminal provisioning state 'Failed'.",
+            "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/vgw6bxel2pguk-sqlra-0"
+          },
+          {
+            "additionalInfo": null,
+            "code": "ResourceDeploymentFailure",
+            "details": null,
+            "message": "The resource write operation failed to complete successfully, because it reached terminal provisioning state 'Failed'.",
+            "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/vgw6bxel2pguk-sqlra-2"
+          },
+          {
+            "additionalInfo": null,
+            "code": "ResourceDeploymentFailure",
+            "details": null,
+            "message": "The resource write operation failed to complete successfully, because it reached terminal provisioning state 'Failed'.",
+            "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/vgw6bxel2pguk-sqlra-1"
+          }
+        ],
+        "message": "At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/arm-deployment-operations for usage details.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/cosmos"
+      },
+      "name": "cosmos",
+      "outputs": null,
+      "state": "Failed"
+    },
+    {
+      "error": {
+        "additionalInfo": null,
+        "code": "DeploymentFailed",
+        "details": [
+          {
+            "additionalInfo": null,
+            "code": "VaultAlreadyExists",
+            "details": null,
+            "message": "The vault name 'kv-resto-4tvlzr5zf2rxi' is already in use. Vault names are globally unique so it is possible that the name is already taken. If you are sure that the vault name was not taken then it is possible that a vault with the same name was recently deleted but not purged after being placed in a recoverable state. If the vault is in a recoverable state then the vault will need to be purged before reusing the name. For more information about VaultAlreadyExists, soft delete and purging a vault follow this link https://go.microsoft.com/fwlink/?linkid=2147740.",
+            "target": null
+          }
+        ],
+        "message": "At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/arm-deployment-operations for usage details.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/vault"
+      },
+      "name": "vault",
+      "outputs": null,
+      "state": "Failed"
+    },
+    {
+      "error": null,
+      "name": "broker",
+      "outputs": {
+        "location": {
+          "type": "String",
+          "value": "centralus"
+        },
+        "name": {
+          "type": "String",
+          "value": "sb-resto-4tvlzr5zf2rxi"
+        },
+        "primaryConnectionString": {
+          "type": "SecureString"
+        },
+        "primaryKey": {
+          "type": "SecureString"
+        },
+        "privateEndpoints": {
+          "type": "Array",
+          "value": []
+        },
+        "resourceGroupName": {
+          "type": "String",
+          "value": "rg-resto-scale-agent"
+        },
+        "resourceId": {
+          "type": "String",
+          "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ServiceBus/namespaces/sb-resto-4tvlzr5zf2rxi"
+        },
+        "secondaryConnectionString": {
+          "type": "SecureString"
+        },
+        "secondaryKey": {
+          "type": "SecureString"
+        },
+        "serviceBusEndpoint": {
+          "type": "String",
+          "value": "https://sb-resto-4tvlzr5zf2rxi.servicebus.windows.net:443/"
+        },
+        "systemAssignedMIPrincipalId": {
+          "type": "String"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": null,
+      "name": "environment",
+      "outputs": {
+        "defaultDomain": {
+          "type": "String",
+          "value": "ashystone-e32f76b9.centralus.azurecontainerapps.io"
+        },
+        "domainVerificationId": {
+          "type": "String",
+          "value": "A262E16A36F44907BB780F3F1F741B72ED52E69472C8164C37C258905CB562E3"
+        },
+        "location": {
+          "type": "String",
+          "value": "Central US"
+        },
+        "name": {
+          "type": "String",
+          "value": "cae-resto-4tvlzr5zf2rxi"
+        },
+        "resourceGroupName": {
+          "type": "String",
+          "value": "rg-resto-scale-agent"
+        },
+        "resourceId": {
+          "type": "String",
+          "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.App/managedEnvironments/cae-resto-4tvlzr5zf2rxi"
+        },
+        "staticIp": {
+          "type": "String",
+          "value": "52.185.77.15"
+        },
+        "systemAssignedMIPrincipalId": {
+          "type": "String"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": null,
+      "name": "insights",
+      "outputs": {
+        "applicationId": {
+          "type": "String",
+          "value": "d78a6012-02c3-459b-bc12-79a900108627"
+        },
+        "connectionString": {
+          "type": "String",
+          "value": "InstrumentationKey=21e25895-5d7e-40d4-b816-f5416cbfdf07;IngestionEndpoint=https://centralus-2.in.applicationinsights.azure.com/;LiveEndpoint=https://centralus.livediagnostics.monitor.azure.com/;ApplicationId=d78a6012-02c3-459b-bc12-79a900108627"
+        },
+        "instrumentationKey": {
+          "type": "String",
+          "value": "21e25895-5d7e-40d4-b816-f5416cbfdf07"
+        },
+        "location": {
+          "type": "String",
+          "value": "centralus"
+        },
+        "name": {
+          "type": "String",
+          "value": "appi-resto-4tvlzr5zf2rxi"
+        },
+        "resourceGroupName": {
+          "type": "String",
+          "value": "rg-resto-scale-agent"
+        },
+        "resourceId": {
+          "type": "String",
+          "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Insights/components/appi-resto-4tvlzr5zf2rxi"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": null,
+      "name": "foundry",
+      "outputs": {
+        "endpoint": {
+          "type": "String",
+          "value": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/"
+        },
+        "endpoints": {
+          "type": "Object",
+          "value": {
+            "AI Foundry API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.services.ai.azure.com/",
+            "Azure AI Model Inference API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.services.ai.azure.com/",
+            "Azure MAI Model Inference API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.services.ai.azure.com/",
+            "Azure MAI Model Inference API v1.0": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.services.ai.azure.com/",
+            "Azure MAI Realtime API v1.0": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.services.ai.azure.com/",
+            "Azure OpenAI Legacy API - Latest moniker": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/",
+            "Cohere AI API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.services.ai.azure.com/",
+            "Computer Vision": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Container": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Content Safety": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Content Understanding": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.services.ai.azure.com/",
+            "Conversational Language Understanding Authoring": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "ConversationalLURuntime": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Custom Question Answering": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Custom Question Answering Authoring": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Custom Text Authoring": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "CustomTranslator": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "DocumentTranslation": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "FormRecognizer": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "LUIS": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Language": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Language Remote MCP Server": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "MAAP Managed Deployments API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Mistral AI API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.services.ai.azure.com/",
+            "OpenAI Dall-E API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/",
+            "OpenAI Language Model Instance API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/",
+            "OpenAI Model Scaleset API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/",
+            "OpenAI Moderations API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/",
+            "OpenAI Realtime API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/",
+            "OpenAI Realtime Live WebSocket API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/",
+            "OpenAI Realtime Translation WebSocket API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/",
+            "OpenAI Response API on Websocket": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/",
+            "OpenAI Sora API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/",
+            "OpenAI Whisper API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/",
+            "ProjectA APIs": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "QnAMaker": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "QuestionAnswering": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Speech Services Audio Content Creation": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Speech Services Batch Avatar": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Speech Services Batch Text to Speech": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Speech Services Custom Avatar": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Speech Services Custom Voice": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Speech Services Custom Voice Trial": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Speech Services Podcast": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Speech Services Speaker Identification": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Speech Services Speaker Verification": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Speech Services Speech to Text": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Speech Services Speech to Text (Standard)": "https://centralus.stt.speech.microsoft.com",
+            "Speech Services Speech to Text 2024-05-15-preview": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Speech Services Speech to Text 2024-11-15": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Speech Services Speech to Text 2025-10-15": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Speech Services Speech to Text v3.2": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Speech Services Speech to Text v3.2_internal.1": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Speech Services TTS Player": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Speech Services Text to Speech (Neural)": "https://centralus.tts.speech.microsoft.com",
+            "Text Analytics": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "TextTranslation": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "TextTranslation-Global": "https://api.cognitive.microsofttranslator.com/",
+            "Token": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Token Service API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.openai.azure.com/",
+            "Turing": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Video Translation": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Voice Agent Realtime API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Voice Live Capabilities API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Voice Live Media Gateway Calls API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Voice Live Media Gateway Calls HTTP API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Voice Live Realtime API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Voice Live SIP API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/",
+            "Voice Live SIP Calls API": "https://ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec.cognitiveservices.azure.com/"
+          }
+        },
+        "exportedSecrets": {
+          "type": "Object",
+          "value": {}
+        },
+        "location": {
+          "type": "String",
+          "value": "centralus"
+        },
+        "name": {
+          "type": "String",
+          "value": "ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec"
+        },
+        "primaryKey": {
+          "type": "SecureString"
+        },
+        "privateEndpoints": {
+          "type": "Array",
+          "value": []
+        },
+        "resourceGroupName": {
+          "type": "String",
+          "value": "rg-resto-scale-agent"
+        },
+        "resourceId": {
+          "type": "String",
+          "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec"
+        },
+        "secondaryKey": {
+          "type": "SecureString"
+        },
+        "systemAssignedMIPrincipalId": {
+          "type": "String",
+          "value": "62c39da1-bce1-49b8-92d2-a65cd93edbc9"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": null,
+      "name": "46d3xbcp.res.containerregistry-registry.0-13-1.rtle",
+      "outputs": {
+        "telemetry": {
+          "type": "String",
+          "value": "For more information, see https://aka.ms/avm/TelemetryInfo"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": null,
+      "name": "registry",
+      "outputs": {
+        "credentialSetsResourceIds": {
+          "type": "Array",
+          "value": []
+        },
+        "credentialSetsSystemAssignedMIPrincipalIds": {
+          "type": "Array",
+          "value": []
+        },
+        "location": {
+          "type": "String",
+          "value": "centralus"
+        },
+        "loginServer": {
+          "type": "String",
+          "value": "acrresto4tvlzr5zf2rxi.azurecr.io"
+        },
+        "name": {
+          "type": "String",
+          "value": "acrresto4tvlzr5zf2rxi"
+        },
+        "privateEndpoints": {
+          "type": "Array",
+          "value": []
+        },
+        "resourceGroupName": {
+          "type": "String",
+          "value": "rg-resto-scale-agent"
+        },
+        "resourceId": {
+          "type": "String",
+          "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi"
+        },
+        "systemAssignedMIPrincipalId": {
+          "type": "String"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": null,
+      "name": "rknmobu4auvve-subnet-0",
+      "outputs": {
+        "addressPrefix": {
+          "type": "String",
+          "value": "10.74.0.0/23"
+        },
+        "addressPrefixes": {
+          "type": "Array",
+          "value": []
+        },
+        "ipamPoolPrefixAllocations": {
+          "type": "Array",
+          "value": []
+        },
+        "name": {
+          "type": "String",
+          "value": "container-apps"
+        },
+        "resourceGroupName": {
+          "type": "String",
+          "value": "rg-resto-scale-agent"
+        },
+        "resourceId": {
+          "type": "String",
+          "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi/subnets/container-apps"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": null,
+      "name": "46d3xbcp.res.network-virtualnetwork.0-10-2.6mcz",
+      "outputs": {
+        "telemetry": {
+          "type": "String",
+          "value": "For more information, see https://aka.ms/avm/TelemetryInfo"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": null,
+      "name": "46d3xbcp.res.managedidentity-userassignedidentity.0-6-0.34gq",
+      "outputs": {
+        "telemetry": {
+          "type": "String",
+          "value": "For more information, see https://aka.ms/avm/TelemetryInfo"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": null,
+      "name": "46d3xbcp.res.managedidentity-userassignedidentity.0-6-0.vzjx",
+      "outputs": {
+        "telemetry": {
+          "type": "String",
+          "value": "For more information, see https://aka.ms/avm/TelemetryInfo"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": null,
+      "name": "46d3xbcp.res.managedidentity-userassignedidentity.0-6-0.jjc7",
+      "outputs": {
+        "telemetry": {
+          "type": "String",
+          "value": "For more information, see https://aka.ms/avm/TelemetryInfo"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": null,
+      "name": "46d3xbcp.res.operationalinsights-workspace.0-16-1.yrtc",
+      "outputs": {
+        "telemetry": {
+          "type": "String",
+          "value": "For more information, see https://aka.ms/avm/TelemetryInfo"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": null,
+      "name": "46d3xbcp.res.managedidentity-userassignedidentity.0-6-0.ucqv",
+      "outputs": {
+        "telemetry": {
+          "type": "String",
+          "value": "For more information, see https://aka.ms/avm/TelemetryInfo"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": null,
+      "name": "identity-web",
+      "outputs": {
+        "clientId": {
+          "type": "String",
+          "value": "4cacbaae-2d97-49e2-98ff-37b7625c8b49"
+        },
+        "location": {
+          "type": "String",
+          "value": "centralus"
+        },
+        "name": {
+          "type": "String",
+          "value": "id-resto-web-4tvlzr5zf2rxi"
+        },
+        "principalId": {
+          "type": "String",
+          "value": "3dd2382a-5d1f-42e6-8a85-2efd721787a5"
+        },
+        "resourceGroupName": {
+          "type": "String",
+          "value": "rg-resto-scale-agent"
+        },
+        "resourceId": {
+          "type": "String",
+          "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": null,
+      "name": "logs",
+      "outputs": {
+        "location": {
+          "type": "String",
+          "value": "centralus"
+        },
+        "logAnalyticsWorkspaceId": {
+          "type": "String",
+          "value": "d0a4029e-990c-4f67-a7cf-2804aa8897eb"
+        },
+        "name": {
+          "type": "String",
+          "value": "log-resto-4tvlzr5zf2rxi"
+        },
+        "primarySharedKey": {
+          "type": "SecureString"
+        },
+        "resourceGroupName": {
+          "type": "String",
+          "value": "rg-resto-scale-agent"
+        },
+        "resourceId": {
+          "type": "String",
+          "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.OperationalInsights/workspaces/log-resto-4tvlzr5zf2rxi"
+        },
+        "secondarySharedKey": {
+          "type": "SecureString"
+        },
+        "systemAssignedMIPrincipalId": {
+          "type": "String"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": null,
+      "name": "identity-worker",
+      "outputs": {
+        "clientId": {
+          "type": "String",
+          "value": "60a3fef3-9445-4570-ab6c-59a9ca928ec8"
+        },
+        "location": {
+          "type": "String",
+          "value": "centralus"
+        },
+        "name": {
+          "type": "String",
+          "value": "id-resto-worker-4tvlzr5zf2rxi"
+        },
+        "principalId": {
+          "type": "String",
+          "value": "c2bded32-9e13-4a18-8db6-5a3cfe2f60fc"
+        },
+        "resourceGroupName": {
+          "type": "String",
+          "value": "rg-resto-scale-agent"
+        },
+        "resourceId": {
+          "type": "String",
+          "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": null,
+      "name": "identity-chat",
+      "outputs": {
+        "clientId": {
+          "type": "String",
+          "value": "7d5ce194-90d5-45e9-959b-c7491c7a750f"
+        },
+        "location": {
+          "type": "String",
+          "value": "centralus"
+        },
+        "name": {
+          "type": "String",
+          "value": "id-resto-chat-4tvlzr5zf2rxi"
+        },
+        "principalId": {
+          "type": "String",
+          "value": "9b5d1481-07eb-4713-bc3c-f916d065266f"
+        },
+        "resourceGroupName": {
+          "type": "String",
+          "value": "rg-resto-scale-agent"
+        },
+        "resourceId": {
+          "type": "String",
+          "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": null,
+      "name": "network",
+      "outputs": {
+        "location": {
+          "type": "String",
+          "value": "centralus"
+        },
+        "name": {
+          "type": "String",
+          "value": "vnet-resto-4tvlzr5zf2rxi"
+        },
+        "resourceGroupName": {
+          "type": "String",
+          "value": "rg-resto-scale-agent"
+        },
+        "resourceId": {
+          "type": "String",
+          "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi"
+        },
+        "subnetNames": {
+          "type": "Array",
+          "value": [
+            "container-apps"
+          ]
+        },
+        "subnetResourceIds": {
+          "type": "Array",
+          "value": [
+            "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi/subnets/container-apps"
+          ]
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": null,
+      "name": "identity-scaler",
+      "outputs": {
+        "clientId": {
+          "type": "String",
+          "value": "1c52801d-f59b-49df-9219-8794ba2fed44"
+        },
+        "location": {
+          "type": "String",
+          "value": "centralus"
+        },
+        "name": {
+          "type": "String",
+          "value": "id-resto-scaler-4tvlzr5zf2rxi"
+        },
+        "principalId": {
+          "type": "String",
+          "value": "1d247a8f-e5b3-4e87-a309-3e6662858539"
+        },
+        "resourceGroupName": {
+          "type": "String",
+          "value": "rg-resto-scale-agent"
+        },
+        "resourceId": {
+          "type": "String",
+          "value": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-scaler-4tvlzr5zf2rxi"
+        }
+      },
+      "state": "Succeeded"
+    },
+    {
+      "error": {
+        "additionalInfo": null,
+        "code": "DeploymentFailed",
+        "details": [
+          {
+            "additionalInfo": null,
+            "code": "DeploymentFailed",
+            "details": null,
+            "message": "At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/arm-deployment-operations for usage details.",
+            "target": null
+          },
+          {
+            "additionalInfo": null,
+            "code": "DeploymentFailed",
+            "details": null,
+            "message": "At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/arm-deployment-operations for usage details.",
+            "target": null
+          }
+        ],
+        "message": "At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/arm-deployment-operations for usage details.",
+        "target": null
+      },
+      "name": "resto-scale-agent-1792800732",
+      "outputs": null,
+      "state": "Failed"
+    }
+  ]
+}

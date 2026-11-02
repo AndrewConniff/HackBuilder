@@ -1,0 +1,16 @@
+{
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#appRoleAssignments",
+  "value": [
+    {
+      "appRoleId": "680f1e54-119b-5f55-966c-5bac8c2f129c",
+      "createdDateTime": "2026-10-24T17:41:45.3930884Z",
+      "deletedDateTime": null,
+      "id": "K2dNIYffO0-U_XhjAyVGwXxs2CNpk0NEhX65fEWTYfk",
+      "principalDisplayName": "Peter De Tender",
+      "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+      "principalType": "User",
+      "resourceDisplayName": "resto-scale-agent-api-a80613974550a044",
+      "resourceId": "20389125-423e-4b87-b837-d812149b1a02"
+    }
+  ]
+}

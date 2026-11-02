@@ -1,0 +1,11 @@
+{
+  "stage": "requirements",
+  "status": "completed",
+  "summary": "Requirements defined for the Generic five-floor, 250-seat restaurant, all six requested services, synthetic settlement, role boundaries and measurable load/recovery targets. No implementation or Azure operations performed.",
+  "evidence": [
+    "generated-scenarios\\resto-scale-agent\\01-requirements.md",
+    "Repository industry catalog: exact Hospitality & Travel industry present.",
+    "CSV parser: Fourth Coffee is valid data record 14; person FullName mappings use records 1-4. Malformed company records 7, 11, 25, 33 excluded.",
+    "Current Microsoft Learn public Foundry region, Agent Service, prompt agent and model lifecycle pages fetched on 2026-10-23 UTC; evidence index to follow with architecture."
+  ]
+}

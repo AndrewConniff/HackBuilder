@@ -1,0 +1,9 @@
+{
+  "stage": "diagrams",
+  "status": "completed",
+  "summary": "Existing architecture/runtime diagrams revalidated without regeneration. They describe the preserved design, not deployed resources.",
+  "evidence": [
+    ".resume-evidence\\d759fcc15c504c529009a19ae5ba0e13\\diagrams-validation.json: both Python sources parse, both PNGs decode, exact source/image hashes match retained dated render evidence.",
+    "Retained images are 4013x4921 and 2394x5627; reviewed source labels agree with private Standard, APIM/ACA identity paths, three pinned agents, bounded tools, signing and human review."
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "equip-ai",
+    "resourceGroup": "rg-equip-ai",
+    "region": "centralus"
+  },
+  "sources": {
+    "account": "Current Azure CLI identity; token metadata checked",
+    "subscriptionId": "Current Azure CLI identity; token metadata checked",
+    "tenantId": "Current Azure CLI identity; token metadata checked",
+    "environment": "Previously saved scenario target",
+    "resourceGroup": "Previously saved scenario target",
+    "region": "User-edited proposed target"
+  },
+  "checkedAtUtc": "2026-10-24T23:36:15.352215+00:00",
+  "authentication": {
+    "azureCli": "Signed in; usable token metadata verified (token never retained)",
+    "azd": "Signed in as petender@microsoft.com",
+    "compatibility": "Account names match; azd target-tenant access still requires authorized preflight"
+  },
+  "conflicts": [],
+  "notChecked": [
+    "RBAC",
+    "provider registration",
+    "policy",
+    "regional SKU/model quota and capacity",
+    "what-if",
+    "cost"
+  ],
+  "legacyRegionReconciliation": "Legacy project retained East US; explicit current user approval and existing scenario azd environment select Central US. Per-call override only; no shared Azure defaults changed."
+}

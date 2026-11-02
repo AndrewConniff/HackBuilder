@@ -1,0 +1,15 @@
+{
+  "command": "az account show --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --query {account:user.name,subscriptionId:id,tenantId:tenantId,state:state,name:name} --output json",
+  "startedAtUtc": "2026-10-24T17:31:33.991921+00:00",
+  "checkedAtUtc": "2026-10-24T17:31:36.649169+00:00",
+  "exitCode": 0,
+  "stdout": "{\n  \"account\": \"petender@microsoft.com\",\n  \"name\": \"MCAPS-Hybrid-REQ-152516-2026-petender\",\n  \"state\": \"Enabled\",\n  \"subscriptionId\": \"efd64343-6ef4-4926-951f-d3229f38bd76\",\n  \"tenantId\": \"16b3c013-d300-468d-ac64-7eda0820b6d3\"\n}\n",
+  "stderr": "",
+  "result": {
+    "account": "petender@microsoft.com",
+    "name": "MCAPS-Hybrid-REQ-152516-2026-petender",
+    "state": "Enabled",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3"
+  }
+}

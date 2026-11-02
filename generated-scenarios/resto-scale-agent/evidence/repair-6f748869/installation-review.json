@@ -1,0 +1,78 @@
+{
+  "status": "proposed-not-authorized-or-executed",
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "resourceGroup": "rg-resto-scale-agent",
+    "environment": "resto-scale-agent",
+    "region": "centralus"
+  },
+  "infrastructureFingerprint": "2371ff53fd0c9ff35ca3e337f30911f0bd4b4bf019dcd27f13cb0456dfb25ed7",
+  "currentState": {
+    "resourceGroupExists": false,
+    "checkedAtUtc": "2026-10-24T01:26:45.816296+00:00",
+    "evidence": "group-exists-final.json",
+    "formerResources": "13 listed after the failed foundation attempt; no current resource inventory exists.",
+    "removalActorOrTime": null,
+    "existingGrant": "Foundation-only decision stopped on failures; cannot authorize recreation or the extended scope."
+  },
+  "armReview": {
+    "full": "what-if-full.json: Succeeded; 33 creates, zero modifies/deletes, 13 unresolved identity-dependent grant expansions.",
+    "validation": "validate-full.json: Succeeded but skipped eight output-dependent modules; not complete provider/policy certification.",
+    "vault": "what-if-vault.json: 3 creates; actual replacement name available; security/key controls unchanged; grants/diagnostics excluded.",
+    "cosmos": "what-if-cosmos.json: 7 creates, including real deployer database grant with full account/database scope; two future runtime identities and diagnostics excluded.",
+    "runtime": "Not yet previewed: required actual infrastructure, identity receipt, immutable published digest and installed versions do not exist. No generated value is a user input.",
+    "counts": "Independent previews contain the same resource group; counts are not additive."
+  },
+  "proposedAuthorizedChanges": [
+    "Recreate only rg-resto-scale-agent and the reviewed main.bicep foundation: four identities, tagged VNet/subnet, telemetry, Basic ACR, zonal Cosmos and scoped database grants, zonal Premium broker/queue, replacement RBAC vault/signing key, Foundry account/direct project/exact model and zonal Consumption environment.",
+    "Create/reconcile exactly two dedicated marker-owned single-tenant Entra registrations and their service principals using scripts\\setup_identity.py. Preserve assignment-required access, v2 tokens, access_as_user and Manager/Host/Server/Kitchen/Floor.1-Floor.5 roles.",
+    "Verify the signed-in deployment operator matches the previously observed tenant object 214d672b-df87-4f3b-94fd-7863032546c1 before idempotently assigning only that operator to Manager on the owned API principal and default access on the owned public-client principal. Actual generated principal IDs must come from the installer receipt. Prepare/test this assignment step before execution; the existing installer currently installs registrations, not assignments.",
+    "Permit only operator-specific delegated consent for this scenario API's access_as_user if current tenant policy and identity capability allow it. No tenant-wide/admin consent, Graph application permissions or self-granted installer permissions.",
+    "Build/verify the real Linux amd64 image locally, publish only to the scenario ACR, record an immutable digest and initialize the synthetic catalog plus three versioned Foundry agents with the scoped setup identity.",
+    "Capture real outputs and current Consumption usage; require 28 rollout vCPU headroom. Generate actual runtime parameters, run dependent runtime/grant what-if and deploy only the three reviewed apps if no new permissions, material scope/cost changes, unexpected destructive changes or failures arise.",
+    "Run real inference, agent/tool/grounding coordination, browser/API business journeys, role/visit negatives and bounded synthetic load/recovery within configured throughput/replica/model limits. Controlled worker stop/restart is confined to this reference; no resource deletion or SKU/quota increase.",
+    "Persist actual runtime evidence and prepare suitability review only after acceptance passes; stop without approving the scenario or composing packages."
+  ],
+  "directoryPermissionPlan": {
+    "basePlan": "..\\centralus-189819a8\\installation-plan.json",
+    "capabilityVerified": false,
+    "applicationSetup": "Requires current tenant registration policy and applicable application/service-principal create/read/update capabilities. Azure subscription Owner is not proof of directory access.",
+    "operatorAssignment": "Graph POST /servicePrincipals/{owned-api-sp-id}/appRoleAssignedTo and corresponding owned-client assignment, after scoped reads/idempotency checks. Requires AppRoleAssignment.ReadWrite.All and Application.Read.All with effective supported tenant/scoped application-management capability.",
+    "consent": "Only this operator, this native client and the scenario delegated API scope; tenant consent policy remains unverified. Do not grant AllPrincipals consent or use broad Graph/admin consent as a fallback.",
+    "failureHandling": "Stop on actual Graph permission/policy denial. Report the failed operation and least-privilege remedy; no alternate credentials, elevation or weaker assignment policy.",
+    "remainingHumanInteraction": "Real staff authentication may require the operator's interactive sign-in. No fake token or passing authentication result may substitute."
+  },
+  "executionOrdering": [
+    "Consume a new recorded exact-target end-to-end grant; recheck identity, ownership, names, independent eligibility and preview freshness.",
+    "Use existing azd environment with explicit subscription/tenant/group/region; do not change shared defaults or run blind azd up.",
+    "Run shared provision, capture actual outputs, then install authorized directory objects and verify current environment quota; use existing receipt exporter hook.",
+    "Publish reviewed digest, initialize synthetic data and agents, then generate and execute actual-output runtime preview/rollout in the same authorized context.",
+    "No user-facing foundation/image/initialization/app-rollout approval stages. Stop only for a new permission, material risk/scope/cost change, observed failure or final suitability review."
+  ],
+  "excluded": [
+    "Other tenants/subscriptions/resource groups/environments/regions or scenarios",
+    "Unowned resource adoption, recovery, purge, deletion or cleanup",
+    "Provider registration, quota/support requests, SKU/throughput increases",
+    "New users/groups, credentials, tenant policy/role elevation, Graph application permissions or tenant-wide consent",
+    "Real card charges, production data, hack composition, event deployment, publication or suitability approval"
+  ],
+  "cost": {
+    "currency": "USD",
+    "evidence": "..\\centralus-189819a8\\cost-review.json",
+    "observedAtUtc": "2026-10-24T00:01:36.245550+00:00",
+    "sameDayRatesReused": true,
+    "sharedMonthlyAllowance": [745, 1150],
+    "typicalFullMonthlyAllowance": [900, 1650],
+    "brokerOneMUMonthly": 677.08,
+    "modelExampleMonthly": 50.4,
+    "max28ReplicasComputeOnlyMonthly": 1103.76,
+    "conservative56ReplicaRolloutComputeOnlyMonthly": 2207.52,
+    "limitations": "Not a quote, cap, current bill, approved budget or capacity reservation. Storage, requests, telemetry, zone treatment, egress, taxes and sustained load can add charges."
+  },
+  "authorizationRequired": true,
+  "cloudMutationsThisResume": false,
+  "directoryOperationsThisResume": false,
+  "liveAcceptancePassed": false
+}

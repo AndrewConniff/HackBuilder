@@ -1,0 +1,24 @@
+{
+  "command": "az group create --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --name rg-resto-scale-agent --location centralus --tags Environment=resto-scale-agent ManagedBy=Bicep Project=resto-scale-agent SecurityControl=Ignore --output json",
+  "startedAtUtc": "2026-10-24T00:11:46.081592+00:00",
+  "checkedAtUtc": "2026-10-24T00:11:49.482479+00:00",
+  "exitCode": 0,
+  "stdout": "{\n  \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent\",\n  \"location\": \"centralus\",\n  \"managedBy\": null,\n  \"name\": \"rg-resto-scale-agent\",\n  \"properties\": {\n    \"provisioningState\": \"Succeeded\"\n  },\n  \"tags\": {\n    \"Environment\": \"resto-scale-agent\",\n    \"ManagedBy\": \"Bicep\",\n    \"Project\": \"resto-scale-agent\",\n    \"SecurityControl\": \"Ignore\"\n  },\n  \"type\": \"Microsoft.Resources/resourceGroups\"\n}\n",
+  "stderr": "",
+  "result": {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent",
+    "location": "centralus",
+    "managedBy": null,
+    "name": "rg-resto-scale-agent",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": {
+      "Environment": "resto-scale-agent",
+      "ManagedBy": "Bicep",
+      "Project": "resto-scale-agent",
+      "SecurityControl": "Ignore"
+    },
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+}

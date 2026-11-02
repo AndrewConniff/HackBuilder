@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 1,
+  "evidenceType": "live_subscription_readiness_not_deployment",
+  "checkedAtUtc": "2026-10-28T15:09:41.1586876Z",
+  "subscriptionName": "MCAPS-Hybrid-REQ-152516-2026-petender",
+  "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+  "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+  "requestedRegions": [],
+  "candidateRegions": ["eastus2", "swedencentral"],
+  "selectedRegion": null,
+  "recommendedRegion": "swedencentral",
+  "provisionalRegion": "eastus2",
+  "model": {
+    "name": "gpt-4.1-mini",
+    "version": "2025-04-14",
+    "deploymentType": "GlobalStandard",
+    "capacity": 10,
+    "status": "catalog_quota_and_capacity_verified_both_candidates",
+    "lifecycleStatus": "Legacy",
+    "deprecationDate": "2027-04-14T00:00:00+00:00",
+    "quota": {"currentValue": 10, "limit": 5000, "required": 10},
+    "availableCapacity": 4990,
+    "evidence": [
+      ".private/readiness/eastus2-models.json",
+      ".private/readiness/swedencentral-models.json",
+      ".private/readiness/eastus2-foundry-usage.json",
+      ".private/readiness/swedencentral-foundry-usage.json",
+      ".private/readiness/eastus2-model-capacity.json",
+      ".private/readiness/swedencentral-model-capacity.json"
+    ]
+  },
+  "authorization": {
+    "userResponse": "go for it, no idea why you asked",
+    "scope": "Read-only subscription readiness and ARM what-if for rg-live-demo-project in East US 2 and Sweden Central.",
+    "provisioningAuthorized": false,
+    "directoryWritesAuthorized": false
+  },
+  "deploymentUser": {
+    "account": "petender@microsoft.com",
+    "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+    "effectiveInheritedRoles": ["Owner", "Foundry User"],
+    "deployerRoleMode": "inherited",
+    "workloadRoleIds": {
+      "consumer": "eed3b665-ab3a-47b6-8f48-c9382fb1dad6",
+      "user": "53ca6127-db72-4b80-b1b0-d745d6d5456d"
+    },
+    "evidence": ".private/readiness/inherited-deployer-roles.json",
+    "liveDataAdministration": "Pending deployed resources and human private-network acceptance."
+  },
+  "candidateResults": [
+    {
+      "region": "eastus2",
+      "status": "rejected",
+      "rejectionReasons": [
+        "Standard_D2s_v5 has NotAvailableForSubscription location and zone restrictions.",
+        "Microsoft.Web B2 quota is 0 with 0 used and 1 required; total regional worker limit is also 0.",
+        "ARM what-if failed with InternalSubscriptionIsOverQuotaForSku for B2 VMs."
+      ],
+      "computeQuotas": {
+        "cores": {"currentValue": 0, "limit": 100, "required": 2},
+        "standardDSv5Family": {"currentValue": 0, "limit": 100, "required": 2},
+        "virtualMachines": {"currentValue": 0, "limit": 25000, "required": 1}
+      },
+      "evidence": [
+        ".private/readiness/eastus2-vm-skus.json",
+        ".private/readiness/eastus2-compute-usage.json",
+        ".private/readiness/eastus2-web-usage.json",
+        ".private/readiness/eastus2-what-if.stderr.txt"
+      ]
+    },
+    {
+      "region": "swedencentral",
+      "status": "eligible_at_check_time",
+      "managementVm": {
+        "sku": "Standard_D2s_v5",
+        "zone": "1",
+        "restrictions": [],
+        "image": "MicrosoftWindowsServer:WindowsServer:2022-datacenter-azure-edition:latest",
+        "imageArchitecture": "x64",
+        "hyperVGeneration": "V2",
+        "securityType": "TrustedLaunch"
+      },
+      "computeQuotas": {
+        "cores": {"currentValue": 0, "limit": 100, "required": 2},
+        "standardDSv5Family": {"currentValue": 0, "limit": 100, "required": 2},
+        "virtualMachines": {"currentValue": 0, "limit": 25000, "required": 1}
+      },
+      "hosting": {
+        "resourceType": "Microsoft.Web/serverfarms",
+        "sku": "B2",
+        "operatingSystem": "Linux",
+        "workers": 1,
+        "totalRegionalQuota": {"currentValue": 0, "limit": 10, "required": 1},
+        "b2SpecificQuota": null,
+        "evidenceLimitation": "Usage API returned total quota only; exact Linux B2 preflight passed in ARM what-if."
+      },
+      "supportingResources": [
+        {"type": "Microsoft.CognitiveServices/accounts", "sku": "AIServices/S0", "status": "what_if_passed"},
+        {"type": "Microsoft.CognitiveServices/accounts/projects", "status": "what_if_passed"},
+        {"type": "Microsoft.Network/virtualNetworks", "status": "what_if_passed"},
+        {"type": "Microsoft.Network/privateEndpoints", "groupId": "account", "status": "what_if_passed"},
+        {"type": "Microsoft.Network/privateDnsZones", "count": 3, "status": "what_if_passed"},
+        {"type": "Microsoft.Network/networkSecurityGroups", "status": "what_if_passed"},
+        {"type": "Microsoft.Network/bastionHosts", "sku": "Basic", "status": "what_if_passed"},
+        {"type": "Microsoft.Network/publicIPAddresses", "sku": "Standard", "status": "what_if_passed"},
+        {"type": "Microsoft.Compute/disks", "sku": "StandardSSD_LRS", "sizeGiB": 128,
+         "status": "vm_os_disk_preflight_passed_not_allocated"},
+        {"type": "Microsoft.OperationalInsights/workspaces", "sku": "PerGB2018", "status": "what_if_passed"},
+        {"type": "Microsoft.Insights/diagnosticSettings", "status": "what_if_passed"},
+        {"type": "Microsoft.Authorization/roleAssignments", "count": 3, "status": "what_if_passed"}
+      ],
+      "agentFeatures": {
+        "type": "Basic prompt agent",
+        "responsesApi": "documented_supported",
+        "functionCalling": "documented_supported",
+        "privateInbound": "documented_supported",
+        "actualAgentAndPrivateRuntime": "Pending authorized deployment; not established by ARM what-if."
+      },
+      "whatIf": {"status": "Succeeded", "create": 34, "modify": 0, "delete": 0, "ignore": 0},
+      "evidence": [
+        ".private/readiness/swedencentral-vm-skus.json",
+        ".private/readiness/swedencentral-compute-usage.json",
+        ".private/readiness/swedencentral-windows-image.json",
+        ".private/readiness/swedencentral-web-usage.json",
+        ".private/readiness/linux-b2-locations.json",
+        ".private/readiness/network-locations.json",
+        ".private/readiness/foundry-locations.json",
+        ".private/readiness/monitoring-locations.json",
+        ".private/readiness/swedencentral-what-if.json"
+      ]
+    }
+  ],
+  "governance": {
+    "requiredProviders": "Registered; Microsoft.Insights checked separately by provider show.",
+    "policyAssignments": "Three inherited subscription assignments returned; exact Sweden what-if passed.",
+    "policyEvidence": ".private/readiness/policy-assignments.json",
+    "resourceGroupExists": false,
+    "resourceChangesMade": false
+  },
+  "cost": {
+    "currency": "USD",
+    "hoursPerMonth": 730,
+    "region": "swedencentral",
+    "fixedMonthlyEstimate": 328.65,
+    "planningMonthlyRange": [340, 380],
+    "variableAllowances": "Model tokens, Log Analytics, disk operations, DNS queries and network transfer.",
+    "source": "https://prices.azure.com/api/retail/prices",
+    "limitation": "Public pay-as-you-go estimate, not an offer-specific quote, spend cap or billing authorization."
+  },
+  "sources": [
+    "https://learn.microsoft.com/en-us/azure/foundry/agents/overview",
+    "https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/function-calling",
+    "https://learn.microsoft.com/en-us/azure/foundry/agents/environment-setup",
+    "https://learn.microsoft.com/en-us/azure/foundry/how-to/create-resource-template",
+    "https://learn.microsoft.com/en-us/azure/foundry/reference/region-support",
+    "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure",
+    "https://learn.microsoft.com/en-us/azure/foundry/how-to/configure-private-link",
+    "https://learn.microsoft.com/en-us/azure/foundry/concepts/rbac-foundry",
+    "https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/limits-quotas-regions",
+    "https://learn.microsoft.com/en-us/rest/api/aiservices/accountmanagement/location-based-model-capacities/list?view=rest-aiservices-accountmanagement-2024-10-01",
+    "https://prices.azure.com/api/retail/prices"
+  ],
+  "limitations": [
+    "Sweden Central is a recommendation awaiting deployment target and cost approval, not a silently changed target.",
+    "What-if and capacity metadata do not reserve capacity or prove resource allocation.",
+    "What-if omits or retains expressions for not-yet-created managed-identity principal IDs; postdeploy proof is required.",
+    "Model version is marked Legacy with 2027-04-14 deprecation; no automatic model substitution was made.",
+    "Actual agent creation, inference, private human administration and workload identity remain unverified.",
+    "An initial capacity query failed due to Windows az.cmd ampersand parsing; --url-parameters retry succeeded.",
+    "An exploratory direct Compute REST request failed locally; successful az vm list-skus output is authoritative.",
+    "No provider registration, role assignment, resource provisioning or directory write was executed."
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "status": "deployed_runtime_acceptance_passed",
+  "checkedAtUtc": "2026-10-25T18:32:45Z",
+  "subscriptionName": "MCAPS-Hybrid-REQ-152516-2026-petender",
+  "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+  "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+  "identityEvidence": "Azure CLI account and azd authenticated as petender@microsoft.com, verified 2026-10-25T17:36Z; no shared defaults changed",
+  "requestedRegions": ["centralus"],
+  "candidateRegions": ["centralus"],
+  "selectedRegion": "centralus",
+  "provisionalRegion": "centralus",
+  "model": {"name": "gpt-4.1-mini", "version": "2025-04-14", "deploymentType": "GlobalStandard", "capacity": 10, "eligibility": "deployed_succeeded; real_model_and_agent_inference_passed"},
+  "resources": [
+    {"type": "Microsoft.CognitiveServices/accounts", "kind": "AIServices", "sku": "S0", "status": "deployed"},
+    {"type": "Microsoft.CognitiveServices/accounts/projects", "feature": "prompt agents and project Responses API v1", "status": "deployed_and_real_agent_invoked"},
+    {"type": "Microsoft.Web/serverfarms", "sku": "B1", "workers": 1, "runtime": "DOTNETCORE|10.0", "status": "deployed; local_login_and_app_managed_identity_verified"},
+    {"type": "Microsoft.ServiceBus/namespaces", "sku": "Standard", "feature": "duplicate detection", "status": "deployed; real_reply_stream_acceptance_verified"},
+    {"type": "Microsoft.Storage/storageAccounts", "sku": "Standard_LRS", "status": "deployed; accounts_rules_and_workflow_restart_persistence_verified"},
+    {"type": "Microsoft.OperationalInsights/workspaces", "sku": "PerGB2018", "status": "deployed"},
+    {"type": "Microsoft.Insights/components", "sku": "workspace-based", "status": "deployed"}
+  ],
+  "quota": {
+    "modelUsageName": "OpenAI.GlobalStandard.gpt4.1-mini",
+    "modelCurrentValue": 40,
+    "modelLimit": 5000,
+    "modelRequired": 10,
+    "modelPassed": true,
+    "appServiceWorkerSku": "B1",
+    "appServiceCurrentValue": 1,
+    "appServiceLimit": 11,
+    "appServiceRequired": 1,
+    "appServicePassed": true,
+    "evidence": ["evidence/centralus-ai-usage.json", "evidence/centralus-web-usage.json"]
+  },
+  "capacity": {
+    "available": 4960,
+    "required": 10,
+    "passed": true,
+    "evidence": "evidence/centralus-model-capacity.json",
+    "limitation": "Metadata does not reserve capacity or guarantee allocation."
+  },
+  "rejectedCandidates": [],
+  "sources": [
+    "https://learn.microsoft.com/azure/foundry/agents/concepts/limits-quotas-regions",
+    "https://learn.microsoft.com/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure",
+    "https://learn.microsoft.com/azure/foundry/agents/quickstarts/prompt-agent"
+  ],
+  "pendingChecks": [],
+  "recommendation": "Authorized centralus installation and actual local-account app/MI/HITL acceptance passed; see scenario-validation.json for retained receipts and unperformed advanced resilience exercises. Original quota/capacity observations are not fresh reservations. GlobalStandard is not region-local processing."
+}

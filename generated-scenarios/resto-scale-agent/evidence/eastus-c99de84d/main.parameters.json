@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environment": {
+      "value": "resto-scale-agent"
+    },
+    "location": {
+      "value": "eastus"
+    },
+    "principalId": {
+      "value": "214d672b-df87-4f3b-94fd-7863032546c1"
+    },
+    "modelName": {
+      "value": "gpt-5.4-mini"
+    },
+    "modelVersion": {
+      "value": "2026-03-17"
+    },
+    "modelDeploymentType": {
+      "value": "GlobalStandard"
+    },
+    "modelCapacity": {
+      "value": 100
+    },
+    "foundryConsumerRoleId": {
+      "value": "eed3b665-ab3a-47b6-8f48-c9382fb1dad6"
+    },
+    "guestSigningKeyExpiration": {
+      "value": "2027-04-21T22:47:47Z"
+    }
+  }
+}

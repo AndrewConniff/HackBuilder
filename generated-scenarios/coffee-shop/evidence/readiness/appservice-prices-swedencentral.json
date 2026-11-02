@@ -1,0 +1,57 @@
+{
+  "checkedAtUtc": "2026-10-24T23:21:10.495712+00:00",
+  "url": "https://prices.azure.com/api/retail/prices?$filter=serviceName%20eq%20%27Azure%20App%20Service%27%20and%20armRegionName%20eq%20%27swedencentral%27%20and%20skuName%20eq%20%27P0v3%27%20and%20priceType%20eq%20%27Consumption%27",
+  "response": {
+    "BillingCurrency": "USD",
+    "CustomerEntityId": "Default",
+    "CustomerEntityType": "Retail",
+    "Items": [
+      {
+        "currencyCode": "USD",
+        "tierMinimumUnits": 0.0,
+        "retailPrice": 0.089,
+        "unitPrice": 0.089,
+        "armRegionName": "swedencentral",
+        "location": "SE Central",
+        "effectiveStartDate": "2024-08-01T00:00:00Z",
+        "meterId": "352d6efe-cb95-5ca9-82c9-e565bee16ddc",
+        "meterName": "P0v3 App",
+        "productId": "DZH318Z0DCR6",
+        "skuId": "DZH318Z0DCR6/00JG",
+        "productName": "Azure App Service Premium v3 Plan - Linux",
+        "skuName": "P0v3",
+        "serviceName": "Azure App Service",
+        "serviceId": "DZH317GT8G5N",
+        "serviceFamily": "Compute",
+        "unitOfMeasure": "1 Hour",
+        "type": "Consumption",
+        "isPrimaryMeterRegion": true,
+        "armSkuName": "Azure_App_Service_Premium_v3_Plan_Linux_P0_v3"
+      },
+      {
+        "currencyCode": "USD",
+        "tierMinimumUnits": 0.0,
+        "retailPrice": 0.169,
+        "unitPrice": 0.169,
+        "armRegionName": "swedencentral",
+        "location": "SE Central",
+        "effectiveStartDate": "2024-08-01T00:00:00Z",
+        "meterId": "f7a2ebdb-5a40-5f34-8f86-fa1eb03d9f8d",
+        "meterName": "P0v3 App",
+        "productId": "DZH318Z0DCR7",
+        "skuId": "DZH318Z0DCR7/00JG",
+        "productName": "Azure App Service Premium v3 Plan",
+        "skuName": "P0v3",
+        "serviceName": "Azure App Service",
+        "serviceId": "DZH317GT8G5N",
+        "serviceFamily": "Compute",
+        "unitOfMeasure": "1 Hour",
+        "type": "Consumption",
+        "isPrimaryMeterRegion": true,
+        "armSkuName": "Standard_P0_v3_Windows"
+      }
+    ],
+    "NextPageLink": null,
+    "Count": 2
+  }
+}

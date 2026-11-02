@@ -1,0 +1,16 @@
+{
+  "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent",
+  "location": "eastus2",
+  "managedBy": null,
+  "name": "rg-resto-scale-agent",
+  "properties": {
+    "provisioningState": "Succeeded"
+  },
+  "tags": {
+    "Environment": "resto-scale-agent",
+    "ManagedBy": "Bicep",
+    "Project": "resto-scale-agent",
+    "SecurityControl": "Ignore"
+  },
+  "type": "Microsoft.Resources/resourceGroups"
+}

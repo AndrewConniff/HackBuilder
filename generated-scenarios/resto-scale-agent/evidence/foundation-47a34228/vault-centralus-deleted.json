@@ -1,0 +1,8 @@
+{
+  "command": "az keyvault show-deleted --name kv-resto-4tvlzr5zf2rxi --location centralus --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+  "startedAtUtc": "2026-10-24T00:15:43.428099+00:00",
+  "checkedAtUtc": "2026-10-24T00:15:45.565434+00:00",
+  "exitCode": 2,
+  "stdout": "",
+  "stderr": "ERROR: (DeletedVaultNotFound) The specified deleted vault 'kv-resto-4tvlzr5zf2rxi' does not exist. Ensure that the vault was indeed deleted and that it is in recoverable state. If soft delete was not enabled then the vault is permanently deleted. Follow this link for more information: https://go.microsoft.com/fwlink/?linkid=2149745\nCode: DeletedVaultNotFound\nMessage: The specified deleted vault 'kv-resto-4tvlzr5zf2rxi' does not exist. Ensure that the vault was indeed deleted and that it is in recoverable state. If soft delete was not enabled then the vault is permanently deleted. Follow this link for more information: https://go.microsoft.com/fwlink/?linkid=2149745\n"
+}

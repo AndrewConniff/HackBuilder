@@ -1,0 +1,12 @@
+{
+  "stage": "application",
+  "status": "pending",
+  "summary": "Preserved a compiling partial web/chat/worker implementation, proxy-only locked dependencies, 17 passing local domain/API/Chromium checks and a built Linux x64 image. Application and infrastructure integration remain incomplete. Stopping because the execution host denied the next local container runtime verification command; no alternative permission route was attempted.",
+  "evidence": [
+    "src\\Restaurant.Web; tests\\Restaurant.Tests; Restaurant.slnx; NuGet.Config; .dockerignore; 07-webapp-summary.md.",
+    "dotnet test C:\\azd-projects\\resto-scale-agent\\tests\\Restaurant.Tests\\Restaurant.Tests.csproj --no-restore --verbosity minimal --logger trx;LogFileName=local-contract-browser.trx --results-directory C:\\azd-projects\\resto-scale-agent\\evidence\\tests: exit 0, 17 passed, zero failed/skipped.",
+    "docker build --platform linux/amd64 --file C:\\azd-projects\\resto-scale-agent\\src\\Restaurant.Web\\Dockerfile --tag resto-scale-agent-local:568a2a2800434b88a4b673c97d1adf2d C:\\azd-projects\\resto-scale-agent: final exit 0; image exported. evidence\\container-build-native-sdk-568a2a2800434b88a4b673c97d1adf2d.txt.",
+    "Original emulated SDK restore crashed with QEMU signal 11, exit 139; log retained in evidence\\container-build-568a2a2800434b88a4b673c97d1adf2d.txt. Native SDK compilation of portable framework-dependent IL corrected the Dockerfile; the final runtime image target and validation design remain linux/amd64, not ARM or remote build.",
+    "No image runtime success, full reference completion, cloud query/deployment, model/agent invocation, load measurement or hack approval is claimed."
+  ]
+}

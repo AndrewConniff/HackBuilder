@@ -1,0 +1,11 @@
+{
+  "stage": "application",
+  "status": "running",
+  "summary": "Resuming the existing application after the authorized server restart. Preserving the confirmed Sales-to-Marketing design and all artifacts; checking retained source evidence and rerunning the application-only validation before recording completion.",
+  "evidence": [
+    "Canonical revision 20: application cancelled after the previous worker exited without reporting; designConfirmed true, scenario-local execution consent retained, authorizations empty, no setup blocker.",
+    "Current writer d88fea69eeba48f8b9ae6b3d0fb0d68d matches this assigned application operation.",
+    "Backend readiness checkedAtUtc 2026-10-23T14:32:38.967238-07:00: ready true; application dotnet gate passed.",
+    "Existing application, agent definitions, installation automation, test sources and .application-evidence/validation.json inspected; no cloud, directory, container or next-stage operation authorized by this job."
+  ]
+}

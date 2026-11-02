@@ -1,0 +1,7 @@
+{
+  "checkedAtUtc": "2026-10-24T19:58:50.796209+00:00",
+  "status": "passed",
+  "schemaUrl": "https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json",
+  "result": "Final azd schema, Python syntax and changed-document/source line limits checked; no cloud command run",
+  "errors": []
+}

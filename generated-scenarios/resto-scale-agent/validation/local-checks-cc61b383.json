@@ -1,0 +1,77 @@
+{
+  "scope": "scenario-local-only",
+  "status": "completed-with-retained-security-findings",
+  "allCommandsPassed": false,
+  "checks": [
+    {
+      "name": "application-domain-api-chromium",
+      "command": "dotnet test generated-scenarios\\resto-scale-agent\\Restaurant.slnx --no-restore --verbosity quiet --logger \"trx;LogFileName=final-tools-cc61b383.trx\" --results-directory generated-scenarios\\resto-scale-agent\\evidence\\tests",
+      "exitCode": 0,
+      "passed": 25,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "runtime-parameters-and-validation-tools",
+      "command": "python -m unittest discover -s generated-scenarios\\resto-scale-agent\\validation -p \"test_*.py\" -v",
+      "exitCode": 0,
+      "passed": 8
+    },
+    {
+      "name": "shared-bicep-build",
+      "command": "az bicep build --file generated-scenarios\\resto-scale-agent\\infra\\main.bicep --outfile generated-scenarios\\resto-scale-agent\\evidence\\main-cc61b383.arm.json",
+      "exitCode": 0
+    },
+    {
+      "name": "shared-bicep-lint",
+      "command": "az bicep lint --file generated-scenarios\\resto-scale-agent\\infra\\main.bicep",
+      "exitCode": 0
+    },
+    {
+      "name": "runtime-bicep-build",
+      "command": "az bicep build --file generated-scenarios\\resto-scale-agent\\infra\\runtime.bicep --outfile generated-scenarios\\resto-scale-agent\\evidence\\runtime-cc61b383.arm.json",
+      "exitCode": 0
+    },
+    {
+      "name": "runtime-bicep-lint",
+      "command": "az bicep lint --file generated-scenarios\\resto-scale-agent\\infra\\runtime.bicep",
+      "exitCode": 0
+    },
+    {
+      "name": "linux-amd64-image-build",
+      "command": "docker build --platform linux/amd64 --tag resto-scale-agent-local:cc61b3835f4244bfa28667f5b641fbe9 --file generated-scenarios\\resto-scale-agent\\src\\Restaurant.Web\\Dockerfile generated-scenarios\\resto-scale-agent",
+      "exitCode": 0
+    },
+    {
+      "name": "owned-container-shell-liveness",
+      "command": "python scripts\\check_container_runtime.py --image resto-scale-agent-local:cc61b3835f4244bfa28667f5b641fbe9 --marker 'Fourth Coffee' --timeout 90",
+      "exitCode": 0,
+      "ok": true,
+      "cleanupPassed": true,
+      "limitation": "Bounded startup retries retained HTTP failure logs before successful health/homepage responses. Not a zero-error or performance result."
+    },
+    {
+      "name": "expanded-shared-static-security-scan",
+      "command": "checkov --directory generated-scenarios\\resto-scale-agent\\evidence\\arm-audit-main-cc61b383 --framework arm --compact --quiet --skip-download --output json",
+      "exitCode": 1,
+      "passed": 8,
+      "failed": 14,
+      "parsingErrors": 0,
+      "review": "05-implementation-reference.md; includes explicit confirmed design boundaries, unresolved AVM parameters and optional branches. Not a clean policy pass."
+    },
+    {
+      "name": "runtime-static-security-scanner-coverage",
+      "command": "checkov --directory generated-scenarios\\resto-scale-agent\\evidence\\arm-audit-runtime-cc61b383 --framework arm --compact --quiet --skip-download --output json",
+      "exitCode": 0,
+      "applicableChecks": 0,
+      "limitation": "No effective Container Apps security coverage; exit zero is not a security pass."
+    }
+  ],
+  "notRun": [
+    "Azure account, subscription, tenant, policy, provider and live quota/capacity queries",
+    "What-if, regional pricing and deployment",
+    "Real model inference, agent/tool/delegation and application business journeys",
+    "Broker race, DLQ replay, fault recovery and complete authenticated mixed workload",
+    "Normal/burst/soak threshold measurements and RU/replica/memory metrics"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "stage": "bicep",
+  "status": "running",
+  "summary": "Revalidating preserved infrastructure and repairing the missing fail-closed azd installation lifecycle and generated-output capture locally.",
+  "evidence": ["Local prerequisite audit 2026-10-24: all required tools, Docker Linux engine, approved NuGet proxy and diagram rendering passed; no Azure readiness claimed."]
+}

@@ -1,0 +1,8 @@
+{
+  "command": "az resource list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --resource-group rg-resto-scale-agent --output json",
+  "startedAtUtc": "2026-10-24T01:21:26.132987+00:00",
+  "checkedAtUtc": "2026-10-24T01:21:31.997575+00:00",
+  "exitCode": 3,
+  "stdout": "",
+  "stderr": "ERROR: (ResourceGroupNotFound) Resource group 'rg-resto-scale-agent' could not be found.\nCode: ResourceGroupNotFound\nMessage: Resource group 'rg-resto-scale-agent' could not be found.\n"
+}

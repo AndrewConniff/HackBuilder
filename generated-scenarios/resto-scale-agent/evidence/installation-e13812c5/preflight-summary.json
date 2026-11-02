@@ -1,0 +1,41 @@
+{
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "resto-scale-agent",
+    "resourceGroup": "rg-resto-scale-agent",
+    "region": "centralus"
+  },
+  "checkedAtUtc": "2026-10-24T17:34:00.645527+00:00",
+  "infrastructureFingerprint": "2371ff53fd0c9ff35ca3e337f30911f0bd4b4bf019dcd27f13cb0456dfb25ed7",
+  "whatIfCounts": {
+    "Create": 33,
+    "Unsupported": 13
+  },
+  "cosmosZonalAccess": true,
+  "modelQuota": {
+    "currentValue": 100.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "One Thousand Tokens Per Minute - gpt-5.4-mini - GlobalStandard",
+      "value": "OpenAI.GlobalStandard.gpt-5.4-mini"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  "modelCapacity": {
+    "availableCapacity": 900,
+    "model": {
+      "format": "OpenAI",
+      "name": "gpt-5.4-mini",
+      "version": "2026-03-17"
+    },
+    "skuName": "GlobalStandard"
+  },
+  "limitations": "Metadata cannot reserve allocation. Directory capability, installed environment cores, output-dependent grants and runtime acceptance remain pending. Current reviewed costs unchanged."
+}

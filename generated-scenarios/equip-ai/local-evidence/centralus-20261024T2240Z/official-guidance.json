@@ -1,0 +1,28 @@
+{
+  "reviewedOnUtc": "2026-10-24",
+  "sources": [
+    {
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/limits-quotas-regions",
+      "finding": "Current new Agent Service table lists Central US for Responses API, Agents and Private VNet. Tool table lists Function support. Foundry and VNet must share a region.",
+      "scope": "Public feature support, not subscription-specific runtime acceptance",
+      "shortExcerpt": "| Central US | Yes | Yes | Yes | Yes |"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-what-if",
+      "finding": "What-if predicts changes without resource deployment. Nested expansion and reference evaluation have limits; command success does not certify skipped resources."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/rest/api/iothub/resource-provider-common/get-subscription-quota?view=rest-iothub-2023-06-30",
+      "finding": "Subscription paid/free hub quotas are read at Microsoft.Devices/usages."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/rest/api/iothub/iot-hub-resource/get-valid-skus?view=rest-iothub-2023-06-30",
+      "finding": "Valid SKUs API requires an existing named IoT hub. No hub exists here; none was created and no guessed hub ID was queried."
+    }
+  ],
+  "researchLimitations": [
+    "The old ai-foundry agents model-region-support URL redirects to classic Agent Service. It was not used to judge the new Responses-based implementation.",
+    "The guessed new agents model-region-support URL returned 404; the canonical limits-quotas-regions page above was used instead.",
+    "Public documentation and provider metadata do not reserve regional capacity or prove private DNS, RBAC propagation or actual agent invocation."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "command": "az rest --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --method get --url https://graph.microsoft.com/v1.0/me?$select=id,userPrincipalName --output json",
+  "cwd": "C:\\azd-projects\\resto-scale-agent",
+  "startedAtUtc": "2026-10-24T17:32:45.760268+00:00",
+  "checkedAtUtc": "2026-10-24T17:32:47.776853+00:00",
+  "exitCode": 0,
+  "stdout": "{\n  \"@odata.context\": \"https://graph.microsoft.com/v1.0/$metadata#users(id,userPrincipalName)/$entity\",\n  \"id\": \"214d672b-df87-4f3b-94fd-7863032546c1\",\n  \"userPrincipalName\": \"petender_microsoft.com#EXT#@fdpo.onmicrosoft.com\"\n}\n",
+  "stderr": "",
+  "result": {
+    "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#users(id,userPrincipalName)/$entity",
+    "id": "214d672b-df87-4f3b-94fd-7863032546c1",
+    "userPrincipalName": "petender_microsoft.com#EXT#@fdpo.onmicrosoft.com"
+  }
+}

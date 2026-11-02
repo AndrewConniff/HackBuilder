@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "project": "finance-security-hack",
+  "teamCount": 1,
+  "coach": {
+    "azdEnvironment": "finance-security-hack-coach",
+    "resourceGroup": "rg-finance-security-hack-coach",
+    "applicationUrl": null,
+    "deploymentStatus": "planned"
+  },
+  "teams": [
+    {
+      "id": "01",
+      "displayName": "Team 01",
+      "azdEnvironment": "01-finance-security-hack-hack",
+      "resourceGroup": "rg-01-finance-security-hack-hack",
+      "applicationUrl": null,
+      "deploymentStatus": "planned"
+    }
+  ]
+}

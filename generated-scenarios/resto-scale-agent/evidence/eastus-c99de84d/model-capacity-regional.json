@@ -1,0 +1,8 @@
+{
+  "command": "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/eastus/modelCapacities?api-version=2024-10-01&modelFormat=OpenAI&modelName=gpt-5.4-mini&modelVersion=2026-03-17 --output json",
+  "startedAtUtc": "2026-10-23T22:47:47.105910+00:00",
+  "checkedAtUtc": "2026-10-23T22:47:49.272264+00:00",
+  "exitCode": 1,
+  "stdout": "",
+  "stderr": "ERROR: Bad Request({\"error\":{\"code\":\"ParameterIsMissing\",\"message\":\"Query parameter modelFormat is required.\"}})\n'modelFormat' is not recognized as an internal or external command,\noperable program or batch file.\n'modelName' is not recognized as an internal or external command,\noperable program or batch file.\n'modelVersion' is not recognized as an internal or external command,\noperable program or batch file.\n"
+}

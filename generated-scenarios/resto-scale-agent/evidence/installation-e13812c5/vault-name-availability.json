@@ -1,0 +1,12 @@
+{
+  "command": "az rest --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --method post --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.KeyVault/checkNameAvailability?api-version=2024-11-01 --body @C:\\azd-projects\\resto-scale-agent\\evidence\\installation-e13812c5\\vault-name-request.json --headers Content-Type=application/json --output json",
+  "cwd": "C:\\azd-projects\\resto-scale-agent",
+  "startedAtUtc": "2026-10-24T17:32:49.528515+00:00",
+  "checkedAtUtc": "2026-10-24T17:32:52.057013+00:00",
+  "exitCode": 0,
+  "stdout": "{\n  \"nameAvailable\": true\n}\n",
+  "stderr": "",
+  "result": {
+    "nameAvailable": true
+  }
+}

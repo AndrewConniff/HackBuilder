@@ -1,0 +1,8 @@
+{
+  "command": "python generated-scenarios\\resto-scale-agent\\evidence\\centralus-91633e9e\\prepare.py collect",
+  "exitCode": 1,
+  "failure": "Regional locations response included non-UTF8 localized display names; subprocess UTF8 decoder failed at byte 0xe4, then output writer received None.",
+  "classification": "Local evidence collector encoding error, not Azure access denial or host permission.",
+  "retainedSuccessfulChecks": ["identity", "group-exists", "providers", "features", "cosmos-locations", "model-quota", "model-eligibility", "model-capacity", "foundry-skus", "aca-usage", "aca-profiles", "servicebus-skus", "network-usage"],
+  "correction": "Filter the same explicitly authorized subscription locations query to Central US in Azure CLI; resume only region-zones, policy and RBAC. No permissions, endpoint, identity, scope or execution method changed."
+}

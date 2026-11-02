@@ -1,0 +1,46 @@
+{
+  "command": "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/locations?api-version=2022-12-01 --output json --query value[?name=='westus2']",
+  "startedAtUtc": "2026-10-23T23:21:17.172608+00:00",
+  "checkedAtUtc": "2026-10-23T23:21:20.693212+00:00",
+  "exitCode": 0,
+  "stdout": "[\n  {\n    \"availabilityZoneMappings\": [\n      {\n        \"logicalZone\": \"1\",\n        \"physicalZone\": \"westus2-az2\"\n      },\n      {\n        \"logicalZone\": \"2\",\n        \"physicalZone\": \"westus2-az1\"\n      },\n      {\n        \"logicalZone\": \"3\",\n        \"physicalZone\": \"westus2-az3\"\n      }\n    ],\n    \"displayName\": \"West US 2\",\n    \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/locations/westus2\",\n    \"metadata\": {\n      \"geography\": \"United States\",\n      \"geographyGroup\": \"US\",\n      \"latitude\": \"47.233\",\n      \"longitude\": \"-119.852\",\n      \"pairedRegion\": [\n        {\n          \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/locations/westcentralus\",\n          \"name\": \"westcentralus\"\n        }\n      ],\n      \"physicalLocation\": \"Washington\",\n      \"regionCategory\": \"Recommended\",\n      \"regionType\": \"Physical\"\n    },\n    \"name\": \"westus2\",\n    \"regionalDisplayName\": \"(US) West US 2\",\n    \"type\": \"Region\"\n  }\n]\n",
+  "stderr": "",
+  "result": [
+    {
+      "availabilityZoneMappings": [
+        {
+          "logicalZone": "1",
+          "physicalZone": "westus2-az2"
+        },
+        {
+          "logicalZone": "2",
+          "physicalZone": "westus2-az1"
+        },
+        {
+          "logicalZone": "3",
+          "physicalZone": "westus2-az3"
+        }
+      ],
+      "displayName": "West US 2",
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/locations/westus2",
+      "metadata": {
+        "geography": "United States",
+        "geographyGroup": "US",
+        "latitude": "47.233",
+        "longitude": "-119.852",
+        "pairedRegion": [
+          {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/locations/westcentralus",
+            "name": "westcentralus"
+          }
+        ],
+        "physicalLocation": "Washington",
+        "regionCategory": "Recommended",
+        "regionType": "Physical"
+      },
+      "name": "westus2",
+      "regionalDisplayName": "(US) West US 2",
+      "type": "Region"
+    }
+  ]
+}

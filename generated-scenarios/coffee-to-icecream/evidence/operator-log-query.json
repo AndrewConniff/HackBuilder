@@ -1,0 +1,51 @@
+{
+  "tables": [
+    {
+      "columns": [
+        {
+          "name": "$table",
+          "type": "string"
+        },
+        {
+          "name": "Rows",
+          "type": "long"
+        }
+      ],
+      "name": "PrimaryResult",
+      "rows": [
+        [
+          "AzureDiagnostics",
+          148
+        ],
+        [
+          "AppServiceHTTPLogs",
+          332
+        ],
+        [
+          "AppServicePlatformLogs",
+          306
+        ],
+        [
+          "AppServiceAuditLogs",
+          1
+        ],
+        [
+          "StorageTableLogs",
+          626
+        ],
+        [
+          "AppServiceAppLogs",
+          641
+        ],
+        [
+          "AppServiceConsoleLogs",
+          3277
+        ],
+        [
+          "AzureMetrics",
+          108
+        ]
+      ]
+    }
+  ]
+}

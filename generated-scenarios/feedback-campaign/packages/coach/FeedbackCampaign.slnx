@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="src/FeedbackCampaign.Web/FeedbackCampaign.Web.csproj" />
+  <Project Path="tests/FeedbackCampaign.Tests.csproj" />
+</Solution>

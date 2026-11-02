@@ -1,0 +1,19 @@
+{
+  "runtimeLint": {
+    "command": "az bicep lint --file C:\\azd-projects\\resto-scale-agent\\infra\\runtime.bicep",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": "",
+    "evidence": "Executed in this resume, tool shell 21. Same command and host restrictions; no alternate route, installation, permission or PATH change.",
+    "priorFailure": "evidence\\centralus-189819a8\\local-runtime-lint.json retains exit 4294967295 with empty stdout/stderr. Cause is unestablished, not inferred to be a host denial or passing check."
+  },
+  "reusedLocalChecks": {
+    "evidence": "evidence\\centralus-189819a8\\local-checks.json",
+    "pythonTestsPassed": 15,
+    "applicationTestsPassed": 26,
+    "limitations": "Reused dated local results, not cloud installation, authentication, load or live agent acceptance."
+  },
+  "cloudOperationsThisResume": [],
+  "deploymentAuthorized": false,
+  "directoryWritesAuthorized": false
+}

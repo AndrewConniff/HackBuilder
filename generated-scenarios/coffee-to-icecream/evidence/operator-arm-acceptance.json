@@ -1,0 +1,29 @@
+{
+  "checkedAtUtc": "2026-10-30T04:21:00.274473+00:00",
+  "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+  "status": "passed",
+  "checks": [
+    {
+      "operation": "App control-plane tag create/read/update",
+      "status": "passed"
+    },
+    {
+      "operation": "App probe-tag cleanup preserving other tags",
+      "status": "passed"
+    },
+    {
+      "operation": "Log Analytics saved-search create/read/update",
+      "status": "passed",
+      "apiVersion": "2025-07-01"
+    },
+    {
+      "operation": "Log Analytics disposable saved-search deletion",
+      "status": "passed"
+    },
+    {
+      "operation": "Own-user query of real diagnostic tables",
+      "status": "passed",
+      "observedRows": 5439
+    }
+  ]
+}

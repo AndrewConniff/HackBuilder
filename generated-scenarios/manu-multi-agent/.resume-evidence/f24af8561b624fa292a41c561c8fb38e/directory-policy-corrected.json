@@ -1,0 +1,13 @@
+{
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#policies/authorizationPolicy(defaultUserRolePermissions)/$entity",
+  "defaultUserRolePermissions": {
+    "allowedToCreateApps": true,
+    "allowedToCreateSecurityGroups": true,
+    "allowedToCreateTenants": false,
+    "allowedToReadBitlockerKeysForOwnedDevice": true,
+    "allowedToReadOtherUsers": true,
+    "permissionGrantPoliciesAssigned": [
+      "ManagePermissionGrantsForSelf.microsoft-user-default-low"
+    ]
+  }
+}

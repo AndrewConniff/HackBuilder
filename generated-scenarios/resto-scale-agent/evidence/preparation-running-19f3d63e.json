@@ -1,0 +1,20 @@
+{
+  "stage": "deployment",
+  "operation": "deployment-preparation",
+  "status": "running",
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "resto-scale-agent",
+    "resourceGroup": "rg-resto-scale-agent",
+    "region": "eastus2"
+  },
+  "summary": "Continue saved recovery preparation only: correct the Basic ACR network-rule parameter, preserve East US 2 and zone redundancy, refresh read-only what-if/cost and retain capacity limitations. No deployment retry or resource mutation.",
+  "evidence": [
+    "Read all canonical decisions/history and scopes at revision 157; exact-scope read-only preparation authorization 7d18da3b02774120a79615b426323ea6 is retained.",
+    "Backend owner-bound readiness receipt 2026-10-23T22:16:02.518903+00:00: ready true, blockedStages empty; reused without another startup audit.",
+    "Retained AVM registry 0.13.1 source: default Deny plus publicNetworkAccess Enabled configures a Premium-only networkRuleSet even with no IP rules; explicit Allow with null IP rules omits it.",
+    "Historical Cosmos capacity failure and absent target group are not current capacity proof or permission to reuse the stopped deployment grant."
+  ]
+}

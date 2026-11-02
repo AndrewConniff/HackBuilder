@@ -1,0 +1,40 @@
+{
+  "command": "az role assignment list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --assignee-object-id 214d672b-df87-4f3b-94fd-7863032546c1 --scope /subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76 --include-inherited --output json",
+  "startedAtUtc": "2026-10-23T23:38:40.309372+00:00",
+  "checkedAtUtc": "2026-10-23T23:38:47.389207+00:00",
+  "exitCode": 0,
+  "stdout": "[\n  {\n    \"createdBy\": \"\",\n    \"createdOn\": \"2026-06-16T21:15:43.320130+00:00\",\n    \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleAssignments/fc6c43d4-f39c-4d44-aba9-d1c5e9688535\",\n    \"name\": \"fc6c43d4-f39c-4d44-aba9-d1c5e9688535\",\n    \"principalId\": \"214d672b-df87-4f3b-94fd-7863032546c1\",\n    \"principalName\": \"petender_microsoft.com#EXT#@fdpo.onmicrosoft.com\",\n    \"principalType\": \"User\",\n    \"roleDefinitionId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635\",\n    \"roleDefinitionName\": \"Owner\",\n    \"scope\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76\",\n    \"type\": \"Microsoft.Authorization/roleAssignments\",\n    \"updatedBy\": \"\",\n    \"updatedOn\": \"2026-06-16T21:15:43.320130+00:00\"\n  },\n  {\n    \"createdBy\": \"214d672b-df87-4f3b-94fd-7863032546c1\",\n    \"createdOn\": \"2026-07-08T23:39:56.766808+00:00\",\n    \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleAssignments/9b7d9f1f-2fb6-4a77-8f6c-01cfd35593ca\",\n    \"name\": \"9b7d9f1f-2fb6-4a77-8f6c-01cfd35593ca\",\n    \"principalId\": \"214d672b-df87-4f3b-94fd-7863032546c1\",\n    \"principalName\": \"petender_microsoft.com#EXT#@fdpo.onmicrosoft.com\",\n    \"principalType\": \"User\",\n    \"roleDefinitionId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/53ca6127-db72-4b80-b1b0-d745d6d5456d\",\n    \"roleDefinitionName\": \"Foundry User\",\n    \"scope\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76\",\n    \"type\": \"Microsoft.Authorization/roleAssignments\",\n    \"updatedBy\": \"214d672b-df87-4f3b-94fd-7863032546c1\",\n    \"updatedOn\": \"2026-07-08T23:39:56.766808+00:00\"\n  }\n]\n",
+  "stderr": "",
+  "result": [
+    {
+      "createdBy": "",
+      "createdOn": "2026-06-16T21:15:43.320130+00:00",
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleAssignments/fc6c43d4-f39c-4d44-aba9-d1c5e9688535",
+      "name": "fc6c43d4-f39c-4d44-aba9-d1c5e9688535",
+      "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+      "principalName": "petender_microsoft.com#EXT#@fdpo.onmicrosoft.com",
+      "principalType": "User",
+      "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635",
+      "roleDefinitionName": "Owner",
+      "scope": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76",
+      "type": "Microsoft.Authorization/roleAssignments",
+      "updatedBy": "",
+      "updatedOn": "2026-06-16T21:15:43.320130+00:00"
+    },
+    {
+      "createdBy": "214d672b-df87-4f3b-94fd-7863032546c1",
+      "createdOn": "2026-07-08T23:39:56.766808+00:00",
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleAssignments/9b7d9f1f-2fb6-4a77-8f6c-01cfd35593ca",
+      "name": "9b7d9f1f-2fb6-4a77-8f6c-01cfd35593ca",
+      "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+      "principalName": "petender_microsoft.com#EXT#@fdpo.onmicrosoft.com",
+      "principalType": "User",
+      "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/53ca6127-db72-4b80-b1b0-d745d6d5456d",
+      "roleDefinitionName": "Foundry User",
+      "scope": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76",
+      "type": "Microsoft.Authorization/roleAssignments",
+      "updatedBy": "214d672b-df87-4f3b-94fd-7863032546c1",
+      "updatedOn": "2026-07-08T23:39:56.766808+00:00"
+    }
+  ]
+}

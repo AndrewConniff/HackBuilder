@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "responseAt": "2026-10-24T16:26:14.281-07:00",
+  "userResponse": "approved deployment",
+  "additionalUserInstructions": [
+    "petender as area manager confirmed",
+    "Create local dummy accounts storeman001 and storeman002 using the user-supplied password.",
+    "Do not use Entra ID user authentication."
+  ],
+  "credentialHandling": "The supplied password is deliberately omitted. Installation uses process environment; only salted password hashes are stored in Table Storage.",
+  "scope": {
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "coffee-shop-ref",
+    "resourceGroup": "rg-coffee-shop-ref",
+    "region": "swedencentral",
+    "userAuthentication": "Application-local passwords and protected cookies; no directory writes",
+    "backendAuthentication": "System-assigned managed identity"
+  },
+  "suitabilityApproved": false,
+  "eventDeploymentAuthorized": false
+}

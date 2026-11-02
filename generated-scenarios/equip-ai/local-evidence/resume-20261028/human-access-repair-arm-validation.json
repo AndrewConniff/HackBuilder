@@ -1,0 +1,234 @@
+{
+  "error": null,
+  "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/human-access-repair",
+  "name": "human-access-repair",
+  "properties": {
+    "correlationId": "cf41309a-653d-401f-84ab-8d6c5abb62d2",
+    "debugSetting": null,
+    "dependencies": [
+      {
+        "dependsOn": [
+          {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/networkSecurityGroups/nsg-equip-management-equip-ai/securityRules/deny-all-inbound",
+            "resourceGroup": "rg-equip-ai",
+            "resourceName": "nsg-equip-management-equip-ai/deny-all-inbound",
+            "resourceType": "Microsoft.Network/networkSecurityGroups/securityRules"
+          }
+        ],
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/networkSecurityGroups/nsg-equip-management-equip-ai/securityRules/allow-bastion-rdp",
+        "resourceGroup": "rg-equip-ai",
+        "resourceName": "nsg-equip-management-equip-ai/allow-bastion-rdp",
+        "resourceType": "Microsoft.Network/networkSecurityGroups/securityRules"
+      },
+      {
+        "dependsOn": [
+          {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/networkSecurityGroups/nsg-equip-management-equip-ai/securityRules/allow-bastion-rdp",
+            "resourceGroup": "rg-equip-ai",
+            "resourceName": "nsg-equip-management-equip-ai/allow-bastion-rdp",
+            "resourceType": "Microsoft.Network/networkSecurityGroups/securityRules"
+          },
+          {
+            "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/virtualNetworks/vnet-equip-equip-ai/subnets/AzureBastionSubnet",
+            "resourceGroup": "rg-equip-ai",
+            "resourceName": "vnet-equip-equip-ai/AzureBastionSubnet",
+            "resourceType": "Microsoft.Network/virtualNetworks/subnets"
+          }
+        ],
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/human-management-access",
+        "resourceGroup": "rg-equip-ai",
+        "resourceName": "human-management-access",
+        "resourceType": "Microsoft.Resources/deployments"
+      }
+    ],
+    "diagnostics": null,
+    "duration": "PT0S",
+    "error": null,
+    "extensions": [],
+    "mode": "Incremental",
+    "onErrorDeployment": null,
+    "outputResources": null,
+    "outputs": null,
+    "parameters": {
+      "environment": {
+        "type": "String",
+        "value": "equip-ai"
+      },
+      "location": {
+        "type": "String",
+        "value": "centralus"
+      },
+      "principalId": {
+        "type": "String",
+        "value": "214d672b-df87-4f3b-94fd-7863032546c1"
+      }
+    },
+    "parametersLink": null,
+    "providers": [
+      {
+        "id": null,
+        "namespace": "Microsoft.Network",
+        "providerAuthorizationConsentState": null,
+        "registrationPolicy": null,
+        "registrationState": null,
+        "resourceTypes": [
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locationMappings": null,
+            "locations": [
+              null
+            ],
+            "properties": null,
+            "resourceType": "virtualNetworks/subnets",
+            "zoneMappings": null
+          },
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locationMappings": null,
+            "locations": [
+              null
+            ],
+            "properties": null,
+            "resourceType": "networkSecurityGroups/securityRules",
+            "zoneMappings": null
+          }
+        ]
+      },
+      {
+        "id": null,
+        "namespace": "Microsoft.Authorization",
+        "providerAuthorizationConsentState": null,
+        "registrationPolicy": null,
+        "registrationState": null,
+        "resourceTypes": [
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locationMappings": null,
+            "locations": [
+              null
+            ],
+            "properties": null,
+            "resourceType": "roleAssignments",
+            "zoneMappings": null
+          }
+        ]
+      },
+      {
+        "id": null,
+        "namespace": "Microsoft.Resources",
+        "providerAuthorizationConsentState": null,
+        "registrationPolicy": null,
+        "registrationState": null,
+        "resourceTypes": [
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locationMappings": null,
+            "locations": [
+              null
+            ],
+            "properties": null,
+            "resourceType": "deployments",
+            "zoneMappings": null
+          }
+        ]
+      }
+    ],
+    "provisioningState": "Succeeded",
+    "templateHash": "2258463719288703474",
+    "templateLink": null,
+    "timestamp": "2026-10-28T15:32:18.861554+00:00",
+    "validatedResources": [
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Devices/IotHubs/iot-equip-equipai-kex72v/providers/Microsoft.Authorization/roleAssignments/c3773f9d-68e0-503c-ac84-ea2590d00893",
+        "identifiers": null,
+        "resourceGroup": "rg-equip-ai",
+        "resourceType": null
+      },
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/bastionHosts/bas-equip-equip-ai",
+        "identifiers": null,
+        "resourceGroup": "rg-equip-ai",
+        "resourceType": null
+      },
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/networkSecurityGroups/nsg-equip-management-equip-ai/securityRules/allow-bastion-rdp",
+        "identifiers": null,
+        "resourceGroup": "rg-equip-ai",
+        "resourceType": null
+      },
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/networkSecurityGroups/nsg-equip-management-equip-ai/securityRules/deny-all-inbound",
+        "identifiers": null,
+        "resourceGroup": "rg-equip-ai",
+        "resourceType": null
+      },
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/publicIPAddresses/pip-equip-bastion-equip-ai",
+        "identifiers": null,
+        "resourceGroup": "rg-equip-ai",
+        "resourceType": null
+      },
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Network/virtualNetworks/vnet-equip-equip-ai/subnets/AzureBastionSubnet",
+        "identifiers": null,
+        "resourceGroup": "rg-equip-ai",
+        "resourceType": null
+      },
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/human-access-bastion",
+        "identifiers": null,
+        "resourceGroup": "rg-equip-ai",
+        "resourceType": null
+      },
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/human-access-public-ip",
+        "identifiers": null,
+        "resourceGroup": "rg-equip-ai",
+        "resourceType": null
+      },
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-equip-ai/providers/Microsoft.Resources/deployments/human-management-access",
+        "identifiers": null,
+        "resourceGroup": "rg-equip-ai",
+        "resourceType": null
+      }
+    ],
+    "validationLevel": null
+  },
+  "resourceGroup": "rg-equip-ai",
+  "type": "Microsoft.Resources/deployments"
+}

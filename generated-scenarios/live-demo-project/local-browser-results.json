@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "evidenceType": "local-browser-not-Azure-runtime",
+  "checks": [
+    "anonymous redirected to local sign-in",
+    "participant sign-in and customer workflow",
+    "participant cannot access representative desk",
+    "missing Foundry configuration returns visible 503, not mock success",
+    "explicit takeover and customer human-queue message",
+    "human claims, replies and customer reads durable response",
+    "390px layout has no horizontal overflow",
+    "missing CSRF token denied",
+    "logout removes customer browser access"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "phase": "hack-authoring",
+  "scenarioStatus": "ready-for-review",
+  "referenceFingerprint": "e12f4f1e1f52c8dc570a9fa5cf6f95d08d775266b59a800c675a50178cc09bf4",
+  "reviewRequestedAtUtc": "2026-10-25T18:38:22.694213+00:00",
+  "approval": {
+    "decision": "approved",
+    "message": "Approve this working reference. tested the app, validated with different users, and confirmed messages in servicebus queue. ok to proceed to hack",
+    "recordedAtUtc": "2026-10-25T18:56:06.603600+00:00",
+    "referenceFingerprint": "e12f4f1e1f52c8dc570a9fa5cf6f95d08d775266b59a800c675a50178cc09bf4"
+  },
+  "evidenceType": "runtime-validation"
+}

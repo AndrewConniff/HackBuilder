@@ -1,0 +1,23 @@
+{
+  "command": [
+    "az",
+    "deployment",
+    "group",
+    "what-if",
+    "--resource-group",
+    "rg-equip-ai",
+    "--template-file",
+    "C:\\azd-projects\\equip-ai\\local-evidence\\resume-20261026\\main-recovery.json",
+    "--parameters",
+    "@C:\\azd-projects\\equip-ai\\local-evidence\\resume-20261026\\readiness\\recovery-parameters.json",
+    "--no-pretty-print",
+    "--subscription",
+    "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "--output",
+    "json"
+  ],
+  "startedAtUtc": "2026-10-26T00:51:13.081645+00:00",
+  "finishedAtUtc": "2026-10-26T00:51:34.503328+00:00",
+  "exitCode": 0,
+  "stderr": ""
+}

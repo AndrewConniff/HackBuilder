@@ -1,0 +1,205 @@
+{
+  "checkedAtUtc": "2026-10-24T23:36:27.480210+00:00",
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "equip-ai",
+    "resourceGroup": "rg-equip-ai",
+    "region": "centralus"
+  },
+  "sku": "Standard_B2s",
+  "restrictions": [
+    {
+      "reasonCode": "NotAvailableForSubscription",
+      "restrictionInfo": {
+        "locations": [
+          "centralus"
+        ]
+      },
+      "type": "Location",
+      "values": [
+        "centralus"
+      ]
+    },
+    {
+      "reasonCode": "NotAvailableForSubscription",
+      "restrictionInfo": {
+        "locations": [
+          "centralus"
+        ],
+        "zones": [
+          "1",
+          "2",
+          "3"
+        ]
+      },
+      "type": "Zone",
+      "values": [
+        "centralus"
+      ]
+    }
+  ],
+  "capabilities": {
+    "MaxResourceVolumeMB": "8192",
+    "OSVhdSizeMB": "1047552",
+    "vCPUs": "2",
+    "MemoryPreservingMaintenanceSupported": "True",
+    "HyperVGenerations": "V1,V2",
+    "SupportedCapacityReservationTypes": "Open,Targeted",
+    "SupportedEphemeralOSDiskPlacements": "ResourceDisk,CacheDisk",
+    "MemoryGB": "4",
+    "MaxDataDiskCount": "4",
+    "CpuArchitectureType": "x64",
+    "LowPriorityCapable": "False",
+    "PremiumIO": "True",
+    "VMDeploymentTypes": "IaaS",
+    "vCPUsConstraintsAllowed": "1, 2",
+    "vCPUsAvailable": "2",
+    "vCPUsPerCore": "1",
+    "CombinedTempDiskAndCachedIOPS": "1600",
+    "CombinedTempDiskAndCachedReadBytesPerSecond": "22528000",
+    "CombinedTempDiskAndCachedWriteBytesPerSecond": "22528000",
+    "CachedDiskBytes": "32212254720",
+    "UncachedDiskIOPS": "1280",
+    "UncachedDiskBytesPerSecond": "22500000",
+    "RetirementDateUtc": "11/15/2028",
+    "EphemeralOSDiskSupported": "True",
+    "EncryptionAtHostSupported": "True",
+    "CapacityReservationSupported": "False",
+    "AcceleratedNetworkingEnabled": "False",
+    "RdmaEnabled": "False",
+    "MaxNetworkInterfaces": "3"
+  },
+  "quotas": [
+    {
+      "name": "standardBSFamily",
+      "currentValue": 0,
+      "limit": 100,
+      "required": 2,
+      "passed": true
+    },
+    {
+      "name": "cores",
+      "currentValue": 0,
+      "limit": 100,
+      "required": 2,
+      "passed": true
+    },
+    {
+      "name": "virtualMachines",
+      "currentValue": 0,
+      "limit": 25000,
+      "required": 1,
+      "passed": true
+    }
+  ],
+  "image": {
+    "architecture": "x64",
+    "automaticOSUpgradeProperties": {
+      "automaticOSUpgradeSupported": false
+    },
+    "dataDiskImages": [],
+    "disallowed": {
+      "vmDiskType": "Unmanaged"
+    },
+    "features": [
+      {
+        "name": "SecurityType",
+        "value": "TrustedLaunchSupported"
+      },
+      {
+        "name": "IsAcceleratedNetworkSupported",
+        "value": "True"
+      },
+      {
+        "name": "DiskControllerTypes",
+        "value": "SCSI, NVMe"
+      },
+      {
+        "name": "IsHibernateSupported",
+        "value": "True"
+      }
+    ],
+    "hyperVGeneration": "V2",
+    "id": "/Subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/Providers/Microsoft.Compute/Locations/centralus/Publishers/Canonical/ArtifactTypes/VMImage/Offers/ubuntu-24_04-lts/Skus/server/Versions/24.04.202610210",
+    "imageDeprecationStatus": {
+      "imageState": "Active"
+    },
+    "location": "centralus",
+    "name": "24.04.202610210",
+    "osDiskImage": {
+      "operatingSystem": "Linux"
+    }
+  },
+  "computeProvider": "Registered",
+  "networkQuotas": [
+    {
+      "currentValue": "1",
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/VirtualNetworks",
+      "limit": "1000",
+      "localName": "Virtual Networks",
+      "name": {
+        "localizedValue": "Virtual Networks",
+        "value": "VirtualNetworks"
+      },
+      "unit": "Count",
+      "required": 1,
+      "passed": true
+    },
+    {
+      "currentValue": "1",
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/PublicIPAddresses",
+      "limit": "1000",
+      "localName": "Public IP Addresses",
+      "name": {
+        "localizedValue": "Public IP Addresses",
+        "value": "PublicIPAddresses"
+      },
+      "unit": "Count",
+      "required": 1,
+      "passed": true
+    },
+    {
+      "currentValue": "1",
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/NetworkSecurityGroups",
+      "limit": "5000",
+      "localName": "Network Security Groups",
+      "name": {
+        "localizedValue": "Network Security Groups",
+        "value": "NetworkSecurityGroups"
+      },
+      "unit": "Count",
+      "required": 1,
+      "passed": true
+    },
+    {
+      "currentValue": "0",
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/NatGateways",
+      "limit": "500",
+      "localName": "Nat Gateways",
+      "name": {
+        "localizedValue": "Nat Gateways",
+        "value": "NatGateways"
+      },
+      "unit": "Count",
+      "required": 1,
+      "passed": true
+    },
+    {
+      "currentValue": "0",
+      "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Network/locations/centralus/usages/NetworkInterfaces",
+      "limit": "65536",
+      "localName": "Network Interfaces",
+      "name": {
+        "localizedValue": "Network Interfaces",
+        "value": "NetworkInterfaces"
+      },
+      "unit": "Count",
+      "required": 1,
+      "passed": true
+    }
+  ],
+  "allocationReserved": false,
+  "passed": false
+}

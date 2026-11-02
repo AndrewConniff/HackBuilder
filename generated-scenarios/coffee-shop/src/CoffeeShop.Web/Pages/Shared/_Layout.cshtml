@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] · Fourth Coffee</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <nav><a href="/">Fourth Coffee</a><span>Store readiness / Daily close</span></nav>
+    <main>@RenderBody()</main>
+    <footer>Fourth Coffee · Hospitality &amp; Travel · Sales reference · Not production accounting</footer>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

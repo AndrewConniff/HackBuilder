@@ -1,0 +1,6 @@
+**/bin
+**/obj
+.azure
+artifacts
+.git
+tests

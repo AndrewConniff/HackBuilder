@@ -57,7 +57,7 @@ The shared checklist includes Python, repository `.venv`, all packages in `requi
 Git, PowerShell 7+, .NET 10 SDK, Graphviz, Azure CLI, azd and Azure CLI Bicep.
 VS Code with GitHub Copilot and the `code` launcher handles agent conversations;
 the retired portal runner's Copilot CLI and Python Playwright/Chromium dependencies are not required.
-Node.js/GitHub CLI are included by default in the complete automated system-tools bundle.
+Node.js/GitHub CLI are included by default in the complete automated system-tools profile.
 The raw checker/portal retain their narrower runtime profile; contributor checks are an additional setup check.
 
 | Stage | Tool gate |
@@ -208,7 +208,7 @@ There is no additional portal approval queue. Reuse matching saved identity and 
 Use the [HOWTO's manual inventory and official download links](
 FBC-Builder-HOWTO.md#manual-tool-inventory-and-official-downloads) if automated setup is not permitted.
 Otherwise run the [full System-profile installer](system-tools/README.md) from the repository root.
-The default downloads every pinned native tool. Use explicit Check mode for read-only diagnostics:
+The default is read-only diagnostics. Explicit Check mode is also available:
 
 ```powershell
 .\system-tools\Install-SystemTools.ps1 -Mode Check
@@ -220,43 +220,33 @@ Preview changes without installing packages, creating an environment or updating
 .\system-tools\Install-SystemTools.ps1 -Install -WhatIf
 ```
 
-Download everything without installing, or add `-Install` for a single download-and-install flow
+Download and install missing tools online with explicit `-Install`
 after finishing work and closing the portal:
 
 ```powershell
-.\system-tools\Install-SystemTools.ps1 -AcceptPackageAgreements -Verbose
 .\system-tools\Install-SystemTools.ps1 -Install -AcceptPackageAgreements -AcceptDockerLicense -Verbose
 ```
 
 This entry point reuses [`scripts/Install-Prerequisites.ps1`](scripts/Install-Prerequisites.ps1),
 selecting the complete System profile plus Node.js/GitHub CLI and a VS Code 1.143+ launcher check.
 Every native tool is included by default. Use `-SkipVSCode` for a separately managed editor.
-[`tool-catalog.json`](system-tools/tool-catalog.json) pins versions, official URLs and SHA256,
-including Azure CLI Bicep. Every native cache entry must verify before installation begins.
-Clean machines receive pinned native versions; existing compatible tools are not forcibly reinstalled or downgraded.
+Install Microsoft App Installer through your approved software channel first if WinGet is unavailable.
+Native tools download through WinGet, Bicep through `az bicep install`, and Python dependencies through pip.
+WinGet selects available releases; existing compatible tools are not forcibly reinstalled or downgraded.
 New Docker installation additionally requires separate `-AcceptDockerLicense` consent,
 working WSL 2.1.5+ and virtualization. Without consent it remains a manual action.
 Installed-but-stopped Docker requires manual engine repair/start, not reinstallation.
 No automatic WSL configuration, Docker startup, sign-in or reboot occurs.
 Vendor installers may request administrator approval; the script never relaunches itself elevated.
 
-To install exclusively from an already complete cache without additional native downloads:
+**Internet access is required; no offline installers are bundled or reused.**
+Offline/download-only modes and cache parameters have been removed.
+Legacy `system-tools\cache` folders remain on disk but are ignored and unused.
+JSON outcomes remain local under ignored `system-tools\reports`.
+Scenario `.packages` restore folders are also ignored; restore dependencies instead of committing vendor binaries.
+For unsupported WinGet hosts or genuinely offline setup, use your organization's approved software channel.
 
-```powershell
-.\system-tools\Install-SystemTools.ps1 -Install -UseCachedInstallers -AcceptPackageAgreements -Verbose
-```
-
-Add `-AcceptDockerLicense` to the install command if needed.
-**This is an offline native-installer cache, not a fully offline prerequisite bundle.**
-Python requirements still need connectivity when missing; their minimum versions are not a complete package lock.
-Vendor dependencies, WSL images, extensions and app NuGet packages are not included.
-The automated baseline is Windows x64 only; ARM64 hosts can download it but need manual native tools to install.
-Downloads use pinned official URLs directly, without WinGet.
-Downloads and JSON outcomes remain local under ignored `system-tools\cache` and `system-tools\reports`.
-Hash/signature checks protect reuse; preserve trusted receipts.
-Do not redistribute vendor binaries without permission.
-
-For intentionally narrower core checks, the legacy entry point remains available:
+For intentionally narrower core checks, the underlying entry point remains available:
 
 ```powershell
 .\scripts\Install-Prerequisites.ps1 -CheckOnly
@@ -274,8 +264,7 @@ Existing servers are reused without changing their interpreter or environment.
 
 If PowerShell blocks the script, follow your organization's script-signing/approval procedure.
 Setup does not change execution policy. If Python is missing, check-only explains the bootstrap requirement.
-The system-tools flow downloads the complete native baseline before bootstrapping Python from its cache.
-The legacy installer's online mode uses WinGet; its missing-Python dry run lists that first step only.
+Installation can bootstrap missing Python through WinGet; a missing-Python dry run lists that first step only.
 
 ## Dependency inventory
 

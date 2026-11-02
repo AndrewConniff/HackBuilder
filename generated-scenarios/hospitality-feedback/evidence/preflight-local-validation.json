@@ -1,0 +1,14 @@
+[
+  {
+    "command": "az bicep build --file infra/main.bicep",
+    "checkedAtUtc": "2026-10-22T18:28:27.3955114Z",
+    "exitCode": 0,
+    "output": ""
+  },
+  {
+    "command": "az bicep lint --file infra/main.bicep",
+    "checkedAtUtc": "2026-10-22T18:28:33.9209315Z",
+    "exitCode": 0,
+    "output": "\r\n"
+  }
+]

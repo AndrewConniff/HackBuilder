@@ -1,0 +1,25 @@
+{
+  "query": "AzureMetrics | where TimeGenerated > ago(2h) | where ResourceId contains \"/accounts/ic-coffee-to-i-gyhmp4vg\" | summarize ObservedTotal=sum(Total), MetricRows=count() by MetricName | take 40",
+  "result": {
+    "tables": [
+      {
+        "columns": [
+          {
+            "name": "MetricName",
+            "type": "string"
+          },
+          {
+            "name": "ObservedTotal",
+            "type": "real"
+          },
+          {
+            "name": "MetricRows",
+            "type": "long"
+          }
+        ],
+        "name": "PrimaryResult",
+        "rows": []
+      }
+    ]
+  }
+}

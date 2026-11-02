@@ -1,0 +1,10 @@
+{
+  "stage": "application",
+  "status": "completed",
+  "summary": "Existing business application, three agent definitions, fixtures and installers revalidated locally; no business content regenerated or runtime success inferred.",
+  "evidence": [
+    ".resume-evidence\\d759fcc15c504c529009a19ae5ba0e13\\application\\validation.json: actual locked proxy restore, .NET build, tests, publish, Bicep compilation/lint and offline UI all exit 0.",
+    "Application test log: 35 passed, zero failed/skipped. Chromium: eight desktop/mobile success, empty, dependency-error and handoff-error cases passed with explicitly intercepted offline APIs.",
+    "Published seed files and icon license present; no test assemblies published; related documentation line limits pass. Production application, seed JSON and prompt-agent definitions remain unchanged."
+  ]
+}

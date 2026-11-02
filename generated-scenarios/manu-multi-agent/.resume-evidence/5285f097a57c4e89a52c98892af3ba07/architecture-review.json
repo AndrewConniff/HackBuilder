@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "projectSlug": "manu-multi-agent",
+  "reviewType": "local-resumption-design-review",
+  "status": "design-confirmation-required",
+  "preservedReference": {
+    "industry": "Manufacturing & Mobility",
+    "businessUnits": ["sales", "marketing"],
+    "company": "Adventure Works Cycles",
+    "primaryPattern": "02 Sequential / Pipeline",
+    "supportingBehavior": "Typed cross-unit handoff and mandatory human review; no autonomous transfer, publication or order execution.",
+    "simplerAlternative": "A single bounded agent would reduce orchestration but would not satisfy the explicit three independently versioned agent/provenance requirement.",
+    "runtime": "Application-controlled Sales Fit -> Marketing Claims -> Handoff Coordinator. Each agent receives its own allowlisted tools and minimized context; deterministic validation precedes signing.",
+    "boundaries": "Anonymous synthetic public APIM; managed-identity-authenticated private ACA; private Standard Foundry direct child project; separate private platform/business data; nonexportable signing key; private ACR; redacted telemetry.",
+    "budgets": "90-second deadline, seven Responses calls, 30000 cumulative tokens, 800 output tokens per response, four concurrent handoffs per replica, 4000 input characters.",
+    "failureEvidenceRequired": "Unknown product, unsupported guarantee, missing needs, leaked fields, invalid tools/output, specialist timeout, signature tampering, identity denial and private-network denial must fail without a completed packet."
+  },
+  "identityInstallationReview": {
+    "existingAutomation": "scripts\\Initialize-BackendIdentity.ps1 and tools\\MobilityCommercial.Installer",
+    "plannedDirectoryWrites": "Create or validate one dedicated scenario-owned single-tenant application and service principal; set unique api:// audience and token version 2. Existing installer requests no client secret, Graph permissions, admin consent or elevated directory roles.",
+    "authorization": "No directory operations authorized or executed. Actual tenant policy and effective installer permissions require separately authorized preparation.",
+    "generatedOutputs": "Client/application/service-principal IDs, installed agent IDs/versions, key version, image digest and fixture manifest digest are installation outputs, never a business ID questionnaire.",
+    "dependentChecks": "Exact workload what-if and live token/agent tests may depend on installation outputs; do independent read-only preparation first, disclose pending dependent checks and never invent IDs."
+  },
+  "managementAccessReview": {
+    "observation": "Current files require a private-network-capable installer but identify no verified execution host or connectivity receipt. No private access is inferred from local tooling, portal access or resource definitions.",
+    "preferredConstrainedRoute": "Run existing azd, image push, fixture/agent installation and private runtime checks on a verified existing VNet-connected operator/automation host. Its authorized route must reach the scenario private endpoints and resolve linked private DNS; the local portal worker is not assumed connected.",
+    "artifactAndResultFlow": "Transfer the exact hash-verified scenario bundle through the execution host's approved artifact channel; use its authorized identity for installation, retain nonsecret output receipts and return redacted validation logs to this workspace. Do not transfer CLI credentials or tokens.",
+    "acceptance": "From the actual execution host verify private DNS, TCP/TLS and authenticated ACR, Blob, Foundry and Key Vault operations; test expected outside-network and unauthorized denial separately after provisioning.",
+    "ifUnavailable": "Before deployment, present one consolidated repair covering a concrete connected runner or private management host, bootstrap, DNS, identity, quota, lifecycle and costs. No VM, Bastion, VPN, runner, peering or public firewall exception is included or authorized by this local checkpoint.",
+    "rejectedShortcut": "A public-IP allowlist cannot reach disabled public data planes and will not replace private connectivity."
+  },
+  "deploymentOrderingReview": {
+    "observation": "azure.yaml defines the real application service but contains no lifecycle hooks. Existing documentation describes foundation, installation and workload ordering rather than an executable end-to-end azd lifecycle.",
+    "localWorkAfterConfirmation": "Preserve existing files and installation helpers; validate them, then wire idempotent azd lifecycle ordering and automatic output capture locally. Do not create successive user-facing technical approval stages.",
+    "singleFutureReview": "Cover the complete reference, resource group, private foundation, image delivery, identity writes, fixtures, agents, key, workload, gateway, runtime acceptance and execution access in one exact-target review after authorized preparation.",
+    "authorization": "No azd environment initialized, image published, Azure query, directory call, what-if or deployment executed."
+  },
+  "costReview": {
+    "quoteStatus": "No current target-specific monetary quote. Retained public evidence explicitly says reliable regional unit prices were not obtained.",
+    "inventory": "730-hour baseline: APIM Standard v2 one unit, Search Standard one unit, ACR Premium, actual Cosmos provisioned throughput within the existing up-to-5000-RU/s planning envelope, warm ACA 0.5-vCPU/1-GiB replica with scale to three, private endpoints/DNS, two Blob accounts, signing, bounded logs and model tokens.",
+    "usageEnvelope": "100 handoffs: at most 700 Responses requests and 3000000 combined input/output tokens under existing limits; price input and output separately using actual target rates.",
+    "managementCost": "Existing connected-host allocation, artifact transfer, network and operational charges must be included even if no new host is provisioned. Any new management resources require a consolidated priced design/scope repair first.",
+    "nextEvidence": "Produce a dated itemized estimate and actual independent what-if during separately authorized preparation; disclose identity-dependent checks. A formula or historical resource presence is not a cost quote or deployment consent."
+  },
+  "evidenceLimits": [
+    "The intake receipt contains 34 passing checks. The initial requirements portal event incorrectly said 35; the source event file is corrected and the actual receipt is authoritative.",
+    "2026-10-22/23 public region/model, SDK and module evidence reused for unchanged provisional choices only.",
+    "No selected subscription, tenant, deployment region, actual capacity, runtime endpoint or live success inferred.",
+    "Existing requirements/architecture/README contain different historical checkpoint wording; source documents were preserved unchanged.",
+    "No diagrams, infrastructure, application, Docker or runtime validation rerun before current design confirmation.",
+    "No suitability snapshot, approval, composition, event deployment or publication performed."
+  ]
+}

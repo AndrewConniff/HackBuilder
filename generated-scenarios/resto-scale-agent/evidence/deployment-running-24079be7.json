@@ -1,0 +1,11 @@
+{
+  "stage": "deployment",
+  "status": "running",
+  "summary": "Reconciling the interrupted shared-infrastructure deployment using persisted authorization and failure evidence. The retained ARM result is Failed, with Cosmos East US 2 zonal capacity unavailable and Basic registry NetworkRuleNotSupported. Read-only reconciliation only; no redeployment, design substitution, cleanup or runtime operation.",
+  "evidence": [
+    "Canonical state revision 142: writer 24079be747de4ded9fff6d1fd6594e2d; assigned operation deployment; deployment decision cd856cdaeeb94dd6b6b4071e49734056 authorizes shared infrastructure only and requires stopping on new capacity/provider failures.",
+    "Backend-owned readiness checkedAtUtc 2026-10-23T14:38:51.110416-07:00: ready true, all blockedStages empty; reused without repeating the full audit.",
+    "evidence\\deployment-final-8608c198.json: reference-shared-8608c198 provisioningState Failed at 2026-10-23T18:59:00.786943+00:00.",
+    "evidence\\deployment-operations-final-8608c198.json: Cosmos ServiceUnavailable for East US 2 availability-zone capacity; registry NetworkRuleNotSupported for Basic SKU."
+  ]
+}

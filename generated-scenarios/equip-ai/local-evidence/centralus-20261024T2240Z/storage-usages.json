@@ -1,0 +1,13 @@
+{
+  "value": [
+    {
+      "currentValue": 0,
+      "limit": 250,
+      "name": {
+        "localizedValue": "Storage Accounts",
+        "value": "StorageAccounts"
+      },
+      "unit": "Count"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "revision": 180,
+  "deploymentPreparation": {
+    "status": "failed",
+    "summary": "West US 2 preparation failed: required Cosmos AZ subscription access is false; exact Foundry subdomain returns CustomDomainInUse; required gpt-5.4-mini/2026-03-17 absent from regional model list and capacity response empty. Global quota 100/1000 does not establish regional eligibility. Agent feature support unverified; ACA Consumption core quota unknown. Full what-if: 9 creates, 8 skipped modules; partial previews do not override failures. Exact model regional prices absent. No resources/defaults/targets changed.",
+    "evidence": [
+      "00-region-availability.json: 26 current checks, exact scope/fingerprint 38b48adc1404bb2431f16c6cf72cfd0e4dc98c5e9c764d993320321bcaae81f0; earlier history retained.",
+      "06-deployment-summary.md: current West US 2 observations and historical rejections, exact preview limits.",
+      "az cosmosdb locations list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; West US 2 Online; zones supported; subscription AZ FALSE, regular TRUE. Observed 2026-10-23T23:20:52.227214+00:00; evidence\\westus2-34cc5a27\\cosmos-locations.json",
+      "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-foundry-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-foundry.arm.json --no-pretty-print --output json: exit 1; FAILED CustomDomainInUse; no purge/adoption/rename attempted. Observed 2026-10-23T23:23:40.932201+00:00; evidence\\westus2-34cc5a27\\what-if-foundry.json",
+      "az cognitiveservices model list --location westus2 --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; exact required model/version absent from regional AIServices list. Observed 2026-10-23T23:20:58.987449+00:00; evidence\\westus2-34cc5a27\\model-eligibility.json",
+      "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/westus2/modelCapacities?api-version=2024-10-01 --output json --url-parameters modelFormat=OpenAI modelName=gpt-5.4-mini modelVersion=2026-03-17: exit 0; exact current-region model/version capacity returned value=[]; unknown. Observed 2026-10-23T23:21:01.171095+00:00; evidence\\westus2-34cc5a27\\model-capacity.json",
+      "az cognitiveservices usage list --location westus2 --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; global quota 100/1000; demand 100; not regional capacity. Observed 2026-10-23T23:20:54.843866+00:00; evidence\\westus2-34cc5a27\\model-quota.json",
+      "az containerapp env list-usages --name cae-resto-4tvlzr5zf2rxi --resource-group rg-resto-scale-agent --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 1; FAILED ResourceGroupNotFound; core quota unknown for 28-vCPU rollout demand. Observed 2026-10-23T23:21:11.127420+00:00; evidence\\westus2-34cc5a27\\aca-environment-usage.json",
+      "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-full-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-full.arm.json --no-pretty-print --output json: exit 0; 9 creates, no modifies/deletes; eight modules skipped, not full acceptance. Observed 2026-10-23T23:21:59.548248+00:00; evidence\\westus2-34cc5a27\\what-if-full.json",
+      "az deployment sub validate --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-validate-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-full.arm.json --output json: exit 0; Succeeded with skipped-module warnings, not full validation. Observed 2026-10-23T23:24:06.211623+00:00; evidence\\westus2-34cc5a27\\validate-full.json",
+      "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-registry-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-registry.arm.json --no-pretty-print --output json: exit 0; Succeeded; exact configuration limited preview; excluded grants documented. Observed 2026-10-23T23:22:19.693828+00:00; evidence\\westus2-34cc5a27\\what-if-registry.json",
+      "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-cosmos-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-cosmos.arm.json --no-pretty-print --output json: exit 0; Succeeded; exact configuration limited preview; excluded grants documented. Observed 2026-10-23T23:22:40.290447+00:00; evidence\\westus2-34cc5a27\\what-if-cosmos.json",
+      "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-broker-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-broker.arm.json --no-pretty-print --output json: exit 0; Succeeded; exact configuration limited preview; excluded grants documented. Observed 2026-10-23T23:23:00.658523+00:00; evidence\\westus2-34cc5a27\\what-if-broker.json",
+      "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-vault-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-vault.arm.json --no-pretty-print --output json: exit 0; Succeeded; exact configuration limited preview; excluded grants documented. Observed 2026-10-23T23:23:21.032863+00:00; evidence\\westus2-34cc5a27\\what-if-vault.json",
+      "az group exists --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --name rg-resto-scale-agent --output json: exit 0; false; no provisioning or target conflict. Observed 2026-10-23T23:24:09.168742+00:00; evidence\\westus2-34cc5a27\\group-exists-final.json",
+      "evidence\\westus2-34cc5a27\\public-feature-evidence.json: current Learn regional feature/quota findings.",
+      "evidence\\westus2-34cc5a27\\cost-review.json: current-region exact base rates; required model meter missing.",
+      "evidence\\westus2-34cc5a27\\readiness-guard.json: actual backend guard rejects failed Cosmos readiness.",
+      "az bicep build --file generated-scenarios\\resto-scale-agent\\infra\\main.bicep --outfile generated-scenarios\\resto-scale-agent\\evidence\\westus2-34cc5a27\\main.arm.json && az bicep lint --file generated-scenarios\\resto-scale-agent\\infra\\main.bicep: exit 0; no diagnostics.",
+      "scenario_catalog.refresh(scenario, metadata=reviewedMetadata): only scenario manifest refreshed; CLI index export omitted because this bounded worker cannot write canonical repository files.",
+      "No resource/directory mutations, shared-default change, quota requests, other-region queries, deployment-consent review, suitability approval, packages or teams.",
+      "python generated-scenarios\\resto-scale-agent\\evidence\\westus2-34cc5a27\\validate_evidence.py: passed; 25 fresh explicit-subscription command records; complete 26-check inventory; exact scope/hash; prior rejection history/security/services/portable region preserved; no fabricated model capacity/prices; summary template/line lengths and failed-readiness guard checked. evidence\\westus2-34cc5a27\\local-integrity.json."
+    ],
+    "updatedAtUtc": "2026-10-23T23:27:43.171692+00:00",
+    "scope": {
+      "account": "petender@microsoft.com",
+      "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+      "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+      "environment": "resto-scale-agent",
+      "resourceGroup": "rg-resto-scale-agent",
+      "region": "westus2"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "command": "docker info --format \"{{json .OSType}}\"",
+  "cwd": "C:\\azd-projects\\resto-scale-agent",
+  "startedAtUtc": "2026-10-24T17:32:49.188788+00:00",
+  "checkedAtUtc": "2026-10-24T17:32:49.505708+00:00",
+  "exitCode": 0,
+  "stdout": "\"linux\"\n",
+  "stderr": "",
+  "result": "linux"
+}

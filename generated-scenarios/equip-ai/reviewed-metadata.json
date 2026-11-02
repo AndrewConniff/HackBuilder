@@ -1,0 +1,10 @@
+{
+  "title": "Washington equipment operations assistant",
+  "summary": "Site-isolated local-account support for Washington machinery using fresh, certified event telemetry.",
+  "industry": "Manufacturing & Mobility",
+  "businessUnits": ["operations"],
+  "services": ["foundry", "storage", "app-service", "managed-identity", "virtual-network", "monitor"],
+  "pillars": [],
+  "domains": [],
+  "metadataStatus": "curated"
+}

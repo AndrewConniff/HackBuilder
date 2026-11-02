@@ -1,0 +1,93 @@
+{
+  "status": "passed",
+  "evidenceType": "authorized_readiness_and_what_if_not_runtime",
+  "checkedAtUtc": "2026-10-30T03:50:35.563030+00:00",
+  "publicEvidenceDate": "2026-10-29",
+  "subscriptionName": "MCAPS-Hybrid-REQ-152516-2026-petender",
+  "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+  "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+  "deployerObjectId": "214d672b-df87-4f3b-94fd-7863032546c1",
+  "environmentName": "coffee-to-icecream-ref",
+  "resourceGroup": "rg-coffee-to-icecream-ref",
+  "requestedRegions": [],
+  "candidateRegions": ["swedencentral", "westeurope", "uksouth"],
+  "selectedRegion": "swedencentral",
+  "provisionalRegion": "swedencentral",
+  "resources": [
+    {
+      "type": "Foundry", "sku": "S0", "project": "direct-child",
+      "features": ["Basic managed agent state", "prompt agents", "Responses API"],
+      "eligibility": "passed_preflight",
+      "evidence": "Live accounts/projects provider locations; documented agent/model compatibility; exact-target what-if",
+      "runtimeValidated": true
+    },
+    {
+      "type": "model", "name": "gpt-4.1-mini", "version": "2025-04-14",
+      "deploymentType": "GlobalStandard", "capacity": 300,
+      "quota": {"name": "OpenAI.GlobalStandard.gpt4.1-mini", "used": 20, "limit": 5000, "scope": "Global"},
+      "capacityEvidence": {"availableCapacity": 4980, "requestedCapacity": 300, "unit": "1000 TPM"},
+      "lifecycle": "Legacy", "inferenceDeprecationUtc": "2027-04-14T00:00:00Z",
+      "capabilities": {"agentsV2": true, "responses": true},
+      "eligibility": "passed_preflight_with_explicit_lifecycle_review",
+      "runtimeValidated": true
+    },
+    {
+      "type": "AppService", "sku": "P0v3", "os": "Linux", "maxWorkers": 3,
+      "quota": {"name": "Total Regional VMs", "used": 0, "limit": 11},
+      "runtime": {"config": "DOTNETCORE|10.0", "support": "Active", "endOfLife": "2028-11-14"},
+      "eligibility": "passed_preflight", "evidence": "Exact Linux P0v3 region list, Microsoft.Web quota and what-if"
+    },
+    {
+      "type": "Storage", "sku": "Standard_LRS", "features": ["Table", "managed-identity"],
+      "eligibility": "passed_preflight", "skuRestrictions": [],
+      "evidence": "Live regional SKU/provider metadata and exact-target what-if"
+    },
+    {
+      "type": "LogAnalytics", "sku": "PerGB2018", "eligibility": "passed_preflight",
+      "evidence": "Live workspace provider locations and exact-target what-if"
+    }
+  ],
+  "sources": [
+    "https://learn.microsoft.com/azure/foundry/agents/quickstarts/prompt-agent",
+    "https://learn.microsoft.com/azure/foundry/agents/concepts/limits-quotas-regions",
+    "https://learn.microsoft.com/azure/foundry/openai/how-to/quota#programmatically-check-quota-and-capacity",
+    "evidence/readiness.json",
+    "evidence/what-if.json",
+    "evidence/prices.json",
+    "evidence/policy-definitions.json",
+    "evidence/policy-rule-details.json",
+    "evidence/web-runtimes.json"
+  ],
+  "whatIf": {"status": "Succeeded", "create": 22, "modify": 0, "delete": 0, "roleAssignments": 5},
+  "policy": {
+    "effectiveAssignments": 20,
+    "blockingDenialObserved": false,
+    "publicStorageException": "SecurityControl=Ignore is the inherited policy's explicit tag exclusion; explicitly accepted in actual deployment review",
+    "mfaRequiredForUserResourceWrites": true,
+    "newPolicyExemptionsOrChanges": false
+  },
+  "candidateResults": [
+    {"region": "swedencentral", "result": "Selected: complete resource metadata, quota and exact-target what-if passed"},
+    {"region": "westeurope", "result": "Alternative metadata passed; Web total VM quota 0/10; no target what-if performed"},
+    {"region": "uksouth", "result": "Alternative metadata passed; P0v3 VM quota 0/360; no target what-if performed"}
+  ],
+  "rejectedRegions": [],
+  "pending": [
+    "Resolve latest failed read p95 of 3.4644 seconds against strict 2-second target; server spike independently observed",
+    "Resolve unsupported steady-cost narrative claims despite exact authoritative stock/P&L values",
+    "Authenticated browser walkthrough and final fresh acceptance",
+    "Explicit working-scenario suitability approval after demonstration"
+  ],
+  "runtimeObservation": {
+    "checkedAtUtc": "2026-10-30T04:43:14.336928+00:00",
+    "deployment": "completed_under_explicit_reviewed_consent",
+    "agentVersion": "3",
+    "overallAcceptance": "failed",
+    "readP95Seconds": 3.464362999991863,
+    "closeP95Seconds": 7.458266299989191,
+    "workerFailureRecovery": "passed_configuration_restored",
+    "operatorDataAdministration": "passed",
+    "evidence": "scenario-validation.json"
+  },
+  "recommendation": "Sweden Central passed dated readiness and actual deployment. Retained quota values are pre-deployment observations, not current free capacity. Runtime latency and narrative-grounding acceptance remain failed; no suitability approval."
+}

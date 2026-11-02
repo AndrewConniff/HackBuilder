@@ -1,0 +1,19 @@
+{
+  "stage": "deployment",
+  "operation": "deployment",
+  "status": "failed",
+  "summary": "Central US foundation partially created; azd provision exited 1. Key Vault failed VaultAlreadyExists; three Cosmos data grants failed BadRequest on relative /dbs/restaurant scope. Stopped without retry as required by recorded consent. Thirteen resources remain and may incur charges. Real ACA Consumption quota 0/500 covers 28 rollout vCPU, but this is not runtime readiness. Technical repair, incremental preview/cost and renewed exact-target consent are required before retry; no directory, app or hack work authorized.",
+  "evidence": [
+    "06-deployment-summary.md and 00-region-availability.json foundationDeployment: exact scope, real results, partial resources, implementation-owned repair and separate authorization boundaries.",
+    "evidence\\foundation-47a34228\\azd-provision.json: exact environment/subscription/location; 2026-10-24T00:11:59.652305Z to 00:15:56.984567Z; exit 1. Deployment resto-scale-agent-1792800732 Failed; no second deployment submitted.",
+    "evidence\\foundation-47a34228\\deployment-final.json and deployment-operations-final.json: vault VaultAlreadyExists; three Cosmos SqlRoleAssignmentProperties scope BadRequest errors expected subscriptions but received dbs.",
+    "evidence\\foundation-47a34228\\cosmos-final.json: account Succeeded, Central US zones and local-auth-disabled retained; cosmos-role-assignments-final.json returns [] rather than passing data-access evidence.",
+    "evidence\\foundation-47a34228\\vault-owned-target.json: ResourceNotFound; vault-centralus-deleted.json: DeletedVaultNotFound. Conflicting ownership/deletion state unknown; no outside-region lookup, purge, recovery or adoption.",
+    "evidence\\foundation-47a34228\\resources-final.json and deployment-modules-final.json: 13 listed resources; 12 successful top-level modules; cosmos/vault modules failed; successful nested outputs retained; root outputs null.",
+    "evidence\\foundation-47a34228\\aca-environment-final.json and aca-environment-usage.json: zonal encrypted environment Succeeded; actual ManagedEnvironmentConsumptionCores current 0, limit 500; 0+28<=500; not reserved allocation or app-scale acceptance.",
+    "evidence\\foundation-47a34228\\foundry-final.json, model-final.json and queue-final.json: Foundry account/direct child project/exact model installed; Premium broker kitchen queue Active with sessions/dedup; no inference, agent or business data invocation.",
+    "evidence\\foundation-47a34228\\what-if-full.json: fresh 33 creates, zero modifies/deletes, 13 Unsupported identity-dependent grant expansions; actual bicep-build.json and bicep-lint.json exit 0; unchanged approved infrastructure fingerprint.",
+    "No Graph writes, provider registration, quota change, image publication, initialization, app rollout, cleanup, shared-default change, suitability approval, packages or teams. No local prerequisite or host denial misclassified from provider failures.",
+    "evidence\\foundation-47a34228\\evidence-integrity.json: actual failed root/two top-level failed modules/three nested failed grants verified, all 13 resources retained, exact model/zones/0+28<=500 quota checked, JSON and summary template/120-column checks passed; approved infrastructure hash unchanged. Integrity only, not runtime acceptance."
+  ]
+}

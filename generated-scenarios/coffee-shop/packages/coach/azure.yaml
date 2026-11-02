@@ -1,0 +1,25 @@
+name: tdd-azd-coffee-shop
+metadata:
+  template: tddazd-coffee-shop@1.0.0
+infra:
+  provider: bicep
+  path: ./infra
+services:
+  web:
+    project: ./src/CoffeeShop.Web
+    language: dotnet
+    host: appservice
+    hooks:
+      prepackage:
+        shell: pwsh
+        run: ../../scripts/Build-Assets.ps1
+        interactive: false
+hooks:
+  preprovision:
+    shell: pwsh
+    run: ./scripts/Assert-DeploymentScope.ps1
+    interactive: false
+  postprovision:
+    shell: pwsh
+    run: ./scripts/Initialize-Scenario.ps1
+    interactive: false

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environmentName": { "value": "hospitality-feedback" },
+    "resourceGroupName": { "value": "rg-hospitality-feedback" },
+    "location": { "value": "westus3" },
+    "modelName": { "value": "gpt-4.1-mini" },
+    "modelVersion": { "value": "2025-04-14" },
+    "modelDeploymentSku": { "value": "Standard" },
+    "modelCapacity": { "value": 10 },
+    "modelFormat": { "value": "OpenAI" },
+    "modelDeploymentName": { "value": "hotel-analysis" },
+    "apiAudience": { "value": "urn:hospitality-feedback:preview-only-unresolved-audience" },
+    "operatorObjectIds": { "value": ["214d672b-df87-4f3b-94fd-7863032546c1"] },
+    "principalId": { "value": "214d672b-df87-4f3b-94fd-7863032546c1" },
+    "principalType": { "value": "User" },
+    "appServiceSku": { "value": "B1" }
+  }
+}

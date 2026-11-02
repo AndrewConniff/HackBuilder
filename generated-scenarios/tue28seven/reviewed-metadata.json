@@ -1,0 +1,10 @@
+{
+  "title": "Bellows College - Teaching Material Review",
+  "summary": "Education/Generic reference preparation: two Foundry review roles support peer-teacher feedback, author revisions and version-bound lead-teacher approval. Accepted design and locally tested application; regional readiness incomplete, not deployed or suitability-approved.",
+  "industry": "Education",
+  "businessUnits": ["generic"],
+  "services": ["foundry", "storage", "app-service", "managed-identity", "virtual-network", "monitor"],
+  "pillars": [],
+  "domains": [],
+  "metadataStatus": "curated"
+}

@@ -1,0 +1,15 @@
+{
+  "stage": "application",
+  "status": "blocked",
+  "summary": "Recorded read-only setup verification failed under unchanged host permissions: NuGet metadata retrieval returned TLS HandshakeFailure. Application and dependent work remain blocked. No further implementation, installation, PATH change, permission change, TLS bypass or Azure operation was attempted.",
+  "evidence": [
+    "python scripts\\check_prerequisites.py --for-project --record --stage requirements --json => exit code 0, ready:false; nuget-https failed: The SSL connection could not be established, see inner exception. Affected prerequisite stage: local-validation. All other audited checks passed; this does not certify actual package restore/build.",
+    "Invoke-RestMethod \"https://api.nuget.org/v3-flatcontainer/azure.identity/index.json\" => exit code 1; Authentication failed because the remote party sent a TLS alert: 'HandshakeFailure'.",
+    "Current setup blocker ed6ba41327544fb690084af870ad01af remains unmet. No setupVerification passed assertion is made."
+  ],
+  "blocker": {
+    "kind": "prerequisite",
+    "action": "Outside this worker, have the environment administrator restore organization-approved TLS connectivity from the actual portal worker account to api.nuget.org using existing authorized host/network configuration. Investigate the reported remote TLS HandshakeFailure; do not disable certificate validation, weaken TLS, install or upgrade shared tools in a worker, or bypass host restrictions. Verify a fresh portal worker can read the recorded NuGet package metadata endpoint successfully.",
+    "verification": "Invoke-RestMethod \"https://api.nuget.org/v3-flatcontainer/azure.identity/index.json\""
+  }
+}

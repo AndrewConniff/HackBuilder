@@ -1,0 +1,21 @@
+{
+  "stage": "diagrams",
+  "status": "waiting_for_user",
+  "summary": "Decision required: the new worker still resolves no Graphviz dot executable, and the execution host again denies the read-only installation/PATH check. Prior affirmative answers are retained, but the environment correction is not effective in this worker. No installation, bypass or Azure operation attempted.",
+  "evidence": [
+    "python -c prerequisite probe: exit 0; shutil.which('dot') returned None. Python, dotnet, az and azd resolved.",
+    "Read-only PowerShell probe of known Graphviz dot.exe locations and persisted Graphviz PATH entries: execution host denied permission because no interactive user response was available; probe did not execute and was not retried through another mechanism.",
+    "generated-scenarios\\resto-scale-agent\\evidence\\prerequisite-resume-446463a4-running.json",
+    "No shared tools installed or upgraded; no other scenario or canonical repository files edited; no Azure queries, deployment, suitability approval, hack composition or team rollout."
+  ],
+  "decision": {
+    "kind": "business",
+    "question": "Have the portal/environment administrator verify that a fresh noninteractive worker resolves dot.exe and is permitted to execute the local read-only prerequisite check, then resume resto-scale-agent?",
+    "reason": "The recorded correction has not reached this worker: dot remains absent from its effective PATH and the execution host still denies the prerequisite probe. Verify both conditions in the actual worker environment before another resume. The worker cannot install shared tools or bypass host permission. Existing design and local-tool consent remain valid; no new design or cloud authorization is requested.",
+    "choices": [
+      "Verified dot.exe resolution and prerequisite execution in a fresh worker; resume",
+      "Stop"
+    ],
+    "acceptChoice": "Verified dot.exe resolution and prerequisite execution in a fresh worker; resume"
+  }
+}

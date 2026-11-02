@@ -1,0 +1,6 @@
+{
+  "checkedAtUtc": "2026-10-22T18:20:57.3154235Z",
+  "command": "az group exists --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --name rg-hospitality-feedback",
+  "exitCode": 0,
+  "result": false
+}

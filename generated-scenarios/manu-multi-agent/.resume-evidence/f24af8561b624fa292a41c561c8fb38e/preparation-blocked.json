@@ -1,0 +1,28 @@
+{
+  "stage": "deployment",
+  "operation": "deployment-preparation",
+  "status": "blocked",
+  "summary": "Partial read-only preflight and actual independent foundation what-if retained: 72 creates, zero deletes, 13 output-dependent unsupported changes. Further capacity checking was denied by the execution host without identifying the missing permission. Workflow-error; no alternative route or Azure mutation. Deployment readiness, full costs and private execution remain incomplete.",
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "manu-multi-agent",
+    "resourceGroup": "rg-manu-multi-agent",
+    "region": "eastus2"
+  },
+  "evidence": [
+    "00-region-availability.json and 06-deployment-summary.md preserve actual account/provider, model quota, Cosmos nonzonal access, APIM SKU, ACA count, directory-policy and independent what-if observations; not full deployment readiness.",
+    ".resume-evidence\\f24af8561b624fa292a41c561c8fb38e\\foundation-whatif-compact.json: ARM status Succeeded, 72 Create, 13 Unsupported, no Modify/Delete, null diagnostics/error. Formatted request size failure retained; equivalent compact retry succeeded.",
+    "model-usage.json: exact GlobalStandard quota 0/5000 versus 30 requested; cosmos-eastus2.json: regular access true, zonal access false, Online; existing zoneRedundant=false unchanged.",
+    "directory-policy-corrected.json and directory-user.json: Member with default allowedToCreateApps=true. No directory objects, grants or consent created; solution IDs remain outputs.",
+    "execution-denial.json: functions.powershell returned Permission denied because no interactive user response was available, with no permission.requested/scope metadata or shellId/exit result. Corrected read-only capacity GET was not established as executed. No bypass/retry.",
+    "Official observed APIM/Search/ACR baseline approximately USD 995.97/month excludes unresolved Cosmos usage, private networking, data/model and management access. No all-in quote or deployment consent requested.",
+    "Private execution host/artifact path remains unverified; no endpoint probe invented. No scenario approval, composition, team rollout or publication."
+  ],
+  "blocker": {
+    "kind": "workflow-error",
+    "action": "Backend/operator must inspect structured CLI permission diagnostics for the denied read-only model-capacity batch, identify the missing permission, and enable an explicit review in the normal host. Do not change Azure identity, broaden trust or retry via another execution route. Then use Verify setup & retry under unchanged restrictions; resume only after the actual read-only check passes with evidence.",
+    "verification": "& $env:ComSpec /d /c 'az rest --method get --url \"https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/eastus2/modelCapacities?api-version=2024-10-01&modelFormat=OpenAI&modelName=gpt-4.1-mini&modelVersion=2025-04-14\" --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json'"
+  }
+}

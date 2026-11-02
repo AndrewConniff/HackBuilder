@@ -1,0 +1,82 @@
+{
+  "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.App/managedEnvironments/cae-resto-4tvlzr5zf2rxi",
+  "location": "East US 2",
+  "name": "cae-resto-4tvlzr5zf2rxi",
+  "properties": {
+    "appInsightsConfiguration": null,
+    "appLogsConfiguration": {
+      "destination": "log-analytics",
+      "logAnalyticsConfiguration": {
+        "customerId": "10f0da22-08fd-4992-b7bc-e48d04f3a797",
+        "sharedKey": null
+      }
+    },
+    "customDomainConfiguration": {
+      "certificateKeyVaultProperties": null,
+      "certificatePassword": null,
+      "certificateValue": null,
+      "customDomainVerificationId": "A262E16A36F44907BB780F3F1F741B72ED52E69472C8164C37C258905CB562E3",
+      "dnsSuffix": null,
+      "expirationDate": null,
+      "subjectName": null,
+      "thumbprint": null
+    },
+    "daprAIConnectionString": null,
+    "daprAIInstrumentationKey": null,
+    "daprConfiguration": {
+      "version": "1.16.4-msft.13"
+    },
+    "defaultDomain": "happydesert-b0b0364d.eastus2.azurecontainerapps.io",
+    "eventStreamEndpoint": "https://eastus2.azurecontainerapps.dev/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/managedEnvironments/cae-resto-4tvlzr5zf2rxi/eventstream",
+    "infrastructureResourceGroup": "ME_cae-resto-4tvlzr5zf2rxi",
+    "ingressConfiguration": null,
+    "kedaConfiguration": {
+      "version": "2.20.2"
+    },
+    "openTelemetryConfiguration": null,
+    "peerAuthentication": {
+      "mtls": {
+        "enabled": false
+      }
+    },
+    "peerTrafficConfiguration": {
+      "encryption": {
+        "enabled": true
+      }
+    },
+    "provisioningState": "Succeeded",
+    "publicNetworkAccess": "Enabled",
+    "staticIp": "57.167.155.122",
+    "vnetConfiguration": {
+      "dockerBridgeCidr": null,
+      "infrastructureSubnetId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi/subnets/container-apps",
+      "internal": false,
+      "platformReservedCidr": null,
+      "platformReservedDnsIP": null
+    },
+    "workloadProfiles": [
+      {
+        "enableFips": false,
+        "name": "Consumption",
+        "workloadProfileType": "Consumption"
+      }
+    ],
+    "zoneRedundant": true
+  },
+  "resourceGroup": "rg-resto-scale-agent",
+  "systemData": {
+    "createdAt": "2026-10-23T18:56:17.5263934",
+    "createdBy": "Peter.DeTender@microsoft.com",
+    "createdByType": "User",
+    "lastModifiedAt": "2026-10-23T18:56:17.5263934",
+    "lastModifiedBy": "Peter.DeTender@microsoft.com",
+    "lastModifiedByType": "User"
+  },
+  "tags": {
+    "Environment": "resto-scale-agent",
+    "ManagedBy": "Bicep",
+    "Project": "resto-scale-agent",
+    "SecurityControl": "Ignore"
+  },
+  "type": "Microsoft.App/managedEnvironments"
+}

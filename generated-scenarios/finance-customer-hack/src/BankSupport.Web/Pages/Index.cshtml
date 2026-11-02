@@ -1,0 +1,67 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Customer service";
+}
+<p class="eyebrow">Adatum Corporation / Financial Services</p>
+<h1>Your banking service desk</h1>
+<p>Read-only synthetic account activity, grounded policy answers and accountable human support.</p>
+<section aria-labelledby="accounts">
+    <h2 id="accounts">Your synthetic account activity</h2>
+    <div class="table-scroll">
+        <table>
+            <thead><tr><th>Reference</th><th>Kind</th><th>Date</th><th>Description</th><th>Amount (USD)</th></tr></thead>
+            <tbody>
+            @foreach (var record in Model.Records)
+            {
+                <tr><td>record-@record.Id</td><td>@record.Kind</td><td>@record.Date</td>
+                    <td>@record.Detail</td><td>@((record.AmountCents / 100m).ToString("F2"))</td></tr>
+            }
+            </tbody>
+        </table>
+    </div>
+    @if (Model.Records.Count == 0) { <p>No account records available. Contact your operator.</p> }
+</section>
+<section aria-labelledby="conversation">
+    <h2 id="conversation">Customer conversation</h2>
+    <form method="post" asp-page-handler="Start"><button type="submit">Start new conversation</button></form>
+    @if (Model.Conversation is { } item)
+    {
+        <p role="status">Case <code>@item.Id</code> / <strong>@item.Status</strong> / version @item.Version</p>
+        @if (item.Error.Length > 0) { <p role="alert">@item.Error</p> }
+        <ol class="messages">
+        @foreach (var message in item.Messages)
+        {
+            <li><strong>@message.Role</strong> <time>@message.At.ToString("u")</time><p>@message.Text</p></li>
+        }
+        </ol>
+        @if (item.Status != "Closed" && item.Status != "Processing")
+        {
+            <form method="post" asp-page-handler="Send">
+                <input type="hidden" name="id" value="@item.Id" />
+                <input type="hidden" name="version" value="@item.Version" />
+                <label for="text">Your message (maximum 1,000 characters)</label>
+                <textarea id="text" name="text" maxlength="1000" required rows="3"></textarea>
+                <button type="submit">Send message</button>
+                <button type="submit" name="human" value="true" class="secondary">Request human service</button>
+            </form>
+        }
+        @if (item.Status == "Processing")
+        {
+            <p>A turn is in progress. Refresh for its result. An interrupted turn can be recovered after two minutes.</p>
+            <form method="post" asp-page-handler="Recover">
+                <input type="hidden" name="id" value="@item.Id" />
+                <input type="hidden" name="version" value="@item.Version" />
+                <button type="submit">Recover interrupted turn to human service</button>
+            </form>
+        }
+        <details><summary>Execution receipts (not hidden reasoning)</summary>
+            @foreach (var receipt in item.Receipts)
+            {
+                <p><code>@receipt.Name</code> / version @receipt.Version / @receipt.Route /
+                    response <code>@receipt.ResponseId</code> / sources @string.Join(", ", receipt.Sources)</p>
+            }
+        </details>
+    }
+    else { <p>Start a conversation to ask about bank policies or your synthetic account activity.</p> }
+</section>

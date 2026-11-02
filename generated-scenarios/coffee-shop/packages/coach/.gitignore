@@ -1,0 +1,6 @@
+.azure/
+bin/
+obj/
+node_modules/
+.env*
+agent-installation.json

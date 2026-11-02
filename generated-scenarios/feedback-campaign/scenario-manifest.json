@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "feedback-campaign",
+  "title": "Feedback Campaign: human-owned media engagement",
+  "summary": "Adatum Corporation routes campaign feedback from Marketing to Sales using Foundry sentiment analysis, local role-scoped accounts, explicit human review and versioned Control rules.",
+  "industry": "Media & Communications",
+  "businessUnits": [
+    "sales",
+    "marketing"
+  ],
+  "services": [
+    "foundry",
+    "service-bus",
+    "monitor"
+  ],
+  "pillars": [],
+  "domains": [],
+  "artifacts": [
+    "01-requirements.md",
+    "02-architecture-assessment.md",
+    "04-implementation-plan.md",
+    "03-architect-diagram.png",
+    "04-runtime-diagram.png",
+    "azure.yaml",
+    "infra",
+    "src"
+  ],
+  "source": null,
+  "metadataStatus": "curated"
+}

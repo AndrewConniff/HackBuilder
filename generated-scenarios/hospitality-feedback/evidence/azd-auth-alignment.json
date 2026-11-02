@@ -1,0 +1,10 @@
+{
+  "checkedAtUtc": "2026-10-22T18:14:38.9495984Z",
+  "command": "azd auth token --tenant-id <confirmed-tenant> --scope https://management.azure.com/.default --no-prompt -o json (only non-secret identity claims retained)",
+  "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+  "objectId": "214d672b-df87-4f3b-94fd-7863032546c1",
+  "username": null,
+  "upn": null,
+  "audience": "https://management.azure.com",
+  "expires": 1792697368
+}

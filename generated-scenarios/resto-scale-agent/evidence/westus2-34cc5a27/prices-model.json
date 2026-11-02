@@ -1,0 +1,83 @@
+{
+  "checkedAtUtc": "2026-10-23T23:20:32.405972+00:00",
+  "pages": [
+    {
+      "source": "https://prices.azure.com/api/retail/prices?%24filter=armRegionName+eq+%27westus2%27+and+serviceName+eq+%27Foundry+Models%27+and+productName+eq+%27Azure+OpenAI+GPT5%27",
+      "response": {
+        "BillingCurrency": "USD",
+        "CustomerEntityId": "Default",
+        "CustomerEntityType": "Retail",
+        "Items": [
+          {
+            "currencyCode": "USD",
+            "tierMinimumUnits": 0.0,
+            "retailPrice": 10.0,
+            "unitPrice": 10.0,
+            "armRegionName": "westus2",
+            "location": "US West 2",
+            "effectiveStartDate": "2025-12-01T00:00:00Z",
+            "meterId": "43d009cb-cd94-58b7-a720-76ea992236a9",
+            "meterName": "GPT 5 Chat outpt Glbl 1M Tokens",
+            "productId": "DZH318Z0T9WD",
+            "skuId": "DZH318Z0T9WD/00ZV",
+            "productName": "Azure OpenAI GPT5",
+            "skuName": "GPT 5 Chat outpt Glbl",
+            "serviceName": "Foundry Models",
+            "serviceId": "DZH31600VF1F",
+            "serviceFamily": "AI + Machine Learning",
+            "unitOfMeasure": "1M",
+            "type": "Consumption",
+            "isPrimaryMeterRegion": true,
+            "armSkuName": "GPT 5 Chat outpt Glbl"
+          },
+          {
+            "currencyCode": "USD",
+            "tierMinimumUnits": 0.0,
+            "retailPrice": 1.25,
+            "unitPrice": 1.25,
+            "armRegionName": "westus2",
+            "location": "US West 2",
+            "effectiveStartDate": "2025-12-01T00:00:00Z",
+            "meterId": "5cab6c19-b4b6-5269-81ff-01d26400ae32",
+            "meterName": "GPT 5 Chat Inpt Glbl 1M Tokens",
+            "productId": "DZH318Z0T9WD",
+            "skuId": "DZH318Z0T9WD/0102",
+            "productName": "Azure OpenAI GPT5",
+            "skuName": "GPT 5 Chat Inpt Glbl",
+            "serviceName": "Foundry Models",
+            "serviceId": "DZH31600VF1F",
+            "serviceFamily": "AI + Machine Learning",
+            "unitOfMeasure": "1M",
+            "type": "Consumption",
+            "isPrimaryMeterRegion": true,
+            "armSkuName": "GPT 5 Chat Inpt Glbl"
+          },
+          {
+            "currencyCode": "USD",
+            "tierMinimumUnits": 0.0,
+            "retailPrice": 0.125,
+            "unitPrice": 0.125,
+            "armRegionName": "westus2",
+            "location": "US West 2",
+            "effectiveStartDate": "2025-12-01T00:00:00Z",
+            "meterId": "7566f899-87f0-5e98-a631-f7a457d9b8e4",
+            "meterName": "GPT 5 Chat cchd Inpt Glbl 1M Tokens",
+            "productId": "DZH318Z0T9WD",
+            "skuId": "DZH318Z0T9WD/00ZT",
+            "productName": "Azure OpenAI GPT5",
+            "skuName": "GPT 5 Chat cchd Inpt Glbl",
+            "serviceName": "Foundry Models",
+            "serviceId": "DZH31600VF1F",
+            "serviceFamily": "AI + Machine Learning",
+            "unitOfMeasure": "1M",
+            "type": "Consumption",
+            "isPrimaryMeterRegion": true,
+            "armSkuName": "GPT 5 Chat cchd Inpt Glbl"
+          }
+        ],
+        "NextPageLink": null,
+        "Count": 3
+      }
+    }
+  ]
+}

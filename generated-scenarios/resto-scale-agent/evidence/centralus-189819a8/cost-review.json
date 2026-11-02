@@ -1,0 +1,108 @@
+{
+  "checkedAtUtc": "2026-10-24T00:01:36.245550+00:00",
+  "region": "centralus",
+  "currency": "USD",
+  "rates": {
+    "broker": {
+      "meterId": "176d7148-0033-48c7-8b18-7af4a9d1dca7",
+      "meterName": "Premium Messaging Unit",
+      "retailPrice": 0.9275,
+      "unitOfMeasure": "1/Hour",
+      "armRegionName": "centralus"
+    },
+    "cpuActive": {
+      "meterId": "231e4822-3df5-5135-9bf7-f5bb98528b0a",
+      "meterName": "Standard vCPU Active Usage",
+      "retailPrice": 2.4e-05,
+      "unitOfMeasure": "1 Second",
+      "armRegionName": "centralus"
+    },
+    "cpuIdle": {
+      "meterId": "87697b08-bcce-5ead-9b1e-bc56ba8a9b04",
+      "meterName": "Standard vCPU Idle Usage",
+      "retailPrice": 3e-06,
+      "unitOfMeasure": "1 Second",
+      "armRegionName": "centralus"
+    },
+    "memoryActive": {
+      "meterId": "eaadacd7-1442-5180-973e-9da5c510aa95",
+      "meterName": "Standard Memory Active Usage",
+      "retailPrice": 3e-06,
+      "unitOfMeasure": "1 GiB Second",
+      "armRegionName": "centralus"
+    },
+    "memoryIdle": {
+      "meterId": "b71b27f9-4f06-5914-be8c-08e47b29cb1b",
+      "meterName": "Standard Memory Idle Usage",
+      "retailPrice": 3e-06,
+      "unitOfMeasure": "1 GiB Second",
+      "armRegionName": "centralus"
+    },
+    "cosmosAutoscale": {
+      "meterId": "cf6be8a4-e96d-4074-84d9-e060977fbb71",
+      "meterName": "AP1 100 RUs",
+      "retailPrice": 0.012,
+      "unitOfMeasure": "1/Hour",
+      "armRegionName": "centralus"
+    },
+    "cosmosStorage": {
+      "meterId": "56f07b6a-c7d9-490f-a196-a7ee08e28712",
+      "meterName": "Data Stored",
+      "retailPrice": 0.25,
+      "unitOfMeasure": "1 GB/Month",
+      "armRegionName": "centralus"
+    },
+    "continuous7Days": {
+      "meterId": "50400cf8-1036-50aa-90c0-38b01331c1a2",
+      "meterName": "Cont 7D Bkup Continuous Backup",
+      "retailPrice": 0.0,
+      "unitOfMeasure": "1 GB",
+      "armRegionName": "centralus"
+    },
+    "input": {
+      "meterId": "059aa224-7894-5d75-a935-20b50a3a02c2",
+      "meterName": "5.4 mini Inp Gl 1M Tokens",
+      "retailPrice": 0.75,
+      "unitOfMeasure": "1M",
+      "armRegionName": "centralus"
+    },
+    "output": {
+      "meterId": "81ee1de5-f914-5567-944c-2029ca215579",
+      "meterName": "5.4 mini Opt Gl 1M Tokens",
+      "retailPrice": 4.5,
+      "unitOfMeasure": "1M",
+      "armRegionName": "centralus"
+    }
+  },
+  "monthlyExamples": {
+    "hours": 730,
+    "brokerOneMU": 677.08,
+    "cosmos400RU": 35.04,
+    "cosmos4000RU": 350.4,
+    "nineReplicasIdle": 106.43,
+    "nineReplicasActive": 354.78,
+    "model24MInput7_2MOutput": 50.4,
+    "max28ReplicasActive": 1103.76,
+    "rollout56ReplicasActive": 2207.52
+  },
+  "planningAllowancesMonthly": {
+    "shared": [
+      745,
+      1150
+    ],
+    "fullReference": [
+      900,
+      1650
+    ],
+    "ancillary": [
+      30,
+      120
+    ]
+  },
+  "limitations": [
+    "Fresh Central US exact public meters; ancillary planning allowances are not individually requoted.",
+    "Not a quote, capacity reservation, cap, approved budget or deployment authorization.",
+    "Storage, requests, telemetry, restore, egress, zone billing and taxes can add costs.",
+    "Independent preview/name repair does not establish unknown Consumption quota or live capacity."
+  ]
+}

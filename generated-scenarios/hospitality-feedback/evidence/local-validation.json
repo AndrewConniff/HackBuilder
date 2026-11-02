@@ -1,0 +1,46 @@
+{
+  "scope": "local_only",
+  "checkedAtUtc": "2026-10-22T17:38:12.6660901+00:00",
+  "status": "passed",
+  "commands": [
+    {
+      "name": "dotnet build -c Release",
+      "startedAtUtc": "2026-10-22T17:37:48.2158665+00:00",
+      "durationSeconds": 1.36,
+      "exitCode": 0
+    },
+    {
+      "name": "az bicep build (local compilation)",
+      "startedAtUtc": "2026-10-22T17:37:49.6135091+00:00",
+      "durationSeconds": 11.62,
+      "exitCode": 0
+    },
+    {
+      "name": "az bicep lint (local analysis)",
+      "startedAtUtc": "2026-10-22T17:38:01.2365224+00:00",
+      "durationSeconds": 5.657,
+      "exitCode": 0
+    },
+    {
+      "name": "dotnet test (unit and Azurite)",
+      "startedAtUtc": "2026-10-22T17:38:06.8986114+00:00",
+      "durationSeconds": 3.539,
+      "exitCode": 0
+    },
+    {
+      "name": "architecture PNG generation",
+      "startedAtUtc": "2026-10-22T17:38:10.4402412+00:00",
+      "durationSeconds": 1.063,
+      "exitCode": 0
+    },
+    {
+      "name": "runtime PNG generation",
+      "startedAtUtc": "2026-10-22T17:38:11.5047053+00:00",
+      "durationSeconds": 1.161,
+      "exitCode": 0
+    }
+  ],
+  "liveDeployment": false,
+  "liveModelInference": false,
+  "liveAgentInvocation": false
+}

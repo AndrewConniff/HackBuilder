@@ -1,0 +1,5 @@
+{
+  "Output": "10.247.0.72     ai-equip-equipai-kex72v.privatelink.services.ai.azure.com ai-equip-equipai-kex72v.services.ai.azure.com\nHTTP/2 404 \ncontent-type: application/json\ndate: Mon, 26 Oct 2026 01:36:09 GMT\ncontent-length: 56\napim-request-id: cbb0039f-9cc2-4bb3-b8ae-746e462ff705\nstrict-transport-security: max-age=31536000; includeSubDomains; preload\nx-content-type-options: nosniff\n\n{\"error\":{\"code\":\"404\",\"message\": \"Resource not found\"}}\n",
+  "Error": "",
+  "ExitCode": 0
+}

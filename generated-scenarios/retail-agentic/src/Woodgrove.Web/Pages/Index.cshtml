@@ -1,0 +1,155 @@
+@page
+@model Woodgrove.Web.Pages.IndexModel
+@{ ViewData["Title"] = "Grocery orders"; }
+<h1>Grocery orders</h1>
+<p class="notice">Real Foundry agents. Synthetic groceries, charges and delivery. No physical orders are placed.</p>
+@if (Model.Error is not null) { <p class="error" role="alert">@Model.Error</p> }
+<div class="workspace">
+    <section aria-labelledby="orders-title">
+        <h2 id="orders-title">@(Model.IsOperator ? "Operator order overview" : "Your orders")</h2>
+        <p><a asp-page="/Index" asp-route-id="@Model.Selected?.Id">Refresh persisted status</a></p>
+        @if (Model.Orders.Length == 0) { <p>No orders yet.</p> }
+        <ul class="orders">
+        @foreach (var order in Model.Orders)
+        {
+            <li><a asp-route-id="@order.Id">@order.Id</a><br />
+                <strong>@order.Status</strong> &middot; USD @((order.TotalCents / 100m).ToString("F2"))
+                <span>@order.Slot</span>
+            </li>
+        }
+        </ul>
+        @if (!Model.IsOperator)
+        {
+            <h2>Create a grocery cart</h2>
+            <form method="post" asp-page-handler="Create">
+                <input type="hidden" name="requestId" value="@Guid.NewGuid().ToString("N")" />
+                <p>Quantity 0 omits a product. Max 20 lines, 10 per product and USD 200.</p>
+                @foreach (var product in Model.Products)
+                {
+                    <div class="product">
+                        <input type="hidden" name="productIds" value="@product.Id" />
+                        <label for="quantity-@product.Id">@product.Name
+                            <span>USD @((product.PriceCents / 100m).ToString("F2")); stock @product.Stock</span>
+                            <span>Allergens: @(product.Allergens is null ? "unknown" :
+                                product.Allergens.Length == 0 ? "none declared" : string.Join(", ", product.Allergens))</span>
+                        </label>
+                        <input id="quantity-@product.Id" name="quantities" type="number" min="0" max="10" value="0" />
+                    </div>
+                }
+                <label for="slot">Delivery window</label>
+                <select id="slot" name="slot">
+                    <option>09:00-11:00</option><option>12:00-14:00</option><option>17:00-19:00</option>
+                </select>
+                <fieldset>
+                    <legend>Declared allergen exclusions (optional)</legend>
+                    @foreach (var allergen in new[] { "milk", "peanuts", "wheat", "oats", "sunflower" })
+                    {
+                        <label><input type="checkbox" name="exclusions" value="@allergen" /> @allergen</label>
+                    }
+                    <p>This synthetic catalog is not medical or dietary certification.</p>
+                </fieldset>
+                <button type="submit">Create draft</button>
+            </form>
+        }
+    </section>
+    <section aria-labelledby="timeline-title">
+        <h2 id="timeline-title">Order timeline and assistant</h2>
+        @if (Model.Selected is { } selected)
+        {
+            <h3>@selected.Id</h3>
+            <p><strong>@selected.Status</strong>; stage @selected.Stage/3; version @selected.Version.</p>
+            <p>Accepted total: USD @((selected.TotalCents / 100m).ToString("F2")); window @selected.Slot.</p>
+            <p>Synthetic payment: authorized USD @((selected.AuthorizedCents / 100m).ToString("F2")),
+                captured USD @((selected.CapturedCents / 100m).ToString("F2")),
+                refunded USD @((selected.RefundedCents / 100m).ToString("F2")). No real money is processed.</p>
+            @if (Model.IsOperator)
+            {
+                <p>Customer @selected.CustomerId; fixture @selected.Disruption. These controls do not approve changes.</p>
+                <form method="post" asp-page-handler="Disrupt">
+                    <input type="hidden" name="id" value="@selected.Id" />
+                    <input type="hidden" name="requestId" value="@Guid.NewGuid().ToString("N")" />
+                    <button name="kind" value="delay">Inject synthetic delivery delay</button>
+                    <button name="kind" value="tool-timeout">Inject synthetic tool failure</button>
+                    <button name="kind" value="none" class="secondary">Clear injected exception</button>
+                </form>
+            }
+            <ul>
+            @foreach (var line in selected.Lines)
+            {
+                <li>@line.Quantity &times; @Model.Products.Single(x => x.Id == line.ProductId).Name</li>
+            }
+            </ul>
+            @if (!Model.IsOperator && selected.Status == "Draft")
+            {
+                <form method="post" asp-page-handler="Confirm">
+                    <input type="hidden" name="id" value="@selected.Id" />
+                    <input type="hidden" name="version" value="@selected.Version" />
+                    <input type="hidden" name="requestId" value="@Guid.NewGuid().ToString("N")" />
+                    <button type="submit">Confirm this exact order</button>
+                </form>
+            }
+            @if (!Model.IsOperator && selected.Proposal is { } proposal)
+            {
+                <section class="proposal" aria-label="Customer decision required">
+                    <h3>Review the proposed change</h3>
+                    <ul>
+                    @foreach (var line in proposal.Lines)
+                    {
+                        <li>@line.Quantity &times; @Model.Products.Single(x => x.Id == line.ProductId).Name</li>
+                    }
+                    </ul>
+                    <p>New total: USD @((proposal.TotalCents / 100m).ToString("F2")); window @proposal.Slot.</p>
+                    <p>Expires @proposal.ExpiresAt.ToString("u"). No changed commitment has been executed.</p>
+                    <form method="post" asp-page-handler="Decide">
+                        <input type="hidden" name="id" value="@selected.Id" />
+                        <input type="hidden" name="fingerprint" value="@proposal.Fingerprint" />
+                        <input type="hidden" name="requestId" value="@Guid.NewGuid().ToString("N")" />
+                        <button name="accept" value="true">Accept this exact proposal</button>
+                        <button name="accept" value="false" class="secondary">Decline and hold</button>
+                    </form>
+                </section>
+            }
+            @if (!Model.IsOperator && selected.Status == "Failed")
+            {
+                <form method="post" asp-page-handler="Retry">
+                    <input type="hidden" name="id" value="@selected.Id" />
+                    <input type="hidden" name="requestId" value="@Guid.NewGuid().ToString("N")" />
+                    <button type="submit">Retry failed stage within remaining budgets</button>
+                </form>
+            }
+            @if (!Model.IsOperator && selected.Status is not ("Cancelled" or "Dispatched" or "Delivered"))
+            {
+                <form method="post" asp-page-handler="Cancel">
+                    <input type="hidden" name="id" value="@selected.Id" />
+                    <input type="hidden" name="requestId" value="@Guid.NewGuid().ToString("N")" />
+                    <button class="secondary" type="submit">Cancel undispatched order</button>
+                </form>
+            }
+            <ol class="timeline">
+            @foreach (var entry in selected.Timeline)
+            {
+                <li><time>@entry.At.ToString("u")</time> <strong>@entry.Kind</strong>
+                    <p>@entry.Message</p>
+                    @if (entry.ResponseId is not null) { <code>@entry.ResponseId</code> }
+                </li>
+            }
+            </ol>
+            @if (!Model.IsOperator)
+            {
+                <h3><img class="fluent-icon" src="~/icons/chat.svg" alt="" aria-hidden="true" /> Ask Order Assistance</h3>
+                <p>Read-only guidance; chat cannot confirm orders or approve changes. Max 20 questions/day.</p>
+                <form method="post" asp-page-handler="Chat">
+                    <input type="hidden" name="id" value="@selected.Id" />
+                    <label for="question">Your question</label>
+                    <textarea id="question" name="question" maxlength="1000" required></textarea>
+                    <button type="submit">Ask the real agent</button>
+                </form>
+                @if (Model.Answer is not null)
+                {
+                    <div class="answer" role="status"><p>@Model.Answer</p><code>@Model.ResponseId</code></div>
+                }
+            }
+        }
+        else { <p>Select an order to inspect persisted agent calls, action receipts and customer decisions.</p> }
+    </section>
+</div>

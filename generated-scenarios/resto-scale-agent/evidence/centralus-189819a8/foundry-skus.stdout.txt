@@ -1,0 +1,12 @@
+[
+  {
+    "kind": "AIServices",
+    "locations": [
+      "CENTRALUS"
+    ],
+    "name": "S0",
+    "resourceType": "accounts",
+    "restrictions": [],
+    "tier": "Standard"
+  }
+]

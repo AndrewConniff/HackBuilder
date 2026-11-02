@@ -1,0 +1,9 @@
+{
+  "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" rest --method get --url https://management.azure.com/providers/Microsoft.Authorization/policyDefinitions/2a6ae02f-7590-40d7-88ba-b18e205a32fd --url-parameters api-version=2023-04-01 --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json",
+  "cwd": "C:\\azd-projects\\equip-ai",
+  "startedAtUtc": "2026-10-24T22:39:07.609685+00:00",
+  "finishedAtUtc": "2026-10-24T22:39:09.371427+00:00",
+  "exitCode": 0,
+  "stdout": "policy-rule-0.json",
+  "stderr": "policy-rule-0.stderr.txt"
+}

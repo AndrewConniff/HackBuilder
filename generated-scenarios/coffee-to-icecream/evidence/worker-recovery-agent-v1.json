@@ -1,0 +1,125 @@
+{
+  "startedAtUtc": "2026-10-30T04:22:37.735889+00:00",
+  "status": "passed",
+  "failedDependencyOutcome": {
+    "status": 503,
+    "data": {
+      "error": "Dependency unavailable; no successful close claimed.",
+      "traceId": "0HNPM7MFHK77N:00000004"
+    },
+    "seconds": 5.610094900010154
+  },
+  "noClosePersisted": true,
+  "beforeCloseCount": 22,
+  "afterFailureCloseCount": 22,
+  "configurationRestored": true,
+  "recoveredOutcome": {
+    "status": 200,
+    "data": {
+      "correlationId": "0ec116b3ff9e461fa48263e19ed7da28",
+      "status": "AwaitingReview",
+      "evidence": [
+        {
+          "store": {
+            "id": 3,
+            "storeId": "003",
+            "name": "Northwind Traders store 003",
+            "area": "north",
+            "manager": "Nemanja Milatovic"
+          },
+          "version": "seed-20261028-003",
+          "stock": [
+            {
+              "id": 1,
+              "sku": "vanilla",
+              "unit": "L",
+              "onHand": 10.9,
+              "target": 20,
+              "unitCost": 5
+            },
+            {
+              "id": 2,
+              "sku": "chocolate",
+              "unit": "L",
+              "onHand": 11.7,
+              "target": 20,
+              "unitCost": 6
+            },
+            {
+              "id": 3,
+              "sku": "cone",
+              "unit": "unit",
+              "onHand": 117.0,
+              "target": 200,
+              "unitCost": 0.2
+            },
+            {
+              "id": 4,
+              "sku": "cup",
+              "unit": "unit",
+              "onHand": 117.0,
+              "target": 200,
+              "unitCost": 0.1
+            }
+          ],
+          "ledger": {
+            "id": 3,
+            "date": "2026-10-28",
+            "netSales": 615.5,
+            "cogs": 102.2,
+            "labor": 146,
+            "occupancy": 45,
+            "waste": 4.0,
+            "complete": true,
+            "plannedSales": 650,
+            "profit": 318.3,
+            "salesVariance": -34.5
+          },
+          "input": null
+        }
+      ],
+      "netSales": 615.5,
+      "profit": 318.3,
+      "agents": [
+        {
+          "agent": "coffee-to-icecream-close",
+          "version": "1",
+          "responseId": "resp_000675f6d51756fc016ae41c44f8fc819499aba4bd8e06a46c",
+          "text": "Northwind Traders Operations Review for Store 003 - Date 2026-10-28\n\nAssignment Summary:  \n- Stock (Assignment 003-stock, Snapshot seed-20261028-003): Inventory shortfalls detected in vanilla (10.9L vs. 20L target), chocolate (11.7L vs. 20L), and cones/cups (117 units vs. 200). Sales consumed 8.3L vanilla, 8.1L chocolate, 83 cones, and 63 cups. Spoilage of vanilla 0.8L reduces available stock, raising risk of stockouts impacting operations and profit if not promptly replenished.  \n- Margin (Assignment 003-margin, Snapshot seed-20261028-003): Net sales $615.5 (below planned $650 by $34.5). COGS $102.2 excludes waste expense $4.0. Labor $146, occupancy $45 recorded. Profit is $318.3 according to ledger evidence for this date/store.\n\nAuthoritative Totals: Net sales $615.5, profit $318.3.\n\nExceptions: Stock shortages and spoilage (vanilla) threaten operational continuity and margin stability. Sales variance negatively impacted margin. Waste is accounted separately and not in COGS.\n\nThis report presents reconciled facts for managerial review and decision-making. All figures await human confirmation prior to operational action."
+        }
+      ],
+      "assignments": [
+        {
+          "assignmentId": "003-stock",
+          "storeId": "003",
+          "domain": "stock",
+          "snapshotVersion": "seed-20261028-003",
+          "agent": {
+            "agent": "coffee-to-icecream-stock",
+            "version": "1",
+            "responseId": "resp_07766e72b8291923016ae41c4111408195bf7e9436c370dad1",
+            "text": "Store 003 stock shows shortfalls: vanilla has 10.9L vs. target 20L (-9.1L), chocolate 11.7L vs. 20L (-8.3L), and cones/cups each at 117 units vs. 200 target (-83 units). Sales of 83 vanilla-cones and 63 chocolate-cups consumed 8.3L vanilla, 8.1L chocolate, 83 cones, and 63 cups per recipes. Spoilage lost 0.8L vanilla further reducing available stock. Gross revenue from sales totals $632.5 (83x$4 + 63x$4.5). Cost of goods sold includes vanilla (9.1L used + 0.8L spoilage) and chocolate (6.3L used), cones, and cups consumed. The current inventory depletion and spoilage indicate risk of shortages impacting profit if replenishment is delayed. Restored stock levels and spoilage data confirm inventory tightness affecting operational efficiency."
+          }
+        },
+        {
+          "assignmentId": "003-margin",
+          "storeId": "003",
+          "domain": "margin",
+          "snapshotVersion": "seed-20261028-003",
+          "agent": {
+            "agent": "coffee-to-icecream-margin",
+            "version": "1",
+            "responseId": "resp_079d892f0c83e0ec016ae41c3f8f7881909914fc0b432866d1",
+            "text": "For Store 003 on 2026-10-28, net sales reached 615.5, falling short of the planned 650 by 34.5, explaining the sales variance. The cost of goods sold (COGS) for sold ice-cream products was 102.2; this excludes the waste expense of 4.0, which is separately accounted for and not part of COGS. Labor expenses were 146 and occupancy costs 45. The reported profit is 318.3, reflecting these costs and sales performance. No additional spoilage expenses are recorded. Evidence is fully supplied by the ledger snapshot for the date and store specified."
+          }
+        }
+      ],
+      "createdAt": "2026-10-30T04:25:44.217275+00:00",
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    "seconds": 9.510839100010344
+  },
+  "afterRecoveryCloseCount": 23,
+  "completedAtUtc": "2026-10-30T04:25:47.267376+00:00"
+}

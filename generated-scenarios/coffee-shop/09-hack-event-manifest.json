@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "project": "coffee-shop",
+  "teamCount": 1,
+  "coach": {
+    "azdEnvironment": "coffee-shop-coach",
+    "resourceGroup": "rg-coffee-shop-coach",
+    "applicationUrl": null,
+    "deploymentStatus": "planned"
+  },
+  "teams": [
+    {
+      "id": "01",
+      "displayName": "Team 01",
+      "azdEnvironment": "01-coffee-shop-hack",
+      "resourceGroup": "rg-01-coffee-shop-hack",
+      "applicationUrl": null,
+      "deploymentStatus": "planned"
+    }
+  ]
+}

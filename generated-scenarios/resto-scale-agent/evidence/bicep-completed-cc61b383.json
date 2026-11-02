@@ -1,0 +1,12 @@
+{
+  "stage": "bicep",
+  "status": "completed",
+  "summary": "Completed locally compiled AVM-first shared/runtime wiring, installed-agent version parameters, scoped runtime parameter generation, internal HTTPS chat routing, telemetry RBAC and signing-key expiry/rotation. No Azure deployment or policy compliance is claimed; retained static findings require target review.",
+  "evidence": [
+    "az bicep build --file generated-scenarios\\resto-scale-agent\\infra\\main.bicep --outfile generated-scenarios\\resto-scale-agent\\evidence\\main-cc61b383.arm.json: exit 0. az bicep lint --file generated-scenarios\\resto-scale-agent\\infra\\main.bicep: exit 0.",
+    "az bicep build --file generated-scenarios\\resto-scale-agent\\infra\\runtime.bicep --outfile generated-scenarios\\resto-scale-agent\\evidence\\runtime-cc61b383.arm.json: exit 0 after final internal routing correction. az bicep lint --file generated-scenarios\\resto-scale-agent\\infra\\runtime.bicep: exit 0.",
+    "python -m unittest discover -s generated-scenarios\\resto-scale-agent\\validation -p \"test_*.py\" -v: eight passed, including exact target/output/image/version guards and load profile shapes.",
+    "05-implementation-reference.md: ordered two-pass deployment preparation, initializer and runtime rollout; no cloud operation executed.",
+    "evidence\\checkov-expanded-main-cc61b383.json: eight passed, fourteen findings, zero parsing errors; conditional AVM resource definitions are not deployed resource counts. Runtime scanner has zero applicable checks and does not certify Container Apps."
+  ]
+}

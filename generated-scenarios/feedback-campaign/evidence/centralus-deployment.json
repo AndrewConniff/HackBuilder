@@ -1,0 +1,39 @@
+{
+  "name": "feedback-campaign-1792950654",
+  "outputs": {
+    "apP_URL": {
+      "type": "String",
+      "value": "https://fc-web-kvjmo565tswuy.azurewebsites.net"
+    },
+    "azurE_RESOURCE_GROUP": {
+      "type": "String",
+      "value": "rg-feedback-campaign"
+    },
+    "azurE_WEBAPP_NAME": {
+      "type": "String",
+      "value": "fc-web-kvjmo565tswuy"
+    },
+    "foundrY_MODEL_DEPLOYMENT": {
+      "type": "String",
+      "value": "campaign-model"
+    },
+    "foundrY_MODEL_ENDPOINT": {
+      "type": "String",
+      "value": "https://fc-ai-kvjmo565tswuy.openai.azure.com"
+    },
+    "foundrY_PROJECT_ENDPOINT": {
+      "type": "String",
+      "value": "https://fc-ai-kvjmo565tswuy.services.ai.azure.com/api/projects/campaign"
+    },
+    "servicebuS_NAMESPACE": {
+      "type": "String",
+      "value": "fc-bus-kvjmo565tswuy.servicebus.windows.net"
+    },
+    "tablE_ENDPOINT": {
+      "type": "String",
+      "value": "https://stfckvjmo565tswuy.table.core.windows.net"
+    }
+  },
+  "state": "Succeeded",
+  "timestamp": "2026-10-25T17:52:27.859597+00:00"
+}

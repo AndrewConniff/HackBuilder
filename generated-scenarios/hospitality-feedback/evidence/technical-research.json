@@ -1,0 +1,67 @@
+{
+  "evidenceScope": "public_documentation_and_local_tooling_only",
+  "checkedDateUtc": "2026-10-22",
+  "azureTargetQueried": false,
+  "agentSetup": "Basic",
+  "customerCosmosResource": false,
+  "managedStateCaveat": "Basic service state is Microsoft-managed; no claim about absence of internal Cosmos.",
+  "sources": [
+    {
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/agents/environment-setup",
+      "finding": "Basic uses platform-managed state; Standard uses customer resources."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/agents/quickstarts/prompt-agent",
+      "finding": "Persisted prompt agents: POST project/agents?api-version=v1, invoke agent-scoped endpoint/protocols/openai/responses?api-version=v1."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/azure/templates/microsoft.cognitiveservices/accounts/projects",
+      "finding": "Foundry projects are direct children of accounts; documented 2025-06-01 schema supports identity/display/description."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted",
+      "finding": "Storage queues fit a simple asynchronous backlog; message bodies limited to 64 KB."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/MicrosoftDocs/azure-docs/main/articles/role-based-access-control/built-in-roles/ai-machine-learning.md",
+      "finding": "Foundry User role definition in current source: 53ca6127-db72-4b80-b1b0-d745d6d5456d; verify selected target before deployment."
+    },
+    {
+      "url": "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res",
+      "finding": "Reviewed current public storage, web and Foundry AVM input/output/nested resource types; actual versions pinned below."
+    }
+  ],
+  "avmRegistry": "https://mcr.microsoft.com/v2/bicep/avm/res/{module}/tags/list",
+  "avmVersions": {
+    "resources/resource-group": "0.4.4",
+    "managed-identity/user-assigned-identity": "0.6.0",
+    "storage/storage-account": "0.33.1",
+    "cognitive-services/account": "0.19.1",
+    "web/serverfarm": "0.7.0",
+    "web/site": "0.24.0"
+  },
+  "nativeExceptions": {
+    "cognitive-services/account/project": "MCR tag path returned 404",
+    "authorization/role-assignment": "MCR tag path returned 404"
+  },
+  "nugetSource": "https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public/nuget/v3/index.json",
+  "nugetVersions": {
+    "Azure.Identity": "1.21.0",
+    "Azure.Storage.Blobs": "12.30.1",
+    "Azure.Storage.Queues": "12.28.1",
+    "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.13",
+    "Microsoft.NET.Test.Sdk": "18.11.0",
+    "xunit": "2.9.3",
+    "xunit.runner.visualstudio": "4.0.1"
+  },
+  "unverifiedLiveItems": [
+    "Selected account/subscription/tenant",
+    "Providers and policy",
+    "Resource and Basic agent feature availability in region",
+    "Exact model/version/deployment SKU",
+    "Subscription quota and current capacity",
+    "App Service Linux .NET 10 stack in target",
+    "Azure JWT/MI/RBAC behavior",
+    "Real model and agent responses"
+  ]
+}

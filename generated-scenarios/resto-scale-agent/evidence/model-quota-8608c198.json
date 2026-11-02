@@ -1,0 +1,58 @@
+[
+  {
+    "currentValue": 1.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "One Thousand Tokens Per Minute - gpt-5.4-mini - GlobalStandard",
+      "value": "OpenAI.GlobalStandard.gpt-5.4-mini"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "global",
+    "scopeType": "Global",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 200000.0,
+    "name": {
+      "localizedValue": "Enqueued tokens (thousands) - gpt-5.4-mini",
+      "value": "OpenAI.GlobalBatch.gpt-5.4-mini"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "eastus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 200000.0,
+    "name": {
+      "localizedValue": "Enqueued tokens (thousands) - gpt-5.4-mini",
+      "value": "OpenAI.DataZoneBatch.gpt-5.4-mini"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "eastus2",
+    "scopeType": "Classic",
+    "status": null,
+    "unit": "Count"
+  },
+  {
+    "currentValue": 0.0,
+    "limit": 1000.0,
+    "name": {
+      "localizedValue": "One Thousand Tokens Per Minute - gpt-5.4-mini - DataZoneStandard",
+      "value": "OpenAI.DataZoneStandard.gpt-5.4-mini"
+    },
+    "nextResetTime": null,
+    "quotaPeriod": null,
+    "scopeId": "us",
+    "scopeType": "DataZone",
+    "status": null,
+    "unit": "Count"
+  }
+]

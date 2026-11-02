@@ -1,0 +1,81 @@
+{
+  "command": "az cognitiveservices account deployment show --name ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec --deployment-name restaurant-model --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --resource-group rg-resto-scale-agent --output json",
+  "startedAtUtc": "2026-10-24T00:16:39.513310+00:00",
+  "checkedAtUtc": "2026-10-24T00:16:41.565587+00:00",
+  "exitCode": 0,
+  "stdout": "{\n  \"etag\": \"\\\"a4f140dd-1045-4d4b-8d82-2625d0394a55\\\"\",\n  \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/deployments/restaurant-model\",\n  \"name\": \"restaurant-model\",\n  \"properties\": {\n    \"callRateLimit\": null,\n    \"capabilities\": {\n      \"agentsV2\": \"true\",\n      \"area\": \"US\",\n      \"assistants\": \"true\",\n      \"chatCompletion\": \"true\",\n      \"responses\": \"true\"\n    },\n    \"capacitySettings\": null,\n    \"currentCapacity\": 100,\n    \"deploymentState\": \"Running\",\n    \"dynamicThrottlingEnabled\": null,\n    \"model\": {\n      \"callRateLimit\": null,\n      \"format\": \"OpenAI\",\n      \"name\": \"gpt-5.4-mini\",\n      \"publisher\": null,\n      \"source\": null,\n      \"sourceAccount\": null,\n      \"version\": \"2026-03-17\"\n    },\n    \"parentDeploymentName\": null,\n    \"provisioningState\": \"Succeeded\",\n    \"raiPolicyName\": \"Microsoft.DefaultV2\",\n    \"rateLimits\": [\n      {\n        \"count\": 100.0,\n        \"dynamicThrottlingEnabled\": null,\n        \"key\": \"request\",\n        \"matchPatterns\": null,\n        \"minCount\": null,\n        \"renewalPeriod\": 60.0\n      },\n      {\n        \"count\": 100000.0,\n        \"dynamicThrottlingEnabled\": null,\n        \"key\": \"token\",\n        \"matchPatterns\": null,\n        \"minCount\": null,\n        \"renewalPeriod\": 60.0\n      }\n    ],\n    \"routing\": null,\n    \"scaleSettings\": null,\n    \"serviceTier\": null,\n    \"speculativeDecoding\": null,\n    \"spilloverDeploymentName\": null,\n    \"versionUpgradeOption\": \"NoAutoUpgrade\"\n  },\n  \"resourceGroup\": \"rg-resto-scale-agent\",\n  \"sku\": {\n    \"capacity\": 100,\n    \"family\": null,\n    \"name\": \"GlobalStandard\",\n    \"size\": null,\n    \"tier\": null\n  },\n  \"systemData\": {\n    \"createdAt\": \"2026-10-24T00:13:14.876264+00:00\",\n    \"createdBy\": \"Peter.DeTender@microsoft.com\",\n    \"createdByType\": \"User\",\n    \"lastModifiedAt\": \"2026-10-24T00:13:14.876264+00:00\",\n    \"lastModifiedBy\": \"Peter.DeTender@microsoft.com\",\n    \"lastModifiedByType\": \"User\"\n  },\n  \"tags\": null,\n  \"type\": \"Microsoft.CognitiveServices/accounts/deployments\"\n}\n",
+  "stderr": "",
+  "result": {
+    "etag": "\"a4f140dd-1045-4d4b-8d82-2625d0394a55\"",
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.CognitiveServices/accounts/ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec/deployments/restaurant-model",
+    "name": "restaurant-model",
+    "properties": {
+      "callRateLimit": null,
+      "capabilities": {
+        "agentsV2": "true",
+        "area": "US",
+        "assistants": "true",
+        "chatCompletion": "true",
+        "responses": "true"
+      },
+      "capacitySettings": null,
+      "currentCapacity": 100,
+      "deploymentState": "Running",
+      "dynamicThrottlingEnabled": null,
+      "model": {
+        "callRateLimit": null,
+        "format": "OpenAI",
+        "name": "gpt-5.4-mini",
+        "publisher": null,
+        "source": null,
+        "sourceAccount": null,
+        "version": "2026-03-17"
+      },
+      "parentDeploymentName": null,
+      "provisioningState": "Succeeded",
+      "raiPolicyName": "Microsoft.DefaultV2",
+      "rateLimits": [
+        {
+          "count": 100.0,
+          "dynamicThrottlingEnabled": null,
+          "key": "request",
+          "matchPatterns": null,
+          "minCount": null,
+          "renewalPeriod": 60.0
+        },
+        {
+          "count": 100000.0,
+          "dynamicThrottlingEnabled": null,
+          "key": "token",
+          "matchPatterns": null,
+          "minCount": null,
+          "renewalPeriod": 60.0
+        }
+      ],
+      "routing": null,
+      "scaleSettings": null,
+      "serviceTier": null,
+      "speculativeDecoding": null,
+      "spilloverDeploymentName": null,
+      "versionUpgradeOption": "NoAutoUpgrade"
+    },
+    "resourceGroup": "rg-resto-scale-agent",
+    "sku": {
+      "capacity": 100,
+      "family": null,
+      "name": "GlobalStandard",
+      "size": null,
+      "tier": null
+    },
+    "systemData": {
+      "createdAt": "2026-10-24T00:13:14.876264+00:00",
+      "createdBy": "Peter.DeTender@microsoft.com",
+      "createdByType": "User",
+      "lastModifiedAt": "2026-10-24T00:13:14.876264+00:00",
+      "lastModifiedBy": "Peter.DeTender@microsoft.com",
+      "lastModifiedByType": "User"
+    },
+    "tags": null,
+    "type": "Microsoft.CognitiveServices/accounts/deployments"
+  }
+}

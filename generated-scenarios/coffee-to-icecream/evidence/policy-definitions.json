@@ -1,0 +1,994 @@
+{
+  "MCAPSGovDenyPolicies": {
+    "id": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policySetDefinitions/MCAPSGovDenyPolicies",
+    "name": "MCAPSGovDenyPolicies",
+    "properties": {
+      "description": "https://aka.ms/fdpowiki",
+      "displayName": "Set of Deny policies used by MCAPS Governance to restrict specific resource types or SKUs",
+      "metadata": {
+        "Version": "20261008-1",
+        "category": "General",
+        "createdBy": "0bc12465-ad34-4ee9-9d73-d6b23dfc78b8",
+        "createdOn": "2023-04-20T21:31:24.5173248Z",
+        "updatedBy": "4619a992-000c-420a-97c5-fa7fd7c0d2b2",
+        "updatedOn": "2026-10-10T01:00:17.6588132Z"
+      },
+      "policyDefinitions": [
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {
+            "BlockedSKUs": {
+              "value": [
+                "Standard_HB120-16rs_v2",
+                "Standard_HB120-16rs_v3",
+                "Standard_HB120-32rs_v2",
+                "Standard_HB120-32rs_v3",
+                "Standard_HB120-64rs_v2",
+                "Standard_HB120-64rs_v3",
+                "Standard_HB120-96rs_v2",
+                "Standard_HB120-96rs_v3",
+                "Standard_HB120rs_v2",
+                "Standard_HB120rs_v3",
+                "Standard_HB60-15rs",
+                "Standard_HB60-30rs",
+                "Standard_HB60-45rs",
+                "Standard_HB60rs",
+                "Standard_HC44-16rs",
+                "Standard_HC44-32rs",
+                "Standard_HC44rs"
+              ]
+            }
+          },
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/VirtualMachine_SKU_Deny",
+          "policyDefinitionReferenceId": "BlockVMSKUs_H"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {
+            "BlockedSKUs": {
+              "value": [
+                "standard_m128",
+                "standard_m128-32ms",
+                "standard_m128-64ms",
+                "standard_m128dms_v2",
+                "standard_m128ds_v2",
+                "standard_m128m",
+                "standard_m128ms",
+                "standard_m128ms_v2",
+                "standard_m128s",
+                "standard_m128s_v2",
+                "standard_m16-4ms",
+                "standard_m16-8ms",
+                "standard_m16ms",
+                "standard_m192idms_v2",
+                "standard_m192ids_v2",
+                "standard_m192ims_v2",
+                "standard_m192is_v2",
+                "standard_m208ms_v2",
+                "standard_m208s_v2",
+                "standard_m32-16ms",
+                "standard_m32ls",
+                "standard_m32dms_v2",
+                "standard_m32-8ms",
+                "standard_m32ms",
+                "standard_m32ms_v2",
+                "standard_m32ts",
+                "standard_m416-208ms_v2",
+                "standard_m416-208s_v2",
+                "standard_m416ms_v2",
+                "standard_m416s_v2",
+                "standard_m64",
+                "standard_m64-16ms",
+                "standard_m64-32ms",
+                "standard_m64dms_v2",
+                "standard_m64ds_v2",
+                "standard_m64ls",
+                "standard_m64ms",
+                "standard_m64m",
+                "standard_m64ms_v2",
+                "standard_m64s",
+                "standard_m64s_v2",
+                "standard_m8-2ms",
+                "standard_m8-4ms",
+                "standard_m8ms"
+              ]
+            }
+          },
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/VirtualMachine_SKU_Deny",
+          "policyDefinitionReferenceId": "BlockVMSKUs_M"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {
+            "BlockedSKUs": {
+              "value": [
+                "standard_nc12",
+                "standard_nc12_promo",
+                "standard_nc12s_v2",
+                "standard_nc12s_v3",
+                "standard_nc16ads_a10_v4",
+                "standard_nc16as_t4_v3",
+                "standard_nc24",
+                "standard_nc24r",
+                "standard_nc24ads_a100_v4",
+                "standard_nc24_promo",
+                "standard_nc24s_v2",
+                "standard_nc24rs_v3",
+                "standard_nc24rs_v2",
+                "standard_nc24r_promo",
+                "standard_nc6",
+                "standard_nc4as_t4_v3",
+                "standard_nc48ads_a100_v4",
+                "standard_nc32ads_a10_v4",
+                "standard_nc24s_v3",
+                "standard_nc6_promo",
+                "standard_nc64as_t4_v3",
+                "standard_nc6s_v2",
+                "standard_nc6s_v3",
+                "standard_nc8ads_a10_v4",
+                "standard_nc8as_t4_v3",
+                "standard_nc96ads_a100_v4",
+                "standard_nd6sstandard_nd40s_v3",
+                "standard_nd40rs_v2",
+                "standard_nd24s",
+                "standard_nd24rsstandard_nd12s",
+                "standard_nd96amsr_a100_v4",
+                "standard_nd96asr_v4",
+                "standard_nv12",
+                "standard_nv10ads_a10_v5",
+                "standard_np40s",
+                "standard_np20s",
+                "standard_np10s",
+                "standard_nv20ads_a10_v5",
+                "standard_nv20adms_a10_v5",
+                "standard_nv18ads_a10_v5",
+                "standard_nv16as_v4",
+                "standard_nv12s_v3",
+                "standard_nv12s_v2",
+                "standard_nv12ads_a10_v5",
+                "standard_nv12_promo",
+                "standard_nv24",
+                "standard_nv32as_v4",
+                "standard_nv30ads_a10_v5",
+                "standard_nv24s_v3",
+                "standard_nv24s_v2",
+                "standard_nv24_promo",
+                "standard_nv30adms_a10_v5",
+                "standard_nv36adms_a10_v5",
+                "standard_nv36ads_a10_v5",
+                "standard_nv40ads_a10_v5",
+                "standard_nv6s_v2",
+                "standard_nv6ads_a10_v5",
+                "standard_nv6_promo",
+                "standard_nv6",
+                "standard_nv4as_v4",
+                "standard_nv4ads_a10_v5",
+                "standard_nv48s_v3",
+                "standard_nv72ads_a10_v5",
+                "standard_nv8as_v4"
+              ]
+            }
+          },
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/VirtualMachine_SKU_Deny",
+          "policyDefinitionReferenceId": "BlockVMSKUs_N"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/AKS_LimitNodeCount_Deny",
+          "policyDefinitionReferenceId": "AKS_LimitNodeCount"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/VMSS_LimitNodesCount_Deny",
+          "policyDefinitionReferenceId": "VMSS_LimitNodesCount"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/AzureOpenAI_ProvisionedCapacity_Deny",
+          "policyDefinitionReferenceId": "OpenAI_BlockProvisionedCapacity"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/Sentinel_Commitment_Deny",
+          "policyDefinitionReferenceId": "Sentinel_Commitment_Deny"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/AzureSQL_WithoutAzureADOnlyAuthentication_Deny",
+          "policyDefinitionReferenceId": "AzureSQL_WithoutAzureADOnlyAuthentication_Deny"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/AzureSQLMI_WithoutAzureADOnlyAuthentication_Deny",
+          "policyDefinitionReferenceId": "AzureSQLMI_WithoutAzureADOnlyAuthentication_Deny"
+        },
+        {
+          "definitionVersion": "2.*.*",
+          "parameters": {
+            "listOfResourceTypesNotAllowed": {
+              "value": [
+                "microsoft.classiccompute/virtualmachines",
+                "microsoft.classiccompute/virtualmachines/diagnosticsettings",
+                "microsoft.classiccompute/virtualmachines/metricdefinitions",
+                "microsoft.classiccompute/virtualmachines/metrics",
+                "microsoft.classicnetwork/virtualnetworks",
+                "microsoft.classicnetwork/virtualnetworks/remotevirtualnetworkpeeringproxies",
+                "microsoft.classicnetwork/virtualnetworks/virtualnetworkpeerings",
+                "microsoft.classicstorage/checkstorageaccountavailability",
+                "microsoft.classicstorage/storageaccounts",
+                "microsoft.classicstorage/storageaccounts/blobservices",
+                "microsoft.classicstorage/storageaccounts/fileservices",
+                "microsoft.classicstorage/storageaccounts/metricdefinitions",
+                "microsoft.classicstorage/storageaccounts/metrics",
+                "microsoft.classicstorage/storageaccounts/queueservices",
+                "microsoft.classicstorage/storageaccounts/services",
+                "microsoft.classicstorage/storageaccounts/services/diagnosticsettings",
+                "microsoft.classicstorage/storageaccounts/services/metricdefinitions",
+                "microsoft.classicstorage/storageaccounts/services/metrics",
+                "microsoft.classicstorage/storageaccounts/tableservices",
+                "microsoft.classicstorage/storageaccounts/vmimages",
+                "microsoft.classiccompute/capabilities",
+                "microsoft.classiccompute/checkdomainnameavailability",
+                "microsoft.classiccompute/domainnames",
+                "microsoft.classiccompute/domainnames/capabilities",
+                "microsoft.classiccompute/domainnames/internalloadbalancers",
+                "microsoft.classiccompute/domainnames/servicecertificates",
+                "microsoft.classiccompute/domainnames/slots",
+                "microsoft.classiccompute/domainnames/slots/roles",
+                "microsoft.classiccompute/domainnames/slots/roles/metricdefinitions",
+                "microsoft.classiccompute/domainnames/slots/roles/metrics",
+                "microsoft.classiccompute/movesubscriptionresources",
+                "microsoft.classiccompute/operatingsystemfamilies",
+                "microsoft.classiccompute/operatingsystems",
+                "microsoft.classiccompute/operations",
+                "microsoft.classiccompute/operationstatuses",
+                "microsoft.classiccompute/quotas",
+                "microsoft.classiccompute/resourcetypes",
+                "microsoft.classiccompute/validatesubscriptionmoveavailability",
+                "microsoft.classicnetwork/capabilities",
+                "microsoft.classicnetwork/expressroutecrossconnections",
+                "microsoft.classicnetwork/expressroutecrossconnections/peerings",
+                "microsoft.classicnetwork/gatewaysupporteddevices",
+                "microsoft.classicnetwork/networksecuritygroups",
+                "microsoft.classicnetwork/operations",
+                "microsoft.classicnetwork/quotas",
+                "microsoft.classicnetwork/reservedips",
+                "microsoft.classicstorage/capabilities",
+                "microsoft.classicstorage/disks",
+                "microsoft.classicstorage/images",
+                "microsoft.classicstorage/operations",
+                "microsoft.classicstorage/osimages",
+                "microsoft.classicstorage/osplatformimages",
+                "microsoft.classicstorage/publicimages",
+                "microsoft.classicstorage/quotas",
+                "microsoft.classicstorage/vmimages",
+                "microsoft.classicsubscription/operations",
+                "microsoft.classicinfrastructuremigrate/classicinfrastructureresources"
+              ]
+            }
+          },
+          "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/6c112d4e-5bc7-47ae-a041-ea2d9dccd749",
+          "policyDefinitionReferenceId": "NotAllowedResourceTypes"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {
+            "AllowedTagName": {
+              "value": "CostControl"
+            },
+            "AllowedTagValue": {
+              "value": "Ignore"
+            }
+          },
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/KeyVaultManagedHSM_PurgeProtectionEnabled_Deny",
+          "policyDefinitionReferenceId": "KeyVaultManagedHSM_PurgeProtectionEnabled"
+        }
+      ],
+      "policyType": "Custom",
+      "version": "1.0.0",
+      "versions": [
+        "1.0.0"
+      ]
+    },
+    "systemData": {
+      "createdAt": "2023-04-20T21:31:23.7330018Z",
+      "createdBy": "eadea216-1d5c-4a4b-beaf-4f145e6b1cb4",
+      "createdByType": "Application",
+      "lastModifiedAt": "2026-10-10T01:00:17.63084Z",
+      "lastModifiedBy": "a1a9c5b6-7a4f-4288-89ab-6805873f65d1",
+      "lastModifiedByType": "Application"
+    },
+    "type": "Microsoft.Authorization/policySetDefinitions"
+  },
+  "MCAPSGovDeployPolicies": {
+    "id": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policySetDefinitions/MCAPSGovDeployPolicies",
+    "name": "MCAPSGovDeployPolicies",
+    "properties": {
+      "description": "https://aka.ms/fdpowiki",
+      "displayName": "Set of Deploy and Modify policies used by MCAPS Governance to ensure resources are compliant with security controls",
+      "metadata": {
+        "Version": "20261008-1",
+        "category": "General",
+        "createdBy": "4619a992-000c-420a-97c5-fa7fd7c0d2b2",
+        "createdOn": "2026-10-10T01:00:23.8243745Z",
+        "updatedBy": null,
+        "updatedOn": null
+      },
+      "policyDefinitions": [
+        {
+          "definitionVersion": "1.*.*",
+          "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/8e86a5b6-b9bd-49d1-8e21-4bb8a0862222",
+          "policyDefinitionReferenceId": "16336328350807846552"
+        },
+        {
+          "definitionVersion": "2.*.*",
+          "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/1f725891-01c0-420a-9059-4fa46cb770b7",
+          "policyDefinitionReferenceId": "518322912525881385"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/82bf5b87-728b-4a74-ba4d-6123845cf542",
+          "policyDefinitionReferenceId": "8780820495537069790"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/b99b73e7-074b-4089-9395-b7236f094491",
+          "policyDefinitionReferenceId": "15485580904500402843"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/50ea7265-7d8c-429e-9a7d-ca1f410191c3",
+          "policyDefinitionReferenceId": "9999903636474418445"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/44433aa3-7ec2-4002-93ea-65c65ff0310a",
+          "policyDefinitionReferenceId": "16609350142357786650"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/c9ddb292-b203-4738-aead-18e2716e858f",
+          "policyDefinitionReferenceId": "10978145697721802932"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/b40e7bcd-a1e5-47fe-b9cf-2f534d0bfb7d",
+          "policyDefinitionReferenceId": "7823919266850719580"
+        },
+        {
+          "definitionVersion": "2.*.*",
+          "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/b7021b2b-08fd-4dc0-9de7-3c6ece09faf9",
+          "policyDefinitionReferenceId": "15805815949202944974"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/cfdc5972-75b3-4418-8ae1-7f5c36839390",
+          "policyDefinitionReferenceId": "13881795546678989434"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/359a48a3-351a-4618-bb32-f1628645694b",
+          "policyDefinitionReferenceId": "6220867557146228638"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/VirtualMachine_GuestExtnforWindowsClient_Deploy",
+          "policyDefinitionReferenceId": "DeployGuestConfigurationOnWindowsClients"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/VirtualMachine_ManagedIdentity_Deploy",
+          "policyDefinitionReferenceId": "EnableManagedIdentityOnVMwithNoIdentity"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/VirtualMachine_ManagedIdentityonUserIdentity_Deploy",
+          "policyDefinitionReferenceId": "EnableManagedIdentityOnVMwithUserIdentity"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/StorageAccount_BlobAnonymousAccess_Modify",
+          "policyDefinitionReferenceId": "ModifyAllowBlobAnonymousAccess"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/EventHub_DisableLocalAuth_Modify",
+          "policyDefinitionReferenceId": "EventHubDisableLocalAuth"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/ServiceBus_DisableLocalAuth_Modify",
+          "policyDefinitionReferenceId": "ServiceBusDisableLocalAuth"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/StorageAccount_DisableLocalAuth_Modify",
+          "policyDefinitionReferenceId": "StorageAccountDisableLocalAuth"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/CosmosDB_LocalAuth_Modify",
+          "policyDefinitionReferenceId": "ModifyCosmosDBLocalAuth"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/CognitiveServices_Diagnostics_Enable",
+          "policyDefinitionReferenceId": "EnableCognitiveServicesDiagnostics"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/HubsAIFoundry_Diagnostics_Enable",
+          "policyDefinitionReferenceId": "EnableHubsAIFoundryDiagnostics"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/ProjectsAIFoundry_Diagnostics_Enable",
+          "policyDefinitionReferenceId": "EnableProjectsAIFoundryDiagnostics"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/CognitiveServices_LocalAuth_Modify",
+          "policyDefinitionReferenceId": "CognitiveServicesDisableLocalAuth"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/ResourceGroup_New_Deploy",
+          "policyDefinitionReferenceId": "NewResourceGroupDeploy"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/LogAnalyticsWorkspace_New_Deploy",
+          "policyDefinitionReferenceId": "NewLogAnalyticsWorkspaceDeploy"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/AIFoundryHub_PublicNetwork_Modify",
+          "policyDefinitionReferenceId": "AIFoundryHubPublicNetworkModify"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/StorageAccount_PublicNetwork_Modify",
+          "policyDefinitionReferenceId": "StorageAccountPublicNetworkModify"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/KeyVault_PublicNetwork_Modify",
+          "policyDefinitionReferenceId": "KeyVaultPublicNetworkModify"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/CosmosDB_PublicNetwork_Modify",
+          "policyDefinitionReferenceId": "CosmosDBPublicNetworkModify"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/AzureSQL_PublicNetwork_Modify",
+          "policyDefinitionReferenceId": "AzureSQLPublicNetworkModify"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/CSPM_SubPlans_Enable",
+          "policyDefinitionReferenceId": "CSPMSubPlansEnable"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/PublicIPAddress_Tags_Append",
+          "policyDefinitionReferenceId": "PublicIPAddressTagging"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/AKSNode_OSAutoUpgrade_Enable",
+          "policyDefinitionReferenceId": "EnableAKSNodeOSAutoUpgrade"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/AzureDataFactory_ManagedIdentity_Enable",
+          "policyDefinitionReferenceId": "ADFManagedIdentityEnable"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/AzureLogicApp_Diagnostics_Enable",
+          "policyDefinitionReferenceId": "EnableLogicAppDiagnostics"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/AzureLogicAppStandard_Diagnostics_Enable",
+          "policyDefinitionReferenceId": "EnableLogicAppStandardDiagnostics"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/AzureFunctionApps_Diagnostics_Enable",
+          "policyDefinitionReferenceId": "EnableFunctionAppDiagnostics"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/Synapse_Diagnostics_Enable",
+          "policyDefinitionReferenceId": "EnableSynapseDiagnostics"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/MLWorkspace_Diagnostics_Enable",
+          "policyDefinitionReferenceId": "EnableMLWorkspaceDiagnostics"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/BatchAccounts_Diagnostics_Enable",
+          "policyDefinitionReferenceId": "EnableBatchAccountsDiagnostics"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/DataFactory_Diagnostics_Enable",
+          "policyDefinitionReferenceId": "EnableDataFactoryDiagnostics"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/RedisCache_Diagnostics_Enable",
+          "policyDefinitionReferenceId": "EnableRedisCacheDiagnostics"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/ServiceBus_Diagnostics_Enable",
+          "policyDefinitionReferenceId": "EnableServiceBusDiagnostics"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/StreamAnalytics_Diagnostics_Enable",
+          "policyDefinitionReferenceId": "EnableStreamAnalyticsDiagnostics"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/FrontDoor_Diagnostics_Enable",
+          "policyDefinitionReferenceId": "EnableFrontDoorDiagnostics"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/RedisEnterprise_Diagnostics_Enable",
+          "policyDefinitionReferenceId": "EnableRedisEnterpriseDiagnostics"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/IotHub_Diagnostics_Enable",
+          "policyDefinitionReferenceId": "EnableIotHubDiagnostics"
+        },
+        {
+          "definitionVersion": "1.*.*",
+          "parameters": {},
+          "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/08cc2a62-5116-449e-bed1-98c29bd48de7/providers/Microsoft.Authorization/policyDefinitions/DataShare_Diagnostics_Enable",
+          "policyDefinitionReferenceId": "EnableDataShareDiagnostics"
+        }
+      ],
+      "policyType": "Custom",
+      "version": "1.0.0",
+      "versions": [
+        "1.0.0"
+      ]
+    },
+    "systemData": {
+      "createdAt": "2026-10-10T01:00:23.6689882Z",
+      "createdBy": "a1a9c5b6-7a4f-4288-89ab-6805873f65d1",
+      "createdByType": "Application",
+      "lastModifiedAt": "2026-10-10T01:00:23.6689882Z",
+      "lastModifiedBy": "a1a9c5b6-7a4f-4288-89ab-6805873f65d1",
+      "lastModifiedByType": "Application"
+    },
+    "type": "Microsoft.Authorization/policySetDefinitions"
+  },
+  "NotAllowedResourceTypes": {
+    "id": "/providers/Microsoft.Authorization/policyDefinitions/6c112d4e-5bc7-47ae-a041-ea2d9dccd749",
+    "name": "6c112d4e-5bc7-47ae-a041-ea2d9dccd749",
+    "properties": {
+      "description": "Restrict which resource types can be deployed in your environment. Limiting resource types can reduce the complexity and attack surface of your environment while also helping to manage costs. Compliance results are only shown for non-compliant resources.",
+      "displayName": "Not allowed resource types",
+      "metadata": {
+        "category": "General",
+        "version": "2.0.0"
+      },
+      "mode": "All",
+      "parameters": {
+        "effect": {
+          "allowedValues": [
+            "Audit",
+            "Deny",
+            "Disabled"
+          ],
+          "defaultValue": "Deny",
+          "metadata": {
+            "description": "Enable or disable the execution of the policy",
+            "displayName": "Effect"
+          },
+          "type": "String"
+        },
+        "listOfResourceTypesNotAllowed": {
+          "metadata": {
+            "description": "The list of resource types that cannot be deployed.",
+            "displayName": "Not allowed resource types",
+            "strongType": "resourceTypes"
+          },
+          "type": "Array"
+        }
+      },
+      "policyRule": {
+        "if": {
+          "allOf": [
+            {
+              "field": "type",
+              "in": "[parameters('listOfResourceTypesNotAllowed')]"
+            },
+            {
+              "exists": true,
+              "value": "[field('type')]"
+            }
+          ]
+        },
+        "then": {
+          "effect": "[parameters('effect')]"
+        }
+      },
+      "policyType": "BuiltIn",
+      "version": "2.0.0",
+      "versions": [
+        "2.0.0"
+      ]
+    },
+    "type": "Microsoft.Authorization/policyDefinitions"
+  },
+  "sys.mfa-write": {
+    "id": "/providers/Microsoft.Authorization/policyDefinitions/54f51f64-eaa5-44cf-8674-830bcfd14d21",
+    "name": "54f51f64-eaa5-44cf-8674-830bcfd14d21",
+    "properties": {
+      "description": "This policy definition blocks resource create and update operations when the caller is not authenticated via MFA. For more information, visit https://aka.ms/mfaforazure.",
+      "displayName": "Multi Factor Authentication Enforcement - Write",
+      "metadata": {
+        "category": "System Policy",
+        "version": "1.1.0"
+      },
+      "mode": "All",
+      "parameters": {
+        "effect": {
+          "allowedValues": [
+            "Audit",
+            "Deny",
+            "Disabled"
+          ],
+          "defaultValue": "Audit",
+          "metadata": {
+            "description": "The desired effect of the policy",
+            "displayName": "Effect"
+          },
+          "type": "String"
+        }
+      },
+      "policyRule": {
+        "if": {
+          "allOf": [
+            {
+              "equals": true,
+              "value": "[contains(requestContext().identity, 'idtyp')]"
+            },
+            {
+              "equals": "user",
+              "value": "[requestContext().identity.idtyp]"
+            },
+            {
+              "notIn": "[split(tryGet(requestContext().identity, 'http://schemas.microsoft.com/claims/authnmethodsreferences'), ',')]",
+              "value": "mfa"
+            },
+            {
+              "notIn": "[split(requestContext().identity.acrs, ',')]",
+              "value": "p1"
+            }
+          ]
+        },
+        "then": {
+          "effect": "[parameters('effect')]"
+        }
+      },
+      "policyType": "BuiltIn",
+      "version": "1.1.0",
+      "versions": [
+        "1.1.0",
+        "1.0.0"
+      ]
+    },
+    "type": "Microsoft.Authorization/policyDefinitions"
+  },
+  "sys.mfa-delete": {
+    "id": "/providers/Microsoft.Authorization/policyDefinitions/f69cd8b8-9a6e-46b4-be84-244e8b127944",
+    "name": "f69cd8b8-9a6e-46b4-be84-244e8b127944",
+    "properties": {
+      "description": "This policy definition blocks resource delete operations when the caller is not authenticated via MFA. For more information, visit https://aka.ms/mfaforazure.",
+      "displayName": "Multi Factor Authentication Enforcement - Delete",
+      "metadata": {
+        "category": "System Policy",
+        "version": "1.1.0"
+      },
+      "mode": "All",
+      "parameters": {
+        "effect": {
+          "allowedValues": [
+            "AuditAction",
+            "DenyAction",
+            "Disabled"
+          ],
+          "defaultValue": "AuditAction",
+          "metadata": {
+            "description": "The desired effect of the policy",
+            "displayName": "Effect"
+          },
+          "type": "String"
+        }
+      },
+      "policyRule": {
+        "if": {
+          "allOf": [
+            {
+              "equals": true,
+              "value": "[contains(requestContext().identity, 'idtyp')]"
+            },
+            {
+              "equals": "user",
+              "value": "[requestContext().identity.idtyp]"
+            },
+            {
+              "notIn": "[split(tryGet(requestContext().identity, 'http://schemas.microsoft.com/claims/authnmethodsreferences'), ',')]",
+              "value": "mfa"
+            },
+            {
+              "notIn": "[split(requestContext().identity.acrs, ',')]",
+              "value": "p1"
+            }
+          ]
+        },
+        "then": {
+          "details": {
+            "actionNames": [
+              "delete"
+            ]
+          },
+          "effect": "[parameters('effect')]"
+        }
+      },
+      "policyType": "BuiltIn",
+      "version": "1.1.0",
+      "versions": [
+        "1.1.0",
+        "1.0.0"
+      ]
+    },
+    "type": "Microsoft.Authorization/policyDefinitions"
+  },
+  "5070a4f3c9d6554f993f8fef": {
+    "id": "/providers/Microsoft.Management/managementGroups/16b3c013-d300-468d-ac64-7eda0820b6d3/providers/Microsoft.Authorization/policyDefinitions/zenity-foundry",
+    "name": "zenity-foundry",
+    "properties": {
+      "description": "Adds Zenity's March 2026 US and EU IP addresses and the AzureServices trusted-services bypass to AIServices accounts with publicNetworkAccess Enabled and networkAcls.defaultAction Deny. Preserves existing IP rules, virtual-network rules, defaultAction, and publicNetworkAccess. Skips payloads without an explicit ipRules array to avoid replacing omitted existing rules during partial updates. Existing resources require a remediation task after enabling Modify.",
+      "displayName": "Allow Zenity US and EU access to selected-network Foundry accounts",
+      "metadata": {
+        "category": "Cognitive Services",
+        "createdBy": "d06df7d7-585d-4c03-8e6e-46de2f6974c7",
+        "createdOn": "2026-10-09T05:52:11.9851857Z",
+        "sourceIncident": "847007959",
+        "updatedBy": "d06df7d7-585d-4c03-8e6e-46de2f6974c7",
+        "updatedOn": "2026-10-09T06:00:05.5881869Z",
+        "version": "1.0.0",
+        "zenityIpListLastUpdated": "2026-03"
+      },
+      "mode": "Indexed",
+      "parameters": {
+        "effect": {
+          "allowedValues": [
+            "Audit",
+            "Modify",
+            "Disabled"
+          ],
+          "defaultValue": "Modify",
+          "metadata": {
+            "description": "Start with Audit. Use Modify only after reviewing compliance, testing on a pilot account, and granting the assignment identity its remediation role.",
+            "displayName": "Effect"
+          },
+          "type": "String"
+        },
+        "zenityIpRules": {
+          "defaultValue": [
+            {
+              "value": "18.119.43.115"
+            },
+            {
+              "value": "3.136.223.195"
+            },
+            {
+              "value": "3.147.3.200"
+            },
+            {
+              "value": "3.17.222.94"
+            },
+            {
+              "value": "3.150.94.181"
+            },
+            {
+              "value": "3.132.250.211"
+            },
+            {
+              "value": "18.116.189.61"
+            },
+            {
+              "value": "3.147.9.237"
+            },
+            {
+              "value": "34.240.215.149"
+            },
+            {
+              "value": "52.210.88.12"
+            },
+            {
+              "value": "52.213.253.68"
+            },
+            {
+              "value": "34.252.144.198"
+            },
+            {
+              "value": "52.210.148.44"
+            },
+            {
+              "value": "54.195.128.224"
+            },
+            {
+              "value": "18.200.62.37"
+            },
+            {
+              "value": "52.31.196.233"
+            },
+            {
+              "value": "108.128.206.229"
+            },
+            {
+              "value": "99.81.56.225"
+            }
+          ],
+          "metadata": {
+            "description": "Individual source IPv4 addresses as objects with a value property. Defaults include both US and EU from Zenity's March 2026 documentation. Use bare IP addresses, not broader ranges.",
+            "displayName": "Zenity source IP rules"
+          },
+          "type": "Array"
+        }
+      },
+      "policyRule": {
+        "if": {
+          "allOf": [
+            {
+              "equals": "Microsoft.CognitiveServices/accounts",
+              "field": "type"
+            },
+            {
+              "equals": "AIServices",
+              "field": "kind"
+            },
+            {
+              "equals": "Enabled",
+              "field": "Microsoft.CognitiveServices/accounts/publicNetworkAccess"
+            },
+            {
+              "equals": "Deny",
+              "field": "Microsoft.CognitiveServices/accounts/networkAcls.defaultAction"
+            },
+            {
+              "exists": "true",
+              "field": "Microsoft.CognitiveServices/accounts/networkAcls.ipRules"
+            },
+            {
+              "anyOf": [
+                {
+                  "field": "Microsoft.CognitiveServices/accounts/networkAcls.bypass",
+                  "notEquals": "AzureServices"
+                },
+                {
+                  "count": {
+                    "name": "zenityIpRule",
+                    "value": "[parameters('zenityIpRules')]",
+                    "where": {
+                      "count": {
+                        "field": "Microsoft.CognitiveServices/accounts/networkAcls.ipRules[*]",
+                        "where": {
+                          "anyOf": [
+                            {
+                              "equals": "[current('zenityIpRule').value]",
+                              "field": "Microsoft.CognitiveServices/accounts/networkAcls.ipRules[*].value"
+                            },
+                            {
+                              "equals": "[concat(current('zenityIpRule').value, '/32')]",
+                              "field": "Microsoft.CognitiveServices/accounts/networkAcls.ipRules[*].value"
+                            }
+                          ]
+                        }
+                      },
+                      "equals": 0
+                    }
+                  },
+                  "greater": 0
+                }
+              ]
+            }
+          ]
+        },
+        "then": {
+          "details": {
+            "conflictEffect": "audit",
+            "operations": [
+              {
+                "field": "Microsoft.CognitiveServices/accounts/networkAcls.ipRules",
+                "operation": "addOrReplace",
+                "value": "[union(field('Microsoft.CognitiveServices/accounts/networkAcls.ipRules'), parameters('zenityIpRules'))]"
+              },
+              {
+                "field": "Microsoft.CognitiveServices/accounts/networkAcls.bypass",
+                "operation": "addOrReplace",
+                "value": "AzureServices"
+              }
+            ],
+            "roleDefinitionIds": [
+              "/providers/Microsoft.Authorization/roleDefinitions/25fbc0a9-bd7c-42a3-aa1a-3b75d497ee68"
+            ]
+          },
+          "effect": "[parameters('effect')]"
+        }
+      },
+      "policyType": "Custom",
+      "version": "1.0.1",
+      "versions": [
+        "1.0.1",
+        "1.0.0"
+      ]
+    },
+    "systemData": {
+      "createdAt": "2026-10-09T05:52:11.9611662Z",
+      "createdBy": "BENNEWMAN+mpa@microsoft.com",
+      "createdByType": "User",
+      "lastModifiedAt": "2026-10-09T06:00:05.5510332Z",
+      "lastModifiedBy": "BENNEWMAN+mpa@microsoft.com",
+      "lastModifiedByType": "User"
+    },
+    "type": "Microsoft.Authorization/policyDefinitions"
+  }
+}

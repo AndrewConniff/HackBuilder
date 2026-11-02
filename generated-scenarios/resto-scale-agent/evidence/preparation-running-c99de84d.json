@@ -1,0 +1,20 @@
+{
+  "stage": "deployment",
+  "operation": "deployment-preparation",
+  "status": "running",
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "resto-scale-agent",
+    "resourceGroup": "rg-resto-scale-agent",
+    "region": "eastus"
+  },
+  "summary": "Validating the user-retargeted East US reference under current exact-scope read-only authorization. Reusing implementation, backend prerequisite receipt and all recorded decisions; preserving SKUs, zones and identity. Prior East US 2 access failure remains historical, not verified resolved.",
+  "evidence": [
+    "Canonical revision 164: current preparation authorization is eastus only; writer c99de84ded7f495c8c9559f1484542f8. All decisions and history inspected.",
+    "az account show --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --query {account:user.name,subscriptionId:id,tenantId:tenantId,state:state,name:name} --output json: exact account/subscription/tenant match, Enabled.",
+    "azd auth login --check-status: signed in as petender@microsoft.com; no environment initialized or defaults changed.",
+    "Backend readiness 2026-10-23T15:43:46.005342-07:00: ready=true; complete current service/build/load profile reused without redundant machine audit."
+  ]
+}

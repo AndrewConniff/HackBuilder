@@ -1,0 +1,10 @@
+{
+  "checkedAtUtc": "2026-10-23T22:53:47.720455+00:00",
+  "checks": 26,
+  "fingerprintMatches": true,
+  "selectedServicesCovered": true,
+  "allEvidenceJsonParses": true,
+  "markdownTemplateAndLineLengths": true,
+  "requiredLocationPreserved": true,
+  "scenarioOnlyCatalogRefresh": true
+}

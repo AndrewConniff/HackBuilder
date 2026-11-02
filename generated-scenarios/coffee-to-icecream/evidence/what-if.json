@@ -1,0 +1,653 @@
+{
+  "changes": [
+    {
+      "after": {
+        "apiVersion": "2024-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref",
+        "location": "swedencentral",
+        "name": "rg-coffee-to-icecream-ref",
+        "tags": {
+          "Environment": "coffee-to-icecream-ref",
+          "ManagedBy": "Bicep",
+          "Project": "coffee-to-icecream",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Resources/resourceGroups"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.CognitiveServices/accounts/ic-coffee-to-i-gyhmp4vg",
+        "identity": {
+          "type": "SystemAssigned"
+        },
+        "kind": "AIServices",
+        "location": "swedencentral",
+        "name": "ic-coffee-to-i-gyhmp4vg",
+        "properties": {
+          "allowProjectManagement": true,
+          "customSubDomainName": "ic-coffee-to-i-gyhmp4vg",
+          "disableLocalAuth": true,
+          "dynamicThrottlingEnabled": false,
+          "migrationToken": "*******",
+          "publicNetworkAccess": "Enabled",
+          "restore": false,
+          "restrictOutboundNetworkAccess": false
+        },
+        "resourceGroup": "rg-coffee-to-icecream-ref",
+        "sku": {
+          "name": "S0"
+        },
+        "tags": {
+          "Environment": "coffee-to-icecream-ref",
+          "ManagedBy": "Bicep",
+          "Project": "coffee-to-icecream",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.CognitiveServices/accounts"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.CognitiveServices/accounts/ic-coffee-to-i-gyhmp4vg",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2026-05-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.CognitiveServices/accounts/ic-coffee-to-i-gyhmp4vg/deployments/gpt-4.1-mini",
+        "name": "gpt-4.1-mini",
+        "properties": {
+          "model": {
+            "format": "OpenAI",
+            "name": "gpt-4.1-mini",
+            "version": "2025-04-14"
+          },
+          "versionUpgradeOption": "NoAutoUpgrade"
+        },
+        "resourceGroup": "rg-coffee-to-icecream-ref",
+        "sku": {
+          "capacity": 300,
+          "name": "GlobalStandard"
+        },
+        "type": "Microsoft.CognitiveServices/accounts/deployments"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.CognitiveServices/accounts/ic-coffee-to-i-gyhmp4vg/deployments/gpt-4.1-mini",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.CognitiveServices/accounts/ic-coffee-to-i-gyhmp4vg/projects/backoffice",
+        "identity": {
+          "type": "SystemAssigned"
+        },
+        "location": "swedencentral",
+        "name": "backoffice",
+        "properties": {
+          "description": "coffee-to-icecream owned recipe stock and managerial-close workers",
+          "displayName": "Northwind Traders ice-cream operations"
+        },
+        "resourceGroup": "rg-coffee-to-icecream-ref",
+        "tags": {
+          "Environment": "coffee-to-icecream-ref",
+          "ManagedBy": "Bicep",
+          "Project": "coffee-to-icecream",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.CognitiveServices/accounts/projects"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.CognitiveServices/accounts/ic-coffee-to-i-gyhmp4vg/projects/backoffice",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.CognitiveServices/accounts/ic-coffee-to-i-gyhmp4vg/projects/backoffice/providers/Microsoft.Authorization/roleAssignments/48f949b4-6d64-53f8-b141-55c44cd0f451",
+        "name": "48f949b4-6d64-53f8-b141-55c44cd0f451",
+        "properties": {
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/eed3b665-ab3a-47b6-8f48-c9382fb1dad6"
+        },
+        "resourceGroup": "rg-coffee-to-icecream-ref",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.CognitiveServices/accounts/ic-coffee-to-i-gyhmp4vg/projects/backoffice/providers/Microsoft.Authorization/roleAssignments/48f949b4-6d64-53f8-b141-55c44cd0f451",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.CognitiveServices/accounts/ic-coffee-to-i-gyhmp4vg/providers/Microsoft.Authorization/roleAssignments/69498050-85e0-5491-ae54-17ef16c8fc8e",
+        "name": "69498050-85e0-5491-ae54-17ef16c8fc8e",
+        "properties": {
+          "principalId": "[reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.CognitiveServices/accounts/ic-coffee-to-i-gyhmp4vg/projects/backoffice', '2025-06-01', 'full').identity.principalId]",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/53ca6127-db72-4b80-b1b0-d745d6d5456d"
+        },
+        "resourceGroup": "rg-coffee-to-icecream-ref",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.CognitiveServices/accounts/ic-coffee-to-i-gyhmp4vg/providers/Microsoft.Authorization/roleAssignments/69498050-85e0-5491-ae54-17ef16c8fc8e",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2021-05-01-preview",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.CognitiveServices/accounts/ic-coffee-to-i-gyhmp4vg/providers/Microsoft.Insights/diagnosticSettings/ic-coffee-to-i-gyhmp4vg-diagnosticSettings",
+        "name": "ic-coffee-to-i-gyhmp4vg-diagnosticSettings",
+        "properties": {
+          "logs": [
+            {
+              "categoryGroup": "allLogs",
+              "enabled": true
+            }
+          ],
+          "metrics": [
+            {
+              "category": "AllMetrics",
+              "enabled": true
+            }
+          ],
+          "workspaceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.OperationalInsights/workspaces/log-ic-gyhmp4vgxvkwy"
+        },
+        "resourceGroup": "rg-coffee-to-icecream-ref",
+        "type": "Microsoft.Insights/diagnosticSettings"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.CognitiveServices/accounts/ic-coffee-to-i-gyhmp4vg/providers/Microsoft.Insights/diagnosticSettings/ic-coffee-to-i-gyhmp4vg-diagnosticSettings",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-07-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.OperationalInsights/workspaces/log-ic-gyhmp4vgxvkwy",
+        "location": "swedencentral",
+        "name": "log-ic-gyhmp4vgxvkwy",
+        "properties": {
+          "forceCmkForQuery": false,
+          "publicNetworkAccessForIngestion": "Enabled",
+          "publicNetworkAccessForQuery": "Enabled",
+          "retentionInDays": 30,
+          "sku": {
+            "name": "PerGB2018"
+          },
+          "workspaceCapping": {
+            "dailyQuotaGb": 1
+          }
+        },
+        "resourceGroup": "rg-coffee-to-icecream-ref",
+        "tags": {
+          "Environment": "coffee-to-icecream-ref",
+          "ManagedBy": "Bicep",
+          "Project": "coffee-to-icecream",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.OperationalInsights/workspaces"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.OperationalInsights/workspaces/log-ic-gyhmp4vgxvkwy",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.OperationalInsights/workspaces/log-ic-gyhmp4vgxvkwy/providers/Microsoft.Authorization/roleAssignments/50895bf2-591b-5031-9772-ad5addc0a7d9",
+        "name": "50895bf2-591b-5031-9772-ad5addc0a7d9",
+        "properties": {
+          "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/92aaf0da-9dab-42b6-94a3-d43ce8d16293"
+        },
+        "resourceGroup": "rg-coffee-to-icecream-ref",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.OperationalInsights/workspaces/log-ic-gyhmp4vgxvkwy/providers/Microsoft.Authorization/roleAssignments/50895bf2-591b-5031-9772-ad5addc0a7d9",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.Storage/storageAccounts/sticgyhmp4vgxvkwy",
+        "kind": "StorageV2",
+        "location": "swedencentral",
+        "name": "sticgyhmp4vgxvkwy",
+        "properties": {
+          "accessTier": "Hot",
+          "allowBlobPublicAccess": false,
+          "allowCrossTenantReplication": false,
+          "allowSharedKeyAccess": false,
+          "customDomain": {
+            "useSubDomainName": false
+          },
+          "defaultToOAuthAuthentication": true,
+          "encryption": {
+            "keySource": "Microsoft.Storage",
+            "requireInfrastructureEncryption": true
+          },
+          "isLocalUserEnabled": false,
+          "isSftpEnabled": false,
+          "largeFileSharesState": "Disabled",
+          "minimumTlsVersion": "TLS1_2",
+          "networkAcls": {
+            "bypass": "None",
+            "defaultAction": "Allow"
+          },
+          "publicNetworkAccess": "Enabled",
+          "supportsHttpsTrafficOnly": true
+        },
+        "resourceGroup": "rg-coffee-to-icecream-ref",
+        "sku": {
+          "name": "Standard_LRS"
+        },
+        "tags": {
+          "Environment": "coffee-to-icecream-ref",
+          "ManagedBy": "Bicep",
+          "Project": "coffee-to-icecream",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Storage/storageAccounts"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.Storage/storageAccounts/sticgyhmp4vgxvkwy",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-01-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.Storage/storageAccounts/sticgyhmp4vgxvkwy/blobServices/default",
+        "name": "default",
+        "properties": {
+          "automaticSnapshotPolicyEnabled": false,
+          "containerDeleteRetentionPolicy": {
+            "allowPermanentDelete": false,
+            "days": 7,
+            "enabled": true
+          },
+          "deleteRetentionPolicy": {
+            "days": 6,
+            "enabled": true
+          },
+          "isVersioningEnabled": false,
+          "lastAccessTimeTrackingPolicy": "[if(and(not(equals(reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.Storage/storageAccounts/sticgyhmp4vgxvkwy', '2025-01-01', 'full').kind, 'Storage')), empty(tryGet(reference('/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.Storage/storageAccounts/sticgyhmp4vgxvkwy', '2025-01-01', 'full'), 'extendedLocation'))), createObject('enable', parameters('lastAccessTimeTrackingPolicyEnabled'), 'name', if(equals(parameters('lastAccessTimeTrackingPolicyEnabled'), true()), 'AccessTimeTracking', null()), 'trackingGranularityInDays', if(equals(parameters('lastAccessTimeTrackingPolicyEnabled'), true()), 1, null())), null())]"
+        },
+        "resourceGroup": "rg-coffee-to-icecream-ref",
+        "type": "Microsoft.Storage/storageAccounts/blobServices"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.Storage/storageAccounts/sticgyhmp4vgxvkwy/blobServices/default",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.Storage/storageAccounts/sticgyhmp4vgxvkwy/providers/Microsoft.Authorization/roleAssignments/6bb3429b-f77c-50af-a6b8-4abbb4c595b3",
+        "name": "6bb3429b-f77c-50af-a6b8-4abbb4c595b3",
+        "properties": {
+          "principalId": "214d672b-df87-4f3b-94fd-7863032546c1",
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/0a9a7e1f-b9d0-4cc4-a60d-0319b160aaa3"
+        },
+        "resourceGroup": "rg-coffee-to-icecream-ref",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.Storage/storageAccounts/sticgyhmp4vgxvkwy/providers/Microsoft.Authorization/roleAssignments/6bb3429b-f77c-50af-a6b8-4abbb4c595b3",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2022-04-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.Storage/storageAccounts/sticgyhmp4vgxvkwy/providers/Microsoft.Authorization/roleAssignments/d8537c47-49d4-5822-a9d8-011426fe391a",
+        "name": "d8537c47-49d4-5822-a9d8-011426fe391a",
+        "properties": {
+          "roleDefinitionId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Authorization/roleDefinitions/0a9a7e1f-b9d0-4cc4-a60d-0319b160aaa3"
+        },
+        "resourceGroup": "rg-coffee-to-icecream-ref",
+        "type": "Microsoft.Authorization/roleAssignments"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.Storage/storageAccounts/sticgyhmp4vgxvkwy/providers/Microsoft.Authorization/roleAssignments/d8537c47-49d4-5822-a9d8-011426fe391a",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.Storage/storageAccounts/sticgyhmp4vgxvkwy/tableServices/default",
+        "name": "default",
+        "resourceGroup": "rg-coffee-to-icecream-ref",
+        "type": "Microsoft.Storage/storageAccounts/tableServices"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.Storage/storageAccounts/sticgyhmp4vgxvkwy/tableServices/default",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2021-05-01-preview",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.Storage/storageAccounts/sticgyhmp4vgxvkwy/tableServices/default/providers/Microsoft.Insights/diagnosticSettings/default-diagnosticSettings",
+        "name": "default-diagnosticSettings",
+        "properties": {
+          "logs": [
+            {
+              "categoryGroup": "allLogs",
+              "enabled": true
+            }
+          ],
+          "metrics": [
+            {
+              "category": "AllMetrics",
+              "enabled": true
+            }
+          ],
+          "workspaceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.OperationalInsights/workspaces/log-ic-gyhmp4vgxvkwy"
+        },
+        "resourceGroup": "rg-coffee-to-icecream-ref",
+        "type": "Microsoft.Insights/diagnosticSettings"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.Storage/storageAccounts/sticgyhmp4vgxvkwy/tableServices/default/providers/Microsoft.Insights/diagnosticSettings/default-diagnosticSettings",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-06-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.Storage/storageAccounts/sticgyhmp4vgxvkwy/tableServices/default/tables/IceCreamBackOffice",
+        "name": "IceCreamBackOffice",
+        "resourceGroup": "rg-coffee-to-icecream-ref",
+        "type": "Microsoft.Storage/storageAccounts/tableServices/tables"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.Storage/storageAccounts/sticgyhmp4vgxvkwy/tableServices/default/tables/IceCreamBackOffice",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.Web/serverfarms/plan-ic-gyhmp4vgxvkwy",
+        "kind": "linux",
+        "location": "swedencentral",
+        "name": "plan-ic-gyhmp4vgxvkwy",
+        "properties": {
+          "elasticScaleEnabled": true,
+          "isCustomMode": false,
+          "perSiteScaling": false,
+          "reserved": true,
+          "targetWorkerSizeId": 0,
+          "zoneRedundant": false
+        },
+        "resourceGroup": "rg-coffee-to-icecream-ref",
+        "sku": {
+          "capacity": 1,
+          "name": "P0v3"
+        },
+        "tags": {
+          "Environment": "coffee-to-icecream-ref",
+          "ManagedBy": "Bicep",
+          "Project": "coffee-to-icecream",
+          "SecurityControl": "Ignore"
+        },
+        "type": "Microsoft.Web/serverfarms"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.Web/serverfarms/plan-ic-gyhmp4vgxvkwy",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2021-05-01-preview",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.Web/serverfarms/plan-ic-gyhmp4vgxvkwy/providers/Microsoft.Insights/diagnosticSettings/plan-ic-gyhmp4vgxvkwy-diagnosticSettings",
+        "name": "plan-ic-gyhmp4vgxvkwy-diagnosticSettings",
+        "properties": {
+          "metrics": [
+            {
+              "category": "AllMetrics",
+              "enabled": true
+            }
+          ],
+          "workspaceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.OperationalInsights/workspaces/log-ic-gyhmp4vgxvkwy"
+        },
+        "resourceGroup": "rg-coffee-to-icecream-ref",
+        "type": "Microsoft.Insights/diagnosticSettings"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.Web/serverfarms/plan-ic-gyhmp4vgxvkwy/providers/Microsoft.Insights/diagnosticSettings/plan-ic-gyhmp4vgxvkwy-diagnosticSettings",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.Web/sites/web-ic-gyhmp4vgxvkwy",
+        "identity": "*******",
+        "kind": "app,linux",
+        "location": "swedencentral",
+        "name": "web-ic-gyhmp4vgxvkwy",
+        "properties": {
+          "clientAffinityEnabled": false,
+          "clientAffinityPartitioningEnabled": false,
+          "clientAffinityProxyEnabled": true,
+          "clientCertEnabled": false,
+          "clientCertMode": "Optional",
+          "enabled": true,
+          "httpsOnly": true,
+          "publicNetworkAccess": "Enabled",
+          "redundancyMode": "None",
+          "scmSiteAlsoStopped": false,
+          "serverFarmId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.Web/serverfarms/plan-ic-gyhmp4vgxvkwy",
+          "siteConfig": "*******",
+          "storageAccountRequired": false
+        },
+        "resourceGroup": "rg-coffee-to-icecream-ref",
+        "tags": {
+          "Environment": "coffee-to-icecream-ref",
+          "ManagedBy": "Bicep",
+          "Project": "coffee-to-icecream",
+          "SecurityControl": "Ignore",
+          "azd-service-name": "web"
+        },
+        "type": "Microsoft.Web/sites"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.Web/sites/web-ic-gyhmp4vgxvkwy",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.Web/sites/web-ic-gyhmp4vgxvkwy/basicPublishingCredentialsPolicies/ftp",
+        "location": "swedencentral",
+        "name": "ftp",
+        "properties": {
+          "allow": false
+        },
+        "resourceGroup": "rg-coffee-to-icecream-ref",
+        "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.Web/sites/web-ic-gyhmp4vgxvkwy/basicPublishingCredentialsPolicies/ftp",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2025-03-01",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.Web/sites/web-ic-gyhmp4vgxvkwy/basicPublishingCredentialsPolicies/scm",
+        "location": "swedencentral",
+        "name": "scm",
+        "properties": {
+          "allow": false
+        },
+        "resourceGroup": "rg-coffee-to-icecream-ref",
+        "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.Web/sites/web-ic-gyhmp4vgxvkwy/basicPublishingCredentialsPolicies/scm",
+      "symbolicName": null,
+      "unsupportedReason": null
+    },
+    {
+      "after": {
+        "apiVersion": "2021-05-01-preview",
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.Web/sites/web-ic-gyhmp4vgxvkwy/providers/Microsoft.Insights/diagnosticSettings/web-ic-gyhmp4vgxvkwy-diagnosticSettings",
+        "name": "web-ic-gyhmp4vgxvkwy-diagnosticSettings",
+        "properties": {
+          "logs": [
+            {
+              "categoryGroup": "allLogs",
+              "enabled": true
+            }
+          ],
+          "metrics": [
+            {
+              "category": "AllMetrics",
+              "enabled": true
+            }
+          ],
+          "workspaceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.OperationalInsights/workspaces/log-ic-gyhmp4vgxvkwy"
+        },
+        "resourceGroup": "rg-coffee-to-icecream-ref",
+        "type": "Microsoft.Insights/diagnosticSettings"
+      },
+      "before": null,
+      "changeType": "Create",
+      "delta": null,
+      "deploymentId": null,
+      "extension": null,
+      "identifiers": null,
+      "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-to-icecream-ref/providers/Microsoft.Web/sites/web-ic-gyhmp4vgxvkwy/providers/Microsoft.Insights/diagnosticSettings/web-ic-gyhmp4vgxvkwy-diagnosticSettings",
+      "symbolicName": null,
+      "unsupportedReason": null
+    }
+  ],
+  "diagnostics": null,
+  "error": null,
+  "potentialChanges": null,
+  "status": "Succeeded"
+}

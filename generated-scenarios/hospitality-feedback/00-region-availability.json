@@ -1,0 +1,204 @@
+{
+  "status": "validated_for_what_if",
+  "checkedAtUtc": "2026-10-22T18:29:10.992560+00:00",
+  "evidenceType": "live_target_read_only_plus_official_documentation",
+  "subscriptionName": "MCAPS-Hybrid-REQ-152516-2026-petender",
+  "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+  "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+  "account": "petender@microsoft.com",
+  "resourceGroups": [
+    "rg-hospitality-feedback"
+  ],
+  "azdEnvironments": [
+    "hospitality-feedback"
+  ],
+  "requestedRegions": [],
+  "candidateRegions": [
+    "eastus2",
+    "westus3",
+    "swedencentral"
+  ],
+  "selectedRegion": "westus3",
+  "agentSetup": "Basic",
+  "customerDeployedCosmos": false,
+  "resourceResults": [
+    {
+      "region": "eastus2",
+      "modelName": "gpt-4.1-mini",
+      "modelVersion": "2025-04-14",
+      "deploymentSku": "Standard",
+      "requestedCapacity": 10,
+      "quotaLimit": 5000.0,
+      "quotaUsed": 0.0,
+      "availableCapacity": 5000,
+      "quotaUnit": "Count",
+      "providerRegionSupport": true,
+      "agentAndResponsesSupport": "Current Microsoft Learn regional table",
+      "appServiceB1Linux": true,
+      "selected": false,
+      "notSelectedReason": "Actual provider what-if failed: B1 VMs quota limit 0, usage 0, required 1."
+    },
+    {
+      "region": "westus3",
+      "modelName": "gpt-4.1-mini",
+      "modelVersion": "2025-04-14",
+      "deploymentSku": "Standard",
+      "requestedCapacity": 10,
+      "quotaLimit": 5000.0,
+      "quotaUsed": 0.0,
+      "availableCapacity": 5000,
+      "quotaUnit": "Count",
+      "providerRegionSupport": true,
+      "agentAndResponsesSupport": "Current Microsoft Learn regional table",
+      "appServiceB1Linux": true,
+      "selected": true,
+      "notSelectedReason": null
+    },
+    {
+      "region": "swedencentral",
+      "modelName": "gpt-4.1-mini",
+      "modelVersion": "2025-04-14",
+      "deploymentSku": "Standard",
+      "requestedCapacity": 10,
+      "quotaLimit": 5000.0,
+      "quotaUsed": 0.0,
+      "availableCapacity": 5000,
+      "quotaUnit": "Count",
+      "providerRegionSupport": true,
+      "agentAndResponsesSupport": "Current Microsoft Learn regional table",
+      "appServiceB1Linux": true,
+      "selected": false,
+      "notSelectedReason": "Alternative with total regional quota 11; not needed after selecting West US 3; B1-specific preflight not run."
+    }
+  ],
+  "supportingResources": [
+    {
+      "resource": "Foundry account and direct child project",
+      "sku": "S0",
+      "region": "westus3",
+      "providerRegistered": true
+    },
+    {
+      "resource": "App Service Linux plan and site",
+      "sku": "B1",
+      "capacity": 1,
+      "linuxFxVersion": "DOTNETCORE|10.0",
+      "liveRegionalStackVerified": true,
+      "region": "westus3"
+    },
+    {
+      "resource": "StorageV2 Blob and Queue",
+      "sku": "Standard_LRS",
+      "accessTier": "Hot",
+      "region": "westus3"
+    },
+    {
+      "resource": "User assigned identity",
+      "region": "westus3"
+    }
+  ],
+  "model": {
+    "name": "gpt-4.1-mini",
+    "version": "2025-04-14",
+    "format": "OpenAI",
+    "deploymentName": "hotel-analysis",
+    "sku": "Standard",
+    "capacity": 10,
+    "lifecycleStatus": "Legacy",
+    "inferenceDeprecationFromLiveCatalog": "2027-04-14T00:00:00Z",
+    "rationale": "Supported Agent/Responses model with regional Standard capacity; avoids global processing and reasoning-model integration changes for this short reference. Legacy lifecycle must be accepted or model revised and re-previewed before longer-term use."
+  },
+  "quotaEvidence": {
+    "region": "westus3",
+    "modelName": "gpt-4.1-mini",
+    "modelVersion": "2025-04-14",
+    "deploymentSku": "Standard",
+    "requestedCapacity": 10,
+    "quotaLimit": 5000.0,
+    "quotaUsed": 0.0,
+    "availableCapacity": 5000,
+    "quotaUnit": "Count",
+    "providerRegionSupport": true,
+    "agentAndResponsesSupport": "Current Microsoft Learn regional table",
+    "appServiceB1Linux": true,
+    "selected": true,
+    "notSelectedReason": null
+  },
+  "capacityEvidence": "evidence/preflight/capacity-westus3.json",
+  "providerEvidence": "evidence/preflight/provider-*.json",
+  "authenticationEvidence": [
+    "evidence/preflight/account.json",
+    "evidence/preflight/deployer.json",
+    "evidence/azd-auth-alignment.json"
+  ],
+  "governance": {
+    "assignments": 3,
+    "policyRuleDefinitionsRead": 11,
+    "findings": "Defender DeployIfNotExists SQL/relational database initiatives; no applicable location, SKU, public-network deny found in returned inherited+subscription assignments. ARM provider what-if remains authoritative for this preview.",
+    "evidence": "evidence/preflight/policies.json",
+    "cloudMutationsExecuted": false
+  },
+  "documentation": [
+    {
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/limits-quotas-regions",
+      "finding": "All three candidates support agents and Responses; gpt-4.1-mini supported."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/agents/environment-setup",
+      "finding": "Basic uses Microsoft-managed state."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/rest/api/microsoftfoundry/accountmanagement/location-based-model-capacities/list?view=rest-microsoftfoundry-accountmanagement-2025-06-01",
+      "finding": "Read-only live per-region capacity endpoint."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/rest/api/appservice/provider/get-web-app-stacks-for-location?view=rest-appservice-2024-11-01",
+      "finding": "Live East US 2 Linux stack includes DOTNETCORE|10.0."
+    }
+  ],
+  "rejectedCandidates": [
+    {
+      "region": "eastus2",
+      "reason": "InternalSubscriptionIsOverQuotaForSku: B1 VMs limit 0, usage 0, required 1",
+      "evidence": "evidence/what-if-eastus2-blocked.json"
+    }
+  ],
+  "recommendation": "West US 3; Foundry Basic S0, gpt-4.1-mini 2025-04-14 Standard capacity 10, Linux B1 x1, Standard_LRS Storage. Planning preview only; not deployment authorization.",
+  "blockers": [
+    "Existing Entra API audience and registration/consent unconfirmed; preview-only audience used only for what-if.",
+    "Operator allowlist provisionally uses verified deployer object ID; confirm intended operator.",
+    "Post-what-if exact-target deployment authorization absent."
+  ],
+  "authorization": {
+    "preflightAuthorized": true,
+    "whatIfAuthorized": true,
+    "deploymentAuthorized": false,
+    "whatIfExecuted": true,
+    "postWhatIfTargetAuthorization": false
+  },
+  "azureQueriesExecuted": true,
+  "deploymentReady": false,
+  "appServiceQuotaEvidence": {
+    "westus3": {
+      "totalRegionalVMsLimit": 10,
+      "currentUsage": 0,
+      "evidence": "evidence/preflight/web-usage-westus3.json"
+    },
+    "eastus2": {
+      "B1Limit": 0,
+      "currentUsage": 0,
+      "evidence": "evidence/preflight/web-usage-eastus2.json"
+    }
+  },
+  "whatIfEvidence": "evidence/what-if.json",
+  "whatIfStatus": "Succeeded",
+  "whatIfCounts": {
+    "Create": 24,
+    "Modify": 0,
+    "Delete": 0,
+    "Unsupported": 2,
+    "Ignore": 0,
+    "NoChange": 0,
+    "Deploy": 0
+  }
+}

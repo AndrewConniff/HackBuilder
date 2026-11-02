@@ -1,0 +1,8 @@
+name: feedback-campaign-participant
+metadata:
+  template: feedback-campaign-minimum
+hooks:
+  preprovision:
+    shell: pwsh
+    run: python scripts/verify_destination.py
+    interactive: false

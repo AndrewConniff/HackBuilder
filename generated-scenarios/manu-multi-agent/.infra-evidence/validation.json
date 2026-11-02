@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "stage": "bicep",
+  "checkedAtUtc": "2026-10-23T21:11:53.010302+00:00",
+  "allCommandsPassed": true,
+  "checks": [
+    {
+      "name": "build",
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" bicep build --file generated-scenarios\\manu-multi-agent\\infra\\main.bicep --outfile generated-scenarios\\manu-multi-agent\\.infra-evidence\\main.arm.json",
+      "exitCode": 0,
+      "diagnostics": false,
+      "log": ".infra-evidence\\build.log"
+    },
+    {
+      "name": "lint",
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" bicep lint --file generated-scenarios\\manu-multi-agent\\infra\\main.bicep",
+      "exitCode": 0,
+      "diagnostics": false,
+      "log": ".infra-evidence\\lint.log"
+    },
+    {
+      "name": "parameters-build",
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" bicep build-params --file generated-scenarios\\manu-multi-agent\\infra\\main.bicepparam --outfile generated-scenarios\\manu-multi-agent\\.infra-evidence\\local-only.parameters.json",
+      "exitCode": 0,
+      "diagnostics": false,
+      "log": ".infra-evidence\\parameters-build.log"
+    },
+    {
+      "name": "tests",
+      "command": "C:\\HackBuilder\\.venv\\Scripts\\python.exe -B -m unittest discover -s generated-scenarios\\manu-multi-agent\\infra\\tests -p test_*.py -v",
+      "exitCode": 0,
+      "diagnostics": false,
+      "log": ".infra-evidence\\tests.log"
+    }
+  ],
+  "infrastructureTests": 12,
+  "sourceSha256": {
+    "04-implementation-plan.md": "aefd9b58cda013e2c0062945eca3054406d314c1b64f7d3466550a84cd3c40d1",
+    "05-implementation-reference.md": "b526ff56298faaa36462e8979a6b4367425c79b85300b4924bc6f417c1544eba",
+    "azure.yaml": "956086e03a662a30659bb5a88f6d63707c80d4889f5061af663e1b8f46ff6c3d",
+    "infra\\main.bicep": "ef316a369c0f460dd2d75885cb845c01bd46db8d7dc0fef15f38c811e1842598",
+    "infra\\main.bicepparam": "c594a2740f9263f3f63fdb438d3380bc2252e612b9c59a83d97dfa04b5edeac8",
+    "infra\\main.parameters.json": "d61689f77f367420429723b558b2705030daf3eb4789a9dd7b9c37355d589a7d",
+    "infra\\modules\\access.bicep": "a7541c1d515e972888cab9bbd597494690e4952d9f2f3fb76da82ff38cfbe10b",
+    "infra\\modules\\capability.bicep": "98e4c6bcc2aa96d6c4e50bb4dfdd5e78654b4dd296afef92f97ea19e1bab83d2",
+    "infra\\modules\\dependencies.bicep": "619d76a2cc080f27d41b07f9eeda497d98825dc3e9fa6781acbc6e766d8eebf9",
+    "infra\\modules\\foundry.bicep": "23bd84bb7accada26c81a16eb7b3ea29fdf4814b1e36dd6e1eb5fba7d6fcbd4b",
+    "infra\\modules\\gateway-policy.xml": "a727f90d79e475dd0de1399a540426b2c1fdf5fab07b048d7e661b865449ec89",
+    "infra\\modules\\network.bicep": "110f059c174b00c599d3af42a582e04daa3abba0c48ea1f46c9bf4e2805c0206",
+    "infra\\modules\\private-links.bicep": "237c6aaee648e77245c070a717ed5ac01616d8ded486abe4cc9e742ab02e4473",
+    "infra\\modules\\workload.bicep": "b181f384fa508e558e37ea5eb30bd335b9c9bdc26249ae785b1b3216b18c8047",
+    "infra\\tests\\test_infrastructure.py": "09808b91ea27abc509e311eb189fbd3ac20b65c862746b8bbb06e0805d5a4cc8"
+  },
+  "compiledTemplateSha256": "745d6a5ca4ca8232a01cd5cbede603be6162cab17797fff92325d23d7137e192",
+  "avmModules": [
+    "br/public:avm/res/api-management/service:0.15.0",
+    "br/public:avm/res/app/container-app:0.23.0",
+    "br/public:avm/res/app/managed-environment:0.16.0",
+    "br/public:avm/res/cognitive-services/account:0.19.1",
+    "br/public:avm/res/container-registry/registry:0.13.1",
+    "br/public:avm/res/document-db/database-account:0.21.1",
+    "br/public:avm/res/key-vault/vault:0.14.2",
+    "br/public:avm/res/managed-identity/user-assigned-identity:0.6.0",
+    "br/public:avm/res/network/network-security-group:0.5.4",
+    "br/public:avm/res/network/private-dns-zone:0.8.1",
+    "br/public:avm/res/network/private-endpoint:0.12.1",
+    "br/public:avm/res/network/virtual-network:0.10.2",
+    "br/public:avm/res/operational-insights/workspace:0.16.1",
+    "br/public:avm/res/search/search-service:0.13.0",
+    "br/public:avm/res/storage/storage-account:0.33.1"
+  ],
+  "limitations": [
+    "Local compilation and infrastructure contracts only; no service-side deployment, what-if, capacity, private connectivity, JWT or agent runtime claim.",
+    "Parameter compilation used an explicit zero-GUID test identity, never a deployable target."
+  ]
+}

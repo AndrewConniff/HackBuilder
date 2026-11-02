@@ -1,0 +1,332 @@
+{
+  "schemaVersion": 1,
+  "scope": "local-only; test doubles do not prove a new cloud runtime",
+  "workingDirectory": "C:\\HackBuilder",
+  "allCommandsPassed": true,
+  "checks": [
+    {
+      "name": "coach-bicep-build",
+      "command": [
+        "C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD",
+        "bicep",
+        "build",
+        "--file",
+        "C:\\azd-projects\\coffee-shop\\packages\\coach\\infra\\main.bicep"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-25T00:56:27.063426+00:00",
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "coach-bicep-lint",
+      "command": [
+        "C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD",
+        "bicep",
+        "lint",
+        "--file",
+        "C:\\azd-projects\\coffee-shop\\packages\\coach\\infra\\main.bicep"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-25T00:56:37.040262+00:00",
+      "stdout": "\n",
+      "stderr": ""
+    },
+    {
+      "name": "coach-bicep-lint-resources",
+      "command": [
+        "C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD",
+        "bicep",
+        "lint",
+        "--file",
+        "C:\\azd-projects\\coffee-shop\\packages\\coach\\infra\\resources.bicep"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-25T00:56:46.072129+00:00",
+      "stdout": "\n",
+      "stderr": ""
+    },
+    {
+      "name": "participant-bicep-build",
+      "command": [
+        "C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD",
+        "bicep",
+        "build",
+        "--file",
+        "C:\\azd-projects\\coffee-shop\\packages\\participant\\infra\\main.bicep"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-25T00:56:51.813520+00:00",
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "participant-bicep-lint",
+      "command": [
+        "C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD",
+        "bicep",
+        "lint",
+        "--file",
+        "C:\\azd-projects\\coffee-shop\\packages\\participant\\infra\\main.bicep"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-25T00:56:55.973469+00:00",
+      "stdout": "\n",
+      "stderr": ""
+    },
+    {
+      "name": "coach-locked-restore",
+      "command": [
+        "C:\\Program Files\\dotnet\\dotnet.EXE",
+        "restore",
+        "C:\\azd-projects\\coffee-shop\\packages\\coach\\src\\CoffeeShop.Web",
+        "--locked-mode"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-25T00:57:00.580001+00:00",
+      "stdout": "  Determining projects to restore...\n  All projects are up-to-date for restore.\n",
+      "stderr": ""
+    },
+    {
+      "name": "coach-build",
+      "command": [
+        "C:\\Program Files\\dotnet\\dotnet.EXE",
+        "build",
+        "C:\\azd-projects\\coffee-shop\\packages\\coach\\src\\CoffeeShop.Web",
+        "--no-restore",
+        "--nologo",
+        "-v",
+        "minimal"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-25T00:57:01.497011+00:00",
+      "stdout": "  CoffeeShop.Web -> C:\\azd-projects\\coffee-shop\\packages\\coach\\src\\CoffeeShop.Web\\bin\\Debug\\net10.0\\CoffeeShop.Web.dll\n\nBuild succeeded.\n    0 Warning(s)\n    0 Error(s)\n\nTime Elapsed 00:00:01.76\n",
+      "stderr": ""
+    },
+    {
+      "name": "coach-tests",
+      "command": [
+        "C:\\Program Files\\dotnet\\dotnet.EXE",
+        "test",
+        "C:\\azd-projects\\coffee-shop\\packages\\coach\\tests\\CoffeeShop.Tests",
+        "--nologo",
+        "-v",
+        "minimal",
+        "--logger",
+        "trx;LogFileName=coach-tests.trx",
+        "--results-directory",
+        "C:\\azd-projects\\coffee-shop\\packages\\validation\\test-results"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-25T00:57:03.553842+00:00",
+      "stdout": "  Determining projects to restore...\n  Restored C:\\azd-projects\\coffee-shop\\packages\\coach\\src\\CoffeeShop.Web\\CoffeeShop.Web.csproj (in 191 ms).\n  1 of 2 projects are up-to-date for restore.\n  CoffeeShop.Web -> C:\\azd-projects\\coffee-shop\\packages\\coach\\src\\CoffeeShop.Web\\bin\\Debug\\net10.0\\CoffeeShop.Web.dll\n  CoffeeShop.Tests -> C:\\azd-projects\\coffee-shop\\packages\\coach\\tests\\CoffeeShop.Tests\\bin\\Debug\\net10.0\\CoffeeShop.Tests.dll\nTest run for C:\\azd-projects\\coffee-shop\\packages\\coach\\tests\\CoffeeShop.Tests\\bin\\Debug\\net10.0\\CoffeeShop.Tests.dll (.NETCoreApp,Version=v10.0)\nA total of 1 test files matched the specified pattern.\nWARNING: Overwriting results file: C:\\azd-projects\\coffee-shop\\packages\\validation\\test-results\\coach-tests.trx\nResults File: C:\\azd-projects\\coffee-shop\\packages\\validation\\test-results\\coach-tests.trx\n\nPassed!  - Failed:     0, Passed:    31, Skipped:     0, Total:    31, Duration: 49 s - CoffeeShop.Tests.dll (net10.0)\n",
+      "stderr": ""
+    },
+    {
+      "name": "coach-assets",
+      "command": [
+        "C:\\Users\\petender\\AppData\\Local\\Microsoft\\WindowsApps\\Microsoft.PowerShell_8wekyb3d8bbwe\\pwsh.EXE",
+        "-NoProfile",
+        "-File",
+        "C:\\azd-projects\\coffee-shop\\packages\\coach\\scripts\\Build-Assets.ps1"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-25T00:57:57.147236+00:00",
+      "stdout": "\nup to date in 647ms\n\n> build\n> node --check wwwroot/js/workspace.js\n\n  Determining projects to restore...\n  Restored C:\\azd-projects\\coffee-shop\\packages\\coach\\src\\CoffeeShop.Web\\CoffeeShop.Web.csproj (in 180 ms).\n",
+      "stderr": ""
+    },
+    {
+      "name": "coach-publish",
+      "command": [
+        "C:\\Program Files\\dotnet\\dotnet.EXE",
+        "publish",
+        "C:\\azd-projects\\coffee-shop\\packages\\coach\\src\\CoffeeShop.Web",
+        "--no-restore",
+        "--nologo",
+        "-c",
+        "Release",
+        "-v",
+        "minimal"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-25T00:58:00.358916+00:00",
+      "stdout": "  CoffeeShop.Web -> C:\\azd-projects\\coffee-shop\\packages\\coach\\src\\CoffeeShop.Web\\bin\\Release\\net10.0\\CoffeeShop.Web.dll\n  CoffeeShop.Web -> C:\\azd-projects\\coffee-shop\\packages\\coach\\src\\CoffeeShop.Web\\bin\\Release\\net10.0\\publish\\\n",
+      "stderr": ""
+    },
+    {
+      "name": "coach-script-guards",
+      "command": [
+        "C:\\Users\\petender\\AppData\\Local\\Microsoft\\WindowsApps\\Microsoft.PowerShell_8wekyb3d8bbwe\\pwsh.EXE",
+        "-NoProfile",
+        "-File",
+        "C:\\azd-projects\\coffee-shop\\packages\\validation\\test_guards.ps1"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-25T00:58:02.957022+00:00",
+      "stdout": "Parsed Assert-DeploymentScope.ps1\nParsed Build-Assets.ps1\nParsed Initialize-Scenario.ps1\nParsed Assert-TeamScope.ps1\nRejected locally: Separate event deployment authorization\nRejected locally: Deployment authorization required\nRejected locally: Wrong coach environment\nRejected locally: Missing destination input\nRejected locally: Separate team rollout authorization\nRejected locally: Invalid team environment\nRejected locally: Wrong team group\nRejected locally: Explicit destination required\nAll script parser and fail-closed guards passed; mock confirms no cloud commands.\n",
+      "stderr": ""
+    },
+    {
+      "name": "starter-status",
+      "command": [
+        "C:\\Users\\petender\\AppData\\Local\\Microsoft\\WindowsApps\\python.EXE",
+        "C:\\azd-projects\\coffee-shop\\packages\\validation\\verify_packages.py",
+        "starter"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-25T00:58:03.660945+00:00",
+      "stdout": "{\"status\": \"not-configured\", \"industry\": \"Hospitality & Travel\", \"businessUnits\": [\"sales\"], \"provided\": [\"isolated resource group on separately authorized rollout\", \"local synthetic fixtures\"], \"missing\": [\"learner-selected foundation\", \"agent\", \"grounding\", \"authenticated internal action\"], \"applicationUrl\": null, \"chatAvailable\": false}\nStarter reports intended incomplete state; no app or completed agent implementation.\n",
+      "stderr": ""
+    },
+    {
+      "name": "package-boundaries",
+      "command": [
+        "C:\\Users\\petender\\AppData\\Local\\Microsoft\\WindowsApps\\python.EXE",
+        "C:\\azd-projects\\coffee-shop\\packages\\validation\\verify_packages.py",
+        "boundaries"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-25T00:58:04.101851+00:00",
+      "stdout": "Malformed company catalog records rejected, not repaired: [7, 11, 25, 33]\nSource/compiled starter denylist, exact fixtures/catalogs, coach baseline equality, isolation, sanitization, links and public/private parity passed.\n",
+      "stderr": ""
+    },
+    {
+      "name": "skillable-resources",
+      "command": [
+        "C:\\Users\\petender\\AppData\\Local\\Microsoft\\WindowsApps\\python.EXE",
+        "C:\\HackBuilder\\.github\\skills\\skillable-lod-authoring\\scripts\\validate_skillable_package.py",
+        "--check-skill"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-25T00:58:04.681791+00:00",
+      "stdout": "PASS: Skillable authoring resources is valid.\n",
+      "stderr": ""
+    },
+    {
+      "name": "hospitality-support-tests",
+      "command": [
+        "C:\\Users\\petender\\AppData\\Local\\Microsoft\\WindowsApps\\python.EXE",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts/tests",
+        "-p",
+        "test_skillable_hospitality.py"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-25T00:58:04.982310+00:00",
+      "stdout": "",
+      "stderr": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.019s\n\nOK\n"
+    },
+    {
+      "name": "workflow-regression-tests",
+      "command": [
+        "C:\\Users\\petender\\AppData\\Local\\Microsoft\\WindowsApps\\python.EXE",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts/tests",
+        "-p",
+        "test_hack_workflow.py"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-25T00:58:05.321110+00:00",
+      "stdout": "",
+      "stderr": "..........................................\n----------------------------------------------------------------------\nRan 42 tests in 1.641s\n\nOK\n"
+    },
+    {
+      "name": "skillable",
+      "command": [
+        "C:\\Users\\petender\\AppData\\Local\\Microsoft\\WindowsApps\\python.EXE",
+        "C:\\HackBuilder\\.github\\skills\\skillable-lod-authoring\\scripts\\validate_skillable_package.py",
+        "C:\\azd-projects\\coffee-shop\\packages",
+        "--industry",
+        "hospitality-travel"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-25T00:58:07.249106+00:00",
+      "stdout": "PASS: C:\\azd-projects\\coffee-shop\\packages is valid.\n",
+      "stderr": ""
+    },
+    {
+      "name": "release-archives",
+      "command": [
+        "C:\\Users\\petender\\AppData\\Local\\Microsoft\\WindowsApps\\python.EXE",
+        "C:\\azd-projects\\coffee-shop\\packages\\validation\\verify_packages.py",
+        "archives"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-25T00:58:07.551474+00:00",
+      "stdout": "coffee-shop-learner.zip: CRC/manifest/byte-parity passed; 24 files\ncoffee-shop-private-coach.zip: CRC/manifest/byte-parity passed; 123 files\n",
+      "stderr": ""
+    },
+    {
+      "name": "approval-recheck",
+      "command": [
+        "C:\\Users\\petender\\AppData\\Local\\Microsoft\\WindowsApps\\python.EXE",
+        "scripts/hack_workflow.py",
+        "check-approval",
+        "C:\\azd-projects\\coffee-shop"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-25T00:58:08.992799+00:00",
+      "stdout": "check-approval: passed for coffee-shop\n",
+      "stderr": ""
+    },
+    {
+      "name": "challenge-numbering-skillable",
+      "command": [
+        "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe",
+        "C:\\HackBuilder\\.github\\skills\\skillable-lod-authoring\\scripts\\validate_skillable_package.py",
+        "C:\\HackBuilder\\generated-scenarios\\coffee-shop\\packages",
+        "--industry",
+        "hospitality-travel"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-25T01:30:30.392058+00:00",
+      "stdout": "PASS: C:\\HackBuilder\\generated-scenarios\\coffee-shop\\packages is valid.\n",
+      "stderr": ""
+    },
+    {
+      "name": "challenge-numbering-boundaries",
+      "command": [
+        "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe",
+        "C:\\HackBuilder\\generated-scenarios\\coffee-shop\\packages\\validation\\verify_packages.py",
+        "boundaries"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-25T01:30:30.529474+00:00",
+      "stdout": "Malformed company catalog records rejected, not repaired: [7, 11, 25, 33]\nSource/compiled starter denylist, exact fixtures/catalogs, coach baseline equality, isolation, sanitization, links and public/private parity passed.\n",
+      "stderr": ""
+    },
+    {
+      "name": "challenge-numbering-archives",
+      "command": [
+        "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe",
+        "C:\\HackBuilder\\generated-scenarios\\coffee-shop\\packages\\validation\\verify_packages.py",
+        "archives"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-25T01:30:31.552612+00:00",
+      "stdout": "coffee-shop-learner.zip: CRC/manifest/byte-parity passed; 24 files\ncoffee-shop-private-coach.zip: CRC/manifest/byte-parity passed; 123 files\n",
+      "stderr": ""
+    },
+    {
+      "name": "challenge-numbering-approval",
+      "command": [
+        "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe",
+        "C:\\HackBuilder\\scripts\\hack_workflow.py",
+        "check-approval",
+        "C:\\HackBuilder\\generated-scenarios\\coffee-shop"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-25T01:30:32.306135+00:00",
+      "stdout": "check-approval: passed for coffee-shop\n",
+      "stderr": ""
+    }
+  ],
+  "checkedAtUtc": "2026-10-25T01:30:32.644701+00:00",
+  "maintenanceScope": "Challenge filename/link maintenance only. Existing application and infrastructure check evidence is retained because executable implementation is unchanged. No Azure operations."
+}

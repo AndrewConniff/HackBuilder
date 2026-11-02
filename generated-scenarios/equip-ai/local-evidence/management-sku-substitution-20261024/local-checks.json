@@ -1,0 +1,16 @@
+[
+  {
+    "name": "bicep-build",
+    "startedAtUtc": "2026-10-24T23:49:27.4086211Z",
+    "exitCode": 0
+  },
+  {
+    "name": "bicep-lint",
+    "startedAtUtc": "2026-10-24T23:49:42.5211584Z",
+    "exitCode": 0
+  },
+  {
+    "name": "python-tests",
+    "exitCode": 0
+  }
+]

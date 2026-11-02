@@ -1,0 +1,28 @@
+{
+  "purpose": "Independent partial provider previews only; unchanged full production template preview retained.",
+  "exclusions": {
+    "registry": [
+      "roleAssignments"
+    ],
+    "cosmos": [
+      "sqlRoleAssignments",
+      "diagnosticSettings"
+    ],
+    "broker": [
+      "roleAssignments",
+      "diagnosticSettings",
+      "queue.roleAssignments"
+    ],
+    "vault": [
+      "roleAssignments",
+      "diagnosticSettings",
+      "key.roleAssignments"
+    ],
+    "foundry": [
+      "diagnosticSettings"
+    ]
+  },
+  "identity": "No fabricated identity IDs; all dependent grants excluded, never claimed validated.",
+  "names": "Exact proposed names retained from prior same-group preview; no resources created.",
+  "location": "eastus; production location remains required and supplied through AZURE_LOCATION."
+}

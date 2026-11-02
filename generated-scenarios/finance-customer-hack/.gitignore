@@ -1,0 +1,7 @@
+.azure/
+.private/
+**/bin/
+**/obj/
+**/TestResults/
+*.user
+infra/main.json

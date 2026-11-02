@@ -1,0 +1,6 @@
+{
+  "checkedAtUtc": "2026-10-22T18:21:43.1619529Z",
+  "command": "az policy exemption list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --scope /subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76 -o json",
+  "exitCode": 0,
+  "result": null
+}

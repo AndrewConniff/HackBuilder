@@ -1,0 +1,137 @@
+{
+  "command": "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-vault-91633e9e --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-91633e9e\\preview-vault.arm.json --no-pretty-print --output json",
+  "startedAtUtc": "2026-10-23T23:12:23.163417+00:00",
+  "checkedAtUtc": "2026-10-23T23:12:42.786643+00:00",
+  "exitCode": 0,
+  "stdout": "{\n  \"changes\": [\n    {\n      \"after\": {\n        \"apiVersion\": \"2024-03-01\",\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent\",\n        \"location\": \"centralus\",\n        \"name\": \"rg-resto-scale-agent\",\n        \"tags\": {\n          \"Environment\": \"resto-scale-agent\",\n          \"ManagedBy\": \"Bicep\",\n          \"Project\": \"resto-scale-agent\",\n          \"SecurityControl\": \"Ignore\"\n        },\n        \"type\": \"Microsoft.Resources/resourceGroups\"\n      },\n      \"before\": null,\n      \"changeType\": \"Create\",\n      \"delta\": null,\n      \"deploymentId\": null,\n      \"extension\": null,\n      \"identifiers\": null,\n      \"resourceId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent\",\n      \"symbolicName\": null,\n      \"unsupportedReason\": null\n    },\n    {\n      \"after\": {\n        \"apiVersion\": \"2026-02-01\",\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi\",\n        \"location\": \"centralus\",\n        \"name\": \"kv-resto-4tvlzr5zf2rxi\",\n        \"properties\": {\n          \"createMode\": \"default\",\n          \"enablePurgeProtection\": true,\n          \"enableRbacAuthorization\": true,\n          \"enableSoftDelete\": true,\n          \"enabledForDeployment\": false,\n          \"enabledForDiskEncryption\": false,\n          \"enabledForTemplateDeployment\": false,\n          \"networkAcls\": {\n            \"bypass\": \"None\",\n            \"defaultAction\": \"Allow\"\n          },\n          \"publicNetworkAccess\": \"Enabled\",\n          \"sku\": {\n            \"family\": \"A\",\n            \"name\": \"standard\"\n          },\n          \"softDeleteRetentionInDays\": 90,\n          \"tenantId\": \"16b3c013-d300-468d-ac64-7eda0820b6d3\"\n        },\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"tags\": {\n          \"Environment\": \"resto-scale-agent\",\n          \"ManagedBy\": \"Bicep\",\n          \"Project\": \"resto-scale-agent\",\n          \"SecurityControl\": \"Ignore\"\n        },\n        \"type\": \"Microsoft.KeyVault/vaults\"\n      },\n      \"before\": null,\n      \"changeType\": \"Create\",\n      \"delta\": null,\n      \"deploymentId\": null,\n      \"extension\": null,\n      \"identifiers\": null,\n      \"resourceId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi\",\n      \"symbolicName\": null,\n      \"unsupportedReason\": null\n    },\n    {\n      \"after\": {\n        \"apiVersion\": \"2026-02-01\",\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi/keys/guest-session\",\n        \"name\": \"guest-session\",\n        \"properties\": {\n          \"attributes\": {\n            \"enabled\": true,\n            \"exp\": 1808349143\n          },\n          \"curveName\": \"P-256\",\n          \"keyOps\": [\n            \"sign\",\n            \"verify\"\n          ],\n          \"keySize\": 3072,\n          \"kty\": \"RSA\",\n          \"rotationPolicy\": {\n            \"attributes\": {\n              \"expiryTime\": \"P180D\"\n            },\n            \"lifetimeActions\": [\n              {\n                \"action\": {\n                  \"type\": \"rotate\"\n                },\n                \"trigger\": {\n                  \"timeAfterCreate\": \"P90D\"\n                }\n              }\n            ]\n          }\n        },\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"tags\": {\n          \"Environment\": \"resto-scale-agent\",\n          \"ManagedBy\": \"Bicep\",\n          \"Project\": \"resto-scale-agent\",\n          \"SecurityControl\": \"Ignore\"\n        },\n        \"type\": \"Microsoft.KeyVault/vaults/keys\"\n      },\n      \"before\": null,\n      \"changeType\": \"Create\",\n      \"delta\": null,\n      \"deploymentId\": null,\n      \"extension\": null,\n      \"identifiers\": null,\n      \"resourceId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi/keys/guest-session\",\n      \"symbolicName\": null,\n      \"unsupportedReason\": null\n    }\n  ],\n  \"diagnostics\": null,\n  \"error\": null,\n  \"potentialChanges\": null,\n  \"status\": \"Succeeded\"\n}\n",
+  "stderr": "",
+  "result": {
+    "changes": [
+      {
+        "after": {
+          "apiVersion": "2024-03-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent",
+          "location": "centralus",
+          "name": "rg-resto-scale-agent",
+          "tags": {
+            "Environment": "resto-scale-agent",
+            "ManagedBy": "Bicep",
+            "Project": "resto-scale-agent",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.Resources/resourceGroups"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2026-02-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi",
+          "location": "centralus",
+          "name": "kv-resto-4tvlzr5zf2rxi",
+          "properties": {
+            "createMode": "default",
+            "enablePurgeProtection": true,
+            "enableRbacAuthorization": true,
+            "enableSoftDelete": true,
+            "enabledForDeployment": false,
+            "enabledForDiskEncryption": false,
+            "enabledForTemplateDeployment": false,
+            "networkAcls": {
+              "bypass": "None",
+              "defaultAction": "Allow"
+            },
+            "publicNetworkAccess": "Enabled",
+            "sku": {
+              "family": "A",
+              "name": "standard"
+            },
+            "softDeleteRetentionInDays": 90,
+            "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3"
+          },
+          "resourceGroup": "rg-resto-scale-agent",
+          "tags": {
+            "Environment": "resto-scale-agent",
+            "ManagedBy": "Bicep",
+            "Project": "resto-scale-agent",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.KeyVault/vaults"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2026-02-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi/keys/guest-session",
+          "name": "guest-session",
+          "properties": {
+            "attributes": {
+              "enabled": true,
+              "exp": 1808349143
+            },
+            "curveName": "P-256",
+            "keyOps": [
+              "sign",
+              "verify"
+            ],
+            "keySize": 3072,
+            "kty": "RSA",
+            "rotationPolicy": {
+              "attributes": {
+                "expiryTime": "P180D"
+              },
+              "lifetimeActions": [
+                {
+                  "action": {
+                    "type": "rotate"
+                  },
+                  "trigger": {
+                    "timeAfterCreate": "P90D"
+                  }
+                }
+              ]
+            }
+          },
+          "resourceGroup": "rg-resto-scale-agent",
+          "tags": {
+            "Environment": "resto-scale-agent",
+            "ManagedBy": "Bicep",
+            "Project": "resto-scale-agent",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.KeyVault/vaults/keys"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.KeyVault/vaults/kv-resto-4tvlzr5zf2rxi/keys/guest-session",
+        "symbolicName": null,
+        "unsupportedReason": null
+      }
+    ],
+    "diagnostics": null,
+    "error": null,
+    "potentialChanges": null,
+    "status": "Succeeded"
+  }
+}

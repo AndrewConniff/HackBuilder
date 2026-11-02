@@ -1,0 +1,6 @@
+{
+  "checks": 477,
+  "passed": true,
+  "errors": [],
+  "scope": "Static/local; no runtime cloud acceptance"
+}

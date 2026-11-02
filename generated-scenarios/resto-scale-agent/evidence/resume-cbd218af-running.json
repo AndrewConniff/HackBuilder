@@ -1,0 +1,20 @@
+{
+  "stage": "deployment",
+  "operation": "deployment-preparation",
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "resto-scale-agent",
+    "resourceGroup": "rg-resto-scale-agent",
+    "region": "centralus"
+  },
+  "status": "running",
+  "summary": "Resuming unfinished Central US preparation finalization using retained repairs and actual evidence. Checking the current controller instead of assuming its historical review gate remains active. No provisioning or directory writes authorized.",
+  "evidence": [
+    "Canonical revision 189: local consent and exact Central US read-only preparation scope retained; no current deployment authorization or pending business question.",
+    "evidence\\centralus-189819a8: repaired name and full/independent previews retained; finalization outputs absent.",
+    "local-checks.json: 15 Python and 26 application tests passed; runtime lint exit 4294967295 with no diagnostic is not a passing result.",
+    "Current scripts\\portal_server.py execute_operations runs the agent-owned flow and does not call require_regional_readiness; the old summary's automatic review-gate claim needs correction."
+  ]
+}

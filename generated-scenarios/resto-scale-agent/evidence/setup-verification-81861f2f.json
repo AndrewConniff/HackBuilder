@@ -1,0 +1,14 @@
+{
+  "stage": "diagrams",
+  "status": "pending",
+  "summary": "The recorded Graphviz setup verification passed in this worker under unchanged host permissions. Resume the confirmed local implementation; no cloud authorization is inferred.",
+  "setupVerification": {
+    "blockerId": "ddf4a2b4293c4fed9a02d7dc74d536aa",
+    "passed": true
+  },
+  "evidence": [
+    "Command: python -c \"import shutil,subprocess; dot=shutil.which('dot'); print('dot:',dot); assert dot is not None, 'Graphviz dot is not on the worker PATH'; subprocess.run([dot,'-V'],check=True)\"",
+    "Result: dot: C:\\Program Files\\Graphviz\\bin\\dot.EXE; dot - graphviz version 16.1.0 (20260904.0139); exit code 0. Python resolved the executable and the executable itself returned its version.",
+    "No tool installation, PATH change, host-permission change, Azure operation or new approval was performed."
+  ]
+}

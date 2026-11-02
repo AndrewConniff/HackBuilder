@@ -1,0 +1,5 @@
+{
+  "expectedRejected": true,
+  "reason": "Regional check is blocked or unknown: Microsoft.DocumentDB/databaseAccounts / Standard/NoSQL; autoscale max 4000 RU/s; Continuous7Days.",
+  "checkedAtUtc": "2026-10-23T22:52:26.482270+00:00"
+}

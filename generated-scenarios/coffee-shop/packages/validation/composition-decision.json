@@ -1,0 +1,17 @@
+{
+  "industry": "Hospitality & Travel",
+  "businessUnits": [
+    "sales"
+  ],
+  "skillableSlug": "hospitality-travel",
+  "source": "explicit user decision in composition handoff chat",
+  "decision": "extend-hospitality",
+  "statement": "Extend Skillable templates and validator support for Hospitality & Travel, preserving the approved coffee-shop scenario",
+  "referenceFingerprint": "3be67e02fd1b4246759f567203e037070ff9447bf9a634d3f555d545e954871c",
+  "systemObservationsReused": [
+    ".abcbuilder-portal/system-identity.json",
+    ".abcbuilder-portal/system-prerequisites.json"
+  ],
+  "cloudOperations": false,
+  "eventDeployed": false
+}

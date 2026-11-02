@@ -1,0 +1,17 @@
+{
+  "command": [
+    "az",
+    "provider",
+    "show",
+    "--namespace",
+    "Microsoft.Compute",
+    "--subscription",
+    "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "--output",
+    "json"
+  ],
+  "startedAtUtc": "2026-10-24T23:36:22.211398+00:00",
+  "finishedAtUtc": "2026-10-24T23:36:24.802973+00:00",
+  "exitCode": 0,
+  "stderr": ""
+}

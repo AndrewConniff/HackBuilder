@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "userResponse": "confirmed",
+  "responseAt": "2026-10-24T16:13:03.575-07:00",
+  "context": "Confirmation of the preceding chat request for exact-target read-only readiness and ARM what-if only.",
+  "account": "petender@microsoft.com",
+  "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+  "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+  "resourceGroup": "rg-coffee-shop-ref",
+  "environment": "coffee-shop-ref",
+  "candidateRegions": ["eastus2", "swedencentral"],
+  "authorized": ["read-only subscription and directory readiness", "ARM validation", "ARM what-if"],
+  "notAuthorized": ["resource deployment", "directory writes", "admin consent", "suitability approval", "hack composition"]
+}

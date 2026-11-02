@@ -1,0 +1,85 @@
+{
+  "command": "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-registry-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-registry.arm.json --no-pretty-print --output json",
+  "startedAtUtc": "2026-10-23T23:21:59.555642+00:00",
+  "checkedAtUtc": "2026-10-23T23:22:19.693828+00:00",
+  "exitCode": 0,
+  "stdout": "{\n  \"changes\": [\n    {\n      \"after\": {\n        \"apiVersion\": \"2024-03-01\",\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent\",\n        \"location\": \"westus2\",\n        \"name\": \"rg-resto-scale-agent\",\n        \"tags\": {\n          \"Environment\": \"resto-scale-agent\",\n          \"ManagedBy\": \"Bicep\",\n          \"Project\": \"resto-scale-agent\",\n          \"SecurityControl\": \"Ignore\"\n        },\n        \"type\": \"Microsoft.Resources/resourceGroups\"\n      },\n      \"before\": null,\n      \"changeType\": \"Create\",\n      \"delta\": null,\n      \"deploymentId\": null,\n      \"extension\": null,\n      \"identifiers\": null,\n      \"resourceId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent\",\n      \"symbolicName\": null,\n      \"unsupportedReason\": null\n    },\n    {\n      \"after\": {\n        \"apiVersion\": \"2025-06-01-preview\",\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi\",\n        \"location\": \"westus2\",\n        \"name\": \"acrresto4tvlzr5zf2rxi\",\n        \"properties\": {\n          \"adminUserEnabled\": false,\n          \"anonymousPullEnabled\": false,\n          \"dataEndpointEnabled\": false,\n          \"networkRuleBypassAllowedForTasks\": false,\n          \"networkRuleBypassOptions\": \"AzureServices\",\n          \"policies\": {\n            \"azureADAuthenticationAsArmPolicy\": {\n              \"status\": \"disabled\"\n            },\n            \"softDeletePolicy\": {\n              \"retentionDays\": 7,\n              \"status\": \"disabled\"\n            }\n          },\n          \"publicNetworkAccess\": \"Enabled\"\n        },\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"sku\": {\n          \"name\": \"Basic\"\n        },\n        \"tags\": {\n          \"Environment\": \"resto-scale-agent\",\n          \"ManagedBy\": \"Bicep\",\n          \"Project\": \"resto-scale-agent\",\n          \"SecurityControl\": \"Ignore\"\n        },\n        \"type\": \"Microsoft.ContainerRegistry/registries\"\n      },\n      \"before\": null,\n      \"changeType\": \"Create\",\n      \"delta\": null,\n      \"deploymentId\": null,\n      \"extension\": null,\n      \"identifiers\": null,\n      \"resourceId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi\",\n      \"symbolicName\": null,\n      \"unsupportedReason\": null\n    }\n  ],\n  \"diagnostics\": null,\n  \"error\": null,\n  \"potentialChanges\": null,\n  \"status\": \"Succeeded\"\n}\n",
+  "stderr": "",
+  "result": {
+    "changes": [
+      {
+        "after": {
+          "apiVersion": "2024-03-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent",
+          "location": "westus2",
+          "name": "rg-resto-scale-agent",
+          "tags": {
+            "Environment": "resto-scale-agent",
+            "ManagedBy": "Bicep",
+            "Project": "resto-scale-agent",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.Resources/resourceGroups"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2025-06-01-preview",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi",
+          "location": "westus2",
+          "name": "acrresto4tvlzr5zf2rxi",
+          "properties": {
+            "adminUserEnabled": false,
+            "anonymousPullEnabled": false,
+            "dataEndpointEnabled": false,
+            "networkRuleBypassAllowedForTasks": false,
+            "networkRuleBypassOptions": "AzureServices",
+            "policies": {
+              "azureADAuthenticationAsArmPolicy": {
+                "status": "disabled"
+              },
+              "softDeletePolicy": {
+                "retentionDays": 7,
+                "status": "disabled"
+              }
+            },
+            "publicNetworkAccess": "Enabled"
+          },
+          "resourceGroup": "rg-resto-scale-agent",
+          "sku": {
+            "name": "Basic"
+          },
+          "tags": {
+            "Environment": "resto-scale-agent",
+            "ManagedBy": "Bicep",
+            "Project": "resto-scale-agent",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.ContainerRegistry/registries"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ContainerRegistry/registries/acrresto4tvlzr5zf2rxi",
+        "symbolicName": null,
+        "unsupportedReason": null
+      }
+    ],
+    "diagnostics": null,
+    "error": null,
+    "potentialChanges": null,
+    "status": "Succeeded"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "evidenceDateUtc": "2026-10-23",
+  "method": "Fresh web_fetch of official Microsoft Learn during this West US 2 preparation.",
+  "sources": [
+    {
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/limits-quotas-regions",
+      "pageUpdatedAt": "2026-10-15T06:04:00Z",
+      "observations": [
+        "West US 2 has no row in either the supported Responses/Agents region table or the regional Function tool table. West US and West US 3 rows are distinct regions and cannot prove West US 2 support.",
+        "The page mentions West US 2 in the Grounding with Bing Search regional list, but that does not establish the required prompt-agent/Responses/Function configuration.",
+        "gpt-5.4-mini lists Functions Yes and Azure Functions No. The reference uses app-executed Functions, not Azure Functions.",
+        "Required West US 2 agent capabilities therefore remain unverified, not passed. No region, model or tool substitution made."
+      ]
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/azure/container-apps/quotas",
+      "pageUpdatedAt": "2026-10-16T22:20:00Z",
+      "observations": [
+        "Managed Environment Count is a subscription/region quota, not a Consumption core quota.",
+        "Managed Environment Consumption Cores is environment-scoped and sums cores across active replicas of every app.",
+        "Default quotas vary by subscription; no default is assumed.",
+        "The documented az containerapp env list-usages check was executed against the exact proposed environment and failed ResourceGroupNotFound. No resource was created to discover the limit."
+      ]
+    }
+  ]
+}

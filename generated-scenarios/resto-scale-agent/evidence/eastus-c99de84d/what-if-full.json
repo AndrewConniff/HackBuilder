@@ -1,0 +1,339 @@
+{
+  "command": "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location eastus --name resto-full-c99de84d --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\eastus-c99de84d\\preview-full.arm.json --no-pretty-print --output json",
+  "startedAtUtc": "2026-10-23T22:47:47.166335+00:00",
+  "checkedAtUtc": "2026-10-23T22:48:07.705949+00:00",
+  "exitCode": 0,
+  "stdout": "{\n  \"changes\": [\n    {\n      \"after\": {\n        \"apiVersion\": \"2024-03-01\",\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent\",\n        \"location\": \"eastus\",\n        \"name\": \"rg-resto-scale-agent\",\n        \"tags\": {\n          \"Environment\": \"resto-scale-agent\",\n          \"ManagedBy\": \"Bicep\",\n          \"Project\": \"resto-scale-agent\",\n          \"SecurityControl\": \"Ignore\"\n        },\n        \"type\": \"Microsoft.Resources/resourceGroups\"\n      },\n      \"before\": null,\n      \"changeType\": \"Create\",\n      \"delta\": null,\n      \"deploymentId\": null,\n      \"extension\": null,\n      \"identifiers\": null,\n      \"resourceId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent\",\n      \"symbolicName\": null,\n      \"unsupportedReason\": null\n    },\n    {\n      \"after\": {\n        \"apiVersion\": \"2024-11-30\",\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi\",\n        \"location\": \"eastus\",\n        \"name\": \"id-resto-chat-4tvlzr5zf2rxi\",\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"tags\": {\n          \"Environment\": \"resto-scale-agent\",\n          \"ManagedBy\": \"Bicep\",\n          \"Project\": \"resto-scale-agent\",\n          \"SecurityControl\": \"Ignore\"\n        },\n        \"type\": \"Microsoft.ManagedIdentity/userAssignedIdentities\"\n      },\n      \"before\": null,\n      \"changeType\": \"Create\",\n      \"delta\": null,\n      \"deploymentId\": null,\n      \"extension\": null,\n      \"identifiers\": null,\n      \"resourceId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi\",\n      \"symbolicName\": null,\n      \"unsupportedReason\": null\n    },\n    {\n      \"after\": {\n        \"apiVersion\": \"2024-11-30\",\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-scaler-4tvlzr5zf2rxi\",\n        \"location\": \"eastus\",\n        \"name\": \"id-resto-scaler-4tvlzr5zf2rxi\",\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"tags\": {\n          \"Environment\": \"resto-scale-agent\",\n          \"ManagedBy\": \"Bicep\",\n          \"Project\": \"resto-scale-agent\",\n          \"SecurityControl\": \"Ignore\"\n        },\n        \"type\": \"Microsoft.ManagedIdentity/userAssignedIdentities\"\n      },\n      \"before\": null,\n      \"changeType\": \"Create\",\n      \"delta\": null,\n      \"deploymentId\": null,\n      \"extension\": null,\n      \"identifiers\": null,\n      \"resourceId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-scaler-4tvlzr5zf2rxi\",\n      \"symbolicName\": null,\n      \"unsupportedReason\": null\n    },\n    {\n      \"after\": {\n        \"apiVersion\": \"2024-11-30\",\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi\",\n        \"location\": \"eastus\",\n        \"name\": \"id-resto-web-4tvlzr5zf2rxi\",\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"tags\": {\n          \"Environment\": \"resto-scale-agent\",\n          \"ManagedBy\": \"Bicep\",\n          \"Project\": \"resto-scale-agent\",\n          \"SecurityControl\": \"Ignore\"\n        },\n        \"type\": \"Microsoft.ManagedIdentity/userAssignedIdentities\"\n      },\n      \"before\": null,\n      \"changeType\": \"Create\",\n      \"delta\": null,\n      \"deploymentId\": null,\n      \"extension\": null,\n      \"identifiers\": null,\n      \"resourceId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi\",\n      \"symbolicName\": null,\n      \"unsupportedReason\": null\n    },\n    {\n      \"after\": {\n        \"apiVersion\": \"2024-11-30\",\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi\",\n        \"location\": \"eastus\",\n        \"name\": \"id-resto-worker-4tvlzr5zf2rxi\",\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"tags\": {\n          \"Environment\": \"resto-scale-agent\",\n          \"ManagedBy\": \"Bicep\",\n          \"Project\": \"resto-scale-agent\",\n          \"SecurityControl\": \"Ignore\"\n        },\n        \"type\": \"Microsoft.ManagedIdentity/userAssignedIdentities\"\n      },\n      \"before\": null,\n      \"changeType\": \"Create\",\n      \"delta\": null,\n      \"deploymentId\": null,\n      \"extension\": null,\n      \"identifiers\": null,\n      \"resourceId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi\",\n      \"symbolicName\": null,\n      \"unsupportedReason\": null\n    },\n    {\n      \"after\": {\n        \"apiVersion\": \"2025-05-01\",\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi\",\n        \"location\": \"eastus\",\n        \"name\": \"vnet-resto-4tvlzr5zf2rxi\",\n        \"properties\": {\n          \"addressSpace\": {\n            \"addressPrefixes\": [\n              \"10.74.0.0/22\"\n            ]\n          },\n          \"enableDdosProtection\": false,\n          \"privateEndpointVNetPolicies\": \"Disabled\",\n          \"subnets\": [\n            {\n              \"name\": \"container-apps\",\n              \"properties\": {\n                \"addressPrefix\": \"10.74.0.0/23\",\n                \"delegations\": [\n                  {\n                    \"name\": \"Microsoft.App/environments\",\n                    \"properties\": {\n                      \"serviceName\": \"Microsoft.App/environments\"\n                    }\n                  }\n                ]\n              }\n            }\n          ]\n        },\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"tags\": {\n          \"Environment\": \"resto-scale-agent\",\n          \"ManagedBy\": \"Bicep\",\n          \"Project\": \"resto-scale-agent\",\n          \"SecurityControl\": \"Ignore\"\n        },\n        \"type\": \"Microsoft.Network/virtualNetworks\"\n      },\n      \"before\": null,\n      \"changeType\": \"Create\",\n      \"delta\": null,\n      \"deploymentId\": null,\n      \"extension\": null,\n      \"identifiers\": null,\n      \"resourceId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi\",\n      \"symbolicName\": null,\n      \"unsupportedReason\": null\n    },\n    {\n      \"after\": {\n        \"apiVersion\": \"2025-05-01\",\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi/subnets/container-apps\",\n        \"name\": \"container-apps\",\n        \"properties\": {\n          \"addressPrefix\": \"10.74.0.0/23\",\n          \"delegations\": [\n            {\n              \"name\": \"Microsoft.App/environments\",\n              \"properties\": {\n                \"serviceName\": \"Microsoft.App/environments\"\n              }\n            }\n          ]\n        },\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"type\": \"Microsoft.Network/virtualNetworks/subnets\"\n      },\n      \"before\": null,\n      \"changeType\": \"Create\",\n      \"delta\": null,\n      \"deploymentId\": null,\n      \"extension\": null,\n      \"identifiers\": null,\n      \"resourceId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi/subnets/container-apps\",\n      \"symbolicName\": null,\n      \"unsupportedReason\": null\n    },\n    {\n      \"after\": {\n        \"apiVersion\": \"2025-07-01\",\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.OperationalInsights/workspaces/log-resto-4tvlzr5zf2rxi\",\n        \"location\": \"eastus\",\n        \"name\": \"log-resto-4tvlzr5zf2rxi\",\n        \"properties\": {\n          \"forceCmkForQuery\": false,\n          \"publicNetworkAccessForIngestion\": \"Enabled\",\n          \"publicNetworkAccessForQuery\": \"Enabled\",\n          \"retentionInDays\": 30,\n          \"sku\": {\n            \"name\": \"PerGB2018\"\n          },\n          \"workspaceCapping\": {\n            \"dailyQuotaGb\": -1\n          }\n        },\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"tags\": {\n          \"Environment\": \"resto-scale-agent\",\n          \"ManagedBy\": \"Bicep\",\n          \"Project\": \"resto-scale-agent\",\n          \"SecurityControl\": \"Ignore\"\n        },\n        \"type\": \"Microsoft.OperationalInsights/workspaces\"\n      },\n      \"before\": null,\n      \"changeType\": \"Create\",\n      \"delta\": null,\n      \"deploymentId\": null,\n      \"extension\": null,\n      \"identifiers\": null,\n      \"resourceId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.OperationalInsights/workspaces/log-resto-4tvlzr5zf2rxi\",\n      \"symbolicName\": null,\n      \"unsupportedReason\": null\n    },\n    {\n      \"after\": {\n        \"apiVersion\": \"2024-03-01\",\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/tags/default\",\n        \"name\": \"default\",\n        \"properties\": {\n          \"tags\": {\n            \"Environment\": \"resto-scale-agent\",\n            \"ManagedBy\": \"Bicep\",\n            \"Project\": \"resto-scale-agent\",\n            \"SecurityControl\": \"Ignore\"\n          }\n        },\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"type\": \"Microsoft.Resources/tags\"\n      },\n      \"before\": null,\n      \"changeType\": \"Create\",\n      \"delta\": null,\n      \"deploymentId\": null,\n      \"extension\": null,\n      \"identifiers\": null,\n      \"resourceId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/tags/default\",\n      \"symbolicName\": null,\n      \"unsupportedReason\": null\n    }\n  ],\n  \"diagnostics\": [\n    {\n      \"additionalInfo\": null,\n      \"code\": \"NestedDeploymentShortCircuited\",\n      \"level\": \"Warning\",\n      \"message\": \"A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.\",\n      \"target\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/insights\"\n    },\n    {\n      \"additionalInfo\": null,\n      \"code\": \"NestedDeploymentShortCircuited\",\n      \"level\": \"Warning\",\n      \"message\": \"A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.\",\n      \"target\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/registry\"\n    },\n    {\n      \"additionalInfo\": null,\n      \"code\": \"NestedDeploymentShortCircuited\",\n      \"level\": \"Warning\",\n      \"message\": \"A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.\",\n      \"target\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/cosmos\"\n    },\n    {\n      \"additionalInfo\": null,\n      \"code\": \"NestedDeploymentShortCircuited\",\n      \"level\": \"Warning\",\n      \"message\": \"A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.\",\n      \"target\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/broker\"\n    },\n    {\n      \"additionalInfo\": null,\n      \"code\": \"NestedDeploymentShortCircuited\",\n      \"level\": \"Warning\",\n      \"message\": \"A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.\",\n      \"target\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/vault\"\n    },\n    {\n      \"additionalInfo\": null,\n      \"code\": \"NestedDeploymentShortCircuited\",\n      \"level\": \"Warning\",\n      \"message\": \"A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.\",\n      \"target\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/foundry\"\n    },\n    {\n      \"additionalInfo\": null,\n      \"code\": \"NestedDeploymentShortCircuited\",\n      \"level\": \"Warning\",\n      \"message\": \"A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.\",\n      \"target\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/project\"\n    },\n    {\n      \"additionalInfo\": null,\n      \"code\": \"NestedDeploymentShortCircuited\",\n      \"level\": \"Warning\",\n      \"message\": \"A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.\",\n      \"target\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/environment\"\n    }\n  ],\n  \"error\": null,\n  \"potentialChanges\": null,\n  \"status\": \"Succeeded\"\n}\n",
+  "stderr": "",
+  "result": {
+    "changes": [
+      {
+        "after": {
+          "apiVersion": "2024-03-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent",
+          "location": "eastus",
+          "name": "rg-resto-scale-agent",
+          "tags": {
+            "Environment": "resto-scale-agent",
+            "ManagedBy": "Bicep",
+            "Project": "resto-scale-agent",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.Resources/resourceGroups"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2024-11-30",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi",
+          "location": "eastus",
+          "name": "id-resto-chat-4tvlzr5zf2rxi",
+          "resourceGroup": "rg-resto-scale-agent",
+          "tags": {
+            "Environment": "resto-scale-agent",
+            "ManagedBy": "Bicep",
+            "Project": "resto-scale-agent",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.ManagedIdentity/userAssignedIdentities"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-chat-4tvlzr5zf2rxi",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2024-11-30",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-scaler-4tvlzr5zf2rxi",
+          "location": "eastus",
+          "name": "id-resto-scaler-4tvlzr5zf2rxi",
+          "resourceGroup": "rg-resto-scale-agent",
+          "tags": {
+            "Environment": "resto-scale-agent",
+            "ManagedBy": "Bicep",
+            "Project": "resto-scale-agent",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.ManagedIdentity/userAssignedIdentities"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-scaler-4tvlzr5zf2rxi",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2024-11-30",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi",
+          "location": "eastus",
+          "name": "id-resto-web-4tvlzr5zf2rxi",
+          "resourceGroup": "rg-resto-scale-agent",
+          "tags": {
+            "Environment": "resto-scale-agent",
+            "ManagedBy": "Bicep",
+            "Project": "resto-scale-agent",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.ManagedIdentity/userAssignedIdentities"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-web-4tvlzr5zf2rxi",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2024-11-30",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi",
+          "location": "eastus",
+          "name": "id-resto-worker-4tvlzr5zf2rxi",
+          "resourceGroup": "rg-resto-scale-agent",
+          "tags": {
+            "Environment": "resto-scale-agent",
+            "ManagedBy": "Bicep",
+            "Project": "resto-scale-agent",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.ManagedIdentity/userAssignedIdentities"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-resto-worker-4tvlzr5zf2rxi",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2025-05-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi",
+          "location": "eastus",
+          "name": "vnet-resto-4tvlzr5zf2rxi",
+          "properties": {
+            "addressSpace": {
+              "addressPrefixes": [
+                "10.74.0.0/22"
+              ]
+            },
+            "enableDdosProtection": false,
+            "privateEndpointVNetPolicies": "Disabled",
+            "subnets": [
+              {
+                "name": "container-apps",
+                "properties": {
+                  "addressPrefix": "10.74.0.0/23",
+                  "delegations": [
+                    {
+                      "name": "Microsoft.App/environments",
+                      "properties": {
+                        "serviceName": "Microsoft.App/environments"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "resourceGroup": "rg-resto-scale-agent",
+          "tags": {
+            "Environment": "resto-scale-agent",
+            "ManagedBy": "Bicep",
+            "Project": "resto-scale-agent",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.Network/virtualNetworks"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2025-05-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi/subnets/container-apps",
+          "name": "container-apps",
+          "properties": {
+            "addressPrefix": "10.74.0.0/23",
+            "delegations": [
+              {
+                "name": "Microsoft.App/environments",
+                "properties": {
+                  "serviceName": "Microsoft.App/environments"
+                }
+              }
+            ]
+          },
+          "resourceGroup": "rg-resto-scale-agent",
+          "type": "Microsoft.Network/virtualNetworks/subnets"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Network/virtualNetworks/vnet-resto-4tvlzr5zf2rxi/subnets/container-apps",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2025-07-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.OperationalInsights/workspaces/log-resto-4tvlzr5zf2rxi",
+          "location": "eastus",
+          "name": "log-resto-4tvlzr5zf2rxi",
+          "properties": {
+            "forceCmkForQuery": false,
+            "publicNetworkAccessForIngestion": "Enabled",
+            "publicNetworkAccessForQuery": "Enabled",
+            "retentionInDays": 30,
+            "sku": {
+              "name": "PerGB2018"
+            },
+            "workspaceCapping": {
+              "dailyQuotaGb": -1
+            }
+          },
+          "resourceGroup": "rg-resto-scale-agent",
+          "tags": {
+            "Environment": "resto-scale-agent",
+            "ManagedBy": "Bicep",
+            "Project": "resto-scale-agent",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.OperationalInsights/workspaces"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.OperationalInsights/workspaces/log-resto-4tvlzr5zf2rxi",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2024-03-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/tags/default",
+          "name": "default",
+          "properties": {
+            "tags": {
+              "Environment": "resto-scale-agent",
+              "ManagedBy": "Bicep",
+              "Project": "resto-scale-agent",
+              "SecurityControl": "Ignore"
+            }
+          },
+          "resourceGroup": "rg-resto-scale-agent",
+          "type": "Microsoft.Resources/tags"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/tags/default",
+        "symbolicName": null,
+        "unsupportedReason": null
+      }
+    ],
+    "diagnostics": [
+      {
+        "additionalInfo": null,
+        "code": "NestedDeploymentShortCircuited",
+        "level": "Warning",
+        "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/insights"
+      },
+      {
+        "additionalInfo": null,
+        "code": "NestedDeploymentShortCircuited",
+        "level": "Warning",
+        "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/registry"
+      },
+      {
+        "additionalInfo": null,
+        "code": "NestedDeploymentShortCircuited",
+        "level": "Warning",
+        "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/cosmos"
+      },
+      {
+        "additionalInfo": null,
+        "code": "NestedDeploymentShortCircuited",
+        "level": "Warning",
+        "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/broker"
+      },
+      {
+        "additionalInfo": null,
+        "code": "NestedDeploymentShortCircuited",
+        "level": "Warning",
+        "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/vault"
+      },
+      {
+        "additionalInfo": null,
+        "code": "NestedDeploymentShortCircuited",
+        "level": "Warning",
+        "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/foundry"
+      },
+      {
+        "additionalInfo": null,
+        "code": "NestedDeploymentShortCircuited",
+        "level": "Warning",
+        "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/project"
+      },
+      {
+        "additionalInfo": null,
+        "code": "NestedDeploymentShortCircuited",
+        "level": "Warning",
+        "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance.",
+        "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/environment"
+      }
+    ],
+    "error": null,
+    "potentialChanges": null,
+    "status": "Succeeded"
+  }
+}

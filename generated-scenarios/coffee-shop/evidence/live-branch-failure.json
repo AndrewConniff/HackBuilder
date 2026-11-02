@@ -1,0 +1,18 @@
+{
+  "checkedAtUtc": "2026-10-24T23:55:32.034662+00:00",
+  "applicationUrl": "https://web-fc-keegvmxonq3wc.azurewebsites.net",
+  "status": "passed",
+  "checks": {
+    "noSuccessfulCloseOnBranchFailure": true
+  },
+  "evidence": {
+    "branchFailure": {
+      "httpStatus": 503,
+      "body": {
+        "error": "Dependency unavailable; no successful close claimed.",
+        "traceId": "0HNPI59H445OR:00000004"
+      },
+      "elapsedSeconds": 4.120992100099102
+    }
+  }
+}

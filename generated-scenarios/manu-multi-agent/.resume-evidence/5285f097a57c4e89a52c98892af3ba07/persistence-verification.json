@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "revision": 6,
+  "sourceFilesUnchanged": [
+    "01-requirements.md",
+    "02-architecture-assessment.md",
+    "scenario-manifest.json",
+    "azure.yaml",
+    "00-region-availability.json"
+  ],
+  "passingIntakeChecks": 34,
+  "pendingDecision": "Confirm the same existing Adventure Works Cycles private three-agent Sales-to-Marketing design for local revalidation and completion of its deployment wiring, without resetting or regenerating the reference?",
+  "cloudAuthorizations": [],
+  "laterStages": "pending"
+}

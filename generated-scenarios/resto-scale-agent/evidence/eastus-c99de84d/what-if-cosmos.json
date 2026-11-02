@@ -1,0 +1,221 @@
+{
+  "command": "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location eastus --name resto-cosmos-c99de84d --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\eastus-c99de84d\\preview-cosmos.arm.json --no-pretty-print --output json",
+  "startedAtUtc": "2026-10-23T22:47:47.167256+00:00",
+  "checkedAtUtc": "2026-10-23T22:48:06.917002+00:00",
+  "exitCode": 0,
+  "stdout": "{\n  \"changes\": [\n    {\n      \"after\": {\n        \"apiVersion\": \"2024-03-01\",\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent\",\n        \"location\": \"eastus\",\n        \"name\": \"rg-resto-scale-agent\",\n        \"tags\": {\n          \"Environment\": \"resto-scale-agent\",\n          \"ManagedBy\": \"Bicep\",\n          \"Project\": \"resto-scale-agent\",\n          \"SecurityControl\": \"Ignore\"\n        },\n        \"type\": \"Microsoft.Resources/resourceGroups\"\n      },\n      \"before\": null,\n      \"changeType\": \"Create\",\n      \"delta\": null,\n      \"deploymentId\": null,\n      \"extension\": null,\n      \"identifiers\": null,\n      \"resourceId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent\",\n      \"symbolicName\": null,\n      \"unsupportedReason\": null\n    },\n    {\n      \"after\": {\n        \"apiVersion\": \"2026-04-01-preview\",\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi\",\n        \"kind\": \"GlobalDocumentDB\",\n        \"location\": \"eastus\",\n        \"name\": \"cosmos-resto-4tvlzr5zf2rxi\",\n        \"properties\": {\n          \"backupPolicy\": {\n            \"continuousModeProperties\": {\n              \"tier\": \"Continuous7Days\"\n            },\n            \"type\": \"Continuous\"\n          },\n          \"capacity\": {\n            \"totalThroughputLimit\": -1\n          },\n          \"capacityMode\": \"Provisioned\",\n          \"consistencyPolicy\": {\n            \"defaultConsistencyLevel\": \"Session\"\n          },\n          \"databaseAccountOfferType\": \"Standard\",\n          \"defaultIdentity\": \"FirstPartyIdentity\",\n          \"disableKeyBasedMetadataWriteAccess\": true,\n          \"disableLocalAuth\": true,\n          \"enableAnalyticalStorage\": false,\n          \"enableAutomaticFailover\": false,\n          \"enableBurstCapacity\": true,\n          \"enableFreeTier\": false,\n          \"enableMultipleWriteLocations\": false,\n          \"enablePartitionMerge\": false,\n          \"enablePerRegionPerPartitionAutoscale\": false,\n          \"isVirtualNetworkFilterEnabled\": false,\n          \"locations\": [\n            {\n              \"failoverPriority\": 0,\n              \"isZoneRedundant\": true,\n              \"locationName\": \"eastus\"\n            }\n          ],\n          \"minimalTlsVersion\": \"Tls12\",\n          \"networkAclBypass\": \"None\",\n          \"publicNetworkAccess\": \"Enabled\"\n        },\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"tags\": {\n          \"Environment\": \"resto-scale-agent\",\n          \"ManagedBy\": \"Bicep\",\n          \"Project\": \"resto-scale-agent\",\n          \"SecurityControl\": \"Ignore\"\n        },\n        \"type\": \"Microsoft.DocumentDB/databaseAccounts\"\n      },\n      \"before\": null,\n      \"changeType\": \"Create\",\n      \"delta\": null,\n      \"deploymentId\": null,\n      \"extension\": null,\n      \"identifiers\": null,\n      \"resourceId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi\",\n      \"symbolicName\": null,\n      \"unsupportedReason\": null\n    },\n    {\n      \"after\": {\n        \"apiVersion\": \"2026-04-01-preview\",\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant\",\n        \"name\": \"restaurant\",\n        \"properties\": {\n          \"options\": {\n            \"autoscaleSettings\": {\n              \"maxThroughput\": 4000\n            }\n          },\n          \"resource\": {\n            \"id\": \"restaurant\"\n          }\n        },\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"type\": \"Microsoft.DocumentDB/databaseAccounts/sqlDatabases\"\n      },\n      \"before\": null,\n      \"changeType\": \"Create\",\n      \"delta\": null,\n      \"deploymentId\": null,\n      \"extension\": null,\n      \"identifiers\": null,\n      \"resourceId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant\",\n      \"symbolicName\": null,\n      \"unsupportedReason\": null\n    },\n    {\n      \"after\": {\n        \"apiVersion\": \"2026-04-01-preview\",\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/catalog\",\n        \"name\": \"catalog\",\n        \"properties\": {\n          \"resource\": {\n            \"id\": \"catalog\",\n            \"partitionKey\": {\n              \"kind\": \"Hash\",\n              \"paths\": [\n                \"/aggregateKey\"\n              ],\n              \"version\": 2\n            }\n          }\n        },\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"type\": \"Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers\"\n      },\n      \"before\": null,\n      \"changeType\": \"Create\",\n      \"delta\": null,\n      \"deploymentId\": null,\n      \"extension\": null,\n      \"identifiers\": null,\n      \"resourceId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/catalog\",\n      \"symbolicName\": null,\n      \"unsupportedReason\": null\n    },\n    {\n      \"after\": {\n        \"apiVersion\": \"2026-04-01-preview\",\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/reporting\",\n        \"name\": \"reporting\",\n        \"properties\": {\n          \"resource\": {\n            \"id\": \"reporting\",\n            \"partitionKey\": {\n              \"kind\": \"Hash\",\n              \"paths\": [\n                \"/aggregateKey\"\n              ],\n              \"version\": 2\n            }\n          }\n        },\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"type\": \"Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers\"\n      },\n      \"before\": null,\n      \"changeType\": \"Create\",\n      \"delta\": null,\n      \"deploymentId\": null,\n      \"extension\": null,\n      \"identifiers\": null,\n      \"resourceId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/reporting\",\n      \"symbolicName\": null,\n      \"unsupportedReason\": null\n    },\n    {\n      \"after\": {\n        \"apiVersion\": \"2026-04-01-preview\",\n        \"id\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/transactions\",\n        \"name\": \"transactions\",\n        \"properties\": {\n          \"resource\": {\n            \"id\": \"transactions\",\n            \"partitionKey\": {\n              \"kind\": \"Hash\",\n              \"paths\": [\n                \"/aggregateKey\"\n              ],\n              \"version\": 2\n            }\n          }\n        },\n        \"resourceGroup\": \"rg-resto-scale-agent\",\n        \"type\": \"Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers\"\n      },\n      \"before\": null,\n      \"changeType\": \"Create\",\n      \"delta\": null,\n      \"deploymentId\": null,\n      \"extension\": null,\n      \"identifiers\": null,\n      \"resourceId\": \"/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/transactions\",\n      \"symbolicName\": null,\n      \"unsupportedReason\": null\n    }\n  ],\n  \"diagnostics\": null,\n  \"error\": null,\n  \"potentialChanges\": null,\n  \"status\": \"Succeeded\"\n}\n",
+  "stderr": "",
+  "result": {
+    "changes": [
+      {
+        "after": {
+          "apiVersion": "2024-03-01",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent",
+          "location": "eastus",
+          "name": "rg-resto-scale-agent",
+          "tags": {
+            "Environment": "resto-scale-agent",
+            "ManagedBy": "Bicep",
+            "Project": "resto-scale-agent",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.Resources/resourceGroups"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2026-04-01-preview",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi",
+          "kind": "GlobalDocumentDB",
+          "location": "eastus",
+          "name": "cosmos-resto-4tvlzr5zf2rxi",
+          "properties": {
+            "backupPolicy": {
+              "continuousModeProperties": {
+                "tier": "Continuous7Days"
+              },
+              "type": "Continuous"
+            },
+            "capacity": {
+              "totalThroughputLimit": -1
+            },
+            "capacityMode": "Provisioned",
+            "consistencyPolicy": {
+              "defaultConsistencyLevel": "Session"
+            },
+            "databaseAccountOfferType": "Standard",
+            "defaultIdentity": "FirstPartyIdentity",
+            "disableKeyBasedMetadataWriteAccess": true,
+            "disableLocalAuth": true,
+            "enableAnalyticalStorage": false,
+            "enableAutomaticFailover": false,
+            "enableBurstCapacity": true,
+            "enableFreeTier": false,
+            "enableMultipleWriteLocations": false,
+            "enablePartitionMerge": false,
+            "enablePerRegionPerPartitionAutoscale": false,
+            "isVirtualNetworkFilterEnabled": false,
+            "locations": [
+              {
+                "failoverPriority": 0,
+                "isZoneRedundant": true,
+                "locationName": "eastus"
+              }
+            ],
+            "minimalTlsVersion": "Tls12",
+            "networkAclBypass": "None",
+            "publicNetworkAccess": "Enabled"
+          },
+          "resourceGroup": "rg-resto-scale-agent",
+          "tags": {
+            "Environment": "resto-scale-agent",
+            "ManagedBy": "Bicep",
+            "Project": "resto-scale-agent",
+            "SecurityControl": "Ignore"
+          },
+          "type": "Microsoft.DocumentDB/databaseAccounts"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2026-04-01-preview",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant",
+          "name": "restaurant",
+          "properties": {
+            "options": {
+              "autoscaleSettings": {
+                "maxThroughput": 4000
+              }
+            },
+            "resource": {
+              "id": "restaurant"
+            }
+          },
+          "resourceGroup": "rg-resto-scale-agent",
+          "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2026-04-01-preview",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/catalog",
+          "name": "catalog",
+          "properties": {
+            "resource": {
+              "id": "catalog",
+              "partitionKey": {
+                "kind": "Hash",
+                "paths": [
+                  "/aggregateKey"
+                ],
+                "version": 2
+              }
+            }
+          },
+          "resourceGroup": "rg-resto-scale-agent",
+          "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/catalog",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2026-04-01-preview",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/reporting",
+          "name": "reporting",
+          "properties": {
+            "resource": {
+              "id": "reporting",
+              "partitionKey": {
+                "kind": "Hash",
+                "paths": [
+                  "/aggregateKey"
+                ],
+                "version": 2
+              }
+            }
+          },
+          "resourceGroup": "rg-resto-scale-agent",
+          "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/reporting",
+        "symbolicName": null,
+        "unsupportedReason": null
+      },
+      {
+        "after": {
+          "apiVersion": "2026-04-01-preview",
+          "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/transactions",
+          "name": "transactions",
+          "properties": {
+            "resource": {
+              "id": "transactions",
+              "partitionKey": {
+                "kind": "Hash",
+                "paths": [
+                  "/aggregateKey"
+                ],
+                "version": 2
+              }
+            }
+          },
+          "resourceGroup": "rg-resto-scale-agent",
+          "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers"
+        },
+        "before": null,
+        "changeType": "Create",
+        "delta": null,
+        "deploymentId": null,
+        "extension": null,
+        "identifiers": null,
+        "resourceId": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/sqlDatabases/restaurant/containers/transactions",
+        "symbolicName": null,
+        "unsupportedReason": null
+      }
+    ],
+    "diagnostics": null,
+    "error": null,
+    "potentialChanges": null,
+    "status": "Succeeded"
+  }
+}

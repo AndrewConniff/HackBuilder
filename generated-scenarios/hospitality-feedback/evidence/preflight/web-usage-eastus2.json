@@ -1,0 +1,614 @@
+{
+  "checkedAtUtc": "2026-10-22T18:24:11.5669501Z",
+  "command": "az rest --method get --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Web/locations/eastus2/usages?api-version=2024-11-01",
+  "exitCode": 0,
+  "result": {
+    "id": null,
+    "nextLink": null,
+    "value": [
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "F1 VMs",
+          "value": "F1"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "D1 VMs",
+          "value": "D1"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "B1 VMs",
+          "value": "B1"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "B2 VMs",
+          "value": "B2"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "B3 VMs",
+          "value": "B3"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "S1 VMs",
+          "value": "S1"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "S2 VMs",
+          "value": "S2"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "S3 VMs",
+          "value": "S3"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "P1 VMs",
+          "value": "P1"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "P2 VMs",
+          "value": "P2"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "P3 VMs",
+          "value": "P3"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "Y1 VMs",
+          "value": "Y1"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "P1v2 VMs",
+          "value": "P1v2"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "P1v2 VMs (Zone Redundant)",
+          "value": "P1v2_AZ"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "P2v2 VMs",
+          "value": "P2v2"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "P2v2 VMs (Zone Redundant)",
+          "value": "P2v2_AZ"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "P3v2 VMs",
+          "value": "P3v2"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "P3v2 VMs (Zone Redundant)",
+          "value": "P3v2_AZ"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 360,
+        "name": {
+          "localizedValue": "P0v3 VMs",
+          "value": "P0v3"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 10,
+        "name": {
+          "localizedValue": "P0v3 VMs (Zone Redundant)",
+          "value": "P0v3_AZ"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 360,
+        "name": {
+          "localizedValue": "P1v3 VMs",
+          "value": "P1v3"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 10,
+        "name": {
+          "localizedValue": "P1v3 VMs (Zone Redundant)",
+          "value": "P1v3_AZ"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 360,
+        "name": {
+          "localizedValue": "P2v3 VMs",
+          "value": "P2v3"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 10,
+        "name": {
+          "localizedValue": "P2v3 VMs (Zone Redundant)",
+          "value": "P2v3_AZ"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 360,
+        "name": {
+          "localizedValue": "P3v3 VMs",
+          "value": "P3v3"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 10,
+        "name": {
+          "localizedValue": "P3v3 VMs (Zone Redundant)",
+          "value": "P3v3_AZ"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "EP1 VMs",
+          "value": "EP1"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "EP1 VMs (Zone Redundant)",
+          "value": "EP1_AZ"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "EP2 VMs",
+          "value": "EP2"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "EP2 VMs (Zone Redundant)",
+          "value": "EP2_AZ"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "EP3 VMs",
+          "value": "EP3"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "EP3 VMs (Zone Redundant)",
+          "value": "EP3_AZ"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "WS1 VMs",
+          "value": "WS1"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "WS1 VMs (Zone Redundant)",
+          "value": "WS1_AZ"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "WS2 VMs",
+          "value": "WS2"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "WS2 VMs (Zone Redundant)",
+          "value": "WS2_AZ"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "WS3 VMs",
+          "value": "WS3"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "WS3 VMs (Zone Redundant)",
+          "value": "WS3_AZ"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 32,
+        "name": {
+          "localizedValue": "P1mv3 VMs",
+          "value": "P1mv3"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 10,
+        "name": {
+          "localizedValue": "P1mv3 VMs (Zone Redundant)",
+          "value": "P1mv3_AZ"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 32,
+        "name": {
+          "localizedValue": "P2mv3 VMs",
+          "value": "P2mv3"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 10,
+        "name": {
+          "localizedValue": "P2mv3 VMs (Zone Redundant)",
+          "value": "P2mv3_AZ"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 32,
+        "name": {
+          "localizedValue": "P3mv3 VMs",
+          "value": "P3mv3"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 10,
+        "name": {
+          "localizedValue": "P3mv3 VMs (Zone Redundant)",
+          "value": "P3mv3_AZ"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 32,
+        "name": {
+          "localizedValue": "P4mv3 VMs",
+          "value": "P4mv3"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 10,
+        "name": {
+          "localizedValue": "P4mv3 VMs (Zone Redundant)",
+          "value": "P4mv3_AZ"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 32,
+        "name": {
+          "localizedValue": "P5mv3 VMs",
+          "value": "P5mv3"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 10,
+        "name": {
+          "localizedValue": "P5mv3 VMs (Zone Redundant)",
+          "value": "P5mv3_AZ"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 60,
+        "name": {
+          "localizedValue": "P0v4 VMs",
+          "value": "P0v4"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 10,
+        "name": {
+          "localizedValue": "P0v4 VMs (Zone Redundant)",
+          "value": "P0v4_AZ"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 60,
+        "name": {
+          "localizedValue": "P1v4 VMs",
+          "value": "P1v4"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 10,
+        "name": {
+          "localizedValue": "P1v4 VMs (Zone Redundant)",
+          "value": "P1v4_AZ"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 60,
+        "name": {
+          "localizedValue": "P2v4 VMs",
+          "value": "P2v4"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 10,
+        "name": {
+          "localizedValue": "P2v4 VMs (Zone Redundant)",
+          "value": "P2v4_AZ"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 60,
+        "name": {
+          "localizedValue": "P3v4 VMs",
+          "value": "P3v4"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 10,
+        "name": {
+          "localizedValue": "P3v4 VMs (Zone Redundant)",
+          "value": "P3v4_AZ"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 32,
+        "name": {
+          "localizedValue": "P1mv4 VMs",
+          "value": "P1mv4"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 10,
+        "name": {
+          "localizedValue": "P1mv4 VMs (Zone Redundant)",
+          "value": "P1mv4_AZ"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 32,
+        "name": {
+          "localizedValue": "P2mv4 VMs",
+          "value": "P2mv4"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 10,
+        "name": {
+          "localizedValue": "P2mv4 VMs (Zone Redundant)",
+          "value": "P2mv4_AZ"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 32,
+        "name": {
+          "localizedValue": "P3mv4 VMs",
+          "value": "P3mv4"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 10,
+        "name": {
+          "localizedValue": "P3mv4 VMs (Zone Redundant)",
+          "value": "P3mv4_AZ"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 32,
+        "name": {
+          "localizedValue": "P4mv4 VMs",
+          "value": "P4mv4"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 10,
+        "name": {
+          "localizedValue": "P4mv4 VMs (Zone Redundant)",
+          "value": "P4mv4_AZ"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 32,
+        "name": {
+          "localizedValue": "P5mv4 VMs",
+          "value": "P5mv4"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 10,
+        "name": {
+          "localizedValue": "P5mv4 VMs (Zone Redundant)",
+          "value": "P5mv4_AZ"
+        },
+        "unit": "Instances"
+      },
+      {
+        "currentValue": 0,
+        "limit": 0,
+        "name": {
+          "localizedValue": "Total Regional VMs",
+          "value": "*"
+        },
+        "unit": "Instances"
+      }
+    ]
+  }
+}

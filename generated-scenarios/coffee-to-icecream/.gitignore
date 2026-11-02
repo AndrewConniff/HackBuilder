@@ -1,0 +1,11 @@
+.azure/
+.private/
+**/bin/
+**/obj/
+**/node_modules/
+**/__pycache__/
+infra/main.json
+deployment-scope.json
+local-validation.json
+adaptation-baseline.json
+adaptation-reconciliation.json

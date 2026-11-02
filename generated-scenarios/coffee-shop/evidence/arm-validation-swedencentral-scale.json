@@ -1,0 +1,186 @@
+{
+  "checkedAtUtc": "2026-10-24T23:20:07.449509+00:00",
+  "region": "swedencentral",
+  "operation": "Read-only ARM validation of approved P0v3 three-worker scale ceiling, not deployment",
+  "differenceFromReference": "In-memory skuCapacity increased from 1 to 3 only for quota validation",
+  "responses": [
+    {
+      "httpStatus": 202,
+      "body": {},
+      "url": "https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Resources/deployments/coffee-shop-readonly-scale/validate?api-version=2025-04-01"
+    },
+    {
+      "httpStatus": 200,
+      "body": {
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Resources/deployments/coffee-shop-readonly-scale",
+        "name": "coffee-shop-readonly-scale",
+        "type": "Microsoft.Resources/deployments",
+        "location": "swedencentral",
+        "properties": {
+          "templateHash": "18146800071766998399",
+          "parameters": {
+            "environmentName": {
+              "type": "String",
+              "value": "coffee-shop-ref"
+            },
+            "location": {
+              "type": "String",
+              "value": "swedencentral"
+            },
+            "principalId": {
+              "type": "String",
+              "value": "214d672b-df87-4f3b-94fd-7863032546c1"
+            },
+            "tenantId": {
+              "type": "String",
+              "value": "16b3c013-d300-468d-ac64-7eda0820b6d3"
+            },
+            "appClientId": {
+              "type": "String",
+              "value": ""
+            },
+            "agentConsumerRoleId": {
+              "type": "String",
+              "value": "eed3b665-ab3a-47b6-8f48-c9382fb1dad6"
+            },
+            "storeGrants": {
+              "type": "String",
+              "value": "[]"
+            },
+            "modelName": {
+              "type": "String",
+              "value": "gpt-4.1-mini"
+            },
+            "modelVersion": {
+              "type": "String",
+              "value": "2025-04-14"
+            }
+          },
+          "extensions": [],
+          "mode": "Incremental",
+          "provisioningState": "Succeeded",
+          "timestamp": "2026-10-24T23:20:14.339102Z",
+          "duration": "PT0S",
+          "correlationId": "9539dd18-c8b9-47c0-9493-bfb3d73d0fd1",
+          "providers": [
+            {
+              "namespace": "Microsoft.Resources",
+              "resourceTypes": [
+                {
+                  "resourceType": "resourceGroups",
+                  "locations": [
+                    "swedencentral"
+                  ]
+                },
+                {
+                  "resourceType": "deployments",
+                  "locations": [
+                    null
+                  ]
+                }
+              ]
+            }
+          ],
+          "dependencies": [
+            {
+              "dependsOn": [
+                {
+                  "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref",
+                  "resourceType": "Microsoft.Resources/resourceGroups",
+                  "resourceName": "rg-coffee-shop-ref"
+                }
+              ],
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Resources/deployments/coffee-shop-resources",
+              "resourceType": "Microsoft.Resources/deployments",
+              "resourceName": "coffee-shop-resources"
+            }
+          ],
+          "validatedResources": [
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/deployments/gpt-4.1-mini"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/projects/backoffice"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/projects/backoffice/providers/Microsoft.Authorization/roleAssignments/a1c6a0f1-6fe2-509d-9809-9235ece2cf2f"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/providers/Microsoft.Authorization/roleAssignments/00163789-8133-5584-892a-8490ceab2058"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.CognitiveServices/accounts/fc-coffee-shop-keegvmxo/providers/Microsoft.Authorization/roleAssignments/d8609193-3263-522f-879e-d2de9696de12"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Resources/deployments/46d3xbcp.res.cognitiveservices-account.0-19-1.ukcm"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Resources/deployments/46d3xbcp.res.storage-storageaccount.0-33-1.p42b"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Resources/deployments/46d3xbcp.res.web-serverfarm.0-7-0.435x"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Resources/deployments/coffee-shop-resources"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Resources/deployments/foundry"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Resources/deployments/p42bvqelmqgkw-Storage-TableServices"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Resources/deployments/p42bvqelmqgkw-Storage-TableServices-Table-0"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Resources/deployments/plan"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Resources/deployments/storage"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Resources/deployments/ukcm6fhwvtmoe-cognitiveservice-deployment-0"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Resources/deployments/web"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Storage/storageAccounts/stfckeegvmxonq3wc"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Storage/storageAccounts/stfckeegvmxonq3wc/providers/Microsoft.Authorization/roleAssignments/a0e2a0d6-45bd-58f6-8560-ca1d8de4f8f0"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Storage/storageAccounts/stfckeegvmxonq3wc/providers/Microsoft.Authorization/roleAssignments/dc48e584-54ec-5835-b02b-f127f7dbee58"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Storage/storageAccounts/stfckeegvmxonq3wc/tableServices/default"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Storage/storageAccounts/stfckeegvmxonq3wc/tableServices/default/tables/CoffeeBackOffice"
+            },
+            {
+              "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Web/serverfarms/plan-fc-keegvmxonq3wc"
+            }
+          ],
+          "diagnostics": [
+            {
+              "level": "Warning",
+              "code": "NestedDeploymentShortCircuited",
+              "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-coffee-shop-ref/providers/Microsoft.Resources/deployments/web",
+              "message": "A nested deployment got short-circuited and all its resources got skipped from validation. This is due to a nested template having a parameter that was not fully evaluated (e.g. contains a reference() function). Please see https://aka.ms/WhatIfEvalStopped for more guidance."
+            }
+          ]
+        }
+      },
+      "url": "https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/operationresults/eyJqb2JJZCI6IkRlcGxveW1lbnRQcmVmbGlnaHRKb2ItR05TLS1DT0ZGRUU6MkRTSE9QOjJEUkVBRE9OTFk6MkRTQ0FMRS05NTM5REQxODoyREM4Qjl8M0RFNzgzMzk3M0U3NUNGMyIsImpvYkxvY2F0aW9uIjoic3dlZGVuY2VudHJhbCIsImpvYlN0b3JhZ2VBY2NvdW50IjoiL2NzbS9zdG9yYWdlYWNjb3VudHMvZ2xvYmFsL3JwZmRsam9iMDBwcm9kc2VjMDEifQ?api-version=2025-04-01&t=639284808105971346&c=MIIHlDCCBnygAwIBAgIQEWqq0LXHm9_RoSQk3rtLtzANBgkqhkiG9w0BAQsFADA2MTQwMgYDVQQDEytDQ01FIEcxIFRMUyBSU0EgMjA0OCBTSEEyNTYgMjA0OSBXVVMyIENBIDAxMB4XDTI2MDkyMzA2MDIzOVoXDTI2MTIxODEyMDIzOVowQDE-MDwGA1UEAxM1YXN5bmNvcGVyYXRpb25zaWduaW5nY2VydGlmaWNhdGUubWFuYWdlbWVudC5henVyZS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCTL3s1G4HRJxCxQWgaa1QhZF9rCHBTzLl8phyc14DtHqFD1UEEvU8TdKIkn63TfPvm-CD5nDTQJhmqP3TQ4a1zbeIZvN26UwO-f2zs8v284_6vqmQYpp074W-XCE3yUu6xZi0c2RjrWXRE0C83U9RwiZBkm4sAg6EaNrBTlMtlbtByJMhA9KOAfS_ME_eoDeS2P_o__hD4yg538D4itpA1Yp3-XcF3vu3MgpyPUf4o8rU8J3Y9-jIPfdgYdhE-QPuKdwKQu0Aov3aNNHzv_aJivc4z22sXdAC9MeLP59Q0e1QaF_moRqk0Sr9AyE7J1ohMafagWSkQ-fj_5H83r6J9AgMBAAGjggSSMIIEjjCBnQYDVR0gBIGVMIGSMAwGCisGAQQBgjd7AQEwZgYKKwYBBAGCN3sCAjBYMFYGCCsGAQUFBwICMEoeSAAzADMAZQAwADEAOQAyADEALQA0AGQANgA0AC0ANABmADgAYwAtAGEAMAA1ADUALQA1AGIAZABhAGYAZgBkADUAZQAzADMAZDAMBgorBgEEAYI3ewMCMAwGCisGAQQBgjd7BAIwDAYDVR0TAQH_BAIwADAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwDgYDVR0PAQH_BAQDAgWgMB0GA1UdDgQWBBTI83RcASQN5gnS06-jdiNGf7b_JDAfBgNVHSMEGDAWgBSs43L6A7Jznj2VyO-HW67dG6HtaDCCAbIGA1UdHwSCAakwggGlMGmgZ6BlhmNodHRwOi8vcHJpbWFyeS1jZG4ucGtpLmNvcmUud2luZG93cy5uZXQvd2VzdHVzMi9jcmxzL2NjbWV3ZXN0dXMycGtpL2NjbWV3ZXN0dXMyaWNhMDEvOTcvY3VycmVudC5jcmwwa6BpoGeGZWh0dHA6Ly9zZWNvbmRhcnktY2RuLnBraS5jb3JlLndpbmRvd3MubmV0L3dlc3R1czIvY3Jscy9jY21ld2VzdHVzMnBraS9jY21ld2VzdHVzMmljYTAxLzk3L2N1cnJlbnQuY3JsMFqgWKBWhlRodHRwOi8vY3JsLm1pY3Jvc29mdC5jb20vd2VzdHVzMi9jcmxzL2NjbWV3ZXN0dXMycGtpL2NjbWV3ZXN0dXMyaWNhMDEvOTcvY3VycmVudC5jcmwwb6BtoGuGaWh0dHA6Ly9jY21ld2VzdHVzMnBraS53ZXN0dXMyLnBraS5jb3JlLndpbmRvd3MubmV0L2NlcnRpZmljYXRlQXV0aG9yaXRpZXMvY2NtZXdlc3R1czJpY2EwMS85Ny9jdXJyZW50LmNybDCCAbcGCCsGAQUFBwEBBIIBqTCCAaUwbAYIKwYBBQUHMAKGYGh0dHA6Ly9wcmltYXJ5LWNkbi5wa2kuY29yZS53aW5kb3dzLm5ldC93ZXN0dXMyL2NhY2VydHMvY2NtZXdlc3R1czJwa2kvY2NtZXdlc3R1czJpY2EwMS9jZXJ0LmNlcjBuBggrBgEFBQcwAoZiaHR0cDovL3NlY29uZGFyeS1jZG4ucGtpLmNvcmUud2luZG93cy5uZXQvd2VzdHVzMi9jYWNlcnRzL2NjbWV3ZXN0dXMycGtpL2NjbWV3ZXN0dXMyaWNhMDEvY2VydC5jZXIwXQYIKwYBBQUHMAKGUWh0dHA6Ly9jcmwubWljcm9zb2Z0LmNvbS93ZXN0dXMyL2NhY2VydHMvY2NtZXdlc3R1czJwa2kvY2NtZXdlc3R1czJpY2EwMS9jZXJ0LmNlcjBmBggrBgEFBQcwAoZaaHR0cDovL2NjbWV3ZXN0dXMycGtpLndlc3R1czIucGtpLmNvcmUud2luZG93cy5uZXQvY2VydGlmaWNhdGVBdXRob3JpdGllcy9jY21ld2VzdHVzMmljYTAxMA0GCSqGSIb3DQEBCwUAA4IBAQBtlTS-mdvGIKziCDp4X9OVPqRLuoH48ib0L8ZVUxxNXw-O3sl-lio6Y7V0Xqv47B1Ru94KfFJZpXsF6u0Gk7IcfpKl2PltvEAmAKSdpsOElmGW0MeH-AsmLU-uRKqaIGsDrnsyJuLqtILSJ_GCMnG1VbnaqOJFmoBMj7f_unbCkVhb6MmyJC4sd_klisVbuUnjtp_Cgp2Wc_HeRKPemyn8alnsmHVOO0NHWIR41o6dNQCt7LJ5nM5rQd2Fww6uP0eqn3jQiNE0nl_zOqY8Me96xb0gWGe9D4aRXyAG_j-B4_gTga7SVfy92csbUhBWi9huq3gKSoRRpuS_4dQqvDVj&s=cKIwxVSn6zKcmKbeutkqnd3WDDO7qE17u147u1LpxY6we-f9TLsK-p9irLdv4MaU0J87URd3CailFQc8LucB6upx_4yI2ppN8Ok4YH40ZPn6L_G7mXwp1ygS1XNPH-4Z7RW-Yn4YnVD2AWrpEiWMy-fuSp_oFtctSs1c_Ho7Ce2je3GYqfN432M5eiDg-iMg3UOLimrqfrAegdMZWwt9HmtcpAVi-9q-_D2TAkXLrUvdHm5B5LNn94ZGkh5r5BtvGKXPGlwxoN5AbLNelrGxtrI2RPelfVxKeDFbzBF0YWNOsZX9d0TkleoXwVfxKrKBZ1ZSt12g799juA1OP2yYMw&h=tO1Vsjq7pdqddeED0fSH2g_hL0IaXPSIIwJzj4p7lkM"
+    }
+  ],
+  "status": "completed"
+}

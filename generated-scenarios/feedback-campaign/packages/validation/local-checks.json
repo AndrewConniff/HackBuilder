@@ -1,0 +1,466 @@
+{
+  "checkedAtUtc": "2026-10-25T19:11:59.029363+00:00",
+  "cloudOperationsExecuted": false,
+  "eventDeployed": false,
+  "allCommandsPassed": true,
+  "checks": [
+    {
+      "name": "support-extension",
+      "command": "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe -m unittest discover -s scripts/tests -p test_skillable*.py",
+      "workingDirectory": "C:\\HackBuilder",
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.044s\n\nOK\n"
+    },
+    {
+      "name": "workflow-policy",
+      "command": "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe -m unittest discover -s scripts/tests -p test_hack_workflow.py",
+      "workingDirectory": "C:\\HackBuilder",
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": "...........................................\n----------------------------------------------------------------------\nRan 43 tests in 1.616s\n\nOK\n"
+    },
+    {
+      "name": "authoring-style",
+      "command": "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe -m unittest discover -s scripts/tests -p test_authoring_style.py",
+      "workingDirectory": "C:\\HackBuilder",
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.055s\n\nOK\n"
+    },
+    {
+      "name": "skill-resources",
+      "command": "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe .github/skills/skillable-lod-authoring/scripts/validate_skillable_package.py --check-skill",
+      "workingDirectory": "C:\\HackBuilder",
+      "exitCode": 0,
+      "stdout": "PASS: Skillable authoring resources is valid.\n",
+      "stderr": ""
+    },
+    {
+      "name": "coach-bicep-build",
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" bicep build --file infra/main.bicep",
+      "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach",
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "coach-bicep-lint",
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" bicep lint --file infra/main.bicep",
+      "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach",
+      "exitCode": 0,
+      "stdout": "\n",
+      "stderr": ""
+    },
+    {
+      "name": "coach-review-build",
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" bicep build --file infra/review.bicep",
+      "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach",
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "coach-review-lint",
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" bicep lint --file infra/review.bicep",
+      "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach",
+      "exitCode": 0,
+      "stdout": "\n",
+      "stderr": ""
+    },
+    {
+      "name": "participant-bicep-build",
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" bicep build --file infra/main.bicep",
+      "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\participant",
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "participant-bicep-lint",
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" bicep lint --file infra/main.bicep",
+      "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\participant",
+      "exitCode": 0,
+      "stdout": "\n",
+      "stderr": ""
+    },
+    {
+      "name": "coach-restore",
+      "command": "\"C:\\Program Files\\dotnet\\dotnet.EXE\" restore src/FeedbackCampaign.Web --configfile C:\\HackBuilder\\NuGet.Config",
+      "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach",
+      "exitCode": 0,
+      "stdout": "  Determining projects to restore...\n  All projects are up-to-date for restore.\n",
+      "stderr": ""
+    },
+    {
+      "name": "coach-test-restore",
+      "command": "\"C:\\Program Files\\dotnet\\dotnet.EXE\" restore tests/FeedbackCampaign.Tests.csproj --configfile C:\\HackBuilder\\NuGet.Config",
+      "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach",
+      "exitCode": 0,
+      "stdout": "  Determining projects to restore...\n  All projects are up-to-date for restore.\n",
+      "stderr": ""
+    },
+    {
+      "name": "coach-build",
+      "command": "\"C:\\Program Files\\dotnet\\dotnet.EXE\" build src/FeedbackCampaign.Web -c Release --no-restore --nologo",
+      "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach",
+      "exitCode": 0,
+      "stdout": "  FeedbackCampaign.Web -> C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach\\src\\FeedbackCampaign.Web\\bin\\Release\\net10.0\\FeedbackCampaign.Web.dll\n\nBuild succeeded.\n    0 Warning(s)\n    0 Error(s)\n\nTime Elapsed 00:00:00.79\n",
+      "stderr": ""
+    },
+    {
+      "name": "coach-tests",
+      "command": "\"C:\\Program Files\\dotnet\\dotnet.EXE\" test tests/FeedbackCampaign.Tests.csproj -c Release --no-restore --nologo --logger trx;LogFileName=app-tests.trx --results-directory C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\validation\\test-results",
+      "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach",
+      "exitCode": 0,
+      "stdout": "  FeedbackCampaign.Web -> C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach\\src\\FeedbackCampaign.Web\\bin\\Release\\net10.0\\FeedbackCampaign.Web.dll\n  FeedbackCampaign.Tests -> C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach\\tests\\bin\\Release\\net10.0\\FeedbackCampaign.Tests.dll\nTest run for C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach\\tests\\bin\\Release\\net10.0\\FeedbackCampaign.Tests.dll (.NETCoreApp,Version=v10.0)\nA total of 1 test files matched the specified pattern.\nWARNING: Overwriting results file: C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\validation\\test-results\\app-tests.trx\nResults File: C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\validation\\test-results\\app-tests.trx\n\nPassed!  - Failed:     0, Passed:    32, Skipped:     0, Total:    32, Duration: 2 s - FeedbackCampaign.Tests.dll (net10.0)\n",
+      "stderr": ""
+    },
+    {
+      "name": "coach-publish",
+      "command": "\"C:\\Program Files\\dotnet\\dotnet.EXE\" publish src/FeedbackCampaign.Web -c Release --no-restore --nologo --output src/FeedbackCampaign.Web/bin/publish-check",
+      "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach",
+      "exitCode": 0,
+      "stdout": "  FeedbackCampaign.Web -> C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach\\src\\FeedbackCampaign.Web\\bin\\Release\\net10.0\\FeedbackCampaign.Web.dll\n  FeedbackCampaign.Web -> C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach\\src\\FeedbackCampaign.Web\\bin\\publish-check\\\n",
+      "stderr": ""
+    },
+    {
+      "name": "coach-script-guards",
+      "command": "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe -m unittest discover -s tests -p test_*.py",
+      "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach",
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.006s\n\nOK\n"
+    },
+    {
+      "name": "coach-javascript",
+      "command": "\"C:\\Program Files\\nodejs\\node.EXE\" --check src/FeedbackCampaign.Web/wwwroot/app.js",
+      "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach",
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "starter-status",
+      "command": "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe C:\\HackBuilder\\tools\\validate_feedback_packages.py --mode starter",
+      "workingDirectory": "C:\\HackBuilder",
+      "exitCode": 0,
+      "stdout": "Starter: expected-incomplete status, resource denylist, parameter and six destination guard checks passed.\n",
+      "stderr": ""
+    },
+    {
+      "name": "package-boundaries",
+      "command": "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe C:\\HackBuilder\\tools\\validate_feedback_packages.py --mode boundaries",
+      "workingDirectory": "C:\\HackBuilder",
+      "exitCode": 0,
+      "stdout": "Package boundaries, source/fixture identity, CSV provenance, links, target isolation and 11 hashes passed.\n",
+      "stderr": ""
+    },
+    {
+      "name": "skillable",
+      "command": "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe .github/skills/skillable-lod-authoring/scripts/validate_skillable_package.py C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages --industry media-communications",
+      "workingDirectory": "C:\\HackBuilder",
+      "exitCode": 0,
+      "stdout": "PASS: C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages is valid.\n",
+      "stderr": ""
+    },
+    {
+      "name": "release-archives",
+      "command": "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe C:\\HackBuilder\\tools\\validate_feedback_packages.py --mode archives",
+      "workingDirectory": "C:\\HackBuilder",
+      "exitCode": 0,
+      "stdout": "Four separate release archives passed exact member, hash, cache and visibility checks.\n",
+      "stderr": ""
+    },
+    {
+      "name": "reference-approval",
+      "command": "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe scripts/hack_workflow.py check-approval C:\\HackBuilder\\generated-scenarios\\feedback-campaign",
+      "workingDirectory": "C:\\HackBuilder",
+      "exitCode": 0,
+      "stdout": "check-approval: passed for feedback-campaign\n",
+      "stderr": ""
+    }
+  ],
+  "previousAttempts": [
+    {
+      "checkedAtUtc": "2026-10-25T19:06:48.723425+00:00",
+      "cloudOperationsExecuted": false,
+      "eventDeployed": false,
+      "allCommandsPassed": false,
+      "checks": [
+        {
+          "name": "support-extension",
+          "command": "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe -m unittest discover -s scripts/tests -p test_skillable*.py",
+          "workingDirectory": "C:\\HackBuilder",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.039s\n\nOK\n"
+        },
+        {
+          "name": "workflow-policy",
+          "command": "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe -m unittest discover -s scripts/tests -p test_hack_workflow.py",
+          "workingDirectory": "C:\\HackBuilder",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": "...........................................\n----------------------------------------------------------------------\nRan 43 tests in 2.570s\n\nOK\n"
+        },
+        {
+          "name": "authoring-style",
+          "command": "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe -m unittest discover -s scripts/tests -p test_authoring_style.py",
+          "workingDirectory": "C:\\HackBuilder",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.105s\n\nOK\n"
+        },
+        {
+          "name": "skill-resources",
+          "command": "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe .github/skills/skillable-lod-authoring/scripts/validate_skillable_package.py --check-skill",
+          "workingDirectory": "C:\\HackBuilder",
+          "exitCode": 0,
+          "stdout": "PASS: Skillable authoring resources is valid.\n",
+          "stderr": ""
+        },
+        {
+          "name": "coach-bicep-build",
+          "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" bicep build --file infra/main.bicep",
+          "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "name": "coach-bicep-lint",
+          "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" bicep lint --file infra/main.bicep",
+          "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach",
+          "exitCode": 0,
+          "stdout": "\n",
+          "stderr": ""
+        },
+        {
+          "name": "coach-review-build",
+          "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" bicep build --file infra/review.bicep",
+          "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "name": "coach-review-lint",
+          "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" bicep lint --file infra/review.bicep",
+          "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach",
+          "exitCode": 0,
+          "stdout": "\n",
+          "stderr": ""
+        },
+        {
+          "name": "participant-bicep-build",
+          "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" bicep build --file infra/main.bicep",
+          "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\participant",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "name": "participant-bicep-lint",
+          "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" bicep lint --file infra/main.bicep",
+          "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\participant",
+          "exitCode": 0,
+          "stdout": "\n",
+          "stderr": ""
+        },
+        {
+          "name": "coach-build",
+          "command": "\"C:\\Program Files\\dotnet\\dotnet.EXE\" build src/FeedbackCampaign.Web -c Release --nologo",
+          "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach",
+          "exitCode": 1,
+          "stdout": "  Determining projects to restore...\nC:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach\\src\\FeedbackCampaign.Web\\FeedbackCampaign.Web.csproj : error NU1900: Warning As Error: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.\n  Failed to restore C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach\\src\\FeedbackCampaign.Web\\FeedbackCampaign.Web.csproj (in 8.68 sec).\n\nBuild FAILED.\n\nC:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach\\src\\FeedbackCampaign.Web\\FeedbackCampaign.Web.csproj : error NU1900: Warning As Error: Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.\n    0 Warning(s)\n    1 Error(s)\n\nTime Elapsed 00:00:09.38\n",
+          "stderr": ""
+        }
+      ]
+    },
+    {
+      "checkedAtUtc": "2026-10-25T19:07:17.713211+00:00",
+      "cloudOperationsExecuted": false,
+      "eventDeployed": false,
+      "allCommandsPassed": false,
+      "checks": [
+        {
+          "name": "support-extension",
+          "command": "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe -m unittest discover -s scripts/tests -p test_skillable*.py",
+          "workingDirectory": "C:\\HackBuilder",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.036s\n\nOK\n"
+        },
+        {
+          "name": "workflow-policy",
+          "command": "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe -m unittest discover -s scripts/tests -p test_hack_workflow.py",
+          "workingDirectory": "C:\\HackBuilder",
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": ".....................E.....................\n======================================================================\nERROR: test_story_code_and_fixture_changes_invalidate_approval (test_hack_workflow.ApprovalTests.test_story_code_and_fixture_changes_invalidate_approval)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\Lib\\shutil.py\", line 859, in rmtree\n    _rmtree_impl(path, dir_fd, onexc)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\Lib\\shutil.py\", line 705, in _rmtree_unsafe\n    onexc(os.unlink, fullname, err)\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\Lib\\shutil.py\", line 701, in _rmtree_unsafe\n    os.unlink(fullname)\n    ~~~~~~~~~^^^^^^^^^^\nPermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\\\HackBuilder\\\\.workflow-test-5d3e1602e8bf439e8172744504e4bdd8\\\\00-region-availability.json'\n\n----------------------------------------------------------------------\nRan 43 tests in 2.264s\n\nFAILED (errors=1)\n"
+        }
+      ]
+    },
+    {
+      "checkedAtUtc": "2026-10-25T19:08:20.920998+00:00",
+      "cloudOperationsExecuted": false,
+      "eventDeployed": false,
+      "allCommandsPassed": false,
+      "checks": [
+        {
+          "name": "support-extension",
+          "command": "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe -m unittest discover -s scripts/tests -p test_skillable*.py",
+          "workingDirectory": "C:\\HackBuilder",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.045s\n\nOK\n"
+        },
+        {
+          "name": "workflow-policy",
+          "command": "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe -m unittest discover -s scripts/tests -p test_hack_workflow.py",
+          "workingDirectory": "C:\\HackBuilder",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": "...........................................\n----------------------------------------------------------------------\nRan 43 tests in 2.332s\n\nOK\n"
+        },
+        {
+          "name": "authoring-style",
+          "command": "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe -m unittest discover -s scripts/tests -p test_authoring_style.py",
+          "workingDirectory": "C:\\HackBuilder",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.106s\n\nOK\n"
+        },
+        {
+          "name": "skill-resources",
+          "command": "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe .github/skills/skillable-lod-authoring/scripts/validate_skillable_package.py --check-skill",
+          "workingDirectory": "C:\\HackBuilder",
+          "exitCode": 0,
+          "stdout": "PASS: Skillable authoring resources is valid.\n",
+          "stderr": ""
+        },
+        {
+          "name": "coach-bicep-build",
+          "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" bicep build --file infra/main.bicep",
+          "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "name": "coach-bicep-lint",
+          "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" bicep lint --file infra/main.bicep",
+          "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach",
+          "exitCode": 0,
+          "stdout": "\n",
+          "stderr": ""
+        },
+        {
+          "name": "coach-review-build",
+          "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" bicep build --file infra/review.bicep",
+          "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "name": "coach-review-lint",
+          "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" bicep lint --file infra/review.bicep",
+          "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach",
+          "exitCode": 0,
+          "stdout": "\n",
+          "stderr": ""
+        },
+        {
+          "name": "participant-bicep-build",
+          "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" bicep build --file infra/main.bicep",
+          "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\participant",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "name": "participant-bicep-lint",
+          "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" bicep lint --file infra/main.bicep",
+          "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\participant",
+          "exitCode": 0,
+          "stdout": "\n",
+          "stderr": ""
+        },
+        {
+          "name": "coach-restore",
+          "command": "\"C:\\Program Files\\dotnet\\dotnet.EXE\" restore src/FeedbackCampaign.Web --configfile C:\\HackBuilder\\NuGet.Config",
+          "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach",
+          "exitCode": 0,
+          "stdout": "  Determining projects to restore...\n  Restored C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach\\src\\FeedbackCampaign.Web\\FeedbackCampaign.Web.csproj (in 1.15 sec).\n",
+          "stderr": ""
+        },
+        {
+          "name": "coach-test-restore",
+          "command": "\"C:\\Program Files\\dotnet\\dotnet.EXE\" restore tests/FeedbackCampaign.Tests.csproj --configfile C:\\HackBuilder\\NuGet.Config",
+          "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach",
+          "exitCode": 0,
+          "stdout": "  Determining projects to restore...\n  Restored C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach\\tests\\FeedbackCampaign.Tests.csproj (in 339 ms).\n  1 of 2 projects are up-to-date for restore.\n",
+          "stderr": ""
+        },
+        {
+          "name": "coach-build",
+          "command": "\"C:\\Program Files\\dotnet\\dotnet.EXE\" build src/FeedbackCampaign.Web -c Release --no-restore --nologo",
+          "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach",
+          "exitCode": 0,
+          "stdout": "  FeedbackCampaign.Web -> C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach\\src\\FeedbackCampaign.Web\\bin\\Release\\net10.0\\FeedbackCampaign.Web.dll\n\nBuild succeeded.\n    0 Warning(s)\n    0 Error(s)\n\nTime Elapsed 00:00:03.53\n",
+          "stderr": ""
+        },
+        {
+          "name": "coach-tests",
+          "command": "\"C:\\Program Files\\dotnet\\dotnet.EXE\" test tests/FeedbackCampaign.Tests.csproj -c Release --no-restore --nologo --logger trx;LogFileName=app-tests.trx --results-directory C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\validation\\test-results",
+          "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach",
+          "exitCode": 0,
+          "stdout": "  FeedbackCampaign.Web -> C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach\\src\\FeedbackCampaign.Web\\bin\\Release\\net10.0\\FeedbackCampaign.Web.dll\n  FeedbackCampaign.Tests -> C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach\\tests\\bin\\Release\\net10.0\\FeedbackCampaign.Tests.dll\nTest run for C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach\\tests\\bin\\Release\\net10.0\\FeedbackCampaign.Tests.dll (.NETCoreApp,Version=v10.0)\nA total of 1 test files matched the specified pattern.\nResults File: C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\validation\\test-results\\app-tests.trx\n\nPassed!  - Failed:     0, Passed:    32, Skipped:     0, Total:    32, Duration: 3 s - FeedbackCampaign.Tests.dll (net10.0)\n",
+          "stderr": ""
+        },
+        {
+          "name": "coach-publish",
+          "command": "\"C:\\Program Files\\dotnet\\dotnet.EXE\" publish src/FeedbackCampaign.Web -c Release --no-restore --nologo --output src/FeedbackCampaign.Web/bin/publish-check",
+          "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach",
+          "exitCode": 0,
+          "stdout": "  FeedbackCampaign.Web -> C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach\\src\\FeedbackCampaign.Web\\bin\\Release\\net10.0\\FeedbackCampaign.Web.dll\n  FeedbackCampaign.Web -> C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach\\src\\FeedbackCampaign.Web\\bin\\publish-check\\\n",
+          "stderr": ""
+        },
+        {
+          "name": "coach-script-guards",
+          "command": "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe -m unittest discover -s tests -p test_*.py",
+          "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": "........\n----------------------------------------------------------------------\nRan 8 tests in 0.007s\n\nOK\n"
+        },
+        {
+          "name": "coach-javascript",
+          "command": "\"C:\\Program Files\\nodejs\\node.EXE\" --check src/FeedbackCampaign.Web/wwwroot/app.js",
+          "workingDirectory": "C:\\HackBuilder\\generated-scenarios\\feedback-campaign\\packages\\coach",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "name": "starter-status",
+          "command": "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe C:\\HackBuilder\\tools\\validate_feedback_packages.py --mode starter",
+          "workingDirectory": "C:\\HackBuilder",
+          "exitCode": 0,
+          "stdout": "Starter: expected-incomplete status, resource denylist, parameter and six destination guard checks passed.\n",
+          "stderr": ""
+        },
+        {
+          "name": "package-boundaries",
+          "command": "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe C:\\HackBuilder\\tools\\validate_feedback_packages.py --mode boundaries",
+          "workingDirectory": "C:\\HackBuilder",
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"C:\\HackBuilder\\tools\\validate_feedback_packages.py\", line 282, in <module>\n    boundaries()\n    ~~~~~~~~~~^^\n  File \"C:\\HackBuilder\\tools\\validate_feedback_packages.py\", line 113, in boundaries\n    assert companies[0][\"Company Name\"] == \"Adatum Corporation\" and companies[0][\"Domain\"] == \"adatum.com\"\n                                                                    ~~~~~~~~~~~~^^^^^^^^^^\nKeyError: 'Domain'\n"
+        }
+      ]
+    }
+  ]
+}

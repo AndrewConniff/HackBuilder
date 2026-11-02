@@ -1,0 +1,6 @@
+{
+  "checkedAtUtc": "2026-10-22T18:21:53.8126131Z",
+  "command": "az storage account list-skus --subscription efd64343-6ef4-4926-951f-d3229f38bd76 -o json",
+  "exitCode": 2,
+  "output": "ERROR: 'list-skus' is misspelled or not recognized by the system.\r\n\r\nhttps://aka.ms/cli_ref\r\nRead more about the command in reference docs\r\n"
+}

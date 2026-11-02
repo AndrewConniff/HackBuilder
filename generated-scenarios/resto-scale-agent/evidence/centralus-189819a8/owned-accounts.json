@@ -1,0 +1,8 @@
+{
+  "command": "az resource list --resource-group rg-resto-scale-agent --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --resource-type Microsoft.CognitiveServices/accounts --output json",
+  "startedAtUtc": "2026-10-23T23:35:21.673491+00:00",
+  "checkedAtUtc": "2026-10-23T23:35:24.362808+00:00",
+  "exitCode": 3,
+  "stdout": "",
+  "stderr": "ERROR: (ResourceGroupNotFound) Resource group 'rg-resto-scale-agent' could not be found.\nCode: ResourceGroupNotFound\nMessage: Resource group 'rg-resto-scale-agent' could not be found.\n"
+}

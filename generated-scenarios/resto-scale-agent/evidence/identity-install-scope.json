@@ -1,0 +1,12 @@
+{
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "resto-scale-agent",
+    "resourceGroup": "rg-resto-scale-agent",
+    "region": "centralus"
+  },
+  "authorizationDecisionId": "3f3d19a20079404991c95dfe6d23b93f",
+  "operatorObjectId": "214d672b-df87-4f3b-94fd-7863032546c1"
+}

@@ -1,0 +1,45 @@
+[
+  {
+    "id": "menu",
+    "aggregateKey": "menu",
+    "Type": "menu",
+    "Version": 1,
+    "Company": "Fourth Coffee",
+    "Currency": "USD",
+    "Items": [
+      { "Id": 1, "Name": "Roasted vegetable bowl", "PriceMinor": 1600, "Available": true, "Vegetarian": true, "Version": 1 },
+      { "Id": 2, "Name": "Mushroom risotto", "PriceMinor": 1900, "Available": true, "Vegetarian": true, "Version": 1 },
+      { "Id": 3, "Name": "Tomato soup", "PriceMinor": 900, "Available": true, "Vegetarian": true, "Version": 1 },
+      { "Id": 4, "Name": "Garden salad", "PriceMinor": 1200, "Available": true, "Vegetarian": true, "Version": 1 },
+      { "Id": 5, "Name": "Lemon chicken", "PriceMinor": 2300, "Available": true, "Vegetarian": false, "Version": 1 },
+      { "Id": 6, "Name": "Grilled fish plate", "PriceMinor": 2500, "Available": true, "Vegetarian": false, "Version": 1 },
+      { "Id": 7, "Name": "Slow-roasted beef", "PriceMinor": 2800, "Available": false, "Vegetarian": false, "Version": 1 },
+      { "Id": 8, "Name": "Seasonal fruit", "PriceMinor": 800, "Available": true, "Vegetarian": true, "Version": 1 },
+      { "Id": 9, "Name": "Chocolate dessert", "PriceMinor": 1000, "Available": true, "Vegetarian": true, "Version": 1 },
+      { "Id": 10, "Name": "Filter coffee", "PriceMinor": 450, "Available": true, "Vegetarian": true, "Version": 1 },
+      { "Id": 11, "Name": "Iced tea", "PriceMinor": 500, "Available": true, "Vegetarian": true, "Version": 1 },
+      { "Id": 12, "Name": "Sparkling water", "PriceMinor": 400, "Available": true, "Vegetarian": true, "Version": 1 }
+    ]
+  },
+  {
+    "id": "policy",
+    "aggregateKey": "policy",
+    "Type": "policy",
+    "Version": 1,
+    "Company": "Fourth Coffee",
+    "Text": "Synthetic settlement - no money charged. Five floors, fifty seats per floor. Ask staff about allergies; an agent cannot guarantee food suitability. Prices are USD cents. Kitchen readiness and payment require committed receipts.",
+    "SchemaVersion": 1,
+    "Provenance": {
+      "CompanyCatalog": "fictitious_company_names.csv",
+      "CompanyRecord": 14,
+      "PersonCatalog": "fictitious_people_names.csv",
+      "PersonColumn": "FullName",
+      "People": [
+        { "Id": "guest-001", "Record": 1, "Name": "Airi Ilves" },
+        { "Id": "host-001", "Record": 2, "Name": "Hasan Ibrahimov" },
+        { "Id": "kitchen-001", "Record": 3, "Name": "Nemanja Milatovic" },
+        { "Id": "manager-001", "Record": 4, "Name": "Nino Kapanadze" }
+      ]
+    }
+  }
+]

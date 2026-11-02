@@ -1,0 +1,167 @@
+{
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#servicePrincipals/$entity",
+  "accountEnabled": true,
+  "addIns": [],
+  "alternativeNames": [],
+  "appDescription": null,
+  "appDisplayName": "resto-scale-agent-api-a80613974550a044",
+  "appId": "4310055b-a107-4224-942c-01926f424ffd",
+  "appOwnerOrganizationId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+  "appRoleAssignmentRequired": true,
+  "appRoles": [
+    {
+      "allowedMemberTypes": [
+        "User"
+      ],
+      "description": "Restaurant floor scope Floor.5",
+      "displayName": "Floor.5",
+      "id": "7009343f-c0c4-50ac-99a8-984f4b6d79c0",
+      "isEnabled": true,
+      "origin": "Application",
+      "value": "Floor.5"
+    },
+    {
+      "allowedMemberTypes": [
+        "User"
+      ],
+      "description": "Restaurant floor scope Floor.4",
+      "displayName": "Floor.4",
+      "id": "9f5b4592-cf2b-5c98-a9df-bc1652908f13",
+      "isEnabled": true,
+      "origin": "Application",
+      "value": "Floor.4"
+    },
+    {
+      "allowedMemberTypes": [
+        "User"
+      ],
+      "description": "Restaurant floor scope Floor.3",
+      "displayName": "Floor.3",
+      "id": "5499cba2-58bc-59a6-b908-f744541d07ce",
+      "isEnabled": true,
+      "origin": "Application",
+      "value": "Floor.3"
+    },
+    {
+      "allowedMemberTypes": [
+        "User"
+      ],
+      "description": "Restaurant floor scope Floor.2",
+      "displayName": "Floor.2",
+      "id": "2ad1a33d-06e0-5c3d-af79-8e32c748fc9f",
+      "isEnabled": true,
+      "origin": "Application",
+      "value": "Floor.2"
+    },
+    {
+      "allowedMemberTypes": [
+        "User"
+      ],
+      "description": "Restaurant floor scope Floor.1",
+      "displayName": "Floor.1",
+      "id": "17dd7a93-28a9-5a7c-bf4e-b5caf3fed397",
+      "isEnabled": true,
+      "origin": "Application",
+      "value": "Floor.1"
+    },
+    {
+      "allowedMemberTypes": [
+        "User"
+      ],
+      "description": "Restaurant staff role Kitchen",
+      "displayName": "Kitchen",
+      "id": "a15a2f38-033e-5eeb-8f56-86c4f81f3172",
+      "isEnabled": true,
+      "origin": "Application",
+      "value": "Kitchen"
+    },
+    {
+      "allowedMemberTypes": [
+        "User"
+      ],
+      "description": "Restaurant staff role Server",
+      "displayName": "Server",
+      "id": "c9f649f1-c3ca-500c-b76f-02157623b5fa",
+      "isEnabled": true,
+      "origin": "Application",
+      "value": "Server"
+    },
+    {
+      "allowedMemberTypes": [
+        "User"
+      ],
+      "description": "Restaurant staff role Host",
+      "displayName": "Host",
+      "id": "de38353b-16a9-58dd-83d5-560fbb788a3c",
+      "isEnabled": true,
+      "origin": "Application",
+      "value": "Host"
+    },
+    {
+      "allowedMemberTypes": [
+        "User"
+      ],
+      "description": "Restaurant staff role Manager",
+      "displayName": "Manager",
+      "id": "680f1e54-119b-5f55-966c-5bac8c2f129c",
+      "isEnabled": true,
+      "origin": "Application",
+      "value": "Manager"
+    }
+  ],
+  "applicationTemplateId": null,
+  "createdByAppId": "04b07795-8ddb-461a-bbee-02f9e1bf7b46",
+  "createdDateTime": "2026-10-24T17:39:31Z",
+  "deletedDateTime": null,
+  "description": null,
+  "disabledByMicrosoftStatus": null,
+  "displayName": "resto-scale-agent-api-a80613974550a044",
+  "homepage": null,
+  "id": "20389125-423e-4b87-b837-d812149b1a02",
+  "info": {
+    "logoUrl": null,
+    "marketingUrl": null,
+    "privacyStatementUrl": null,
+    "supportUrl": null,
+    "termsOfServiceUrl": null
+  },
+  "isDisabled": null,
+  "keyCredentials": [],
+  "loginUrl": null,
+  "logoutUrl": null,
+  "notes": null,
+  "notificationEmailAddresses": [],
+  "oauth2PermissionScopes": [
+    {
+      "adminConsentDescription": "Access restaurant operations within assigned role and floor scopes.",
+      "adminConsentDisplayName": "Access the restaurant as the signed-in staff member",
+      "id": "5ea92bd9-ef97-52d7-88c1-4a81fea40a22",
+      "isEnabled": true,
+      "type": "User",
+      "userConsentDescription": "Access only your assigned restaurant role and floor scopes.",
+      "userConsentDisplayName": "Access the restaurant as you",
+      "value": "access_as_user"
+    }
+  ],
+  "passwordCredentials": [],
+  "preferredSingleSignOnMode": null,
+  "preferredTokenSigningKeyThumbprint": null,
+  "replyUrls": [],
+  "resourceSpecificApplicationPermissions": [],
+  "samlSingleSignOnSettings": null,
+  "servicePrincipalNames": [
+    "api://4310055b-a107-4224-942c-01926f424ffd",
+    "4310055b-a107-4224-942c-01926f424ffd"
+  ],
+  "servicePrincipalType": "Application",
+  "signInAudience": "AzureADMyOrg",
+  "tags": [
+    "abc-resto-scale-agent:a80613974550a044f78afcb2eb6955e95192b51876363102cf63368ed1b825d8"
+  ],
+  "tokenEncryptionKeyId": null,
+  "verifiedPublisher": {
+    "addedDateTime": null,
+    "displayName": null,
+    "verifiedPublisherId": null
+  }
+}

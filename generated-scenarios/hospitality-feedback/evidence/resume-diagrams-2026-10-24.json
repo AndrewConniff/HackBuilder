@@ -1,0 +1,37 @@
+{
+  "status": "passed",
+  "checkedAtUtc": "2026-10-24T17:43:47.417351+00:00",
+  "scope": "preserved_diagram_integrity_and_source_review_only",
+  "dimensions": [
+    1700,
+    1120
+  ],
+  "files": [
+    {
+      "path": "03-architect-diagram.png",
+      "sha256": "948ef69d25114ab03c3d4ce38d24ae25eadd142939640c5929cd94a72c023de8"
+    },
+    {
+      "path": "03-architect-diagram.svg",
+      "sha256": "ca6248ffb8d6279bb2334c403e8fbc6d42eac8094a718197e3c48dc188ffc0c7"
+    },
+    {
+      "path": "03-architect-diagram.py",
+      "sha256": "3d4e5ed5189d5995969a10ff71c912c3c17b33044876a5fc13a9eef90771dc2c"
+    },
+    {
+      "path": "04-runtime-diagram.png",
+      "sha256": "4d217697165da0ab39e579bdc56987d5eef68f9237148aa0e8fea2d9535c7250"
+    },
+    {
+      "path": "04-runtime-diagram.svg",
+      "sha256": "4fd939fd9d83f67a07e78049bdbbf7498889e553b847e237b0d2a256b752a15f"
+    },
+    {
+      "path": "04-runtime-diagram.py",
+      "sha256": "568e879416d27a73bbc61b6b07206a6100604e22418cb08421fcdc50b370b3bd"
+    }
+  ],
+  "regenerated": false,
+  "liveAzureAcceptance": false
+}

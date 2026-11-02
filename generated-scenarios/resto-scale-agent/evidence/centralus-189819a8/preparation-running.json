@@ -1,0 +1,19 @@
+{
+  "stage": "deployment",
+  "operation": "deployment-preparation",
+  "status": "running",
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "resto-scale-agent",
+    "resourceGroup": "rg-resto-scale-agent",
+    "region": "centralus"
+  },
+  "summary": "Repairing scenario-owned Central US naming and identity installation preparation; investigating actual subscription Consumption quota APIs and refreshing independent previews. No cloud mutations authorized.",
+  "evidence": [
+    "Canonical state revision 185: exact Central US read-only preparation authorization retained; confirmed design and local tool consent reused.",
+    "Backend owner-bound prerequisite receipt checkedAtUtc 2026-10-23T23:31:59.383265+00:00 ready true; no redundant audit.",
+    "Read saved Central US and West US 2 summaries and Central US collector/finalizer. Exact Central US model and Cosmos zones remain unchanged."
+  ]
+}

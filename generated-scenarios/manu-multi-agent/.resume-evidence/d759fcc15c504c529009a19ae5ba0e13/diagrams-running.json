@@ -1,0 +1,6 @@
+{
+  "stage": "diagrams",
+  "status": "running",
+  "summary": "Revalidating the existing diagram sources and PNGs against the confirmed private three-agent design without regenerating the reference.",
+  "evidence": ["Canonical revision 9: designConfirmed=true, local execution consent retained, no cloud authorizations."]
+}

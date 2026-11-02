@@ -1,0 +1,9 @@
+{
+  "command": "python C:\\azd-projects\\resto-scale-agent\\evidence\\installation-e13812c5\\operator_access.py",
+  "cwd": "C:\\azd-projects\\resto-scale-agent",
+  "startedAtUtc": "2026-10-24T17:40:50.363905+00:00",
+  "checkedAtUtc": "2026-10-24T17:40:52.650945+00:00",
+  "exitCode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"C:\\azd-projects\\resto-scale-agent\\evidence\\installation-e13812c5\\operator_access.py\", line 92, in <module>\n    result = install(Installer(authorization[\"scope\"], path, True), receipt)\n  File \"C:\\azd-projects\\resto-scale-agent\\evidence\\installation-e13812c5\\operator_access.py\", line 26, in install\n    raise ValueError(\"Current Graph operator differs from the expressly authorized assignment user.\")\nValueError: Current Graph operator differs from the expressly authorized assignment user.\n"
+}

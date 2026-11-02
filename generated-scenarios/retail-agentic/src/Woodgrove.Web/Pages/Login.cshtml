@@ -1,0 +1,14 @@
+@page
+@model Woodgrove.Web.Pages.LoginModel
+@{ ViewData["Title"] = "Sign in"; }
+<h1>Sign in to Woodgrove Groceries</h1>
+<p>Use your deployment-specific local account. Microsoft/Entra sign-in is not required.</p>
+<div asp-validation-summary="All" role="alert"></div>
+<form method="post" class="login">
+    <label asp-for="Username">Username</label>
+    <input asp-for="Username" autocomplete="username" maxlength="80" required />
+    <label asp-for="Password">Password</label>
+    <input asp-for="Password" type="password" autocomplete="current-password" maxlength="256" required />
+    <button type="submit">Sign in</button>
+</form>
+<p>Credentials are supplied privately by the reference operator. No public registration is available.</p>

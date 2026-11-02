@@ -1,0 +1,13 @@
+{
+  "checkedAtUtc": "2026-10-24T23:20:07.796148+00:00",
+  "arguments": [
+    "rest",
+    "--method",
+    "get",
+    "--url",
+    "https://graph.microsoft.com/v1.0/roleManagement/directory/roleAssignments?$filter=principalId%20eq%20'214d672b-df87-4f3b-94fd-7863032546c1'&$expand=roleDefinition"
+  ],
+  "exitCode": 1,
+  "stdout": "{\n  \"@odata.context\": \"https://graph.microsoft.com/v1.0/$metadata#roleManagement/directory/roleAssignments\",\n  \"value\": []\n}\n",
+  "stderr": "'$expand' is not recognized as an internal or external command,\noperable program or batch file.\n"
+}

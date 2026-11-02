@@ -1,0 +1,9 @@
+{
+  "command": "python -m unittest discover -s C:\\azd-projects\\resto-scale-agent\\validation -p test_*.py",
+  "cwd": "C:\\azd-projects\\resto-scale-agent",
+  "startedAtUtc": "2026-10-24T17:45:24.289450+00:00",
+  "checkedAtUtc": "2026-10-24T17:45:36.245231+00:00",
+  "exitCode": 0,
+  "stdout": "",
+  "stderr": "..................\n----------------------------------------------------------------------\nRan 18 tests in 11.582s\n\nOK\n"
+}

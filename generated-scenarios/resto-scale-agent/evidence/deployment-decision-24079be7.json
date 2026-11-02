@@ -1,0 +1,23 @@
+{
+  "stage": "deployment",
+  "status": "waiting_for_user",
+  "summary": "Decision required: recovered the previous failed shared-infrastructure deployment result. Cosmos East US 2 zone-redundant capacity was unavailable; the Basic registry rejected a virtual network rule. Current read-only queries confirm the target resource group is now absent. No cloud mutations performed in this resume. The recorded authorization requires stopping on these failures.",
+  "evidence": [
+    "06-deployment-summary.md: reconciled historical preparation, failed partial deployment and current absent target; no runtime success claimed.",
+    "evidence\\deployment-final-8608c198.json: reference-shared-8608c198 provisioningState Failed, timestamp 2026-10-23T18:59:00.786943+00:00.",
+    "evidence\\deployment-operations-final-8608c198.json: Cosmos ServiceUnavailable due to East US 2 availability-zone account demand; registry NetworkRuleNotSupported: The requested feature virtual network rule is not supported for the SKU Basic.",
+    "evidence\\deployment-reconciliation-24079be7.json: exact authorized account/subscription/tenant matched; deployment show, resource list and failed operations list each exited 1 with ResourceGroupNotFound; az group exists exited 0 and returned false.",
+    "Backend-owned readiness reused: checkedAtUtc 2026-10-23T14:38:51.110416-07:00, ready true, blockedStages empty. These are Azure provider/capacity failures, not missing tools or a host-permission denial."
+  ],
+  "decision": {
+    "kind": "business",
+    "question": "How should the failed reference deployment be recovered? Cosmos could not allocate the confirmed zone-redundant account in East US 2, and Basic ACR rejected a virtual network rule. The previously partially created resource group is now absent. Choose to retain the reliability design pending a regional capacity/access request, revise deployment preparation to evaluate a supported alternative and registry correction, or keep the reference local only.",
+    "reason": "The prior shared-infrastructure authorization explicitly requires stopping on new capacity/provider failures. Free-text continuation is not authorization to recreate the absent target, weaken zone redundancy, change region/SKU, or bypass the registry provider error. Azure directs Cosmos regional access requests to https://aka.ms/cosmosdbquota. Revised designs/targets require their applicable design review, fresh scoped what-if/cost evidence and deployment consent; no recovery choice itself claims capacity or deployment success.",
+    "choices": [
+      "Retain zone redundancy; arrange East US 2 capacity access before retry preparation",
+      "Revise deployment preparation for a supported alternative and registry correction",
+      "Keep the reference local only"
+    ],
+    "acceptChoice": null
+  }
+}

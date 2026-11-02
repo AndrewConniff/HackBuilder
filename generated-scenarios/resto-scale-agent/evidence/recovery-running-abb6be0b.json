@@ -1,0 +1,20 @@
+{
+  "stage": "deployment",
+  "operation": "deployment-preparation",
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "resto-scale-agent",
+    "resourceGroup": "rg-resto-scale-agent",
+    "region": "eastus2"
+  },
+  "status": "running",
+  "summary": "Resuming implementation-owned recovery: inspect and correct the Basic ACR AVM network-rule mismatch locally, retain East US 2 and Cosmos zone redundancy, and refresh independent read-only preparation under existing exact-scope consent. No resource recreation, deployment retry, directory write or runtime rollout is authorized.",
+  "evidence": [
+    "Canonical revision 152: all saved decisions/history read; local execution consent retained; preparation decision 7d18da3b02774120a79615b426323ea6 remains applicable.",
+    "Backend prerequisite receipt checkedAtUtc 2026-10-23T15:12:14.355586-07:00: ready true, all deployment checks passed; reused without repeating the audit.",
+    "Historical deployment and absent-group observations retained in 06-deployment-summary.md and evidence\\deployment-reconciliation-24079be7.json.",
+    "AVM registry 0.13.1 source: networkRuleSetDefaultAction defaults Deny and publicNetworkAccess Enabled makes shouldConfigureNetworkRuleSet true even without IP rules."
+  ]
+}

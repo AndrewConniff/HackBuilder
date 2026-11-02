@@ -1,0 +1,10 @@
+{
+  "stage": "diagrams",
+  "status": "running",
+  "summary": "Resumed the existing confirmed reference design and read all canonical decisions and history. Verifying the actual worker prerequisite before diagram generation; prior local-tool permission remains recorded and cloud authorizations remain empty.",
+  "evidence": [
+    "python scripts\\portal_workflow.py read: revision 33; designConfirmed true; all six decisions answered; authorizations empty; writer a4668a001a574ea0873c77ecf27f7486.",
+    "Read-only Python prerequisite probe exited 0: shutil.which('dot') returned null; diagrams installed; dotnet, az and azd resolved.",
+    "The execution host denied the read-only PowerShell check of known Graphviz locations and Graphviz-only PATH entries; the command did not execute."
+  ]
+}

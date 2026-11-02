@@ -1,0 +1,50 @@
+[
+  {
+    "location": "centralus",
+    "name": "fc-log-kvjmo565tswuy",
+    "provisioningState": null,
+    "type": "Microsoft.OperationalInsights/workspaces"
+  },
+  {
+    "location": "centralus",
+    "name": "fc-bus-kvjmo565tswuy",
+    "provisioningState": null,
+    "type": "Microsoft.ServiceBus/namespaces"
+  },
+  {
+    "location": "centralus",
+    "name": "stfckvjmo565tswuy",
+    "provisioningState": null,
+    "type": "Microsoft.Storage/storageAccounts"
+  },
+  {
+    "location": "centralus",
+    "name": "fc-plan-kvjmo565tswuy",
+    "provisioningState": null,
+    "type": "Microsoft.Web/serverFarms"
+  },
+  {
+    "location": "centralus",
+    "name": "fc-ai-kvjmo565tswuy",
+    "provisioningState": null,
+    "type": "Microsoft.CognitiveServices/accounts"
+  },
+  {
+    "location": "centralus",
+    "name": "fc-insights-kvjmo565tswuy",
+    "provisioningState": null,
+    "type": "Microsoft.Insights/components"
+  },
+  {
+    "location": "centralus",
+    "name": "fc-ai-kvjmo565tswuy/campaign",
+    "provisioningState": null,
+    "type": "Microsoft.CognitiveServices/accounts/projects"
+  },
+  {
+    "location": "centralus",
+    "name": "fc-web-kvjmo565tswuy",
+    "provisioningState": null,
+    "type": "Microsoft.Web/sites"
+  }
+]

@@ -1,0 +1,366 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "languageVersion": "2.0",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.46.1.21595",
+      "templateHash": "2227205006573569893"
+    },
+    "name": "DocumentDB Database Account Gremlin Databases",
+    "description": "This module deploys a Gremlin Database within a CosmosDB Account."
+  },
+  "definitions": {
+    "graphType": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "metadata": {
+            "description": "Required. Name of the graph."
+          }
+        },
+        "tags": {
+          "type": "object",
+          "metadata": {
+            "__bicep_resource_derived_type!": {
+              "source": "Microsoft.DocumentDB/databaseAccounts/gremlinDatabases/graphs@2026-04-01-preview#properties/tags"
+            },
+            "description": "Optional. Tags of the Gremlin graph resource."
+          },
+          "nullable": true
+        },
+        "indexingPolicy": {
+          "type": "object",
+          "metadata": {
+            "__bicep_resource_derived_type!": {
+              "source": "Microsoft.DocumentDB/databaseAccounts/gremlinDatabases/graphs@2026-04-01-preview#properties/properties/properties/resource/properties/indexingPolicy"
+            },
+            "description": "Optional. Indexing policy of the graph."
+          },
+          "nullable": true
+        },
+        "partitionKeyPaths": {
+          "type": "array",
+          "metadata": {
+            "__bicep_resource_derived_type!": {
+              "source": "Microsoft.DocumentDB/databaseAccounts/gremlinDatabases/graphs@2026-04-01-preview#properties/properties/properties/resource/properties/partitionKey/properties/paths"
+            },
+            "description": "Optional. List of paths using which data within the container can be partitioned."
+          },
+          "nullable": true
+        }
+      },
+      "metadata": {
+        "__bicep_export!": true,
+        "description": "The type of a graph."
+      }
+    }
+  },
+  "parameters": {
+    "name": {
+      "type": "string",
+      "metadata": {
+        "description": "Required. Name of the Gremlin database."
+      }
+    },
+    "tags": {
+      "type": "object",
+      "metadata": {
+        "__bicep_resource_derived_type!": {
+          "source": "Microsoft.DocumentDB/databaseAccounts/gremlinDatabases@2026-04-01-preview#properties/tags"
+        },
+        "description": "Optional. Tags of the Gremlin database resource."
+      },
+      "nullable": true
+    },
+    "databaseAccountName": {
+      "type": "string",
+      "metadata": {
+        "description": "Conditional. The name of the parent Gremlin database. Required if the template is used in a standalone deployment."
+      }
+    },
+    "graphs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/graphType"
+      },
+      "nullable": true,
+      "metadata": {
+        "description": "Optional. Array of graphs to deploy in the Gremlin database."
+      }
+    },
+    "maxThroughput": {
+      "type": "int",
+      "defaultValue": 4000,
+      "metadata": {
+        "description": "Optional. Represents maximum throughput, the resource can scale up to. Cannot be set together with `throughput`. If `throughput` is set to something else than -1, this autoscale setting is ignored. Setting throughput at the database level is only recommended for development/test or when workload across all graphs in the shared throughput database is uniform. For best performance for large production workloads, it is recommended to set dedicated throughput (autoscale or manual) at the graph level and not at the database level."
+      }
+    },
+    "throughput": {
+      "type": "int",
+      "nullable": true,
+      "metadata": {
+        "description": "Optional. Request Units per second (for example 10000). Cannot be set together with `maxThroughput`. Setting throughput at the database level is only recommended for development/test or when workload across all graphs in the shared throughput database is uniform. For best performance for large production workloads, it is recommended to set dedicated throughput (autoscale or manual) at the graph level and not at the database level."
+      }
+    },
+    "enableTelemetry": {
+      "type": "bool",
+      "defaultValue": true,
+      "metadata": {
+        "description": "Optional. Enable/Disable usage telemetry for module."
+      }
+    }
+  },
+  "variables": {
+    "enableReferencedModulesTelemetry": false
+  },
+  "resources": [
+    {
+      "condition": "[parameters('enableTelemetry')]",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2025-04-01",
+      "name": "[format('46d3xbcp.res.doctdb-dbacct-gremlindb.{0}.{1}', replace('-..--..-', '.', '-'), substring(uniqueString(deployment().name), 0, 4))]",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [],
+          "outputs": {
+            "telemetry": {
+              "type": "String",
+              "value": "For more information, see https://aka.ms/avm/TelemetryInfo"
+            }
+          }
+        }
+      }
+    },
+    {
+      "existing": true,
+      "type": "Microsoft.DocumentDB/databaseAccounts",
+      "apiVersion": "2026-04-01-preview",
+      "name": "[parameters('databaseAccountName')]"
+    },
+    {
+      "type": "Microsoft.DocumentDB/databaseAccounts/gremlinDatabases",
+      "apiVersion": "2026-04-01-preview",
+      "name": "[format('{0}/{1}', parameters('databaseAccountName'), parameters('name'))]",
+      "tags": "[parameters('tags')]",
+      "properties": {
+        "options": "[if(equals(reference('databaseAccount').capacityMode, 'Serverless'), createObject(), createObject('autoscaleSettings', if(equals(parameters('throughput'), null()), createObject('maxThroughput', parameters('maxThroughput')), null()), 'throughput', parameters('throughput')))]",
+        "resource": {
+          "id": "[parameters('name')]"
+        }
+      },
+      "dependsOn": [
+        "databaseAccount"
+      ]
+    },
+    {
+      "copy": {
+        "name": "gremlinDatabase_gremlinGraphs",
+        "count": "[length(coalesce(parameters('graphs'), createArray()))]"
+      },
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2025-04-01",
+      "name": "[format('{0}-gremlindb-{1}', uniqueString(deployment().name, parameters('name')), coalesce(parameters('graphs'), createArray())[copyIndex()].name)]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "name": {
+            "value": "[coalesce(parameters('graphs'), createArray())[copyIndex()].name]"
+          },
+          "gremlinDatabaseName": {
+            "value": "[parameters('name')]"
+          },
+          "databaseAccountName": {
+            "value": "[parameters('databaseAccountName')]"
+          },
+          "indexingPolicy": {
+            "value": "[tryGet(coalesce(parameters('graphs'), createArray())[copyIndex()], 'indexingPolicy')]"
+          },
+          "partitionKeyPaths": {
+            "value": "[tryGet(coalesce(parameters('graphs'), createArray())[copyIndex()], 'partitionKeyPaths')]"
+          },
+          "enableTelemetry": {
+            "value": "[variables('enableReferencedModulesTelemetry')]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "languageVersion": "2.0",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.46.1.21595",
+              "templateHash": "10789722211756623291"
+            },
+            "name": "DocumentDB Database Accounts Gremlin Databases Graphs",
+            "description": "This module deploys a DocumentDB Database Accounts Gremlin Database Graph."
+          },
+          "parameters": {
+            "name": {
+              "type": "string",
+              "metadata": {
+                "description": "Required. Name of the graph."
+              }
+            },
+            "tags": {
+              "type": "object",
+              "metadata": {
+                "__bicep_resource_derived_type!": {
+                  "source": "Microsoft.DocumentDB/databaseAccounts/gremlinDatabases/graphs@2026-04-01-preview#properties/tags"
+                },
+                "description": "Optional. Tags of the Gremlin graph resource."
+              },
+              "nullable": true
+            },
+            "databaseAccountName": {
+              "type": "string",
+              "metadata": {
+                "description": "Conditional. The name of the parent Database Account. Required if the template is used in a standalone deployment."
+              }
+            },
+            "gremlinDatabaseName": {
+              "type": "string",
+              "metadata": {
+                "description": "Conditional. The name of the parent Gremlin Database. Required if the template is used in a standalone deployment."
+              }
+            },
+            "indexingPolicy": {
+              "type": "object",
+              "metadata": {
+                "__bicep_resource_derived_type!": {
+                  "source": "Microsoft.DocumentDB/databaseAccounts/gremlinDatabases/graphs@2026-04-01-preview#properties/properties/properties/resource/properties/indexingPolicy"
+                },
+                "description": "Optional. Indexing policy of the graph."
+              },
+              "nullable": true
+            },
+            "partitionKeyPaths": {
+              "type": "array",
+              "metadata": {
+                "__bicep_resource_derived_type!": {
+                  "source": "Microsoft.DocumentDB/databaseAccounts/gremlinDatabases/graphs@2026-04-01-preview#properties/properties/properties/resource/properties/partitionKey/properties/paths"
+                },
+                "description": "Optional. List of paths using which data within the container can be partitioned."
+              },
+              "nullable": true
+            },
+            "enableTelemetry": {
+              "type": "bool",
+              "defaultValue": true,
+              "metadata": {
+                "description": "Optional. Enable/Disable usage telemetry for module."
+              }
+            }
+          },
+          "resources": {
+            "databaseAccount::gremlinDatabase": {
+              "existing": true,
+              "type": "Microsoft.DocumentDB/databaseAccounts/gremlinDatabases",
+              "apiVersion": "2026-04-01-preview",
+              "name": "[format('{0}/{1}', parameters('databaseAccountName'), parameters('gremlinDatabaseName'))]"
+            },
+            "avmTelemetry": {
+              "condition": "[parameters('enableTelemetry')]",
+              "type": "Microsoft.Resources/deployments",
+              "apiVersion": "2025-04-01",
+              "name": "[format('46d3xbcp.res.doctdb-dbacct-gremlindbgraph.{0}.{1}', replace('-..--..-', '.', '-'), substring(uniqueString(deployment().name), 0, 4))]",
+              "properties": {
+                "mode": "Incremental",
+                "template": {
+                  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+                  "contentVersion": "1.0.0.0",
+                  "resources": [],
+                  "outputs": {
+                    "telemetry": {
+                      "type": "String",
+                      "value": "For more information, see https://aka.ms/avm/TelemetryInfo"
+                    }
+                  }
+                }
+              }
+            },
+            "databaseAccount": {
+              "existing": true,
+              "type": "Microsoft.DocumentDB/databaseAccounts",
+              "apiVersion": "2026-04-01-preview",
+              "name": "[parameters('databaseAccountName')]"
+            },
+            "gremlinGraph": {
+              "type": "Microsoft.DocumentDB/databaseAccounts/gremlinDatabases/graphs",
+              "apiVersion": "2026-04-01-preview",
+              "name": "[format('{0}/{1}/{2}', parameters('databaseAccountName'), parameters('gremlinDatabaseName'), parameters('name'))]",
+              "tags": "[parameters('tags')]",
+              "properties": {
+                "resource": {
+                  "id": "[parameters('name')]",
+                  "indexingPolicy": "[parameters('indexingPolicy')]",
+                  "partitionKey": {
+                    "paths": "[parameters('partitionKeyPaths')]"
+                  }
+                }
+              }
+            }
+          },
+          "outputs": {
+            "name": {
+              "type": "string",
+              "metadata": {
+                "description": "The name of the graph."
+              },
+              "value": "[parameters('name')]"
+            },
+            "resourceId": {
+              "type": "string",
+              "metadata": {
+                "description": "The resource ID of the graph."
+              },
+              "value": "[resourceId('Microsoft.DocumentDB/databaseAccounts/gremlinDatabases/graphs', parameters('databaseAccountName'), parameters('gremlinDatabaseName'), parameters('name'))]"
+            },
+            "resourceGroupName": {
+              "type": "string",
+              "metadata": {
+                "description": "The name of the resource group the graph was created in."
+              },
+              "value": "[resourceGroup().name]"
+            }
+          }
+        }
+      },
+      "dependsOn": [
+        "gremlinDatabase"
+      ]
+    }
+  ],
+  "outputs": {
+    "name": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the Gremlin database."
+      },
+      "value": "[parameters('name')]"
+    },
+    "resourceId": {
+      "type": "string",
+      "metadata": {
+        "description": "The resource ID of the Gremlin database."
+      },
+      "value": "[resourceId('Microsoft.DocumentDB/databaseAccounts/gremlinDatabases', parameters('databaseAccountName'), parameters('name'))]"
+    },
+    "resourceGroupName": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the resource group the Gremlin database was created in."
+      },
+      "value": "[resourceGroup().name]"
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "status": "passed",
+  "checkedAtUtc": "2026-10-24T19:26:37.243202+00:00",
+  "projectSlug": "manu-multi-agent",
+  "checks": {
+    "same_existing_workspace": true,
+    "industry_catalog": true,
+    "business_units": true,
+    "services_catalog": true,
+    "pillars_catalog": true,
+    "domains_catalog": true,
+    "waf_and_domain_scope": true,
+    "manifest_business_scope": true,
+    "selected_services_retained": true,
+    "reference_path_01-requirements.md": true,
+    "reference_path_02-architecture-assessment.md": true,
+    "reference_path_04-implementation-plan.md": true,
+    "reference_path_03-architect-diagram.png": true,
+    "reference_path_04-runtime-diagram.png": true,
+    "reference_path_azure.yaml": true,
+    "reference_path_infra": true,
+    "reference_path_src": true,
+    "company_headers": true,
+    "company_record_2": true,
+    "people_headers": true,
+    "people_provenance": true,
+    "requirements_Adventure Works Cycles": true,
+    "requirements_sales": true,
+    "requirements_marketing": true,
+    "requirements_200 km": true,
+    "requirements_reviewRequired: true": true,
+    "requirements_margin": true,
+    "requirements_discount": true,
+    "requirements_contact": true,
+    "requirements_A9": true,
+    "01-requirements_template_headings": true,
+    "02-architecture-assessment_template_headings": true,
+    "provisional_only": true,
+    "no_inherited_consent": true
+  },
+  "rejectedMalformedCompanyRecords": [
+    7,
+    11,
+    25,
+    33
+  ],
+  "sourceSha256": {
+    "01-requirements.md": "ee12caa252ba31c05f4de85556faf10a8b39ab7ea40b81126389ad3095c769d6",
+    "02-architecture-assessment.md": "087f178e915ac597543b622793a431282e70703c229bbfa92d628ef34b8541e2",
+    "scenario-manifest.json": "33eff991d76a7f14b03c3e4cbd5fa5669dde8afb817c6802e47ed50cf13bf357",
+    "azure.yaml": "828070d9ed3a9e45c150a84d4e2d0d110c514d2cb7c8313c7445c221ee6d0a7c",
+    "00-region-availability.json": "ad40e588a90ed21fd17206d401a7572512c50f4790608c4bee31f0fcaec257f7"
+  },
+  "limitations": [
+    "Requirements/catalog and documentary architecture review only; application, infrastructure, container and live acceptance have not been rerun.",
+    "Historical README design/completion statements are not current portal authorization.",
+    "Manifest lists the original five selected services; recovered intake additionally inventories existing private Standard dependencies.",
+    "Private installer route and absent azd lifecycle hooks require local design remediation after confirmation; no new cloud resources authorized.",
+    "Dated 2026-10-22/23 public design and SDK evidence reused; no subscription eligibility, current price quote or live availability inferred."
+  ]
+}

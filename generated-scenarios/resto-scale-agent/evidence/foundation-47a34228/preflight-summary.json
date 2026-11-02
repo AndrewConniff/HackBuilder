@@ -1,0 +1,18 @@
+{
+  "scope": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "environment": "resto-scale-agent",
+    "resourceGroup": "rg-resto-scale-agent",
+    "region": "centralus"
+  },
+  "status": "independent-foundation-checks-passed",
+  "whatIfCounts": {
+    "Unsupported": 13,
+    "Create": 33
+  },
+  "providerRegistration": "11/11 Registered; provider namespace comparison is case-insensitive; initial comparison error corrected without a repeated cloud query",
+  "limitations": "Output-dependent grants, project checks and environment Consumption quota remain pending installation; full runtime readiness is false.",
+  "estimatedCost": "Retained same-day exact Central US meters; shared USD 745-1150/month; no design/SKU/cost changes."
+}

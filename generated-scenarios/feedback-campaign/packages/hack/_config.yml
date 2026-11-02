@@ -1,0 +1,9 @@
+remote_theme: MicrosoftLearning/Jekyll-Theme
+markdown: kramdown
+plugins:
+  - jekyll-sitemap
+  - jekyll-mentions
+  - jemoji
+exclude:
+  - README.md
+  - _build.yml

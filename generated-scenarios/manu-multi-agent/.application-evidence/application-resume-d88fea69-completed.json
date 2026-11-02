@@ -1,0 +1,20 @@
+{
+  "stage": "application",
+  "status": "completed",
+  "summary": "Completed the resumed application operation without restarting or redesigning the reference. Existing .NET 10 three-agent Sales-to-Marketing workflow, private gateway authentication, minimized fixtures, signed receipts and installation automation are preserved. Fresh application checks pass and source hashes match. Cloud deployment, live proof and full local-validation remain separate backend operations.",
+  "evidence": [
+    "Canonical history reused: confirmed local design and retained scenario-local execution consent; no cloud or directory authorizations and no setup blocker.",
+    "Physical workspace C:\\azd-projects\\manu-multi-agent: dotnet nuget list source --format Short returned only E https://packagefeedproxy.microsoft.io/nuget/v3/index.json.",
+    "python generated-scenarios\\manu-multi-agent\\scripts\\validate_application.py --nuget-config C:\\HackBuilder\\NuGet.Config: exit 0; checkedAtUtc 2026-10-23T21:34:19.666862+00:00; allCommandsPassed true.",
+    "dotnet restore MobilityCommercial.sln --configfile C:\\HackBuilder\\NuGet.Config --locked-mode --verbosity quiet: exit 0; .application-evidence\\restore.log.",
+    "dotnet build MobilityCommercial.sln --no-restore --verbosity quiet: exit 0; .application-evidence\\build.log.",
+    "dotnet test tests\\MobilityCommercial.Tests\\MobilityCommercial.Tests.csproj --no-build --no-restore --logger trx;LogFileName=application.trx --results-directory C:\\azd-projects\\manu-multi-agent\\.application-evidence\\test-results --verbosity minimal: exit 0; 35 passed, 0 failed, 0 skipped; tests.log and test-results\\application.trx.",
+    "dotnet publish src\\MobilityCommercial.Web\\MobilityCommercial.Web.csproj --no-restore -c Release -o C:\\azd-projects\\manu-multi-agent\\.application-evidence\\publish --verbosity quiet: exit 0; production publish contains all three seeds and Fluent license, excludes test assemblies.",
+    "az bicep build --file infra\\main.bicep --outfile C:\\azd-projects\\manu-multi-agent\\.application-evidence\\main.arm.json and az bicep lint --file infra\\main.bicep: both exit 0; local compilation only.",
+    "python -B -m unittest discover -s infra\\tests -p test_*.py -v: exit 0; all 12 application/infrastructure contract checks passed.",
+    "python tests\\test_browser_ui.py: exit 0; 8 Chromium cases passed at 1280/390 pixels covering success, dependency error, empty data and failed handoff; offline intercepted APIs only; .application-evidence\\ui\\browser-checks.json and screenshots.",
+    ".application-evidence\\validation.json: all 9 checks exit 0, allCommandsPassed true; recomputed SHA-256 for all 33 recorded source files matched with no changed/missing source.",
+    "07-webapp-summary.md, src\\agents, src\\MobilityCommercial.Web, tools\\MobilityCommercial.Installer and scripts\\Initialize-BackendIdentity.ps1 document and implement the existing confirmed application; no installation was executed.",
+    "Only the assigned application stage was performed. No Azure query, directory write, container build/start, deployment, live agent invocation, suitability approval, hack package, team rollout or publication was performed."
+  ]
+}

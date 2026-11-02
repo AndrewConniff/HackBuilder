@@ -1,0 +1,46 @@
+[
+  {
+    "namespace": "Microsoft.OperationalInsights",
+    "state": "Registered"
+  },
+  {
+    "namespace": "microsoft.insights",
+    "state": "Registered"
+  },
+  {
+    "namespace": "Microsoft.DocumentDB",
+    "state": "Registered"
+  },
+  {
+    "namespace": "Microsoft.ContainerRegistry",
+    "state": "Registered"
+  },
+  {
+    "namespace": "Microsoft.App",
+    "state": "Registered"
+  },
+  {
+    "namespace": "Microsoft.ManagedIdentity",
+    "state": "Registered"
+  },
+  {
+    "namespace": "Microsoft.ServiceBus",
+    "state": "Registered"
+  },
+  {
+    "namespace": "Microsoft.KeyVault",
+    "state": "Registered"
+  },
+  {
+    "namespace": "Microsoft.CognitiveServices",
+    "state": "Registered"
+  },
+  {
+    "namespace": "Microsoft.Network",
+    "state": "Registered"
+  },
+  {
+    "namespace": "Microsoft.Authorization",
+    "state": "Registered"
+  }
+]

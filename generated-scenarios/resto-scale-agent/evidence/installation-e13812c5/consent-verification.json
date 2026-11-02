@@ -1,0 +1,12 @@
+{
+  "command": "C:\\HackBuilder\\.venv\\Scripts\\python.exe C:\\azd-projects\\resto-scale-agent\\evidence\\installation-e13812c5\\operator_access.py --verify-only",
+  "exitCode": 1,
+  "result": {
+    "passed": false,
+    "matchingApplicationGrantCount": 0,
+    "checkedAtUtc": "2026-10-24T17:45:58.552666+00:00",
+    "readOnly": true,
+    "summary": "Required operator-only consent is absent or invalid."
+  },
+  "stderr": ""
+}

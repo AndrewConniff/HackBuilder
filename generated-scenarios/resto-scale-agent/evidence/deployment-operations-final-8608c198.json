@@ -1,0 +1,449 @@
+[
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/reference-shared-8608c198/operations/03AA5324F64A962E",
+    "operationId": "03AA5324F64A962E",
+    "properties": {
+      "duration": "PT10.9501764S",
+      "provisioningOperation": "Create",
+      "provisioningState": "Succeeded",
+      "request": null,
+      "response": null,
+      "serviceRequestId": null,
+      "statusCode": "OK",
+      "statusMessage": null,
+      "targetResource": {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/project",
+        "identifiers": null,
+        "resourceGroup": "rg-resto-scale-agent",
+        "resourceName": "project",
+        "resourceType": "Microsoft.Resources/deployments",
+        "symbolicName": null
+      },
+      "timestamp": "2026-10-23T18:57:16.906676+00:00",
+      "trackingId": "5cf99598-db93-4762-9cff-515bee524a1e"
+    },
+    "resourceGroup": "rg-resto-scale-agent"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/reference-shared-8608c198/operations/A0518E4986C4335A",
+    "operationId": "A0518E4986C4335A",
+    "properties": {
+      "duration": "PT1M0.0766612S",
+      "provisioningOperation": "Create",
+      "provisioningState": "Succeeded",
+      "request": null,
+      "response": null,
+      "serviceRequestId": null,
+      "statusCode": "OK",
+      "statusMessage": null,
+      "targetResource": {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/foundry",
+        "identifiers": null,
+        "resourceGroup": "rg-resto-scale-agent",
+        "resourceName": "foundry",
+        "resourceType": "Microsoft.Resources/deployments",
+        "symbolicName": null
+      },
+      "timestamp": "2026-10-23T18:56:16.059014+00:00",
+      "trackingId": "01d9c155-feee-40a9-b992-8a6f3cf9f36f"
+    },
+    "resourceGroup": "rg-resto-scale-agent"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/reference-shared-8608c198/operations/BDA2626E0592BD80",
+    "operationId": "BDA2626E0592BD80",
+    "properties": {
+      "duration": "PT32.2053442S",
+      "provisioningOperation": "Create",
+      "provisioningState": "Succeeded",
+      "request": null,
+      "response": null,
+      "serviceRequestId": null,
+      "statusCode": "OK",
+      "statusMessage": null,
+      "targetResource": {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/vault",
+        "identifiers": null,
+        "resourceGroup": "rg-resto-scale-agent",
+        "resourceName": "vault",
+        "resourceType": "Microsoft.Resources/deployments",
+        "symbolicName": null
+      },
+      "timestamp": "2026-10-23T18:56:16.059014+00:00",
+      "trackingId": "dae53fbf-c82b-47fc-890f-807aaf5f4c7e"
+    },
+    "resourceGroup": "rg-resto-scale-agent"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/reference-shared-8608c198/operations/DB06F3CAB13ABC0B",
+    "operationId": "DB06F3CAB13ABC0B",
+    "properties": {
+      "duration": "PT53.1848796S",
+      "provisioningOperation": "Create",
+      "provisioningState": "Failed",
+      "request": null,
+      "response": null,
+      "serviceRequestId": null,
+      "statusCode": "Conflict",
+      "statusMessage": {
+        "error": {
+          "additionalInfo": null,
+          "code": "DeploymentFailed",
+          "details": [
+            {
+              "additionalInfo": null,
+              "code": "ResourceDeploymentFailure",
+              "details": [
+                {
+                  "additionalInfo": null,
+                  "code": "ServiceUnavailable",
+                  "details": null,
+                  "message": "Database account creation failed. Operation Id: 2688fb0d-70d7-4fdd-a9ba-87019d97a8ca, Error : Message: {\"code\":\"ServiceUnavailable\",\"message\":\"Sorry, we are currently experiencing high demand in East US 2 region for the zonal redundant (Availability Zones) accounts, and cannot fulfill your request at this time Fri, 23 Oct 2026 18:56:39 GMT. To request region access for your subscription, please follow this link https://aka.ms/cosmosdbquota for more details on how to create a region access request.\\r\\nActivityId: 2f7b903a-8098-45fc-82bd-e5de6d5d062a, Microsoft.Azure.Documents.Common/2.14.0\"}, Request URI: /serviceReservation, RequestStats: , SDK: Microsoft.Azure.Documents.Common/2.14.0, Microsoft.Azure.Documents.Common/2.14.0, Microsoft.Azure.Documents.Common/2.14.0, Microsoft.Azure.Documents.Common/2.14.0, Microsoft.Azure.Documents.Common/2.14.0, Microsoft.Azure.Documents.Common/2.14.0, Microsoft.Azure.Documents.Common/2.14.0, Microsoft.Azure.Documents.Common/2.14.0, Microsoft.Azure.Documents.Common/2.14.0, Microsoft.Azure.Documents.Common/2.14.0",
+                  "target": null
+                }
+              ],
+              "message": "The resource write operation failed to complete successfully, because it reached terminal provisioning state 'Failed'.",
+              "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi"
+            }
+          ],
+          "message": "At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/arm-deployment-operations for usage details.",
+          "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/cosmos"
+        },
+        "status": "Failed"
+      },
+      "targetResource": {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/cosmos",
+        "identifiers": null,
+        "resourceGroup": "rg-resto-scale-agent",
+        "resourceName": "cosmos",
+        "resourceType": "Microsoft.Resources/deployments",
+        "symbolicName": null
+      },
+      "timestamp": "2026-10-23T18:56:16.059014+00:00",
+      "trackingId": "3f76c328-ba05-4e62-8336-a50febbd1afa"
+    },
+    "resourceGroup": "rg-resto-scale-agent"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/reference-shared-8608c198/operations/279A5350BEC40217",
+    "operationId": "279A5350BEC40217",
+    "properties": {
+      "duration": "PT1M26.4981818S",
+      "provisioningOperation": "Create",
+      "provisioningState": "Succeeded",
+      "request": null,
+      "response": null,
+      "serviceRequestId": null,
+      "statusCode": "OK",
+      "statusMessage": null,
+      "targetResource": {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/broker",
+        "identifiers": null,
+        "resourceGroup": "rg-resto-scale-agent",
+        "resourceName": "broker",
+        "resourceType": "Microsoft.Resources/deployments",
+        "symbolicName": null
+      },
+      "timestamp": "2026-10-23T18:56:16.059014+00:00",
+      "trackingId": "a2f2c093-1c3f-4215-a962-b7eadeb70ba7"
+    },
+    "resourceGroup": "rg-resto-scale-agent"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/reference-shared-8608c198/operations/2ED29A56ADF63ED8",
+    "operationId": "2ED29A56ADF63ED8",
+    "properties": {
+      "duration": "PT5.3050843S",
+      "provisioningOperation": "Create",
+      "provisioningState": "Succeeded",
+      "request": null,
+      "response": null,
+      "serviceRequestId": null,
+      "statusCode": "OK",
+      "statusMessage": null,
+      "targetResource": {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/insights",
+        "identifiers": null,
+        "resourceGroup": "rg-resto-scale-agent",
+        "resourceName": "insights",
+        "resourceType": "Microsoft.Resources/deployments",
+        "symbolicName": null
+      },
+      "timestamp": "2026-10-23T18:56:16.059014+00:00",
+      "trackingId": "12189ded-a36e-4d2a-95a4-c691fc8b4fd9"
+    },
+    "resourceGroup": "rg-resto-scale-agent"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/reference-shared-8608c198/operations/E7993C443B877DE1",
+    "operationId": "E7993C443B877DE1",
+    "properties": {
+      "duration": "PT2M43.9466627S",
+      "provisioningOperation": "Create",
+      "provisioningState": "Succeeded",
+      "request": null,
+      "response": null,
+      "serviceRequestId": null,
+      "statusCode": "OK",
+      "statusMessage": null,
+      "targetResource": {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/environment",
+        "identifiers": null,
+        "resourceGroup": "rg-resto-scale-agent",
+        "resourceName": "environment",
+        "resourceType": "Microsoft.Resources/deployments",
+        "symbolicName": null
+      },
+      "timestamp": "2026-10-23T18:56:16.059014+00:00",
+      "trackingId": "5a2d1067-d867-4bb8-a064-efd6ac4e4e5a"
+    },
+    "resourceGroup": "rg-resto-scale-agent"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/reference-shared-8608c198/operations/4BFEF1108D183A5F",
+    "operationId": "4BFEF1108D183A5F",
+    "properties": {
+      "duration": "PT5.5723633S",
+      "provisioningOperation": "Create",
+      "provisioningState": "Failed",
+      "request": null,
+      "response": null,
+      "serviceRequestId": null,
+      "statusCode": "Conflict",
+      "statusMessage": {
+        "error": {
+          "additionalInfo": null,
+          "code": "DeploymentFailed",
+          "details": [
+            {
+              "additionalInfo": null,
+              "code": "NetworkRuleNotSupported",
+              "details": null,
+              "message": "The requested feature virtual network rule is not supported for the SKU Basic.",
+              "target": null
+            }
+          ],
+          "message": "At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/arm-deployment-operations for usage details.",
+          "target": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/registry"
+        },
+        "status": "Failed"
+      },
+      "targetResource": {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/registry",
+        "identifiers": null,
+        "resourceGroup": "rg-resto-scale-agent",
+        "resourceName": "registry",
+        "resourceType": "Microsoft.Resources/deployments",
+        "symbolicName": null
+      },
+      "timestamp": "2026-10-23T18:56:02.162952+00:00",
+      "trackingId": "80026278-43f3-4130-9c69-f1bade59c418"
+    },
+    "resourceGroup": "rg-resto-scale-agent"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/reference-shared-8608c198/operations/8E2A1C26EE927B65",
+    "operationId": "8E2A1C26EE927B65",
+    "properties": {
+      "duration": "PT8.3986993S",
+      "provisioningOperation": "Create",
+      "provisioningState": "Succeeded",
+      "request": null,
+      "response": null,
+      "serviceRequestId": null,
+      "statusCode": "OK",
+      "statusMessage": null,
+      "targetResource": {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-worker",
+        "identifiers": null,
+        "resourceGroup": "rg-resto-scale-agent",
+        "resourceName": "identity-worker",
+        "resourceType": "Microsoft.Resources/deployments",
+        "symbolicName": null
+      },
+      "timestamp": "2026-10-23T18:55:51.965097+00:00",
+      "trackingId": "be778e22-8381-4fe9-a7c6-48413d9e76b3"
+    },
+    "resourceGroup": "rg-resto-scale-agent"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/reference-shared-8608c198/operations/78E35996E73DC041",
+    "operationId": "78E35996E73DC041",
+    "properties": {
+      "duration": "PT9.2462692S",
+      "provisioningOperation": "Create",
+      "provisioningState": "Succeeded",
+      "request": null,
+      "response": null,
+      "serviceRequestId": null,
+      "statusCode": "OK",
+      "statusMessage": null,
+      "targetResource": {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-chat",
+        "identifiers": null,
+        "resourceGroup": "rg-resto-scale-agent",
+        "resourceName": "identity-chat",
+        "resourceType": "Microsoft.Resources/deployments",
+        "symbolicName": null
+      },
+      "timestamp": "2026-10-23T18:55:51.965097+00:00",
+      "trackingId": "74ce7188-4d81-4174-8b1d-c55d0f241ec8"
+    },
+    "resourceGroup": "rg-resto-scale-agent"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/reference-shared-8608c198/operations/1791D5E1BE644E35",
+    "operationId": "1791D5E1BE644E35",
+    "properties": {
+      "duration": "PT10.8534771S",
+      "provisioningOperation": "Create",
+      "provisioningState": "Succeeded",
+      "request": null,
+      "response": null,
+      "serviceRequestId": null,
+      "statusCode": "OK",
+      "statusMessage": null,
+      "targetResource": {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/network",
+        "identifiers": null,
+        "resourceGroup": "rg-resto-scale-agent",
+        "resourceName": "network",
+        "resourceType": "Microsoft.Resources/deployments",
+        "symbolicName": null
+      },
+      "timestamp": "2026-10-23T18:55:51.965097+00:00",
+      "trackingId": "f9a2e360-361a-4e17-98a6-06011c0e04cd"
+    },
+    "resourceGroup": "rg-resto-scale-agent"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/reference-shared-8608c198/operations/24753FB588ABD34E",
+    "operationId": "24753FB588ABD34E",
+    "properties": {
+      "duration": "PT23.9708403S",
+      "provisioningOperation": "Create",
+      "provisioningState": "Succeeded",
+      "request": null,
+      "response": null,
+      "serviceRequestId": null,
+      "statusCode": "OK",
+      "statusMessage": null,
+      "targetResource": {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/logs",
+        "identifiers": null,
+        "resourceGroup": "rg-resto-scale-agent",
+        "resourceName": "logs",
+        "resourceType": "Microsoft.Resources/deployments",
+        "symbolicName": null
+      },
+      "timestamp": "2026-10-23T18:55:51.965097+00:00",
+      "trackingId": "b64b2e2a-6868-4292-8333-8082d6ad75df"
+    },
+    "resourceGroup": "rg-resto-scale-agent"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/reference-shared-8608c198/operations/42C16F207CF361CB",
+    "operationId": "42C16F207CF361CB",
+    "properties": {
+      "duration": "PT3.4252036S",
+      "provisioningOperation": "Create",
+      "provisioningState": "Succeeded",
+      "request": null,
+      "response": null,
+      "serviceRequestId": null,
+      "statusCode": "OK",
+      "statusMessage": null,
+      "targetResource": {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-scaler",
+        "identifiers": null,
+        "resourceGroup": "rg-resto-scale-agent",
+        "resourceName": "identity-scaler",
+        "resourceType": "Microsoft.Resources/deployments",
+        "symbolicName": null
+      },
+      "timestamp": "2026-10-23T18:55:51.965097+00:00",
+      "trackingId": "fcedd16a-b489-437b-b905-599f3cf0cac8"
+    },
+    "resourceGroup": "rg-resto-scale-agent"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/reference-shared-8608c198/operations/9EFFBE33C6619B9F",
+    "operationId": "9EFFBE33C6619B9F",
+    "properties": {
+      "duration": "PT5.7075555S",
+      "provisioningOperation": "Create",
+      "provisioningState": "Succeeded",
+      "request": null,
+      "response": null,
+      "serviceRequestId": null,
+      "statusCode": "OK",
+      "statusMessage": null,
+      "targetResource": {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/identity-web",
+        "identifiers": null,
+        "resourceGroup": "rg-resto-scale-agent",
+        "resourceName": "identity-web",
+        "resourceType": "Microsoft.Resources/deployments",
+        "symbolicName": null
+      },
+      "timestamp": "2026-10-23T18:55:51.965097+00:00",
+      "trackingId": "3067bd78-d614-42fe-abba-34400e89fe8e"
+    },
+    "resourceGroup": "rg-resto-scale-agent"
+  },
+  {
+    "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/deployments/reference-shared-8608c198/operations/D5A40101908B3101",
+    "operationId": "D5A40101908B3101",
+    "properties": {
+      "duration": "PT0.958283S",
+      "provisioningOperation": "Create",
+      "provisioningState": "Succeeded",
+      "request": null,
+      "response": null,
+      "serviceRequestId": null,
+      "statusCode": "OK",
+      "statusMessage": null,
+      "targetResource": {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.Resources/tags/default",
+        "identifiers": null,
+        "resourceGroup": "rg-resto-scale-agent",
+        "resourceName": "default",
+        "resourceType": "Microsoft.Resources/tags",
+        "symbolicName": null
+      },
+      "timestamp": "2026-10-23T18:55:51.965097+00:00",
+      "trackingId": "22c07670-616e-43b2-b781-c8ad9d6bc032"
+    },
+    "resourceGroup": "rg-resto-scale-agent"
+  }
+]

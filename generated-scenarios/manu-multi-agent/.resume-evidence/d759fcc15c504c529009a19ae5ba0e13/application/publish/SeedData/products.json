@@ -1,0 +1,17 @@
+[
+  {
+    "Id": 1, "SourceId": "product-commuter-01", "Version": "1",
+    "Name": "Commuter C120", "Category": "Urban mobility",
+    "RangeStatement": "Up to 120 km in synthetic controlled test conditions; range varies with load and terrain."
+  },
+  {
+    "Id": 2, "SourceId": "product-cargo-01", "Version": "1",
+    "Name": "Cargo C80", "Category": "Cargo mobility",
+    "RangeStatement": "Up to 80 km in synthetic controlled test conditions; payload affects range."
+  },
+  {
+    "Id": 3, "SourceId": "product-touring-01", "Version": "1",
+    "Name": "Touring T100", "Category": "Touring mobility",
+    "RangeStatement": "Up to 100 km in synthetic controlled test conditions; range is not guaranteed."
+  }
+]

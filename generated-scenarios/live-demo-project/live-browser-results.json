@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "evidenceType": "deployed-application-browser-acceptance",
+  "checkedAtUtc": "2026-10-28T15:44:09.300757+00:00",
+  "applicationUrl": "https://app-live-demo-project-i7bqs7.azurewebsites.net",
+  "checks": [
+    "anonymous access requires local sign-in",
+    "participant cannot access the representative desk",
+    "real managed-identity agent returns exact approved source wording and citation",
+    "financial prediction returns only the exact approved investment-boundary refusal",
+    "unrelated prompt injection returns unsupported without model prose",
+    "390px layout has no horizontal overflow",
+    "missing CSRF token is denied",
+    "human takeover blocks further AI requests with HTTP 409",
+    "stale competing human claim returns HTTP 409",
+    "representative claims and replies; customer reads the durable human answer",
+    "assigned representative resolves the case",
+    "logout removes customer browser access"
+  ],
+  "invocationReceipts": [
+    "Foundry invocation: resp_021528f56436bd85016ae218341efc8196b77b9d8186038560",
+    "Foundry invocation: resp_0aa969c55efe867d016ae2183b4ce081978767261e51d68081",
+    "Foundry invocation: resp_0bf81248d8612117016ae2183cf7608194a737891ce8416e88"
+  ],
+  "limitation": "Does not prove human Bastion entry or deployment-user private data administration."
+}

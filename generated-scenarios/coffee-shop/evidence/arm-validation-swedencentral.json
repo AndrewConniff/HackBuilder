@@ -1,0 +1,9 @@
+{
+  "checkedAtUtc": "2026-10-24T23:18:37.684601+00:00",
+  "region": "swedencentral",
+  "operation": "ARM validate only; no deployment",
+  "identityLimitation": "Client ID intentionally empty; directory-dependent configuration pending",
+  "exitCode": 0,
+  "stdout": "",
+  "stderr": ""
+}

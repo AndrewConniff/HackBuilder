@@ -1,0 +1,7 @@
+bin/
+obj/
+.azure/
+node_modules/
+identity-state.json
+deployment-outputs.json
+*.trx

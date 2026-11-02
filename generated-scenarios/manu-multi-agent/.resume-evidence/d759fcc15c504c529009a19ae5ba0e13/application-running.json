@@ -1,0 +1,6 @@
+{
+  "stage": "application",
+  "status": "running",
+  "summary": "Revalidating the unchanged application, fixtures and installer using actual locked restore, build, tests, publish and offline browser checks.",
+  "evidence": ["Existing application and dated evidence inspected; offline results will not be represented as live Foundry acceptance."]
+}

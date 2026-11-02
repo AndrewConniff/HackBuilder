@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "observedAtUtc": "2026-10-24T20:37:11.4253957+00:00",
+  "stage": "deployment",
+  "operation": "deployment-preparation",
+  "kind": "workflow-error",
+  "attempt": "Correct Windows cmd URL quoting for read-only GET of eastus2 gpt-4.1-mini 2025-04-14 modelCapacities, followed by public retail rate retrieval.",
+  "tool": "functions.powershell",
+  "result": "Permission denied because no interactive user response was available. Retry in an interactive session so the user can approve it, or try an alternative that does not require this permission.",
+  "permissionMetadata": null,
+  "shellId": null,
+  "exitCode": null,
+  "executionEstablished": false,
+  "response": "Stopped cloud/preflight commands. No alternative route, permission broadening, shared-tool installation or sign-in retry.",
+  "classification": "Unidentified CLI execution approval failure, not Azure authentication failure, denied Azure capacity, or user setup failure.",
+  "preservedEvidence": [
+    "Actual compact foundation what-if Succeeded, 72 Create, 13 Unsupported, zero Delete/Modify.",
+    "Earlier model-capacity GET returned ParameterIsMissing because ampersands were interpreted by Windows cmd. This did not establish available or unavailable capacity.",
+    "Public global-price retrieval in the denied batch has no observed result and is not represented as executed."
+  ]
+}

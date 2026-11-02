@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "evidenceType": "runtime-validation",
+  "status": "passed",
+  "applicationUrl": "https://fc-web-kvjmo565tswuy.azurewebsites.net",
+  "checkedAtUtc": "2026-10-25T18:32:45.206203+00:00",
+  "checks": {
+    "deployment": true,
+    "modelInference": true,
+    "agentInvocation": true,
+    "applicationChat": true,
+    "grounding": true,
+    "humanReview": true,
+    "persistentWorkflow": true,
+    "replyStream": true,
+    "negativeCase": true,
+    "agenticWorkflow": true,
+    "localAuthentication": true
+  },
+  "reason": "Real local-account login, app managed-identity Foundry chat, grounded refund refusal, automatic routing, both human reviewers, reply-stream acceptance, restart persistence, immutable rule promotion/rollback and anonymous/wrong-role/CSRF/stale/duplicate denials passed. No Entra consent is needed for app sign-in.",
+  "limitations": [
+    "Provider-outage injection, poison-ingress/DLQ and external-channel delivery were not exercised live; do not present them as passed. Local tests cover provider failure and retry behavior.",
+    "Reply receipts prove acceptance by Service Bus, not external email/social delivery.",
+    "Single-instance public synthetic reference; not a production identity, resilience or sentiment-calibration certification."
+  ],
+  "runtimeEvidence": ["evidence/centralus-deployment.json", "evidence/runtime-probes.json", "evidence/agent-installation.json", "evidence/local-app-runtime.json", "evidence/deployer-rbac.json"],
+  "localEvidence": "evidence/local-validation.json",
+  "pendingReview": "User suitability approval of the working reference; deployment and authentication repairs are not hack approval."
+}

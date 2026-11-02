@@ -1,0 +1,10 @@
+{
+  "stage": "bicep",
+  "status": "running",
+  "summary": "Resuming the confirmed AVM-first local infrastructure implementation after actual Docker setup verification. Preserve the Basic Foundry, public TLS/Entra, independent transaction/chat/worker and synthetic-settlement design. Azure operations remain unauthorized.",
+  "evidence": [
+    "Setup blocker f899718570e34acb8e893b56ff9911a8 cleared by recorded docker version client and Linux Server evidence at revision 71.",
+    "python scripts\\check_prerequisites.py --for-project --record --stage bicep --json: actual owner-bound receipt checkedAtUtc 2026-10-23T06:03:25.994000+00:00, all checks ready, no blocked stages.",
+    "Read 01-requirements.md, 02-architecture-assessment.md, 00-region-availability.json and pinned public AVM module interfaces under evidence."
+  ]
+}

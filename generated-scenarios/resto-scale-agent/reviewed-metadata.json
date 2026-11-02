@@ -1,0 +1,24 @@
+{
+  "title": "Fourth Coffee: five-floor restaurant agents under load",
+  "summary": "Generic Hospitality & Travel five-floor, 250-seat restaurant reference with scoped guest and staff Foundry agents, deterministic transactions, durable kitchen handoffs and separate transaction/AI scaling.",
+  "industry": "Hospitality & Travel",
+  "businessUnits": [
+    "generic"
+  ],
+  "services": [
+    "foundry",
+    "cosmos-db",
+    "container-apps",
+    "key-vault",
+    "managed-identity",
+    "service-bus"
+  ],
+  "pillars": [
+    "reliability",
+    "performance-efficiency"
+  ],
+  "domains": [
+    "scaling"
+  ],
+  "metadataStatus": "curated"
+}

@@ -1,0 +1,9 @@
+.azure/
+.private/
+**/bin/
+**/obj/
+**/__pycache__/
+**/*.user
+**/*.suo
+infra/main.json
+infra/*.parameters.local.json

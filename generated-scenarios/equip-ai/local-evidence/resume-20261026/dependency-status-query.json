@@ -1,0 +1,43 @@
+{
+  "tables": [
+    {
+      "name": "PrimaryResult",
+      "columns": [
+        {
+          "name": "TimeGenerated",
+          "type": "datetime"
+        },
+        {
+          "name": "ResultDescription",
+          "type": "string"
+        }
+      ],
+      "rows": [
+        [
+          "2026-10-26T01:31:58.1932269Z",
+          "[Previous Container]       Dependency/response failure: ClientResultException; correlation 0HNPIVVERBTLR:00000005"
+        ],
+        [
+          "2026-10-26T01:25:03.7276668Z",
+          "      Dependency/response failure: ClientResultException; correlation 0HNPIVVERBTLO:00000010"
+        ],
+        [
+          "2026-10-26T01:25:39.8277981Z",
+          "      Dependency/response failure: ClientResultException; correlation 0HNPIVVERBTLO:00000011"
+        ],
+        [
+          "2026-10-26T01:28:00.2026961Z",
+          "      Dependency/response failure: ClientResultException; correlation 0HNPIVVERBTLO:0000001B"
+        ],
+        [
+          "2026-10-26T01:28:07.801846Z",
+          "      Dependency/response failure: ClientResultException; correlation 0HNPIVVERBTLP:00000006"
+        ],
+        [
+          "2026-10-26T01:28:36.6798698Z",
+          "      Dependency/response failure: ClientResultException; correlation 0HNPIVVERBTLP:0000000C"
+        ]
+      ]
+    }
+  ]
+}

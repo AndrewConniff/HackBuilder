@@ -1,0 +1,71 @@
+{
+  "company": {
+    "catalog": "fictitious_company_names.csv",
+    "record": 24,
+    "companyName": "Northwind Traders",
+    "companyDomain": "northwindtraders.com",
+    "companySlug": "northwind-traders"
+  },
+  "people": [
+    {
+      "entity": "store-001",
+      "record": 1,
+      "FullName": "Airi Ilves"
+    },
+    {
+      "entity": "store-002",
+      "record": 2,
+      "FullName": "Hasan Ibrahimov"
+    },
+    {
+      "entity": "store-003",
+      "record": 3,
+      "FullName": "Nemanja Milatovic"
+    },
+    {
+      "entity": "store-004",
+      "record": 4,
+      "FullName": "Nino Kapanadze"
+    },
+    {
+      "entity": "store-005",
+      "record": 5,
+      "FullName": "Petra Bartosova"
+    },
+    {
+      "entity": "store-006",
+      "record": 6,
+      "FullName": "Eesha Chatterjee"
+    },
+    {
+      "entity": "store-007",
+      "record": 7,
+      "FullName": "Aliaksei Kunets"
+    },
+    {
+      "entity": "store-008",
+      "record": 8,
+      "FullName": "Josef Cizek"
+    },
+    {
+      "entity": "store-009",
+      "record": 9,
+      "FullName": "Yonas Demeke"
+    },
+    {
+      "entity": "store-010",
+      "record": 10,
+      "FullName": "Akihito Sato"
+    },
+    {
+      "entity": "area-north",
+      "record": 11,
+      "FullName": "Josefine Karlsen"
+    },
+    {
+      "entity": "area-south",
+      "record": 12,
+      "FullName": "Stepan Vacek"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "command": "python scripts\\hack_workflow.py snapshot generated-scenarios\\coffee-shop",
+  "exitCode": 1,
+  "output": "Workflow blocked: Live scenario validation has not passed.",
+  "interpretation": "Expected guard rejection for an undeployed local reference. No snapshot, fingerprint or approval was fabricated. Retry only after actual authorized runtime acceptance."
+}

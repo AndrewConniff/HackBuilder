@@ -1,0 +1,252 @@
+{
+  "schemaVersion": 1,
+  "projectSlug": "manu-multi-agent",
+  "revision": 24,
+  "request": {
+    "schemaVersion": 1,
+    "projectSlug": "manu-multi-agent",
+    "prompt": "Resume the same existing Manufacturing & Mobility Sales-to-Marketing reference at generated-scenarios\\manu-multi-agent without resetting, renaming, copying or regenerating it. Adventure Works Cycles is a fictitious mobility manufacturer. Sales qualifies synthetic commuter-cycle opportunities against approved product evidence, then Marketing drafts audience-specific positioning from a sanitized Sales handoff and versioned approved claims. Three distinct Foundry prompt agents, Sales Fit, Marketing Claims and Handoff Coordinator, produce a cited, signed review packet with actual agent/version/response/source provenance and mandatory human review. Reject unsupported unconditional 200 km range guarantees, preserve unknowns and exclude internal margin, discount and contact fields. Do not publish campaigns or commit orders. Preserve the private, keyless architecture: anonymous synthetic public API Management gateway, managed-identity-authenticated private Container Apps backend, Foundry Standard with BYO private platform Storage/Cosmos DB/Search, separate private business-fixture Blob Storage, Key Vault nonexportable signing key, private Container Registry image delivery, virtual networking/private endpoints/DNS and redacted Azure Monitor/Log Analytics telemetry. The selected WAF priority is Operational Excellence; no technical domains were selected. Reuse existing requirements, architecture, infrastructure, application, fixtures, installation automation and dated evidence. Existing artifacts do not establish stage completion, current validation, design confirmation, deployment authorization or suitability approval. Preserve all existing consent boundaries and never auto-start composition.",
+    "industry": "Manufacturing & Mobility",
+    "businessUnits": [
+      "sales",
+      "marketing"
+    ],
+    "services": [
+      "foundry",
+      "container-apps",
+      "key-vault",
+      "managed-identity",
+      "api-management",
+      "storage",
+      "cosmos-db",
+      "ai-search",
+      "virtual-network",
+      "monitor"
+    ],
+    "pillars": [
+      "operational-excellence"
+    ],
+    "domains": [],
+    "phase": "scenario",
+    "deploymentAuthorized": false,
+    "scenarioApproved": false,
+    "preferences": {
+      "regionModel": "delegate-supported-provisional-choice",
+      "deploymentTarget": "defer-until-deployment-preparation",
+      "budget": "estimate-not-a-local-build-blocker"
+    },
+    "localResume": {
+      "sourceRunId": "f886aca8b156e87bdbe43445698ca3fc",
+      "scope": "same-existing-workspace"
+    }
+  },
+  "stages": {
+    "requirements": {
+      "status": "completed",
+      "summary": "Recovered intake validated against current catalogs and existing requirements. Manufacturing & Mobility, Sales/Marketing, Operational Excellence and the same reference are preserved; no implementation or live completion imported.",
+      "evidence": [
+        ".resume-evidence\\5285f097a57c4e89a52c98892af3ba07\\intake-validation.json: 35 passing local checks, exact company/person record provenance, required template headings, reference path containment and null provisional targets.",
+        "01-requirements.md: reviewed F1-F8, acceptance cases A1-A9, human review, unsupported 200 km guarantee, unknown preservation, commercial-field exclusions and no campaign/order writes.",
+        "Existing requirements and architecture define a sequential three-agent pipeline with typed Sales-to-Marketing handoffs; one agent would reduce calls but would not demonstrate the explicitly requested independently versioned Sales Fit, Marketing Claims and Coordinator provenance.",
+        "Malformed company records 7, 11, 25 and 33 rejected; source catalogs unchanged. No pending/reviewing business questions exist in current portal state."
+      ],
+      "updatedAtUtc": "2026-10-24T19:27:32.731733+00:00"
+    },
+    "architecture": {
+      "status": "completed",
+      "summary": "The user's recorded design confirmation is reused for this same local reference. Private/keyless architecture and three-agent business scope are preserved; connected-host access and target pricing remain deployment-preparation dependencies.",
+      "evidence": [
+        "Canonical decision 78488575776b452587a6aa68457ddfa8 was answered Confirm existing design for local revalidation at 2026-10-24T19:49:01.269923+00:00; no new confirmation is requested or inferred.",
+        "Existing architecture and both unchanged diagram/source hashes reviewed. The missing executable azd lifecycle is locally repaired and validated; no new management resource or public-access exception was added.",
+        ".resume-evidence\\d759fcc15c504c529009a19ae5ba0e13\\deployment-review.json records one coherent future installation, directory changes, generated outputs, management access, complete cost inventory and still-unknown target-specific prices/what-if.",
+        "No exact target, directory/cloud consent, live validation or suitability approval exists. The earlier intake receipt actually has 34 checks; historical requirements event count 35 was a reporting error, not additional evidence."
+      ],
+      "updatedAtUtc": "2026-10-24T20:00:32.413878+00:00"
+    },
+    "diagrams": {
+      "status": "completed",
+      "summary": "Existing architecture/runtime diagrams revalidated without regeneration. They describe the preserved design, not deployed resources.",
+      "evidence": [
+        ".resume-evidence\\d759fcc15c504c529009a19ae5ba0e13\\diagrams-validation.json: both Python sources parse, both PNGs decode, exact source/image hashes match retained dated render evidence.",
+        "Retained images are 4013x4921 and 2394x5627; reviewed source labels agree with private Standard, APIM/ACA identity paths, three pinned agents, bounded tools, signing and human review."
+      ],
+      "updatedAtUtc": "2026-10-24T19:55:22.303675+00:00"
+    },
+    "bicep": {
+      "status": "completed",
+      "summary": "Preserved private infrastructure compiles/lints and the missing guarded azd lifecycle/output capture is now wired. Cloud readiness and installer connectivity remain unverified.",
+      "evidence": [
+        ".resume-evidence\\d759fcc15c504c529009a19ae5ba0e13\\application\\bicep-build.log and bicep-lint.log: actual exit 0, no diagnostics.",
+        ".resume-evidence\\d759fcc15c504c529009a19ae5ba0e13\\application\\infrastructure-contracts.log: 21 offline tests passed, including 12 infrastructure contracts and nine lifecycle tests covering restricted consent, CLI/azd account mismatch, identity/output capture, private DNS rejection, retries and dependency ordering.",
+        ".resume-evidence\\d759fcc15c504c529009a19ae5ba0e13\\azd-schema-validation.json: azure.yaml validates against the official azd configuration schema.",
+        "azure.yaml and scripts\\deployment_lifecycle.py: one authorized azd provision installs foundation, secretless identity, private image/fixtures/agents/key and digest-pinned workload; default independent up/deploy rollout is explicitly rejected.",
+        "05-implementation-reference.md documents the exact canonical authorization and private connected-host requirements; no Azure query, what-if, installation or deployment was run."
+      ],
+      "updatedAtUtc": "2026-10-24T19:59:27.847973+00:00"
+    },
+    "application": {
+      "status": "completed",
+      "summary": "Existing business application, three agent definitions, fixtures and installers revalidated locally; no business content regenerated or runtime success inferred.",
+      "evidence": [
+        ".resume-evidence\\d759fcc15c504c529009a19ae5ba0e13\\application\\validation.json: actual locked proxy restore, .NET build, tests, publish, Bicep compilation/lint and offline UI all exit 0.",
+        "Application test log: 35 passed, zero failed/skipped. Chromium: eight desktop/mobile success, empty, dependency-error and handoff-error cases passed with explicitly intercepted offline APIs.",
+        "Published seed files and icon license present; no test assemblies published; related documentation line limits pass. Production application, seed JSON and prompt-agent definitions remain unchanged."
+      ],
+      "updatedAtUtc": "2026-10-24T19:59:28.248689+00:00"
+    },
+    "local-validation": {
+      "status": "completed",
+      "summary": "Local revalidation passed for the preserved reference and guarded installation wiring. Decision required before cloud work: use the portal Azure readiness/proposed targets card and authorize exact-target read-only preparation; deployment remains separate.",
+      "evidence": [
+        "Current .NET validation: locked approved-proxy restore, solution build/publish, 35 application tests, 21 infrastructure/lifecycle contracts and eight offline desktop/mobile browser cases all passed.",
+        "local-validation.json and .resume-evidence\\d759fcc15c504c529009a19ae5ba0e13\\container\\validation.json: all seven current image/configuration/protected-backend checks passed; exact source hashes unchanged from current application receipt.",
+        "Linux amd64 image runs as user 1654. Missing production settings are explicitly rejected; isolated configured startup passes. Six routes return correlated authentication_required HTTP 401 without data; owned containers cleaned up.",
+        "Both retained diagrams decode and exactly match dated source/image hashes. Actual Bicep build/lint have no diagnostics; final azure.yaml schema, Python syntax and related line limits pass.",
+        "Curated manifest refreshed through the existing helper's scoped refresh function; shared repository index and other projects were not modified.",
+        "Actual installation guard returned expected exit 1 before Azure operations: Explicit exact targets and the matching rg-{environment} are required. See unauthorized-installation.log; this is an expected consent negative, not a host/setup blocker.",
+        ".resume-evidence\\d759fcc15c504c529009a19ae5ba0e13\\deployment-review.json: exact targets, verified connected execution path, actual what-if, tenant capability and itemized regional monetary estimate remain pending authorization/preparation. No guessed price, ID or success receipt.",
+        "No Azure resource/directory operation, deployment, live inference, suitability snapshot/approval, hack package, team rollout or publication performed."
+      ],
+      "updatedAtUtc": "2026-10-24T20:01:01.696762+00:00"
+    },
+    "deployment": {
+      "status": "pending",
+      "summary": "Invalidated by local changes."
+    },
+    "live-validation": {
+      "status": "pending",
+      "summary": "Invalidated by local changes."
+    },
+    "review": {
+      "status": "pending",
+      "summary": "Invalidated by local changes."
+    },
+    "hack-plan": {
+      "status": "pending",
+      "summary": ""
+    },
+    "hack-content": {
+      "status": "pending",
+      "summary": ""
+    },
+    "hack-starter": {
+      "status": "pending",
+      "summary": ""
+    },
+    "hack-coach": {
+      "status": "pending",
+      "summary": ""
+    },
+    "hack-validation": {
+      "status": "pending",
+      "summary": ""
+    }
+  },
+  "decisions": [
+    {
+      "id": "78488575776b452587a6aa68457ddfa8",
+      "kind": "design",
+      "stage": "architecture",
+      "question": "Confirm the same existing Adventure Works Cycles private three-agent Sales-to-Marketing design for local revalidation and completion of its deployment wiring, without resetting or regenerating the reference?",
+      "reason": "The recovered current state has designConfirmed=false; historical README statements cannot supply that decision. Preserve the anonymous synthetic APIM/private keyless backend, Standard dependencies, commercial-field exclusions and signed human-review packet. After confirmation, locally validate the existing assets and repair azd lifecycle/output capture. Private deployment requires a verified connected execution host; absent access will require one consolidated priced repair, not public-access relaxation. Exact-target preparation, directory/cloud writes, actual what-if/cost review, deployment and suitability remain separate gates.",
+      "choices": [
+        "Confirm existing design for local revalidation",
+        "Revise design",
+        "Stop scenario"
+      ],
+      "acceptChoice": "Confirm existing design for local revalidation",
+      "scope": {
+        "projectSlug": "manu-multi-agent",
+        "workspace": "generated-scenarios\\manu-multi-agent",
+        "operation": "preserve-and-revalidate-existing-reference-locally",
+        "cloudOperationsAuthorized": false,
+        "directoryWritesAuthorized": false,
+        "compositionAuthorized": false
+      },
+      "status": "answered",
+      "previousStage": {
+        "status": "running",
+        "summary": "Reviewing the preserved private/keyless reference, runtime contract, directory installation, private execution path, deployment ordering and cost limitations before the current design checkpoint.",
+        "evidence": [
+          "02-architecture-assessment.md, 00-region-availability.json, 05-implementation-reference.md, azure.yaml and existing identity/application installers inspected.",
+          "Current state has no design confirmation, exact-target authorization or deploymentContext. Historical README completion statements are retained as dated claims, not imported into current status."
+        ],
+        "updatedAtUtc": "2026-10-24T19:27:33.071549+00:00"
+      },
+      "createdAtUtc": "2026-10-24T19:27:33.449387+00:00",
+      "answer": "Confirm existing design for local revalidation",
+      "message": "Confirm existing design for local revalidation",
+      "answeredAtUtc": "2026-10-24T19:49:01.269923+00:00"
+    }
+  ],
+  "history": [
+    {
+      "message": "User selected Resume existing scenario with local execution consent.",
+      "recordedAtUtc": "2026-10-24T19:24:08.588588+00:00"
+    },
+    {
+      "message": "User authorized local execution for this scenario; cloud and publication excluded.",
+      "recordedAtUtc": "2026-10-24T19:24:08.588608+00:00"
+    },
+    {
+      "action": "reconcile-local-intake",
+      "evidence": [
+        "generated-scenarios\\manu-multi-agent\\01-requirements.md, Project Overview and Concrete story: exact project manu-multi-agent; Manufacturing & Mobility with discrete manufacturing/mobility focus; Adventure Works Cycles synthetic product-fit, approved-claims and human-review handoff story. microsoft_industry_verticals.csv confirms Manufacturing & Mobility as the exact current industry value.",
+        "generated-scenarios\\manu-multi-agent\\01-requirements.md, Project Overview and Personas and scope: explicit businessUnits [sales, marketing], Sales account lead and Marketing campaign lead with a cross-unit handoff. scenario-manifest.json agrees. No Generic fallback or inferred unit targeting is needed.",
+        "generated-scenarios\\manu-multi-agent\\01-requirements.md, Project Overview and Non-Functional Requirements: Operational Excellence maps exactly to catalog pillar operational-excellence. Technical domains explicitly have no preference, domains []; security safeguards do not imply additional selected pillars or domains.",
+        "generated-scenarios\\manu-multi-agent\\01-requirements.md, Core Capabilities required-service table; scenario-manifest.json services: five explicit selected services map to foundry, container-apps, key-vault, managed-identity and api-management. They are retained without substitution.",
+        "generated-scenarios\\manu-multi-agent\\02-architecture-assessment.md, Basic versus Standard and indispensable dependencies; infra\\modules\\dependencies.bicep: Foundry private Standard additionally depends on Azure Storage (storage), Cosmos DB NoSQL (cosmos-db) and Azure AI Search (ai-search). Infrastructure separates platform-state and versioned synthetic business-fixture Storage accounts. Added dependency IDs inventory the existing design, not new service requests.",
+        "generated-scenarios\\manu-multi-agent\\infra\\main.bicep and infra\\modules\\network.bicep; 05-implementation-reference.md Resources Created table: Azure Virtual Network (virtual-network), four dedicated subnets, four NSGs, private endpoints and private DNS, including internal Container Apps DNS. Private connectivity and disabled public backend data access are preserved.",
+        "generated-scenarios\\manu-multi-agent\\infra\\main.bicep logs module; infra\\modules\\dependencies.bicep vault diagnostic settings; 02-architecture-assessment.md Operational behavior and recovery: Azure Monitor (monitor) encompasses Log Analytics PerGB2018 with 30-day retention, bounded ACA console/system logs and Key Vault audit diagnostics, with correlation and redacted telemetry.",
+        "generated-scenarios\\manu-multi-agent\\infra\\modules\\dependencies.bicep registry module; 02-architecture-assessment.md Resource SKU Recommendations: Azure Container Registry Premium is an existing indispensable private immutable-image delivery dependency, admin and anonymous access disabled. The allowed intake service catalog has no Container Registry ID; inventory is retained here rather than inventing an ID or silently dropping it.",
+        "generated-scenarios\\manu-multi-agent\\02-architecture-assessment.md Identity and authorization and Network and deployment boundaries; 05-implementation-reference.md Deployment Instructions: dedicated secretless single-tenant Entra backend API registration, APIM/application managed identities, Foundry project identity, scoped RBAC and a private-network-capable installer are existing installation dependencies. Entra registration and private installer connectivity have no separate allowed service ID. No IDs, authorization scopes or installation success are inferred.",
+        "generated-scenarios\\manu-multi-agent\\azure.yaml: existing Bicep infrastructure at infra and C# containerapp service web at src\\MobilityCommercial.Web with scenario-root Docker build context. infra\\main.bicep and modules define Foundry account/direct project/model, separate managed identities, internal ACA environment, public APIM/private backend, signing and supporting service paths; these are definitions, not evidence of deployed resources.",
+        "generated-scenarios\\manu-multi-agent\\src\\MobilityCommercial.Web\\MobilityCommercial.Web.csproj: net10.0 with Azure.AI.Projects 2.0.1, Azure.AI.Projects.Agents 2.0.0, Azure.AI.Extensions.OpenAI 2.0.0, Azure.Identity 1.21.0, Azure.Storage.Blobs 12.30.1, Azure.Security.KeyVault.Keys 4.10.2 and Microsoft.AspNetCore.Authentication.JwtBearer 10.0.13. tools\\MobilityCommercial.Installer\\MobilityCommercial.Installer.csproj references this app. tests\\MobilityCommercial.Tests\\MobilityCommercial.Tests.csproj adds the .NET test SDK, MVC testing and xUnit dependencies.",
+        "generated-scenarios\\manu-multi-agent\\src\\MobilityCommercial.Web\\Dockerfile: existing native BUILDPLATFORM .NET 10 SDK build and nonroot ASP.NET 10 runtime, approved NuGet.Config and locked restore. PREREQUISITES.md identifies the approved MicrosoftPackageFeedProxy, local Docker Linux-engine dependency, shared tools and scoped package/browser caches; inventory recovery performs no install, restore, build or readiness-success claim.",
+        "generated-scenarios\\manu-multi-agent\\README.md, Architecture and Local validation boundary: existing reference assets include diagrams, application, versioned fixture corpus, pinned agent definitions and installation automation. Historical document statements are not adopted as current stage results, authorization, design decisions or approval. The scenario remains the same existing reference; its recorded architectural provenance does not request a new adaptation."
+      ],
+      "recordedAtUtc": "2026-10-24T19:25:13.098458+00:00",
+      "message": "Recovered scenario scope from existing files; no stage completion or authorization imported."
+    },
+    {
+      "message": "Confirm existing design for local revalidation",
+      "choice": "Confirm existing design for local revalidation",
+      "revise": false,
+      "recordedAtUtc": "2026-10-24T19:49:01.269971+00:00"
+    }
+  ],
+  "authorizations": [],
+  "designConfirmed": true,
+  "localToolConsent": {
+    "scope": "scenario-local-execution",
+    "grantedAtUtc": "2026-10-24T19:24:08.588603+00:00"
+  },
+  "setupBlocker": null,
+  "status": "running",
+  "writer": "d759fcc15c504c529009a19ae5ba0e13",
+  "latestRunId": "d759fcc15c504c529009a19ae5ba0e13",
+  "reconciliation": {
+    "status": "completed",
+    "sourceRunId": "f886aca8b156e87bdbe43445698ca3fc",
+    "summary": "Local intake recovered. Stage evidence remains unverified until actual checks.",
+    "evidence": [
+      "generated-scenarios\\manu-multi-agent\\01-requirements.md, Project Overview and Concrete story: exact project manu-multi-agent; Manufacturing & Mobility with discrete manufacturing/mobility focus; Adventure Works Cycles synthetic product-fit, approved-claims and human-review handoff story. microsoft_industry_verticals.csv confirms Manufacturing & Mobility as the exact current industry value.",
+      "generated-scenarios\\manu-multi-agent\\01-requirements.md, Project Overview and Personas and scope: explicit businessUnits [sales, marketing], Sales account lead and Marketing campaign lead with a cross-unit handoff. scenario-manifest.json agrees. No Generic fallback or inferred unit targeting is needed.",
+      "generated-scenarios\\manu-multi-agent\\01-requirements.md, Project Overview and Non-Functional Requirements: Operational Excellence maps exactly to catalog pillar operational-excellence. Technical domains explicitly have no preference, domains []; security safeguards do not imply additional selected pillars or domains.",
+      "generated-scenarios\\manu-multi-agent\\01-requirements.md, Core Capabilities required-service table; scenario-manifest.json services: five explicit selected services map to foundry, container-apps, key-vault, managed-identity and api-management. They are retained without substitution.",
+      "generated-scenarios\\manu-multi-agent\\02-architecture-assessment.md, Basic versus Standard and indispensable dependencies; infra\\modules\\dependencies.bicep: Foundry private Standard additionally depends on Azure Storage (storage), Cosmos DB NoSQL (cosmos-db) and Azure AI Search (ai-search). Infrastructure separates platform-state and versioned synthetic business-fixture Storage accounts. Added dependency IDs inventory the existing design, not new service requests.",
+      "generated-scenarios\\manu-multi-agent\\infra\\main.bicep and infra\\modules\\network.bicep; 05-implementation-reference.md Resources Created table: Azure Virtual Network (virtual-network), four dedicated subnets, four NSGs, private endpoints and private DNS, including internal Container Apps DNS. Private connectivity and disabled public backend data access are preserved.",
+      "generated-scenarios\\manu-multi-agent\\infra\\main.bicep logs module; infra\\modules\\dependencies.bicep vault diagnostic settings; 02-architecture-assessment.md Operational behavior and recovery: Azure Monitor (monitor) encompasses Log Analytics PerGB2018 with 30-day retention, bounded ACA console/system logs and Key Vault audit diagnostics, with correlation and redacted telemetry.",
+      "generated-scenarios\\manu-multi-agent\\infra\\modules\\dependencies.bicep registry module; 02-architecture-assessment.md Resource SKU Recommendations: Azure Container Registry Premium is an existing indispensable private immutable-image delivery dependency, admin and anonymous access disabled. The allowed intake service catalog has no Container Registry ID; inventory is retained here rather than inventing an ID or silently dropping it.",
+      "generated-scenarios\\manu-multi-agent\\02-architecture-assessment.md Identity and authorization and Network and deployment boundaries; 05-implementation-reference.md Deployment Instructions: dedicated secretless single-tenant Entra backend API registration, APIM/application managed identities, Foundry project identity, scoped RBAC and a private-network-capable installer are existing installation dependencies. Entra registration and private installer connectivity have no separate allowed service ID. No IDs, authorization scopes or installation success are inferred.",
+      "generated-scenarios\\manu-multi-agent\\azure.yaml: existing Bicep infrastructure at infra and C# containerapp service web at src\\MobilityCommercial.Web with scenario-root Docker build context. infra\\main.bicep and modules define Foundry account/direct project/model, separate managed identities, internal ACA environment, public APIM/private backend, signing and supporting service paths; these are definitions, not evidence of deployed resources.",
+      "generated-scenarios\\manu-multi-agent\\src\\MobilityCommercial.Web\\MobilityCommercial.Web.csproj: net10.0 with Azure.AI.Projects 2.0.1, Azure.AI.Projects.Agents 2.0.0, Azure.AI.Extensions.OpenAI 2.0.0, Azure.Identity 1.21.0, Azure.Storage.Blobs 12.30.1, Azure.Security.KeyVault.Keys 4.10.2 and Microsoft.AspNetCore.Authentication.JwtBearer 10.0.13. tools\\MobilityCommercial.Installer\\MobilityCommercial.Installer.csproj references this app. tests\\MobilityCommercial.Tests\\MobilityCommercial.Tests.csproj adds the .NET test SDK, MVC testing and xUnit dependencies.",
+      "generated-scenarios\\manu-multi-agent\\src\\MobilityCommercial.Web\\Dockerfile: existing native BUILDPLATFORM .NET 10 SDK build and nonroot ASP.NET 10 runtime, approved NuGet.Config and locked restore. PREREQUISITES.md identifies the approved MicrosoftPackageFeedProxy, local Docker Linux-engine dependency, shared tools and scoped package/browser caches; inventory recovery performs no install, restore, build or readiness-success claim.",
+      "generated-scenarios\\manu-multi-agent\\README.md, Architecture and Local validation boundary: existing reference assets include diagrams, application, versioned fixture corpus, pinned agent definitions and installation automation. Historical document statements are not adopted as current stage results, authorization, design decisions or approval. The scenario remains the same existing reference; its recorded architectural provenance does not request a new adaptation."
+    ],
+    "updatedAtUtc": "2026-10-24T19:25:13.098416+00:00"
+  },
+  "executionMode": "agent-owned",
+  "preflightRequired": false,
+  "updatedAtUtc": "2026-10-24T20:01:01.696809+00:00"
+}

@@ -1,0 +1,11 @@
+{
+  "checkedAtUtc": "2026-10-24T23:14:15.6297616+00:00",
+  "status": "observed-requires-review",
+  "arguments": [
+    "ad",
+    "signed-in-user",
+    "show"
+  ],
+  "exitCode": 0,
+  "output": "{\n  \"@odata.context\": \"https://graph.microsoft.com/v1.0/$metadata#users/$entity\",\n  \"businessPhones\": [\n    \"0000000000\"\n  ],\n  \"displayName\": \"Peter De Tender\",\n  \"givenName\": \"Peter\",\n  \"id\": \"214d672b-df87-4f3b-94fd-7863032546c1\",\n  \"jobTitle\": \"Sr Content Developer\",\n  \"mail\": \"Peter.DeTender@microsoft.com\",\n  \"mobilePhone\": null,\n  \"officeLocation\": \"Home Office\",\n  \"preferredLanguage\": null,\n  \"surname\": \"De Tender\",\n  \"userPrincipalName\": \"petender_microsoft.com#EXT#@fdpo.onmicrosoft.com\"\n}"
+}

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "projectSlug": "manu-multi-agent",
+  "runId": "97a32a868ae14bcda4f3de28780ae0a2",
+  "canonicalRevisionReviewed": 35,
+  "status": "decision-required",
+  "nextIncompleteStep": "deployment-preparation",
+  "designConfirmed": true,
+  "localExecutionAuthorized": true,
+  "cloudAuthorizations": [],
+  "deploymentContext": null,
+  "pendingBusinessDecisions": [],
+  "sharedToolIdentity": {
+    "account": "petender@microsoft.com",
+    "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+    "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+    "source": "Backend-provided validated identity for this attempt; not resource authorization."
+  },
+  "sourceVerification": {
+    "receipt": "local-validation.json",
+    "receiptCheckedAtUtc": "2026-10-24T19:59:52.091203+00:00",
+    "sourceFilesChecked": 34,
+    "sourceMismatches": [],
+    "exitCode": 0,
+    "freshRuntimeTestsRun": false
+  },
+  "retainedDeploymentPlan": ".resume-evidence\\d759fcc15c504c529009a19ae5ba0e13\\deployment-review.json",
+  "nextAction": "Use this project's portal Azure readiness and proposed targets card. Reuse the supplied account/subscription/tenant, resolve and review resource group, azd environment and region, then select Allow read-only preflight & what-if. Deployment requires a subsequent consolidated what-if, identity, private-execution and cost review and explicit consent.",
+  "limitations": [
+    "All canonical decisions and history were read; repeated free-text continuation grants no cloud authorization.",
+    "Shared tool authentication is available, but canonical authorizations remain empty and deploymentContext is absent.",
+    "No Azure query, directory operation, what-if or deployment was performed.",
+    "Existing results remain dated offline evidence, not fresh runtime acceptance.",
+    "The report protocol requires exact targets for cloud decisions and exact authorized scope for preparation events; unresolved targets belong to the portal Azure context card.",
+    "No reference implementation, shared CLI default, other project, suitability approval, hack package, event or publication was changed."
+  ]
+}

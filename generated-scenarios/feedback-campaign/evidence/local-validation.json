@@ -1,0 +1,198 @@
+{
+  "checkedAtUtc": "2026-10-25T17:33:10.805959+00:00",
+  "evidenceType": "local-only",
+  "passed": true,
+  "checks": [
+    {
+      "command": [
+        "dotnet",
+        "build",
+        "src/FeedbackCampaign.Web",
+        "-c",
+        "Release",
+        "--nologo"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "stdout": "  Determining projects to restore...\n  All projects are up-to-date for restore.\n  FeedbackCampaign.Web -> C:\\azd-projects\\feedback-campaign\\src\\FeedbackCampaign.Web\\bin\\Release\\net10.0\\FeedbackCampaign.Web.dll\n\nBuild succeeded.\n    0 Warning(s)\n    0 Error(s)\n\nTime Elapsed 00:00:01.91\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "dotnet",
+        "test",
+        "tests/FeedbackCampaign.Tests.csproj",
+        "-c",
+        "Release",
+        "--nologo",
+        "--logger",
+        "trx;LogFileName=local-tests.trx",
+        "--results-directory",
+        "evidence/tests"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "stdout": "  Determining projects to restore...\n  All projects are up-to-date for restore.\n  FeedbackCampaign.Web -> C:\\azd-projects\\feedback-campaign\\src\\FeedbackCampaign.Web\\bin\\Release\\net10.0\\FeedbackCampaign.Web.dll\n  FeedbackCampaign.Tests -> C:\\azd-projects\\feedback-campaign\\tests\\bin\\Release\\net10.0\\FeedbackCampaign.Tests.dll\nTest run for C:\\azd-projects\\feedback-campaign\\tests\\bin\\Release\\net10.0\\FeedbackCampaign.Tests.dll (.NETCoreApp,Version=v10.0)\nA total of 1 test files matched the specified pattern.\nWARNING: Overwriting results file: C:\\azd-projects\\feedback-campaign\\evidence\\tests\\local-tests.trx\nResults File: C:\\azd-projects\\feedback-campaign\\evidence\\tests\\local-tests.trx\n\nPassed!  - Failed:     0, Passed:    22, Skipped:     0, Total:    22, Duration: 689 ms - FeedbackCampaign.Tests.dll (net10.0)\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "az",
+        "bicep",
+        "build",
+        "--file",
+        "infra/main.bicep"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "az",
+        "bicep",
+        "lint",
+        "--file",
+        "infra/main.bicep"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "stdout": "\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "az",
+        "bicep",
+        "build",
+        "--file",
+        "infra/review.bicep"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "az",
+        "bicep",
+        "lint",
+        "--file",
+        "infra/review.bicep"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "stdout": "\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "dotnet",
+        "publish",
+        "src/FeedbackCampaign.Web",
+        "-c",
+        "Release",
+        "--nologo",
+        "--output",
+        "src/FeedbackCampaign.Web/bin/publish-check"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "stdout": "  Determining projects to restore...\n  All projects are up-to-date for restore.\n  FeedbackCampaign.Web -> C:\\azd-projects\\feedback-campaign\\src\\FeedbackCampaign.Web\\bin\\Release\\net10.0\\FeedbackCampaign.Web.dll\n  FeedbackCampaign.Web -> C:\\azd-projects\\feedback-campaign\\src\\FeedbackCampaign.Web\\bin\\publish-check\\\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "--check",
+        "src/FeedbackCampaign.Web/wwwroot/app.js"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe",
+        "-m",
+        "compileall",
+        "-q",
+        "scripts"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\petender\\AppData\\Local\\Python\\pythoncore-3.15-arm64\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_*.py"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.005s\n\nOK\n"
+    },
+    {
+      "command": [
+        "C:\\HackBuilder\\.venv\\Scripts\\python.exe",
+        "03-architect-diagram.py"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\HackBuilder\\.venv\\Scripts\\python.exe",
+        "04-runtime-diagram.py"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "fixtures": {
+    "passed": true,
+    "postCount": 10,
+    "catalogCompany": "Adatum Corporation",
+    "businessUnits": [
+      "sales",
+      "marketing"
+    ],
+    "industry": "Media & Communications"
+  },
+  "applicationTests": {
+    "total": "22",
+    "executed": "22",
+    "passed": "22",
+    "failed": "0",
+    "error": "0",
+    "timeout": "0",
+    "aborted": "0",
+    "inconclusive": "0",
+    "passedButRunAborted": "0",
+    "notRunnable": "0",
+    "notExecuted": "0",
+    "disconnected": "0",
+    "warning": "0",
+    "completed": "0",
+    "inProgress": "0",
+    "pending": "0"
+  },
+  "cloudOperationsExecuted": false,
+  "runtimeAcceptance": "not-run",
+  "publishPolicyAndFixtures": true
+}

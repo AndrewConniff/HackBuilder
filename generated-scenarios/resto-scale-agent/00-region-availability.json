@@ -1,0 +1,2452 @@
+{
+  "schemaVersion": 1,
+  "evidenceStatus": "centralus_shared_installation_succeeded_operator_delegated_consent_denied_runtime_not_deployed",
+  "checkedAtUtc": "2026-10-24T17:42:43.693682+00:00",
+  "subscriptionName": "MCAPS-Hybrid-REQ-152516-2026-petender",
+  "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+  "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+  "requestedRegions": [
+    "centralus",
+    "westus2"
+  ],
+  "candidateRegions": [
+    "eastus2",
+    "eastus",
+    "centralus",
+    "westus2"
+  ],
+  "selectedRegion": "centralus",
+  "consolidatedInstallation": {
+    "decisionId": "3f3d19a20079404991c95dfe6d23b93f",
+    "status": "blocked-on-actual-directory-consent-denial",
+    "scope": {
+      "account": "petender@microsoft.com",
+      "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+      "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+      "resourceGroup": "rg-resto-scale-agent",
+      "environment": "resto-scale-agent",
+      "region": "centralus"
+    },
+    "infrastructureFingerprint": "2371ff53fd0c9ff35ca3e337f30911f0bd4b4bf019dcd27f13cb0456dfb25ed7",
+    "evidenceDirectory": "evidence\\installation-e13812c5",
+    "freshPreparation": {
+      "cosmos": "Central US Online; subscription AZ and regular access true; zones retained",
+      "modelQuota": "GlobalStandard exact model/version: current 100, limit 1000, additional 100",
+      "modelCapacity": "Exact Central US availableCapacity 900; not reserved",
+      "providers": "All twelve required namespaces Registered",
+      "whatIf": "Succeeded; 33 creates, zero modifies/deletes, 13 Unsupported new-identity grant expansions",
+      "bicepBuildAndLint": "Both exited 0; unchanged approved infrastructure fingerprint",
+      "cost": "Reviewed rates/SKUs unchanged; original price observation retained, not a current invoice"
+    },
+    "sharedDeployment": {
+      "name": "resto-scale-agent-1792863260",
+      "status": "Succeeded",
+      "allListedNestedDeploymentsSucceeded": true,
+      "resourceCount": 14,
+      "resourcesEvidence": "resources-final.json",
+      "outputsEvidence": "infrastructure-outputs.json",
+      "cosmosDatabaseGrants": 3,
+      "replacementVaultInstalled": "kv-resto-dc9a173f4d0b5f6",
+      "consumptionCores": {
+        "currentValue": 0,
+        "limit": 500,
+        "requiredRolloutVcpu": 28,
+        "headroomCheckPassed": true,
+        "evidence": "environment-usage.json"
+      }
+    },
+    "directoryInstallation": {
+      "applications": 2,
+      "servicePrincipals": 2,
+      "assignmentRequired": true,
+      "operatorManagerAssignment": "verified",
+      "operatorDefaultClientAssignment": "verified",
+      "delegatedConsent": "absent",
+      "deniedOperation": "POST https://graph.microsoft.com/v1.0/oauth2PermissionGrants",
+      "error": "Forbidden Authorization_RequestDenied: Insufficient privileges to complete the operation",
+      "errorAtUtc": "2026-10-24T17:42:00Z",
+      "requestId": "da04fa78-673a-4464-a535-17151194801c",
+      "consentVerification": "GET exact client/API grants returns value:[]",
+      "writeRetriedAfterDenial": false,
+      "requiredRemediation": "Tenant-authorized consent operator completes only the exact Principal/access_as_user payload through the approved process; no AllPrincipals consent, worker elevation or broad Graph grant",
+      "requestEvidence": "operator-consent-request.json",
+      "verificationCommand": "python generated-scenarios\\resto-scale-agent\\evidence\\installation-e13812c5\\operator_access.py --verify-only"
+    },
+    "imagePublished": false,
+    "fixturesInitialized": false,
+    "agentsInitialized": false,
+    "runtimeAppsDeployed": false,
+    "liveAcceptancePassed": false,
+    "applicationUrl": null,
+    "suitabilitySnapshotCreated": false,
+    "scenarioApproved": false,
+    "limitations": "Shared provisioning and directory outputs are not live business, agent, sign-in or performance success. Earlier preparation/foundation fields retain dated historical observations, not current inventory. All resources retained and may incur charges; no cleanup authorized."
+  },
+  "provisionalRegion": "eastus2",
+  "model": {
+    "name": "gpt-5.4-mini",
+    "version": "2026-03-17",
+    "format": "OpenAI",
+    "deploymentType": "GlobalStandard",
+    "lifecycle": "GA",
+    "documentedRetirementDate": "2027-09-21",
+    "proposedTokensPerMinute": 100000,
+    "quota": {
+      "unit": "thousands of tokens per minute",
+      "scope": "Global",
+      "limit": 1000.0,
+      "currentValue": 100.0,
+      "available": 900.0,
+      "requested": 100,
+      "evidence": "evidence\\centralus-189819a8\\model-quota.json"
+    },
+    "capacity": {
+      "region": "centralus",
+      "availableCapacity": 900,
+      "requested": 100,
+      "reservation": false,
+      "status": "observed_not_reserved",
+      "evidence": "evidence\\centralus-189819a8\\model-capacity.json"
+    },
+    "quotaCapacityStatus": "centralus_metadata_headroom_observed_refresh_before_provisioning",
+    "inferenceResidency": "Global processing; resource region does not constrain inference.",
+    "selectionReason": "GA small model with explicit Agent Service Functions support and Global Standard eastus2 availability.",
+    "rejectedAlternatives": [
+      {
+        "name": "gpt-4.1-mini",
+        "reason": "Current retirement schedule marks it Deprecated; prefer a GA model for greenfield design."
+      },
+      {
+        "name": "gpt-5-mini",
+        "reason": "Current Agent Service model/tool table marks Functions No; not selected for this function-tool design."
+      }
+    ]
+  },
+  "results": [
+    {
+      "resource": "Microsoft.CognitiveServices/accounts",
+      "feature": "Foundry resource and direct child project",
+      "sku": "S0",
+      "region": "eastus2",
+      "status": "documented_provisional",
+      "sources": [
+        "foundry-regions",
+        "resource-bicep",
+        "project-schema"
+      ]
+    },
+    {
+      "resource": "Foundry Agent Service",
+      "feature": "Basic setup; Responses API; prompt agents; app-executed function tools",
+      "sku": "Basic setup is a configuration mode, not an Azure billing SKU",
+      "region": "eastus2",
+      "status": "documented_provisional",
+      "sources": [
+        "agent-limits",
+        "agent-setup",
+        "prompt-agent",
+        "functions"
+      ]
+    },
+    {
+      "resource": "Microsoft.CognitiveServices/accounts/deployments",
+      "feature": "gpt-5.4-mini 2026-03-17; Functions supported",
+      "sku": "GlobalStandard",
+      "region": "eastus2",
+      "status": "documented_provisional_no_quota_claim",
+      "sources": [
+        "model-regions",
+        "agent-limits",
+        "model-lifecycle",
+        "deployment-types"
+      ]
+    },
+    {
+      "resource": "Microsoft.App/managedEnvironments and containerApps",
+      "feature": "Zone redundancy, HTTP and Service Bus scaling",
+      "sku": "Workload profiles environment; Consumption profile",
+      "region": "eastus2",
+      "status": "provisional_exact_regional_sku_verification_deferred",
+      "sources": [
+        "aca-zones",
+        "aca-scale",
+        "products-by-region"
+      ]
+    },
+    {
+      "resource": "Microsoft.DocumentDB/databaseAccounts",
+      "feature": "NoSQL autoscale, zone redundancy, transactional batch",
+      "sku": "Standard; database shared autoscale maximum 4000 RU/s",
+      "region": "eastus2",
+      "status": "subscription_zone_access_denied",
+      "liveEvidence": "evidence/cosmos-region-19f3d63e.json",
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "sources": [
+        "cosmos-zones",
+        "cosmos-batch"
+      ]
+    },
+    {
+      "resource": "Microsoft.ServiceBus/namespaces",
+      "feature": "Sessions, duplicate detection, durable at-least-once messaging",
+      "sku": "Premium; initial 1 messaging unit",
+      "region": "eastus2",
+      "status": "provisional_exact_regional_capacity_verification_deferred",
+      "sources": [
+        "bus-reliability",
+        "bus-sessions",
+        "bus-dedup"
+      ]
+    },
+    {
+      "resource": "Microsoft.KeyVault/vaults",
+      "feature": "Software RSA signing key and Entra RBAC",
+      "sku": "standard",
+      "region": "eastus2",
+      "status": "provisional_exact_regional_verification_deferred",
+      "sources": [
+        "vault-keys"
+      ]
+    },
+    {
+      "resource": "Microsoft.ManagedIdentity/userAssignedIdentities",
+      "feature": "Per-component identities and scaler access",
+      "sku": null,
+      "region": "eastus2",
+      "status": "provisional_role_and_policy_verification_deferred",
+      "sources": [
+        "agent-setup",
+        "aca-scale"
+      ]
+    },
+    {
+      "resource": "Supporting ACR, VNet, Log Analytics and Application Insights",
+      "feature": "Image delivery, zone-enabled environment network and performance/reliability evidence",
+      "sku": "ACR Basic; VNet standard; Log Analytics PerGB2018; Application Insights workspace-based",
+      "region": "eastus2",
+      "status": "provisional_exact_regional_verification_deferred",
+      "sources": [
+        "aca-zones",
+        "products-by-region"
+      ]
+    }
+  ],
+  "candidateEvaluations": [
+    {
+      "region": "eastus2",
+      "result": "blocked_subscription_cosmos_zone_access",
+      "rejectionReasons": [
+        "Live Cosmos metadata: supportsAvailabilityZone true, isSubscriptionRegionAccessAllowedForAz false."
+      ],
+      "limitations": [
+        "Foundry project, agent, function and selected model support verified in current public documentation.",
+        "Supporting service capabilities documented; dynamic products-by-region fetch did not expose a SKU matrix.",
+        "Original public-design observations retained; dated authorized preparation and recovery findings below supersede them."
+      ]
+    },
+    {
+      "region": "eastus",
+      "checkedAtUtc": "2026-10-23T22:51:58.536192+00:00",
+      "result": "blocked",
+      "rejectionReasons": [
+        "Cosmos isSubscriptionRegionAccessAllowedForAz=false and isSubscriptionRegionAccessAllowedForRegular=false.",
+        "Foundry independent provider preview: CustomDomainInUse for the exact proposed name."
+      ],
+      "limitations": [
+        "ACA environment Consumption-core quota and output-dependent validation unknown."
+      ]
+    },
+    {
+      "region": "eastus",
+      "checkedAtUtc": "2026-10-23T22:52:26.482270+00:00",
+      "result": "blocked",
+      "rejectionReasons": [
+        "Cosmos isSubscriptionRegionAccessAllowedForAz=false and isSubscriptionRegionAccessAllowedForRegular=false.",
+        "Foundry independent provider preview: CustomDomainInUse for the exact proposed name."
+      ],
+      "limitations": [
+        "ACA environment Consumption-core quota and output-dependent validation unknown."
+      ]
+    },
+    {
+      "region": "centralus",
+      "checkedAtUtc": "2026-10-23T23:16:55.383763+00:00",
+      "result": "blocked",
+      "rejectionReasons": [
+        "Exact Foundry subdomain ai-resto-4tvlzr5zf2rxi: CustomDomainInUse, independent current-region what-if.",
+        "ACA Consumption core quota and output-dependent full validation unknown."
+      ],
+      "passedFacts": [
+        "Cosmos AZ/regular subscription access true; Online and supportsAvailabilityZone true.",
+        "Exact gpt-5.4-mini/2026-03-17/GlobalStandard quota and capacity sufficient for additional 100."
+      ],
+      "scope": {
+        "account": "petender@microsoft.com",
+        "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+        "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+        "environment": "resto-scale-agent",
+        "resourceGroup": "rg-resto-scale-agent",
+        "region": "centralus"
+      },
+      "evidenceDirectory": "evidence\\centralus-91633e9e"
+    },
+    {
+      "region": "westus2",
+      "checkedAtUtc": "2026-10-23T23:26:12.509165+00:00",
+      "result": "blocked",
+      "scope": {
+        "account": "petender@microsoft.com",
+        "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+        "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+        "environment": "resto-scale-agent",
+        "resourceGroup": "rg-resto-scale-agent",
+        "region": "westus2"
+      },
+      "rejectionReasons": [
+        "Cosmos Online/supportsAvailabilityZone true, but required isSubscriptionRegionAccessAllowedForAz FALSE.",
+        "Exact Foundry ai-resto-4tvlzr5zf2rxi preflight: CustomDomainInUse.",
+        "Exact gpt-5.4-mini/2026-03-17 absent from AIServices model list; regional model capacity value empty.",
+        "Agent/Responses/Function support unverified; West US 2 absent from current official region tables.",
+        "ACA Consumption core quota and eight output-dependent modules unverified."
+      ],
+      "evidenceDirectory": "evidence\\westus2-34cc5a27"
+    },
+    {
+      "scope": {
+        "account": "petender@microsoft.com",
+        "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+        "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+        "environment": "resto-scale-agent",
+        "resourceGroup": "rg-resto-scale-agent",
+        "region": "centralus"
+      },
+      "region": "centralus",
+      "checkedAtUtc": "2026-10-23T23:37:47.109391+00:00",
+      "compiledAtUtc": "2026-10-24T00:01:36.123697+00:00",
+      "result": "incomplete-installation-dependent-evidence",
+      "evidenceDirectory": "evidence\\centralus-189819a8",
+      "passedFacts": [
+        "Repaired domain available; independent account/model preview passed.",
+        "Cosmos AZ access true; exact Central US model quota/capacity sufficient."
+      ],
+      "rejectionReasons": [
+        "Runtime readiness incomplete: unknown Consumption quota and installation-dependent checks."
+      ]
+    }
+  ],
+  "preparation": {
+    "checkedAtUtc": "2026-10-23T15:46:13Z",
+    "authorizationDecisionId": "7d18da3b02774120a79615b426323ea6",
+    "evidence": "06-deployment-summary.md",
+    "identity": "Exact Azure CLI account/subscription/tenant match; azd account matches; no defaults changed.",
+    "providers": "All eleven required provider namespaces registered, including lowercase microsoft.insights.",
+    "rbac": "Deployer has inherited subscription Owner and Foundry User; runtime access is not yet testable.",
+    "modelEligibility": "AIServices S0 lists exact GA model/version with GlobalStandard and retirement 2027-09-21.",
+    "serviceBus": "Live SKU metadata confirms Premium, partitioning and zone redundancy in eastus2.",
+    "containerApps": "East US 2 resource availability and managed-environment quota 0/50 observed. Dedicated profile enumeration does not independently prove Consumption quota.",
+    "whatIf": {
+      "status": "Succeeded",
+      "create": 33,
+      "modify": 0,
+      "delete": 0,
+      "unsupported": 13,
+      "evidence": "evidence/what-if-subscription-c3e1750f.json",
+      "limitation": "Thirteen runtime-identity-dependent role assignment IDs cannot be resolved before creation."
+    },
+    "validation": "Subscription wrapper validation Succeeded; nested provider validation is incomplete where new identity outputs are required.",
+    "mutationsPerformed": false,
+    "historicalResultsNote": "The results and candidateEvaluations below/above retain the original public-design observations; preparation observations supersede their not-queried statements only where explicitly stated here."
+  },
+  "recoveryPreparation": {
+    "authorizationDecisionId": "7d18da3b02774120a79615b426323ea6",
+    "checkedAtUtc": "2026-10-23T22:22:00Z",
+    "deploymentReady": false,
+    "mutationsPerformed": false,
+    "targetGroupExists": false,
+    "cosmos": {
+      "region": "eastus2",
+      "supportsAvailabilityZone": true,
+      "isSubscriptionRegionAccessAllowedForAz": false,
+      "isSubscriptionRegionAccessAllowedForRegular": true,
+      "status": "Online",
+      "evidence": "evidence/cosmos-region-19f3d63e.json",
+      "requiredAction": "Obtain Cosmos zone-redundant regional access for this subscription in East US 2 through Azure support; verify the live access flag before retry preparation. No request was submitted."
+    },
+    "registry": {
+      "correction": "AVM 0.13.1 networkRuleSetDefaultAction Allow omits Premium-only networkRuleSet when IP rules are null.",
+      "sku": "Basic",
+      "independentWhatIf": "Succeeded: 2 creates (group and registry), no changes/deletes or diagnostics; networkRuleSet absent, public access Enabled, admin/anonymous disabled.",
+      "independentValidation": "Succeeded with no diagnostics; all four identity grants excluded from this independent preview.",
+      "evidence": "evidence/registry-independent-what-if-19f3d63e.json; evidence/registry-independent-validate-19f3d63e.json"
+    },
+    "fullSharedWhatIf": {
+      "status": "Succeeded",
+      "create": 9,
+      "modify": 0,
+      "delete": 0,
+      "shortCircuitedModules": 8,
+      "evidence": "evidence/what-if-subscription-19f3d63e.json",
+      "limitation": "insights, registry, cosmos, broker, vault, foundry, project and environment were skipped due to unresolved output-dependent parameters. This does not validate their changes or prove capacity."
+    },
+    "fullSharedValidation": "Succeeded with the same eight NestedDeploymentShortCircuited warnings; not full provider/SKU or policy acceptance.",
+    "costEvidence": "evidence/cost-review-19f3d63e.json",
+    "consentBoundary": "Prior deployment stopped on failures and must not be retried. After access is fixed, refresh preparation and obtain renewed exact-target consent against current actual what-if and cost. No suitability approval or runtime result exists."
+  },
+  "outstandingLiveChecks": [
+    "Current shared infrastructure is installed successfully under the consolidated grant. Preserve 14 listed resources, successful outputs, three corrected database grants and the replacement vault.",
+    "Actual new environment Consumption cores are 0/500 and cover 28 rollout vCPU; allocation and application performance are not guaranteed.",
+    "Microsoft Graph denied the operator-only delegated consent POST with Authorization_RequestDenied. Stop writes; an authorized external consent operator must complete only the exact prepared Principal/access_as_user grant through the tenant-approved process.",
+    "The two owned registrations/principals and approved operator Manager/client assignments are verified. Exact delegated grant GET returns no grants; actual sign-in remains untested.",
+    "Clear the canonical setup blocker only after its real read-only verification passes under the same host restrictions; do not retry the denied write or broaden rights.",
+    "Use actual infrastructure outputs, image digest, identity receipt and agent versions for the dependent runtime preview; no placeholders or user-supplied generated IDs.",
+    "Real model/agent/tools/grounding, business journeys, negative cases, coordination, load and recovery acceptance remain unrun."
+  ],
+  "recommendation": "Shared Central US installation, corrected Cosmos grants, replacement vault, owned registrations and operator assignments succeeded. Stopped on an actual Graph 403 for operator-only delegated consent. Preserve existing resources and generated receipts; arrange only the exact external scoped consent remediation, then use portal Verify setup & retry with actual GET verification. Do not retry the denied write, self-elevate, grant tenant-wide consent, recreate resources or claim a working app. Image publication, initialization, runtime previews/rollout and all live acceptance remain unrun. Shared resources incur charges; no cleanup, suitability approval or hack work is authorized.",
+  "repairPreparation": {
+    "scope": {
+      "account": "petender@microsoft.com",
+      "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+      "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+      "environment": "resto-scale-agent",
+      "resourceGroup": "rg-resto-scale-agent",
+      "region": "centralus"
+    },
+    "checkedAtUtc": "2026-10-24T01:26:45.816296+00:00",
+    "infrastructureFingerprint": "2371ff53fd0c9ff35ca3e337f30911f0bd4b4bf019dcd27f13cb0456dfb25ed7",
+    "targetGroupExists": false,
+    "removalActor": null,
+    "removalTime": null,
+    "evidenceDirectory": "evidence\\repair-6f748869",
+    "replacementVaultName": "kv-resto-dc9a173f4d0b5f6",
+    "replacementVaultNameAvailable": true,
+    "unchangedFoundrySubdomainAvailable": true,
+    "cosmosScope": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/resourceGroups/rg-resto-scale-agent/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-resto-4tvlzr5zf2rxi/dbs/restaurant",
+    "cosmosZoneSubscriptionAccess": true,
+    "modelQuota": {
+      "currentValue": 100,
+      "limit": 1000,
+      "required": 100,
+      "regionalAvailableCapacity": 900,
+      "capacityReserved": false
+    },
+    "environmentCount": {
+      "currentValue": 0,
+      "limit": 50,
+      "required": 1
+    },
+    "currentConsumptionQuota": null,
+    "historicalConsumptionQuotaNote": "The former environment's 0/500 observation is retained only in foundationDeployment; it does not establish the future environment's limit.",
+    "requiredRolloutVcpu": 28,
+    "fullWhatIf": {
+      "status": "Succeeded",
+      "create": 33,
+      "modify": 0,
+      "delete": 0,
+      "unsupported": 13,
+      "evidence": "evidence\\repair-6f748869\\what-if-full.json"
+    },
+    "fullValidation": {
+      "status": "Succeeded",
+      "skippedModules": ["insights", "registry", "cosmos", "broker", "vault", "foundry", "project", "environment"],
+      "evidence": "evidence\\repair-6f748869\\validate-full.json"
+    },
+    "independentPreviews": {
+      "vault": "Succeeded: 3 creates including group/key; future grants and diagnostics excluded.",
+      "cosmos": "Succeeded: 7 creates including group and real initializer database grant; two uncreated runtime identities and diagnostics excluded."
+    },
+    "compiledRegressionTests": {
+      "passed": 3,
+      "evidence": "evidence\\repair-6f748869\\infrastructure-tests.txt"
+    },
+    "directoryWritesAuthorized": false,
+    "retryAuthorized": false,
+    "deploymentReady": false,
+    "runtimeReady": false,
+    "cloudMutations": false,
+    "costEvidenceReused": "evidence\\centralus-189819a8\\cost-review.json",
+    "historicalReadinessNote": "regionalReadiness retains the earlier dated 26-check inventory and its original fingerprint. It is not refreshed readiness or deployment authorization for the repaired infrastructure."
+  },
+  "foundationDeployment": {
+    "authorizationDecisionId": "00637ba454ef44d3b84d700f57017e3d",
+    "scope": {
+      "account": "petender@microsoft.com",
+      "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+      "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+      "resourceGroup": "rg-resto-scale-agent",
+      "environment": "resto-scale-agent",
+      "region": "centralus"
+    },
+    "infrastructureFingerprint": "1aa0c0f7d9f7518ece839c1edb8578142a922edb9ac482d2462b8fd6aa0feffc",
+    "deploymentName": "resto-scale-agent-1792800732",
+    "startedAtUtc": "2026-10-24T00:11:59.652305+00:00",
+    "finishedAtUtc": "2026-10-24T00:15:56.984567+00:00",
+    "checkedAtUtc": "2026-10-24T00:16:20.246817+00:00",
+    "status": "failed",
+    "mutationsPerformed": true,
+    "targetGroupExists": true,
+    "listedResourceCount": 13,
+    "failedModules": ["vault", "cosmos"],
+    "failures": [
+      "VaultAlreadyExists: kv-resto-4tvlzr5zf2rxi; no target vault or Central US deleted vault found; conflict ownership/deletion state unproven.",
+      "BadRequest: three Cosmos role assignments require fully qualified account/database scope, not /dbs/restaurant; installed data grants empty."
+    ],
+    "successfulModules": [
+      "identity-web", "identity-chat", "identity-worker", "identity-scaler",
+      "network", "logs", "insights", "registry", "broker", "foundry", "project", "environment"
+    ],
+    "cosmosAccount": {
+      "provisioningState": "Succeeded",
+      "region": "centralus",
+      "zoneRedundant": true,
+      "disableLocalAuth": true,
+      "dataRoleAssignmentCount": 0
+    },
+    "model": {
+      "provisioningState": "Succeeded",
+      "name": "gpt-5.4-mini",
+      "version": "2026-03-17",
+      "deploymentType": "GlobalStandard",
+      "capacity": 100,
+      "inferenceTested": false
+    },
+    "consumptionQuota": {
+      "checkedAtUtc": "2026-10-24T00:15:50.506473+00:00",
+      "name": "ManagedEnvironmentConsumptionCores",
+      "currentValue": 0,
+      "limit": 500,
+      "requiredRolloutVcpu": 28,
+      "headroomCheckPassed": true,
+      "capacityReserved": false,
+      "evidence": "evidence\\foundation-47a34228\\aca-environment-usage.json"
+    },
+    "deploymentReady": false,
+    "runtimeReady": false,
+    "retryAuthorized": false,
+    "directoryWritesPerformed": false,
+    "applicationRolloutPerformed": false,
+    "evidenceDirectory": "evidence\\foundation-47a34228",
+    "costNote": "Created resources retained and may incur charges; same-day shared estimate USD 745-1150/month is not an invoice or cap.",
+    "nextAction": "Local technical repair and ownership-aware preview/cost review, then renewed exact-target deployment consent. No purge, recovery, adoption, deployment retry or security weakening under the stopped grant."
+  },
+  "researchLimitations": [
+    "Two old Foundry URLs returned 404; replaced with current region-support links.",
+    "Search summaries were discovery only; direct Microsoft Learn model and tool tables controlled the choice.",
+    "No cloud APIs or what-if were run. API and AVM versions must be checked again at the implementation gate."
+  ],
+  "sources": {
+    "foundry-regions": "https://learn.microsoft.com/en-us/azure/foundry/reference/region-support",
+    "agent-limits": "https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/limits-quotas-regions",
+    "agent-setup": "https://learn.microsoft.com/en-us/azure/foundry/agents/environment-setup",
+    "standard-setup": "https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/standard-agent-setup",
+    "prompt-agent": "https://learn.microsoft.com/en-us/azure/foundry/agents/quickstarts/prompt-agent",
+    "functions": "https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/function-calling",
+    "resource-bicep": "https://learn.microsoft.com/en-us/azure/foundry/how-to/create-resource-template",
+    "project-schema": "https://learn.microsoft.com/en-us/azure/templates/microsoft.cognitiveservices/accounts/projects",
+    "model-regions": "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-region-availability",
+    "model-lifecycle": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule",
+    "deployment-types": "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/deployment-types",
+    "aca-zones": "https://learn.microsoft.com/en-us/azure/container-apps/how-to-zone-redundancy",
+    "aca-scale": "https://learn.microsoft.com/en-us/azure/container-apps/scale-app",
+    "cosmos-zones": "https://learn.microsoft.com/en-us/azure/cosmos-db/enable-zone-redundancy",
+    "cosmos-batch": "https://learn.microsoft.com/en-us/azure/cosmos-db/transactional-batch",
+    "bus-reliability": "https://learn.microsoft.com/en-us/azure/reliability/reliability-service-bus",
+    "bus-sessions": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/message-sessions",
+    "bus-dedup": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/duplicate-detection",
+    "vault-keys": "https://learn.microsoft.com/en-us/azure/key-vault/keys/about-keys",
+    "products-by-region": "https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/table",
+    "avm-index": "https://azure.github.io/Azure-Verified-Modules/indexes/bicep/bicep-resource-modules/",
+    "avm-foundry-tags": "https://mcr.microsoft.com/v2/bicep/avm/res/cognitive-services/account/tags/list"
+  },
+  "validationTargetRegion": "centralus",
+  "regionalReadiness": {
+    "scope": {
+      "account": "petender@microsoft.com",
+      "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+      "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+      "environment": "resto-scale-agent",
+      "resourceGroup": "rg-resto-scale-agent",
+      "region": "centralus"
+    },
+    "checkedAtUtc": "2026-10-23T23:37:47.109391+00:00",
+    "compiledAtUtc": "2026-10-24T00:01:36.123697+00:00",
+    "infrastructureFingerprint": "1aa0c0f7d9f7518ece839c1edb8578142a922edb9ac482d2462b8fd6aa0feffc",
+    "checks": [
+      {
+        "service": "cosmos-db",
+        "resourceType": "Microsoft.DocumentDB/databaseAccounts",
+        "sku": "Standard/NoSQL; autoscale max 4000 RU/s; Continuous7Days",
+        "region": "centralus",
+        "status": "passed",
+        "evidence": [
+          "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.DocumentDB Registered; observed 2026-10-23T23:37:58.657102+00:00; evidence\\centralus-189819a8\\providers.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --no-pretty-print --output json: exit 0; 33 creates, 13 identity-dependent Unsupported expansions; zero modifies/deletes; observed 2026-10-23T23:39:28.205337+00:00; evidence\\centralus-189819a8\\what-if-full.json",
+          "Passing only the stated metadata/template evaluation, not allocation, runtime or excluded grants.",
+          "az cosmosdb locations list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Central US Online, zones supported, subscription AZ/regular access true; observed 2026-10-23T23:38:06.593292+00:00; evidence\\centralus-189819a8\\cosmos-locations.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-cosmos-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-cosmos.arm.json --no-pretty-print --output json: exit 0; exact zonal autoscale/Continuous7Days independent preview accepted; observed 2026-10-23T23:40:08.604147+00:00; evidence\\centralus-189819a8\\what-if-cosmos.json"
+        ],
+        "quotas": [],
+        "zoneRedundant": true,
+        "properties": {
+          "backupStorageRedundancies": [
+            "Geo",
+            "Zone",
+            "Local"
+          ],
+          "isResidencyRestricted": false,
+          "isSubscriptionRegionAccessAllowedForAz": true,
+          "isSubscriptionRegionAccessAllowedForRegular": true,
+          "status": "Online",
+          "supportsAvailabilityZone": true
+        },
+        "features": {
+          "serverless": false,
+          "autoscaleMaxRU": 4000,
+          "backupPolicy": "Continuous7Days"
+        }
+      },
+      {
+        "service": "cosmos-db",
+        "resourceType": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases",
+        "sku": "shared autoscale 400-4000 RU/s",
+        "region": "centralus",
+        "status": "passed",
+        "evidence": [
+          "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.DocumentDB Registered; observed 2026-10-23T23:37:58.657102+00:00; evidence\\centralus-189819a8\\providers.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --no-pretty-print --output json: exit 0; 33 creates, 13 identity-dependent Unsupported expansions; zero modifies/deletes; observed 2026-10-23T23:39:28.205337+00:00; evidence\\centralus-189819a8\\what-if-full.json",
+          "Passing only the stated metadata/template evaluation, not allocation, runtime or excluded grants.",
+          "az cosmosdb locations list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Central US Online, zones supported, subscription AZ/regular access true; observed 2026-10-23T23:38:06.593292+00:00; evidence\\centralus-189819a8\\cosmos-locations.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-cosmos-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-cosmos.arm.json --no-pretty-print --output json: exit 0; exact zonal autoscale/Continuous7Days independent preview accepted; observed 2026-10-23T23:40:08.604147+00:00; evidence\\centralus-189819a8\\what-if-cosmos.json"
+        ],
+        "quotas": []
+      },
+      {
+        "service": "cosmos-db",
+        "resourceType": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers",
+        "sku": "3 NoSQL containers; /aggregateKey",
+        "region": "centralus",
+        "status": "passed",
+        "evidence": [
+          "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.DocumentDB Registered; observed 2026-10-23T23:37:58.657102+00:00; evidence\\centralus-189819a8\\providers.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --no-pretty-print --output json: exit 0; 33 creates, 13 identity-dependent Unsupported expansions; zero modifies/deletes; observed 2026-10-23T23:39:28.205337+00:00; evidence\\centralus-189819a8\\what-if-full.json",
+          "Passing only the stated metadata/template evaluation, not allocation, runtime or excluded grants.",
+          "az cosmosdb locations list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Central US Online, zones supported, subscription AZ/regular access true; observed 2026-10-23T23:38:06.593292+00:00; evidence\\centralus-189819a8\\cosmos-locations.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-cosmos-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-cosmos.arm.json --no-pretty-print --output json: exit 0; exact zonal autoscale/Continuous7Days independent preview accepted; observed 2026-10-23T23:40:08.604147+00:00; evidence\\centralus-189819a8\\what-if-cosmos.json"
+        ],
+        "quotas": []
+      },
+      {
+        "service": "foundry",
+        "resourceType": "Microsoft.CognitiveServices/accounts",
+        "sku": "AIServices/S0",
+        "region": "centralus",
+        "status": "passed",
+        "evidence": [
+          "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.CognitiveServices Registered; observed 2026-10-23T23:37:58.657102+00:00; evidence\\centralus-189819a8\\providers.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --no-pretty-print --output json: exit 0; 33 creates, 13 identity-dependent Unsupported expansions; zero modifies/deletes; observed 2026-10-23T23:39:28.205337+00:00; evidence\\centralus-189819a8\\what-if-full.json",
+          "Passing only the stated metadata/template evaluation, not allocation, runtime or excluded grants.",
+          "az rest --method post --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/checkDomainAvailability?api-version=2024-10-01 --body @C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\foundry-domain-request.json --headers Content-Type=application/json --output json: exit 0; replacement ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec available; not reserved; observed 2026-10-23T23:37:48.147950+00:00; evidence\\centralus-189819a8\\foundry-domain-availability.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-foundry-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-foundry.arm.json --no-pretty-print --output json: exit 0; independent AIServices S0 account and exact model preview: 3 creates; observed 2026-10-23T23:41:08.505239+00:00; evidence\\centralus-189819a8\\what-if-foundry.json",
+          "Exact group absent; no reusable owned account verified; legacy conflict was not adopted or purged."
+        ],
+        "quotas": []
+      },
+      {
+        "service": "foundry",
+        "resourceType": "Microsoft.CognitiveServices/accounts/deployments",
+        "sku": "gpt-5.4-mini/2026-03-17/GlobalStandard; capacity 100",
+        "region": "centralus",
+        "status": "passed",
+        "evidence": [
+          "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.CognitiveServices Registered; observed 2026-10-23T23:37:58.657102+00:00; evidence\\centralus-189819a8\\providers.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --no-pretty-print --output json: exit 0; 33 creates, 13 identity-dependent Unsupported expansions; zero modifies/deletes; observed 2026-10-23T23:39:28.205337+00:00; evidence\\centralus-189819a8\\what-if-full.json",
+          "Passing only the stated metadata/template evaluation, not allocation, runtime or excluded grants.",
+          "az cognitiveservices model list --location centralus --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; exact gpt-5.4-mini/2026-03-17 GlobalStandard; agentsV2/responses true; observed 2026-10-23T23:38:16.516407+00:00; evidence\\centralus-189819a8\\model-eligibility.json",
+          "az cognitiveservices usage list --location centralus --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; global quota 100.0/1000.0, additional 100; observed 2026-10-23T23:38:09.532358+00:00; evidence\\centralus-189819a8\\model-quota.json",
+          "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/centralus/modelCapacities?api-version=2024-10-01 --output json --url-parameters modelFormat=OpenAI modelName=gpt-5.4-mini modelVersion=2026-03-17: exit 0; Central US availableCapacity 900; observed 2026-10-23T23:38:20.528619+00:00; evidence\\centralus-189819a8\\model-capacity.json"
+        ],
+        "quotas": [
+          {
+            "name": "OpenAI.GlobalStandard.gpt-5.4-mini",
+            "limit": 1000.0,
+            "currentValue": 100.0,
+            "required": 100
+          }
+        ]
+      },
+      {
+        "service": "foundry",
+        "resourceType": "Microsoft.CognitiveServices/accounts/projects",
+        "sku": "not-applicable; direct child restaurant",
+        "region": "centralus",
+        "status": "unknown",
+        "evidence": [
+          "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.CognitiveServices Registered; observed 2026-10-23T23:37:58.657102+00:00; evidence\\centralus-189819a8\\providers.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --no-pretty-print --output json: exit 0; 33 creates, 13 identity-dependent Unsupported expansions; zero modifies/deletes; observed 2026-10-23T23:39:28.205337+00:00; evidence\\centralus-189819a8\\what-if-full.json",
+          "Passing only the stated metadata/template evaluation, not allocation, runtime or excluded grants.",
+          "az deployment sub validate --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-validate-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --output json: exit 0; Succeeded but skipped insights, registry, cosmos, broker, vault, foundry, project, environment; observed 2026-10-23T23:41:15.929425+00:00; evidence\\centralus-189819a8\\validate-full.json",
+          "Project Create expanded by what-if, but provider validation skipped it."
+        ],
+        "quotas": []
+      },
+      {
+        "service": "foundry",
+        "resourceType": "Microsoft.CognitiveServices/accounts/projects",
+        "sku": "not-applicable; Basic setup, three prompt agents; Responses/app-executed Functions",
+        "region": "centralus",
+        "status": "passed",
+        "evidence": [
+          "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.CognitiveServices Registered; observed 2026-10-23T23:37:58.657102+00:00; evidence\\centralus-189819a8\\providers.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --no-pretty-print --output json: exit 0; 33 creates, 13 identity-dependent Unsupported expansions; zero modifies/deletes; observed 2026-10-23T23:39:28.205337+00:00; evidence\\centralus-189819a8\\what-if-full.json",
+          "Passing only the stated metadata/template evaluation, not allocation, runtime or excluded grants.",
+          "az deployment sub validate --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-validate-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --output json: exit 0; Succeeded but skipped insights, registry, cosmos, broker, vault, foundry, project, environment; observed 2026-10-23T23:41:15.929425+00:00; evidence\\centralus-189819a8\\validate-full.json",
+          "Saved dated official Central US Agents/Responses/Function support in evidence\\centralus-91633e9e\\public-feature-evidence.json; runtime installation remains pending."
+        ],
+        "quotas": [],
+        "feature": "Foundry Agent Service data-plane prompt agents and function tools"
+      },
+      {
+        "service": "container-apps",
+        "resourceType": "Microsoft.App/managedEnvironments",
+        "sku": "workload profiles/Consumption; zoneRedundant=true",
+        "region": "centralus",
+        "status": "unknown",
+        "evidence": [
+          "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.App Registered; observed 2026-10-23T23:37:58.657102+00:00; evidence\\centralus-189819a8\\providers.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --no-pretty-print --output json: exit 0; 33 creates, 13 identity-dependent Unsupported expansions; zero modifies/deletes; observed 2026-10-23T23:39:28.205337+00:00; evidence\\centralus-189819a8\\what-if-full.json",
+          "Passing only the stated metadata/template evaluation, not allocation, runtime or excluded grants.",
+          "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/locations/centralus/usages?api-version=2025-07-01 --output json: exit 0; supported direct subscription/region API lists no Consumption core quota; observed 2026-10-23T23:38:25.093608+00:00; evidence\\centralus-189819a8\\aca-usage.json",
+          "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/locations/centralus/usages?api-version=2026-07-01 --output json: exit 0; latest supported 2026-07-01 API also lists no Consumption core quota; observed 2026-10-23T23:42:14.594721+00:00; evidence\\centralus-189819a8\\aca-usage-latest.json",
+          "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/locations/centralus/providers/Microsoft.Quota/quotas?api-version=2025-09-01 --output json: exit 1; regional Microsoft.Quota quotas GET failed MissingRegistrationForResourceProvider; observed 2026-10-23T23:35:28.863519+00:00; evidence\\centralus-189819a8\\aca-quota.json",
+          "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/locations/centralus/providers/Microsoft.Quota/usages?api-version=2025-09-01 --output json: exit 1; regional Microsoft.Quota usages GET failed MissingRegistrationForResourceProvider; observed 2026-10-23T23:35:31.085122+00:00; evidence\\centralus-189819a8\\aca-quota-usage.json",
+          "az provider show --namespace Microsoft.Quota --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --query {namespace:namespace,registrationState:registrationState} --output json: exit 0; Microsoft.Quota NotRegistered; registration is an unauthorized mutation; observed 2026-10-23T23:42:17.260970+00:00; evidence\\centralus-189819a8\\quota-provider.json",
+          "Official quotas documentation scopes Consumption cores to an environment; no default/zero limit assumed.",
+          "Missing environment is not evidence of zero quota. No test allocation, provider registration or quota request.",
+          "Demand: 14 steady-max vCPU/28 replicas; 28 rollout vCPU/56 replicas.",
+          "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/locations/centralus/availableManagedEnvironmentsWorkloadProfileTypes?api-version=2025-07-01 --output json: exit 0; Consumption profile listed; not a core quota; observed 2026-10-23T23:38:27.243619+00:00; evidence\\centralus-189819a8\\aca-profiles.json",
+          "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/locations?api-version=2022-12-01 --output json --query value[?name=='centralus']: exit 0; Central US logical zones 1, 2 and 3; observed 2026-10-23T23:38:37.572906+00:00; evidence\\centralus-189819a8\\region-zones.json"
+        ],
+        "quotas": [
+          {
+            "name": "ManagedEnvironmentCount",
+            "limit": 50,
+            "currentValue": 0,
+            "required": 1
+          }
+        ],
+        "zoneRedundant": true
+      },
+      {
+        "service": "container-apps",
+        "resourceType": "Microsoft.App/containerApps",
+        "sku": "Consumption; 0.5 vCPU/1 GiB each; web 3-12, chat 3-6, worker 3-10",
+        "region": "centralus",
+        "status": "unknown",
+        "evidence": [
+          "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.App Registered; observed 2026-10-23T23:37:58.657102+00:00; evidence\\centralus-189819a8\\providers.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --no-pretty-print --output json: exit 0; 33 creates, 13 identity-dependent Unsupported expansions; zero modifies/deletes; observed 2026-10-23T23:39:28.205337+00:00; evidence\\centralus-189819a8\\what-if-full.json",
+          "Passing only the stated metadata/template evaluation, not allocation, runtime or excluded grants.",
+          "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/locations/centralus/usages?api-version=2025-07-01 --output json: exit 0; supported direct subscription/region API lists no Consumption core quota; observed 2026-10-23T23:38:25.093608+00:00; evidence\\centralus-189819a8\\aca-usage.json",
+          "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/locations/centralus/usages?api-version=2026-07-01 --output json: exit 0; latest supported 2026-07-01 API also lists no Consumption core quota; observed 2026-10-23T23:42:14.594721+00:00; evidence\\centralus-189819a8\\aca-usage-latest.json",
+          "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/locations/centralus/providers/Microsoft.Quota/quotas?api-version=2025-09-01 --output json: exit 1; regional Microsoft.Quota quotas GET failed MissingRegistrationForResourceProvider; observed 2026-10-23T23:35:28.863519+00:00; evidence\\centralus-189819a8\\aca-quota.json",
+          "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/locations/centralus/providers/Microsoft.Quota/usages?api-version=2025-09-01 --output json: exit 1; regional Microsoft.Quota usages GET failed MissingRegistrationForResourceProvider; observed 2026-10-23T23:35:31.085122+00:00; evidence\\centralus-189819a8\\aca-quota-usage.json",
+          "az provider show --namespace Microsoft.Quota --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --query {namespace:namespace,registrationState:registrationState} --output json: exit 0; Microsoft.Quota NotRegistered; registration is an unauthorized mutation; observed 2026-10-23T23:42:17.260970+00:00; evidence\\centralus-189819a8\\quota-provider.json",
+          "Official quotas documentation scopes Consumption cores to an environment; no default/zero limit assumed.",
+          "Missing environment is not evidence of zero quota. No test allocation, provider registration or quota request.",
+          "Demand: 14 steady-max vCPU/28 replicas; 28 rollout vCPU/56 replicas.",
+          "Runtime what-if not run: actual environment outputs/image digest/agent versions/identity installation receipt are not installed. Their absence is expected, not user input."
+        ],
+        "quotas": [],
+        "demand": {
+          "vcpus": 28,
+          "instances": 56,
+          "steadyMaxVcpus": 14,
+          "steadyMaxInstances": 28
+        }
+      },
+      {
+        "service": "container-registry",
+        "resourceType": "Microsoft.ContainerRegistry/registries",
+        "sku": "Basic; authenticated public TLS/Entra; admin/anonymous disabled",
+        "region": "centralus",
+        "status": "passed",
+        "evidence": [
+          "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.ContainerRegistry Registered; observed 2026-10-23T23:37:58.657102+00:00; evidence\\centralus-189819a8\\providers.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --no-pretty-print --output json: exit 0; 33 creates, 13 identity-dependent Unsupported expansions; zero modifies/deletes; observed 2026-10-23T23:39:28.205337+00:00; evidence\\centralus-189819a8\\what-if-full.json",
+          "Passing only the stated metadata/template evaluation, not allocation, runtime or excluded grants.",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-registry-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-registry.arm.json --no-pretty-print --output json: exit 0; exact independent provider preview succeeded; observed 2026-10-23T23:39:48.451320+00:00; evidence\\centralus-189819a8\\what-if-registry.json"
+        ],
+        "quotas": []
+      },
+      {
+        "service": "service-bus",
+        "resourceType": "Microsoft.ServiceBus/namespaces",
+        "sku": "Premium/1 MU/1 partition; zones enabled; local auth disabled",
+        "region": "centralus",
+        "status": "passed",
+        "evidence": [
+          "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.ServiceBus Registered; observed 2026-10-23T23:37:58.657102+00:00; evidence\\centralus-189819a8\\providers.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --no-pretty-print --output json: exit 0; 33 creates, 13 identity-dependent Unsupported expansions; zero modifies/deletes; observed 2026-10-23T23:39:28.205337+00:00; evidence\\centralus-189819a8\\what-if-full.json",
+          "Passing only the stated metadata/template evaluation, not allocation, runtime or excluded grants.",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-broker-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-broker.arm.json --no-pretty-print --output json: exit 0; exact independent provider preview succeeded; observed 2026-10-23T23:40:28.606274+00:00; evidence\\centralus-189819a8\\what-if-broker.json",
+          "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku?api-version=2024-01-01 --output json: exit 0; Premium Central US supports zones and partitions; observed 2026-10-23T23:38:30.906057+00:00; evidence\\centralus-189819a8\\servicebus-skus.json"
+        ],
+        "quotas": []
+      },
+      {
+        "service": "key-vault",
+        "resourceType": "Microsoft.KeyVault/vaults",
+        "sku": "standard; RBAC, purge protection, soft delete; authenticated public endpoint",
+        "region": "centralus",
+        "status": "passed",
+        "evidence": [
+          "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.KeyVault Registered; observed 2026-10-23T23:37:58.657102+00:00; evidence\\centralus-189819a8\\providers.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --no-pretty-print --output json: exit 0; 33 creates, 13 identity-dependent Unsupported expansions; zero modifies/deletes; observed 2026-10-23T23:39:28.205337+00:00; evidence\\centralus-189819a8\\what-if-full.json",
+          "Passing only the stated metadata/template evaluation, not allocation, runtime or excluded grants.",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-vault-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-vault.arm.json --no-pretty-print --output json: exit 0; exact independent provider preview succeeded; observed 2026-10-23T23:40:48.662940+00:00; evidence\\centralus-189819a8\\what-if-vault.json"
+        ],
+        "quotas": []
+      },
+      {
+        "service": "service-bus",
+        "resourceType": "Microsoft.ServiceBus/namespaces/queues",
+        "sku": "Premium kitchen; sessions/duplicate detection; one queue",
+        "region": "centralus",
+        "status": "passed",
+        "evidence": [
+          "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.ServiceBus Registered; observed 2026-10-23T23:37:58.657102+00:00; evidence\\centralus-189819a8\\providers.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --no-pretty-print --output json: exit 0; 33 creates, 13 identity-dependent Unsupported expansions; zero modifies/deletes; observed 2026-10-23T23:39:28.205337+00:00; evidence\\centralus-189819a8\\what-if-full.json",
+          "Passing only the stated metadata/template evaluation, not allocation, runtime or excluded grants.",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-broker-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-broker.arm.json --no-pretty-print --output json: exit 0; exact independent provider preview succeeded; observed 2026-10-23T23:40:28.606274+00:00; evidence\\centralus-189819a8\\what-if-broker.json"
+        ],
+        "quotas": []
+      },
+      {
+        "service": "key-vault",
+        "resourceType": "Microsoft.KeyVault/vaults/keys",
+        "sku": "software RSA/3072; sign/verify; expiry 180 days, rotation 90 days",
+        "region": "centralus",
+        "status": "passed",
+        "evidence": [
+          "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.KeyVault Registered; observed 2026-10-23T23:37:58.657102+00:00; evidence\\centralus-189819a8\\providers.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --no-pretty-print --output json: exit 0; 33 creates, 13 identity-dependent Unsupported expansions; zero modifies/deletes; observed 2026-10-23T23:39:28.205337+00:00; evidence\\centralus-189819a8\\what-if-full.json",
+          "Passing only the stated metadata/template evaluation, not allocation, runtime or excluded grants.",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-vault-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-vault.arm.json --no-pretty-print --output json: exit 0; exact independent provider preview succeeded; observed 2026-10-23T23:40:48.662940+00:00; evidence\\centralus-189819a8\\what-if-vault.json"
+        ],
+        "quotas": []
+      },
+      {
+        "service": "managed-identity",
+        "resourceType": "Microsoft.ManagedIdentity/userAssignedIdentities",
+        "sku": "not-applicable; 4 distinct identities",
+        "region": "centralus",
+        "status": "passed",
+        "evidence": [
+          "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.ManagedIdentity Registered; observed 2026-10-23T23:37:58.657102+00:00; evidence\\centralus-189819a8\\providers.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --no-pretty-print --output json: exit 0; 33 creates, 13 identity-dependent Unsupported expansions; zero modifies/deletes; observed 2026-10-23T23:39:28.205337+00:00; evidence\\centralus-189819a8\\what-if-full.json",
+          "Passing only the stated metadata/template evaluation, not allocation, runtime or excluded grants."
+        ],
+        "quotas": []
+      },
+      {
+        "service": "virtual-network",
+        "resourceType": "Microsoft.Network/virtualNetworks",
+        "sku": "not-applicable; 10.74.0.0/22",
+        "region": "centralus",
+        "status": "passed",
+        "evidence": [
+          "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Network Registered; observed 2026-10-23T23:37:58.657102+00:00; evidence\\centralus-189819a8\\providers.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --no-pretty-print --output json: exit 0; 33 creates, 13 identity-dependent Unsupported expansions; zero modifies/deletes; observed 2026-10-23T23:39:28.205337+00:00; evidence\\centralus-189819a8\\what-if-full.json",
+          "Passing only the stated metadata/template evaluation, not allocation, runtime or excluded grants.",
+          "az network list-usages --location centralus --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; actual VNet quota covers one additional isolated VNet; observed 2026-10-23T23:38:33.779056+00:00; evidence\\centralus-189819a8\\network-usage.json"
+        ],
+        "quotas": [
+          {
+            "name": "VirtualNetworks",
+            "limit": 1000,
+            "currentValue": 0,
+            "required": 1
+          }
+        ]
+      },
+      {
+        "service": "virtual-network",
+        "resourceType": "Microsoft.Network/virtualNetworks/subnets",
+        "sku": "not-applicable; /23; Microsoft.App/environments delegation",
+        "region": "centralus",
+        "status": "passed",
+        "evidence": [
+          "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Network Registered; observed 2026-10-23T23:37:58.657102+00:00; evidence\\centralus-189819a8\\providers.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --no-pretty-print --output json: exit 0; 33 creates, 13 identity-dependent Unsupported expansions; zero modifies/deletes; observed 2026-10-23T23:39:28.205337+00:00; evidence\\centralus-189819a8\\what-if-full.json",
+          "Passing only the stated metadata/template evaluation, not allocation, runtime or excluded grants."
+        ],
+        "quotas": []
+      },
+      {
+        "service": "log-analytics",
+        "resourceType": "Microsoft.OperationalInsights/workspaces",
+        "sku": "PerGB2018; retention 30 days",
+        "region": "centralus",
+        "status": "passed",
+        "evidence": [
+          "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.OperationalInsights Registered; observed 2026-10-23T23:37:58.657102+00:00; evidence\\centralus-189819a8\\providers.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --no-pretty-print --output json: exit 0; 33 creates, 13 identity-dependent Unsupported expansions; zero modifies/deletes; observed 2026-10-23T23:39:28.205337+00:00; evidence\\centralus-189819a8\\what-if-full.json",
+          "Passing only the stated metadata/template evaluation, not allocation, runtime or excluded grants."
+        ],
+        "quotas": []
+      },
+      {
+        "service": "application-insights",
+        "resourceType": "Microsoft.Insights/components",
+        "sku": "workspace-based; local auth disabled; sampling 20%",
+        "region": "centralus",
+        "status": "unknown",
+        "evidence": [
+          "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Insights Registered; observed 2026-10-23T23:37:58.657102+00:00; evidence\\centralus-189819a8\\providers.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --no-pretty-print --output json: exit 0; 33 creates, 13 identity-dependent Unsupported expansions; zero modifies/deletes; observed 2026-10-23T23:39:28.205337+00:00; evidence\\centralus-189819a8\\what-if-full.json",
+          "Passing only the stated metadata/template evaluation, not allocation, runtime or excluded grants.",
+          "az deployment sub validate --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-validate-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --output json: exit 0; Succeeded but skipped insights, registry, cosmos, broker, vault, foundry, project, environment; observed 2026-10-23T23:41:15.929425+00:00; evidence\\centralus-189819a8\\validate-full.json",
+          "ARM unsupported expansion is not a proven unsupported resource.",
+          "Output-dependent grant/policy/diagnostic/provider checks remain pending installation, not passed."
+        ],
+        "quotas": []
+      },
+      {
+        "service": "azure-rbac",
+        "resourceType": "Microsoft.Authorization/roleAssignments",
+        "sku": "not-applicable; global extension",
+        "region": "centralus",
+        "status": "unknown",
+        "evidence": [
+          "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Authorization Registered; observed 2026-10-23T23:37:58.657102+00:00; evidence\\centralus-189819a8\\providers.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --no-pretty-print --output json: exit 0; 33 creates, 13 identity-dependent Unsupported expansions; zero modifies/deletes; observed 2026-10-23T23:39:28.205337+00:00; evidence\\centralus-189819a8\\what-if-full.json",
+          "Passing only the stated metadata/template evaluation, not allocation, runtime or excluded grants.",
+          "az deployment sub validate --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-validate-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --output json: exit 0; Succeeded but skipped insights, registry, cosmos, broker, vault, foundry, project, environment; observed 2026-10-23T23:41:15.929425+00:00; evidence\\centralus-189819a8\\validate-full.json",
+          "ARM unsupported expansion is not a proven unsupported resource.",
+          "Output-dependent grant/policy/diagnostic/provider checks remain pending installation, not passed.",
+          "Global/nonregional extension or control-plane object scoped to Central US parents."
+        ],
+        "quotas": []
+      },
+      {
+        "service": "cosmos-db",
+        "resourceType": "Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments",
+        "sku": "not-applicable; data roles",
+        "region": "centralus",
+        "status": "unknown",
+        "evidence": [
+          "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.DocumentDB Registered; observed 2026-10-23T23:37:58.657102+00:00; evidence\\centralus-189819a8\\providers.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --no-pretty-print --output json: exit 0; 33 creates, 13 identity-dependent Unsupported expansions; zero modifies/deletes; observed 2026-10-23T23:39:28.205337+00:00; evidence\\centralus-189819a8\\what-if-full.json",
+          "Passing only the stated metadata/template evaluation, not allocation, runtime or excluded grants.",
+          "az cosmosdb locations list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Central US Online, zones supported, subscription AZ/regular access true; observed 2026-10-23T23:38:06.593292+00:00; evidence\\centralus-189819a8\\cosmos-locations.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-cosmos-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-cosmos.arm.json --no-pretty-print --output json: exit 0; exact zonal autoscale/Continuous7Days independent preview accepted; observed 2026-10-23T23:40:08.604147+00:00; evidence\\centralus-189819a8\\what-if-cosmos.json",
+          "az deployment sub validate --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-validate-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --output json: exit 0; Succeeded but skipped insights, registry, cosmos, broker, vault, foundry, project, environment; observed 2026-10-23T23:41:15.929425+00:00; evidence\\centralus-189819a8\\validate-full.json",
+          "ARM unsupported expansion is not a proven unsupported resource.",
+          "Output-dependent grant/policy/diagnostic/provider checks remain pending installation, not passed."
+        ],
+        "quotas": []
+      },
+      {
+        "service": "diagnostics",
+        "resourceType": "Microsoft.Insights/diagnosticSettings",
+        "sku": "not-applicable; diagnostic routing",
+        "region": "centralus",
+        "status": "unknown",
+        "evidence": [
+          "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Insights Registered; observed 2026-10-23T23:37:58.657102+00:00; evidence\\centralus-189819a8\\providers.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --no-pretty-print --output json: exit 0; 33 creates, 13 identity-dependent Unsupported expansions; zero modifies/deletes; observed 2026-10-23T23:39:28.205337+00:00; evidence\\centralus-189819a8\\what-if-full.json",
+          "Passing only the stated metadata/template evaluation, not allocation, runtime or excluded grants.",
+          "az deployment sub validate --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-validate-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --output json: exit 0; Succeeded but skipped insights, registry, cosmos, broker, vault, foundry, project, environment; observed 2026-10-23T23:41:15.929425+00:00; evidence\\centralus-189819a8\\validate-full.json",
+          "ARM unsupported expansion is not a proven unsupported resource.",
+          "Output-dependent grant/policy/diagnostic/provider checks remain pending installation, not passed.",
+          "Global/nonregional extension or control-plane object scoped to Central US parents."
+        ],
+        "quotas": []
+      },
+      {
+        "service": "resource-group",
+        "resourceType": "Microsoft.Resources/resourceGroups",
+        "sku": "not-applicable",
+        "region": "centralus",
+        "status": "passed",
+        "evidence": [
+          "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Resources Registered; observed 2026-10-23T23:37:58.657102+00:00; evidence\\centralus-189819a8\\providers.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --no-pretty-print --output json: exit 0; 33 creates, 13 identity-dependent Unsupported expansions; zero modifies/deletes; observed 2026-10-23T23:39:28.205337+00:00; evidence\\centralus-189819a8\\what-if-full.json",
+          "Passing only the stated metadata/template evaluation, not allocation, runtime or excluded grants.",
+          "az group exists --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --name rg-resto-scale-agent --output json: exit 0; false; target remains absent; observed 2026-10-23T23:41:18.736431+00:00; evidence\\centralus-189819a8\\group-exists-final.json"
+        ],
+        "quotas": []
+      },
+      {
+        "service": "resource-tags",
+        "resourceType": "Microsoft.Resources/tags",
+        "sku": "not-applicable; global extension",
+        "region": "centralus",
+        "status": "passed",
+        "evidence": [
+          "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Resources Registered; observed 2026-10-23T23:37:58.657102+00:00; evidence\\centralus-189819a8\\providers.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --no-pretty-print --output json: exit 0; 33 creates, 13 identity-dependent Unsupported expansions; zero modifies/deletes; observed 2026-10-23T23:39:28.205337+00:00; evidence\\centralus-189819a8\\what-if-full.json",
+          "Passing only the stated metadata/template evaluation, not allocation, runtime or excluded grants.",
+          "Global/nonregional extension or control-plane object scoped to Central US parents."
+        ],
+        "quotas": []
+      },
+      {
+        "service": "arm-deployments",
+        "resourceType": "Microsoft.Resources/deployments",
+        "sku": "not-applicable; ARM control-plane wrappers",
+        "region": "centralus",
+        "status": "unknown",
+        "evidence": [
+          "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Resources Registered; observed 2026-10-23T23:37:58.657102+00:00; evidence\\centralus-189819a8\\providers.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --no-pretty-print --output json: exit 0; 33 creates, 13 identity-dependent Unsupported expansions; zero modifies/deletes; observed 2026-10-23T23:39:28.205337+00:00; evidence\\centralus-189819a8\\what-if-full.json",
+          "Passing only the stated metadata/template evaluation, not allocation, runtime or excluded grants.",
+          "az deployment sub validate --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-validate-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --output json: exit 0; Succeeded but skipped insights, registry, cosmos, broker, vault, foundry, project, environment; observed 2026-10-23T23:41:15.929425+00:00; evidence\\centralus-189819a8\\validate-full.json",
+          "ARM unsupported expansion is not a proven unsupported resource.",
+          "Output-dependent grant/policy/diagnostic/provider checks remain pending installation, not passed.",
+          "Global/nonregional extension or control-plane object scoped to Central US parents."
+        ],
+        "quotas": []
+      },
+      {
+        "service": "azure-policy",
+        "resourceType": "Microsoft.Authorization/policyAssignments",
+        "sku": "not-applicable; global inherited policy",
+        "region": "centralus",
+        "status": "unknown",
+        "evidence": [
+          "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Authorization Registered; observed 2026-10-23T23:37:58.657102+00:00; evidence\\centralus-189819a8\\providers.json",
+          "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --no-pretty-print --output json: exit 0; 33 creates, 13 identity-dependent Unsupported expansions; zero modifies/deletes; observed 2026-10-23T23:39:28.205337+00:00; evidence\\centralus-189819a8\\what-if-full.json",
+          "Passing only the stated metadata/template evaluation, not allocation, runtime or excluded grants.",
+          "az deployment sub validate --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-validate-189819a8 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-189819a8\\preview-full.arm.json --output json: exit 0; Succeeded but skipped insights, registry, cosmos, broker, vault, foundry, project, environment; observed 2026-10-23T23:41:15.929425+00:00; evidence\\centralus-189819a8\\validate-full.json",
+          "ARM unsupported expansion is not a proven unsupported resource.",
+          "Output-dependent grant/policy/diagnostic/provider checks remain pending installation, not passed.",
+          "az policy assignment list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --disable-scope-strict-match --scope /subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; three policy assignments read; not compliance certification; observed 2026-10-23T23:38:40.307570+00:00; evidence\\centralus-189819a8\\policy.json",
+          "Global/nonregional extension or control-plane object scoped to Central US parents."
+        ],
+        "quotas": []
+      }
+    ],
+    "deploymentReady": false,
+    "limitations": [
+      "Exact model/zones/security/SKUs retained; unknown quotas/grants/provider validation are not passed.",
+      "Independent previews do not cover excluded grants or reserve capacity.",
+      "Directory installation and actual cloud deployment remain unauthorized.",
+      "Retained observation times are not refreshed by finalization; recheck eligibility before provisioning."
+    ]
+  },
+  "eastusPreparation": {
+    "scope": {
+      "account": "petender@microsoft.com",
+      "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+      "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+      "environment": "resto-scale-agent",
+      "resourceGroup": "rg-resto-scale-agent",
+      "region": "eastus"
+    },
+    "checkedAtUtc": "2026-10-23T22:52:26.482270+00:00",
+    "mutationsPerformed": false,
+    "fullWhatIf": {
+      "status": "Succeeded",
+      "counts": {
+        "Create": 9
+      },
+      "skippedModules": [
+        "insights",
+        "registry",
+        "cosmos",
+        "broker",
+        "vault",
+        "foundry",
+        "project",
+        "environment"
+      ]
+    },
+    "foundryConflict": "ERROR: InvalidTemplateDeployment - The template deployment 'resto-foundry-c99de84d' is not valid according to the validation procedure. The following resource provider(s) - 'Microsoft.CognitiveServices/accounts (2025-06-01)' reported preflight validation errors. Tracking id is 'cda994e9-b3a2-4174-9674-f2edc932e32e'. See inner errors for details.\nCustomDomainInUse - Please pick a different name. The subdomain name 'ai-resto-4tvlzr5zf2rxi' is not available as it's already used by a resource. If the resource using the name was deleted in the last 48 hours, you may need to purge the deleted resource. Learn more at \"https://go.microsoft.com/fwlink/?linkid=2215493\"\n",
+    "evidenceDirectory": "evidence/eastus-c99de84d",
+    "priorEvidence": "preparation/recoveryPreparation/results retained as historical East US 2 evidence",
+    "appServiceDiagnostic": {
+      "resourceType": "Microsoft.Web/serverfarms",
+      "region": "eastus",
+      "sku": "B2",
+      "applicableToThisScenario": false,
+      "plannedDemand": 0,
+      "quota": {
+        "name": "B2",
+        "limit": 0,
+        "currentValue": 0
+      },
+      "evidence": "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.Web/locations/eastus/usages?api-version=2024-11-01 --output json: exit 0; Microsoft.Web B2 VMs worker quota limit 0, current 0. Observed 2026-10-23T22:45:52.283171+00:00; evidence/eastus-c99de84d/web-usage.json",
+      "conclusion": "Zero permits no positive worker demand; not a Compute B-family quota or an ACA quota. No equip-ai workspace inspected or changed and no readiness claimed for it."
+    }
+  },
+  "historicalEvidenceNote": "Earlier public results, preparation objects, regionalReadiness and foundationDeployment retain their dated observations and fingerprints. The new consolidatedInstallation object supersedes earlier absence, authorization and quota statements for current state: shared deployment now Succeeded, real new quota is 0/500, and operator-only delegated consent is denied. No earlier failure, approval or observation timestamp is erased or presented as fresh readiness.",
+  "regionalReadinessHistory": [
+    {
+      "scope": {
+        "account": "petender@microsoft.com",
+        "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+        "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+        "environment": "resto-scale-agent",
+        "resourceGroup": "rg-resto-scale-agent",
+        "region": "eastus"
+      },
+      "checkedAtUtc": "2026-10-23T22:52:26.482270+00:00",
+      "infrastructureFingerprint": "38b48adc1404bb2431f16c6cf72cfd0e4dc98c5e9c764d993320321bcaae81f0",
+      "checks": [
+        {
+          "service": "cosmos-db",
+          "resourceType": "Microsoft.DocumentDB/databaseAccounts",
+          "sku": "Standard/NoSQL; autoscale max 4000 RU/s; Continuous7Days",
+          "region": "eastus",
+          "status": "blocked",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.DocumentDB Registered. Observed 2026-10-23T22:45:33.122038+00:00; evidence/eastus-c99de84d/providers.json",
+            "az cosmosdb locations list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; East US Online, zones supported, subscription AZ access FALSE and regular access FALSE. Observed 2026-10-23T22:45:28.838667+00:00; evidence/eastus-c99de84d/cosmos-locations.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location eastus --name resto-cosmos-c99de84d --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\eastus-c99de84d\\preview-cosmos.arm.json --no-pretty-print --output json: exit 0; partial independent preview Succeeded; eligibility denial still blocks. Observed 2026-10-23T22:48:06.917002+00:00; evidence/eastus-c99de84d/what-if-cosmos.json"
+          ],
+          "quotas": [],
+          "zoneRedundant": true,
+          "properties": {
+            "backupStorageRedundancies": [
+              "Geo",
+              "Zone",
+              "Local"
+            ],
+            "isResidencyRestricted": false,
+            "isSubscriptionRegionAccessAllowedForAz": false,
+            "isSubscriptionRegionAccessAllowedForRegular": false,
+            "status": "Online",
+            "supportsAvailabilityZone": true
+          },
+          "features": {
+            "serverless": false,
+            "autoscaleMaxRU": 4000,
+            "backupPolicy": "Continuous7Days"
+          }
+        },
+        {
+          "service": "cosmos-db",
+          "resourceType": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases",
+          "sku": "shared autoscale 400-4000 RU/s",
+          "region": "eastus",
+          "status": "blocked",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.DocumentDB Registered. Observed 2026-10-23T22:45:33.122038+00:00; evidence/eastus-c99de84d/providers.json",
+            "az cosmosdb locations list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; East US Online, zones supported, subscription AZ access FALSE and regular access FALSE. Observed 2026-10-23T22:45:28.838667+00:00; evidence/eastus-c99de84d/cosmos-locations.json",
+            "Parent account regional access denied."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "cosmos-db",
+          "resourceType": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers",
+          "sku": "3 NoSQL containers; /aggregateKey",
+          "region": "eastus",
+          "status": "blocked",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.DocumentDB Registered. Observed 2026-10-23T22:45:33.122038+00:00; evidence/eastus-c99de84d/providers.json",
+            "az cosmosdb locations list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; East US Online, zones supported, subscription AZ access FALSE and regular access FALSE. Observed 2026-10-23T22:45:28.838667+00:00; evidence/eastus-c99de84d/cosmos-locations.json",
+            "Parent account regional access denied."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "foundry",
+          "resourceType": "Microsoft.CognitiveServices/accounts",
+          "sku": "AIServices/S0",
+          "region": "eastus",
+          "status": "blocked",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.CognitiveServices Registered. Observed 2026-10-23T22:45:33.122038+00:00; evidence/eastus-c99de84d/providers.json",
+            "az cognitiveservices account list-skus --kind AIServices --location eastus --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; AIServices S0 East US listed, restrictions empty. Observed 2026-10-23T22:48:54.756155+00:00; evidence/eastus-c99de84d/foundry-skus.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location eastus --name resto-foundry-c99de84d --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\eastus-c99de84d\\preview-foundry.arm.json --no-pretty-print --output json: exit 1; CustomDomainInUse: ai-resto-4tvlzr5zf2rxi. Observed 2026-10-23T22:48:26.781275+00:00; evidence/eastus-c99de84d/what-if-foundry.json",
+            "No purge, adoption, alternate name, lookup outside target scope or resource creation attempted."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "foundry",
+          "resourceType": "Microsoft.CognitiveServices/accounts/deployments",
+          "sku": "gpt-5.4-mini/2026-03-17/GlobalStandard; capacity 100",
+          "region": "eastus",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.CognitiveServices Registered. Observed 2026-10-23T22:45:33.122038+00:00; evidence/eastus-c99de84d/providers.json",
+            "az cognitiveservices model list --location eastus --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; exact AIServices/S0 model/version GA, agentsV2/responses true. Observed 2026-10-23T22:45:33.843322+00:00; evidence/eastus-c99de84d/model-eligibility.json",
+            "az cognitiveservices usage list --location eastus --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; global quota limit 1000.0, used 100.0, additional 100. Observed 2026-10-23T22:45:30.319290+00:00; evidence/eastus-c99de84d/model-quota.json",
+            "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/eastus/modelCapacities?api-version=2024-10-01 --output json --url-parameters modelFormat=OpenAI modelName=gpt-5.4-mini modelVersion=2026-03-17: exit 0; East US availableCapacity 900. Observed 2026-10-23T22:48:49.573065+00:00; evidence/eastus-c99de84d/model-capacity-regional-corrected.json",
+            "Model metadata eligibility only; no capacity reservation, provisioning or inference proof."
+          ],
+          "quotas": [
+            {
+              "name": "OpenAI.GlobalStandard.gpt-5.4-mini",
+              "limit": 1000.0,
+              "currentValue": 100.0,
+              "required": 100
+            }
+          ]
+        },
+        {
+          "service": "foundry",
+          "resourceType": "Microsoft.CognitiveServices/accounts/projects",
+          "sku": "not-applicable; direct child restaurant",
+          "region": "eastus",
+          "status": "unknown",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.CognitiveServices Registered. Observed 2026-10-23T22:45:33.122038+00:00; evidence/eastus-c99de84d/providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location eastus --name resto-full-c99de84d --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\eastus-c99de84d\\preview-full.arm.json --no-pretty-print --output json: exit 0; Succeeded; 9 evaluated creates, 0 modifies/deletes; 8 skipped modules. Observed 2026-10-23T22:48:07.705949+00:00; evidence/eastus-c99de84d/what-if-full.json",
+            "Project skipped; parent account blocked; new identity outputs not fabricated."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "foundry",
+          "resourceType": "Microsoft.CognitiveServices/accounts/projects/agents",
+          "sku": "not-applicable; Basic setup, prompt agents, Responses and app-executed Functions",
+          "region": "eastus",
+          "status": "unknown",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.CognitiveServices Registered. Observed 2026-10-23T22:45:33.122038+00:00; evidence/eastus-c99de84d/providers.json",
+            "az cognitiveservices model list --location eastus --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; selected exact model exposes agentsV2/responses. Observed 2026-10-23T22:45:33.843322+00:00; evidence/eastus-c99de84d/model-eligibility.json",
+            "Microsoft Learn limits-quotas-regions: East US Agents/Responses/Function supported (read 2026-10-23).",
+            "No installed project exists; subscription-specific agent/tool runtime acceptance remains pending."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "container-apps",
+          "resourceType": "Microsoft.App/managedEnvironments",
+          "sku": "workload profiles/Consumption; zoneRedundant=true",
+          "region": "eastus",
+          "status": "unknown",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.App Registered. Observed 2026-10-23T22:45:33.122038+00:00; evidence/eastus-c99de84d/providers.json",
+            "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/locations/eastus/availableManagedEnvironmentsWorkloadProfileTypes?api-version=2025-07-01 --output json: exit 0; Consumption explicitly listed for East US. Observed 2026-10-23T22:45:33.586105+00:00; evidence/eastus-c99de84d/aca-profiles.json",
+            "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/locations/eastus/usages?api-version=2025-07-01 --output json: exit 0; ManagedEnvironmentCount 0/50; demand 1. Observed 2026-10-23T22:45:32.295938+00:00; evidence/eastus-c99de84d/aca-usage.json",
+            "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/locations?api-version=2022-12-01 --output json --query value[?name=='eastus']: exit 0; East US has subscription logical zones 1, 2, 3. Observed 2026-10-23T22:48:52.622702+00:00; evidence/eastus-c99de84d/region-zones-corrected.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location eastus --name resto-full-c99de84d --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\eastus-c99de84d\\preview-full.arm.json --no-pretty-print --output json: exit 0; Succeeded; 9 evaluated creates, 0 modifies/deletes; 8 skipped modules. Observed 2026-10-23T22:48:07.705949+00:00; evidence/eastus-c99de84d/what-if-full.json",
+            "Environment skipped; managed-environment-specific Consumption core quota unavailable before creation."
+          ],
+          "quotas": [
+            {
+              "name": "ManagedEnvironmentCount",
+              "limit": 50,
+              "currentValue": 0,
+              "required": 1
+            }
+          ],
+          "zoneRedundant": true
+        },
+        {
+          "service": "container-apps",
+          "resourceType": "Microsoft.App/containerApps",
+          "sku": "Consumption; each 0.5 vCPU/1 GiB; web max12, chat max6, worker max10",
+          "region": "eastus",
+          "status": "unknown",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.App Registered. Observed 2026-10-23T22:45:33.122038+00:00; evidence/eastus-c99de84d/providers.json",
+            "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/locations/eastus/availableManagedEnvironmentsWorkloadProfileTypes?api-version=2025-07-01 --output json: exit 0; Consumption available; profile description is not environment quota. Observed 2026-10-23T22:45:33.586105+00:00; evidence/eastus-c99de84d/aca-profiles.json",
+            "28 max replicas = 14 vCPU/28 GiB; conservative old/new revision overlap 56 replicas = 28 vCPU/56 GiB.",
+            "Single revision mode retained; no observed core quota for nonexistent environment. Unknown, not passing.",
+            "Runtime what-if pending actual environment outputs, agent versions, staff audience and image digest.",
+            "No Microsoft.Compute VM/VMSS or Microsoft.Web plan is planned; their quotas cannot prove ACA readiness."
+          ],
+          "quotas": [],
+          "demand": {
+            "vcpus": 28,
+            "instances": 56,
+            "steadyMaxVcpus": 14,
+            "steadyMaxInstances": 28
+          }
+        },
+        {
+          "service": "container-registry",
+          "resourceType": "Microsoft.ContainerRegistry/registries",
+          "sku": "Basic",
+          "region": "eastus",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.ContainerRegistry Registered. Observed 2026-10-23T22:45:33.122038+00:00; evidence/eastus-c99de84d/providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location eastus --name resto-registry-c99de84d --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\eastus-c99de84d\\preview-registry.arm.json --no-pretty-print --output json: exit 0; independent partial provider preview Succeeded; grants/diagnostics excluded. Observed 2026-10-23T22:48:06.811000+00:00; evidence/eastus-c99de84d/what-if-registry.json",
+            "Configuration eligibility only; not reserved capacity or deployed acceptance."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "service-bus",
+          "resourceType": "Microsoft.ServiceBus/namespaces",
+          "sku": "Premium/1 MU/1 partition; zones enabled",
+          "region": "eastus",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.ServiceBus Registered. Observed 2026-10-23T22:45:33.122038+00:00; evidence/eastus-c99de84d/providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location eastus --name resto-broker-c99de84d --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\eastus-c99de84d\\preview-broker.arm.json --no-pretty-print --output json: exit 0; independent partial provider preview Succeeded; grants/diagnostics excluded. Observed 2026-10-23T22:48:26.304880+00:00; evidence/eastus-c99de84d/what-if-broker.json",
+            "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku?api-version=2024-01-01 --output json: exit 0; Premium East US supportsSKU/zones/partitions all true. Observed 2026-10-23T22:45:35.872812+00:00; evidence/eastus-c99de84d/servicebus-skus.json",
+            "Configuration eligibility only; not reserved capacity or deployed acceptance."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "key-vault",
+          "resourceType": "Microsoft.KeyVault/vaults",
+          "sku": "standard; RBAC, purge protection, soft delete",
+          "region": "eastus",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.KeyVault Registered. Observed 2026-10-23T22:45:33.122038+00:00; evidence/eastus-c99de84d/providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location eastus --name resto-vault-c99de84d --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\eastus-c99de84d\\preview-vault.arm.json --no-pretty-print --output json: exit 0; independent partial provider preview Succeeded; grants/diagnostics excluded. Observed 2026-10-23T22:48:26.225769+00:00; evidence/eastus-c99de84d/what-if-vault.json",
+            "Configuration eligibility only; not reserved capacity or deployed acceptance."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "service-bus",
+          "resourceType": "Microsoft.ServiceBus/namespaces/queues",
+          "sku": "Premium kitchen; sessions + duplicate detection; 1 queue",
+          "region": "eastus",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.ServiceBus Registered. Observed 2026-10-23T22:45:33.122038+00:00; evidence/eastus-c99de84d/providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location eastus --name resto-broker-c99de84d --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\eastus-c99de84d\\preview-broker.arm.json --no-pretty-print --output json: exit 0; namespace and kitchen queue evaluated; grants excluded, unchanged session/dedup settings. Observed 2026-10-23T22:48:26.304880+00:00; evidence/eastus-c99de84d/what-if-broker.json"
+          ],
+          "quotas": []
+        },
+        {
+          "service": "key-vault",
+          "resourceType": "Microsoft.KeyVault/vaults/keys",
+          "sku": "software RSA/3072; sign/verify; 180-day expiry/90-day rotation",
+          "region": "eastus",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.KeyVault Registered. Observed 2026-10-23T22:45:33.122038+00:00; evidence/eastus-c99de84d/providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location eastus --name resto-vault-c99de84d --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\eastus-c99de84d\\preview-vault.arm.json --no-pretty-print --output json: exit 0; vault and key evaluated; Crypto User grant excluded, not validated. Observed 2026-10-23T22:48:26.225769+00:00; evidence/eastus-c99de84d/what-if-vault.json"
+          ],
+          "quotas": []
+        },
+        {
+          "service": "managed-identity",
+          "resourceType": "Microsoft.ManagedIdentity/userAssignedIdentities",
+          "sku": "not-applicable; 4 distinct identities",
+          "region": "eastus",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.ManagedIdentity Registered. Observed 2026-10-23T22:45:33.122038+00:00; evidence/eastus-c99de84d/providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location eastus --name resto-full-c99de84d --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\eastus-c99de84d\\preview-full.arm.json --no-pretty-print --output json: exit 0; Succeeded; 9 evaluated creates, 0 modifies/deletes; 8 skipped modules. Observed 2026-10-23T22:48:07.705949+00:00; evidence/eastus-c99de84d/what-if-full.json",
+            "Four exact planned identities evaluated; no principal/client IDs fabricated."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "virtual-network",
+          "resourceType": "Microsoft.Network/virtualNetworks",
+          "sku": "not-applicable; 10.74.0.0/22",
+          "region": "eastus",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Network Registered. Observed 2026-10-23T22:45:33.122038+00:00; evidence/eastus-c99de84d/providers.json",
+            "az network list-usages --location eastus --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; VirtualNetworks 0/1000; additional 1. Observed 2026-10-23T22:47:53.090381+00:00; evidence/eastus-c99de84d/network-usage.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location eastus --name resto-full-c99de84d --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\eastus-c99de84d\\preview-full.arm.json --no-pretty-print --output json: exit 0; Succeeded; 9 evaluated creates, 0 modifies/deletes; 8 skipped modules. Observed 2026-10-23T22:48:07.705949+00:00; evidence/eastus-c99de84d/what-if-full.json"
+          ],
+          "quotas": [
+            {
+              "name": "VirtualNetworks",
+              "limit": 1000,
+              "currentValue": 0,
+              "required": 1
+            }
+          ]
+        },
+        {
+          "service": "virtual-network",
+          "resourceType": "Microsoft.Network/virtualNetworks/subnets",
+          "sku": "not-applicable; /23; Microsoft.App/environments delegation",
+          "region": "eastus",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Network Registered. Observed 2026-10-23T22:45:33.122038+00:00; evidence/eastus-c99de84d/providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location eastus --name resto-full-c99de84d --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\eastus-c99de84d\\preview-full.arm.json --no-pretty-print --output json: exit 0; Succeeded; 9 evaluated creates, 0 modifies/deletes; 8 skipped modules. Observed 2026-10-23T22:48:07.705949+00:00; evidence/eastus-c99de84d/what-if-full.json"
+          ],
+          "quotas": []
+        },
+        {
+          "service": "log-analytics",
+          "resourceType": "Microsoft.OperationalInsights/workspaces",
+          "sku": "PerGB2018; retention 30 days",
+          "region": "eastus",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.OperationalInsights Registered. Observed 2026-10-23T22:45:33.122038+00:00; evidence/eastus-c99de84d/providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location eastus --name resto-full-c99de84d --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\eastus-c99de84d\\preview-full.arm.json --no-pretty-print --output json: exit 0; Succeeded; 9 evaluated creates, 0 modifies/deletes; 8 skipped modules. Observed 2026-10-23T22:48:07.705949+00:00; evidence/eastus-c99de84d/what-if-full.json",
+            "Workspace evaluated in full preview; ingestion volume and runtime acceptance not tested."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "application-insights",
+          "resourceType": "Microsoft.Insights/components",
+          "sku": "workspace-based; local auth disabled; 20% sampling",
+          "region": "eastus",
+          "status": "unknown",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Insights Registered. Observed 2026-10-23T22:45:33.122038+00:00; evidence/eastus-c99de84d/providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location eastus --name resto-full-c99de84d --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\eastus-c99de84d\\preview-full.arm.json --no-pretty-print --output json: exit 0; Succeeded; 9 evaluated creates, 0 modifies/deletes; 8 skipped modules. Observed 2026-10-23T22:48:07.705949+00:00; evidence/eastus-c99de84d/what-if-full.json",
+            "insights skipped because workspace/identity outputs are unresolved; not claimed validated."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "azure-rbac",
+          "resourceType": "Microsoft.Authorization/roleAssignments",
+          "sku": "not-applicable; global extension resource",
+          "region": "eastus",
+          "status": "unknown",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Authorization Registered. Observed 2026-10-23T22:45:33.122038+00:00; evidence/eastus-c99de84d/providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location eastus --name resto-full-c99de84d --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\eastus-c99de84d\\preview-full.arm.json --no-pretty-print --output json: exit 0; Succeeded; 9 evaluated creates, 0 modifies/deletes; 8 skipped modules. Observed 2026-10-23T22:48:07.705949+00:00; evidence/eastus-c99de84d/what-if-full.json",
+            "Nonregional extension bound to East US target resources; no independent deployment region.",
+            "New-resource identity/output-dependent checks pending; independent previews exclude these, not validate them."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "cosmos-db",
+          "resourceType": "Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments",
+          "sku": "not-applicable; scoped data roles",
+          "region": "eastus",
+          "status": "unknown",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.DocumentDB Registered. Observed 2026-10-23T22:45:33.122038+00:00; evidence/eastus-c99de84d/providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location eastus --name resto-full-c99de84d --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\eastus-c99de84d\\preview-full.arm.json --no-pretty-print --output json: exit 0; Succeeded; 9 evaluated creates, 0 modifies/deletes; 8 skipped modules. Observed 2026-10-23T22:48:07.705949+00:00; evidence/eastus-c99de84d/what-if-full.json",
+            "Nonregional extension bound to East US target resources; no independent deployment region.",
+            "New-resource identity/output-dependent checks pending; independent previews exclude these, not validate them."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "diagnostics",
+          "resourceType": "Microsoft.Insights/diagnosticSettings",
+          "sku": "not-applicable; workspace diagnostic routing",
+          "region": "eastus",
+          "status": "unknown",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Insights Registered. Observed 2026-10-23T22:45:33.122038+00:00; evidence/eastus-c99de84d/providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location eastus --name resto-full-c99de84d --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\eastus-c99de84d\\preview-full.arm.json --no-pretty-print --output json: exit 0; Succeeded; 9 evaluated creates, 0 modifies/deletes; 8 skipped modules. Observed 2026-10-23T22:48:07.705949+00:00; evidence/eastus-c99de84d/what-if-full.json",
+            "Nonregional extension bound to East US target resources; no independent deployment region.",
+            "New-resource identity/output-dependent checks pending; independent previews exclude these, not validate them."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "resource-group",
+          "resourceType": "Microsoft.Resources/resourceGroups",
+          "sku": "not-applicable",
+          "region": "eastus",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Resources Registered. Observed 2026-10-23T22:45:33.122038+00:00; evidence/eastus-c99de84d/providers.json",
+            "az group exists --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --name rg-resto-scale-agent --output json: exit 0; false; exact group remains absent. Observed 2026-10-23T22:49:50.458802+00:00; evidence/eastus-c99de84d/group-exists-final.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location eastus --name resto-full-c99de84d --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\eastus-c99de84d\\preview-full.arm.json --no-pretty-print --output json: exit 0; Succeeded; 9 evaluated creates, 0 modifies/deletes; 8 skipped modules. Observed 2026-10-23T22:48:07.705949+00:00; evidence/eastus-c99de84d/what-if-full.json"
+          ],
+          "quotas": []
+        },
+        {
+          "service": "resource-tags",
+          "resourceType": "Microsoft.Resources/tags",
+          "sku": "not-applicable; global extension resource",
+          "region": "eastus",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Resources Registered. Observed 2026-10-23T22:45:33.122038+00:00; evidence/eastus-c99de84d/providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location eastus --name resto-full-c99de84d --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\eastus-c99de84d\\preview-full.arm.json --no-pretty-print --output json: exit 0; Succeeded; 9 evaluated creates, 0 modifies/deletes; 8 skipped modules. Observed 2026-10-23T22:48:07.705949+00:00; evidence/eastus-c99de84d/what-if-full.json",
+            "Nonregional tags extension inherits target resource scope; exact approved tags retained."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "arm-deployments",
+          "resourceType": "Microsoft.Resources/deployments",
+          "sku": "not-applicable; ARM control-plane wrappers",
+          "region": "eastus",
+          "status": "unknown",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Resources Registered. Observed 2026-10-23T22:45:33.122038+00:00; evidence/eastus-c99de84d/providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location eastus --name resto-full-c99de84d --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\eastus-c99de84d\\preview-full.arm.json --no-pretty-print --output json: exit 0; Succeeded; 9 evaluated creates, 0 modifies/deletes; 8 skipped modules. Observed 2026-10-23T22:48:07.705949+00:00; evidence/eastus-c99de84d/what-if-full.json",
+            "Nonregional group-level deployment records; eight nested module evaluations skipped."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "azure-policy",
+          "resourceType": "Microsoft.Authorization/policyAssignments",
+          "sku": "not-applicable; global inherited policy",
+          "region": "eastus",
+          "status": "unknown",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Authorization Registered. Observed 2026-10-23T22:45:33.122038+00:00; evidence/eastus-c99de84d/providers.json",
+            "az policy assignment list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --disable-scope-strict-match --scope /subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; 3 assignments enumerated; actual full preview skips 8 modules. Observed 2026-10-23T22:45:37.077238+00:00; evidence/eastus-c99de84d/policy.json",
+            "No claim that skipped modules passed policy; independent previews accepted only their reduced scope."
+          ],
+          "quotas": []
+        }
+      ],
+      "deploymentReady": false,
+      "limitations": [
+        "Prior East US 2 blocker superseded by target change, never verified resolved.",
+        "No other scenario workspace inspected or changed; no outside-scope regional capacity queries.",
+        "All checks are observations, not capacity reservations; passing partial previews do not override failures."
+      ]
+    },
+    {
+      "scope": {
+        "account": "petender@microsoft.com",
+        "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+        "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+        "environment": "resto-scale-agent",
+        "resourceGroup": "rg-resto-scale-agent",
+        "region": "centralus"
+      },
+      "checkedAtUtc": "2026-10-23T23:16:55.383763+00:00",
+      "infrastructureFingerprint": "38b48adc1404bb2431f16c6cf72cfd0e4dc98c5e9c764d993320321bcaae81f0",
+      "checks": [
+        {
+          "service": "cosmos-db",
+          "resourceType": "Microsoft.DocumentDB/databaseAccounts",
+          "sku": "Standard/NoSQL; autoscale max 4000 RU/s; Continuous7Days",
+          "region": "centralus",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.DocumentDB Registered. Observed 2026-10-23T23:10:10.688148+00:00; evidence\\centralus-91633e9e\\providers.json",
+            "az cosmosdb locations list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Central US Online; zones supported; subscription AZ and regular access TRUE. Observed 2026-10-23T23:10:18.814320+00:00; evidence\\centralus-91633e9e\\cosmos-locations.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-cosmos-91633e9e --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-91633e9e\\preview-cosmos.arm.json --no-pretty-print --output json: exit 0; exact zone/autoscale/Continuous7Days configuration accepted; grants excluded. Observed 2026-10-23T23:12:03.355276+00:00; evidence\\centralus-91633e9e\\what-if-cosmos.json",
+            "Provisioned autoscale, not serverless. Region allows Zone backup redundancy; actual capacity not reserved."
+          ],
+          "quotas": [],
+          "zoneRedundant": true,
+          "properties": {
+            "backupStorageRedundancies": [
+              "Geo",
+              "Zone",
+              "Local"
+            ],
+            "isResidencyRestricted": false,
+            "isSubscriptionRegionAccessAllowedForAz": true,
+            "isSubscriptionRegionAccessAllowedForRegular": true,
+            "status": "Online",
+            "supportsAvailabilityZone": true
+          },
+          "features": {
+            "serverless": false,
+            "autoscaleMaxRU": 4000,
+            "backupPolicy": "Continuous7Days"
+          }
+        },
+        {
+          "service": "cosmos-db",
+          "resourceType": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases",
+          "sku": "shared autoscale 400-4000 RU/s",
+          "region": "centralus",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.DocumentDB Registered. Observed 2026-10-23T23:10:10.688148+00:00; evidence\\centralus-91633e9e\\providers.json",
+            "az cosmosdb locations list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Central US Online; zones supported; subscription AZ and regular access TRUE. Observed 2026-10-23T23:10:18.814320+00:00; evidence\\centralus-91633e9e\\cosmos-locations.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-cosmos-91633e9e --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-91633e9e\\preview-cosmos.arm.json --no-pretty-print --output json: exit 0; exact database/three containers evaluated; data roles excluded. Observed 2026-10-23T23:12:03.355276+00:00; evidence\\centralus-91633e9e\\what-if-cosmos.json"
+          ],
+          "quotas": []
+        },
+        {
+          "service": "cosmos-db",
+          "resourceType": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers",
+          "sku": "3 NoSQL containers; /aggregateKey",
+          "region": "centralus",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.DocumentDB Registered. Observed 2026-10-23T23:10:10.688148+00:00; evidence\\centralus-91633e9e\\providers.json",
+            "az cosmosdb locations list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Central US Online; zones supported; subscription AZ and regular access TRUE. Observed 2026-10-23T23:10:18.814320+00:00; evidence\\centralus-91633e9e\\cosmos-locations.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-cosmos-91633e9e --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-91633e9e\\preview-cosmos.arm.json --no-pretty-print --output json: exit 0; exact database/three containers evaluated; data roles excluded. Observed 2026-10-23T23:12:03.355276+00:00; evidence\\centralus-91633e9e\\what-if-cosmos.json"
+          ],
+          "quotas": []
+        },
+        {
+          "service": "foundry",
+          "resourceType": "Microsoft.CognitiveServices/accounts",
+          "sku": "AIServices/S0",
+          "region": "centralus",
+          "status": "blocked",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.CognitiveServices Registered. Observed 2026-10-23T23:10:10.688148+00:00; evidence\\centralus-91633e9e\\providers.json",
+            "az cognitiveservices account list-skus --kind AIServices --location centralus --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; AIServices S0 Central US listed; restrictions empty. Observed 2026-10-23T23:10:32.992456+00:00; evidence\\centralus-91633e9e\\foundry-skus.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-foundry-91633e9e --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-91633e9e\\preview-foundry.arm.json --no-pretty-print --output json: exit 1; CustomDomainInUse for exact proposed ai-resto-4tvlzr5zf2rxi. Observed 2026-10-23T23:13:02.125203+00:00; evidence\\centralus-91633e9e\\what-if-foundry.json",
+            "Conflict is name-specific, not proof that Central US lacks Foundry support. No purge/adoption/rename attempted."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "foundry",
+          "resourceType": "Microsoft.CognitiveServices/accounts/deployments",
+          "sku": "gpt-5.4-mini/2026-03-17/GlobalStandard; capacity 100",
+          "region": "centralus",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.CognitiveServices Registered. Observed 2026-10-23T23:10:10.688148+00:00; evidence\\centralus-91633e9e\\providers.json",
+            "az cognitiveservices model list --location centralus --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; exact model/version GA; agentsV2/responses true; GlobalStandard listed. Observed 2026-10-23T23:10:27.102066+00:00; evidence\\centralus-91633e9e\\model-eligibility.json",
+            "az cognitiveservices usage list --location centralus --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; quota current 100.0, limit 1000.0, additional demand 100. Observed 2026-10-23T23:10:21.680985+00:00; evidence\\centralus-91633e9e\\model-quota.json",
+            "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/centralus/modelCapacities?api-version=2024-10-01 --output json --url-parameters modelFormat=OpenAI modelName=gpt-5.4-mini modelVersion=2026-03-17: exit 0; Central US availableCapacity 900; not reserved. Observed 2026-10-23T23:10:30.880143+00:00; evidence\\centralus-91633e9e\\model-capacity.json",
+            "Eligibility metadata only; blocked parent prevents deployment. Raw SKU rateLimits retained, no measured RPM claim."
+          ],
+          "quotas": [
+            {
+              "name": "OpenAI.GlobalStandard.gpt-5.4-mini",
+              "limit": 1000.0,
+              "currentValue": 100.0,
+              "required": 100
+            }
+          ]
+        },
+        {
+          "service": "foundry",
+          "resourceType": "Microsoft.CognitiveServices/accounts/projects",
+          "sku": "not-applicable; direct child restaurant",
+          "region": "centralus",
+          "status": "unknown",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.CognitiveServices Registered. Observed 2026-10-23T23:10:10.688148+00:00; evidence\\centralus-91633e9e\\providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-91633e9e --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-91633e9e\\preview-full.arm.json --no-pretty-print --output json: exit 0; Succeeded; 9 evaluated creates, 0 modifies/deletes; 8 skipped modules. Observed 2026-10-23T23:11:24.465917+00:00; evidence\\centralus-91633e9e\\what-if-full.json",
+            "Project skipped; parent account name blocked; real identity outputs not fabricated."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "foundry",
+          "resourceType": "Microsoft.CognitiveServices/accounts/projects",
+          "sku": "not-applicable; Basic setup, three prompt agents; Responses/app-executed Functions",
+          "region": "centralus",
+          "status": "unknown",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.CognitiveServices Registered. Observed 2026-10-23T23:10:10.688148+00:00; evidence\\centralus-91633e9e\\providers.json",
+            "az cognitiveservices model list --location centralus --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; exact model agentsV2/responses true. Observed 2026-10-23T23:10:27.102066+00:00; evidence\\centralus-91633e9e\\model-eligibility.json",
+            "evidence\\centralus-91633e9e\\public-feature-evidence.json: current Learn Central US Agents/Responses/Function yes.",
+            "Public feature support checked; installed-project quota/tool acceptance remains unverified, not passed.",
+            "Agents are project data-plane objects, not an additional invented ARM resource type."
+          ],
+          "quotas": [],
+          "feature": "Foundry Agent Service data-plane prompt agents and function tools"
+        },
+        {
+          "service": "container-apps",
+          "resourceType": "Microsoft.App/managedEnvironments",
+          "sku": "workload profiles/Consumption; zoneRedundant=true",
+          "region": "centralus",
+          "status": "unknown",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.App Registered. Observed 2026-10-23T23:10:10.688148+00:00; evidence\\centralus-91633e9e\\providers.json",
+            "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/locations/centralus/availableManagedEnvironmentsWorkloadProfileTypes?api-version=2025-07-01 --output json: exit 0; Consumption explicitly listed for Central US; profile cores are not environment quota. Observed 2026-10-23T23:10:36.847780+00:00; evidence\\centralus-91633e9e\\aca-profiles.json",
+            "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/locations/centralus/usages?api-version=2025-07-01 --output json: exit 0; ManagedEnvironmentCount 0/50, demand 1. Observed 2026-10-23T23:10:34.765762+00:00; evidence\\centralus-91633e9e\\aca-usage.json",
+            "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/locations?api-version=2022-12-01 --output json --query value[?name=='centralus']: exit 0; Central US subscription logical zones 1, 2, 3. Observed 2026-10-23T23:11:07.676531+00:00; evidence\\centralus-91633e9e\\region-zones.json",
+            "az containerapp env list-usages --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --resource-group rg-resto-scale-agent --name cae-resto-4tvlzr5zf2rxi --output json: exit 1; ResourceGroupNotFound; future environment Consumption core quota UNKNOWN. Observed 2026-10-23T23:13:59.892102+00:00; evidence\\centralus-91633e9e\\aca-environment-usage.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-91633e9e --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-91633e9e\\preview-full.arm.json --no-pretty-print --output json: exit 0; Succeeded; 9 evaluated creates, 0 modifies/deletes; 8 skipped modules. Observed 2026-10-23T23:11:24.465917+00:00; evidence\\centralus-91633e9e\\what-if-full.json",
+            "No resource created to discover quota; documented per-environment limit cannot be assumed."
+          ],
+          "quotas": [
+            {
+              "name": "ManagedEnvironmentCount",
+              "limit": 50,
+              "currentValue": 0,
+              "required": 1
+            }
+          ],
+          "zoneRedundant": true
+        },
+        {
+          "service": "container-apps",
+          "resourceType": "Microsoft.App/containerApps",
+          "sku": "Consumption; 0.5 vCPU/1 GiB each; web 3-12, chat 3-6, worker 3-10",
+          "region": "centralus",
+          "status": "unknown",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.App Registered. Observed 2026-10-23T23:10:10.688148+00:00; evidence\\centralus-91633e9e\\providers.json",
+            "az containerapp env list-usages --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --resource-group rg-resto-scale-agent --name cae-resto-4tvlzr5zf2rxi --output json: exit 1; no actual Managed Environment Consumption Cores limit available. Observed 2026-10-23T23:13:59.892102+00:00; evidence\\centralus-91633e9e\\aca-environment-usage.json",
+            "28 max replicas = 14 vCPU/28 GiB; conservative rollout overlap 56 replicas = 28 vCPU/56 GiB.",
+            "Runtime exact what-if needs real environment outputs, image digest, installed agent versions and staff audience.",
+            "No Microsoft.Web/serverfarms or Microsoft.Compute VM/VMSS planned; B2/VM-family quotas are not ACA quotas."
+          ],
+          "quotas": [],
+          "demand": {
+            "vcpus": 28,
+            "instances": 56,
+            "steadyMaxVcpus": 14,
+            "steadyMaxInstances": 28
+          }
+        },
+        {
+          "service": "container-registry",
+          "resourceType": "Microsoft.ContainerRegistry/registries",
+          "sku": "Basic; authenticated public TLS/Entra; admin/anonymous disabled",
+          "region": "centralus",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.ContainerRegistry Registered. Observed 2026-10-23T23:10:10.688148+00:00; evidence\\centralus-91633e9e\\providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-registry-91633e9e --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-91633e9e\\preview-registry.arm.json --no-pretty-print --output json: exit 0; exact configuration provider preflight passed; grants/diagnostics excluded. Observed 2026-10-23T23:11:43.783903+00:00; evidence\\centralus-91633e9e\\what-if-registry.json",
+            "No capacity reservation or runtime acceptance claimed; no quota increase requested."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "service-bus",
+          "resourceType": "Microsoft.ServiceBus/namespaces",
+          "sku": "Premium/1 MU/1 partition; zones enabled; local auth disabled",
+          "region": "centralus",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.ServiceBus Registered. Observed 2026-10-23T23:10:10.688148+00:00; evidence\\centralus-91633e9e\\providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-broker-91633e9e --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-91633e9e\\preview-broker.arm.json --no-pretty-print --output json: exit 0; exact configuration provider preflight passed; grants/diagnostics excluded. Observed 2026-10-23T23:12:23.157932+00:00; evidence\\centralus-91633e9e\\what-if-broker.json",
+            "No capacity reservation or runtime acceptance claimed; no quota increase requested.",
+            "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku?api-version=2024-01-01 --output json: exit 0; Premium Central US supportsSKU/zones/partitions all true. Observed 2026-10-23T23:10:39.755182+00:00; evidence\\centralus-91633e9e\\servicebus-skus.json"
+          ],
+          "quotas": []
+        },
+        {
+          "service": "key-vault",
+          "resourceType": "Microsoft.KeyVault/vaults",
+          "sku": "standard; RBAC, purge protection, soft delete; authenticated public endpoint",
+          "region": "centralus",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.KeyVault Registered. Observed 2026-10-23T23:10:10.688148+00:00; evidence\\centralus-91633e9e\\providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-vault-91633e9e --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-91633e9e\\preview-vault.arm.json --no-pretty-print --output json: exit 0; exact configuration provider preflight passed; grants/diagnostics excluded. Observed 2026-10-23T23:12:42.786643+00:00; evidence\\centralus-91633e9e\\what-if-vault.json",
+            "No capacity reservation or runtime acceptance claimed; no quota increase requested."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "service-bus",
+          "resourceType": "Microsoft.ServiceBus/namespaces/queues",
+          "sku": "Premium kitchen; sessions/duplicate detection; one queue",
+          "region": "centralus",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.ServiceBus Registered. Observed 2026-10-23T23:10:10.688148+00:00; evidence\\centralus-91633e9e\\providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-broker-91633e9e --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-91633e9e\\preview-broker.arm.json --no-pretty-print --output json: exit 0; exact queue evaluated; data grants excluded. Observed 2026-10-23T23:12:23.157932+00:00; evidence\\centralus-91633e9e\\what-if-broker.json"
+          ],
+          "quotas": []
+        },
+        {
+          "service": "key-vault",
+          "resourceType": "Microsoft.KeyVault/vaults/keys",
+          "sku": "software RSA/3072; sign/verify; expiry 180 days, rotation 90 days",
+          "region": "centralus",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.KeyVault Registered. Observed 2026-10-23T23:10:10.688148+00:00; evidence\\centralus-91633e9e\\providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-vault-91633e9e --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-91633e9e\\preview-vault.arm.json --no-pretty-print --output json: exit 0; vault/key evaluated; Crypto User identity grant excluded. Observed 2026-10-23T23:12:42.786643+00:00; evidence\\centralus-91633e9e\\what-if-vault.json"
+          ],
+          "quotas": []
+        },
+        {
+          "service": "managed-identity",
+          "resourceType": "Microsoft.ManagedIdentity/userAssignedIdentities",
+          "sku": "not-applicable; 4 distinct identities",
+          "region": "centralus",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.ManagedIdentity Registered. Observed 2026-10-23T23:10:10.688148+00:00; evidence\\centralus-91633e9e\\providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-91633e9e --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-91633e9e\\preview-full.arm.json --no-pretty-print --output json: exit 0; Succeeded; 9 evaluated creates, 0 modifies/deletes; 8 skipped modules. Observed 2026-10-23T23:11:24.465917+00:00; evidence\\centralus-91633e9e\\what-if-full.json",
+            "Four exact identities evaluated; principal/client IDs remain deployment outputs."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "virtual-network",
+          "resourceType": "Microsoft.Network/virtualNetworks",
+          "sku": "not-applicable; 10.74.0.0/22",
+          "region": "centralus",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Network Registered. Observed 2026-10-23T23:10:10.688148+00:00; evidence\\centralus-91633e9e\\providers.json",
+            "az network list-usages --location centralus --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; VirtualNetworks 0/1000, demand 1. Observed 2026-10-23T23:10:42.512284+00:00; evidence\\centralus-91633e9e\\network-usage.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-91633e9e --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-91633e9e\\preview-full.arm.json --no-pretty-print --output json: exit 0; Succeeded; 9 evaluated creates, 0 modifies/deletes; 8 skipped modules. Observed 2026-10-23T23:11:24.465917+00:00; evidence\\centralus-91633e9e\\what-if-full.json"
+          ],
+          "quotas": [
+            {
+              "name": "VirtualNetworks",
+              "limit": 1000,
+              "currentValue": 0,
+              "required": 1
+            }
+          ]
+        },
+        {
+          "service": "virtual-network",
+          "resourceType": "Microsoft.Network/virtualNetworks/subnets",
+          "sku": "not-applicable; /23; Microsoft.App/environments delegation",
+          "region": "centralus",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Network Registered. Observed 2026-10-23T23:10:10.688148+00:00; evidence\\centralus-91633e9e\\providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-91633e9e --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-91633e9e\\preview-full.arm.json --no-pretty-print --output json: exit 0; Succeeded; 9 evaluated creates, 0 modifies/deletes; 8 skipped modules. Observed 2026-10-23T23:11:24.465917+00:00; evidence\\centralus-91633e9e\\what-if-full.json"
+          ],
+          "quotas": []
+        },
+        {
+          "service": "log-analytics",
+          "resourceType": "Microsoft.OperationalInsights/workspaces",
+          "sku": "PerGB2018; retention 30 days",
+          "region": "centralus",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.OperationalInsights Registered. Observed 2026-10-23T23:10:10.688148+00:00; evidence\\centralus-91633e9e\\providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-91633e9e --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-91633e9e\\preview-full.arm.json --no-pretty-print --output json: exit 0; Succeeded; 9 evaluated creates, 0 modifies/deletes; 8 skipped modules. Observed 2026-10-23T23:11:24.465917+00:00; evidence\\centralus-91633e9e\\what-if-full.json",
+            "Workspace evaluated; telemetry ingest volume is not load-tested."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "application-insights",
+          "resourceType": "Microsoft.Insights/components",
+          "sku": "workspace-based; local auth disabled; sampling 20%",
+          "region": "centralus",
+          "status": "unknown",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; microsoft.insights Registered. Observed 2026-10-23T23:10:10.688148+00:00; evidence\\centralus-91633e9e\\providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-91633e9e --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-91633e9e\\preview-full.arm.json --no-pretty-print --output json: exit 0; Succeeded; 9 evaluated creates, 0 modifies/deletes; 8 skipped modules. Observed 2026-10-23T23:11:24.465917+00:00; evidence\\centralus-91633e9e\\what-if-full.json",
+            "insights skipped because workspace/identity outputs unresolved; not certified."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "azure-rbac",
+          "resourceType": "Microsoft.Authorization/roleAssignments",
+          "sku": "not-applicable; global extension",
+          "region": "centralus",
+          "status": "unknown",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Authorization Registered. Observed 2026-10-23T23:10:10.688148+00:00; evidence\\centralus-91633e9e\\providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-91633e9e --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-91633e9e\\preview-full.arm.json --no-pretty-print --output json: exit 0; Succeeded; 9 evaluated creates, 0 modifies/deletes; 8 skipped modules. Observed 2026-10-23T23:11:24.465917+00:00; evidence\\centralus-91633e9e\\what-if-full.json",
+            "Nonregional extension bound to Central US parent scope; no independent resource region.",
+            "Real identity/output-dependent preview pending; excluded from independent previews, not validated."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "cosmos-db",
+          "resourceType": "Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments",
+          "sku": "not-applicable; data roles",
+          "region": "centralus",
+          "status": "unknown",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.DocumentDB Registered. Observed 2026-10-23T23:10:10.688148+00:00; evidence\\centralus-91633e9e\\providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-91633e9e --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-91633e9e\\preview-full.arm.json --no-pretty-print --output json: exit 0; Succeeded; 9 evaluated creates, 0 modifies/deletes; 8 skipped modules. Observed 2026-10-23T23:11:24.465917+00:00; evidence\\centralus-91633e9e\\what-if-full.json",
+            "Nonregional extension bound to Central US parent scope; no independent resource region.",
+            "Real identity/output-dependent preview pending; excluded from independent previews, not validated."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "diagnostics",
+          "resourceType": "Microsoft.Insights/diagnosticSettings",
+          "sku": "not-applicable; diagnostic routing",
+          "region": "centralus",
+          "status": "unknown",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; microsoft.insights Registered. Observed 2026-10-23T23:10:10.688148+00:00; evidence\\centralus-91633e9e\\providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-91633e9e --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-91633e9e\\preview-full.arm.json --no-pretty-print --output json: exit 0; Succeeded; 9 evaluated creates, 0 modifies/deletes; 8 skipped modules. Observed 2026-10-23T23:11:24.465917+00:00; evidence\\centralus-91633e9e\\what-if-full.json",
+            "Nonregional extension bound to Central US parent scope; no independent resource region.",
+            "Real identity/output-dependent preview pending; excluded from independent previews, not validated."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "resource-group",
+          "resourceType": "Microsoft.Resources/resourceGroups",
+          "sku": "not-applicable",
+          "region": "centralus",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Resources Registered. Observed 2026-10-23T23:10:10.688148+00:00; evidence\\centralus-91633e9e\\providers.json",
+            "az group exists --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --name rg-resto-scale-agent --output json: exit 0; false; exact target absent, no provisioning. Observed 2026-10-23T23:13:11.950773+00:00; evidence\\centralus-91633e9e\\group-exists-final.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-91633e9e --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-91633e9e\\preview-full.arm.json --no-pretty-print --output json: exit 0; Succeeded; 9 evaluated creates, 0 modifies/deletes; 8 skipped modules. Observed 2026-10-23T23:11:24.465917+00:00; evidence\\centralus-91633e9e\\what-if-full.json"
+          ],
+          "quotas": []
+        },
+        {
+          "service": "resource-tags",
+          "resourceType": "Microsoft.Resources/tags",
+          "sku": "not-applicable; global extension",
+          "region": "centralus",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Resources Registered. Observed 2026-10-23T23:10:10.688148+00:00; evidence\\centralus-91633e9e\\providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-91633e9e --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-91633e9e\\preview-full.arm.json --no-pretty-print --output json: exit 0; Succeeded; 9 evaluated creates, 0 modifies/deletes; 8 skipped modules. Observed 2026-10-23T23:11:24.465917+00:00; evidence\\centralus-91633e9e\\what-if-full.json",
+            "Nonregional tags extension inherits resource scope; unchanged tags evaluated."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "arm-deployments",
+          "resourceType": "Microsoft.Resources/deployments",
+          "sku": "not-applicable; ARM control-plane wrappers",
+          "region": "centralus",
+          "status": "unknown",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Resources Registered. Observed 2026-10-23T23:10:10.688148+00:00; evidence\\centralus-91633e9e\\providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location centralus --name resto-full-91633e9e --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\centralus-91633e9e\\preview-full.arm.json --no-pretty-print --output json: exit 0; Succeeded; 9 evaluated creates, 0 modifies/deletes; 8 skipped modules. Observed 2026-10-23T23:11:24.465917+00:00; evidence\\centralus-91633e9e\\what-if-full.json",
+            "Group-level nonregional control-plane records; eight modules skipped, not whole-reference acceptance."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "azure-policy",
+          "resourceType": "Microsoft.Authorization/policyAssignments",
+          "sku": "not-applicable; global inherited policy",
+          "region": "centralus",
+          "status": "unknown",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Authorization Registered. Observed 2026-10-23T23:10:10.688148+00:00; evidence\\centralus-91633e9e\\providers.json",
+            "az policy assignment list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --disable-scope-strict-match --scope /subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; 3 assignments inspected; full preview skipped eight modules. Observed 2026-10-23T23:11:09.990020+00:00; evidence\\centralus-91633e9e\\policy.json",
+            "Nonregional subscription inheritance applies to Central US; skipped modules not certified compliant."
+          ],
+          "quotas": []
+        }
+      ],
+      "deploymentReady": false,
+      "limitations": [
+        "Complete dependency inventory checked; blocked/unknown entries prevent preparation completion.",
+        "Passing checks establish only their stated metadata/partial provider eligibility, not capacity reservation.",
+        "No other scenario or candidate region validated in this bounded attempt."
+      ]
+    },
+    {
+      "scope": {
+        "account": "petender@microsoft.com",
+        "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+        "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+        "environment": "resto-scale-agent",
+        "resourceGroup": "rg-resto-scale-agent",
+        "region": "westus2"
+      },
+      "checkedAtUtc": "2026-10-23T23:26:12.509165+00:00",
+      "infrastructureFingerprint": "38b48adc1404bb2431f16c6cf72cfd0e4dc98c5e9c764d993320321bcaae81f0",
+      "checks": [
+        {
+          "service": "cosmos-db",
+          "resourceType": "Microsoft.DocumentDB/databaseAccounts",
+          "sku": "Standard/NoSQL; provisioned autoscale max 4000 RU/s; Continuous7Days",
+          "region": "westus2",
+          "status": "blocked",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.DocumentDB Registered. Observed 2026-10-23T23:20:43.457341+00:00; evidence\\westus2-34cc5a27\\providers.json",
+            "az cosmosdb locations list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; West US 2 Online; zones supported; subscription AZ FALSE, regular TRUE. Observed 2026-10-23T23:20:52.227214+00:00; evidence\\westus2-34cc5a27\\cosmos-locations.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-cosmos-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-cosmos.arm.json --no-pretty-print --output json: exit 0; exact feature preview succeeds but does NOT override AZ access FALSE. Observed 2026-10-23T23:22:40.290447+00:00; evidence\\westus2-34cc5a27\\what-if-cosmos.json",
+            "Required zones retained; regular access cannot validate this zonal design; not serverless."
+          ],
+          "quotas": [],
+          "zoneRedundant": true,
+          "properties": {
+            "backupStorageRedundancies": [
+              "Geo",
+              "Zone",
+              "Local"
+            ],
+            "isResidencyRestricted": false,
+            "isSubscriptionRegionAccessAllowedForAz": false,
+            "isSubscriptionRegionAccessAllowedForRegular": true,
+            "status": "Online",
+            "supportsAvailabilityZone": true
+          },
+          "features": {
+            "serverless": false,
+            "autoscaleMaxRU": 4000,
+            "backupPolicy": "Continuous7Days"
+          }
+        },
+        {
+          "service": "cosmos-db",
+          "resourceType": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases",
+          "sku": "shared autoscale 400-4000 RU/s",
+          "region": "westus2",
+          "status": "blocked",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.DocumentDB Registered. Observed 2026-10-23T23:20:43.457341+00:00; evidence\\westus2-34cc5a27\\providers.json",
+            "az cosmosdb locations list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; West US 2 Online; zones supported; subscription AZ FALSE, regular TRUE. Observed 2026-10-23T23:20:52.227214+00:00; evidence\\westus2-34cc5a27\\cosmos-locations.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-cosmos-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-cosmos.arm.json --no-pretty-print --output json: exit 0; partial preview accepted shape; parent subscription AZ access denied. Observed 2026-10-23T23:22:40.290447+00:00; evidence\\westus2-34cc5a27\\what-if-cosmos.json"
+          ],
+          "quotas": []
+        },
+        {
+          "service": "cosmos-db",
+          "resourceType": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers",
+          "sku": "3 NoSQL containers; /aggregateKey",
+          "region": "westus2",
+          "status": "blocked",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.DocumentDB Registered. Observed 2026-10-23T23:20:43.457341+00:00; evidence\\westus2-34cc5a27\\providers.json",
+            "az cosmosdb locations list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; West US 2 Online; zones supported; subscription AZ FALSE, regular TRUE. Observed 2026-10-23T23:20:52.227214+00:00; evidence\\westus2-34cc5a27\\cosmos-locations.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-cosmos-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-cosmos.arm.json --no-pretty-print --output json: exit 0; partial preview accepted shape; parent subscription AZ access denied. Observed 2026-10-23T23:22:40.290447+00:00; evidence\\westus2-34cc5a27\\what-if-cosmos.json"
+          ],
+          "quotas": []
+        },
+        {
+          "service": "foundry",
+          "resourceType": "Microsoft.CognitiveServices/accounts",
+          "sku": "AIServices/S0",
+          "region": "westus2",
+          "status": "blocked",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.CognitiveServices Registered. Observed 2026-10-23T23:20:43.457341+00:00; evidence\\westus2-34cc5a27\\providers.json",
+            "az cognitiveservices account list-skus --kind AIServices --location westus2 --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; West US 2 AIServices S0 listed without restrictions. Observed 2026-10-23T23:21:03.412946+00:00; evidence\\westus2-34cc5a27\\foundry-skus.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-foundry-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-foundry.arm.json --no-pretty-print --output json: exit 1; CustomDomainInUse for exact ai-resto-4tvlzr5zf2rxi. Observed 2026-10-23T23:23:40.932201+00:00; evidence\\westus2-34cc5a27\\what-if-foundry.json",
+            "No purge, adoption, rename or resource mutation attempted; conflict not a regional quota diagnosis."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "foundry",
+          "resourceType": "Microsoft.CognitiveServices/accounts/deployments",
+          "sku": "gpt-5.4-mini/2026-03-17/GlobalStandard; capacity 100",
+          "region": "westus2",
+          "status": "blocked",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.CognitiveServices Registered. Observed 2026-10-23T23:20:43.457341+00:00; evidence\\westus2-34cc5a27\\providers.json",
+            "az cognitiveservices model list --location westus2 --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; exact AIServices model/version absent from West US 2 list. Observed 2026-10-23T23:20:58.987449+00:00; evidence\\westus2-34cc5a27\\model-eligibility.json",
+            "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.CognitiveServices/locations/westus2/modelCapacities?api-version=2024-10-01 --output json --url-parameters modelFormat=OpenAI modelName=gpt-5.4-mini modelVersion=2026-03-17: exit 0; West US 2 exact model/version query returned value=[]; usable capacity unknown. Observed 2026-10-23T23:21:01.171095+00:00; evidence\\westus2-34cc5a27\\model-capacity.json",
+            "az cognitiveservices usage list --location westus2 --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; GLOBAL scope quota 100.0/1000.0; demand 100. Observed 2026-10-23T23:20:54.843866+00:00; evidence\\westus2-34cc5a27\\model-quota.json",
+            "Global quota headroom is not regional eligibility/capacity or a reservation; no model substitution."
+          ],
+          "quotas": [
+            {
+              "name": "OpenAI.GlobalStandard.gpt-5.4-mini",
+              "limit": 1000.0,
+              "currentValue": 100.0,
+              "required": 100
+            }
+          ]
+        },
+        {
+          "service": "foundry",
+          "resourceType": "Microsoft.CognitiveServices/accounts/projects",
+          "sku": "not-applicable; direct child restaurant",
+          "region": "westus2",
+          "status": "unknown",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.CognitiveServices Registered. Observed 2026-10-23T23:20:43.457341+00:00; evidence\\westus2-34cc5a27\\providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-full-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-full.arm.json --no-pretty-print --output json: exit 0; 9 creates, no modifies/deletes; eight modules skipped, not full acceptance. Observed 2026-10-23T23:21:59.548248+00:00; evidence\\westus2-34cc5a27\\what-if-full.json",
+            "Project skipped and parent account blocked; no output/identity IDs invented."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "foundry",
+          "resourceType": "Microsoft.CognitiveServices/accounts/projects",
+          "sku": "not-applicable; Basic setup; three prompt agents; Responses/app-executed Functions",
+          "region": "westus2",
+          "status": "unknown",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.CognitiveServices Registered. Observed 2026-10-23T23:20:43.457341+00:00; evidence\\westus2-34cc5a27\\providers.json",
+            "az cognitiveservices model list --location westus2 --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; exact required model/version absent. Observed 2026-10-23T23:20:58.987449+00:00; evidence\\westus2-34cc5a27\\model-eligibility.json",
+            "evidence\\westus2-34cc5a27\\public-feature-evidence.json: West US 2 absent from current Learn Agents/Responses and Function region tables; support NOT established.",
+            "Bing-specific region mention is not support for this configuration; no live invocation in read-only scope."
+          ],
+          "quotas": [],
+          "feature": "Foundry Agent Service data-plane prompt agents and function tools"
+        },
+        {
+          "service": "container-apps",
+          "resourceType": "Microsoft.App/managedEnvironments",
+          "sku": "workload profiles/Consumption; zones enabled",
+          "region": "westus2",
+          "status": "unknown",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.App Registered. Observed 2026-10-23T23:20:43.457341+00:00; evidence\\westus2-34cc5a27\\providers.json",
+            "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/locations/westus2/availableManagedEnvironmentsWorkloadProfileTypes?api-version=2025-07-01 --output json: exit 0; Consumption listed; profile cores are not environment core quota. Observed 2026-10-23T23:21:07.419191+00:00; evidence\\westus2-34cc5a27\\aca-profiles.json",
+            "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.App/locations/westus2/usages?api-version=2025-07-01 --output json: exit 0; ManagedEnvironmentCount 0/50; demand 1. Observed 2026-10-23T23:21:05.467119+00:00; evidence\\westus2-34cc5a27\\aca-usage.json",
+            "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/locations?api-version=2022-12-01 --output json --query value[?name=='westus2']: exit 0; subscription logical zones 1/2/3. Observed 2026-10-23T23:21:20.693212+00:00; evidence\\westus2-34cc5a27\\region-zones.json",
+            "az containerapp env list-usages --name cae-resto-4tvlzr5zf2rxi --resource-group rg-resto-scale-agent --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 1; ResourceGroupNotFound; Consumption core quota UNKNOWN. Observed 2026-10-23T23:21:11.127420+00:00; evidence\\westus2-34cc5a27\\aca-environment-usage.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-full-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-full.arm.json --no-pretty-print --output json: exit 0; 9 creates, no modifies/deletes; eight modules skipped, not full acceptance. Observed 2026-10-23T23:21:59.548248+00:00; evidence\\westus2-34cc5a27\\what-if-full.json"
+          ],
+          "quotas": [
+            {
+              "name": "ManagedEnvironmentCount",
+              "limit": 50,
+              "currentValue": 0,
+              "required": 1
+            }
+          ],
+          "zoneRedundant": true
+        },
+        {
+          "service": "container-apps",
+          "resourceType": "Microsoft.App/containerApps",
+          "sku": "Consumption; each 0.5 vCPU/1 GiB; web 3-12/chat 3-6/worker 3-10",
+          "region": "westus2",
+          "status": "unknown",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.App Registered. Observed 2026-10-23T23:20:43.457341+00:00; evidence\\westus2-34cc5a27\\providers.json",
+            "az containerapp env list-usages --name cae-resto-4tvlzr5zf2rxi --resource-group rg-resto-scale-agent --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 1; actual Consumption core limit unavailable. Observed 2026-10-23T23:21:11.127420+00:00; evidence\\westus2-34cc5a27\\aca-environment-usage.json",
+            "28 max replicas/14 vCPU; conservative rollout overlap 56 replicas/28 vCPU/56 GiB.",
+            "Private chat ingress, no worker ingress, managed identities and network encryption unchanged.",
+            "Runtime preview awaits actual outputs/image/agent versions/staff audience; no placeholders invented.",
+            "No Compute VM/VMSS or Microsoft.Web plan in IaC; their quotas cannot establish ACA eligibility."
+          ],
+          "quotas": [],
+          "demand": {
+            "vcpus": 28,
+            "instances": 56,
+            "steadyMaxVcpus": 14,
+            "steadyMaxInstances": 28
+          }
+        },
+        {
+          "service": "container-registry",
+          "resourceType": "Microsoft.ContainerRegistry/registries",
+          "sku": "Basic; authenticated public TLS; admin/anonymous disabled",
+          "region": "westus2",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.ContainerRegistry Registered. Observed 2026-10-23T23:20:43.457341+00:00; evidence\\westus2-34cc5a27\\providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-registry-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-registry.arm.json --no-pretty-print --output json: exit 0; exact configuration partial provider preflight passed; grants excluded. Observed 2026-10-23T23:22:19.693828+00:00; evidence\\westus2-34cc5a27\\what-if-registry.json",
+            "Limited provider eligibility observation, not a capacity reservation or whole-reference pass."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "service-bus",
+          "resourceType": "Microsoft.ServiceBus/namespaces",
+          "sku": "Premium/1 MU/1 partition; zones enabled",
+          "region": "westus2",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.ServiceBus Registered. Observed 2026-10-23T23:20:43.457341+00:00; evidence\\westus2-34cc5a27\\providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-broker-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-broker.arm.json --no-pretty-print --output json: exit 0; exact configuration partial provider preflight passed; grants excluded. Observed 2026-10-23T23:23:00.658523+00:00; evidence\\westus2-34cc5a27\\what-if-broker.json",
+            "Limited provider eligibility observation, not a capacity reservation or whole-reference pass.",
+            "az rest --method get --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --url https://management.azure.com/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76/providers/Microsoft.ServiceBus/sku?api-version=2024-01-01 --output json: exit 0; West US 2 Premium supports SKU/zones/partitions. Observed 2026-10-23T23:21:14.350717+00:00; evidence\\westus2-34cc5a27\\servicebus-skus.json"
+          ],
+          "quotas": []
+        },
+        {
+          "service": "key-vault",
+          "resourceType": "Microsoft.KeyVault/vaults",
+          "sku": "standard; RBAC/purge protection/soft delete",
+          "region": "westus2",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.KeyVault Registered. Observed 2026-10-23T23:20:43.457341+00:00; evidence\\westus2-34cc5a27\\providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-vault-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-vault.arm.json --no-pretty-print --output json: exit 0; exact configuration partial provider preflight passed; grants excluded. Observed 2026-10-23T23:23:21.032863+00:00; evidence\\westus2-34cc5a27\\what-if-vault.json",
+            "Limited provider eligibility observation, not a capacity reservation or whole-reference pass."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "service-bus",
+          "resourceType": "Microsoft.ServiceBus/namespaces/queues",
+          "sku": "Premium kitchen; sessions/dedup; one queue",
+          "region": "westus2",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.ServiceBus Registered. Observed 2026-10-23T23:20:43.457341+00:00; evidence\\westus2-34cc5a27\\providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-broker-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-broker.arm.json --no-pretty-print --output json: exit 0; exact queue shape accepted; identity grants excluded. Observed 2026-10-23T23:23:00.658523+00:00; evidence\\westus2-34cc5a27\\what-if-broker.json"
+          ],
+          "quotas": []
+        },
+        {
+          "service": "key-vault",
+          "resourceType": "Microsoft.KeyVault/vaults/keys",
+          "sku": "software RSA/3072; expiry 180d/rotation 90d",
+          "region": "westus2",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.KeyVault Registered. Observed 2026-10-23T23:20:43.457341+00:00; evidence\\westus2-34cc5a27\\providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-vault-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-vault.arm.json --no-pretty-print --output json: exit 0; exact key shape accepted; Crypto User grant excluded. Observed 2026-10-23T23:23:21.032863+00:00; evidence\\westus2-34cc5a27\\what-if-vault.json"
+          ],
+          "quotas": []
+        },
+        {
+          "service": "managed-identity",
+          "resourceType": "Microsoft.ManagedIdentity/userAssignedIdentities",
+          "sku": "not-applicable; four identities",
+          "region": "westus2",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.ManagedIdentity Registered. Observed 2026-10-23T23:20:43.457341+00:00; evidence\\westus2-34cc5a27\\providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-full-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-full.arm.json --no-pretty-print --output json: exit 0; 9 creates, no modifies/deletes; eight modules skipped, not full acceptance. Observed 2026-10-23T23:21:59.548248+00:00; evidence\\westus2-34cc5a27\\what-if-full.json",
+            "Four identity resources evaluated; real generated IDs remain deployment outputs."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "virtual-network",
+          "resourceType": "Microsoft.Network/virtualNetworks",
+          "sku": "not-applicable; 10.74.0.0/22",
+          "region": "westus2",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Network Registered. Observed 2026-10-23T23:20:43.457341+00:00; evidence\\westus2-34cc5a27\\providers.json",
+            "az network list-usages --location westus2 --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; VirtualNetworks 0/1000; demand 1. Observed 2026-10-23T23:21:17.170405+00:00; evidence\\westus2-34cc5a27\\network-usage.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-full-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-full.arm.json --no-pretty-print --output json: exit 0; 9 creates, no modifies/deletes; eight modules skipped, not full acceptance. Observed 2026-10-23T23:21:59.548248+00:00; evidence\\westus2-34cc5a27\\what-if-full.json"
+          ],
+          "quotas": [
+            {
+              "name": "VirtualNetworks",
+              "limit": 1000,
+              "currentValue": 0,
+              "required": 1
+            }
+          ]
+        },
+        {
+          "service": "virtual-network",
+          "resourceType": "Microsoft.Network/virtualNetworks/subnets",
+          "sku": "not-applicable; delegated Microsoft.App/environments /23",
+          "region": "westus2",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Network Registered. Observed 2026-10-23T23:20:43.457341+00:00; evidence\\westus2-34cc5a27\\providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-full-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-full.arm.json --no-pretty-print --output json: exit 0; 9 creates, no modifies/deletes; eight modules skipped, not full acceptance. Observed 2026-10-23T23:21:59.548248+00:00; evidence\\westus2-34cc5a27\\what-if-full.json"
+          ],
+          "quotas": []
+        },
+        {
+          "service": "log-analytics",
+          "resourceType": "Microsoft.OperationalInsights/workspaces",
+          "sku": "PerGB2018; retention 30 days",
+          "region": "westus2",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.OperationalInsights Registered. Observed 2026-10-23T23:20:43.457341+00:00; evidence\\westus2-34cc5a27\\providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-full-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-full.arm.json --no-pretty-print --output json: exit 0; 9 creates, no modifies/deletes; eight modules skipped, not full acceptance. Observed 2026-10-23T23:21:59.548248+00:00; evidence\\westus2-34cc5a27\\what-if-full.json",
+            "Workspace evaluated; no telemetry ingest or load acceptance claimed."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "application-insights",
+          "resourceType": "Microsoft.Insights/components",
+          "sku": "workspace-based; local auth disabled; sample 20%",
+          "region": "westus2",
+          "status": "unknown",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; microsoft.insights Registered. Observed 2026-10-23T23:20:43.457341+00:00; evidence\\westus2-34cc5a27\\providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-full-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-full.arm.json --no-pretty-print --output json: exit 0; 9 creates, no modifies/deletes; eight modules skipped, not full acceptance. Observed 2026-10-23T23:21:59.548248+00:00; evidence\\westus2-34cc5a27\\what-if-full.json",
+            "Skipped workspace/identity-dependent component not certified."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "azure-rbac",
+          "resourceType": "Microsoft.Authorization/roleAssignments",
+          "sku": "not-applicable; global extension",
+          "region": "westus2",
+          "status": "unknown",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Authorization Registered. Observed 2026-10-23T23:20:43.457341+00:00; evidence\\westus2-34cc5a27\\providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-full-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-full.arm.json --no-pretty-print --output json: exit 0; 9 creates, no modifies/deletes; eight modules skipped, not full acceptance. Observed 2026-10-23T23:21:59.548248+00:00; evidence\\westus2-34cc5a27\\what-if-full.json",
+            "Nonregional extension inherits West US 2 parent scope; no separate deployment region.",
+            "Output-dependent checks excluded from independent previews; not validated; no fabricated IDs."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "cosmos-db",
+          "resourceType": "Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments",
+          "sku": "not-applicable; data roles",
+          "region": "westus2",
+          "status": "unknown",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.DocumentDB Registered. Observed 2026-10-23T23:20:43.457341+00:00; evidence\\westus2-34cc5a27\\providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-full-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-full.arm.json --no-pretty-print --output json: exit 0; 9 creates, no modifies/deletes; eight modules skipped, not full acceptance. Observed 2026-10-23T23:21:59.548248+00:00; evidence\\westus2-34cc5a27\\what-if-full.json",
+            "Nonregional extension inherits West US 2 parent scope; no separate deployment region.",
+            "Output-dependent checks excluded from independent previews; not validated; no fabricated IDs."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "diagnostics",
+          "resourceType": "Microsoft.Insights/diagnosticSettings",
+          "sku": "not-applicable; diagnostic routing",
+          "region": "westus2",
+          "status": "unknown",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; microsoft.insights Registered. Observed 2026-10-23T23:20:43.457341+00:00; evidence\\westus2-34cc5a27\\providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-full-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-full.arm.json --no-pretty-print --output json: exit 0; 9 creates, no modifies/deletes; eight modules skipped, not full acceptance. Observed 2026-10-23T23:21:59.548248+00:00; evidence\\westus2-34cc5a27\\what-if-full.json",
+            "Nonregional extension inherits West US 2 parent scope; no separate deployment region.",
+            "Output-dependent checks excluded from independent previews; not validated; no fabricated IDs."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "resource-group",
+          "resourceType": "Microsoft.Resources/resourceGroups",
+          "sku": "not-applicable",
+          "region": "westus2",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Resources Registered. Observed 2026-10-23T23:20:43.457341+00:00; evidence\\westus2-34cc5a27\\providers.json",
+            "az group exists --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --name rg-resto-scale-agent --output json: exit 0; false; exact group absent before and after previews. Observed 2026-10-23T23:24:09.168742+00:00; evidence\\westus2-34cc5a27\\group-exists-final.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-full-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-full.arm.json --no-pretty-print --output json: exit 0; 9 creates, no modifies/deletes; eight modules skipped, not full acceptance. Observed 2026-10-23T23:21:59.548248+00:00; evidence\\westus2-34cc5a27\\what-if-full.json"
+          ],
+          "quotas": []
+        },
+        {
+          "service": "resource-tags",
+          "resourceType": "Microsoft.Resources/tags",
+          "sku": "not-applicable; global extension",
+          "region": "westus2",
+          "status": "passed",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Resources Registered. Observed 2026-10-23T23:20:43.457341+00:00; evidence\\westus2-34cc5a27\\providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-full-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-full.arm.json --no-pretty-print --output json: exit 0; 9 creates, no modifies/deletes; eight modules skipped, not full acceptance. Observed 2026-10-23T23:21:59.548248+00:00; evidence\\westus2-34cc5a27\\what-if-full.json",
+            "Nonregional tags extension inherits parent scope; exact tags unchanged."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "arm-deployments",
+          "resourceType": "Microsoft.Resources/deployments",
+          "sku": "not-applicable; ARM control-plane wrappers",
+          "region": "westus2",
+          "status": "unknown",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Resources Registered. Observed 2026-10-23T23:20:43.457341+00:00; evidence\\westus2-34cc5a27\\providers.json",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-full-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-full.arm.json --no-pretty-print --output json: exit 0; 9 creates, no modifies/deletes; eight modules skipped, not full acceptance. Observed 2026-10-23T23:21:59.548248+00:00; evidence\\westus2-34cc5a27\\what-if-full.json",
+            "Nonregional group wrappers; eight skipped modules prevent whole-reference acceptance."
+          ],
+          "quotas": []
+        },
+        {
+          "service": "azure-policy",
+          "resourceType": "Microsoft.Authorization/policyAssignments",
+          "sku": "not-applicable; global inherited policy",
+          "region": "westus2",
+          "status": "unknown",
+          "evidence": [
+            "az provider list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; Microsoft.Authorization Registered. Observed 2026-10-23T23:20:43.457341+00:00; evidence\\westus2-34cc5a27\\providers.json",
+            "az policy assignment list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --disable-scope-strict-match --scope /subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76 --output json: exit 0; 3 inherited assignments enumerated. Observed 2026-10-23T23:21:23.222422+00:00; evidence\\westus2-34cc5a27\\policy.json",
+            "az role assignment list --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --assignee-object-id 214d672b-df87-4f3b-94fd-7863032546c1 --scope /subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76 --include-inherited --output json: exit 0; current inherited assignments inspected; no role/directory mutation. Observed 2026-10-23T23:21:29.854008+00:00; evidence\\westus2-34cc5a27\\rbac.json",
+            "Nonregional policies apply to West US 2; skipped modules not certified compliant.",
+            "az deployment sub what-if --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --location westus2 --name resto-full-34cc5a27 --template-file C:\\azd-projects\\resto-scale-agent\\evidence\\westus2-34cc5a27\\preview-full.arm.json --no-pretty-print --output json: exit 0; 9 creates, no modifies/deletes; eight modules skipped, not full acceptance. Observed 2026-10-23T23:21:59.548248+00:00; evidence\\westus2-34cc5a27\\what-if-full.json"
+          ],
+          "quotas": []
+        }
+      ],
+      "deploymentReady": false,
+      "limitations": [
+        "Complete inventory considered; blocked/unknown entries prohibit preparation completion.",
+        "What-if and positive quota metadata cannot reserve allocation or prove runtime acceptance."
+      ]
+    }
+  ],
+  "centralusPreparation": {
+    "scope": {
+      "account": "petender@microsoft.com",
+      "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+      "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+      "environment": "resto-scale-agent",
+      "resourceGroup": "rg-resto-scale-agent",
+      "region": "centralus"
+    },
+    "checkedAtUtc": "2026-10-23T23:16:55.383763+00:00",
+    "mutationsPerformed": false,
+    "fullWhatIf": {
+      "status": "Succeeded",
+      "counts": {
+        "Create": 9
+      },
+      "skippedModules": [
+        "insights",
+        "registry",
+        "cosmos",
+        "broker",
+        "vault",
+        "foundry",
+        "project",
+        "environment"
+      ]
+    },
+    "foundryConflict": "ERROR: InvalidTemplateDeployment - The template deployment 'resto-foundry-91633e9e' is not valid according to the validation procedure. The following resource provider(s) - 'Microsoft.CognitiveServices/accounts (2025-06-01)' reported preflight validation errors. Tracking id is '731c6617-74b2-431e-99f6-12ea56e7cb5c'. See inner errors for details.\nCustomDomainInUse - Please pick a different name. The subdomain name 'ai-resto-4tvlzr5zf2rxi' is not available as it's already used by a resource. If the resource using the name was deleted in the last 48 hours, you may need to purge the deleted resource. Learn more at \"https://go.microsoft.com/fwlink/?linkid=2215493\"\n",
+    "evidenceDirectory": "evidence\\centralus-91633e9e",
+    "summary": "Central US preparation failed: exact Foundry custom domain returns CustomDomainInUse. Cosmos subscription AZ/regular access both true; exact model GlobalStandard quota 100/1000, additional 100, available capacity 900. ACA Consumption core quota remains unknown for the absent environment. Full what-if: 9 creates, 8 skipped modules; independent previews partial. No provisioning, quota requests, directory writes, target/name changes or consent review started.",
+    "estimatedCost": {
+      "shared": [
+        745,
+        1150
+      ],
+      "fullReference": [
+        900,
+        1650
+      ],
+      "ancillary": [
+        30,
+        120
+      ]
+    },
+    "westus2": "User candidate retained; not queried or selected in this current-region-only attempt."
+  },
+  "westus2Preparation": {
+    "scope": {
+      "account": "petender@microsoft.com",
+      "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+      "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+      "environment": "resto-scale-agent",
+      "resourceGroup": "rg-resto-scale-agent",
+      "region": "westus2"
+    },
+    "checkedAtUtc": "2026-10-23T23:26:12.509165+00:00",
+    "mutationsPerformed": false,
+    "summary": "West US 2 preparation failed: required Cosmos AZ subscription access is false; exact Foundry subdomain returns CustomDomainInUse; required gpt-5.4-mini/2026-03-17 absent from regional model list and capacity response empty. Global quota 100/1000 does not establish regional eligibility. Agent feature support unverified; ACA Consumption core quota unknown. Full what-if: 9 creates, 8 skipped modules; partial previews do not override failures. Exact model regional prices absent. No resources/defaults/targets changed.",
+    "evidenceDirectory": "evidence\\westus2-34cc5a27",
+    "rejectionReasons": [
+      "Cosmos Online/supportsAvailabilityZone true, but required isSubscriptionRegionAccessAllowedForAz FALSE.",
+      "Exact Foundry ai-resto-4tvlzr5zf2rxi preflight: CustomDomainInUse.",
+      "Exact gpt-5.4-mini/2026-03-17 absent from AIServices model list; regional model capacity value empty.",
+      "Agent/Responses/Function support unverified; West US 2 absent from current official region tables.",
+      "ACA Consumption core quota and eight output-dependent modules unverified."
+    ],
+    "fullWhatIf": {
+      "status": "Succeeded",
+      "counts": {
+        "Create": 9
+      },
+      "skippedModules": [
+        "insights",
+        "registry",
+        "cosmos",
+        "broker",
+        "vault",
+        "foundry",
+        "project",
+        "environment"
+      ]
+    },
+    "foundryConflict": "ERROR: InvalidTemplateDeployment - The template deployment 'resto-foundry-34cc5a27' is not valid according to the validation procedure. The following resource provider(s) - 'Microsoft.CognitiveServices/accounts (2025-06-01)' reported preflight validation errors. Tracking id is '8d85db23-93b9-42a2-9a6c-b25e58426333'. See inner errors for details.\nCustomDomainInUse - Please pick a different name. The subdomain name 'ai-resto-4tvlzr5zf2rxi' is not available as it's already used by a resource. If the resource using the name was deleted in the last 48 hours, you may need to purge the deleted resource. Learn more at \"https://go.microsoft.com/fwlink/?linkid=2215493\"\n",
+    "costEvidence": "evidence\\westus2-34cc5a27\\cost-review.json"
+  },
+  "centralusRepairPreparation": {
+    "scope": {
+      "account": "petender@microsoft.com",
+      "subscriptionId": "efd64343-6ef4-4926-951f-d3229f38bd76",
+      "tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3",
+      "environment": "resto-scale-agent",
+      "resourceGroup": "rg-resto-scale-agent",
+      "region": "centralus"
+    },
+    "checkedAtUtc": "2026-10-23T23:37:47.109391+00:00",
+    "compiledAtUtc": "2026-10-24T00:01:36.123697+00:00",
+    "infrastructureFingerprint": "1aa0c0f7d9f7518ece839c1edb8578142a922edb9ac482d2462b8fd6aa0feffc",
+    "foundryName": "ai-resto-6f6767a4ef6b5c6bb82c4a11edebfdec",
+    "nameAvailable": true,
+    "fullWhatIf": {
+      "Create": 33,
+      "Unsupported": 13
+    },
+    "validationSkippedModules": [
+      "insights",
+      "registry",
+      "cosmos",
+      "broker",
+      "vault",
+      "foundry",
+      "project",
+      "environment"
+    ],
+    "evidenceDirectory": "evidence\\centralus-189819a8",
+    "mutationsPerformed": false
+  }
+}

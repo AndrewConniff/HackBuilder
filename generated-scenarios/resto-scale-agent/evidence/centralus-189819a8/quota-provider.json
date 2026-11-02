@@ -1,0 +1,12 @@
+{
+  "command": "az provider show --namespace Microsoft.Quota --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --query {namespace:namespace,registrationState:registrationState} --output json",
+  "startedAtUtc": "2026-10-23T23:42:14.598210+00:00",
+  "checkedAtUtc": "2026-10-23T23:42:17.260970+00:00",
+  "exitCode": 0,
+  "stdout": "{\n  \"namespace\": \"Microsoft.Quota\",\n  \"registrationState\": \"NotRegistered\"\n}\n",
+  "stderr": "",
+  "result": {
+    "namespace": "Microsoft.Quota",
+    "registrationState": "NotRegistered"
+  }
+}

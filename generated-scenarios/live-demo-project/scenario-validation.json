@@ -1,0 +1,8 @@
+{
+  "status": "pending",
+  "evidenceType": "not-deployed",
+  "checkedAtUtc": null,
+  "applicationUrl": null,
+  "checks": {},
+  "reason": "Local validation and authorized Sweden Central readiness/what-if passed. Deployment awaits reviewed target/cost approval; inference, human private administration and full deployment-user access still require real deployed evidence."
+}

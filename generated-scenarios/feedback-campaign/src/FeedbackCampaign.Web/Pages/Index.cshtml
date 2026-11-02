@@ -1,0 +1,28 @@
+@page
+@model FeedbackCampaign.Web.Pages.IndexModel
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Adatum Corporation | Campaign Control</title><link rel="stylesheet" href="/site.css"></head>
+<body>
+<header><p class="eyebrow">Adatum Corporation · Media &amp; Communications</p>
+<h1>Campaign Control</h1><p>Marketing engagement. Sales recovery. Human-owned decisions.</p>
+<a href="/Login">Sign in with lab account</a> · <button id="logout" type="button">Sign out</button><p id="identity">Sign in to view your authorized inbox.</p></header>
+<main><aside><strong>Active initial policy</strong><p>Positive ≥80% → reply stream<br>Negative ≥89% → Product Manager<br>Rest → Conflict Resolution Specialist</p>
+<p>The illustrative 80% negative rule is not active. Replies queued here are not externally delivered.</p></aside>
+<p id="status" role="status"></p>
+<section><h2>Campaign intake · Marketing</h2>
+<form id="intake"><label>Source ID<input name="sourceId" required maxlength="128"></label>
+<label>Poster name<input name="posterName" required maxlength="120"></label>
+<label>Contact<input name="contact" type="email" required maxlength="254"></label>
+<label>Campaign<input name="campaign" value="Streaming launch" required maxlength="100"></label>
+<label>Subject<input name="subject" required maxlength="200"></label>
+<label>Post body<textarea name="body" required maxlength="6000"></textarea></label><button>Submit for analysis</button></form></section>
+<section><h2>Reviewer inbox · Marketing to Sales</h2><button id="refresh">Refresh durable cases</button><div id="cases"></div></section>
+<section><h2>Control rules · Human promotion only</h2><p>Save a new immutable version, inspect its changes, then explicitly promote. Existing cases retain their original snapshot.</p>
+<button id="loadRules">Load versions</button><pre id="rulesView"></pre>
+<form id="saveRules"><label>Editable proposed rule JSON<textarea id="ruleJson" rows="9" required></textarea></label><button>Save new version</button></form>
+<form id="promote"><label>Version to promote<input name="version" required></label><label>Review reason<input name="reason" required maxlength="500"></label><button>Promote reviewed version</button></form></section>
+<section><h2>Grounded campaign assistant</h2><form id="chat"><label>Ask about campaign handling<textarea name="message" required maxlength="2000"></textarea></label><button>Invoke Foundry</button></form><pre id="chatReply"></pre></section>
+</main><footer>Synthetic reference · managed identity runtime · no mock responses · campaign-policy-v1</footer>
+<script src="/app.js" defer></script></body></html>

@@ -1,0 +1,21 @@
+{
+  "stage": "diagrams",
+  "status": "waiting_for_user",
+  "summary": "Decision required: this fresh worker still cannot resolve dot.exe, and the execution host denied the read-only Graphviz location/PATH check. All previous confirmations remain recorded, but the prerequisite is not effective in this execution environment. Reference implementation remains paused before diagrams.",
+  "evidence": [
+    "Read-only Python prerequisite probe exited 0: shutil.which('dot') returned None; diagrams is installed; Python, dotnet, az and azd resolved.",
+    "Read-only PowerShell check of three known Graphviz dot.exe locations and Graphviz-only worker/user/machine PATH entries was denied because no interactive user response was available. The check did not execute; no alternative permission bypass was attempted.",
+    "generated-scenarios\\resto-scale-agent\\evidence\\prerequisite-resume-89a12cc6-running.json",
+    "No shared tools installed or upgraded; no other scenarios or canonical repository files edited; no Azure operations, suitability approval, hack composition or team deployment."
+  ],
+  "decision": {
+    "kind": "business",
+    "question": "Have the portal/environment administrator correct and verify the actual noninteractive worker environment so Python shutil.which('dot') returns an executable path and the execution host permits the local prerequisite check, then resume this same scenario?",
+    "reason": "Despite the recorded verification, the new worker again returns null for dot and cannot execute the read-only location/PATH check. Correct the environment inherited by the portal-launched worker and its execution-host permission before resuming; repeating an affirmative answer without an effective correction cannot unblock rendering. The worker must not install shared tools or bypass a denied operation. Existing design and local-tool consent remain preserved; no cloud consent is requested.",
+    "choices": [
+      "Actual portal worker dot resolution and execution permission verified; resume",
+      "Stop"
+    ],
+    "acceptChoice": "Actual portal worker dot resolution and execution permission verified; resume"
+  }
+}

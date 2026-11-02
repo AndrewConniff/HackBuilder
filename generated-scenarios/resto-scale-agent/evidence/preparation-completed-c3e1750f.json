@@ -1,0 +1,15 @@
+{
+  "stage": "local-validation",
+  "status": "completed",
+  "summary": "Completed existing local validation and authorized read-only shared-infrastructure preparation, with retained security and preview limitations. Identity/providers/quota and names checked; ARM validation succeeded; what-if returned 33 creates, zero modifies/deletes and 13 unresolved identity-dependent grants. Nothing deployed; this is not a clean security certification or live acceptance.",
+  "evidence": [
+    "06-deployment-summary.md: exact scope, commands/results, failures, regional retail rates, estimates, unresolved nested provider/runtime checks and separate shared-infrastructure-only deployment boundary.",
+    "evidence\\what-if-subscription-c3e1750f.json: status Succeeded, error null, Create 33, Modify 0, Delete 0, Unsupported 13. The preview-only wrapper avoids creating the absent authorized group.",
+    "evidence\\validate-subscription-c3e1750f.json: properties.provisioningState Succeeded, error null; identity-dependent nested validation is not certified.",
+    "evidence\\identity-c3e1750f.json; providers-c3e1750f.json; rbac-c3e1750f.json; policy-assignments-c3e1750f.json; model-eligibility-c3e1750f.json; model-quota-c3e1750f.json; model-capacities-filtered-c3e1750f.json: exact identity match, eleven registered providers, Owner/Foundry User, model available capacity 999 versus request 100.",
+    "evidence\\acr-name-c3e1750f.json, vault-name-c3e1750f.json, broker-name-c3e1750f.json, foundry-name-c3e1750f.json: names available; cosmos-name-c3e1750f.json false means name does not exist. az group exists with explicit authorized subscription remained false after preparation.",
+    "az bicep build --file generated-scenarios\\resto-scale-agent\\infra\\main.bicep --outfile generated-scenarios\\resto-scale-agent\\evidence\\what-if-main-c3e1750f.arm.json; az bicep lint --file generated-scenarios\\resto-scale-agent\\infra\\main.bicep: both exited 0.",
+    "Unchanged application baseline reused: evidence\\tests\\final-tools-cc61b383.trx (25 passed), eight Python tooling tests, evidence\\container-runtime-final-cc61b383.json (health/homepage/cleanup passed). Fourteen static findings and allCommandsPassed:false remain retained in validation\\local-checks-cc61b383.json; matching design choices and narrowed expression findings are reviewed in the preparation summary, not suppressed.",
+    "No Azure deployment, runtime initializer, real model/agent call, staff identity setup, application rollout, scenario approval, hack composition, team deployment or publication occurred."
+  ]
+}

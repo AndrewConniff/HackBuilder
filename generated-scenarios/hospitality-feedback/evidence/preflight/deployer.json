@@ -1,0 +1,9 @@
+{
+  "checkedAtUtc": "2026-10-22T18:20:55.5556888Z",
+  "command": "az ad signed-in-user show --query {id:id,userPrincipalName:userPrincipalName} -o json",
+  "exitCode": 0,
+  "result": {
+    "id": "214d672b-df87-4f3b-94fd-7863032546c1",
+    "userPrincipalName": "petender_microsoft.com#EXT#@fdpo.onmicrosoft.com"
+  }
+}

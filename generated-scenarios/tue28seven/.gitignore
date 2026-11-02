@@ -1,0 +1,13 @@
+.private/
+.azure/
+**/bin/
+**/obj/
+**/TestResults/
+local-validation.json
+scenario-validation.json
+workflow-state.json
+azure-readiness.json
+*-observation.json
+model-quota-*.json
+web-linux-locations.json
+*.user

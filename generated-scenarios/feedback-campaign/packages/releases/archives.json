@@ -1,0 +1,22 @@
+{
+  "feedback-campaign-coach.zip": {
+    "sha256": "e588c48ba17c42b887eac5ce5f59acd249abea8cb8fd796b08f9a6677442dff6",
+    "fileCount": 38,
+    "bytes": 46768
+  },
+  "feedback-campaign-participant.zip": {
+    "sha256": "3709552497b64a346e1ef9298777ce2a6d19e5cdbd38388fd330938130aa1d36",
+    "fileCount": 13,
+    "bytes": 8455
+  },
+  "feedback-campaign-hack.zip": {
+    "sha256": "470acb2a427abc0c7a70fa1446ea73a75e33b149ee49541fdaa0f72bbd2399f7",
+    "fileCount": 15,
+    "bytes": 17361
+  },
+  "feedback-campaign-coach-guide.zip": {
+    "sha256": "4347819a2a5b6923c2803f5fae30b22600c2857cb53e113daa022a15087815fc",
+    "fileCount": 18,
+    "bytes": 24612
+  }
+}

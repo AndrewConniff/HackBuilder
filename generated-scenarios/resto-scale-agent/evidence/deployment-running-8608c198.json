@@ -1,0 +1,16 @@
+{
+  "stage": "deployment",
+  "status": "running",
+  "summary": "Executing only the canonically authorized shared infrastructure scope. Exact CLI account/subscription/tenant match; target group absent; five global names available; model quota and regional capacity 999 versus request 100; all eleven providers registered. Reviewed shared template is unchanged. No runtime, image publication, initializer or Entra registration is authorized.",
+  "evidence": [
+    "Canonical deployment authorization cd856cdaeeb94dd6b6b4071e49734056, answered Authorize shared infrastructure only; reviewed exact targets and unresolved what-if limits retained in 06-deployment-summary.md.",
+    "python scripts\\check_prerequisites.py --for-project --record --stage deployment --json: ready true, all blockedStages empty, owner 8608c198ef7041f9aa0a185850831517, checkedAtUtc 2026-10-23T18:53:04.814922+00:00.",
+    "az account show --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --query {account:user.name,subscriptionId:id,tenantId:tenantId,state:state} --output json: petender@microsoft.com, authorized subscription and tenant, Enabled. azd auth login --check-status: same account.",
+    "az group exists --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --name rg-resto-scale-agent --output json: false.",
+    "evidence\\acr-name-8608c198.json; vault-name-8608c198.json; broker-name-8608c198.json; foundry-name-8608c198.json: names available. cosmos-name-8608c198.json: false means absent.",
+    "evidence\\model-quota-8608c198.json; model-capacity-8608c198.json: exact GlobalStandard model/version quota and East US 2 availableCapacity 999 versus requested 100.",
+    "evidence\\providers-8608c198.json: eleven Registered namespaces.",
+    "az bicep build and lint infra\\main.bicep: exit 0. Parsed compiled template equality with reviewed what-if-main-c3e1750f.arm.json: true.",
+    "main-deployment-8608c198.parameters.json preserves reviewed inputs and uses the unchanged template default for fresh 180-day signing-key expiration."
+  ]
+}

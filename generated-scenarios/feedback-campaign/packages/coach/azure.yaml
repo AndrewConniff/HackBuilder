@@ -1,0 +1,21 @@
+name: feedback-campaign
+metadata:
+  template: feedback-campaign-reference
+services:
+  web:
+    project: ./src/FeedbackCampaign.Web
+    language: dotnet
+    host: appservice
+hooks:
+  preprovision:
+    shell: pwsh
+    run: python scripts/setup_lab_accounts.py prepare
+    interactive: false
+  postprovision:
+    shell: pwsh
+    run: python scripts/setup_lab_accounts.py install
+    interactive: false
+  postdeploy:
+    shell: pwsh
+    run: python scripts/initialize_foundry.py
+    interactive: false

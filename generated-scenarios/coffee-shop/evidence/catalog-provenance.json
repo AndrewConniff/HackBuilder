@@ -1,0 +1,24 @@
+{
+  "company": "Fourth Coffee",
+  "domain": "fourthcoffee.com",
+  "companySlug": "fourth-coffee",
+  "industry": "Hospitality & Travel",
+  "businessUnits": [
+    "sales"
+  ],
+  "storeManagerMapping": {
+    "001": "Airi Ilves",
+    "002": "Hasan Ibrahimov",
+    "003": "Nino Kapanadze"
+  },
+  "northAreaManager": "Nemanja Milatovic",
+  "catalogDigests": {
+    "fictitious_company_names.csv": "f108f10b4218593c35f4d6e824cbae80f4e10c36426f70e65ca1c9f46e0c79ad",
+    "fictitious_people_names.csv": "2b3dbc2bf001589e496ce01a562b2da77e826a87e617b3d9bcfdc63013b67880",
+    "microsoft_industry_verticals.csv": "964c5975b2d0c0b145879456b2098e6f6ddca0810da067c129f8c07b207bee17"
+  },
+  "stockRecords": 12,
+  "stores": 3,
+  "dailyLedgerRecords": 3,
+  "identityNote": "Synthetic people only, never automatically mapped to real Entra users."
+}

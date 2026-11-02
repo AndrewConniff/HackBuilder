@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "projectSlug": "equip-ai",
+  "actualResponseSource": ".abcbuilder-portal/scenarios/equip-ai/consent-history.json",
+  "existingDeploymentDecisionId": "157b9eb7c2f14f9e957e45e26826e35d",
+  "existingDeploymentResponse": "Authorize reviewed ordered ARM and dedicated directory installation",
+  "existingDeploymentRecordedAtUtc": "2026-10-24T00:05:54.058021+00:00",
+  "existingDeploymentRegion": "centralus",
+  "existingGrantRetained": true,
+  "laterReadOnlyResponseExplicitlyRevokesExistingGrant": false,
+  "localDesignResponseExplicitlyRevokesExistingGrant": false,
+  "derivedReceiptIsNotRevocation": "local-evidence/centralus-20261024T2240Z/authorization.json prohibited list is not the actual user response",
+  "workerReceiptExpiryIsNotUserExpiry": true,
+  "newManagementAdditionAuthorized": true,
+  "userAssignmentsAuthorized": true,
+  "newApprovalEvidence": "user-approval.json",
+  "newApprovalCondition": "Subject to passing readiness, pricing and what-if checks; readiness failed due to actual subscription SKU restriction. No installation permitted yet.",
+  "suitabilityApproved": false,
+  "review": "deployment-review.md",
+  "cloudOperationsDuringRepairPreparation": false
+}

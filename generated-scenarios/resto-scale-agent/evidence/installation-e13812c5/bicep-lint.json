@@ -1,0 +1,9 @@
+{
+  "command": "az bicep lint --file C:\\azd-projects\\resto-scale-agent\\infra\\main.bicep",
+  "cwd": "C:\\azd-projects\\resto-scale-agent",
+  "startedAtUtc": "2026-10-24T17:33:04.391940+00:00",
+  "checkedAtUtc": "2026-10-24T17:33:11.234701+00:00",
+  "exitCode": 0,
+  "stdout": "\n",
+  "stderr": ""
+}

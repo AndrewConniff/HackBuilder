@@ -1,0 +1,22 @@
+{
+  "stage": "diagrams",
+  "status": "waiting_for_user",
+  "summary": "Decision required: prerequisite checks now execute successfully, but Graphviz dot is still unresolved in the actual worker by both Python and PowerShell. Diagram rendering remains blocked. No shared tools were changed and no Azure operations were performed.",
+  "evidence": [
+    "python -c \"import importlib.util,json,shutil; print(json.dumps({'dot':shutil.which('dot'),'diagramsInstalled':importlib.util.find_spec('diagrams') is not None}))\" returned {\"dot\": null, \"diagramsInstalled\": true}; exit code 0.",
+    "Get-Command dot -ErrorAction SilentlyContinue returned no executable; shell probe printed 'Graphviz dot is not resolvable by this worker.'; exit code 0.",
+    "Unlike earlier runs, neither prerequisite probe was denied by the execution host. Executable resolution alone remains unresolved.",
+    "generated-scenarios\\resto-scale-agent\\evidence\\prerequisite-resume-e007aade-running.json",
+    "Existing requirements, confirmed architecture and local-tool consent preserved; no scenario approval, package composition or team deployment inferred."
+  ],
+  "decision": {
+    "kind": "business",
+    "question": "Have the environment administrator expose the existing Graphviz dot.exe on the PATH inherited by the actual portal-launched worker, verify Python resolves it to an executable path, and then resume this same scenario?",
+    "reason": "Both allowed read-only probes confirm dot is absent from this worker's executable search path despite the prior correction. Tool permission is no longer the observed blocker. Coordinate the effective worker environment outside this job; the worker must not install or upgrade shared tools. Preserve the existing design and local consent; no cloud authorization is requested.",
+    "choices": [
+      "Actual worker resolves dot.exe to an executable path; resume",
+      "Stop"
+    ],
+    "acceptChoice": "Actual worker resolves dot.exe to an executable path; resume"
+  }
+}

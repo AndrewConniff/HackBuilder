@@ -1,0 +1,9 @@
+{
+  "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" bicep build --file C:\\azd-projects\\equip-ai\\infra\\main.bicep --outfile C:\\azd-projects\\equip-ai\\local-evidence\\centralus-20261024T2240Z\\main.json",
+  "cwd": "C:\\azd-projects\\equip-ai",
+  "startedAtUtc": "2026-10-24T22:39:30.999994+00:00",
+  "finishedAtUtc": "2026-10-24T22:39:40.053290+00:00",
+  "exitCode": 0,
+  "stdout": "bicep-build.json",
+  "stderr": "bicep-build.stderr.txt"
+}

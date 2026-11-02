@@ -1,0 +1,146 @@
+{
+  "scope": "static inspection only; no requests made",
+  "profiles": {
+    "normal": {
+      "scenarios": {
+        "reads": {
+          "executor": "constant-arrival-rate",
+          "startTime": null,
+          "gracefulStop": null,
+          "env": null,
+          "exec": "reads",
+          "tags": null,
+          "rate": 40,
+          "timeUnit": "1s",
+          "duration": "30m0s",
+          "preAllocatedVUs": 250,
+          "maxVUs": 250
+        },
+        "writes": {
+          "executor": "constant-arrival-rate",
+          "startTime": null,
+          "gracefulStop": null,
+          "env": null,
+          "exec": "writes",
+          "tags": null,
+          "rate": 10,
+          "timeUnit": "1s",
+          "duration": "30m0s",
+          "preAllocatedVUs": 30,
+          "maxVUs": 30
+        }
+      },
+      "thresholds": {
+        "checks": [
+          "rate==1"
+        ],
+        "dropped_iterations": [
+          "count==0"
+        ],
+        "read_latency": [
+          "p(95)<=500"
+        ],
+        "unexpected_responses": [
+          "rate<0.01"
+        ],
+        "write_latency": [
+          "p(95)<=800"
+        ]
+      }
+    },
+    "burst": {
+      "scenarios": {
+        "reads": {
+          "executor": "constant-arrival-rate",
+          "startTime": null,
+          "gracefulStop": null,
+          "env": null,
+          "exec": "reads",
+          "tags": null,
+          "rate": 140,
+          "timeUnit": "1s",
+          "duration": "5m0s",
+          "preAllocatedVUs": 250,
+          "maxVUs": 250
+        },
+        "writes": {
+          "executor": "constant-arrival-rate",
+          "startTime": null,
+          "gracefulStop": null,
+          "env": null,
+          "exec": "writes",
+          "tags": null,
+          "rate": 10,
+          "timeUnit": "1s",
+          "duration": "5m0s",
+          "preAllocatedVUs": 30,
+          "maxVUs": 30
+        }
+      },
+      "thresholds": {
+        "checks": [
+          "rate==1"
+        ],
+        "dropped_iterations": [
+          "count==0"
+        ],
+        "read_latency": [
+          "p(95)<=500"
+        ],
+        "unexpected_responses": [
+          "rate<0.01"
+        ],
+        "write_latency": [
+          "p(95)<=800"
+        ]
+      }
+    },
+    "soak": {
+      "scenarios": {
+        "reads": {
+          "executor": "constant-arrival-rate",
+          "startTime": null,
+          "gracefulStop": null,
+          "env": null,
+          "exec": "reads",
+          "tags": null,
+          "rate": 20,
+          "timeUnit": "1s",
+          "duration": "2h0m0s",
+          "preAllocatedVUs": 250,
+          "maxVUs": 250
+        },
+        "writes": {
+          "executor": "constant-arrival-rate",
+          "startTime": null,
+          "gracefulStop": null,
+          "env": null,
+          "exec": "writes",
+          "tags": null,
+          "rate": 5,
+          "timeUnit": "1s",
+          "duration": "2h0m0s",
+          "preAllocatedVUs": 30,
+          "maxVUs": 30
+        }
+      },
+      "thresholds": {
+        "checks": [
+          "rate==1"
+        ],
+        "dropped_iterations": [
+          "count==0"
+        ],
+        "read_latency": [
+          "p(95)<=500"
+        ],
+        "unexpected_responses": [
+          "rate<0.01"
+        ],
+        "write_latency": [
+          "p(95)<=800"
+        ]
+      }
+    }
+  }
+}

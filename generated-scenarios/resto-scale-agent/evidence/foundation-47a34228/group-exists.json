@@ -1,0 +1,9 @@
+{
+  "command": "az group exists --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --name rg-resto-scale-agent --output json",
+  "startedAtUtc": "2026-10-24T00:09:13.818325+00:00",
+  "checkedAtUtc": "2026-10-24T00:09:19.685861+00:00",
+  "exitCode": 0,
+  "stdout": "false\n",
+  "stderr": "",
+  "result": false
+}

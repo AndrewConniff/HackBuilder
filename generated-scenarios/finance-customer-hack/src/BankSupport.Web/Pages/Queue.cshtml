@@ -1,0 +1,45 @@
+@page
+@model BankSupport.Web.Pages.QueueModel
+@{
+    ViewData["Title"] = "Human service queue";
+}
+<p class="eyebrow">Adatum Corporation / Representative workspace</p>
+<h1>Human service queue</h1>
+<p>Claim before reading a conversation. Automated answers remain paused until the case is closed.</p>
+@if (Model.Cases.Count == 0) { <p>No waiting cases.</p> }
+@foreach (var item in Model.Cases)
+{
+    <section>
+        <h2>Case <code>@item.Id</code></h2>
+        <p>@item.Status / version @item.Version / updated @item.UpdatedAt.ToString("u")</p>
+        @if (item.Status == "AwaitingHuman")
+        {
+            <form method="post" asp-page-handler="Claim">
+                <input type="hidden" name="id" value="@item.Id" />
+                <input type="hidden" name="version" value="@item.Version" />
+                <button type="submit">Claim case</button>
+            </form>
+        }
+        @if (item.Owner == User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value)
+        { <a asp-page="/Queue" asp-route-id="@item.Id">Open assigned conversation</a> }
+    </section>
+}
+@if (Model.Conversation is { } conversation)
+{
+    <h2>Assigned conversation</h2>
+    <ol class="messages">
+        @foreach (var message in conversation.Messages)
+        { <li><strong>@message.Role</strong><p>@message.Text</p></li> }
+    </ol>
+    @if (conversation.Status == "HumanOwned")
+    {
+        <form method="post" asp-page-handler="Reply">
+            <input type="hidden" name="id" value="@conversation.Id" />
+            <input type="hidden" name="version" value="@conversation.Version" />
+            <label for="reply">Representative reply</label>
+            <textarea id="reply" name="text" maxlength="1000" rows="3" required></textarea>
+            <button type="submit">Reply</button>
+            <button type="submit" name="close" value="true" class="secondary">Reply and close</button>
+        </form>
+    }
+}

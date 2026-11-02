@@ -1,0 +1,77 @@
+{
+  "checks": [
+    {
+      "name": "bicep-build",
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" bicep build --file C:\\azd-projects\\equip-ai\\infra\\main.bicep --outfile C:\\azd-projects\\equip-ai\\local-evidence\\resume-20261024T2233Z\\main.json",
+      "exitCode": 0,
+      "checkedAtUtc": "2026-10-24T22:33:24.078529+00:00",
+      "stdout": "bicep-build.stdout.txt",
+      "stderr": "bicep-build.stderr.txt"
+    },
+    {
+      "name": "bicep-lint",
+      "command": "\"C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az.CMD\" bicep lint --file C:\\azd-projects\\equip-ai\\infra\\main.bicep",
+      "exitCode": 0,
+      "checkedAtUtc": "2026-10-24T22:33:33.744160+00:00",
+      "stdout": "bicep-lint.stdout.txt",
+      "stderr": "bicep-lint.stderr.txt"
+    },
+    {
+      "name": "identity-tests",
+      "command": "C:\\Users\\petender\\AppData\\Local\\Microsoft\\WindowsApps\\python.EXE -m unittest discover -s C:\\azd-projects\\equip-ai\\tests -p test_preparation.py -v",
+      "exitCode": 0,
+      "checkedAtUtc": "2026-10-24T22:33:41.029193+00:00",
+      "stdout": "identity-tests.stdout.txt",
+      "stderr": "identity-tests.stderr.txt"
+    },
+    {
+      "name": "package-sources",
+      "command": "\"C:\\Program Files\\dotnet\\dotnet.EXE\" nuget list source --configfile C:\\azd-projects\\equip-ai\\NuGet.Config",
+      "exitCode": 0,
+      "checkedAtUtc": "2026-10-24T22:33:50.713158+00:00",
+      "stdout": "package-sources.stdout.txt",
+      "stderr": "package-sources.stderr.txt"
+    },
+    {
+      "name": "application-restore",
+      "command": "\"C:\\Program Files\\dotnet\\dotnet.EXE\" restore C:\\azd-projects\\equip-ai\\tests\\EquipAI.Tests\\EquipAI.Tests.csproj --configfile C:\\azd-projects\\equip-ai\\NuGet.Config --verbosity minimal",
+      "exitCode": 0,
+      "checkedAtUtc": "2026-10-24T22:33:51.179141+00:00",
+      "stdout": "application-restore.stdout.txt",
+      "stderr": "application-restore.stderr.txt"
+    },
+    {
+      "name": "application-build",
+      "command": "\"C:\\Program Files\\dotnet\\dotnet.EXE\" build C:\\azd-projects\\equip-ai\\tests\\EquipAI.Tests\\EquipAI.Tests.csproj --no-restore --nologo --verbosity quiet",
+      "exitCode": 0,
+      "checkedAtUtc": "2026-10-24T22:33:52.529943+00:00",
+      "stdout": "application-build.stdout.txt",
+      "stderr": "application-build.stderr.txt"
+    },
+    {
+      "name": "application-tests",
+      "command": "\"C:\\Program Files\\dotnet\\dotnet.EXE\" run --project C:\\azd-projects\\equip-ai\\tests\\EquipAI.Tests\\EquipAI.Tests.csproj --no-build -- C:\\azd-projects\\equip-ai",
+      "exitCode": 0,
+      "checkedAtUtc": "2026-10-24T22:33:54.727911+00:00",
+      "stdout": "application-tests.stdout.txt",
+      "stderr": "application-tests.stderr.txt"
+    },
+    {
+      "name": "linux-restore",
+      "command": "\"C:\\Program Files\\dotnet\\dotnet.EXE\" restore C:\\azd-projects\\equip-ai\\src\\EquipAI.Web\\EquipAI.Web.csproj --runtime linux-x64 --configfile C:\\azd-projects\\equip-ai\\NuGet.Config --verbosity minimal",
+      "exitCode": 0,
+      "checkedAtUtc": "2026-10-24T22:34:02.786179+00:00",
+      "stdout": "linux-restore.stdout.txt",
+      "stderr": "linux-restore.stderr.txt"
+    },
+    {
+      "name": "linux-publish",
+      "command": "\"C:\\Program Files\\dotnet\\dotnet.EXE\" publish C:\\azd-projects\\equip-ai\\src\\EquipAI.Web\\EquipAI.Web.csproj --configuration Release --runtime linux-x64 --self-contained true --no-restore --output C:\\azd-projects\\equip-ai\\local-evidence\\resume-20261024T2233Z\\publish --nologo --verbosity quiet",
+      "exitCode": 0,
+      "checkedAtUtc": "2026-10-24T22:34:03.885336+00:00",
+      "stdout": "linux-publish.stdout.txt",
+      "stderr": "linux-publish.stderr.txt"
+    }
+  ],
+  "allCommandsPassed": true
+}

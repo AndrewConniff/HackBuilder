@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "stage": "local-validation",
+  "cause": "The linux/amd64 .NET 10 SDK crashes under QEMU on the current ARM64 Docker engine during locked package restore.",
+  "checks": [
+    {
+      "command": "docker info --format '{{json .}}' | ConvertFrom-Json | Select-Object OSType,Architecture,ServerVersion,OperatingSystem",
+      "exitCode": 0,
+      "result": "OSType=linux; Architecture=aarch64; ServerVersion=29.8.2; OperatingSystem=Docker Desktop (containerized)"
+    },
+    {
+      "command": "docker buildx inspect desktop-linux",
+      "exitCode": 0,
+      "result": "Running docker builder; BuildKit v0.33.1; advertises linux/arm64 and linux/amd64. Platform advertisement did not prove actual .NET SDK execution."
+    },
+    {
+      "command": "docker run --rm --pull=never --read-only --network none --platform linux/amd64 --user 1654 --env DOTNET_EnableDiagnostics=0 mcr.microsoft.com/dotnet/sdk:10.0 dotnet --info",
+      "exitCode": 125,
+      "result": "No such image: mcr.microsoft.com/dotnet/sdk:10.0. BuildKit-resolved SDK content is not available as a tagged local runtime image. No automatic pull, shared engine repair or tool installation attempted."
+    }
+  ],
+  "buildFailure": {
+    "log": ".local-validation-evidence\\image-build.log",
+    "outerExitCode": 1,
+    "sdkRestoreExitCode": 139,
+    "message": "qemu: uncaught target signal 11 (Segmentation fault) - core dumped",
+    "operation": "dotnet restore src/MobilityCommercial.Web/MobilityCommercial.Web.csproj --configfile NuGet.Config --locked-mode"
+  },
+  "notPerformed": [
+    "The image did not finish building; repository check_container_runtime.py was not run.",
+    "No container application liveness or homepage result is claimed.",
+    "No permission denial occurred; this is not a host-permission blocker.",
+    "No cloud, directory, deployment, suitability approval, composition or team operations occurred."
+  ],
+  "unchanged": [
+    "All 33 application source hashes match the retained passing application receipt.",
+    "Production authentication and fail-closed configuration were not weakened.",
+    "The confirmed local linux/amd64 build design and package proxy were not changed.",
+    "No canonical repository or other scenario files were edited."
+  ]
+}

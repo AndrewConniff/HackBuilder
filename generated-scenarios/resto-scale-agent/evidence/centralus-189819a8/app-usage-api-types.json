@@ -1,0 +1,29 @@
+{
+  "command": "az provider show --namespace Microsoft.App --subscription efd64343-6ef4-4926-951f-d3229f38bd76 --query \"resourceTypes[?contains(resourceType, 'usage') || contains(resourceType, 'quota')].{resourceType:resourceType,apiVersions:apiVersions}\" --output json",
+  "startedAtUtc": "2026-10-23T23:42:17.261650+00:00",
+  "checkedAtUtc": "2026-10-23T23:42:20.041502+00:00",
+  "exitCode": 0,
+  "stdout": "[\n  {\n    \"apiVersions\": [\n      \"2026-07-01\",\n      \"2026-03-02-preview\",\n      \"2026-01-01\",\n      \"2025-10-02-preview\",\n      \"2025-07-01\",\n      \"2025-02-02-preview\",\n      \"2025-01-01\",\n      \"2024-10-02-preview\",\n      \"2024-08-02-preview\",\n      \"2024-03-01\",\n      \"2024-02-02-preview\",\n      \"2023-11-02-preview\",\n      \"2023-08-01-preview\",\n      \"2023-05-02-preview\"\n    ],\n    \"resourceType\": \"locations/usages\"\n  }\n]\n",
+  "stderr": "",
+  "result": [
+    {
+      "apiVersions": [
+        "2026-07-01",
+        "2026-03-02-preview",
+        "2026-01-01",
+        "2025-10-02-preview",
+        "2025-07-01",
+        "2025-02-02-preview",
+        "2025-01-01",
+        "2024-10-02-preview",
+        "2024-08-02-preview",
+        "2024-03-01",
+        "2024-02-02-preview",
+        "2023-11-02-preview",
+        "2023-08-01-preview",
+        "2023-05-02-preview"
+      ],
+      "resourceType": "locations/usages"
+    }
+  ]
+}

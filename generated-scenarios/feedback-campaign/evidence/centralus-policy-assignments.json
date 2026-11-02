@@ -1,0 +1,26 @@
+[
+  {
+    "displayName": "ASC OpenSourceRelationalDatabasesProtection (subscription: efd64343-6ef4-4926-951f-d3229f38bd76)",
+    "enforcementMode": "Default",
+    "name": "OpenSourceRelationalDatabasesProtectionSecurityCenter",
+    "parameters": null,
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policySetDefinitions/e77fc0b3-f7e9-4c58-bc13-cb753ed8e46e",
+    "scope": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76"
+  },
+  {
+    "displayName": "ASC DataProtection (subscription: efd64343-6ef4-4926-951f-d3229f38bd76)",
+    "enforcementMode": "Default",
+    "name": "DataProtectionSecurityCenter",
+    "parameters": null,
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policySetDefinitions/9cb3cc7a-b39b-4b82-bc89-e5a5d9ff7b97",
+    "scope": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76"
+  },
+  {
+    "displayName": "Defender for SQL Servers on Machines provisioning (subscription: efd64343-6ef4-4926-951f-d3229f38bd76)",
+    "enforcementMode": "Default",
+    "name": "SqlVmAndArcSqlServersProtection",
+    "parameters": null,
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policySetDefinitions/c1529623-9fc2-45bc-b84b-b14cd0b7484e",
+    "scope": "/subscriptions/efd64343-6ef4-4926-951f-d3229f38bd76"
+  }
+]

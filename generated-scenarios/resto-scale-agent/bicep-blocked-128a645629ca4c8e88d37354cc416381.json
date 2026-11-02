@@ -1,0 +1,19 @@
+{
+  "stage": "bicep",
+  "status": "blocked",
+  "summary": "The prior Python setup blocker was actually verified and cleared; diagrams are complete. Continuing infrastructure/azd service preparation found an unmet local container-build prerequisite: docker version returned exit code 1 because the Docker Desktop Linux engine pipe does not exist. Stopped without starting Docker, installing tools, changing PATH, bypassing restrictions or requesting another approval. Infrastructure generation remains incomplete.",
+  "blocker": {
+    "kind": "prerequisite",
+    "action": "Outside this worker, have the environment administrator start or repair the already approved Docker Desktop Linux engine for the portal worker account and existing desktop-linux context. Follow the organization's Docker licensing, virtualization and execution-host procedures. Ensure a fresh actual portal worker can connect to the engine and docker version reports both Client and Server successfully. Coordinate any restart with concurrent workers. Do not install or upgrade tools, change PATH or broaden permissions in this worker.",
+    "verification": "docker version"
+  },
+  "evidence": [
+    "Exact command: docker version",
+    "Actual result: Client Version 29.8.2; API version 1.56; OS/Arch windows/arm64; Context desktop-linux. No Server section was returned. Exit code 1.",
+    "Exact failure: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.",
+    "Docker is needed for the confirmed Container Apps application's local container builds and azd Docker service wiring. A CLI executable/version alone does not establish a responsive container engine.",
+    "Read-only checks passed: Azure CLI 2.91.0, Bicep 0.48.1, azd 1.35.1, .NET SDK 10.0.402, Python checkov 3.3.29. Current public AVM interfaces were downloaded only into this scenario's evidence folder; no infrastructure, app or deployment success is claimed.",
+    "Prior blocker 37e8d0b760bf4a808bc50b3f97fb02b4 cleared by actual verification at revision 64. Diagrams completed with actual renders and image integrity/visual checks at revision 66. Existing design decisions and local-tool consent preserved; no cloud authorizations exist.",
+    "No Docker startup, installer, tool upgrade, PATH modification, alternate context, permission change, Azure query/deployment or new approval question was attempted."
+  ]
+}

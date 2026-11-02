@@ -1,0 +1,81 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Customer support";
+}
+<p class="eyebrow">BROKERAGE SERVICE DESK / SYNTHETIC DEMONSTRATION</p>
+<h1>Answers from our company. People when you need them.</h1>
+<p>Ask about getting started, funding, fees or statements. No market predictions or personalized advice.</p>
+<p class="notice">Do not enter real personal, account or financial information.</p>
+@if (Model.Error is not null)
+{
+    <p role="alert" class="error">@Model.Error</p>
+}
+@if (Model.Conversation is { } conversation)
+{
+    <section aria-label="Conversation">
+        <h2>Your conversation</h2>
+        <p>Status: <strong>@conversation.Status</strong> | Case: @conversation.Id</p>
+        @if (conversation.Status == "waiting")
+        {
+            <p>A representative has been requested. This queue is asynchronous; use Refresh to check for replies.</p>
+        }
+        @if (conversation.Owner is not null)
+        {
+            <p>Assigned representative: @conversation.Owner</p>
+        }
+        @if (conversation.Messages.Count == 0)
+        {
+            <p>No messages yet. Try: How do I open an investment account?</p>
+        }
+        @foreach (var message in conversation.Messages)
+        {
+            <article>
+                <h3>@message.Author</h3>
+                <p class="message">@message.Text</p>
+                @if (message.Source is not null)
+                {
+                    <p class="metadata">Approved company source: @message.Source</p>
+                }
+                @if (message.Receipt is not null)
+                {
+                    <p class="metadata">Foundry invocation: @message.Receipt</p>
+                }
+            </article>
+        }
+        @if (conversation.Status == "automated")
+        {
+            <form method="post" asp-page-handler="Ask">
+                <input type="hidden" name="revision" value="@conversation.Revision" />
+                <label for="question">Your service question</label>
+                <textarea id="question" name="question" maxlength="2000" required rows="3"></textarea>
+                <button type="submit">Ask company knowledge</button>
+            </form>
+            <form method="post" asp-page-handler="Escalate">
+                <input type="hidden" name="revision" value="@conversation.Revision" />
+                <button type="submit" class="secondary">Request a representative</button>
+            </form>
+        }
+        else
+        {
+            <p>AI answers are paused. Only the assigned representative can reply or resolve this case.</p>
+            @if (conversation.Status is "waiting" or "claimed")
+            {
+                <form method="post" asp-page-handler="Reply">
+                    <input type="hidden" name="revision" value="@conversation.Revision" />
+                    <label for="human-message">Message for your representative</label>
+                    <textarea id="human-message" name="text" maxlength="2000" rows="3" required></textarea>
+                    <button type="submit">Send to representative</button>
+                </form>
+            }
+            else if (conversation.Status == "resolved")
+            {
+                <form method="post" asp-page-handler="StartNew">
+                    <input type="hidden" name="revision" value="@conversation.Revision" />
+                    <button type="submit">Start a new conversation</button>
+                </form>
+            }
+        }
+        <a asp-page="/Index">Refresh conversation</a>
+    </section>
+}

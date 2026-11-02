@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "evidenceType": "historical-user-attestation",
+  "status": "user-attested",
+  "checkedAtUtc": null,
+  "applicationUrl": null,
+  "checks": {},
+  "attestation": {
+    "source": "explicit-user-statement",
+    "statement": "the full scenario worked as expected, deployment was successful. I cant go back to the sub, since it's a one-off hosted lab subscription. I deployed the scenario and it worked. Deleted to save costs in my azure sub.",
+    "recordedAtUtc": "2026-10-22T20:07:42.726167+00:00",
+    "successfulDeployment": true,
+    "fullScenarioWorked": true,
+    "resourceState": "deleted",
+    "unavailableReason": "User reports the resources were deleted to save costs and the one-off hosted lab subscription cannot be accessed. Former URL, exact test time, subscription details and granular logs are unavailable. Future deployments will use a permanent subscription."
+  },
+  "limitations": [
+    "Historical deployment is reported by the user, not independently verified by this assistant.",
+    "Deployment time, endpoint, subscription details and granular test results are unavailable.",
+    "No per-check success, live endpoint, subscription capacity or current deployability is inferred.",
+    "Future deployment requires fresh target verification, consent and recorded runtime acceptance."
+  ]
+}

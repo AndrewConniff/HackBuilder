@@ -1,0 +1,9 @@
+{
+  "stage": "bicep",
+  "status": "running",
+  "summary": "Resuming confirmed local infrastructure/application integration after the actual recorded container runtime verification passed. Retaining all existing decisions; no cloud authorization exists and no Azure operations will run.",
+  "evidence": [
+    "Owner-bound prerequisite audit at 2026-10-23T15:01:36.968850+00:00: ready=true; bicep blockedStages empty.",
+    "Canonical revision 120: setupBlocker cleared; designConfirmed=true; no cloud authorizations."
+  ]
+}

@@ -1,0 +1,6 @@
+name: adatum-brokerage-participant
+metadata:
+  template: adatum-brokerage-participant@1.0.0
+infra:
+  provider: bicep
+  path: ./infra

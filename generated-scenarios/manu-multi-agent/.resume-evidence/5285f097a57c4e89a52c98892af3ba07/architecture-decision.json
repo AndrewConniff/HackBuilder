@@ -1,0 +1,30 @@
+{
+  "stage": "architecture",
+  "status": "waiting_for_user",
+  "summary": "Decision required: confirm the preserved reference design for local revalidation. Existing private installer access and azd lifecycle gaps are documented; neither cloud readiness nor architecture completion is claimed.",
+  "evidence": [
+    ".resume-evidence\\5285f097a57c4e89a52c98892af3ba07\\intake-validation.json: actual catalog, scope, provenance, template and consent-boundary checks passed.",
+    ".resume-evidence\\5285f097a57c4e89a52c98892af3ba07\\architecture-review.json: complete local review of runtime, identity outputs, private execution access, coherent deployment scope and cost limitations.",
+    "azure.yaml has no lifecycle hooks; private installer connectivity is unspecified/unverified. These are observed local design gaps, not user permission failures or proof that administrator setup is required.",
+    "No current design confirmation, cloud authorization, deploymentContext or business questions exist. Existing original reference files and dated evidence remain unchanged."
+  ],
+  "decision": {
+    "kind": "design",
+    "question": "Confirm the same existing Adventure Works Cycles private three-agent Sales-to-Marketing design for local revalidation and completion of its deployment wiring, without resetting or regenerating the reference?",
+    "reason": "The recovered current state has designConfirmed=false; historical README statements cannot supply that decision. Preserve the anonymous synthetic APIM/private keyless backend, Standard dependencies, commercial-field exclusions and signed human-review packet. After confirmation, locally validate the existing assets and repair azd lifecycle/output capture. Private deployment requires a verified connected execution host; absent access will require one consolidated priced repair, not public-access relaxation. Exact-target preparation, directory/cloud writes, actual what-if/cost review, deployment and suitability remain separate gates.",
+    "choices": [
+      "Confirm existing design for local revalidation",
+      "Revise design",
+      "Stop scenario"
+    ],
+    "acceptChoice": "Confirm existing design for local revalidation",
+    "scope": {
+      "projectSlug": "manu-multi-agent",
+      "workspace": "generated-scenarios\\manu-multi-agent",
+      "operation": "preserve-and-revalidate-existing-reference-locally",
+      "cloudOperationsAuthorized": false,
+      "directoryWritesAuthorized": false,
+      "compositionAuthorized": false
+    }
+  }
+}

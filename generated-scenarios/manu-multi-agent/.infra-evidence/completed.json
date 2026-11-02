@@ -1,0 +1,17 @@
+{
+  "stage": "bicep",
+  "status": "completed",
+  "summary": "Implemented the confirmed Manufacturing Sales-to-Marketing private infrastructure with 15 pinned AVM resource modules, staged foundation/workload provisioning, direct Foundry project and private Standard configuration, scoped managed identities, isolated read-only business fixtures, signing key, private DNS/endpoints, internal ACA and explicit MI-authenticated APIM routes. Infrastructure compilation/lint/parameter checks and 12 compiled-contract tests passed. Application implementation remains the backend's next operation; no cloud operation, suitability approval or package authoring performed.",
+  "evidence": [
+    "generated-scenarios\\manu-multi-agent\\04-implementation-plan.md: required template headings, resource inventory, current pinned AVM interfaces, official private Standard API evidence, least-privilege fixture-account refinement and application/deployment integration contract.",
+    "generated-scenarios\\manu-multi-agent\\05-implementation-reference.md: actual local evidence, deferred cloud checks, distinct manu-multi-agent-ref environment proposal, explicit-subscription what-if command shape, staged installation requirements and no Azure resources claimed.",
+    "az bicep build --file generated-scenarios\\manu-multi-agent\\infra\\main.bicep --outfile generated-scenarios\\manu-multi-agent\\.infra-evidence\\main.arm.json: exit 0, no warnings/errors; compiled conditional workload as well as foundation.",
+    "az bicep lint --file generated-scenarios\\manu-multi-agent\\infra\\main.bicep: exit 0, no warnings/errors.",
+    "az bicep build-params --file generated-scenarios\\manu-multi-agent\\infra\\main.bicepparam --outfile generated-scenarios\\manu-multi-agent\\.infra-evidence\\local-only.parameters.json: exit 0; explicit zero-GUID compile-test identity, never deployment evidence.",
+    "python -B -m unittest discover -s generated-scenarios\\manu-multi-agent\\infra\\tests -p test_*.py -v: exit 0, all 12 tests passed; actual compiled private/keyless service settings, fixture isolation, project/capability provisioning, DNS/subnets, runtime thresholds, immutable-image/agent-version gates, gateway routes/JWT wiring/error shapes and document contracts checked.",
+    "generated-scenarios\\manu-multi-agent\\.infra-evidence\\validation.json: allCommandsPassed true, exact commands/logs, source/template SHA-256, pinned AVM modules and explicit local-only limitations.",
+    "python scripts\\check_prerequisites.py --for-project --record --stage bicep --json: exit 0; ready true, all checks passed, no blocked stages; owner-bound receipt refreshed for this stage; no shared tool installation.",
+    "Target-only scripts.scenario_catalog.refresh with .infra-evidence\\reviewed-metadata.json: curated industry/sales/marketing/services/source preserved; infra, azure.yaml and implementation-plan artifacts discovered. Used the helper's library operation because its CLI exports shared scenarios\\catalog.json, prohibited by the concurrent-worker scope.",
+    "All writes confined to this scenario workspace and helper-owned progress/receipt operations. No az account query, azd environment initialization, what-if, deployment, live test, scenario approval, hack package or team rollout."
+  ]
+}

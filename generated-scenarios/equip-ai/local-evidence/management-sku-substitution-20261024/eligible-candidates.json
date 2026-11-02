@@ -1,0 +1,290 @@
+[
+  {
+    "Name": "Standard_D2ads_v7",
+    "Family": "StandardDadsv7Family",
+    "vCPUs": "2",
+    "MemoryGB": "8",
+    "HyperV": "V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_D2alds_v7",
+    "Family": "StandardDaldsv7Family",
+    "vCPUs": "2",
+    "MemoryGB": "4",
+    "HyperV": "V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_D2als_v7",
+    "Family": "StandardDalsv7Family",
+    "vCPUs": "2",
+    "MemoryGB": "4",
+    "HyperV": "V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_D2as_v7",
+    "Family": "StandardDasv7Family",
+    "vCPUs": "2",
+    "MemoryGB": "8",
+    "HyperV": "V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_D2ds_v4",
+    "Family": "standardDDSv4Family",
+    "vCPUs": "2",
+    "MemoryGB": "8",
+    "HyperV": "V1,V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_D2ds_v7",
+    "Family": "StandardDdsv7Family",
+    "vCPUs": "2",
+    "MemoryGB": "8",
+    "HyperV": "V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_D2d_v4",
+    "Family": "standardDDv4Family",
+    "vCPUs": "2",
+    "MemoryGB": "8",
+    "HyperV": "V1,V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_D2lds_v7",
+    "Family": "StandardDldsv7Family",
+    "vCPUs": "2",
+    "MemoryGB": "4",
+    "HyperV": "V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_D2ls_v7",
+    "Family": "StandardDlsv7Family",
+    "vCPUs": "2",
+    "MemoryGB": "4",
+    "HyperV": "V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_D2s_v3",
+    "Family": "standardDSv3Family",
+    "vCPUs": "2",
+    "MemoryGB": "8",
+    "HyperV": "V1,V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_D2s_v4",
+    "Family": "standardDSv4Family",
+    "vCPUs": "2",
+    "MemoryGB": "8",
+    "HyperV": "V1,V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_D2s_v7",
+    "Family": "StandardDsv7Family",
+    "vCPUs": "2",
+    "MemoryGB": "8",
+    "HyperV": "V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_D2_v4",
+    "Family": "standardDv4Family",
+    "vCPUs": "2",
+    "MemoryGB": "8",
+    "HyperV": "V1,V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_DC2ads_v6",
+    "Family": "standardDCadsv6Family",
+    "vCPUs": "2",
+    "MemoryGB": "8",
+    "HyperV": "V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_DC2as_v6",
+    "Family": "standardDCasv6Family",
+    "vCPUs": "2",
+    "MemoryGB": "8",
+    "HyperV": "V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_E2ads_v7",
+    "Family": "StandardEadsv7Family",
+    "vCPUs": "2",
+    "MemoryGB": "16",
+    "HyperV": "V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_E2as_v7",
+    "Family": "StandardEasv7Family",
+    "vCPUs": "2",
+    "MemoryGB": "16",
+    "HyperV": "V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_E2ds_v4",
+    "Family": "standardEDSv4Family",
+    "vCPUs": "2",
+    "MemoryGB": "16",
+    "HyperV": "V1,V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_E2ds_v7",
+    "Family": "StandardEdsv7Family",
+    "vCPUs": "2",
+    "MemoryGB": "16",
+    "HyperV": "V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_E2d_v4",
+    "Family": "standardEDv4Family",
+    "vCPUs": "2",
+    "MemoryGB": "16",
+    "HyperV": "V1,V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_E2s_v3",
+    "Family": "standardESv3Family",
+    "vCPUs": "2",
+    "MemoryGB": "16",
+    "HyperV": "V1,V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_E2s_v4",
+    "Family": "standardESv4Family",
+    "vCPUs": "2",
+    "MemoryGB": "16",
+    "HyperV": "V1,V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_E2s_v7",
+    "Family": "StandardEsv7Family",
+    "vCPUs": "2",
+    "MemoryGB": "16",
+    "HyperV": "V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_E2_v4",
+    "Family": "standardEv4Family",
+    "vCPUs": "2",
+    "MemoryGB": "16",
+    "HyperV": "V1,V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_EC2ads_v6",
+    "Family": "standardECadsv6Family",
+    "vCPUs": "2",
+    "MemoryGB": "16",
+    "HyperV": "V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_EC2as_v6",
+    "Family": "standardECasv6Family",
+    "vCPUs": "2",
+    "MemoryGB": "16",
+    "HyperV": "V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_F2-1amds_v7",
+    "Family": "StandardFamdsv7Family",
+    "vCPUs": "2",
+    "MemoryGB": "16",
+    "HyperV": "V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_F2-1ams_v7",
+    "Family": "StandardFamsv7Family",
+    "vCPUs": "2",
+    "MemoryGB": "16",
+    "HyperV": "V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_F2ads_v7",
+    "Family": "StandardFadsv7Family",
+    "vCPUs": "2",
+    "MemoryGB": "8",
+    "HyperV": "V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_F2alds_v7",
+    "Family": "StandardFaldsv7Family",
+    "vCPUs": "2",
+    "MemoryGB": "4",
+    "HyperV": "V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_F2als_v7",
+    "Family": "StandardFalsv7Family",
+    "vCPUs": "2",
+    "MemoryGB": "4",
+    "HyperV": "V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_F2amds_v7",
+    "Family": "StandardFamdsv7Family",
+    "vCPUs": "2",
+    "MemoryGB": "16",
+    "HyperV": "V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_F2ams_v7",
+    "Family": "StandardFamsv7Family",
+    "vCPUs": "2",
+    "MemoryGB": "16",
+    "HyperV": "V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_F2as_v7",
+    "Family": "StandardFasv7Family",
+    "vCPUs": "2",
+    "MemoryGB": "8",
+    "HyperV": "V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_L2aos_v4",
+    "Family": "standardLaosv4Family",
+    "vCPUs": "2",
+    "MemoryGB": "16",
+    "HyperV": "V2",
+    "TrustedLaunchDisabled": null
+  },
+  {
+    "Name": "Standard_L2as_v5",
+    "Family": "standardLasv5Family",
+    "vCPUs": "2",
+    "MemoryGB": "16",
+    "HyperV": "V2",
+    "TrustedLaunchDisabled": null
+  }
+]

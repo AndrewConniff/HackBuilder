@@ -23,7 +23,7 @@ The current portal, launcher and instructions use **FBC Builder**; the captured 
 - [Understand the two-window workflow](#understand-the-two-window-workflow)
 - [Clone the repository and choose your starting route](#clone-the-repository-and-choose-your-starting-route)
 - [Prepare your machine and open FBC Builder](#prepare-your-machine-and-open-fbc-builder)
-- [Choose manual, online or cached setup](#choose-manual-online-or-cached-setup)
+- [Choose manual or online setup](#choose-manual-or-online-setup)
 - [Manual tool inventory and official downloads](#manual-tool-inventory-and-official-downloads)
 - [Navigate the browser app](#navigate-the-browser-app)
 - [Step 1: describe your scenario](#step-1-describe-your-scenario)
@@ -128,8 +128,8 @@ For existing work, resume its known chat rather than starting duplicate executio
 
 ### Prepare once
 
-Use the [setup choices below](#choose-manual-online-or-cached-setup), not just the System diagnostic.
-We provide an opt-in PowerShell installer and a local native-installer download cache under
+Use the [setup choices below](#choose-manual-or-online-setup), not just the System diagnostic.
+We provide an opt-in online PowerShell installer under
 [`system-tools`](system-tools/README.md), as well as manual download links.
 The [prerequisite guide](PREREQUISITES.md) covers authentication and detailed troubleshooting.
 Before your first scenario:
@@ -148,7 +148,7 @@ The portal itself uses Python's standard library.
 The broader toolchain is needed to generate and validate the reference, not simply to render the page.
 Do not install arbitrary packages in response to a scenario delay; use the documented diagnostics first.
 
-### Choose manual, online or cached setup
+### Choose manual or online setup
 
 Run these commands from the repository root in PowerShell. Windows PowerShell 5.1 can bootstrap setup;
 PowerShell 7+ is still required for scenario work. Follow your organization's script approval/signing policy.
@@ -157,13 +157,11 @@ The scripts do not bypass execution policy.
 | Route | Best when | What happens |
 | --- | --- | --- |
 | Manual | Automated installation is not permitted. | Use the official links below; run checks afterward. |
-| Download baseline | You want the same native versions locally. | Downloads every pinned tool; installs nothing. |
-| Download and install | You want one opt-in Windows x64 flow. | Verifies all downloads, then installs from cache. |
+| Online installation | You want one opt-in Windows flow. | Downloads and installs missing tools using WinGet. |
 
-**Cached/offline native installation is not fully offline FBC Builder setup.**
-The cache includes the native tools and Bicep, but does not include Python wheels, vendor dependencies, WSL images,
-VS Code extensions or generated application NuGet packages.
-Installation still needs network access for missing Python requirements.
+**Setup requires internet access; the repository contains no offline installer bundle.**
+Install Microsoft App Installer through your approved software channel if WinGet is unavailable.
+Native packages come from WinGet, Python dependencies from pip, and Bicep from `az bicep install`.
 Final checks include NuGet HTTPS, and Copilot/Azure sign-in needs connectivity.
 For an air-gapped machine, use your organization's separately approved complete software/package mirror;
 this repository does not supply or certify one.
@@ -174,25 +172,24 @@ Check the full System profile first; this installs nothing:
 .\system-tools\Install-SystemTools.ps1 -Mode Check
 ```
 
-Download the complete pinned native baseline without installing anything, including Node.js and GitHub CLI:
+Preview installation without downloading or installing anything:
 
 ```powershell
-.\system-tools\Install-SystemTools.ps1 -WhatIf
-.\system-tools\Install-SystemTools.ps1 -AcceptPackageAgreements -Verbose
+.\system-tools\Install-SystemTools.ps1 -Install -WhatIf
 ```
 
-To download/reuse the same files and optionally install missing tools in **one flow**,
-finish scenario work, close the portal, review vendor agreements and add `-Install`:
+To download and install missing tools, finish scenario work, close the portal,
+review vendor agreements and explicitly select `-Install`:
 
 ```powershell
 .\system-tools\Install-SystemTools.ps1 -Install -AcceptPackageAgreements -Verbose
 ```
 
 The script installs only missing/failed native tools, creates or preserves the repository `.venv`,
-installs [`requirements.txt`](requirements.txt), copies cached Bicep into the Azure CLI configuration directory
-and reruns the complete selected checks. All native downloads must verify before any native installation.
-Clean machines receive pinned versions; existing compatible versions are preserved rather than forcibly downgraded.
-Readiness checks verify supported versions and behavior, not exact equality with the download baseline.
+installs [`requirements.txt`](requirements.txt), downloads the Azure CLI Bicep component,
+and reruns the complete selected checks.
+WinGet selects available releases; existing compatible versions are preserved rather than forcibly downgraded.
+Readiness checks verify supported versions and behavior, not equality with a pinned installer baseline.
 Timestamped messages distinguish already-ready tools, installation, verification, manual actions and failures.
 `-Verbose` streams command details/output. JSON outcomes go to the ignored `system-tools\reports` folder.
 An installer exit alone never means the toolchain passed.
@@ -210,36 +207,16 @@ Docker Desktop is unsupported on Windows Server; the Linux engine must actually 
 An installed but stopped/misconfigured Docker engine is reported for manual repair, not reinstalled.
 Some vendor installers require administrator approval or a reboot; setup does not relaunch itself elevated.
 
-The default download uses `system-tools\cache` and reuses matching verified files.
-To install on Windows **x64** without permitting any additional native downloads:
-
-```powershell
-.\system-tools\Install-SystemTools.ps1 -Install -UseCachedInstallers -AcceptPackageAgreements -Verbose
-```
-
-Add `-AcceptDockerLicense` if a new Docker installation is wanted.
-This automated baseline is x64-only; downloading it from an ARM64 host is supported, installing it is not.
-Manual ARM64/native installers remain available from the official sources below.
+Setup no longer prepares or uses `system-tools\cache`; offline/download-only modes and cache parameters are removed.
+Existing local caches are preserved but ignored by Git, as are reports and scenario `.packages` restore folders.
+Do not force-add downloaded dependencies or redistribute third-party installers through the source repository.
 Downloads can be large, especially Docker and the .NET SDK; allow several GB of space.
-
-[`tool-catalog.json`](system-tools/tool-catalog.json) pins each native version, official download URL and SHA256.
-Every user gets the same locked native files, without WinGet or resolving "latest".
-Download and reuse check the bytes against the repository-pinned SHA256 and Authenticode status/publisher.
-Catalogued open-source exceptions (Graphviz, k6 and GitHub CLI) may be unsigned;
-their hashes must still match the repository lock.
-Keep installer files **and receipts** trusted: a locally generated receipt is not a signed publisher manifest.
-Corrupt, missing or unexpected cache files stop installation; there is no silent online fallback.
-Vendor format changes may require a recipe update or manual installation.
-
-Downloaded binaries, receipts and reports are ignored by Git and are not shipped with the source repository.
-Do not force-add them or redistribute third-party installers without permission.
-Existing verified downloads are reused. Maintainers update versions/hashes through a reviewed catalog change.
-To recover an incomplete or older-baseline download, inspect/preserve the old cache and select a new `-CacheDirectory`.
+For a host without supported WinGet packages, use the official manual sources below.
 
 Node.js/npm and GitHub CLI are included by default; no contributor switch is needed.
 Use `-Mode Check` for read-only checks or `-SkipVSCode` if VS Code is managed separately.
 Setup does not install Copilot extensions or sign you in.
-See the [setup reference](system-tools/README.md) for custom paths, reports and exit codes.
+See the [setup reference](system-tools/README.md) for reports and exit codes.
 
 After setup, open a fresh terminal/VS Code, complete Copilot and Azure sign-in yourself,
 start Docker's Linux engine, rerun **Check**, and rerun both diagnostics in the portal's System page.
@@ -248,13 +225,13 @@ The installer does not update the portal's saved diagnostic results or grant Azu
 ### Manual tool inventory and official downloads
 
 You can install everything manually. Prefer your approved software channel or these official sources.
-Select installers for your OS/CPU; the automated cache is specifically Windows x64.
+Select installers for your OS/CPU; automated installation depends on WinGet package availability for your host.
 The **full System profile** requires Docker, Functions Core Tools and k6 even if your first scenario does not use them.
 Narrow scenario checks may require less; a narrower successful report is not a full System pass.
 
 | Tool | Official source | Verification / requirement |
 | --- | --- | --- |
-| WinGet / Microsoft App Installer | [Installation guide][winget-download] | Optional legacy online installer |
+| WinGet / Microsoft App Installer | [Installation guide][winget-download] | Required for automated native installation |
 | Python 3.10+ | [Python downloads][python-download] | `python --version`; bootstrap selects 3.13 if missing |
 | Git | [Git for Windows][git-download] | `git --version` |
 | PowerShell 7+ | [PowerShell installation][pwsh-download] | `pwsh --version`; 5.1 alone is not enough |
@@ -1094,7 +1071,7 @@ For deeper or task-specific detail:
 
 - [FBCBuilder DEV Guide](FBCBuilder-DEV-Guide.md): implementation, ownership, contracts and developer validation.
 - [Prerequisites](PREREQUISITES.md): tool checks, environment/PATH, NuGet and identity troubleshooting.
-- [System tools](system-tools/README.md): installer modes, catalog integrity, reports and offline limitations.
+- [System tools](system-tools/README.md): online installation, reports and repository hygiene.
 - [Portal reference](portal/README.md): detailed local browser behavior.
 - [Scenario Chat bridge](tools/vscode-chat-bridge/README.md): packaging, session discovery and editor integration.
 - [Customization inventory](AGENTSEXPLAINED.md): discoverable agents/skills and dated execution findings.

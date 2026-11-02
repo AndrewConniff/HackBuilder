@@ -1,0 +1,20 @@
+name: tdd-azd-equip-ai
+metadata:
+  template: tddazd-equip-ai@1.0.0
+infra:
+  provider: bicep
+  path: infra
+hooks:
+  preprovision:
+    shell: pwsh
+    run: python scripts\private_lifecycle.py prepare
+    continueOnError: false
+    interactive: false
+  postprovision:
+    shell: pwsh
+    run: python scripts\private_lifecycle.py publish
+    continueOnError: false
+    interactive: false
+# Publication runs on the VNet host in postprovision, not through workstation SCM.
+# Empty services avoids azd up repeating native local deployment to the private cleaner.
+services: {}

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "evidenceType": "provisional_local_design",
+  "checkedAtUtc": "2026-10-30T03:07:27Z",
+  "subscriptionName": null,
+  "subscriptionId": null,
+  "tenantId": null,
+  "requestedRegions": [],
+  "candidateRegions": ["eastus2", "swedencentral"],
+  "selectedRegion": null,
+  "provisionalRegion": "eastus2",
+  "resources": [
+    {"type": "Microsoft.CognitiveServices/accounts", "kind": "AIServices", "sku": "S0", "status": "public-design-only"},
+    {"type": "Microsoft.CognitiveServices/accounts/projects", "setup": "basic platform-managed agent storage", "status": "public-design-only"},
+    {"type": "Microsoft.CognitiveServices/accounts/deployments", "model": "gpt-4.1-mini", "version": "2025-04-14", "deploymentType": "GlobalStandard", "capacity": 10, "status": "subscription-eligibility-unknown"},
+    {"type": "Microsoft.Web/serverfarms", "sku": "B1", "os": "Linux", "instances": 1, "status": "subscription-worker-quota-unknown"},
+    {"type": "Microsoft.Storage/storageAccounts", "sku": "Standard_LRS", "features": ["Tables"], "status": "public-design-only"},
+    {"type": "Microsoft.OperationalInsights/workspaces", "sku": "PerGB2018", "status": "public-design-only"},
+    {"type": "Microsoft.Insights/components", "kind": "web", "status": "public-design-only"}
+  ],
+  "sources": [
+    "https://learn.microsoft.com/en-us/azure/foundry/agents/quickstarts/prompt-agent",
+    "https://learn.microsoft.com/en-us/azure/foundry/agents/quickstarts/responses-api",
+    "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure",
+    "https://learn.microsoft.com/en-us/azure/templates/microsoft.cognitiveservices/accounts/projects",
+    "https://github.com/Azure/bicep-registry-modules/tree/main/avm/res",
+    "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/ai-machine-learning"
+  ],
+  "quota": null,
+  "capacity": null,
+  "rejectedRegions": [],
+  "outstandingChecks": [
+    "Obtain explicit exact-target Azure read authority; verify CLI/azd account and tenant",
+    "Verify Foundry project/agent features and complete model-region matrix for both candidates",
+    "Verify exact model version/deployment quota and capacity; no allocation guarantee",
+    "Verify Microsoft.Web B1 worker eligibility, supporting services, providers and policy",
+    "Resolve human deploying principal; verify effective control/data role assignments",
+    "Run exact ARM what-if and refresh regional prices before deployment consent"
+  ],
+  "recommendation": "Candidate regions are proposals, not validated availability. No deployable region selected."
+}
