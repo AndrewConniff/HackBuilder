@@ -400,6 +400,11 @@ Deployment consent, scenario suitability approval, hack composition and event ro
 
 For VS Code, review [recommended extensions](.vscode/extensions.json) and
 [MCP configuration](.vscode/mcp.json). HTTP MCP servers require connectivity and their own authentication.
+The repository-local [Scenario Chat bridge](tools/vscode-chat-bridge/README.md) must be packaged and
+installed separately in the local VS Code profile used for the scenario chat.
+It is not installed by setup or recommended-extension acceptance, and passing System diagnostics do not
+verify it. Portal existing-chat navigation, brief confirmation and messages require the bridge;
+initial `code chat` handoff alone does not test it.
 The configured stdio Playwright MCP server also requires Node/npm/npx and its supported browser.
 First use may request package/browser downloads: review those separately, rather than pre-approving all tools.
 The setup does not edit MCP configuration, extension settings or Copilot approval rules.

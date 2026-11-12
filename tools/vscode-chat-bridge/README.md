@@ -31,12 +31,69 @@ Brief confirmation still uses the existing fingerprint-bound controls. Portal te
 
 ## Setup
 
-Package this folder with `npx --yes @vscode/vsce package --no-dependencies --skip-license`.
-Install the resulting VSIX using **Extensions: Install from VSIX** in the editor window containing FBC Builder.
-This bridge requires VS Code 1.143 or later and a trusted local workspace.
-If the editor requests permission to open the extension URI, review and allow it yourself.
-If a newly installed extension has not activated, use **Developer: Reload Window** before retrying.
-The portal does not approve either prompt or treat a missing acknowledgement as a successful reopen.
+The bridge is repository-local source, not an automatically installed Marketplace dependency.
+Cloning the repository, starting the portal, accepting recommended extensions or running the system-tools
+installer does **not** install it. A passing System tool check does not verify bridge installation or activation.
+Initial `code chat` handoff can work without it; existing-chat navigation, brief confirmation,
+saved brief changes and portal messages require it.
+
+Use VS Code **1.143+**, a trusted local Windows workspace and Node.js/npm/npx available in your terminal.
+The documented path is not a WSL, Remote SSH, container or browser-only editor setup.
+Packaging downloads the packaging tool and needs network access; follow organization policy for local extensions.
+From the repository root in PowerShell:
+
+```powershell
+code --version
+node --version
+npm --version
+Push-Location .\tools\vscode-chat-bridge
+npx --yes @vscode/vsce package --no-dependencies --skip-license
+Pop-Location
+```
+
+Stop if packaging fails; resolve the reported dependency, network or policy error before installing.
+In the VS Code window containing this repository, run **Extensions: Install from VSIX** and select
+`tools\vscode-chat-bridge\scenario-chat-0.4.0.vsix`.
+Install into the same local VS Code profile that owns the existing scenario conversation.
+Run **Developer: Restart Extension Host**, or **Developer: Reload Window** if activation still has not occurred.
+Keep the repository open and trusted. Review browser/editor permission prompts for extension URIs yourself.
+The portal does not approve these prompts or treat a missing acknowledgement as a successful reopen.
+
+### Verify installation and delivery
+
+1. In that window's Extensions view, search `@id:fbcbuilder.scenario-chat`.
+   Confirm **FBC Builder Scenario Chat**, version **0.4.0**, is installed and enabled in the current profile.
+   The former publisher's extension is not a substitute.
+1. Optionally check installation from PowerShell:
+
+   ```powershell
+   code --list-extensions --show-versions | Select-String '^fbcbuilder\.scenario-chat@'
+   ```
+
+   Expected output is `fbcbuilder.scenario-chat@0.4.0`.
+   For a named profile, add `--profile "Your profile name"` to the `code` command.
+   This checks installation, not activation or successful delivery; the editor window is authoritative.
+1. For a scenario with an existing chat, select **Open scenario chat** in the portal.
+   Confirm that the original conversation opens with its retained history.
+   This navigation test does not submit a message or approve deployment.
+
+### Troubleshoot a failed bridge action
+
+| Symptom | Check or action |
+| --- | --- |
+| Extension absent or URI handler unavailable | Build/install the VSIX in the intended local editor and profile. |
+| VSIX rejected as incompatible | Check `code --version` and the target window's version; use VS Code 1.143+. |
+| Installed, but acknowledgement times out | Enable it, restart the extension host, and review URI permission prompts. |
+| Wrong editor/window receives the URI | Check the Windows `vscode://` handler and open the trusted repository there. |
+| Workspace/trust error | Open the exact repository used by the portal and review Workspace Trust yourself. |
+| Missing or ambiguous conversation | Use the association repair below for the known existing chat, not a new chat. |
+| Delivery unknown after a send | Inspect the original conversation before retrying; the message may have arrived. |
+
+A missing acknowledgement alone does not prove that the extension is uninstalled.
+If installation and the navigation test still fail, collect the exact portal error, VS Code version,
+bridge version/current profile and relevant **Output > Log (Extension Host)** error.
+Do not share tokens, credentials or private conversation content, disable security controls,
+delete session state or repeatedly resend an uncertain message.
 
 Select **Open scenario chat** in the portal. No Copy Link or paste step is required.
 The portal's [session association helper](../../scripts/scenario_chat.py) matches the exact original handoff,

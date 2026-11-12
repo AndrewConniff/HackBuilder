@@ -55,8 +55,11 @@ Timestamped messages and `-Verbose` output distinguish installation, verificatio
   Installing Docker requires separate `-AcceptDockerLicense` consent.
   Docker Desktop is unsupported on Windows Server. Start its Linux engine yourself.
   An installed but stopped/misconfigured engine needs manual repair, not reinstallation.
-- Install/enable Copilot and sign in yourself. Install the optional
-  [Scenario Chat bridge](../tools/vscode-chat-bridge/README.md) separately.
+- Install/enable Copilot and sign in yourself. Install the
+  [Scenario Chat bridge](../tools/vscode-chat-bridge/README.md) separately in the local VS Code profile
+  that owns the scenario chat. It is required for portal existing-chat navigation, brief confirmation
+  and messages, though initial `code chat` handoff can work without it.
+  Neither this installer nor a passing System check verifies bridge installation or activation.
 - Sign in to Azure CLI and azd yourself; setup never deploys or changes account/subscription defaults.
 - Reopen the terminal/VS Code after installation, rerun **Check**, then rerun the portal's System diagnostics.
   Setup does not overwrite the portal's saved reports.

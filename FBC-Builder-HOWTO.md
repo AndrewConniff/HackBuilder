@@ -332,6 +332,9 @@ The complete browser experience needs the local VS Code extension, not a hosted 
 Use bridge **0.4.0** from this repository with VS Code **1.143+**.
 Messaging was introduced in 0.3.0, but this checkout uses the new extension identity and routes from 0.4.0;
 an older installed publisher is not a compatible replacement.
+Neither portal startup nor the system-tools installer installs this extension.
+A passing System check does not prove that the bridge is installed or running.
+Packaging requires Node.js/npm/npx and network access.
 From the repository root:
 
 ```powershell
@@ -342,16 +345,24 @@ Pop-Location
 
 Packaging fetches the packaging tool on request; it is not part of portal startup and may need network access.
 Follow organization policy for local extensions.
-In VS Code, run **Extensions: Install from VSIX** and select the VSIX just created in that folder.
+Stop if packaging fails. In the repository's local VS Code window, run **Extensions: Install from VSIX**
+and select `tools\vscode-chat-bridge\scenario-chat-0.4.0.vsix`.
+Use the same VS Code profile that owns the existing scenario chat.
 Run **Developer: Restart Extension Host**, or **Developer: Reload Window** if activation still has not occurred.
 Keep the intended repository open and trusted.
 Review any extension-URI permission prompt yourself.
 Do not distribute the locally built VSIX as part of a source-only share unless that is explicitly intended.
 
+In that window's Extensions view, search `@id:fbcbuilder.scenario-chat` and confirm version **0.4.0**
+is installed and enabled. Then use **Open scenario chat** on an existing scenario and check that its
+original conversation opens with retained history. This tests navigation without submitting a message.
+
 Initial `code chat` handoff can work without the bridge, but **Confirm brief**, **Save changes**,
 **Open existing agent chat** and **Send message** depend on it.
 If delivery is uncertain, inspect the original native chat before trying again.
-See the [bridge reference][bridge-setup] for advanced association repair and technical compatibility details.
+A missing acknowledgement can also mean a disabled extension, wrong profile/window or blocked URI prompt;
+it does not by itself prove a missing installation.
+See the [bridge reference][bridge-setup] for verification commands, error troubleshooting and association repair.
 
 ### Open the browser app
 
