@@ -279,6 +279,10 @@ Remove every template token before publication. Preserve an organization-approve
 1. Copy learner pages, media, resources, and `Allfiles/` byte for byte to the
   coach root.
 1. Generate the private Finale with coach notes for all five challenges.
+1. Create the final private [Skillable deployment package](references/skillable-deployment-package.md)
+  under `packages/Skillable Deployment Package/`. Include one ARM JSON with learner/reference modes,
+  learner default, parameter examples and every mode's supporting payload and setup script in one ZIP.
+  Build/validate the ZIP with `scripts/skillable_delivery.py` before the Skillable validator.
 1. Run the validation script.
 1. Stop on missing pages, unpackaged deployment-critical artifacts, stale
   tokens, unsafe content, parity failures, or incomplete Finale mappings.

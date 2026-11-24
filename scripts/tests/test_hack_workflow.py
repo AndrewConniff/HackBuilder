@@ -13,6 +13,7 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / "scripts"))
 SPEC = importlib.util.spec_from_file_location("hack_workflow", ROOT / "scripts" / "hack_workflow.py")
 assert SPEC is not None and SPEC.loader is not None
 workflow = importlib.util.module_from_spec(SPEC)
@@ -141,6 +142,10 @@ class ApprovalTests(unittest.TestCase):
         (self.root / "packages" / "validation" / "local-checks.json").write_text(
             json.dumps(evidence), encoding="utf-8",
         )
+        from scripts.tests.test_skillable_delivery import delivery_content
+
+        delivery_content(self.root / "packages")
+        workflow.skillable_delivery.build_delivery(self.root / "packages")
 
     def test_package_receipt_requires_approval_and_detects_changed_packages(self) -> None:
         self.package_evidence()
@@ -154,6 +159,37 @@ class ApprovalTests(unittest.TestCase):
         (self.root / "packages" / "hack" / "README.md").write_text("changed", encoding="utf-8")
         with self.assertRaisesRegex(ValueError, "stale"):
             workflow.current_packages(self.root)
+
+    def test_package_receipt_requires_complete_current_skillable_delivery(self) -> None:
+        self.package_evidence()
+        self.approve()
+        archive = self.root / "packages" / workflow.skillable_delivery.DELIVERY_FOLDER / "skillable-deployment.zip"
+        archive.unlink()
+        with self.assertRaises(OSError):
+            workflow.record_packages(self.root)
+        workflow.skillable_delivery.build_delivery(self.root / "packages")
+        receipt = workflow.record_packages(self.root)
+        self.assertEqual(archive.relative_to(self.root).as_posix(), receipt["skillableDeliveryArchive"])
+        archive.write_bytes(b"changed")
+        with self.assertRaisesRegex(ValueError, "stale"):
+            workflow.current_packages(self.root)
+
+    def test_delivery_cli_requires_approval_then_builds_and_validates_the_operator_zip(self) -> None:
+        self.package_evidence()
+        command = [sys.executable, "-B", str(ROOT / "scripts" / "skillable_delivery.py")]
+        blocked = subprocess.run(
+            [*command, "build", str(self.root)], capture_output=True, text=True, timeout=15, check=False,
+        )
+        self.assertEqual(1, blocked.returncode)
+        self.assertIn("Skillable delivery blocked", blocked.stderr)
+        self.approve()
+        for action in ("build", "validate"):
+            result = subprocess.run(
+                [*command, action, str(self.root)], capture_output=True, text=True, timeout=15, check=False,
+            )
+            self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+            self.assertIn("skillable-deployment.zip", result.stdout)
+            self.assertIn("passed", result.stdout)
 
     def test_package_receipt_rejects_failed_or_missing_checks(self) -> None:
         self.package_evidence()

@@ -185,7 +185,7 @@ review vendor agreements and explicitly select `-Install`:
 .\system-tools\Install-SystemTools.ps1 -Install -AcceptPackageAgreements -Verbose
 ```
 
-The script installs only missing/failed native tools, creates or preserves the repository `.venv`,
+The script installs only missing/failed native tools, creates or preserves `%LOCALAPPDATA%\FBCBuilder\.venv`,
 installs [`requirements.txt`](requirements.txt), downloads the Azure CLI Bicep component,
 and reruns the complete selected checks.
 WinGet selects available releases; existing compatible versions are preserved rather than forcibly downgraded.
@@ -250,16 +250,21 @@ Narrow scenario checks may require less; a narrower successful report is not a f
 | Node.js LTS, npm/npx | [Node.js downloads][node-download] | Included in setup; `node --version` must be 22+ |
 | GitHub CLI | [GitHub CLI downloads][gh-download] | Included in setup; `gh --version` |
 
-The repository Python environment is also required, not just a global Python installation:
+The local-only Python environment is also required, not just a global Python installation.
+On Windows, keep it outside OneDrive/SharePoint at `%LOCALAPPDATA%\FBCBuilder\.venv`:
 
 ```powershell
-python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install --requirement requirements.txt
-.\.venv\Scripts\python.exe -m pip check
-.\.venv\Scripts\python.exe -B scripts\check_prerequisites.py --system
+$environmentPath = Join-Path $env:LOCALAPPDATA 'FBCBuilder\.venv'
+if (-not (Test-Path -LiteralPath $environmentPath)) { python -m venv $environmentPath }
+& "$environmentPath\Scripts\python.exe" -m pip install --requirement requirements.txt
+& "$environmentPath\Scripts\python.exe" -m pip check
+& "$environmentPath\Scripts\python.exe" -B scripts\check_prerequisites.py --system
 ```
 
-Do not recreate or overwrite an existing `.venv`; preserve and repair it if necessary.
+Do not recreate or overwrite an existing environment; preserve and repair it if necessary.
+The launcher and setup scripts use this local folder, so subsequent package updates keep `cacert.pem` there.
+Do not upload the environment or ZIP it to work around SharePoint certificate rules.
+See [OneDrive and SharePoint guidance](PREREQUISITES.md#onedrive-and-sharepoint) for moving an older environment.
 [`requirements.txt`](requirements.txt) is authoritative. Current minimums and official package pages:
 
 - [diagrams on PyPI](https://pypi.org/project/diagrams/): `>=0.23.4`.
@@ -921,6 +926,27 @@ but validation is still running.
 Keep deployment-specific passwords and access records private.
 Public templates and distributed materials must not contain live credentials.
 For larger exports, the portal's 200 MiB limit can require using the agent-generated release archives in VS Code.
+
+### Final Skillable deployment package
+
+Every future hack composition finishes with a private operator ZIP at:
+
+```text
+generated-scenarios\<project>\packages\Skillable Deployment Package\skillable-deployment.zip
+```
+
+It includes one self-contained `azuredeploy.json` with two selectable modes:
+**learner** (default, the minimum starting environment) and **reference** (the complete instructor solution).
+The same ZIP includes both parameter examples, app/data payloads, required setup scripts,
+a mode-specific file manifest and README instructions for Skillable Studio import and lifecycle actions.
+All Azure infrastructure is defined in that single ARM file; unavoidable app publishing and data loading
+use the included scripts and assets, not additional templates.
+
+Use **Open package folder** to access this ZIP. It is separate from the existing portal exports.
+Keep it private because it contains the reference solution; do not send it to participants.
+Local validation checks the archive and both modes, but does not deploy or publish a Skillable lab.
+Existing scenarios are not repackaged automatically.
+See the [delivery contract](.github/skills/skillable-lod-authoring/references/skillable-deployment-package.md).
 
 ### Event rollout and publication are separate
 

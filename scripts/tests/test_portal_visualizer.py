@@ -924,6 +924,10 @@ class VisualizerTests(unittest.TestCase):
     def test_exports_separate_learner_from_coach_and_exclude_runtime_secrets(self) -> None:
         self.save()
         folder = self.studio.folder("test-scenario")
+        delivery = folder / "packages" / "Skillable Deployment Package"
+        (delivery / "content").mkdir(parents=True)
+        (delivery / "content" / "azuredeploy.json").write_text('{"private":true}', encoding="utf-8")
+        (delivery / "skillable-deployment.zip").write_bytes(b"private combined operator package")
         for name in ("hack", "participant", "coach", "coach-guide"):
             path = folder / "packages" / name
             path.mkdir(parents=True)

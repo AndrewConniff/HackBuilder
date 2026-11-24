@@ -67,6 +67,8 @@ The contract records:
 - Distinct coach and participant azd environments/resource groups.
 - Five progressive challenges totaling 150 minutes, plus kickoff and wrap-up.
 - Package validation and separately requested event rollout acceptance.
+- The final private Skillable delivery: one resource-group ARM JSON with learner/reference modes,
+  mode-specific payload/initialization dependencies and any unsupported single-group compatibility blockers.
 
 Do not automatically preserve all supporting resources. Provide only isolation,
 access and indispensable fixtures/prerequisites. Learners determine which
@@ -127,6 +129,14 @@ Create `09-hack-event-manifest.json` with the requested team count (default one,
 range 1-20). All new deployments remain `planned`. A manifest does not authorize
 rollout. No deployment state or URLs may be copied from another environment.
 
+As the final deliverable, create `packages/Skillable Deployment Package/content/`
+and `skillable-deployment.zip` under that same named folder.
+Follow the [single-template delivery contract](../../skillable-lod-authoring/references/skillable-deployment-package.md):
+one `azuredeploy.json` includes all infrastructure, inline modules and learner/reference mode selection.
+Default to learner. Include all required app/data assets, parameter examples, deploy/initialization scripts
+and Studio import/lifecycle instructions. Preserve the minimum-starter boundary in learner mode.
+The combined package contains solution material and is private, not part of learner exports.
+
 ## Validation and return
 
 Run from the package directory, adapting app paths only when an app exists:
@@ -151,10 +161,17 @@ the corresponding challenge rather than an invalid starter hook.
 Run from the repository root:
 
 ```powershell
+python scripts\skillable_delivery.py build generated-scenarios\{project}
+python scripts\skillable_delivery.py validate generated-scenarios\{project}
 python .github\skills\skillable-lod-authoring\scripts\validate_skillable_package.py `
   generated-scenarios\{project}\packages --industry <industry-slug>
 python scripts\hack_workflow.py check-approval generated-scenarios\{project}
 ```
+
+Build the delivery before the Skillable validator runs; it validates the archive too.
+Run scenario-specific resource-selection and initialization tests for both modes.
+Record these commands as `skillable-arm-learner`, `skillable-arm-reference` and `skillable-delivery`,
+alongside the existing required command evidence, before `hack_workflow.py record-packages`.
 
 Return artifact paths, exact local validation results, omission matrix, known
 limitations and **packages validated; event not deployed**. Do not deploy resources.

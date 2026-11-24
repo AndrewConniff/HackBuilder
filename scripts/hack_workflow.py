@@ -10,6 +10,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlparse
 
+import skillable_delivery
+
 STATE_FILE = "workflow-state.json"
 REQUIRED_CHECKS = {"deployment", "modelInference", "agentInvocation", "applicationChat", "negativeCase"}
 HISTORICAL_ATTESTATION = "historical-user-attestation"
@@ -229,7 +231,7 @@ def check_approval(root: Path) -> dict:
 PACKAGE_CHECKS = {
     "coach-bicep-build", "coach-bicep-lint", "participant-bicep-build", "participant-bicep-lint",
     "coach-build", "coach-tests", "coach-script-guards", "starter-status", "package-boundaries",
-    "skillable", "release-archives",
+    "skillable", "release-archives", "skillable-arm-learner", "skillable-arm-reference", "skillable-delivery",
 }
 
 
@@ -265,6 +267,7 @@ def record_packages(root: Path) -> dict:
     for name in ("coach", "participant", "hack", "coach-guide"):
         if not (root / "packages" / name).is_dir():
             raise ValueError(f"Missing package: {name}")
+    delivery_archive = skillable_delivery.validate_delivery(root / "packages")
     result = {
         "schemaVersion": 1,
         "status": "packages_validated",
@@ -272,6 +275,7 @@ def record_packages(root: Path) -> dict:
         "referenceFingerprint": approval["referenceFingerprint"],
         "packageFingerprint": package_fingerprint(root),
         "eventDeployed": False,
+        "skillableDeliveryArchive": delivery_archive.relative_to(root).as_posix(),
     }
     path = root / "packages" / "validation" / "composition-status.json"
     temporary = path.with_suffix(".tmp")

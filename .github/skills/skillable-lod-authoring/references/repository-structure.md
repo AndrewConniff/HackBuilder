@@ -99,6 +99,15 @@ The file contains:
 Keep planned release enrichment separate from deployment-critical work. A
 runtime artifact cannot remain deferred when packages are handed to deployment.
 
+## Final operator delivery
+
+Every newly composed hack also includes the private
+`packages/Skillable Deployment Package/skillable-deployment.zip` and its unpacked `content/`.
+Follow the [single-template delivery contract](skillable-deployment-package.md).
+The ZIP contains one ARM template supporting learner/reference modes, both parameter examples,
+the deployment manifest, setup instructions and every required supporting file.
+Do not copy this combined solution-bearing package into the learner documentation or `Allfiles`.
+
 ## Media rules
 
 Place industry-specific media at

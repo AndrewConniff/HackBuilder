@@ -63,6 +63,13 @@ sanitized coach solution, public learner challenges and private coach materials.
 Keep full architecture and solutions private. Build/lint/test locally, validate
 Skillable content and recheck approval before returning.
 
+As the final package step, follow the [Skillable deployment delivery contract](
+../skills/skillable-lod-authoring/references/skillable-deployment-package.md).
+Create `packages/Skillable Deployment Package/skillable-deployment.zip` with one self-contained
+`azuredeploy.json`, selectable learner/reference modes (learner default), and every required supporting file.
+Keep this combined operator package out of learner downloads. Build and validate it with
+`scripts/skillable_delivery.py`; local packaging does not authorize deployment.
+
 Finish with exact artifact paths, checks, limitations and
 **packages validated; event not deployed**. Do not deploy resources.
 The user may separately request event rollout from the scenario orchestrator.
@@ -75,7 +82,8 @@ For both portal and standalone work, persist exact command results in
 `packages/validation/local-checks.json` with `checks` entries containing `name`, `command`, `exitCode`
 and `allCommandsPassed: true` only after success. Required names are coach-bicep-build,
 coach-bicep-lint, participant-bicep-build, participant-bicep-lint, coach-build, coach-tests,
-coach-script-guards, starter-status, package-boundaries, skillable and release-archives.
+coach-script-guards, starter-status, package-boundaries, skillable, release-archives,
+skillable-arm-learner, skillable-arm-reference and skillable-delivery.
 After validation run `python scripts\hack_workflow.py record-packages generated-scenarios\{projectSlug}`.
 This records a reference/package-bound receipt so read-only portal refresh can see work done outside
 the portal job. Package changes invalidate it; revalidate before recording again. Never fabricate results.

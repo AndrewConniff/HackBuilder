@@ -37,6 +37,12 @@ Each performs every procedure directly in its own context through skills.
 There is no specialist fanout, deployment agent, nested conductor or automatic
 cross-agent handoff. Scenario jobs stop at review; they never auto-start composition.
 
+Final composition also produces the private
+`packages/Skillable Deployment Package/skillable-deployment.zip`.
+Its single ARM template supports learner/reference modes (learner default) and ships with all supporting assets.
+The [delivery contract](.github/skills/skillable-lod-authoring/references/skillable-deployment-package.md)
+and `scripts/skillable_delivery.py` define authoring, ZIP validation and the no-deployment boundary.
+
 On **2026-10-22**, the former requirements, architecture, diagram, Bicep,
 development, deployment, demonstration and contribution agent bodies were moved
 into their owning skills' `references/historical-*.md`. These preserve technical

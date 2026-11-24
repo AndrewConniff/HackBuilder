@@ -146,7 +146,7 @@ Use the [workspace helper][workspace-helper] for new work, not to relocate popul
 
 Follow the [HOWTO setup sequence][howto-setup] before generating or deploying references.
 The portal uses the Python standard library, but full reference work requires the wider toolchain.
-The shared baseline includes Python 3.10+, repository `.venv`, Git, PowerShell 7+, .NET 10 SDK,
+The shared baseline includes Python 3.10+, the FBC Builder Python environment, Git, PowerShell 7+, .NET 10 SDK,
 Graphviz, Azure CLI, azd, Bicep, a running Linux Docker engine, Functions Core Tools and k6.
 The complete native setup also includes Node.js 22+, GitHub CLI and VS Code.
 
@@ -159,7 +159,7 @@ Useful read-only checks from the repository root:
 
 ```powershell
 .\system-tools\Install-SystemTools.ps1 -Mode Check
-.\.venv\Scripts\python.exe -B scripts\check_prerequisites.py --system --json --contributor
+& "$env:LOCALAPPDATA\FBCBuilder\.venv\Scripts\python.exe" -B scripts\check_prerequisites.py --system --json --contributor
 az account show --output table
 azd auth login --check-status --no-prompt
 ```
@@ -696,15 +696,28 @@ coach-bicep-build       coach-bicep-lint       participant-bicep-build
 participant-bicep-lint  coach-build            coach-tests
 coach-script-guards    starter-status         package-boundaries
 skillable              release-archives
+skillable-arm-learner   skillable-arm-reference  skillable-delivery
 ```
 
 `record-packages` requires `allCommandsPassed: true`, every recorded exit code exactly integer zero,
-all required names, all four package directories and current reference approval.
+all required names, all four package directories, a valid final Skillable delivery ZIP and current reference approval.
 It writes `composition-status.json` with reference/package fingerprints and `eventDeployed: false`.
+New receipts also identify `skillableDeliveryArchive`.
 The package fingerprint covers contract, inventory, planned event manifest and package files,
 excluding the receipt itself and standard build directories.
 Changing package evidence/content can invalidate the receipt as well as changing the reference.
 `current_packages` checks both fingerprints; stale validation blocks export rather than silently accepting it.
+
+The final packaging helper is `scripts\skillable_delivery.py`.
+Author `packages\Skillable Deployment Package\content` according to the
+[single-template contract](.github/skills/skillable-lod-authoring/references/skillable-deployment-package.md),
+then run its `build <scenario>` and `validate <scenario>` commands.
+Both require current reference approval. One resource-group ARM JSON supports learner/reference modes
+with learner default; external templates and a second ARM file are rejected.
+The ZIP must contain every declared mode dependency and match unpacked content byte for byte.
+Both mode-specific resource/initialization tests remain scenario-authored checks, not an ARM evaluator in this helper.
+The normal Skillable validator and new package receipts require this delivery; historical receipts are not rewritten.
+No existing scenario is rebuilt or deployed by changing this workflow.
 
 ## 11. Catalog matching and isolated adaptation
 
@@ -801,7 +814,8 @@ Docker checks distinguish installed CLI from a responsive Linux engine.
 Installed-but-stopped Docker needs manual engine startup/repair, not automatic reinstall.
 The NuGet probe checks approved-feed Azure.Identity metadata, not every generated app restore.
 
-`execution_environment` prefers repository `.venv` and finds certain existing standard tool locations
+`execution_environment` selects `%LOCALAPPDATA%\FBCBuilder\.venv` on Windows (repository `.venv` on macOS/Linux)
+and finds certain existing standard tool locations
 on the child process PATH. It does not repair shared machine defaults.
 New runtime processes inherit this environment; a reused server keeps its prior environment.
 After tool installation, restart affected processes and rerun checks rather than trusting stale PATH.
@@ -896,6 +910,9 @@ packages\
   participant\            Minimum deployable learner starter
   hack\                   Public learner instructions
   coach-guide\            Private solution guidance and Finale
+  Skillable Deployment Package\
+    skillable-deployment.zip  Private, single-ARM, learner/reference operator handoff
+    content\                 Unpacked delivery sources and supporting payloads
   validation\
     local-checks.json
     composition-status.json

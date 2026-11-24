@@ -82,6 +82,22 @@
 Local package validation completes authoring without event deployment.
 The deployment checks below apply only after a separate explicit rollout request.
 
+### Final Skillable delivery archive
+
+- [ ] `packages/Skillable Deployment Package/skillable-deployment.zip` exists as a private operator deliverable.
+- [ ] The ZIP contains exactly one resource-group ARM template, `azuredeploy.json`, with inline modules only.
+- [ ] The same template supports learner/reference modes, defaults to learner, and has both parameter examples.
+- [ ] Learner mode matches the minimum starter and omits completed Foundry/reference resources.
+- [ ] Reference mode includes the full approved sanitized solution, dependencies, configuration and RBAC.
+- [ ] Both mode-selection tests cover child resources, outputs and initialization without deploying resources.
+- [ ] Every required app/data payload and initialization script exists in the ZIP and is declared per mode.
+- [ ] README explains Studio import, parameter binding, asset placement, lifecycle order and permissions.
+- [ ] ZIP entries match the unpacked content byte for byte; the combined delivery is absent from learner exports.
+- [ ] `skillable-arm-learner`, `skillable-arm-reference` and `skillable-delivery` have real passing command evidence.
+- [ ] Local-only checks are not represented as a successful Skillable Studio deployment.
+
+### Separately authorized rollout
+
 - [ ] Seed and installation scripts are idempotent and wired to the correct
       `azd` lifecycle hook.
 - [ ] Package validation succeeds before Azure preflight.
@@ -92,6 +108,7 @@ The deployment checks below apply only after a separate explicit rollout request
 - [ ] Successful deployment-critical entries are updated to `azure-verified`.
 - [ ] Package and deployment evidence is attached to the GitHub pull request.
 - [ ] Planned follow-up work was not used to bypass deployment testing.
+- [ ] For Skillable delivery, both modes pass fresh-group acceptance and concurrent lab naming-isolation checks.
 
 ## Automated check
 
