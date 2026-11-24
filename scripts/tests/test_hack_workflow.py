@@ -11,6 +11,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "scripts"))
@@ -173,6 +174,15 @@ class ApprovalTests(unittest.TestCase):
         archive.write_bytes(b"changed")
         with self.assertRaisesRegex(ValueError, "stale"):
             workflow.current_packages(self.root)
+
+    def test_policy_edits_invalidate_package_receipts_without_rewriting_reference_approval(self) -> None:
+        self.package_evidence()
+        self.approve()
+        workflow.record_packages(self.root)
+        with patch.object(workflow.resource_policy, "policy_fingerprint", return_value="changed-policy"):
+            with self.assertRaisesRegex(ValueError, "stale"):
+                workflow.current_packages(self.root)
+            self.assertEqual("approved", workflow.check_approval(self.root)["approval"]["decision"])
 
     def test_delivery_cli_requires_approval_then_builds_and_validates_the_operator_zip(self) -> None:
         self.package_evidence()

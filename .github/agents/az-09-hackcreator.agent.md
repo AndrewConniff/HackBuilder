@@ -29,6 +29,10 @@ An explicitly user-attested historical deployment is supported by the workflow's
 evidence path when the one-off environment was deleted. `check-approval` still must pass.
 Preserve attestation limitations in private coach/release notes; never upgrade them into
 independently verified tests or a live URL. Do not redeploy solely for composition.
+Also enforce the [mandatory resource policy](
+../skills/hack-builder-workflow/references/allowed-azure-resources.md).
+Approval and historical evidence do not grandfather a forbidden design. Validate compiled reference/starter/coach
+IaC before composition/release; report incompatibility rather than redesigning the reference or editing policy.
 In noninteractive jobs, return **decision required** and stop when evidence,
 consent or an industry decision is missing; never infer consent from unavailable
 interactive tools.

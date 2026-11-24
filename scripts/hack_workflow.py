@@ -11,6 +11,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 import skillable_delivery
+import resource_policy
 
 STATE_FILE = "workflow-state.json"
 REQUIRED_CHECKS = {"deployment", "modelInference", "agentInvocation", "applicationChat", "negativeCase"}
@@ -274,6 +275,7 @@ def record_packages(root: Path) -> dict:
         "checkedAtUtc": utc_now(),
         "referenceFingerprint": approval["referenceFingerprint"],
         "packageFingerprint": package_fingerprint(root),
+        "resourcePolicyFingerprint": resource_policy.policy_fingerprint(),
         "eventDeployed": False,
         "skillableDeliveryArchive": delivery_archive.relative_to(root).as_posix(),
     }
@@ -292,6 +294,7 @@ def current_packages(root: Path) -> dict:
         or result.get("status") != "packages_validated"
         or result.get("referenceFingerprint") != approval["referenceFingerprint"]
         or result.get("packageFingerprint") != package_fingerprint(root)
+        or result.get("resourcePolicyFingerprint") != resource_policy.policy_fingerprint()
         or result.get("eventDeployed") is not False
     ):
         raise ValueError("Package validation is stale or incomplete. Revalidate and record packages again.")

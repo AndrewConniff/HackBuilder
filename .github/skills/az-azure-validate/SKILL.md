@@ -28,6 +28,13 @@ do not install shared SDKs or repair PATH from a scenario worker.
 
 ## 1. Pre-Deployment Validation Gates
 
+First enforce the [repository resource policy](
+../hack-builder-workflow/references/allowed-azure-resources.md) against the compiled ARM template:
+`python scripts\resource_policy.py <compiled-template.json>`.
+This is a local hard gate, not live Azure Policy enforcement. Unresolved regions, versions,
+caps and unprovable constrained expressions block the affected deployment.
+Review script-created resources, ownership, authentication and synthetic data separately.
+
 All gates must pass before deployment proceeds. Each gate is a hard stop —
 failure means the deployment cannot continue until the issue is resolved.
 

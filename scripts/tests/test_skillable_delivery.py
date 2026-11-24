@@ -27,9 +27,8 @@ def delivery_content(packages: Path) -> Path:
         },
         "resources": [{
             "condition": "[equals(parameters('deploymentMode'), 'reference')]",
-            "type": "Microsoft.Storage/storageAccounts", "apiVersion": "2023-05-01",
-            "name": "[concat('lab', uniqueString(resourceGroup().id))]",
-            "location": "[resourceGroup().location]", "kind": "StorageV2", "sku": {"name": "Standard_LRS"},
+            "type": "Microsoft.Storage/storageAccounts/queueServices/queues", "apiVersion": "2023-05-01",
+            "name": "fixture/default/events",
         }],
     }
     (content / delivery.TEMPLATE_NAME).write_text(json.dumps(template), encoding="utf-8")
@@ -110,6 +109,21 @@ class SkillableDeliveryTests(unittest.TestCase):
         self.write_template(self.template)
         with self.assertRaisesRegex(ValueError, "inside the Skillable resource group"):
             delivery.build_delivery(self.packages)
+
+    def test_resource_policy_cannot_be_bypassed_by_mode_or_nested_deployment(self) -> None:
+        forbidden = {"type": "Microsoft.Sql/servers", "condition": False}
+        for resource in (
+            forbidden,
+            {"type": "Microsoft.Resources/deployments", "properties": {"template": {
+                "$schema": delivery.TEMPLATE_SCHEMA, "resources": [forbidden],
+            }}},
+        ):
+            with self.subTest(resource=resource):
+                self.template["resources"].append(resource)
+                self.write_template(self.template)
+                with self.assertRaisesRegex(ValueError, "not allowed by repository policy"):
+                    delivery.build_delivery(self.packages)
+                self.template["resources"].pop()
 
     def test_requires_safe_default_and_actual_mode_selection(self) -> None:
         for change in ("default", "unused", "wrong-parameters"):

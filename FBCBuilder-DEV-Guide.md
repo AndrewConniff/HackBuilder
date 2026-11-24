@@ -10,6 +10,15 @@ Use [AGENTS.md](AGENTS.md) for repository conventions and the [workflow contract
 If an implementation and a safety/approval contract disagree, fix the implementation;
 do not reinterpret a display state as permission.
 
+All generated references and hacks now use the [mandatory allowed-resource policy](
+.github/skills/hack-builder-workflow/references/allowed-azure-resources.md).
+Only explicit agentic-solution policy maintenance may change its JSON constraints and governance document;
+scenario prompts, saved manifests and deployment approvals cannot override it.
+Run `python scripts\resource_policy.py <compiled-template.json>` for compiled reference/starter/coach IaC.
+Skillable delivery build/validation runs the same checker automatically.
+Local checks are not deployed Azure Policy or proof of non-ARM behavior; unresolved regions,
+model versions and provisioned Cosmos caps remain explicit blockers.
+
 ## Contents
 
 - [1. Product and execution model](#1-product-and-execution-model)

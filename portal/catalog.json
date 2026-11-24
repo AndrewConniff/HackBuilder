@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "scope": "Initial editable FBC Builder intake allowlist, not a claim of subscription availability or organizational approval.",
+  "scope": "Intake choices are restricted by the mandatory FBC resource policy; selection proves neither regional availability nor deployment authority.",
   "agenticPatterns": [
     {
       "id": "ai-decides",
@@ -129,20 +129,6 @@
       "url": "https://learn.microsoft.com/azure/storage/"
     },
     {
-      "id": "sql",
-      "name": "Azure SQL Database",
-      "category": "Data",
-      "description": "Relational business data",
-      "url": "https://learn.microsoft.com/azure/azure-sql/database/"
-    },
-    {
-      "id": "app-service",
-      "name": "Azure App Service",
-      "category": "Compute",
-      "description": "Managed web application hosting",
-      "url": "https://learn.microsoft.com/azure/app-service/"
-    },
-    {
       "id": "container-apps",
       "name": "Azure Container Apps",
       "category": "Compute",
@@ -171,20 +157,6 @@
       "url": "https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/"
     },
     {
-      "id": "virtual-network",
-      "name": "Azure Virtual Network",
-      "category": "Networking",
-      "description": "Private connectivity and network isolation",
-      "url": "https://learn.microsoft.com/azure/virtual-network/"
-    },
-    {
-      "id": "api-management",
-      "name": "Azure API Management",
-      "category": "Integration",
-      "description": "Governed access to agent tools and APIs",
-      "url": "https://learn.microsoft.com/azure/api-management/"
-    },
-    {
       "id": "service-bus",
       "name": "Azure Service Bus",
       "category": "Integration",
@@ -193,11 +165,53 @@
     },
     {
       "id": "monitor",
-      "name": "Azure Monitor",
+      "name": "Application Insights and Log Analytics",
       "category": "Operations",
-      "description": "Application Insights, logs and diagnostics",
+      "description": "Workspace-based tracing and capped logs within the resource policy",
       "url": "https://learn.microsoft.com/azure/azure-monitor/"
+    },
+    {
+      "id": "event-grid",
+      "name": "Azure Event Grid",
+      "category": "Integration",
+      "description": "Basic topics and subscriptions for synthetic events",
+      "url": "https://learn.microsoft.com/azure/event-grid/"
+    },
+    {
+      "id": "automation",
+      "name": "Azure Automation",
+      "category": "Operations",
+      "description": "Basic cloud runbooks and human-reviewed feedback workflows",
+      "url": "https://learn.microsoft.com/azure/automation/"
+    },
+    {
+      "id": "container-registry",
+      "name": "Azure Container Registry",
+      "category": "Compute",
+      "description": "Basic or Standard registry for lab images",
+      "url": "https://learn.microsoft.com/azure/container-registry/"
+    },
+    {
+      "id": "communication-email",
+      "name": "Azure Communication Services Email",
+      "category": "Integration",
+      "description": "Email through Azure-managed domains; sending needs authorization",
+      "url": "https://learn.microsoft.com/azure/communication-services/concepts/email/email-overview"
+    },
+    {
+      "id": "logic-apps",
+      "name": "Azure Logic Apps",
+      "category": "Integration",
+      "description": "Consumption workflows for authorized actions",
+      "url": "https://learn.microsoft.com/azure/logic-apps/"
     }
+  ],
+  "historicalServices": [
+    {"id": "sql", "name": "Azure SQL Database"},
+    {"id": "app-service", "name": "Azure App Service"},
+    {"id": "virtual-network", "name": "Azure Virtual Network"},
+    {"id": "api-management", "name": "Azure API Management"},
+    {"id": "monitor", "name": "Azure Monitor"}
   ],
   "pillars": [
     {

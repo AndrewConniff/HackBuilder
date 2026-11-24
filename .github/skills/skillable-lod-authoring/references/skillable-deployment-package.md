@@ -31,6 +31,13 @@ The portal's existing learner and coach exports remain unchanged; open the packa
 
 ## Single ARM template and two modes
 
+Every mode must comply with the [mandatory resource policy](
+../../hack-builder-workflow/references/allowed-azure-resources.md).
+Reference approval is not a resource-policy exception. The delivery helper checks the actual
+ARM resource set, including inactive conditions and nested templates; unlisted types, disallowed
+SKUs and unresolved constrained values block packaging.
+Do not provision hidden dependencies from supporting scripts or amend the policy for a hack prompt.
+
 `azuredeploy.json` is the only ARM template anywhere in the delivery content.
 It contains every resource, dependency, role assignment, identity, network setting,
 model deployment and supported initialization resource needed for either mode.
@@ -144,7 +151,9 @@ python scripts\skillable_delivery.py validate generated-scenarios\{project}
 
 The helper rejects missing dependencies, extra/external templates, non-resource-group scope,
 unsafe paths, insecure parameter values, absent modes and stale or incomplete archives.
-It does not generate a generic solution, evaluate ARM expressions or deploy Azure resources.
+It does not generate a generic solution, generally evaluate ARM expressions or deploy Azure resources.
+The resource-policy checker resolves only explicit constrained values and bounded parameter/variable references;
+unsupported constrained expressions block rather than assume compliance.
 Scenario-specific tests must verify both modes against the approved resource matrix,
 including child-resource conditions, absent-resource outputs, starter omissions,
 reference completeness, artifact selection and failure behavior of deployment scripts.

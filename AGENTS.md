@@ -78,6 +78,14 @@ Never silently map unsupported industries.
 
 ## Business scope and reuse
 
+Every reference, adaptation and hack must follow the [allowed Azure resource policy](
+.github/skills/hack-builder-workflow/references/allowed-azure-resources.md).
+Hack prompts cannot amend it; policy changes require explicit agentic-solution maintenance.
+Its resource/SKU limits override older skill examples, never stronger security requirements.
+Unlisted supporting resources and unresolved limits block affected work, not permission to improvise.
+Run `python scripts\resource_policy.py <compiled-template.json>` before deployment and composition.
+Skillable delivery validation runs the same check automatically. Preserve historical evidence.
+
 Use the [workflow scope and catalog contract](.github/skills/hack-builder-workflow/SKILL.md)
 for business-unit IDs, Generic exclusivity, manifest metadata and adaptation rules.
 Carry the selected scope through personas, story, application/data, acceptance

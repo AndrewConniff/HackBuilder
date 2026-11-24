@@ -11,6 +11,8 @@ import zipfile
 from pathlib import Path, PurePosixPath
 from typing import BinaryIO
 
+import resource_policy
+
 DELIVERY_FOLDER = "Skillable Deployment Package"
 ARCHIVE_NAME = "skillable-deployment.zip"
 TEMPLATE_NAME = "azuredeploy.json"
@@ -97,6 +99,7 @@ def validate_template(template: dict) -> None:
                 inspect(child)
 
     inspect(template)
+    resource_policy.validate_template(template)
 
 
 def validate_content(packages: Path) -> dict[str, Path]:
