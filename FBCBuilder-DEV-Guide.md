@@ -146,7 +146,7 @@ Use the [workspace helper][workspace-helper] for new work, not to relocate popul
 
 Follow the [HOWTO setup sequence][howto-setup] before generating or deploying references.
 The portal uses the Python standard library, but full reference work requires the wider toolchain.
-The shared baseline includes Python 3.10+, the FBC Builder Python environment, Git, PowerShell 7+, .NET 10 SDK,
+The shared baseline includes Python 3.10+, repository `.venv`, Git, PowerShell 7+, .NET 10 SDK,
 Graphviz, Azure CLI, azd, Bicep, a running Linux Docker engine, Functions Core Tools and k6.
 The complete native setup also includes Node.js 22+, GitHub CLI and VS Code.
 
@@ -159,7 +159,7 @@ Useful read-only checks from the repository root:
 
 ```powershell
 .\system-tools\Install-SystemTools.ps1 -Mode Check
-& "$env:LOCALAPPDATA\FBCBuilder\.venv\Scripts\python.exe" -B scripts\check_prerequisites.py --system --json --contributor
+.\.venv\Scripts\python.exe -B scripts\check_prerequisites.py --system --json --contributor
 az account show --output table
 azd auth login --check-status --no-prompt
 ```
@@ -814,8 +814,7 @@ Docker checks distinguish installed CLI from a responsive Linux engine.
 Installed-but-stopped Docker needs manual engine startup/repair, not automatic reinstall.
 The NuGet probe checks approved-feed Azure.Identity metadata, not every generated app restore.
 
-`execution_environment` selects `%LOCALAPPDATA%\FBCBuilder\.venv` on Windows (repository `.venv` on macOS/Linux)
-and finds certain existing standard tool locations
+`execution_environment` prefers repository `.venv` and finds certain existing standard tool locations
 on the child process PATH. It does not repair shared machine defaults.
 New runtime processes inherit this environment; a reused server keeps its prior environment.
 After tool installation, restart affected processes and rerun checks rather than trusting stale PATH.

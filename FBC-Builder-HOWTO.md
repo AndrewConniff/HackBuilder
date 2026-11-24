@@ -185,7 +185,7 @@ review vendor agreements and explicitly select `-Install`:
 .\system-tools\Install-SystemTools.ps1 -Install -AcceptPackageAgreements -Verbose
 ```
 
-The script installs only missing/failed native tools, creates or preserves `%LOCALAPPDATA%\FBCBuilder\.venv`,
+The script installs only missing/failed native tools, creates or preserves the repository `.venv`,
 installs [`requirements.txt`](requirements.txt), downloads the Azure CLI Bicep component,
 and reruns the complete selected checks.
 WinGet selects available releases; existing compatible versions are preserved rather than forcibly downgraded.
@@ -250,21 +250,16 @@ Narrow scenario checks may require less; a narrower successful report is not a f
 | Node.js LTS, npm/npx | [Node.js downloads][node-download] | Included in setup; `node --version` must be 22+ |
 | GitHub CLI | [GitHub CLI downloads][gh-download] | Included in setup; `gh --version` |
 
-The local-only Python environment is also required, not just a global Python installation.
-On Windows, keep it outside OneDrive/SharePoint at `%LOCALAPPDATA%\FBCBuilder\.venv`:
+The repository Python environment is also required, not just a global Python installation:
 
 ```powershell
-$environmentPath = Join-Path $env:LOCALAPPDATA 'FBCBuilder\.venv'
-if (-not (Test-Path -LiteralPath $environmentPath)) { python -m venv $environmentPath }
-& "$environmentPath\Scripts\python.exe" -m pip install --requirement requirements.txt
-& "$environmentPath\Scripts\python.exe" -m pip check
-& "$environmentPath\Scripts\python.exe" -B scripts\check_prerequisites.py --system
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install --requirement requirements.txt
+.\.venv\Scripts\python.exe -m pip check
+.\.venv\Scripts\python.exe -B scripts\check_prerequisites.py --system
 ```
 
-Do not recreate or overwrite an existing environment; preserve and repair it if necessary.
-The launcher and setup scripts use this local folder, so subsequent package updates keep `cacert.pem` there.
-Do not upload the environment or ZIP it to work around SharePoint certificate rules.
-See [OneDrive and SharePoint guidance](PREREQUISITES.md#onedrive-and-sharepoint) for moving an older environment.
+Do not recreate or overwrite an existing `.venv`; preserve and repair it if necessary.
 [`requirements.txt`](requirements.txt) is authoritative. Current minimums and official package pages:
 
 - [diagrams on PyPI](https://pypi.org/project/diagrams/): `>=0.23.4`.
