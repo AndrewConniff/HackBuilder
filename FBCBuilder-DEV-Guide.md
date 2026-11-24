@@ -10,6 +10,15 @@ Use [AGENTS.md](AGENTS.md) for repository conventions and the [workflow contract
 If an implementation and a safety/approval contract disagree, fix the implementation;
 do not reinterpret a display state as permission.
 
+All generated references and hacks now use the [mandatory allowed-resource policy](
+.github/skills/hack-builder-workflow/references/allowed-azure-resources.md).
+Only explicit agentic-solution policy maintenance may change its JSON constraints and governance document;
+scenario prompts, saved manifests and deployment approvals cannot override it.
+Run `python scripts\resource_policy.py <compiled-template.json>` for compiled reference/starter/coach IaC.
+Skillable delivery build/validation runs the same checker automatically.
+Local checks are not deployed Azure Policy or proof of non-ARM behavior; unresolved regions,
+model versions and provisioned Cosmos caps remain explicit blockers.
+
 ## Contents
 
 - [1. Product and execution model](#1-product-and-execution-model)
@@ -696,15 +705,28 @@ coach-bicep-build       coach-bicep-lint       participant-bicep-build
 participant-bicep-lint  coach-build            coach-tests
 coach-script-guards    starter-status         package-boundaries
 skillable              release-archives
+skillable-arm-learner   skillable-arm-reference  skillable-delivery
 ```
 
 `record-packages` requires `allCommandsPassed: true`, every recorded exit code exactly integer zero,
-all required names, all four package directories and current reference approval.
+all required names, all four package directories, a valid final Skillable delivery ZIP and current reference approval.
 It writes `composition-status.json` with reference/package fingerprints and `eventDeployed: false`.
+New receipts also identify `skillableDeliveryArchive`.
 The package fingerprint covers contract, inventory, planned event manifest and package files,
 excluding the receipt itself and standard build directories.
 Changing package evidence/content can invalidate the receipt as well as changing the reference.
 `current_packages` checks both fingerprints; stale validation blocks export rather than silently accepting it.
+
+The final packaging helper is `scripts\skillable_delivery.py`.
+Author `packages\Skillable Deployment Package\content` according to the
+[single-template contract](.github/skills/skillable-lod-authoring/references/skillable-deployment-package.md),
+then run its `build <scenario>` and `validate <scenario>` commands.
+Both require current reference approval. One resource-group ARM JSON supports learner/reference modes
+with learner default; external templates and a second ARM file are rejected.
+The ZIP must contain every declared mode dependency and match unpacked content byte for byte.
+Both mode-specific resource/initialization tests remain scenario-authored checks, not an ARM evaluator in this helper.
+The normal Skillable validator and new package receipts require this delivery; historical receipts are not rewritten.
+No existing scenario is rebuilt or deployed by changing this workflow.
 
 ## 11. Catalog matching and isolated adaptation
 
@@ -896,6 +918,9 @@ packages\
   participant\            Minimum deployable learner starter
   hack\                   Public learner instructions
   coach-guide\            Private solution guidance and Finale
+  Skillable Deployment Package\
+    skillable-deployment.zip  Private, single-ARM, learner/reference operator handoff
+    content\                 Unpacked delivery sources and supporting payloads
   validation\
     local-checks.json
     composition-status.json

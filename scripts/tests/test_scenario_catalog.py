@@ -82,6 +82,22 @@ class ScenarioCatalogTests(unittest.TestCase):
         catalog.refresh(self.source, metadata={"metadataStatus": "curated", "services": ["foundry"]})
         self.assertEqual(["foundry"], catalog.refresh(self.source)["services"])
 
+    def test_retired_services_remain_discoverable_without_rewriting_historical_manifests(self) -> None:
+        (self.source / "01-requirements.md").write_text(
+            "| Azure App Service | Historical hosting |\n| Azure Virtual Network | Historical network |\n"
+            "| Azure Monitor | Historical logs |\n| Application Insights and Log Analytics | Logs |\n",
+            encoding="utf-8",
+        )
+        self.assertEqual(["monitor", "app-service", "virtual-network"], catalog.inferred(self.source)["services"])
+        value = catalog.refresh(self.source, request={
+            **self.request, "services": ["foundry", "app-service", "virtual-network"],
+        })
+        before = (self.source / catalog.MANIFEST).read_bytes()
+        discovered = catalog.discover(self.root)
+        self.assertEqual([], discovered["errors"])
+        self.assertEqual(value["services"], discovered["scenarios"][0]["services"])
+        self.assertEqual(before, (self.source / catalog.MANIFEST).read_bytes())
+
     def test_source_is_bound_to_manifest_without_copying_any_files(self) -> None:
         source = catalog.refresh(self.source, request=self.request)
         selected = catalog.select_source(self.root, self.source.name, catalog.digest(source), "energy-new")

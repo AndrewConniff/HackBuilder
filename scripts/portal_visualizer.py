@@ -27,13 +27,14 @@ import azure_context
 import check_prerequisites
 import hack_workflow
 import prerequisite_profiles
+import resource_policy
 import scenario_adapt
 import scenario_catalog
 import scenario_chat
 import scenario_match
 from portal_status import ROOT, STAGES, scenario_state, state_directory, write_json
 
-VERSION = 23
+VERSION = 24
 WORKFLOW_VERSION = 5
 LOG = logging.getLogger(__name__)
 BUNDLES = {"learner": ("hack", "participant"), "coach": ("coach", "coach-guide")}
@@ -72,6 +73,9 @@ class Studio:
 
     def catalog(self) -> dict:
         value = scenario_catalog.read_json(self.root / "portal" / "catalog.json")
+        allowed = set(resource_policy.load_policy()["serviceIds"])
+        value["services"] = [service for service in value["services"] if service["id"] in allowed]
+        value.pop("historicalServices", None)
         with (self.root / "microsoft_industry_verticals.csv").open(encoding="utf-8-sig", newline="") as stream:
             value["industries"] = sorted({row["Industry"] for row in csv.DictReader(stream)})
         value["businessUnits"] = [{"id": key, "name": name} for key, name in scenario_catalog.BUSINESS_UNITS]

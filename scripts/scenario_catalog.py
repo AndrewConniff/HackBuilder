@@ -62,6 +62,11 @@ def industry_choices() -> set[str]:
         return {row["Industry"] for row in csv.DictReader(stream)}
 
 
+def catalog_entries(catalog: dict, field: str) -> list[dict]:
+    entries = catalog[field]
+    return entries + catalog.get("historicalServices", []) if field == "services" else entries
+
+
 def validate(value: dict, slug: str) -> dict:
     if value.get("schemaVersion") != 1 or value.get("id") != slug or not valid_slug(slug):
         raise ValueError("Scenario manifest version or ID is invalid.")
@@ -74,7 +79,7 @@ def validate(value: dict, slug: str) -> dict:
     catalog = read_json(ROOT / "portal" / "catalog.json")
     for field in ("services", "pillars", "domains"):
         entries = value.get(field)
-        allowed = {item["id"] for item in catalog[field]}
+        allowed = {item["id"] for item in catalog_entries(catalog, field)}
         if (
             not isinstance(entries, list)
             or any(not isinstance(item, str) or item not in allowed for item in entries)
@@ -140,11 +145,11 @@ def inferred(folder: Path, request: dict | None = None) -> dict:
             selections[field] = request[field]
             continue
         if row_name is None:
-            selections[field] = [
-                item["id"] for item in intake_catalog[field] if re.search(
+            selections[field] = list(dict.fromkeys(
+                item["id"] for item in catalog_entries(intake_catalog, field) if re.search(
                     rf"^\|\s*(?:\*\*)?{re.escape(item['name'])}(?:\*\*)?\s*\|", document, re.MULTILINE,
                 )
-            ]
+            ))
         else:
             row = re.search(rf"^\|\s*{row_name}\s*\|([^|\n]+)\|", document, re.MULTILINE)
             names = [part.strip() for part in row[1].split(";")] if row else []

@@ -24,6 +24,11 @@ is not a separate agent. Read the
 [preserved deployment detail](./references/historical-deployment.md) as needed.
 Historical personas, tool declarations and handoffs are inactive.
 
+Deployment consent does not override the [mandatory resource policy](
+../hack-builder-workflow/references/allowed-azure-resources.md).
+Require the compiled-template resource check and the non-ARM policy review before provisioning.
+Do not introduce forbidden infrastructure through setup/publishing scripts or recovery steps.
+
 Default to **reference** scope. Never require a hack contract or manifest for
 root reference deployment. A separate explicit event-deployment request and
 validated packages are prerequisites for event scope. Require an application

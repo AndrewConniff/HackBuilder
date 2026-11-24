@@ -10,6 +10,9 @@ import sys
 from pathlib import Path, PurePosixPath
 
 SKILL_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(SKILL_ROOT.parents[2] / "scripts"))
+from skillable_delivery import validate_delivery
+
 EXPECTED_INDUSTRIES = {
     "financial-services",
     "healthcare",
@@ -104,6 +107,7 @@ REQUIRED_SKILL_FILES = (
     "references/finale-coach-notes.md",
     "references/scenario-artifact-inventory.md",
     "references/validation-checklist.md",
+    "references/skillable-deployment-package.md",
     "assets/industry-catalog.json",
     "assets/challenge-page.template.md",
     "assets/finale-page.template.md",
@@ -538,6 +542,10 @@ def validate_package(packages_root: Path, industry: str) -> list[str]:
     validate_single_industry(learner_root / "Instructions", industry, errors)
     validate_single_industry(coach_root / "Instructions", industry, errors)
     validate_public_tree(learner_root, errors)
+    try:
+        validate_delivery(packages_root)
+    except (OSError, ValueError, TypeError) as error:
+        add_error(errors, f"Skillable deployment package: {error}")
 
     learner_pages = sorted(learner_instructions.glob("[0-9][0-9]-*.md"))
     if len(learner_pages) != 5:

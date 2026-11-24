@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "source": "FBC workbook 2026-11-10; owner policy edits 2026-11-24",
+  "approvedRegions": [],
+  "cosmosAutoscaleMaxThroughput": null,
+  "models": {
+    "gpt-4.1-mini": [],
+    "gpt-5-mini": [],
+    "gpt-4.1": [],
+    "gpt-5": [],
+    "text-embedding-3-small": []
+  },
+  "maxModelTpm": 50000,
+  "modelCapacityTpm": {},
+  "serviceIds": [
+    "foundry", "cosmos-db", "ai-search", "storage", "container-apps", "functions",
+    "key-vault", "managed-identity", "service-bus", "monitor", "event-grid",
+    "automation", "container-registry", "communication-email", "logic-apps"
+  ],
+  "resourceTypes": {
+    "Microsoft.Storage/storageAccounts": {
+      "kind": {"in": ["StorageV2"]},
+      "sku.name": {"in": ["Standard_LRS"]},
+      "properties.accessTier": {"in": ["Hot"]},
+      "properties.minimumTlsVersion": {"in": ["TLS1_2", "TLS1_3"]}
+    },
+    "Microsoft.Storage/storageAccounts/blobServices": {},
+    "Microsoft.Storage/storageAccounts/blobServices/containers": {},
+    "Microsoft.Storage/storageAccounts/queueServices": {},
+    "Microsoft.Storage/storageAccounts/queueServices/queues": {},
+    "Microsoft.EventGrid/topics": {},
+    "Microsoft.EventGrid/systemTopics": {},
+    "Microsoft.EventGrid/eventSubscriptions": {},
+    "Microsoft.App/managedEnvironments": {
+      "properties.workloadProfiles.*.workloadProfileType": {"in": ["Consumption"], "optional": true}
+    },
+    "Microsoft.App/containerApps": {
+      "properties.workloadProfileName": {"in": ["Consumption"], "optional": true},
+      "properties.template.containers.*.resources.cpu": {"in": [0.25, 0.5]},
+      "properties.template.containers.*.resources.memory": {"in": ["0.5Gi", "1Gi"]},
+      "properties.template.scale.minReplicas": {"min": 0, "max": 1, "optional": true},
+      "properties.template.scale.maxReplicas": {"min": 0, "max": 3}
+    },
+    "Microsoft.App/jobs": {
+      "properties.workloadProfileName": {"in": ["Consumption"], "optional": true},
+      "properties.template.containers.*.resources.cpu": {"in": [0.25, 0.5]},
+      "properties.template.containers.*.resources.memory": {"in": ["0.5Gi", "1Gi"]}
+    },
+    "Microsoft.ServiceBus/namespaces": {
+      "sku.name": {"in": ["Basic", "Standard"]},
+      "sku.tier": {"in": ["Basic", "Standard"], "optional": true}
+    },
+    "Microsoft.ServiceBus/namespaces/queues": {},
+    "Microsoft.ServiceBus/namespaces/topics": {},
+    "Microsoft.ServiceBus/namespaces/topics/subscriptions": {},
+    "Microsoft.DocumentDB/databaseAccounts": {
+      "kind": {"in": ["GlobalDocumentDB"]},
+      "properties.locations": {"length": 1},
+      "properties.enableMultipleWriteLocations": {"in": [false], "optional": true}
+    },
+    "Microsoft.DocumentDB/databaseAccounts/sqlDatabases": {},
+    "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers": {},
+    "Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments": {},
+    "Microsoft.Search/searchServices": {
+      "sku.name": {"in": ["basic", "standard"]},
+      "properties.replicaCount": {"in": [1]},
+      "properties.partitionCount": {"in": [1]}
+    },
+    "Microsoft.KeyVault/vaults": {
+      "properties.sku.name": {"in": ["standard"]},
+      "properties.enableRbacAuthorization": {"in": [true]},
+      "properties.softDeleteRetentionInDays": {"in": [7]},
+      "properties.enablePurgeProtection": {"in": [false]}
+    },
+    "Microsoft.CognitiveServices/accounts": {
+      "kind": {"in": ["AIServices"]},
+      "sku.name": {"in": ["S0"]}
+    },
+    "Microsoft.CognitiveServices/accounts/projects": {},
+    "Microsoft.CognitiveServices/accounts/projects/connections": {},
+    "Microsoft.CognitiveServices/accounts/deployments": {
+      "sku.name": {"in": ["GlobalStandard"]},
+      "sku.capacity": {"min": 1}
+    },
+    "Microsoft.CognitiveServices/accounts/capabilityHosts": {},
+    "Microsoft.CognitiveServices/accounts/projects/capabilityHosts": {},
+    "Microsoft.Automation/automationAccounts": {
+      "properties.sku.name": {"in": ["Basic"]}
+    },
+    "Microsoft.Automation/automationAccounts/runbooks": {},
+    "Microsoft.Automation/automationAccounts/schedules": {},
+    "Microsoft.Automation/automationAccounts/webhooks": {},
+    "Microsoft.ManagedIdentity/userAssignedIdentities": {},
+    "Microsoft.ManagedIdentity/userAssignedIdentities/federatedIdentityCredentials": {},
+    "Microsoft.Authorization/roleAssignments": {},
+    "Microsoft.ContainerRegistry/registries": {
+      "sku.name": {"in": ["Basic", "Standard"]}
+    },
+    "Microsoft.OperationalInsights/workspaces": {
+      "properties.sku.name": {"in": ["PerGB2018"]},
+      "properties.retentionInDays": {"in": [30]},
+      "properties.workspaceCapping.dailyQuotaGb": {"min": 0, "max": 5}
+    },
+    "Microsoft.Insights/components": {
+      "properties.WorkspaceResourceId": {"nonempty": true}
+    },
+    "Microsoft.Communication/communicationServices": {},
+    "Microsoft.Communication/emailServices": {},
+    "Microsoft.Communication/emailServices/domains": {
+      "properties.domainManagement": {"in": ["AzureManaged"]}
+    },
+    "Microsoft.Logic/workflows": {},
+    "Microsoft.Web/serverfarms": {
+      "sku.name": {"in": ["FC1"]},
+      "sku.tier": {"in": ["FlexConsumption"], "optional": true}
+    },
+    "Microsoft.Web/sites": {
+      "kind": {"in": ["functionapp", "functionapp,linux"]},
+      "properties.functionAppConfig.scaleAndConcurrency.instanceMemoryMB": {"in": [512, 2048]}
+    }
+  }
+}

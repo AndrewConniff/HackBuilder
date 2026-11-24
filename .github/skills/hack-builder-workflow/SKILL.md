@@ -16,6 +16,23 @@ orchestrator and `HackCreator Agent` is the hack composition agent. Each perform
 all implementation in its own context through skills. Neither delegates to
 specialists, invokes the other agent, or starts a subagent fanout.
 
+## Mandatory allowed-resource policy
+
+Read [the canonical allowed-resource policy](references/allowed-azure-resources.md)
+before scoping or choosing resources. It applies to every phase, all resources/dependencies,
+both agent contexts, reused scenarios and all learner/coach/event modes.
+Its deny-by-default types, SKUs and caps override older examples and service preferences.
+Brief confirmation, architecture/deployment consent and suitability approval do not override it.
+Only an explicit policy-maintenance request may edit the policy; never amend it to satisfy a hack prompt.
+Keep stronger security requirements. Report incompatible requirements instead of silently adding
+infrastructure, weakening security or offering a per-hack exception.
+
+Compile the actual IaC and run `python scripts\resource_policy.py <compiled-template.json>`
+before deployment, suitability review and composition. Inspect initialization scripts and identity/ownership
+requirements separately; a static ARM check cannot prove those behaviors.
+Skillable delivery build/validation applies the same checker automatically, including conditional resources.
+Unresolved policy fields are blockers, not inferred permissions. Preserve historical evidence unchanged.
+
 ## Intake and local portal
 
 The portal is a visualization and handoff layer, not an execution engine.
@@ -49,7 +66,8 @@ The normal user flow is:
 1. The agent deploys, repairs in-scope errors and proves real application behavior.
 1. Approve the working scenario's suitability in chat; record the reviewed fingerprint.
    Open the separate `HackCreator Agent` context to produce and validate hack materials.
-1. View files and export separate learner/private coach ZIPs in the portal. Done.
+1. Receive the final private Skillable deployment ZIP with one ARM template and learner/reference modes.
+   View files and export separate learner/private coach ZIPs in the portal.
 
 Permissions and approvals belong to the actual VS Code session. The portal neither grants them nor
 creates another permission/decision queue. No repeated preflight, target, build or deployment approval
@@ -690,9 +708,13 @@ Only after `check-approval` passes:
    runtime resources are preprovided, learner-built, or coach-only, and why.
 1. The composition context `package` creates `packages/coach/`, `packages/participant/`,
    `packages/hack/`, and `packages/coach-guide/`, plus the event manifest.
-1. Build/lint both IaC projects, test the starter's intended incomplete state,
-   and run the Skillable validator. The approved reference tests remain the
-   complete-solution baseline.
+1. Build/lint both IaC projects and test the starter's intended incomplete state.
+   The approved reference tests remain the complete-solution baseline.
+1. Create the final private `packages/Skillable Deployment Package/skillable-deployment.zip`
+   using the [single-template delivery contract](../skillable-lod-authoring/references/skillable-deployment-package.md).
+   Include one resource-group ARM JSON with learner/reference modes (learner default)
+   and all application/data/initialization assets. Validate both modes, rebuild the archive,
+   run the Skillable validator and record the complete package receipt.
 1. Present **packages validated; event not deployed** and stop.
 
 The coach is a sanitized deployable copy of the approved solution, not a second

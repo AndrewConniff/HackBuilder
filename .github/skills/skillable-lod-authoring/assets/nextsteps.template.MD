@@ -26,6 +26,12 @@ Classify every artifact before work begins:
   test. It must reach `packaged` before deployment handoff.
 - `release-enrichment` improves the lab or release but is not required for the
   deployed acceptance path. It may remain `planned` after deployment testing.
+- The final private `packages/Skillable Deployment Package/skillable-deployment.zip`
+  is deployment-critical. Inventory its single dual-mode ARM template, parameter examples,
+  deployment manifest, README, scripts and every learner/reference supporting payload.
+  Follow [the delivery contract][skillable-delivery].
+
+[skillable-delivery]: ../../.github/skills/skillable-lod-authoring/references/skillable-deployment-package.md
 
 Use one of these statuses:
 
@@ -101,6 +107,9 @@ filename when one artifact represents a document collection.
 - [ ] Confirm learner-safe assets match under `packages/hack/Allfiles/` and
       `packages/coach-guide/Allfiles/`.
 - [ ] Run the Skillable package validator and sensitive-data checks.
+- [ ] Build and validate the final private Skillable deployment ZIP with one ARM template
+      supporting learner/reference modes, defaulting to learner.
+- [ ] Keep the combined solution-bearing ZIP out of learner downloads and public repositories.
 - [ ] Complete coach and participant deployment testing before publication.
 - [ ] Commit the scenario, package assets, and this updated inventory together.
 - [ ] Push the branch to GitHub and open a pull request with validation and

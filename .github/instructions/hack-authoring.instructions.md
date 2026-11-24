@@ -58,6 +58,10 @@ When I ask for a hack, hackathon, challenge, lab, or workshop, assume:
   acceptance path depends on them.
 - Package authoring ends at local validation. Coach/team event deployment and
   Azure testing require a separate explicit rollout request.
+- As the final authoring step, create the private `packages/Skillable Deployment Package/skillable-deployment.zip`.
+  Follow `.github/skills/skillable-lod-authoring/references/skillable-deployment-package.md`.
+  Include one self-contained ARM template with learner/reference modes (learner default),
+  parameter examples and all required app/data/initialization assets. Never distribute it as learner content.
 - Parameterize coach/participant regions from destination azd configuration; never hardcode or default to
   the reference-validation region. Do not copy its subscription, tenant, `.azure` or quota/access evidence.
   Document fresh destination-subscription regional/model/SKU checks for actual event rollout.
@@ -119,6 +123,10 @@ The five numbered coach challenge files are exact copies of the learner pages.
 Use filename prefixes `00-` through `04-` to match visible Challenge 0 through Challenge 4.
 `99-finale.md` is private, contains the coach notes for every challenge, and
 must not appear in `packages/hack/`.
+
+The final operator delivery is separate from both documentation roots:
+`packages/Skillable Deployment Package/` contains the complete ZIP and unpacked `content/`.
+Verify both mode-specific resource sets and ZIP completeness before recording package validation.
 
 ## Default writing style
 

@@ -18,6 +18,11 @@ For FBC Builder sequencing, approval and deployment scope, use
 [the workflow contract](../hack-builder-workflow/SKILL.md). This skill supplies
 technical patterns, not an alternative orchestrator.
 
+The [mandatory allowed-resource policy](../hack-builder-workflow/references/allowed-azure-resources.md)
+overrides the resource/SKU examples and defaults below. Examples are not an allowlist.
+Never use an AVM default, management VM, VNet, private endpoint or hosting example to add an unlisted resource.
+If a stronger security requirement cannot be met within policy, report the conflict; do not weaken security.
+
 ---
 
 ## 1. Azure Defaults

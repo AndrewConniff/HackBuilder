@@ -8,6 +8,11 @@ description: >
 
 # Reference infrastructure
 
+Enforce the [mandatory resource policy](../hack-builder-workflow/references/allowed-azure-resources.md)
+across the entire compiled resource set, including AVM dependencies and child resources.
+Run `python scripts\resource_policy.py <compiled-template.json>` after build and before deployment/review.
+No prompt exception, safe parameter default or older example overrides the policy.
+
 1. Read requirements, architecture, region evidence, Bicep/Foundry instructions,
    consolidated patterns and the applicable artifact templates.
 1. Discover governance only within authorized Azure scope. Verify current AVM

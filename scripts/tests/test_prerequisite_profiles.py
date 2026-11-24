@@ -42,7 +42,7 @@ class ProfileTests(unittest.TestCase):
     def test_every_catalog_service_has_a_profile_and_pairwise_selection_is_a_union(self) -> None:
         catalog = json.loads((ROOT / "portal" / "catalog.json").read_text(encoding="utf-8"))
         services = [item["id"] for item in catalog["services"]]
-        self.assertEqual(set(services), set(profiles.SERVICE_REQUIREMENTS))
+        self.assertLessEqual(set(services), set(profiles.SERVICE_REQUIREMENTS))
         for left, right in itertools.combinations(services, 2):
             combined = profiles.plan([left, right])
             for stage, tools in combined["stages"].items():

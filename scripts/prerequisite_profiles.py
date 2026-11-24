@@ -5,7 +5,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-VERSION = 2
+VERSION = 3
+# Historical diagnostics still need profiles for services no longer allowed in new hacks.
 SERVICE_REQUIREMENTS = {
     "foundry": "Foundry agents use the repository .NET application baseline.",
     "cosmos-db": "Application SDK via NuGet restore; no local database emulator is required.",
@@ -21,6 +22,11 @@ SERVICE_REQUIREMENTS = {
     "api-management": "Infrastructure through Azure CLI/Bicep; live gateway tests are separate.",
     "service-bus": "Application SDK via NuGet restore; no local broker is required.",
     "monitor": "Application instrumentation through restore; live telemetry checks are separate.",
+    "event-grid": "Application SDK via restore; real publishing/delivery checks are separate.",
+    "automation": "Infrastructure through Azure CLI/Bicep; runbook dependencies need scenario-specific checks.",
+    "container-registry": "Image builds use the selected local/remote build profile and explicit authorization.",
+    "communication-email": "Application SDK via restore; sending mail needs explicit authorization.",
+    "logic-apps": "Infrastructure through Azure CLI/Bicep; workflow connectors and permissions need validation.",
 }
 STAGE_REQUIREMENTS = {
     "requirements": [],

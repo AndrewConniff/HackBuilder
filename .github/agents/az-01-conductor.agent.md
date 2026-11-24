@@ -25,6 +25,9 @@ Inherit the host's configured model preferences.
 ## Start or resume
 
 Read [the workflow contract](../skills/hack-builder-workflow/SKILL.md).
+Read its [mandatory resource policy](../skills/hack-builder-workflow/references/allowed-azure-resources.md)
+before scoping. Hack prompts cannot change it; refuse out-of-list resources/SKUs and unresolved caps.
+Preserve stronger security and report conflicts with older examples instead of adding forbidden infrastructure.
 For an interactive invocation, the startup hook opens the local visualization portal.
 If scoped hooks are unavailable, run `python scripts\start_portal.py` once, not on every follow-up.
 For a portal handoff, the portal is already open; proceed with the attached handoff and brief.

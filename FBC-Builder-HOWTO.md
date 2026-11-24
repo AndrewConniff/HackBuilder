@@ -10,6 +10,12 @@ The instructions cover the implementation reviewed on **October 29, 2026**, incl
 source adaptation, brief continuation and the phase-specific portal conversation pane.
 For engineering handoff, see the [FBCBuilder DEV Guide](FBCBuilder-DEV-Guide.md).
 
+Every hack must stay within the [approved resource and SKU policy](
+.github/skills/hack-builder-workflow/references/allowed-azure-resources.md).
+A scenario prompt cannot override it. Changing the list requires an explicit request to edit
+the FBC agentic solution's policy. Historical screenshots/examples may contain resources no longer allowed.
+The policy explains unresolved deployment inputs and the decisions made from the supplied workbook.
+
 The illustrated walkthrough uses screenshots captured on **October 25, 2026**.
 The example is `feedback-campaign`, a Media & Communications scenario with human-reviewed engagement decisions.
 Its business rules, services, costs and timestamps are examples, not defaults for your project.
@@ -921,6 +927,27 @@ but validation is still running.
 Keep deployment-specific passwords and access records private.
 Public templates and distributed materials must not contain live credentials.
 For larger exports, the portal's 200 MiB limit can require using the agent-generated release archives in VS Code.
+
+### Final Skillable deployment package
+
+Every future hack composition finishes with a private operator ZIP at:
+
+```text
+generated-scenarios\<project>\packages\Skillable Deployment Package\skillable-deployment.zip
+```
+
+It includes one self-contained `azuredeploy.json` with two selectable modes:
+**learner** (default, the minimum starting environment) and **reference** (the complete instructor solution).
+The same ZIP includes both parameter examples, app/data payloads, required setup scripts,
+a mode-specific file manifest and README instructions for Skillable Studio import and lifecycle actions.
+All Azure infrastructure is defined in that single ARM file; unavoidable app publishing and data loading
+use the included scripts and assets, not additional templates.
+
+Use **Open package folder** to access this ZIP. It is separate from the existing portal exports.
+Keep it private because it contains the reference solution; do not send it to participants.
+Local validation checks the archive and both modes, but does not deploy or publish a Skillable lab.
+Existing scenarios are not repackaged automatically.
+See the [delivery contract](.github/skills/skillable-lod-authoring/references/skillable-deployment-package.md).
 
 ### Event rollout and publication are separate
 
